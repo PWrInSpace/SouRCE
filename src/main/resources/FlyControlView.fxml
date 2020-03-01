@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.lynden.gmapsfx.GoogleMapView?>
+<?import eu.hansolo.medusa.Gauge?>
+<?import eu.hansolo.tilesfx.Tile?>
+<?import eu.hansolo.tilesfx.addons.Indicator?>
+<?import javafx.scene.SceneAntialiasing?>
+<?import javafx.scene.SubScene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.FlyControlController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-color: black;">
+      <children>
+            <AnchorPane layoutX="15.0" layoutY="10.0" prefHeight="680.0" prefWidth="410.0" style="-fx-background-color: grey;">
+               <children>
+                  <Tile fx:id="dataGauge1" layoutX="35.0" layoutY="30.0" maxHeight="135.0" maxWidth="-Infinity" prefHeight="135.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Tile fx:id="dataGauge2" layoutX="230.0" layoutY="30.0" maxHeight="135.0" maxWidth="-Infinity" prefHeight="142.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Tile fx:id="dataGauge3" layoutX="35.0" layoutY="185.0" maxHeight="135.0" maxWidth="-Infinity" prefHeight="135.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Tile fx:id="dataGauge4" layoutX="230.0" layoutY="185.0" maxHeight="135.0" maxWidth="-Infinity" prefHeight="135.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Tile fx:id="dataGauge5" layoutX="35.0" layoutY="343.0" maxHeight="135.0" prefHeight="135.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Tile fx:id="dataGauge6" layoutX="230.0" layoutY="343.0" maxHeight="135.0" prefHeight="135.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Tile fx:id="dataGauge7" layoutX="35.0" layoutY="505.0" maxHeight="135.0" prefHeight="135.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Tile fx:id="dataGauge8" layoutX="230.0" layoutY="505.0" maxHeight="135.0" prefHeight="135.0" prefWidth="170.0" skinType="TIMELINE" />
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="31.0" text="Data:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="454.0" layoutY="10.0" prefHeight="335.0" prefWidth="410.0" style="-fx-background-color: grey;">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Valves:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Indicator fx:id="valveIndicator1" layoutX="102.0" layoutY="59.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Label fx:id="valveLabel1" layoutX="37.0" layoutY="50.0" text="Valve1" />
+                  <Button fx:id="valveOpenButton1" layoutX="177.0" layoutY="63.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+                  <Button fx:id="valveCloseButton1" layoutX="280.0" layoutY="63.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+                  <Indicator fx:id="valveIndicator2" layoutX="102.0" layoutY="110.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Label fx:id="valveLabel2" layoutX="37.0" layoutY="101.0" text="Valve2" />
+                  <Button fx:id="valveOpenButton2" layoutX="177.0" layoutY="121.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+                  <Button fx:id="valveCloseButton2" layoutX="280.0" layoutY="121.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+                  <Indicator fx:id="valveIndicator3" layoutX="102.0" layoutY="164.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Label fx:id="valveLabel3" layoutX="37.0" layoutY="155.0" text="Valve3" />
+                  <Button fx:id="valveOpenButton3" layoutX="177.0" layoutY="168.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+                  <Button fx:id="valveCloseButton3" layoutX="280.0" layoutY="168.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+                  <Indicator fx:id="valveIndicator4" layoutX="102.0" layoutY="215.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Label fx:id="valveLabel4" layoutX="37.0" layoutY="206.0" text="Valve4" />
+                  <Button fx:id="valveOpenButton4" layoutX="177.0" layoutY="219.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+                  <Button fx:id="valveCloseButton4" layoutX="280.0" layoutY="219.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+                  <Indicator fx:id="valveIndicator5" layoutX="102.0" layoutY="266.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Label fx:id="valveLabel5" layoutX="37.0" layoutY="257.0" text="Valve5" />
+                  <Button fx:id="valveOpenButton5" layoutX="177.0" layoutY="270.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+                  <Button fx:id="valveCloseButton5" layoutX="280.0" layoutY="270.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="454.0" layoutY="350.0" prefHeight="335.0" prefWidth="410.0" style="-fx-background-color: grey;">
+               <children>
+                  <Gauge fx:id="dataGauge9" layoutX="14.0" layoutY="160.0" prefHeight="135.0" prefWidth="170.0" skinType="SPACE_X" />
+                  <Gauge fx:id="dataGauge10" layoutX="234.0" layoutY="160.0" prefHeight="135.0" prefWidth="170.0" skinType="SPACE_X" />
+                  <Indicator fx:id="dataIndicator1" layoutX="30.0" layoutY="33.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Indicator fx:id="dataIndicator2" layoutX="122.0" layoutY="33.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Indicator fx:id="dataIndicator4" layoutX="346.0" layoutY="33.0" prefHeight="42.0" prefWidth="40.0" />
+                  <Indicator fx:id="dataIndicator3" layoutX="234.0" layoutY="33.0" prefHeight="42.0" prefWidth="40.0" />
+               </children>
+            </AnchorPane>
+            <GoogleMapView fx:id="mapView" layoutX="1330.0" layoutY="350.0" prefHeight="185.0" prefWidth="205.0" />
+            <AnchorPane layoutX="890.0" layoutY="350.0" prefHeight="335.0" prefWidth="410.0" style="-fx-background-color: grey;">
+               <children>
+                  <Tile fx:id="dataTile1" layoutX="64.0" layoutY="42.0" maxHeight="170.0" minHeight="170.0" minWidth="-Infinity" prefHeight="170.0" prefWidth="218.0" skinType="TIMELINE" />
+               </children></AnchorPane>
+            <AnchorPane layoutX="890.0" layoutY="10.0" prefHeight="165.0" prefWidth="410.0" style="-fx-background-color: grey;" />
+            <AnchorPane layoutX="890.0" layoutY="180.0" prefHeight="165.0" prefWidth="410.0" style="-fx-background-color: grey;" />
+            <AnchorPane layoutX="890.0" layoutY="690.0" prefHeight="75.0" prefWidth="410.0" style="-fx-background-color: grey;" />
+            <AnchorPane layoutX="1330.0" layoutY="10.0" prefHeight="330.0" prefWidth="205.0" style="-fx-background-color: grey;">
+               <children>
+                  <Gauge fx:id="powerGauge4" layoutX="54.0" layoutY="145.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+                  <Gauge fx:id="powerGauge5" layoutX="54.0" layoutY="179.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+                  <Gauge fx:id="powerGauge6" layoutX="54.0" layoutY="213.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+                  <Gauge fx:id="powerGauge3" layoutX="54.0" layoutY="112.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+                  <Gauge fx:id="powerGauge7" layoutX="54.0" layoutY="246.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+                  <Gauge fx:id="powerGauge2" layoutX="54.0" layoutY="78.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+                  <Gauge fx:id="powerGauge1" layoutX="54.0" layoutY="44.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+                  <Label fx:id="powerLabel7" layoutX="40.0" layoutY="238.0" text="Power7">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="powerLabel6" layoutX="40.0" layoutY="204.0" text="Power6">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="powerLabel5" layoutX="40.0" layoutY="170.0" text="Power5">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="powerLabel4" layoutX="40.0" layoutY="137.0" text="Power4">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="powerLabel3" layoutX="40.0" layoutY="103.0" text="Power3">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="powerLabel2" layoutX="40.0" layoutY="69.0" text="Power2">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="powerLabel1" layoutX="40.0" layoutY="44.0" prefHeight="18.0" prefWidth="40.0" text="Power1">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label layoutX="14.0" layoutY="14.0" text="Power:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="1330.0" layoutY="720.0" prefHeight="55.0" prefWidth="210.0" style="-fx-background-color: grey;" />
+            <ScrollPane layoutX="15.0" layoutY="695.0" prefHeight="30.0" prefWidth="850.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+            <ScrollPane layoutX="15.0" layoutY="740.0" prefHeight="30.0" prefWidth="850.0">
+               <content>
+                  <AnchorPane minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
+            <SubScene fx:id="subScene" depthBuffer="true" height="166.0" layoutX="1329.0" layoutY="546.0" width="206.0">
+                <antiAliasing>
+                    <SceneAntialiasing fx:constant="BALANCED" />
+                </antiAliasing>
+                <root>
+                    <Region />
+                </root>
+            </SubScene>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
