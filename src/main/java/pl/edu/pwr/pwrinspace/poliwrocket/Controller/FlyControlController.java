@@ -17,9 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.GyroSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -683,22 +680,22 @@ public class FlyControlController implements InvalidationListener, MapComponentI
         //c.setValue((new Random().nextDouble())*1000);
         //Platform.runLater(new Thread(() -> dataTile1.addChartData(c)));
 
-        try{
-            var sensor = ((Sensor) observable);
-
-            //Platform.runLater(new Thread(() -> sensor.getDestination().addChartData((ChartData) sensor)));
-        } catch (Exception e){
-
-            try{
-                var sensor = ((ISensor) observable);
-                Platform.runLater(new Thread(() -> root.rotateByX((int) Math.round((((GyroSensor) observable).getValueGyro()[0])/10)*10)));
-                Platform.runLater(new Thread(() -> root.rotateByY((int) Math.round((((GyroSensor) observable).getValueGyro()[1])/10)*10)));
-                Platform.runLater(new Thread(() -> root.rotateByZ((int) Math.round((((GyroSensor) observable).getValueGyro()[2])/10)*10)));
-
-            } catch (Exception e2){
-
-            }
-        }
+//        try{
+//            var sensor = ((Sensor) observable);
+//
+//            //Platform.runLater(new Thread(() -> sensor.getDestination().addChartData((ChartData) sensor)));
+//        } catch (Exception e){
+//
+//            try{
+//                var sensor = ((ISensor) observable);
+//                Platform.runLater(new Thread(() -> root.rotateByX((int) Math.round((((GyroSensor) observable).getValueGyro()[0])/10)*10)));
+//                Platform.runLater(new Thread(() -> root.rotateByY((int) Math.round((((GyroSensor) observable).getValueGyro()[1])/10)*10)));
+//                Platform.runLater(new Thread(() -> root.rotateByZ((int) Math.round((((GyroSensor) observable).getValueGyro()[2])/10)*10)));
+//
+//            } catch (Exception e2){
+//
+//            }
+//        }
 
 
         Platform.runLater(new Thread(){

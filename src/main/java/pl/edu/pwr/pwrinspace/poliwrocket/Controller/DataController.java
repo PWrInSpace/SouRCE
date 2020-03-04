@@ -79,7 +79,6 @@ public class DataController implements InvalidationListener {
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
                 //tile.setAveragingPeriod(30);
-
             }
         }
 

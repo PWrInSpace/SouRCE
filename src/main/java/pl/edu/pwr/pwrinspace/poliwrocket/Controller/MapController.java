@@ -7,10 +7,7 @@ import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.GPSSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.IGPSSensor;
-
-import java.util.Random;
 
 public class MapController implements InvalidationListener, MapComponentInitializedListener {
 
@@ -91,6 +88,7 @@ public class MapController implements InvalidationListener, MapComponentInitiali
         Platform.runLater(new Thread(){
             @Override
             public void run() {
+                System.err.println(((IGPSSensor) observable).getPosition()[0]  + " " + ((IGPSSensor) observable).getPosition()[1]);
                 LatLong pos = new LatLong(((IGPSSensor) observable).getPosition()[0], ((IGPSSensor) observable).getPosition()[1]);
                 MarkerOptions markerOptions1 = new MarkerOptions();
                 markerOptions1.position(pos);
@@ -99,5 +97,6 @@ public class MapController implements InvalidationListener, MapComponentInitiali
             }
         });
     }
+
 }
 

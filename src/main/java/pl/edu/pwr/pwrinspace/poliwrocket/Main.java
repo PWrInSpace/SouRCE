@@ -2,16 +2,12 @@ package pl.edu.pwr.pwrinspace.poliwrocket;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.*;
 
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.*;
 
-import java.io.IOException;
-import java.time.Instant;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -41,6 +37,9 @@ public class Main extends Application {
 
         Sensor basicSensor = new Sensor();
         basicSensor.setDestination("dataGauge1");
+        sensorsData.add(basicSensor);
+
+        //utworzenie 3xSensor for GYRO
         Sensor gryro1 = new Sensor();
         gryro1.setDestination("dataGauge2");
         gryro1.setName("Gyro X");
@@ -50,21 +49,35 @@ public class Main extends Application {
         Sensor gryro3 = new Sensor();
         gryro3.setDestination("dataGauge4");
         gryro3.setName("Gyro Z");
-        sensorsData.add(basicSensor);
         sensorsData.add(gryro1);
         sensorsData.add(gryro2);
         sensorsData.add(gryro3);
+        //--------
 
-        GyroSensor gyro =  new GyroSensor();
-        GPSSensor gpsSensor = new GPSSensor();
+        //nowy gps
+        Sensor latitude = new Sensor();
+        latitude.setName("lat");
+        Sensor longitude = new Sensor();
+        longitude.setName("long");
+        GPSSensor gpsSensor = new GPSSensor(latitude,longitude);
+        latitude.addListener(gpsSensor);
+        longitude.addListener(gpsSensor);
+        gpsSensor.addListener(mapController);
+        //--------
 
         //dodanie listenerow do sensorow
         basicSensor.addListener(dataController);
         gryro1.addListener(dataController);
         gryro2.addListener(dataController);
         gryro3.addListener(dataController);
-        gyro.addListener(mainController);
-        gpsSensor.addListener(mapController);
+
+        //nowy gryo
+        GyroSensor gyroSensor = new GyroSensor(gryro1,gryro2,gryro3);
+        gyroSensor.addListener(mainController);
+        gryro1.addListener(gyroSensor);
+        gryro2.addListener(gyroSensor);
+        gryro3.addListener(gyroSensor);
+        //---------
 
         dataController.injectModel(sensorsData);
 
@@ -79,20 +92,25 @@ public class Main extends Application {
         sensorRepository.addSensor(gryro2);
         sensorRepository.addSensor(gryro3);
 
-        MessageParser.create(sensorRepository,gpsSensor);
+        MessageParser.create(sensorRepository);
         MessageParser.getInstance().addListener(mainController);
-        SerialPortManager comm = SerialPortManager.getInstance();
-        comm.gyro = gyro;
+
         SerialPortManager.getInstance().initialize();
+
         new Thread(() -> {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             for(int i=1; i<=32; i++){
-                basicSensor.setValue((basicSensor.getValue()+10.0));
-                gpsSensor.setPosition((47.6597 + new Random().nextDouble()/100.0), (-122.3357+new Random().nextDouble()/100.0));
+              //  basicSensor.setValue((basicSensor.getValue()+10.0));
+                latitude.setValue((47.6597 + new Random().nextDouble()/100.0));
+                longitude.setValue((-122.3357+new Random().nextDouble()/100.0));
+//                gpsSensorv2.setPosition((47.6597 + new Random().nextDouble()/100.0),(-122.3357+new Random().nextDouble()/100.0));
+//                gpsSensor.setPosition((47.6597 + new Random().nextDouble()/100.0),(-122.3357+new Random().nextDouble()/100.0));
+
+
                 /*if(new Random().nextBoolean()){
                     try {
                         Thread.sleep(500);

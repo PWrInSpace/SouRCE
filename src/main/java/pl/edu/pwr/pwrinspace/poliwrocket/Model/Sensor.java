@@ -5,10 +5,12 @@ import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Sensor implements Observable, ISensor {
 
-    private InvalidationListener observer;
+    private List<InvalidationListener> observators = new ArrayList<>();
     private String destination;
     private String name = "Altitude";
     private String unit = "m";
@@ -32,14 +34,12 @@ public class Sensor implements Observable, ISensor {
 
     @Override
     public void addListener(InvalidationListener invalidationListener) {
-        observer = invalidationListener;
+        observators.add(invalidationListener);
     }
 
     @Override
     public void removeListener(InvalidationListener invalidationListener) {
-      if(observer!=null){
-          observer=null;
-      }
+        observators.remove(invalidationListener);
     }
 
     @Override
@@ -57,8 +57,9 @@ public class Sensor implements Observable, ISensor {
     }
 
     private void notifyObserver(){
-        if(observer!=null){
-            observer.invalidated(new Sensor(this));
+        for (InvalidationListener obs: observators) {
+            //obs.invalidated(new Sensor(this));
+            obs.invalidated(this);
         }
     }
 
@@ -94,5 +95,14 @@ public class Sensor implements Observable, ISensor {
         return value;
     }
 
+    //TODO SPRAWDZIC TO
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

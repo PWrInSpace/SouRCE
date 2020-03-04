@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import static java.lang.Double.parseDouble;
 import static java.lang.Thread.sleep;
 
-public class SerialPortManager implements SerialPortEventListener {
+public class SerialPortManager implements SerialPortEventListener, ISerialPortManager {
 
     private NRSerialPort serialPort;
     // Na windowsie domyślnie posługujemy się portem COM3
@@ -31,8 +31,8 @@ public class SerialPortManager implements SerialPortEventListener {
     FileWriter flightData;
     private String delims = "[&]+";
     private String delims2 = ";";
-    public boolean isPortOpen = false;;
-    public GyroSensor gyro = new GyroSensor();
+    public boolean isPortOpen = false;
+//    public GyroSensor gyro = new GyroSensor();
 
     private SerialPortManager() {
         if (Holder.INSTANCE != null) {
@@ -105,7 +105,7 @@ public class SerialPortManager implements SerialPortEventListener {
     //Singleton pattern
 
 
-
+    @Override
     public void initialize() {
         try {
             // otwieramy i konfigurujemy port
@@ -128,6 +128,7 @@ public class SerialPortManager implements SerialPortEventListener {
         }
     }
 
+    @Override
     public synchronized void close() {
         if (serialPort != null) {
             serialPort.removeEventListener();
@@ -150,12 +151,9 @@ public class SerialPortManager implements SerialPortEventListener {
             {
                 while ( ( len = this.inputStream.read(buffer)) > 0 )
                 {
-                    String msg = new String(buffer, 0, len);
-                    System.out.print(msg);
-                    msgAll.append(msg);
-                    String[] splited = msg.split(",");
-                    gyro.update(parseDouble(splited[0]), parseDouble(splited[1]), parseDouble(splited[2]));
-
+                    //String msg = new String(buffer, 0, len);
+                    //System.out.print(msg);
+                    //msgAll.append(msg);
                     MessageParser.getInstance().parseMessage(buffer,len);
                 }
                 System.out.println("done");

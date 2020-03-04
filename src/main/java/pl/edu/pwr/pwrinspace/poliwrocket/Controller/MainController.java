@@ -3,7 +3,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import com.interactivemesh.jfx.importer.ModelImporter;
 import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import eu.hansolo.medusa.Gauge;
-import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -14,17 +13,12 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.SubScene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.GyroSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.*;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.HashMap;
 
 public class MainController implements InvalidationListener {
@@ -148,12 +142,11 @@ public class MainController implements InvalidationListener {
         ModelImporter tdsImporter = new TdsModelImporter();
         tdsImporter.read(getClass().getClassLoader().getResource("rocketModel.3ds"));
         Node[] tdsMesh = (Node[]) tdsImporter.getImport();
+
         rocket3DModel = tdsMesh[0];
         tdsImporter.close();
-
         root.getChildren().add(rocket3DModel);
         modelScene.setRoot(root);
-
 
 //        //load dataScene
 //        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("DataController.fxml"));
@@ -191,7 +184,7 @@ public class MainController implements InvalidationListener {
 //            }
 //        }
         if(observable instanceof MessageParser){
-            inComing.appendText(((MessageParser) observable).getLastMessage());
+           Platform.runLater(new Thread( () -> inComing.appendText(((MessageParser) observable).getLastMessage())));
         }
 
 //        dataGauge9.setValue(Math.pow(((((GyroSensor) observable).getValueGyro()[0])/10)*10,2)/1000);
@@ -201,7 +194,8 @@ public class MainController implements InvalidationListener {
 //        }*/
 //
 //
-//        try{
+//         else if(observable instanceof GyroSensor){
+//            try{
 //                var sensor = ((ISensor) observable);
 //                Platform.runLater(new Thread(() -> root.rotateByX((int) Math.round((((GyroSensor) observable).getValueGyro()[0])/10)*10)));
 //                Platform.runLater(new Thread(() -> root.rotateByY((int) Math.round((((GyroSensor) observable).getValueGyro()[1])/10)*10)));
@@ -210,6 +204,13 @@ public class MainController implements InvalidationListener {
 //            } catch (Exception e2){
 //
 //            }
+//        }
+        else if(observable instanceof GyroSensor){
+            Platform.runLater(new Thread(() -> root.rotateByX((int) Math.round((((GyroSensor) observable).getValueGyro()[0])/10)*10)));
+            Platform.runLater(new Thread(() -> root.rotateByY((int) Math.round((((GyroSensor) observable).getValueGyro()[1])/10)*10)));
+            Platform.runLater(new Thread(() -> root.rotateByZ((int) Math.round((((GyroSensor) observable).getValueGyro()[2])/10)*10)));
+        }
+
 
 
         //dataGauge1.setValue(((ISensor) observable).getValue());
