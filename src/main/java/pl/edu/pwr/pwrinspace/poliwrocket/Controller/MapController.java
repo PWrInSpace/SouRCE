@@ -88,12 +88,12 @@ public class MapController implements InvalidationListener, MapComponentInitiali
         Platform.runLater(new Thread(){
             @Override
             public void run() {
-                System.err.println(((IGPSSensor) observable).getPosition()[0]  + " " + ((IGPSSensor) observable).getPosition()[1]);
-                LatLong pos = new LatLong(((IGPSSensor) observable).getPosition()[0], ((IGPSSensor) observable).getPosition()[1]);
-                MarkerOptions markerOptions1 = new MarkerOptions();
-                markerOptions1.position(pos);
-                Marker marker = new Marker(markerOptions1);
-                Platform.runLater(new Thread(() -> map.addMarker( marker )));
+//                System.err.println(((IGPSSensor) observable).getPosition()[0]  + " " + ((IGPSSensor) observable).getPosition()[1]);
+//                LatLong pos = new LatLong(((IGPSSensor) observable).getPosition()[0], ((IGPSSensor) observable).getPosition()[1]);
+//                MarkerOptions markerOptions1 = new MarkerOptions();
+//                markerOptions1.position(pos);
+//                Marker marker = new Marker(markerOptions1);
+//                Platform.runLater(new Thread(() -> map.addMarker( marker )));
             }
         });
     }

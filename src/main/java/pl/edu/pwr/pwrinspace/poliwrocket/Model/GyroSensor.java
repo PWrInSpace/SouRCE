@@ -1,17 +1,46 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
+import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class GyroSensor implements Observable, InvalidationListener {
+public class GyroSensor implements Observable, InvalidationListener, IGyroSensor {
 
-    private ISensor axis_x;
-    private ISensor axis_y;
-    private ISensor axis_z;
-    List<InvalidationListener> observators = new ArrayList<>();
+    @Expose
+    private Sensor axis_x;
+
+    @Expose
+    private Sensor axis_y;
+
+    @Expose
+    private Sensor axis_z;
+
+    @Expose
+    private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
+
+    List<InvalidationListener> observers = new ArrayList<>();
+
+    public GyroSensor(){
+
+    }
+
+    public Sensor getAxis_x() {
+        return axis_x;
+    }
+
+    public Sensor getAxis_y() {
+        return axis_y;
+    }
+
+    public Sensor getAxis_z() {
+        return axis_z;
+    }
 
     public GyroSensor(GyroSensor sensor) {
         this.axis_x= sensor.axis_x;
@@ -24,13 +53,30 @@ public class GyroSensor implements Observable, InvalidationListener {
         this.axis_z=axis_z;
     }
 
+    public void observeFields(){
+        this.axis_x.addListener(this);
+        this.axis_y.addListener(this);
+        this.axis_z.addListener(this);
+    }
 
-    public double[] getValueGyro() {
-        return new double[]{axis_x.getValue(), axis_y.getValue(), axis_z.getValue()};
+    @Override
+    public Map<String, Double> getValueGyro() {
+        return new HashMap<String,Double>() {{
+            put(IGyroSensor.AXIS_X_KEY,axis_x.getValue());
+            put(IGyroSensor.AXIS_Y_KEY,axis_y.getValue());
+            put(IGyroSensor.AXIS_Z_KEY,axis_z.getValue());
+        }};
+    }
+
+    @Override
+    public void assignSensors(Sensor axis_x, Sensor axis_y, Sensor axis_z) {
+        this.axis_x = axis_x;
+        this.axis_y = axis_y;
+        this.axis_z = axis_z;
     }
 
     private void notifyObserver(){
-        for (InvalidationListener obs:  observators) {
+        for (InvalidationListener obs: observers) {
 //            obs.invalidated(new GyroSensor(this));
             obs.invalidated(this);
         }
@@ -38,12 +84,12 @@ public class GyroSensor implements Observable, InvalidationListener {
 
     @Override
     public void addListener(InvalidationListener invalidationListener) {
-        observators.add(invalidationListener);
+        observers.add(invalidationListener);
     }
 
     @Override
     public void removeListener(InvalidationListener invalidationListener) {
-        observators.remove(invalidationListener);
+        observers.remove(invalidationListener);
     }
 
     @Override
@@ -51,4 +97,11 @@ public class GyroSensor implements Observable, InvalidationListener {
         notifyObserver();
     }
 
+    public List<ControllerNameEnum> getDestinationControllerNames() {
+        return destinationControllerNames;
+    }
+
+    public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
+        this.destinationControllerNames = destinationControllerNames;
+    }
 }

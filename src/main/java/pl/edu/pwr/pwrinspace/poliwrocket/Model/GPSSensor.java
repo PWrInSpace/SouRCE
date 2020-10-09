@@ -1,40 +1,62 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
+import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import java.util.ArrayList;
-import java.util.List;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
+
+import java.util.*;
 
 public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
 
-    List<InvalidationListener> observators = new ArrayList<>();
+    List<InvalidationListener> observers = new ArrayList<>();
 
-    private ISensor latitude;
+    @Expose
+    private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
 
-    private ISensor longitude;
+    @Expose
+    private Sensor latitude;
 
-    private int isReadyForUpdate = 0; //number 2 means true
+    public Sensor getLatitude() {
+        return latitude;
+    }
+
+    public Sensor getLongitude() {
+        return longitude;
+    }
+
+    @Expose
+    private Sensor longitude;
+
+    private boolean isLatUpToDate = false;
+
+    private boolean isLongUpToDate = false;
 
     public GPSSensor() {
     }
 
-    public GPSSensor(ISensor latitude, ISensor longitude) {
+    public GPSSensor(Sensor latitude, Sensor longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    public void observeFields(){
+        this.latitude.addListener(this);
+        this.longitude.addListener(this);
+    }
+
     @Override
     public void addListener(InvalidationListener invalidationListener) {
-        observators.add(invalidationListener);
+        observers.add(invalidationListener);
     }
 
     @Override
     public void removeListener(InvalidationListener invalidationListener) {
-        observators.remove(invalidationListener);
+        observers.remove(invalidationListener);
     }
 
-    private void notifyObserver(){
-        for (InvalidationListener obs:  observators) {
+    private void notifyObserver() {
+        for (InvalidationListener obs : observers) {
 //            obs.invalidated(new GPSSensor(latitude,longitude));
             obs.invalidated(this);
         }
@@ -48,22 +70,34 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
     }
 
     @Override
-    public double[] getPosition(){
-        return new double [] {latitude.getValue(),longitude.getValue()};
+    public Map<String, Double> getPosition() {
+        return new HashMap<String,Double>() {{
+            put(IGPSSensor.LATITUDE_KEY,latitude.getValue());
+            put(IGPSSensor.LONGITUDE_KEY,longitude.getValue());
+        }};
     }
 
-    //TODO SPRAWDZIC TO
+    //TODO SPRAWDZIC TO //10.04 zmieniono - nadal sprawdzic
     @Override
     public void invalidated(Observable observable) {
-        if(observable == longitude){
-            isReadyForUpdate = 1;
+        if (observable == longitude) {
+            isLongUpToDate = true;
         }
-        if(observable == latitude && isReadyForUpdate == 1){
-            isReadyForUpdate = 2;
+        if (observable == latitude) {
+            isLatUpToDate = true;
         }
-        if(isReadyForUpdate == 2){
+        if (isLongUpToDate && isLatUpToDate) {
             notifyObserver();
-            isReadyForUpdate = 0;
+            isLongUpToDate = false;
+            isLatUpToDate = false;
         }
+    }
+
+    public List<ControllerNameEnum> getDestinationControllerNames() {
+        return destinationControllerNames;
+    }
+
+    public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
+        this.destinationControllerNames = destinationControllerNames;
     }
 }

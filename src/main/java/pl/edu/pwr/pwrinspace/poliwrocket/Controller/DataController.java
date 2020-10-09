@@ -1,23 +1,20 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.tilesfx.Tile;
-import eu.hansolo.tilesfx.chart.ChartData;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISensorUI;
 
 import java.time.Duration;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-public class DataController implements InvalidationListener {
+public class DataController extends BasicSensorController {
 
     private static Duration DURATION = Duration.ofSeconds(10);
+
+    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.DATA_CONTROLLER;
 
     @FXML
     private Tile dataGauge1;
@@ -43,46 +40,59 @@ public class DataController implements InvalidationListener {
     @FXML
     private Tile dataGauge8;
 
-    HashMap<String,Tile> tileHashSet = new HashMap<>();
-
-    HashSet<Sensor> sensors = new HashSet<>();
+    HashMap<String, Tile> tileHashMap = new HashMap<>();
 
     @FXML
     void initialize() {
-        tileHashSet.put(dataGauge1.getId(),dataGauge1);
-        tileHashSet.put(dataGauge2.getId(),dataGauge2);
-        tileHashSet.put(dataGauge3.getId(),dataGauge3);
-        tileHashSet.put(dataGauge4.getId(),dataGauge4);
-        tileHashSet.put(dataGauge5.getId(),dataGauge5);
-        tileHashSet.put(dataGauge6.getId(),dataGauge6);
-        tileHashSet.put(dataGauge7.getId(),dataGauge7);
-        tileHashSet.put(dataGauge8.getId(),dataGauge8);
+        tileHashMap.put(dataGauge1.getId(), dataGauge1);
+        tileHashMap.put(dataGauge2.getId(), dataGauge2);
+        tileHashMap.put(dataGauge3.getId(), dataGauge3);
+        tileHashMap.put(dataGauge4.getId(), dataGauge4);
+        tileHashMap.put(dataGauge5.getId(), dataGauge5);
+        tileHashMap.put(dataGauge6.getId(), dataGauge6);
+        tileHashMap.put(dataGauge7.getId(), dataGauge7);
+        tileHashMap.put(dataGauge8.getId(), dataGauge8);
+        dataGauge2.setVisible(false);
+        dataGauge4.setVisible(false);
+        dataGauge8.setVisible(false);
     }
 
-    public void injectModel(Collection<Sensor> sensors){
-        this.sensors.addAll(sensors);
-        setTilesUI();
-    }
-    public void setTilesUI(){
-        for(Sensor s:sensors) {
-            var tile = tileHashSet.get(s.getDestination());
-            if(tile!=null){
+    @Override
+    protected void setUIBySensors() {
+
+        for (ISensorUI sensor : sensors) {
+            var tile = tileHashMap.get(sensor.getDestination());
+            if (tile != null) {
                 tile.setVisible(true);
-                tile.setMaxValue(s.getMaxRange());
-                tile.setMinValue(s.getMinRange());
-                tile.setTitle(s.getName());
-                tile.setUnit(s.getUnit());
+                tile.setMaxValue(sensor.getMaxRange());
+                tile.setMinValue(sensor.getMinRange());
+                tile.setTitle(sensor.getName());
+                tile.setUnit(sensor.getUnit());
                 tile.setAverageVisible(true);
-                tile.setMaxTimePeriod(DURATION);
-                tile.setTimePeriodResolution(TimeUnit.SECONDS);
-                tile.setSnapToTicks(true);
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
-                //tile.setAveragingPeriod(30);
+            } else {
+                //TODO log error - nie istnieje tile o takiej nazwie
             }
+        }
+        if (!dataGauge2.visibleProperty().get()) {
+            dataGauge1.setPrefWidth(dataGauge1.getPrefWidth()*2);
+        }
+        if (!dataGauge4.visibleProperty().get()) {
+            dataGauge3.setPrefWidth(dataGauge3.getPrefWidth()*2);
+
+        }
+        if (!dataGauge6.visibleProperty().get()) {
+            dataGauge5.setPrefWidth(dataGauge5.getPrefWidth()*2);
+
+        }
+        if (!dataGauge8.visibleProperty().get()) {
+            dataGauge7.setPrefWidth(dataGauge7.getPrefWidth()*2);
+
         }
 
     }
+
     @Override
     public void invalidated(Observable observable) {
 
@@ -94,12 +104,14 @@ public class DataController implements InvalidationListener {
 //        dataGauge4.setValue(new Random().nextDouble()*100);
 
 
+        try {
+            var sensor = ((ISensorUI) observable);
+            Platform.runLater(new Thread(() -> {
 
-        try{
-            var sensor = ((Sensor) observable);
-            Platform.runLater(new Thread( () -> tileHashSet.get(sensor.getDestination()).setValue(sensor.getValue()))); //tileHashSet.get(sensor.getDestination()).setValue(sensor.getValue());
-            //Platform.runLater(new Thread(() -> tileHashSet.get(sensor.getDestination()).addChartData(new ChartData(sensor.getValue(),sensor.getTimeStamp()))));
-        } catch (Exception e){
+                tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
+            })); //tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
+//            Platform.runLater(new Thread(() -> tileHashMap.get(sensor.getDestination()).addChartData(new ChartData(sensor.getValue(),sensor.getTimeStamp()))));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -134,5 +146,10 @@ public class DataController implements InvalidationListener {
 
     public Tile getDataGauge8() {
         return dataGauge8;
+    }
+
+    @Override
+    public ControllerNameEnum getControllerNameEnum() {
+        return this.controllerNameEnum;
     }
 }

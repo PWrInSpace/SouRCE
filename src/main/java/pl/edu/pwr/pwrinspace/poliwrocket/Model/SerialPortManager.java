@@ -1,38 +1,24 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
 import gnu.io.*;
+import org.jetbrains.annotations.Contract;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static java.lang.Double.parseDouble;
 import static java.lang.Thread.sleep;
 
 public class SerialPortManager implements SerialPortEventListener, ISerialPortManager {
 
     private NRSerialPort serialPort;
     // Na windowsie domyślnie posługujemy się portem COM3
-    protected String PORT_NAME = "COM5";
+    protected String PORT_NAME = "COM3";
     private final Logger log = Logger.getLogger(getClass().getName()); //java.util.logging.Logger
-    private BufferedReader input;
     private OutputStream outputStream;
     private InputStream inputStream;
     protected SerialWriter serialWriter;
-    private StringBuilder msgAll = new StringBuilder();
-    private String pattern = "\"yyyy-MM-dd HH:mm:ss.S\"";
-    private DateFormat dateFormat = new SimpleDateFormat(pattern);
-    private String patternFile = "yyyy-MM-dd HH-mm-ss";
-    private DateFormat dateFormatFile = new SimpleDateFormat(patternFile);
-    FileWriter flightData;
-    private String delims = "[&]+";
-    private String delims2 = ";";
     public boolean isPortOpen = false;
-//    public GyroSensor gyro = new GyroSensor();
 
     private SerialPortManager() {
         if (Holder.INSTANCE != null) {
@@ -145,18 +131,18 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             byte[] buffer = new byte[2048];
-            int len = -1;
-            msgAll.delete(0,msgAll.length());
+            int len;
             try
             {
                 while ( ( len = this.inputStream.read(buffer)) > 0 )
                 {
-                    //String msg = new String(buffer, 0, len);
-                    //System.out.print(msg);
-                    //msgAll.append(msg);
                     MessageParser.getInstance().parseMessage(buffer,len);
                 }
-                System.out.println("done");
+//                System.out.println("done");
+                //TODO sprowac tego (bez whila):
+                /**
+                 MessageParser.getInstance().parseMessage(buffer,this.inputStream.read(buffer)));
+                 */
             }
             catch ( IOException e )
             {
@@ -164,6 +150,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             }
 
         }
+    }
+
+    public void write(String message){
+        log.log(Level.INFO,"Written: " + message);
+        serialWriter.send(message);
     }
 
     /** */

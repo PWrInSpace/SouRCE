@@ -4,6 +4,12 @@ import com.interactivemesh.jfx.importer.ModelImporter;
 import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.tilesfx.addons.Indicator;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -16,15 +22,19 @@ import javafx.scene.SubScene;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.*;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.GyroSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.IGyroSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
 
-import java.io.IOException;
-import java.util.HashMap;
-
-public class MainController extends BasicController implements InvalidationListener {
+public class MainControllerDAS implements InvalidationListener {
 
     private ControllerNameEnum controllerNameEnum = ControllerNameEnum.MAIN_CONTROLLER;
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
 
     @FXML
     private Gauge dataGauge9;
@@ -45,6 +55,12 @@ public class MainController extends BasicController implements InvalidationListe
     private Indicator dataIndicator3;
 
     @FXML
+    private TextArea inComing;
+
+    @FXML
+    private TextArea outGoing;
+
+    @FXML
     private SubScene modelScene;
 
     @FXML
@@ -59,15 +75,10 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene powerScene;
 
-    @FXML
-    private TextArea inComing;
-
-    @FXML
-    private TextArea outGoing;
 
     public HashMap<Object, Gauge> sensors = new HashMap<Object, Gauge>();
 
-    private MainController.SmartGroup root = new MainController.SmartGroup();
+    private MainControllerDAS.SmartGroup root = new MainControllerDAS.SmartGroup();
     private Node rocket3DModel;
 
     public SubScene getMapScene() {
@@ -96,20 +107,20 @@ public class MainController extends BasicController implements InvalidationListe
 
     @FXML
     void initialize() {
+        assert dataGauge9 != null : "fx:id=\"dataGauge9\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert dataGauge10 != null : "fx:id=\"dataGauge10\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert dataIndicator1 != null : "fx:id=\"dataIndicator1\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert dataIndicator2 != null : "fx:id=\"dataIndicator2\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert dataIndicator4 != null : "fx:id=\"dataIndicator4\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert dataIndicator3 != null : "fx:id=\"dataIndicator3\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert inComing != null : "fx:id=\"inComing\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert outGoing != null : "fx:id=\"outGoing\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert modelScene != null : "fx:id=\"modelScene\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert dataScene != null : "fx:id=\"dataScene\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert valvesScene != null : "fx:id=\"valvesScene\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert mapScene != null : "fx:id=\"mapScene\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
+        assert powerScene != null : "fx:id=\"powerScene\" was not injected: check your FXML file 'MainViewDAS.fxml'.";
 
-        assert dataGauge9 != null : "fx:id=\"dataGauge9\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataGauge10 != null : "fx:id=\"dataGauge10\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataIndicator1 != null : "fx:id=\"dataIndicator1\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataIndicator2 != null : "fx:id=\"dataIndicator2\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataIndicator4 != null : "fx:id=\"dataIndicator4\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataIndicator3 != null : "fx:id=\"dataIndicator3\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert inComing != null : "fx:id=\"inComing\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert outGoing != null : "fx:id=\"outGoing\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert modelScene != null : "fx:id=\"modelScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataScene != null : "fx:id=\"dataScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert valvesScene != null : "fx:id=\"valvesScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert mapScene != null : "fx:id=\"mapScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert powerScene != null : "fx:id=\"powerScene\" was not injected: check your FXML file 'MainView.fxml'.";
 
        /* dataTile1.setMaxTimePeriod(Duration.ofSeconds(15));
         dataTile1.setMaxValue(1000.0);
@@ -187,7 +198,7 @@ public class MainController extends BasicController implements InvalidationListe
 //            }
 //        }
         if(observable instanceof MessageParser){
-           Platform.runLater(new Thread( () -> inComing.appendText(((MessageParser) observable).getLastMessage())));
+            Platform.runLater(new Thread( () -> inComing.appendText(((MessageParser) observable).getLastMessage())));
         }
 
 //        dataGauge9.setValue(Math.pow(((((GyroSensor) observable).getValueGyro()[0])/10)*10,2)/1000);
@@ -268,11 +279,6 @@ public class MainController extends BasicController implements InvalidationListe
             */rotateZ.setAngle(ang);
 
         }
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return this.controllerNameEnum;
     }
 
 }

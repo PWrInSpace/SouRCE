@@ -1,25 +1,47 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
+import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
+import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewMapController;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-public class Sensor implements Observable, ISensor {
+public class Sensor implements Observable, ISensorUI {
 
-    private List<InvalidationListener> observators = new ArrayList<>();
+    public List<InvalidationListener> observers = new ArrayList<>();
+
+    @Expose
     private String destination;
+
+    @Expose
     private String name = "Altitude";
+
+    @Expose
     private String unit = "m";
+
     private Instant timeStamp;
+
+    @Expose
+    private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
+
+    @Expose
     private double maxRange = 360;
+
+    @Expose
     private double minRange = -360;
+
     private double value = 0;
+    private List<Double> values = new LinkedList<>();
 
     public Sensor() {
+        this.timeStamp = Instant.now();
     }
 
     public Sensor(@NotNull Sensor sensor) {
@@ -34,21 +56,21 @@ public class Sensor implements Observable, ISensor {
 
     @Override
     public void addListener(InvalidationListener invalidationListener) {
-        observators.add(invalidationListener);
+        observers.add(invalidationListener);
     }
 
     @Override
     public void removeListener(InvalidationListener invalidationListener) {
-        observators.remove(invalidationListener);
+        observers.remove(invalidationListener);
     }
 
     @Override
-    public void setDestination(String destination){
+    public void setDestination(String destination) {
         this.destination = destination;
     }
 
     @Override
-    public String getDestination(){
+    public String getDestination() {
         return destination;
     }
 
@@ -56,42 +78,70 @@ public class Sensor implements Observable, ISensor {
         return timeStamp;
     }
 
-    private void notifyObserver(){
-        for (InvalidationListener obs: observators) {
-            //obs.invalidated(new Sensor(this));
-            obs.invalidated(this);
+    private void notifyObserver() {
+        for (InvalidationListener obs : observers) {
+            if (Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000
+                    || this.values.size() % Configuration.getInstance().FPS == 0
+                    || obs instanceof Observable
+                    || obs instanceof NewMapController) {
+
+                obs.invalidated(this);
+            }
         }
     }
 
     @Override
-    public void setValue(double newValue){
-        this.value = newValue;
+    public void setValue(double newValue) {
+        this.values.add(newValue);
+
+        if (Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000) {
+            this.value = newValue;
+        } else if (this.values.size() % Configuration.getInstance().FPS == 0) {
+            this.value = this.getAverageFromSecond();
+        } else {
+            this.value = newValue;
+        }
         this.timeStamp = Instant.now();
         notifyObserver();
+    }
+
+    private double getAverageFromSecond() {
+        var sum = 0;
+        int lastIndex = this.values.size();
+        int startIndex = lastIndex <= Configuration.getInstance().FPS ? 0 : lastIndex - Configuration.getInstance().FPS;
+        this.values = this.values.subList(startIndex, lastIndex);
+        for (Double oldValue : this.values) {
+            sum += oldValue;
+        }
+        return sum / (double) (Configuration.getInstance().FPS);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getUnit() {
         return unit;
     }
 
+    @Override
     public double getMaxRange() {
         return maxRange;
     }
 
+    @Override
     public double getMinRange() {
         return minRange;
     }
 
     @Override
-    public double getValue(){
+    public double getValue() {
         return value;
     }
 
@@ -104,5 +154,13 @@ public class Sensor implements Observable, ISensor {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    public List<ControllerNameEnum> getDestinationControllerNames() {
+        return destinationControllerNames;
+    }
+
+    public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
+        this.destinationControllerNames = destinationControllerNames;
     }
 }

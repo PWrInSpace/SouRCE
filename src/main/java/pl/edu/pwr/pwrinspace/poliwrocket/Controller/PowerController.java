@@ -5,8 +5,11 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 
-public class PowerController implements InvalidationListener {
+public class PowerController extends BasicController implements InvalidationListener {
+
+    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.POWER_CONTROLLER;
 
     @FXML
     private Gauge powerGauge4;
@@ -71,5 +74,10 @@ public class PowerController implements InvalidationListener {
     @Override
     public void invalidated(Observable observable) {
 
+    }
+
+    @Override
+    public ControllerNameEnum getControllerNameEnum() {
+        return this.controllerNameEnum;
     }
 }

@@ -1,13 +1,23 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class SensorRepository implements ISensorRepository {
-    private HashMap<String,ISensor> sensors = new HashMap<>();
+    @Expose
+    private HashMap<String,Sensor> sensors = new HashMap<>();
+
+    @Expose
+    private GPSSensor gpsSensor = new GPSSensor();
+
+    @Expose
+    private GyroSensor gyroSensor = new GyroSensor();
 
     @Override
-    public ISensor getSensorByName(String name) {
+    public Sensor getSensorByName(String name) {
         return sensors.get(name);
     }
 
@@ -31,4 +41,25 @@ public class SensorRepository implements ISensorRepository {
         return sensors.keySet();
     }
 
+    public GPSSensor getGpsSensor() {
+        return gpsSensor;
+    }
+
+    public GyroSensor getGyroSensor() {
+        return gyroSensor;
+    }
+
+    public GPSSensor setGpsSensor(GPSSensor gpsSensor) {
+        this.gpsSensor = gpsSensor;
+        return this.gpsSensor;
+    }
+
+    public GyroSensor setGyroSensor(GyroSensor gyroSensor) {
+        this.gyroSensor = gyroSensor;
+        return this.gyroSensor;
+    }
+
+    public Map<String, Sensor> getAllBasicSensors() {
+        return this.sensors;
+    }
 }
