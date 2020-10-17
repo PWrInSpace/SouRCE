@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-//import IGPSSensor;
 
 public class MapController implements InvalidationListener, MapComponentInitializedListener {
 

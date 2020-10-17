@@ -9,8 +9,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicControl
 
 public class PowerController extends BasicController implements InvalidationListener {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.POWER_CONTROLLER;
-
     @FXML
     private Gauge powerGauge4;
 
@@ -55,6 +53,8 @@ public class PowerController extends BasicController implements InvalidationList
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.POWER_CONTROLLER;
+
         assert powerGauge4 != null : "fx:id=\"powerGauge4\" was not injected: check your FXML file 'FlyControlView.fxml'.";
         assert powerGauge5 != null : "fx:id=\"powerGauge5\" was not injected: check your FXML file 'FlyControlView.fxml'.";
         assert powerGauge6 != null : "fx:id=\"powerGauge6\" was not injected: check your FXML file 'FlyControlView.fxml'.";
@@ -73,11 +73,6 @@ public class PowerController extends BasicController implements InvalidationList
 
     @Override
     public void invalidated(Observable observable) {
-
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return this.controllerNameEnum;
+        //TODO to implement
     }
 }

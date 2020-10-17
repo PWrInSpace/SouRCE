@@ -13,8 +13,6 @@ import java.util.HashMap;
 
 public class ValvesController extends BasicButtonSensorController {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.VALVES_CONTROLLER;
-
     @FXML
     private Indicator valveIndicator1;
 
@@ -80,6 +78,8 @@ public class ValvesController extends BasicButtonSensorController {
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.VALVES_CONTROLLER;
+
         assert valveIndicator1 != null : "fx:id=\"valveIndicator1\" was not injected: check your FXML file 'ValvesController.fxml'.";
         assert valveLabel1 != null : "fx:id=\"valveLabel1\" was not injected: check your FXML file 'ValvesController.fxml'.";
         assert valveOpenButton1 != null : "fx:id=\"valveOpenButton1\" was not injected: check your FXML file 'ValvesController.fxml'.";
@@ -137,10 +137,5 @@ public class ValvesController extends BasicButtonSensorController {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return controllerNameEnum;
     }
 }

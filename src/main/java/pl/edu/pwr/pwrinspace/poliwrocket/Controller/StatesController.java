@@ -14,8 +14,6 @@ import java.util.HashMap;
 
 public class StatesController extends BasicButtonSensorController {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.STATES_CONTROLLER;
-
     @FXML
     private Switch safeSwitch1;
 
@@ -56,6 +54,8 @@ public class StatesController extends BasicButtonSensorController {
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.STATES_CONTROLLER;
+
         visualizationsHashMap.put(stateIndicator1.getId(),stateIndicator1);
         visualizationsHashMap.put(stateIndicator2.getId(),stateIndicator2);
         visualizationsHashMap.put(stateIndicator3.getId(),stateIndicator3);
@@ -105,12 +105,7 @@ public class StatesController extends BasicButtonSensorController {
 
     @Override
     protected void setUIBySensors() {
-
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return this.controllerNameEnum;
+        //TODO implement
     }
 
     @Override

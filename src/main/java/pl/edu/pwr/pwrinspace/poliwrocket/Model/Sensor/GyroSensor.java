@@ -61,11 +61,11 @@ public class GyroSensor implements Observable, InvalidationListener, IGyroSensor
 
     @Override
     public Map<String, Double> getValueGyro() {
-        return new HashMap<String,Double>() {{
-            put(IGyroSensor.AXIS_X_KEY,axis_x.getValue());
-            put(IGyroSensor.AXIS_Y_KEY,axis_y.getValue());
-            put(IGyroSensor.AXIS_Z_KEY,axis_z.getValue());
-        }};
+        HashMap<String, Double> gyro = new HashMap<String,Double>();
+        gyro.put(IGyroSensor.AXIS_X_KEY,axis_x.getValue());
+        gyro.put(IGyroSensor.AXIS_Y_KEY,axis_y.getValue());
+        gyro.put(IGyroSensor.AXIS_Z_KEY,axis_z.getValue());
+        return gyro;
     }
 
     @Override
@@ -77,7 +77,6 @@ public class GyroSensor implements Observable, InvalidationListener, IGyroSensor
 
     private void notifyObserver(){
         for (InvalidationListener obs: observers) {
-//            obs.invalidated(new GyroSensor(this));
             obs.invalidated(this);
         }
     }

@@ -14,8 +14,6 @@ public class DataController extends BasicSensorController {
 
     private static Duration DURATION = Duration.ofSeconds(10);
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.DATA_CONTROLLER;
-
     @FXML
     private Tile dataGauge1;
 
@@ -44,6 +42,8 @@ public class DataController extends BasicSensorController {
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.DATA_CONTROLLER;
+
         tileHashMap.put(dataGauge1.getId(), dataGauge1);
         tileHashMap.put(dataGauge2.getId(), dataGauge2);
         tileHashMap.put(dataGauge3.getId(), dataGauge3);
@@ -81,18 +81,18 @@ public class DataController extends BasicSensorController {
             }
         }
         if (!dataGauge2.visibleProperty().get()) {
-            dataGauge1.setPrefWidth(dataGauge1.getPrefWidth()*2+24);
+            dataGauge1.setPrefWidth(dataGauge1.getPrefWidth() * 2 + 24);
         }
         if (!dataGauge4.visibleProperty().get()) {
-            dataGauge3.setPrefWidth(dataGauge3.getPrefWidth()*2+24);
+            dataGauge3.setPrefWidth(dataGauge3.getPrefWidth() * 2 + 24);
 
         }
         if (!dataGauge6.visibleProperty().get()) {
-            dataGauge5.setPrefWidth(dataGauge5.getPrefWidth()*2+24);
+            dataGauge5.setPrefWidth(dataGauge5.getPrefWidth() * 2 + 24);
 
         }
         if (!dataGauge8.visibleProperty().get()) {
-            dataGauge7.setPrefWidth(dataGauge7.getPrefWidth()*2+24);
+            dataGauge7.setPrefWidth(dataGauge7.getPrefWidth() * 2 + 24);
 
         }
 
@@ -100,61 +100,11 @@ public class DataController extends BasicSensorController {
 
     @Override
     public void invalidated(Observable observable) {
-
-//        dataGauge1.addChartData(new ChartData(new Random().nextDouble()*10));
-//        dataGauge2.addChartData(new ChartData(new Random().nextDouble()*10));
-//        dataGauge3.addChartData(new ChartData(new Random().nextDouble()*10));
-//        dataGauge2.setValue(new Random().nextDouble()*100);
-//        dataGauge3.setValue(new Random().nextDouble()*100);
-//        dataGauge4.setValue(new Random().nextDouble()*100);
-
-
         try {
             var sensor = ((ISensor) observable);
-            Platform.runLater(() -> {
-                tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
-            });
-            //tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
-//            Platform.runLater(new Thread(() -> tileHashMap.get(sensor.getDestination()).addChartData(new ChartData(sensor.getValue(),sensor.getTimeStamp()))));
+            Platform.runLater(() -> tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public Tile getDataGauge1() {
-        return dataGauge1;
-    }
-
-    public Tile getDataGauge2() {
-        return dataGauge2;
-    }
-
-    public Tile getDataGauge3() {
-        return dataGauge3;
-    }
-
-    public Tile getDataGauge4() {
-        return dataGauge4;
-    }
-
-    public Tile getDataGauge5() {
-        return dataGauge5;
-    }
-
-    public Tile getDataGauge6() {
-        return dataGauge6;
-    }
-
-    public Tile getDataGauge7() {
-        return dataGauge7;
-    }
-
-    public Tile getDataGauge8() {
-        return dataGauge8;
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return this.controllerNameEnum;
     }
 }

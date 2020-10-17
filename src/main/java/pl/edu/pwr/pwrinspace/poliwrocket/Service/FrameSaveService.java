@@ -1,6 +1,5 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Service;
 
-import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
@@ -17,39 +16,13 @@ public class FrameSaveService {
     private File flightDataFile = new File(Configuration.FLIGHT_DATA_PATH + Configuration.FLIGHT_DATA_FILE_NAME);
 
     public void saveFrameToFile(Frame frame) {
-        FileWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter(flightDataFile,true);
-            try (BufferedWriter output = new BufferedWriter(fileWriter)) {
-                try {
-                    output.write(frame.getContent() + Configuration.getInstance().FRAME_DELIMITER + frame.getTimeInstant().toString());
-                    output.newLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            FileWriter fileWriter = new FileWriter(flightDataFile, true);
+            BufferedWriter output = new BufferedWriter(fileWriter);
+            output.write(frame.getContent() + Configuration.getInstance().FRAME_DELIMITER + frame.getTimeInstant().toString());
+            output.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
-
-
-//        try {
-//            fileWriter.write(frame.getContent()+Configuration.getInstance().FRAME_DELIMITER+frame.getTimeInstant().toString());
-//            fileWriter.write("dupa\n");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        try (FileWriter fileWriter = new FileWriter(flightDataFile)) {
-//            try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
-//                bufferedWriter.write(frame.getContent()+Configuration.getInstance().FRAME_DELIMITER+frame.getTimeInstant().toString());
-//                bufferedWriter.newLine();
-//            }
-////            fileWriter.append(frame.getContent()).append(Configuration.getInstance().FRAME_DELIMITER).append(frame.getTimeInstant().toString());
-////            fileWriter.append(System.lineSeparator());
-////            fileWriter.flush();
-//        } catch (Exception e) {
-//            logger.error(e.getMessage());
-//        }
     }
 }

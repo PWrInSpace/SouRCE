@@ -14,8 +14,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
 
 public class ConnectionController extends BasicButtonSensorController {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.CONNECTION_CONTROLLER;
-
     @FXML
     private ComboBox<String> serialPorts;
 
@@ -33,6 +31,7 @@ public class ConnectionController extends BasicButtonSensorController {
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.CONNECTION_CONTROLLER;
 
         serialSetup();
 
@@ -66,7 +65,7 @@ public class ConnectionController extends BasicButtonSensorController {
 
     @Override
     protected void setUIBySensors() {
-
+        //TODO implement for signal
     }
 
     @Override
@@ -86,10 +85,5 @@ public class ConnectionController extends BasicButtonSensorController {
                 serialPorts.setDisable(false);
             }
         }
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return controllerNameEnum;
     }
 }

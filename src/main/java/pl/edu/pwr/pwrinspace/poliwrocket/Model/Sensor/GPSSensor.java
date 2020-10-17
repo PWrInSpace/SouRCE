@@ -57,7 +57,6 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
 
     private void notifyObserver() {
         for (InvalidationListener obs : observers) {
-//            obs.invalidated(new GPSSensor(latitude,longitude));
             obs.invalidated(this);
         }
     }
@@ -71,10 +70,10 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
 
     @Override
     public Map<String, Double> getPosition() {
-        return new HashMap<String,Double>() {{
-            put(IGPSSensor.LATITUDE_KEY,latitude.getValue());
-            put(IGPSSensor.LONGITUDE_KEY,longitude.getValue());
-        }};
+        HashMap<String, Double> position = new HashMap<>();
+        position.put(IGPSSensor.LATITUDE_KEY,latitude.getValue());
+        position.put(IGPSSensor.LONGITUDE_KEY,longitude.getValue());
+        return position;
     }
 
     //TODO SPRAWDZIC TO //10.04 zmieniono - nadal sprawdzic

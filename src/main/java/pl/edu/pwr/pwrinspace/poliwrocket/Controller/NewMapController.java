@@ -17,8 +17,6 @@ import java.util.List;
 
 public class NewMapController extends BasicController implements InvalidationListener {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.MAP_CONTROLLER;
-
     /** logger for the class. */
     private static final Logger logger = LoggerFactory.getLogger(NewMapController.class);
 
@@ -38,6 +36,10 @@ public class NewMapController extends BasicController implements InvalidationLis
     public NewMapController() {
 
     }
+    @FXML
+    void initialize() {
+        controllerNameEnum = ControllerNameEnum.MAP_CONTROLLER;
+    }
 
     /**
      * called after the fxml is loaded and all objects are created. This is not called initialize any more,
@@ -49,7 +51,7 @@ public class NewMapController extends BasicController implements InvalidationLis
     public void initMapAndControls(Projection projection) {
         logger.trace("begin initialize");
 
-//        // init MapView-Cache
+        // init MapView-Cache
 //        final OfflineCache offlineCache = mapView.getOfflineCache();
 //        final String cacheDir = System.getProperty("java.io.tmpdir") + "/mapjfx-cache";
 //        logger.info("using dir for cache: " + cacheDir);
@@ -113,10 +115,5 @@ public class NewMapController extends BasicController implements InvalidationLis
             mapView.addCoordinateLine(track);
             track.setVisible(true);
         });
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return this.controllerNameEnum;
     }
 }

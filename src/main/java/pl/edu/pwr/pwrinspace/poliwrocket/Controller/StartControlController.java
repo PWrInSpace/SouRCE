@@ -8,8 +8,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonS
 
 public class StartControlController extends BasicButtonSensorController {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.START_CONTROL_CONTROLLER;
-
     @FXML
     private Switch safeSwitch1;
 
@@ -39,6 +37,8 @@ public class StartControlController extends BasicButtonSensorController {
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.START_CONTROL_CONTROLLER;
+
         qucikDistonectButton.setDisable(true);
         armingButton1.setDisable(true);
         armingButton2.setDisable(true);
@@ -78,16 +78,12 @@ public class StartControlController extends BasicButtonSensorController {
 
     @Override
     protected void setUIBySensors() {
-
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return this.controllerNameEnum;
+        //its only button panel
     }
 
     @Override
     public void invalidated(Observable observable) {
-
+        //its only button panel
+        throw new UnsupportedOperationException();
     }
 }

@@ -35,6 +35,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        try {
+
+
         //now use only default config
         configurationSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
         String port = "";
@@ -200,7 +203,9 @@ public class Main extends Application {
                 }
             }
         }).start();
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

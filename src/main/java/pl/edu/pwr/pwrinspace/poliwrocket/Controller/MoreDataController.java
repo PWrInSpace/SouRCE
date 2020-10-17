@@ -13,8 +13,6 @@ import java.util.HashMap;
 
 public class MoreDataController extends BasicSensorController {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.MORE_DATA_CONTROLLER;
-
     private final Double thresholdPercent = 0.8;
 
     @FXML
@@ -52,6 +50,8 @@ public class MoreDataController extends BasicSensorController {
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.MORE_DATA_CONTROLLER;
+
         visualizationsHashMap.put(dataIndicator1.getId(),dataIndicator1);
         visualizationsHashMap.put(dataIndicator2.getId(),dataIndicator2);
         visualizationsHashMap.put(dataIndicator3.getId(),dataIndicator3);
@@ -71,9 +71,7 @@ public class MoreDataController extends BasicSensorController {
                 ((Gauge)visualizationsHashMap.get(s)).setVisible(false);
             }
         });
-        labelsHashMap.forEach((s, label) -> {
-            labelsHashMap.get(s).setVisible(false);
-        });
+        labelsHashMap.forEach((s, label) -> labelsHashMap.get(s).setVisible(false));
     }
 
     @Override
@@ -99,11 +97,6 @@ public class MoreDataController extends BasicSensorController {
                 //TODO log error - nie istnieje tile o takiej nazwie
             }
         }
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return this.controllerNameEnum;
     }
 
     @Override

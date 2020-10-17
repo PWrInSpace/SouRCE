@@ -12,8 +12,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
 
 public class AbortController extends BasicButtonController {
 
-    private ControllerNameEnum controllerNameEnum = ControllerNameEnum.ABORT_CONTROLLER;
-
     @FXML
     private Switch safeSwitch1;
 
@@ -25,29 +23,14 @@ public class AbortController extends BasicButtonController {
 
     @FXML
     void initialize() {
+        controllerNameEnum = ControllerNameEnum.ABORT_CONTROLLER;
+
         abortButton.setDisable(true);
         buttonHashMap.put(abortButton.getId(), abortButton);
 
-        safeSwitch1.setOnMouseClicked(actionEvent -> {
-            if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
-                abortButton.setDisable(false);
-            } else {
-                abortButton.setDisable(true);
-            }
-        });
+        safeSwitch1.setOnMouseClicked(actionEvent -> abortButton.setDisable(!(safeSwitch1.isActive() && safeSwitch2.isActive())));
 
-        safeSwitch2.setOnMouseClicked(actionEvent -> {
-            if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
-                abortButton.setDisable(false);
-            } else {
-                abortButton.setDisable(true);
-            }
-        });
-    }
-
-    @Override
-    public ControllerNameEnum getControllerNameEnum() {
-        return controllerNameEnum;
+        safeSwitch2.setOnMouseClicked(actionEvent -> abortButton.setDisable(!(safeSwitch1.isActive() && safeSwitch2.isActive())));
     }
 
     @Override
@@ -62,6 +45,7 @@ public class AbortController extends BasicButtonController {
 
     @Override
     public void invalidated(Observable observable) {
-
+        //there is now field to display sensor data
+        throw new UnsupportedOperationException();
     }
 }
