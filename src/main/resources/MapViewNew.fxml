@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  Copyright 2015-2020 Peter-Josef Meisch (pj.meisch@sothawo.com)
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,15 +12,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
+
 <?import com.sothawo.mapjfx.MapView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewMapController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="206.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewMapController">
    <top>
 <!--      <HBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">-->
 <!--         <children>-->
@@ -33,20 +33,17 @@
 <!--      </HBox>-->
    </top>
    <center>
-      <MapView fx:id="mapView" BorderPane.alignment="CENTER"/>
+      <MapView fx:id="mapView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="824.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></MapView>
    </center>
    <bottom>
-<!--      <HBox alignment="CENTER_LEFT" spacing="5.0" BorderPane.alignment="CENTER">-->
-<!--         <children>-->
-<!--            <Label fx:id="labelCenter" text="Center: "/>-->
-<!--            <Label fx:id="labelExtent" text="Extent: "/>-->
-<!--            <Label fx:id="labelZoom" text="Zoom: "/>-->
-<!--            <Label fx:id="labelEvent" text="Event: "/>-->
-<!--         </children>-->
-<!--         <padding>-->
-<!--            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>-->
-<!--         </padding>-->
-<!--      </HBox>-->
+      <HBox alignment="CENTER_LEFT" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="currentLocation" editable="false" prefHeight="26.0" prefWidth="210.0" />
+         </children>
+      </HBox>
    </bottom>
    <left>
 <!--      <Accordion fx:id="leftControls" BorderPane.alignment="CENTER">-->

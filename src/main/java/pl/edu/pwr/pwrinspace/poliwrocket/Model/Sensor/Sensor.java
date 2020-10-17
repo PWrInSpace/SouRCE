@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Model;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Sensor implements Observable, ISensorUI {
+public class Sensor implements Observable, ISensor {
 
     public List<InvalidationListener> observers = new ArrayList<>();
 
@@ -38,6 +38,9 @@ public class Sensor implements Observable, ISensorUI {
     private double minRange = -360;
 
     private double value = 0;
+
+    private double maxValue = Double.MIN_VALUE;
+
     private List<Double> values = new LinkedList<>();
 
     public Sensor() {
@@ -101,6 +104,9 @@ public class Sensor implements Observable, ISensorUI {
         } else {
             this.value = newValue;
         }
+        if(this.value > this.maxValue) {
+            this.maxValue = this.value;
+        }
         this.timeStamp = Instant.now();
         notifyObserver();
     }
@@ -162,5 +168,21 @@ public class Sensor implements Observable, ISensorUI {
 
     public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
         this.destinationControllerNames = destinationControllerNames;
+    }
+
+    public void setMaxRange(double maxRange) {
+        this.maxRange = maxRange;
+    }
+
+    public void setMinRange(double minRange) {
+        this.minRange = minRange;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public double getMaxValue() {
+        return maxValue;
     }
 }

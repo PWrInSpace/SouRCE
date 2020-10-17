@@ -14,42 +14,42 @@
       <Gauge fx:id="powerGauge7" layoutX="54.0" layoutY="246.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
       <Gauge fx:id="powerGauge2" layoutX="54.0" layoutY="78.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
       <Gauge fx:id="powerGauge1" layoutX="54.0" layoutY="44.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-      <Label fx:id="powerLabel7" layoutX="40.0" layoutY="238.0" text="Power7">
+      <Label fx:id="powerLabel7" layoutX="36.0" layoutY="255.0" text="Power7">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="powerLabel6" layoutX="40.0" layoutY="204.0" text="Power6">
+      <Label fx:id="powerLabel6" layoutX="36.0" layoutY="221.0" text="Power6">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="powerLabel5" layoutX="40.0" layoutY="170.0" text="Power5">
+      <Label fx:id="powerLabel5" layoutX="36.0" layoutY="187.0" text="Power5">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="powerLabel4" layoutX="40.0" layoutY="137.0" text="Power4">
+      <Label fx:id="powerLabel4" layoutX="36.0" layoutY="154.0" text="Power4">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="powerLabel3" layoutX="40.0" layoutY="103.0" text="Power3">
+      <Label fx:id="powerLabel3" layoutX="36.0" layoutY="120.0" text="Power3">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="powerLabel2" layoutX="40.0" layoutY="69.0" text="Power2">
+      <Label fx:id="powerLabel2" layoutX="36.0" layoutY="86.0" text="Power2">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="powerLabel1" layoutX="40.0" layoutY="44.0" prefHeight="18.0" prefWidth="40.0" text="Power1">
+      <Label fx:id="powerLabel1" layoutX="36.0" layoutY="50.0" prefHeight="18.0" prefWidth="40.0" text="Power1">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="14.0" text="Power:">
+      <Label layoutX="7.0" text="Power:">
          <font>
             <Font size="18.0" />
          </font>

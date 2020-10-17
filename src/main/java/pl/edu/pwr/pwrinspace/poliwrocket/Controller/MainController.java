@@ -17,7 +17,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.*;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -54,6 +55,21 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene valvesScene;
 
     @FXML
+    private SubScene moreDataScene;
+
+    @FXML
+    private SubScene stateScene;
+
+    @FXML
+    private SubScene startControlScene;
+
+    @FXML
+    private SubScene connectionScene;
+
+    @FXML
+    private SubScene abortScene;
+
+    @FXML
     private SubScene mapScene;
 
     @FXML
@@ -74,12 +90,19 @@ public class MainController extends BasicController implements InvalidationListe
         return mapScene;
     }
 
-    public void initSubcenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower, FXMLLoader loaderValves) {
+    public void initSubscenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower,
+                              FXMLLoader loaderValves, FXMLLoader loaderMoreData, FXMLLoader loaderAbort,
+                              FXMLLoader loaderStates, FXMLLoader loaderStart, FXMLLoader loaderConnection) {
         try {
             dataScene.setRoot(loaderData.load());
             mapScene.setRoot(loaderMap.load());
             powerScene.setRoot(loaderPower.load());
             valvesScene.setRoot(loaderValves.load());
+            moreDataScene.setRoot(loaderMoreData.load());
+            abortScene.setRoot(loaderAbort.load());
+            stateScene.setRoot(loaderStates.load());
+            startControlScene.setRoot(loaderStart.load());
+            connectionScene.setRoot(loaderConnection.load());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -119,9 +142,9 @@ public class MainController extends BasicController implements InvalidationListe
         //ChartData c = new ChartData();
         //dataTile1.addChartData(c);
 
-        //Creating camera - i don`t know why but this is in exmaple
+        //Creating camera - i don`t know why but this is in example
         PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.setTranslateZ(-700);
+        camera.setTranslateZ(-900); //-700
         camera.setNearClip(0.1);
         camera.setFarClip(3000.0);
         camera.setFieldOfView(60);

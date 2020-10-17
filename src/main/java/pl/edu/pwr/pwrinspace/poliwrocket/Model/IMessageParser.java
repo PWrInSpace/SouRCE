@@ -1,7 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
 public interface IMessageParser {
-    void parseMessage(byte[] msg, int length);
+    void parseMessage(Frame frame);
     String getLastMessage();
 }
 

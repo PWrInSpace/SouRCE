@@ -80,3 +80,5 @@ gen
 .idea/
 src/test/
 target/
+flightData/
+*.log

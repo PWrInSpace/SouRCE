@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISensorUI;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
 import java.util.HashMap;
 
@@ -122,7 +122,7 @@ public class ValvesController extends BasicButtonSensorController {
 
     @Override
     protected void setUIBySensors(){
-        for (ISensorUI s : sensors) {
+        for (ISensor s : sensors) {
             var indicator = indicatorHashMap.get(s.getDestination());
             indicator.setVisible(true);
         }
@@ -131,7 +131,7 @@ public class ValvesController extends BasicButtonSensorController {
     @Override
     public void invalidated(Observable observable) {
         try {
-            var sensor = ((ISensorUI) observable);
+            var sensor = ((ISensor) observable);
             Platform.runLater(() -> indicatorHashMap.get(sensor.getDestination()).setOn(sensor.getValue() == 1.0));
         } catch (Exception e) {
             e.printStackTrace();

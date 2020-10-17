@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISensorUI;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -52,15 +52,20 @@ public class DataController extends BasicSensorController {
         tileHashMap.put(dataGauge6.getId(), dataGauge6);
         tileHashMap.put(dataGauge7.getId(), dataGauge7);
         tileHashMap.put(dataGauge8.getId(), dataGauge8);
+        dataGauge1.setVisible(false);
         dataGauge2.setVisible(false);
+        dataGauge3.setVisible(false);
         dataGauge4.setVisible(false);
+        dataGauge5.setVisible(false);
+        dataGauge6.setVisible(false);
+        dataGauge7.setVisible(false);
         dataGauge8.setVisible(false);
     }
 
     @Override
     protected void setUIBySensors() {
 
-        for (ISensorUI sensor : sensors) {
+        for (ISensor sensor : sensors) {
             var tile = tileHashMap.get(sensor.getDestination());
             if (tile != null) {
                 tile.setVisible(true);
@@ -76,18 +81,18 @@ public class DataController extends BasicSensorController {
             }
         }
         if (!dataGauge2.visibleProperty().get()) {
-            dataGauge1.setPrefWidth(dataGauge1.getPrefWidth()*2);
+            dataGauge1.setPrefWidth(dataGauge1.getPrefWidth()*2+24);
         }
         if (!dataGauge4.visibleProperty().get()) {
-            dataGauge3.setPrefWidth(dataGauge3.getPrefWidth()*2);
+            dataGauge3.setPrefWidth(dataGauge3.getPrefWidth()*2+24);
 
         }
         if (!dataGauge6.visibleProperty().get()) {
-            dataGauge5.setPrefWidth(dataGauge5.getPrefWidth()*2);
+            dataGauge5.setPrefWidth(dataGauge5.getPrefWidth()*2+24);
 
         }
         if (!dataGauge8.visibleProperty().get()) {
-            dataGauge7.setPrefWidth(dataGauge7.getPrefWidth()*2);
+            dataGauge7.setPrefWidth(dataGauge7.getPrefWidth()*2+24);
 
         }
 
@@ -105,11 +110,11 @@ public class DataController extends BasicSensorController {
 
 
         try {
-            var sensor = ((ISensorUI) observable);
-            Platform.runLater(new Thread(() -> {
-
+            var sensor = ((ISensor) observable);
+            Platform.runLater(() -> {
                 tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
-            })); //tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
+            });
+            //tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
 //            Platform.runLater(new Thread(() -> tileHashMap.get(sensor.getDestination()).addChartData(new ChartData(sensor.getValue(),sensor.getTimeStamp()))));
         } catch (Exception e) {
             e.printStackTrace();

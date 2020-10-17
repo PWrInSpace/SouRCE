@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,24 +36,38 @@ public class MessageParser implements IMessageParser, Observable {
     }
 
     @Override
-    public void parseMessage(byte[] msg, int length) {
-        lastMessage = new String(msg,0,length);
+    public void parseMessage(Frame frame) {
+        lastMessage = frame.getContent();
         Logger.getLogger(getClass().getName()).log(Level.INFO,"Message received: " + lastMessage);
         String[] splited = lastMessage.split(delims);
 
-        if(sensorRepository.getSensorsKeys().size() == splited.length){
+        if(Configuration.getInstance().FRAME_PATTERN.size() == splited.length){
             int currentPosition = 0;
-            for (String name: sensorRepository.getSensorsKeys()) {
+            for (String sensorName : Configuration.getInstance().FRAME_PATTERN) {
                 try {
-                    sensorRepository.getSensorByName(name).setValue(Double.parseDouble(splited[currentPosition]));
-                } catch (NumberFormatException e){
-                    Logger.getLogger(getClass().getName()).log(Level.WARNING,"Wrong message, value is not a number! " + lastMessage + " -> " + splited[currentPosition]);
+                    sensorRepository.getSensorByName(sensorName).setValue(Double.parseDouble(splited[currentPosition]));
+                } catch (NumberFormatException e) {
+                    Logger.getLogger(getClass().getName()).log(Level.WARNING, "Wrong message, value is not a number! " + lastMessage + " -> " + splited[currentPosition]);
+                } finally {
+                    currentPosition++;
                 }
-                currentPosition++;
             }
         } else {
-            Logger.getLogger(getClass().getName()).log(Level.WARNING,"Wrong message length! Expected: " + sensorRepository.getSensorsKeys().size() + " got: " + splited.length);
+            Logger.getLogger(getClass().getName()).log(Level.WARNING,"Wrong message length! Expected: " + Configuration.getInstance().FRAME_PATTERN.size() + " got: " + splited.length);
         }
+//        if(sensorRepository.getSensorsKeys().size() == splited.length){
+//            int currentPosition = 0;
+//            for (String name: sensorRepository.getSensorsKeys()) {
+//                try {
+//                    sensorRepository.getSensorByName(name).setValue(Double.parseDouble(splited[currentPosition]));
+//                } catch (NumberFormatException e){
+//                    Logger.getLogger(getClass().getName()).log(Level.WARNING,"Wrong message, value is not a number! " + lastMessage + " -> " + splited[currentPosition]);
+//                }
+//                currentPosition++;
+//            }
+//        } else {
+//            Logger.getLogger(getClass().getName()).log(Level.WARNING,"Wrong message length! Expected: " + sensorRepository.getSensorsKeys().size() + " got: " + splited.length);
+//        }
         notifyObserver();
     }
 

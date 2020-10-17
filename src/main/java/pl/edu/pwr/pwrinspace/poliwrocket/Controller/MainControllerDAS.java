@@ -4,12 +4,6 @@ import com.interactivemesh.jfx.importer.ModelImporter;
 import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.tilesfx.addons.Indicator;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -22,9 +16,13 @@ import javafx.scene.SubScene;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.GyroSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.IGyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class MainControllerDAS implements InvalidationListener {
 

@@ -1,6 +1,10 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
 import com.google.gson.annotations.Expose;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GyroSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +12,7 @@ import java.util.Set;
 
 public class SensorRepository implements ISensorRepository {
     @Expose
-    private HashMap<String,Sensor> sensors = new HashMap<>();
+    private HashMap<String, Sensor> sensors = new HashMap<>();
 
     @Expose
     private GPSSensor gpsSensor = new GPSSensor();
@@ -27,12 +31,12 @@ public class SensorRepository implements ISensorRepository {
     }
 
     @Override
-    public void removeSensor(Sensor sensor) {
+    public void removeSensor(ISensor sensor) {
         sensors.remove(sensor.getName());
     }
 
     @Override
-    public void updateSensor(Sensor sensor) {
+    public void updateSensor(ISensor sensor) {
       sensors.get(sensor.getName()).setValue(sensor.getValue());
     }
 

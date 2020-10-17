@@ -5,11 +5,12 @@ import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.IGPSSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGPSSensor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,14 @@ public class NewMapController extends BasicController implements InvalidationLis
     private static final Logger logger = LoggerFactory.getLogger(NewMapController.class);
 
     /** default zoom value. */
-    private static final int ZOOM_DEFAULT = 14;
+    private static final int ZOOM_DEFAULT = 60;
 
     /** the MapView containing the map */
     @FXML
     private MapView mapView;
+
+    @FXML
+    public TextField currentLocation;
 
     /** Coordinateline for rocket tracking. */
     private CoordinateLine track;
@@ -94,7 +98,7 @@ public class NewMapController extends BasicController implements InvalidationLis
     public void invalidated(Observable observable) {
         Platform.runLater(() -> {
             Coordinate nextCoordinate = new Coordinate(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY) , ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY));
-
+            currentLocation.setText(nextCoordinate.getLatitude()+";"+nextCoordinate.getLongitude());
             final List<Coordinate> coordinates = new ArrayList<>();
             if (track != null) {
                 track.getCoordinateStream().forEach(coordinates::add);

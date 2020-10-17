@@ -1,15 +1,26 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
-import gnu.io.*;
-import org.jetbrains.annotations.Contract;
+import gnu.io.NRSerialPort;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.FrameSaveService;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import static java.lang.Thread.sleep;
 
-public class SerialPortManager implements SerialPortEventListener, ISerialPortManager {
+public class SerialPortManager implements SerialPortEventListener, ISerialPortManager, Observable {
+
+    public List<InvalidationListener> observers = new ArrayList<>();
 
     private NRSerialPort serialPort;
     // Na windowsie domyślnie posługujemy się portem COM3
@@ -19,6 +30,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     private InputStream inputStream;
     protected SerialWriter serialWriter;
     public boolean isPortOpen = false;
+    private FrameSaveService frameSaveService = new FrameSaveService();
 
     private SerialPortManager() {
         if (Holder.INSTANCE != null) {
@@ -28,6 +40,22 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     public static SerialPortManager getInstance() {
         return Holder.INSTANCE;
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        observers.add(invalidationListener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        observers.remove(invalidationListener);
+    }
+
+    private void notifyObserver() {
+        for (InvalidationListener obs : observers) {
+            obs.invalidated(this);
+        }
     }
 
     private static class Holder {
@@ -84,12 +112,23 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 //    }
 
 
-    /** Milliseconds to block while waiting for port open */
+    /**
+     * Milliseconds to block while waiting for port open
+     */
     private static final int TIME_OUT = 4000;
-    /** Default bits per second for COM port. */
-    private static final int DATA_RATE = 9600;
+    /**
+     * Default bits per second for COM port.
+     */
+    private int DATA_RATE = 115200;
+//    private static final int DATA_RATE = 9600; ->poprzednia wersja
     //Singleton pattern
 
+    @Override
+    public void initialize(String portName, int dataRate) {
+        this.PORT_NAME = portName;
+        this.DATA_RATE = dataRate;
+        this.initialize();
+    }
 
     @Override
     public void initialize() {
@@ -103,14 +142,18 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
             //strumień wyjścia
             outputStream = serialPort.getOutputStream();
-            serialWriter =  new SerialWriter(outputStream);
+            serialWriter = new SerialWriter(outputStream);
             (new Thread(serialWriter)).start();
 
             // dodajemy słuchaczy zdarzeń
             serialPort.addEventListener(this);
             serialPort.notifyOnDataAvailable(true);
+            isPortOpen = true;
         } catch (Exception e) {
+            isPortOpen = false;
             System.err.println(e.toString());
+        } finally {
+            notifyObserver();
         }
     }
 
@@ -119,8 +162,9 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         if (serialPort != null) {
             serialPort.removeEventListener();
             serialPort.disconnect();
-            log.log(Level.INFO,"Serialport closed.");
-            isPortOpen=false;
+            log.log(Level.INFO, "Serialport closed.");
+            isPortOpen = false;
+            notifyObserver();
         }
     }
 
@@ -130,45 +174,36 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     @Override
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-            byte[] buffer = new byte[2048];
-            int len;
-            try
-            {
-                while ( ( len = this.inputStream.read(buffer)) > 0 )
-                {
-                    MessageParser.getInstance().parseMessage(buffer,len);
-                }
-//                System.out.println("done");
-                //TODO sprowac tego (bez whila):
-                /**
-                 MessageParser.getInstance().parseMessage(buffer,this.inputStream.read(buffer)));
-                 */
-            }
-            catch ( IOException e )
-            {
+            try {
+                byte[] buffer = new byte[1024];
+                int length = this.inputStream.read(buffer);
+                Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
+                MessageParser.getInstance().parseMessage(frame);
+                frameSaveService.saveFrameToFile(frame);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
     }
 
-    public void write(String message){
-        log.log(Level.INFO,"Written: " + message);
+    public synchronized void write(String message) {
+        log.log(Level.INFO, "Written: " + message);
         serialWriter.send(message);
     }
 
-    /** */
-    public static class SerialWriter implements Runnable
-    {
+    /**
+     *
+     */
+    public static class SerialWriter implements Runnable {
         OutputStream out;
 
-        public SerialWriter ( OutputStream out )
-        {
+        public SerialWriter(OutputStream out) {
             this.out = out;
         }
 
         @Override
-        public void run () {
+        public void run() {
 
             try {
 
@@ -187,6 +222,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 e.printStackTrace();
             }
         }
+
         public synchronized void sendInt(int msg) {
             try {
                 out.write(msg);

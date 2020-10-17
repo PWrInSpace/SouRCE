@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.IGPSSensor;
+//import IGPSSensor;
 
 public class MapController implements InvalidationListener, MapComponentInitializedListener {
 
