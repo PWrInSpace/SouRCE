@@ -1,19 +1,21 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Thred;
 
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NotificationThread implements INotificationThread {
 
-    private HashMap<String, Integer> schedule;
+    private List<Schedule> schedule;
 
     private NotificationSendService notificationSendService;
 
     private int seconds = 1;
 
     public NotificationThread(NotificationSendService notificationSendService) {
-        this.schedule = new HashMap<>();
+        this.schedule = new ArrayList<>();
         this.notificationSendService = notificationSendService;
     }
 
@@ -23,7 +25,7 @@ public class NotificationThread implements INotificationThread {
     }
 
     @Override
-    public void setupSchedule(HashMap<String, Integer> schedule) {
+    public void setupSchedule(List<Schedule> schedule) {
         this.schedule = schedule;
     }
 
@@ -36,10 +38,11 @@ public class NotificationThread implements INotificationThread {
     public void run() {
         if (!schedule.isEmpty()) {
             try {
+                Thread.sleep(2000);
                 while (true) {
-                    schedule.forEach((messageKey, forEachSeconds) -> {
-                        if (seconds % forEachSeconds == 0) {
-                            sendNotifications(getFormattedMessage(messageKey));
+                    schedule.forEach(scheduleTask -> {
+                        if (seconds % scheduleTask.getEverySecond() == 0) {
+                            sendNotifications(getFormattedMessage(scheduleTask.getMessageKey()));
                         }
                     });
 

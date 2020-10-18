@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import org.slf4j.Logger;
@@ -17,25 +18,37 @@ import java.util.List;
 
 public class NewMapController extends BasicController implements InvalidationListener {
 
-    /** logger for the class. */
+    /**
+     * logger for the class.
+     */
     private static final Logger logger = LoggerFactory.getLogger(NewMapController.class);
 
-    /** default zoom value. */
+    /**
+     * default zoom value.
+     */
     private static final int ZOOM_DEFAULT = 60;
 
-    /** the MapView containing the map */
+    /**
+     * the MapView containing the map
+     */
     @FXML
     private MapView mapView;
 
     @FXML
     public TextField currentLocation;
 
-    /** Coordinateline for rocket tracking. */
+    @FXML
+    private Label currentDistance;
+
+    /**
+     * Coordinateline for rocket tracking.
+     */
     private CoordinateLine track;
 
     public NewMapController() {
 
     }
+
     @FXML
     void initialize() {
         controllerNameEnum = ControllerNameEnum.MAP_CONTROLLER;
@@ -45,8 +58,7 @@ public class NewMapController extends BasicController implements InvalidationLis
      * called after the fxml is loaded and all objects are created. This is not called initialize any more,
      * because we need to pass in the projection before initializing.
      *
-     * @param projection
-     *     the projection to use in the map.
+     * @param projection the projection to use in the map.
      */
     public void initMapAndControls(Projection projection) {
         logger.trace("begin initialize");
@@ -99,8 +111,9 @@ public class NewMapController extends BasicController implements InvalidationLis
     @Override
     public void invalidated(Observable observable) {
         Platform.runLater(() -> {
-            Coordinate nextCoordinate = new Coordinate(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY) , ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY));
-            currentLocation.setText(nextCoordinate.getLatitude()+";"+nextCoordinate.getLongitude());
+            Coordinate nextCoordinate = new Coordinate(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY), ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY));
+            currentLocation.setText(nextCoordinate.getLatitude() + ";" + nextCoordinate.getLongitude());
+            currentDistance.setText("Distance: " + distance(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY), ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY)) + "m");
             final List<Coordinate> coordinates = new ArrayList<>();
             if (track != null) {
                 track.getCoordinateStream().forEach(coordinates::add);
@@ -115,5 +128,32 @@ public class NewMapController extends BasicController implements InvalidationLis
             mapView.addCoordinateLine(track);
             track.setVisible(true);
         });
+    }
+
+    public static int distance(double currentLat, double currentLon) {
+
+        // The math module contains a function
+        // named toRadians which converts from
+        // degrees to radians.
+        currentLon = Math.toRadians(currentLon);
+        double lon2 = Math.toRadians(pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LON);
+        currentLat = Math.toRadians(currentLat);
+        double lat2 = Math.toRadians(pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LAT);
+
+        // Haversine formula
+        double dlon = lon2 - currentLon;
+        double dlat = lat2 - currentLat;
+        double a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(currentLat) * Math.cos(lat2)
+                * Math.pow(Math.sin(dlon / 2), 2);
+
+        double c = 2 * Math.asin(Math.sqrt(a));
+
+        // Radius of earth in kilometers. Use 3956
+        // for miles
+        double r = 6371;
+
+        // calculate the result
+        return (int) ((c * r) * 1000);
     }
 }

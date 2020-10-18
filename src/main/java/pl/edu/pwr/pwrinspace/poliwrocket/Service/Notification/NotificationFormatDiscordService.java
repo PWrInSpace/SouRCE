@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGPSSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
 import java.awt.*;
 
@@ -46,9 +47,34 @@ public class NotificationFormatDiscordService extends NotificationFormatService 
             var latitude = sensorRepository.getGpsSensor().getPosition().get(IGPSSensor.LATITUDE_KEY);
             var longitude = sensorRepository.getGpsSensor().getPosition().get(IGPSSensor.LONGITUDE_KEY);
             return (googleMap + latitude.toString() + "," + longitude.toString());
+        } else if (messageKey.equalsIgnoreCase("Thread status")) {
+            embedBuilder.setColor(Color.YELLOW)
+                        .setTitle("Notification thread");
+            for (Thread thread : Thread.getAllStackTraces().keySet()) {
+                if (thread.getName().equals(ThreadName.DISCORD_NOTIFICATION.getName())) {
+                    embedBuilder.addField("State: ", thread.getState().toString(), false);
+                    embedBuilder.addField("Is alive: ", thread.isAlive() ? "Yes": "No", false);
+                    return embedBuilder;
+                }
+            }
+            embedBuilder.addField("Status","There is no notification thread active.",false);
+            return embedBuilder;
+        } else if(messageKey.equalsIgnoreCase("Thread interrupt")) {
+            embedBuilder.setColor(Color.YELLOW)
+                    .setTitle("Notification thread interrupt");
+            for (Thread thread : Thread.getAllStackTraces().keySet()) {
+                if (thread.getName().equals(ThreadName.DISCORD_NOTIFICATION.getName())) {
+                    thread.interrupt();
+                    embedBuilder.addField("State: ", thread.getState().toString(), false);
+                    embedBuilder.addField("Is alive: ", thread.isAlive() ? "Yes": "No", false);
+                    embedBuilder.addField(ThreadName.DISCORD_NOTIFICATION.getName(), "Interrupted",false);
+                    return embedBuilder;
+                }
+            }
+            embedBuilder.addField("Status","There is no notification thread active.",false);
+            return embedBuilder;
         }
 
-        embedBuilder.addField("Error", "Request not recognized", false);
-        return embedBuilder;
+        return "Error - Request \"" + messageKey + "\" not recognized.";
     }
 }

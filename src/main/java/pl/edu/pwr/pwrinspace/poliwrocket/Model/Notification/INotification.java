@@ -1,6 +1,9 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification;
 
-public interface INotification {
+import javafx.beans.Observable;
+
+public interface INotification extends Observable {
     void sendNotification(String message);
     void setup();
+    boolean isConnected();
 }

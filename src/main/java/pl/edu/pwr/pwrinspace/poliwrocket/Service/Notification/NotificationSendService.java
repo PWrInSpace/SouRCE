@@ -13,4 +13,8 @@ public class NotificationSendService {
     public void sendNotification(String message){
         notification.sendNotification(message);
     }
+
+    public boolean isConnected() {
+        return notification.isConnected();
+    }
 }

@@ -7,20 +7,24 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.PerspectiveCamera;
-import javafx.scene.SubScene;
+import javafx.scene.*;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainController extends BasicController implements InvalidationListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @FXML
     private SubScene modelScene;
@@ -58,6 +62,12 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private TextArea outGoing;
 
+    @FXML
+    private ImageView poliwrocketLogo;
+
+    @FXML
+    private ImageView inSpaceLogo;
+
     private final MainController.SmartGroup root = new SmartGroup();
 
     public SubScene getMapScene() {
@@ -94,18 +104,22 @@ public class MainController extends BasicController implements InvalidationListe
         assert valvesScene != null : "fx:id=\"valvesScene\" was not injected: check your FXML file 'MainView.fxml'.";
         assert mapScene != null : "fx:id=\"mapScene\" was not injected: check your FXML file 'MainView.fxml'.";
         assert powerScene != null : "fx:id=\"powerScene\" was not injected: check your FXML file 'MainView.fxml'.";
+        //set logo
+        poliwrocketLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
+        inSpaceLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("inSpaceLogo.png"))));
+
 
         //Creating camera - i don`t know why but this is in example
         PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.setTranslateZ(-900); //-700
-        camera.setNearClip(0.1);
+        camera.setTranslateZ(-125); //-900
+        camera.setNearClip(0.01);
         camera.setFarClip(3000.0);
         camera.setFieldOfView(60);
         modelScene.setCamera(camera);
 
 
         //nie usuwac, dziala, pozniej zdecyduje czy lepiej z czy bez
-        /*
+
         PointLight light = new PointLight(Color.WHITE);
         light.setTranslateX(0);
         light.setTranslateY(6000);
@@ -114,14 +128,20 @@ public class MainController extends BasicController implements InvalidationListe
 
         AmbientLight ambiance = new AmbientLight(Color.LIGHTGREY);
         root.getChildren().add(ambiance);
-        */
+
 
         //setting background color
-        modelScene.setFill(Color.SKYBLUE);
+//        modelScene.setFill(Color.DEEPSKYBLUE);
 
         //importing 3ds model
         ModelImporter tdsImporter = new TdsModelImporter();
-        tdsImporter.read(getClass().getClassLoader().getResource("rocketModel.3ds"));
+        try {
+            tdsImporter.read("./rocketModel/rocketModel.3ds");
+        } catch (Exception e){
+            logger.error(e.getMessage());
+            logger.info("Loading default model.");
+            tdsImporter.read(getClass().getClassLoader().getResource("rocketModel.3ds"));
+        }
         Node[] tdsMesh = (Node[]) tdsImporter.getImport();
 
         Node rocket3DModel = tdsMesh[0];

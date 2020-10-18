@@ -10,7 +10,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
+
+import java.util.List;
 
 public class ConnectionController extends BasicButtonSensorController {
 
@@ -26,8 +32,30 @@ public class ConnectionController extends BasicButtonSensorController {
     @FXML
     private Label connectionStatus;
 
+    @FXML
+    private ComboBox<String> notifications;
+
+    @FXML
+    private Button sendNotification;
+
+    @FXML
+    private Label notificationStatus;
+
+    @FXML
+    private Button threadButton;
+
+    @FXML
+    private Label threadStatus;
+
     private ObservableList<String> availableSerialPorts = FXCollections.observableArrayList();
 
+    private ObservableList<String> availableNotifications = FXCollections.observableArrayList();
+
+    private NotificationSendService notificationSendService;
+
+    private NotificationThread notificationThreadRunnable;
+
+    private Thread notificationThread;
 
     @FXML
     void initialize() {
@@ -54,6 +82,37 @@ public class ConnectionController extends BasicButtonSensorController {
                 }
             }
         });
+
+        sendNotification.setOnMouseClicked(mouseEvent -> {
+            if (notificationSendService != null) {
+                notificationSendService.sendNotification(notifications.getValue());
+            } else {
+                sendNotification.setDisable(true);
+                notificationStatus.setText("Service error");
+            }
+        });
+
+        threadButton.setOnMouseClicked(mouseEvent -> {
+            if (notificationThreadRunnable != null && (notificationThread == null || !notificationThread.isAlive())) {
+                notificationThread = new Thread(notificationThreadRunnable, ThreadName.DISCORD_NOTIFICATION.getName());
+                notificationThread.start();
+                threadStatus.setText("Running");
+            } else if (notificationThread != null && notificationThread.isAlive()) {
+                notificationThread.interrupt();
+                threadStatus.setText("Interrupted");
+            }
+        });
+    }
+
+    public void injectNotification(NotificationSendService notificationSendService, List<String> notificationsList, NotificationThread notificationThreadRunnable) {
+        this.notificationSendService = notificationSendService;
+        this.availableNotifications.clear();
+        this.availableNotifications.addAll(notificationsList);
+        notifications.setItems(availableNotifications);
+        if (!notificationsList.isEmpty()) {
+            notifications.setValue(notificationsList.get(0));
+        }
+        this.notificationThreadRunnable = notificationThreadRunnable;
     }
 
     private void serialSetup() {
@@ -84,6 +143,11 @@ public class ConnectionController extends BasicButtonSensorController {
                 baudRate.setDisable(false);
                 serialPorts.setDisable(false);
             }
+        } else if (observable instanceof INotification) {
+            boolean status = ((INotification) observable).isConnected();
+            sendNotification.setDisable(!status);
+            notifications.setDisable(!status);
+            notificationStatus.setText(status ? "Connected" : "Not connected");
         }
     }
 }

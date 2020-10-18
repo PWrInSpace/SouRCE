@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="335.0" prefWidth="410.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.ConnectionController">
    <children>
       <ComboBox fx:id="serialPorts" layoutX="256.0" layoutY="51.0" prefHeight="26.0" prefWidth="120.0" />
@@ -23,17 +22,31 @@
       <TextField fx:id="baudRate" layoutX="256.0" layoutY="84.0" prefWidth="120.0" text="115200" />
       <Label layoutX="34.0" layoutY="88.0" text="Status:" />
       <Label fx:id="connectionStatus" layoutX="76.0" layoutY="88.0" prefHeight="18.0" prefWidth="82.0" text="Disconnected" />
-      <Gauge layoutX="34.0" layoutY="175.0" prefHeight="46.0" prefWidth="154.0" skinType="CHARGE" />
-      <Label layoutX="34.0" layoutY="157.0" prefHeight="18.0" prefWidth="35.0" text="Signal:" />
+      <Gauge layoutX="34.0" layoutY="159.0" prefHeight="46.0" prefWidth="154.0" skinType="CHARGE" />
+      <Label layoutX="34.0" layoutY="141.0" prefHeight="18.0" prefWidth="35.0" text="Signal:" />
       <Label layoutX="19.0" layoutY="27.0" text="Serial:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="16.0" layoutY="133.0" text="Radio:">
+      <Label layoutX="19.0" layoutY="121.0" text="Radio:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Label layoutX="19.0" layoutY="225.0" text="Notification:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="notifications" layoutX="256.0" layoutY="253.0" prefHeight="26.0" prefWidth="120.0" />
+      <Label layoutX="199.0" layoutY="257.0" text="Message:" />
+      <Button fx:id="sendNotification" layoutX="37.0" layoutY="253.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Send" />
+      <Label layoutX="37.0" layoutY="287.0" text="Status:" />
+      <Label fx:id="notificationStatus" layoutX="79.0" layoutY="287.0" prefHeight="18.0" prefWidth="82.0" text="Disconnected" />
+      <Button fx:id="threadButton" layoutX="256.0" layoutY="292.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Start/Stop" />
+      <Label layoutX="37.0" layoutY="301.0" text="Thread:" />
+      <Label fx:id="threadStatus" layoutX="79.0" layoutY="301.0" prefHeight="18.0" prefWidth="82.0" text="Not running" />
+      <Label layoutX="199.0" layoutY="296.0" text="Thread:" />
    </children>
 </AnchorPane>

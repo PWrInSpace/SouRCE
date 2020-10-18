@@ -1,5 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification;
 
+import javafx.beans.InvalidationListener;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -13,11 +14,15 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 
 import javax.security.auth.login.LoginException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DiscordNotification implements INotification {
 
     private static final Logger logger = LoggerFactory.getLogger(DiscordNotification.class);
+
+    private List<InvalidationListener> observers = new ArrayList<>();
 
     private JDA jda;
 
@@ -29,7 +34,7 @@ public class DiscordNotification implements INotification {
         this.notificationFormatDiscordService = notificationFormatDiscordService;
     }
 
-    public void setupConnection() {
+    public synchronized void setupConnection() {
         if (!Configuration.getInstance().DISCORD_TOKEN.equals("")) {
             try {
                 jda = JDABuilder.createDefault(Configuration.getInstance().DISCORD_TOKEN).build();
@@ -41,7 +46,7 @@ public class DiscordNotification implements INotification {
 
     }
 
-    public void setupCustom() {
+    public synchronized void setupCustom() {
         if (!Configuration.getInstance().DISCORD_TOKEN.equals("")) {
             JDABuilder builder = JDABuilder.createDefault(Configuration.getInstance().DISCORD_TOKEN);
 
@@ -86,8 +91,36 @@ public class DiscordNotification implements INotification {
     }
 
     @Override
-    public void setup() {
+    public synchronized void setup() {
         setupCustom();
+        if(jda != null){
+            try {
+                jda.awaitReady();
+            } catch (InterruptedException e) {
+                logger.error(Arrays.toString(e.getStackTrace()));
+            }
+        }
+
+        notifyObserver();
     }
 
-}
+    @Override
+    public boolean isConnected() {
+        return !Configuration.getInstance().DISCORD_TOKEN.equals("") && jda != null && jda.getStatus() == JDA.Status.CONNECTED;
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        observers.add(invalidationListener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        observers.remove(invalidationListener);
+    }
+
+    private void notifyObserver() {
+        for (InvalidationListener obs : observers) {
+            obs.invalidated(this);
+        }
+    }}

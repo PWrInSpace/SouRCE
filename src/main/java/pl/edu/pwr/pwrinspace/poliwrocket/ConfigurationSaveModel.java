@@ -3,6 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket;
 import com.google.gson.annotations.Expose;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
@@ -40,6 +41,12 @@ public class ConfigurationSaveModel {
     public List<Command> commandsListValves = new LinkedList<>();
 
     @Expose
+    public List<Schedule> notificationSchedule = new LinkedList<>();
+
+    @Expose
+    public List<String> notificationMessageKeys = new LinkedList<>();
+
+    @Expose
     public SensorRepository sensorRepository = new SensorRepository();
 
     public static ConfigurationSaveModel getConfigurationSaveModel(Configuration configuration) {
@@ -52,6 +59,8 @@ public class ConfigurationSaveModel {
         config.DISCORD_TOKEN = configuration.DISCORD_TOKEN;
         config.DISCORD_CHANNEL_NAME = configuration.DISCORD_CHANNEL_NAME;
         config.commandsListValves = configuration.commandsListValves;
+        config.notificationMessageKeys = configuration.notificationMessageKeys;
+        config.notificationSchedule = configuration.notificationSchedule;
         config.sensorRepository.setGpsSensor(configuration.sensorRepository.getGpsSensor());
         config.sensorRepository.setGyroSensor(configuration.sensorRepository.getGyroSensor());
         List<ISensor> partOfSensor = new ArrayList<>();
@@ -173,6 +182,21 @@ public class ConfigurationSaveModel {
         indicator4.setName("Ind 4");
         indicator4.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator4);
+
+        //notification
+        List<String> notificationsListStrings = new ArrayList<>();
+        notificationsListStrings.add("Map");
+        notificationsListStrings.add("Position");
+        notificationsListStrings.add("Data");
+        notificationsListStrings.add("Max");
+        notificationsListStrings.add("Thread status");
+        defaultConfig.notificationMessageKeys = notificationsListStrings;
+
+        List<Schedule> schedules = new ArrayList<>();
+        schedules.add( new Schedule("Map",5));
+        schedules.add( new Schedule("Data",10));
+        defaultConfig.notificationSchedule = schedules;
+        //---------------
 
         return defaultConfig;
     }

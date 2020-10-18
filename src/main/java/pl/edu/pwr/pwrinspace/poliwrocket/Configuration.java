@@ -7,6 +7,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicControl
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SensorRepository;
 
@@ -41,6 +42,10 @@ public class Configuration {
 
     public List<Command> commandsListValves = new LinkedList<>();
 
+    public List<Schedule> notificationSchedule = new LinkedList<>();
+
+    public List<String> notificationMessageKeys = new LinkedList<>();
+
     public SensorRepository sensorRepository = new SensorRepository();
 
     private Configuration() {
@@ -59,6 +64,8 @@ public class Configuration {
         this.DISCORD_CHANNEL_NAME = config.DISCORD_CHANNEL_NAME;
         this.commandsListValves = config.commandsListValves;
         this.sensorRepository = config.sensorRepository;
+        this.notificationMessageKeys = config.notificationMessageKeys;
+        this.notificationSchedule = config.notificationSchedule;
         this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
         this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());

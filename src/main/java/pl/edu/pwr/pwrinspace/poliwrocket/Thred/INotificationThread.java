@@ -1,9 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Thred;
 
-import java.util.HashMap;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
+
+import java.util.List;
 
 public interface INotificationThread extends Runnable {
     void sendNotifications(String message);
-    void setupSchedule(HashMap<String, Integer> schedule);
+    void setupSchedule(List<Schedule> schedule);
     String getFormattedMessage(String messageKey);
 }

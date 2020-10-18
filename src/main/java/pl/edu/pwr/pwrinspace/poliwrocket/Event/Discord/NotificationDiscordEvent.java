@@ -24,7 +24,11 @@ public class NotificationDiscordEvent extends NotificationEvent {
             if(message instanceof EmbedBuilder){
                 this.getChannel(event).sendMessage(((EmbedBuilder) message).build()).queue();
             } else if (message instanceof String){
-                this.getChannel(event).sendMessage(((String) message)).queue();
+                var channel = this.getChannel(event);
+                if(!((String) message).contains("Error") || event.getChannel() == channel){
+                    channel.sendMessage(((String) message)).queue();
+
+                }
             }
         }
     }

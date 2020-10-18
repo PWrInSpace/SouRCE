@@ -1,10 +1,10 @@
 package pl.edu.pwr.pwrinspace.poliwrocket;
 
 import com.sothawo.mapjfx.Projection;
-import gnu.io.NRSerialPort;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.javatuples.Triplet;
 import org.slf4j.Logger;
@@ -22,7 +22,10 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationInitSe
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class Main extends Application {
 
@@ -40,12 +43,6 @@ public class Main extends Application {
 
         //now use only default config
         configurationSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-        String port = "";
-
-        for(String s: NRSerialPort.getAvailableSerialPorts()){
-            System.out.println("Availible port: "+s);
-            port=s;
-        }
 
         try {
             Configuration.getInstance().setupConfig(configurationSaveService.readFromFile());
@@ -112,6 +109,7 @@ public class Main extends Application {
         primaryStage.setTitle("SouRCE");
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png")));
         primaryStage.show();
 
         MessageParser.create(Configuration.getInstance().sensorRepository);
@@ -123,14 +121,15 @@ public class Main extends Application {
         if(!Configuration.getInstance().DISCORD_TOKEN.equals("")){
             NotificationFormatDiscordService notificationFormatDiscordService = new NotificationFormatDiscordService(Configuration.getInstance().sensorRepository);
             INotification discord = new DiscordNotification(notificationFormatDiscordService);
+            discord.addListener(connectionController);
             notificationInitService = new NotificationInitService(discord);
-            notificationInitService.setup();
             notificationSendService = new NotificationSendService(discord);
             notificationThread = new NotificationThread(notificationSendService);
-            HashMap<String, Integer> schedule = new HashMap<>();
-            schedule.put("Data",10);
-            schedule.put("Map",5);
-//            notificationThread.setupSchedule(schedule);
+            notificationThread.setupSchedule(Configuration.getInstance().notificationSchedule);
+            connectionController.injectNotification(notificationSendService,Configuration.getInstance().notificationMessageKeys, notificationThread);
+            notificationInitService.setup();
+//            Thread notificationSendThread = new Thread(notificationThread, ThreadName.DISCORD_NOTIFICATION.getName());
+//            notificationSendThread.start();
         }
 
 
@@ -160,14 +159,6 @@ public class Main extends Application {
             }
         }).start();
 
-        new Thread(() -> {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            notificationThread.run();
-        }).start();
         new Thread(() -> {
             try {
                 Thread.sleep(1000);

@@ -2,57 +2,19 @@
 
 <?import javafx.scene.SceneAntialiasing?>
 <?import javafx.scene.SubScene?>
-<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
+    <MenuBar VBox.vgrow="NEVER" />
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-color: black;">
       <children>
             <ScrollPane layoutX="15.0" layoutY="695.0" prefHeight="30.0" prefWidth="850.0">
@@ -71,7 +33,7 @@
                      </children></AnchorPane>
                </content>
             </ScrollPane>
-            <SubScene fx:id="modelScene" depthBuffer="true" height="214.0" layoutX="1329.0" layoutY="551.0" width="206.0">
+            <SubScene fx:id="modelScene" depthBuffer="true" fill="#1a9cff" height="214.0" layoutX="1329.0" layoutY="551.0" width="206.0">
                 <antiAliasing>
                     <SceneAntialiasing fx:constant="BALANCED" />
                 </antiAliasing>
@@ -124,6 +86,17 @@
                   <Region />
                </root>
             </SubScene>
+            <AnchorPane layoutX="1329.0" layoutY="769.0" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: grey;">
+               <children>
+                  <Label layoutX="2.0" layoutY="2.0" prefHeight="18.0" prefWidth="90.0" text="Software by Jan Zmysłowski">
+                     <font>
+                        <Font size="7.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="poliwrocketLogo" fitHeight="20.0" fitWidth="20.0" layoutX="170.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="inSpaceLogo" fitHeight="20.0" fitWidth="75.0" layoutX="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
       </children>
     </AnchorPane>
   </children>
