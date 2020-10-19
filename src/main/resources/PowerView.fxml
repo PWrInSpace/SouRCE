@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="330.0" prefWidth="205.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.PowerController">
+<AnchorPane prefHeight="330.0" prefWidth="205.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.PowerController">
    <children>
       <Gauge fx:id="powerGauge4" layoutX="54.0" layoutY="145.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
       <Gauge fx:id="powerGauge5" layoutX="54.0" layoutY="179.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />

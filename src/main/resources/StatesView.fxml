@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="165.0" prefWidth="410.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.StatesController">
+<AnchorPane prefHeight="165.0" prefWidth="410.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.StatesController">
    <children>
       <Label layoutX="7.0" prefHeight="27.0" prefWidth="55.0" text="States:">
          <font>

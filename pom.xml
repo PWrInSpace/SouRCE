@@ -41,7 +41,7 @@
         <dependency>
             <groupId>eu.hansolo</groupId>
             <artifactId>tilesfx</artifactId>
-            <version>11.28</version>
+            <version>11.45</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/eu.hansolo/Medusa -->

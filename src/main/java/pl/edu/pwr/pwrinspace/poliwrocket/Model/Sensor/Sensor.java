@@ -37,6 +37,9 @@ public class Sensor implements Observable, ISensor {
     @Expose
     private double minRange = -360;
 
+    @Expose
+    private boolean isBoolean = false;
+
     private double value = 0;
 
     private double maxValue = Double.MIN_VALUE;
@@ -83,7 +86,8 @@ public class Sensor implements Observable, ISensor {
 
     private void notifyObserver() {
         for (InvalidationListener obs : observers) {
-            if (Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000
+            if (isBoolean
+                    || Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000
                     || this.values.size() % Configuration.getInstance().FPS == 0
                     || obs instanceof Observable
                     || obs instanceof NewMapController) {
@@ -97,7 +101,7 @@ public class Sensor implements Observable, ISensor {
     public void setValue(double newValue) {
         this.values.add(newValue);
 
-        if (Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000) {
+        if (isBoolean || Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000) {
             this.value = newValue;
         } else if (this.values.size() % Configuration.getInstance().FPS == 0) {
             this.value = this.getAverageFromSecond();
@@ -112,7 +116,7 @@ public class Sensor implements Observable, ISensor {
     }
 
     private double getAverageFromSecond() {
-        var sum = 0;
+        double sum = 0;
         int lastIndex = this.values.size();
         int startIndex = lastIndex <= Configuration.getInstance().FPS ? 0 : lastIndex - Configuration.getInstance().FPS;
         this.values = this.values.subList(startIndex, lastIndex);
@@ -184,5 +188,13 @@ public class Sensor implements Observable, ISensor {
 
     public double getMaxValue() {
         return maxValue;
+    }
+
+    public boolean isBoolean() {
+        return isBoolean;
+    }
+
+    public void setBoolean(boolean aBoolean) {
+        isBoolean = aBoolean;
     }
 }

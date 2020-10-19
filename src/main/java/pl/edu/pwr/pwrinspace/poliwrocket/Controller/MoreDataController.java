@@ -1,11 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.medusa.Gauge;
+import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
@@ -106,7 +108,12 @@ public class MoreDataController extends BasicSensorController {
             Platform.runLater(() -> {
                 var visualization = visualizationsHashMap.get(sensor.getDestination());
                 if(visualization instanceof Indicator) {
-                    ((Indicator)visualization).setOn(sensor.getValue() == 1.0);
+                    if(sensor.getValue() != 1.0 && sensor.getValue() != 0.0){
+                        ((Indicator)visualization).setDotOnColor(Color.RED);
+                    } else {
+                        ((Indicator)visualization).setDotOnColor(Tile.BLUE);
+                    }
+                    ((Indicator)visualization).setOn(sensor.getValue() >= 1.0);
                 } else if (visualization instanceof  Gauge){
                     ((Gauge)visualization).setValue(sensor.getValue());
                 }

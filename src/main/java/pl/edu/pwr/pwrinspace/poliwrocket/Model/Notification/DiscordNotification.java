@@ -13,7 +13,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 
-import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +38,7 @@ public class DiscordNotification implements INotification {
             try {
                 jda = JDABuilder.createDefault(Configuration.getInstance().DISCORD_TOKEN).build();
                 jda.addEventListener(new NotificationDiscordEvent(notificationFormatDiscordService));
-            } catch (LoginException e) {
+            } catch (Exception e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
         }
@@ -59,7 +58,7 @@ public class DiscordNotification implements INotification {
             try {
                 jda = builder.build();
                 jda.addEventListener(new NotificationDiscordEvent(notificationFormatDiscordService));
-            } catch (LoginException e) {
+            } catch (Exception e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
         }

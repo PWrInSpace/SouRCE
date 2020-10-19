@@ -15,13 +15,13 @@
 <VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER" />
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-color: black;">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-image: url('background.jpg'); -fx-background-size: stretch;">
       <children>
             <ScrollPane layoutX="15.0" layoutY="695.0" prefHeight="30.0" prefWidth="850.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="inComing" prefHeight="30.0" prefWidth="850.0" />
+                        <TextArea fx:id="inComing" editable="false" prefHeight="30.0" prefWidth="850.0" />
                      </children></AnchorPane>
               </content>
             </ScrollPane>
@@ -29,7 +29,7 @@
                <content>
                   <AnchorPane minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="outGoing" prefHeight="30.0" prefWidth="850.0" />
+                        <TextArea fx:id="outGoing" editable="false" prefHeight="30.0" prefWidth="850.0" />
                      </children></AnchorPane>
                </content>
             </ScrollPane>
@@ -38,7 +38,7 @@
                     <SceneAntialiasing fx:constant="BALANCED" />
                 </antiAliasing>
                 <root>
-                    <Region />
+                    <Region stylesheets="@constants.css" />
                 </root>
             </SubScene>
             <SubScene fx:id="dataScene" height="677.0" layoutX="15.0" layoutY="10.0" width="410.0">
@@ -86,7 +86,7 @@
                   <Region />
                </root>
             </SubScene>
-            <AnchorPane layoutX="1329.0" layoutY="769.0" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: grey;">
+            <AnchorPane layoutX="1329.0" layoutY="769.0" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css">
                <children>
                   <Label layoutX="2.0" layoutY="2.0" prefHeight="18.0" prefWidth="90.0" text="Software by Jan Zmysłowski">
                      <font>

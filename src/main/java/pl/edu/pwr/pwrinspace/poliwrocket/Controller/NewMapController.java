@@ -1,6 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.sothawo.mapjfx.*;
+import com.sothawo.mapjfx.offline.OfflineCache;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -13,24 +14,20 @@ import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGPSSensor;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewMapController extends BasicController implements InvalidationListener {
 
-    /**
-     * logger for the class.
-     */
     private static final Logger logger = LoggerFactory.getLogger(NewMapController.class);
 
-    /**
-     * default zoom value.
-     */
     private static final int ZOOM_DEFAULT = 60;
 
-    /**
-     * the MapView containing the map
-     */
+    private static final double MAP_START_CORRECTION = 0.017;
+
     @FXML
     private MapView mapView;
 
@@ -40,47 +37,31 @@ public class NewMapController extends BasicController implements InvalidationLis
     @FXML
     private Label currentDistance;
 
-    /**
-     * Coordinateline for rocket tracking.
-     */
     private CoordinateLine track;
 
-    public NewMapController() {
-
-    }
 
     @FXML
     void initialize() {
         controllerNameEnum = ControllerNameEnum.MAP_CONTROLLER;
     }
 
-    /**
-     * called after the fxml is loaded and all objects are created. This is not called initialize any more,
-     * because we need to pass in the projection before initializing.
-     *
-     * @param projection the projection to use in the map.
-     */
     public void initMapAndControls(Projection projection) {
-        logger.trace("begin initialize");
 
         // init MapView-Cache
-//        final OfflineCache offlineCache = mapView.getOfflineCache();
-//        final String cacheDir = System.getProperty("java.io.tmpdir") + "/mapjfx-cache";
-//        logger.info("using dir for cache: " + cacheDir);
-//        try {
-//            Files.createDirectories(Paths.get(cacheDir));
-//            offlineCache.setCacheDirectory(cacheDir);
-//            offlineCache.setActive(true);
-//        } catch (IOException e) {
-//            logger.warn("could not activate offline cache", e);
-//        }
-
-        // set the custom css file for the MapView
-        mapView.setCustomMapviewCssURL(getClass().getResource("/custom_mapview.css"));
+        final OfflineCache offlineCache = mapView.getOfflineCache();
+        final String cacheDir = System.getProperty("java.io.tmpdir") + "/mapjfx-cache";
+        logger.info("using dir for cache: {}", cacheDir);
+        try {
+            Files.createDirectories(Paths.get(cacheDir));
+            offlineCache.setCacheDirectory(cacheDir);
+            offlineCache.setActive(true);
+        } catch (IOException e) {
+            logger.warn("could not activate offline cache", e);
+        }
 
         // watch the MapView's initialized property to finish initialization
         mapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
+            if (Boolean.TRUE.equals(newValue)) {
                 afterMapIsInitialized();
             }
         });
@@ -88,23 +69,15 @@ public class NewMapController extends BasicController implements InvalidationLis
         mapView.setMapType(MapType.OSM);
 
         // finally initialize the map view
-        logger.trace("start map initialization");
         mapView.initialize(Configuration.builder()
                 .projection(projection)
                 .showZoomControls(false)
                 .build());
-        logger.debug("initialization finished");
     }
 
-    /**
-     * finishes setup after the mpa is initialzed
-     */
     private void afterMapIsInitialized() {
-        logger.trace("map intialized");
-        logger.debug("setting center and zoom...");
-
         mapView.setZoom(ZOOM_DEFAULT);
-        Coordinate startPosition = new Coordinate(pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LAT, pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LON);
+        Coordinate startPosition = new Coordinate(pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LAT+MAP_START_CORRECTION, pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LON-MAP_START_CORRECTION);
         mapView.setCenter(startPosition);
     }
 
@@ -116,6 +89,7 @@ public class NewMapController extends BasicController implements InvalidationLis
             currentDistance.setText("Distance: " + distance(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY), ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY)) + "m");
             final List<Coordinate> coordinates = new ArrayList<>();
             if (track != null) {
+                track.setVisible(false);
                 track.getCoordinateStream().forEach(coordinates::add);
                 mapView.removeCoordinateLine(track);
                 track = null;
@@ -153,7 +127,7 @@ public class NewMapController extends BasicController implements InvalidationLis
         // for miles
         double r = 6371;
 
-        // calculate the result
+        // calculate the result in meters
         return (int) ((c * r) * 1000);
     }
 }

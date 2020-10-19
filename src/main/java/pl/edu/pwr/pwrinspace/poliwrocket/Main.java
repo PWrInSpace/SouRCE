@@ -141,8 +141,8 @@ public class Main extends Application {
             }
 
             for (int i = 1; i <= 32; i++) {
-                Configuration.getInstance().sensorRepository.getSensorByName("lat").setValue((49.013517 + new Random().nextDouble() / 1000.0));
-                Configuration.getInstance().sensorRepository.getSensorByName("long").setValue((8.404435 + new Random().nextDouble() / 1000.0));
+                Configuration.getInstance().sensorRepository.getSensorByName("lat").setValue((49.013517 + (new Random().nextDouble() * 0.01)));
+                Configuration.getInstance().sensorRepository.getSensorByName("long").setValue((8.404435 + (new Random().nextDouble() * 0.01)));
 
                 /*if(new Random().nextBoolean()){
                     try {
@@ -188,7 +188,7 @@ public class Main extends Application {
 //                    }
 //                }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

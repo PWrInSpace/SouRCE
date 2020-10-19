@@ -81,7 +81,7 @@ public class ConfigurationSaveModel {
     public static ConfigurationSaveModel defaultConfiguration() {
         ConfigurationSaveModel defaultConfig = new ConfigurationSaveModel();
         defaultConfig.sensorRepository = new SensorRepository();
-        defaultConfig.FPS = 1;
+        defaultConfig.FPS = 2;
         defaultConfig.commandsListValves = new LinkedList<>();
 
         Sensor basicSensor = new Sensor();
@@ -165,21 +165,25 @@ public class ConfigurationSaveModel {
         Sensor indicator1 = new Sensor();
         indicator1.setDestination("dataIndicator1");
         indicator1.setName("Ind 1");
+        indicator1.setBoolean(true);
         indicator1.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator1);
         Sensor indicator2 = new Sensor();
         indicator2.setDestination("dataIndicator2");
         indicator2.setName("Ind 2");
+        indicator2.setBoolean(true);
         indicator2.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator2);
         Sensor indicator3 = new Sensor();
         indicator3.setDestination("dataIndicator3");
         indicator3.setName("Ind 3");
+        indicator3.setBoolean(true);
         indicator3.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator3);
         Sensor indicator4 = new Sensor();
         indicator4.setDestination("dataIndicator4");
         indicator4.setName("Ind 4");
+        indicator4.setBoolean(true);
         indicator4.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator4);
 

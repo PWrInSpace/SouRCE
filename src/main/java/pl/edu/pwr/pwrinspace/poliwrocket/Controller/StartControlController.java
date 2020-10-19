@@ -1,10 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.tilesfx.addons.Switch;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.TimerThread;
 
 public class StartControlController extends BasicButtonSensorController {
 
@@ -36,42 +39,94 @@ public class StartControlController extends BasicButtonSensorController {
     private Switch safeSwitch5;
 
     @FXML
+    private Label countdownTimer;
+
+    private Thread countdownThread;
+
+    private TimerThread countdownTime;
+    @FXML
     void initialize() {
         controllerNameEnum = ControllerNameEnum.START_CONTROL_CONTROLLER;
-
+        countdownTime = new TimerThread();
+        countdownTime.addListener(this);
         qucikDistonectButton.setDisable(true);
         armingButton1.setDisable(true);
         armingButton2.setDisable(true);
         fireButton.setDisable(true);
+//        safeSwitch2.setDisable(true);
+//        safeSwitch3.setDisable(true);
+//        safeSwitch4.setDisable(true);
+//        safeSwitch5.setDisable(true);
 
         safeSwitch1.setOnMouseClicked(actionEvent -> {
             if (safeSwitch1.isActive()) {
                 qucikDistonectButton.setDisable(false);
+                safeSwitch2.setDisable(false);
             } else {
                 qucikDistonectButton.setDisable(true);
+                armingButton1.setDisable(true);
+                armingButton2.setDisable(true);
+                fireButton.setDisable(true);
+                safeSwitch2.setActive(false);
+                safeSwitch3.setActive(false);
+                safeSwitch4.setActive(false);
+                safeSwitch5.setActive(false);
             }
+            checkReset();
         });
 
         safeSwitch2.setOnMouseClicked(actionEvent -> {
             if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
                 armingButton1.setDisable(false);
+                safeSwitch3.setDisable(false);
             } else {
                 armingButton1.setDisable(true);
+                armingButton2.setDisable(true);
+                fireButton.setDisable(true);
+                safeSwitch3.setActive(false);
+                safeSwitch4.setActive(false);
+                safeSwitch5.setActive(false);
             }
+            checkReset();
         });
-         safeSwitch3.setOnMouseClicked(actionEvent -> {
+        safeSwitch3.setOnMouseClicked(actionEvent -> {
             if (safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive()) {
                 armingButton2.setDisable(false);
+                safeSwitch4.setDisable(false);
+                safeSwitch5.setDisable(false);
             } else {
                 armingButton2.setDisable(true);
+                fireButton.setDisable(true);
+                safeSwitch4.setActive(false);
+                safeSwitch5.setActive(false);
             }
+            checkReset();
         });
-         safeSwitch4.setOnMouseClicked(actionEvent -> {
+        safeSwitch4.setOnMouseClicked(actionEvent -> {
             if (safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive() && safeSwitch4.isActive() && safeSwitch5.isActive()) {
                 fireButton.setDisable(false);
             } else {
                 fireButton.setDisable(true);
+                safeSwitch5.setActive(false);
             }
+            checkReset();
+        });
+        safeSwitch5.setOnMouseClicked(actionEvent -> {
+            if (safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive() && safeSwitch4.isActive() && safeSwitch5.isActive()) {
+                fireButton.setDisable(false);
+            } else {
+                fireButton.setDisable(true);
+                safeSwitch4.setActive(false);
+            }
+            checkReset();
+        });
+
+        fireButton.setOnMouseClicked(mouseEvent -> {
+            if (countdownTime != null && (countdownThread == null || !countdownThread.isAlive())) {
+                countdownThread = new Thread(countdownTime, "coundown");
+                countdownThread.start();
+            }
+
         });
 
     }
@@ -83,7 +138,17 @@ public class StartControlController extends BasicButtonSensorController {
 
     @Override
     public void invalidated(Observable observable) {
-        //its only button panel
-        throw new UnsupportedOperationException();
+        Platform.runLater(() -> {
+            countdownTimer.setText(((TimerThread) observable).getFormattedTimeResult());
+            if(-1000 <= ((TimerThread) observable).getCountdownTime() && ((TimerThread) observable).getCountdownTime() <= 0) {
+                //SerialPortManager.getInstance().write("FIRE MESSAGE");
+            }
+        });
+    }
+
+    private void checkReset() {
+        if (!(safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive() && safeSwitch4.isActive() && safeSwitch5.isActive())) {
+            countdownTime.resetCountdown();
+        }
     }
 }

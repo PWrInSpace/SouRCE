@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="165.0" prefWidth="410.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.StartControlController">
+<AnchorPane prefHeight="165.0" prefWidth="410.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.StartControlController">
    <children>
       <Label layoutX="7.0" prefHeight="27.0" prefWidth="116.0" text="Start control:">
          <font>
@@ -23,5 +22,7 @@
       <Button fx:id="armingButton2" layoutX="117.0" layoutY="84.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="176.0" text="Arming 2" />
       <Button fx:id="fireButton" layoutX="117.0" layoutY="115.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="176.0" text="FIRE" />
       <Switch fx:id="safeSwitch5" layoutX="35.0" layoutY="138.0" prefHeight="26.0" prefWidth="42.0" />
+      <Label fx:id="countdownTimer" layoutX="312.0" layoutY="75.0" text="+00:00:10:000" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="318.0" layoutY="58.0" text="Countdown:" />
    </children>
 </AnchorPane>

@@ -147,7 +147,9 @@ public class ConnectionController extends BasicButtonSensorController {
             boolean status = ((INotification) observable).isConnected();
             sendNotification.setDisable(!status);
             notifications.setDisable(!status);
+            threadButton.setDisable(!status);
             notificationStatus.setText(status ? "Connected" : "Not connected");
+            threadStatus.setText(status ? "Not running" : "Not enabled");
         }
     }
 }

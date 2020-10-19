@@ -136,7 +136,7 @@ public class MainController extends BasicController implements InvalidationListe
         //importing 3ds model
         ModelImporter tdsImporter = new TdsModelImporter();
         try {
-            tdsImporter.read("./rocketModel/rocketModel.3ds");
+            tdsImporter.read("./assets/rocketModel/rocketModel.3ds");
         } catch (Exception e){
             logger.error(e.getMessage());
             logger.info("Loading default model.");
