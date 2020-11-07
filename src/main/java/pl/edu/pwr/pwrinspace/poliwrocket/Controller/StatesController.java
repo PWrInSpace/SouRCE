@@ -105,7 +105,7 @@ public class StatesController extends BasicButtonSensorController {
 
     @Override
     protected void setUIBySensors() {
-        //TODO implement
+        //on this panel are not customizable UI
     }
 
     @Override

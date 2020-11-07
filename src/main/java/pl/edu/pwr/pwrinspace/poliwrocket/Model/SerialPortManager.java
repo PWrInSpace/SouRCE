@@ -4,7 +4,7 @@ import gnu.io.NRSerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.FrameSaveService;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 import static java.lang.Thread.sleep;
 
-public class SerialPortManager implements SerialPortEventListener, ISerialPortManager, Observable {
+public class SerialPortManager implements SerialPortEventListener, ISerialPortManager {
 
     public List<InvalidationListener> observers = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     private OutputStream outputStream;
     private InputStream inputStream;
     protected SerialWriter serialWriter;
-    public boolean isPortOpen = false;
+    private boolean isPortOpen = false;
     private FrameSaveService frameSaveService = new FrameSaveService();
 
     private SerialPortManager() {
@@ -38,7 +38,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         }
     }
 
-    public static SerialPortManager getInstance() {
+    public static ISerialPortManager getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -131,29 +131,38 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     @Override
+    public boolean isPortOpen() {
+        return this.isPortOpen;
+    }
+
+    @Override
     public void initialize() {
         try {
             // otwieramy i konfigurujemy port
             serialPort = new NRSerialPort(PORT_NAME, DATA_RATE);
             serialPort.connect();
+            if(serialPort.isConnected()) {
+                // strumień wejścia
+                inputStream = serialPort.getInputStream();
 
-            // strumień wejścia
-            inputStream = serialPort.getInputStream();
+                //strumień wyjścia
+                outputStream = serialPort.getOutputStream();
+                serialWriter = new SerialWriter(outputStream);
+                (new Thread(serialWriter)).start();
 
-            //strumień wyjścia
-            outputStream = serialPort.getOutputStream();
-            serialWriter = new SerialWriter(outputStream);
-            (new Thread(serialWriter)).start();
-
-            // dodajemy słuchaczy zdarzeń
-            serialPort.addEventListener(this);
-            serialPort.notifyOnDataAvailable(true);
-            isPortOpen = true;
+                // dodajemy słuchaczy zdarzeń
+                serialPort.addEventListener(this);
+                serialPort.notifyOnDataAvailable(true);
+            } else {
+                serialPort.disconnect();
+            }
+            isPortOpen = serialPort.isConnected();
         } catch (Exception e) {
-            isPortOpen = false;
-            System.err.println(e.toString());
+            isPortOpen = serialPort.isConnected();
+            log.log(Level.WARNING,e.toString());
         } finally {
             notifyObserver();
+            log.log(Level.INFO, "Serialport status open: {}", isPortOpen);
         }
     }
 
@@ -163,7 +172,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             serialPort.removeEventListener();
             serialPort.disconnect();
             log.log(Level.INFO, "Serialport closed.");
-            isPortOpen = false;
+            isPortOpen = serialPort.isConnected();
             notifyObserver();
         }
     }
@@ -188,7 +197,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     public synchronized void write(String message) {
-        log.log(Level.INFO, "Written: " + message);
+        log.log(Level.INFO, "Written: {}", message);
         serialWriter.send(message);
     }
 
@@ -197,6 +206,8 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
      */
     public static class SerialWriter implements Runnable {
         OutputStream out;
+
+        private static final org.slf4j.Logger logger = LoggerFactory.getLogger(SerialWriter.class);
 
         public SerialWriter(OutputStream out) {
             this.out = out;
@@ -211,13 +222,14 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
 
         public synchronized void send(String msg) {
             try {
                 out.write(msg.getBytes());
-                System.out.println("writed: " + msg);
+                logger.info("Written: {}",msg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -226,27 +238,10 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         public synchronized void sendInt(int msg) {
             try {
                 out.write(msg);
-                System.out.println("writed: " + msg);
+                logger.info("Written: {}",msg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-
-  /*      public synchronized  void writeData() {
-            try
-            {
-                int c = 0;
-                while ( ( c = System.in.read()) > -1 )
-                {
-                    this.out.write(c);
-                }
-            }
-            catch ( IOException e )
-            {
-                e.printStackTrace();
-                System.exit(-1);
-            }
-        }*/
     }
 }

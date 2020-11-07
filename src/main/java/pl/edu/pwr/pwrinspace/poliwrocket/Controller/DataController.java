@@ -52,14 +52,8 @@ public class DataController extends BasicSensorController {
         tileHashMap.put(dataGauge6.getId(), dataGauge6);
         tileHashMap.put(dataGauge7.getId(), dataGauge7);
         tileHashMap.put(dataGauge8.getId(), dataGauge8);
-        dataGauge1.setVisible(false);
-        dataGauge2.setVisible(false);
-        dataGauge3.setVisible(false);
-        dataGauge4.setVisible(false);
-        dataGauge5.setVisible(false);
-        dataGauge6.setVisible(false);
-        dataGauge7.setVisible(false);
-        dataGauge8.setVisible(false);
+
+        tileHashMap.forEach((s, tile) -> tile.setVisible(false));
     }
 
     @Override

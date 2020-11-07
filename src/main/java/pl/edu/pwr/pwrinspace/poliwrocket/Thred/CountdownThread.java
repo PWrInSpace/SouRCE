@@ -6,7 +6,7 @@ import javafx.beans.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimerThread implements Observable, Runnable {
+public class CountdownThread implements Observable, Runnable {
 
     private long countdownTime = 10000;
 
@@ -55,7 +55,11 @@ public class TimerThread implements Observable, Runnable {
         formattedTime += (hours < 10 ? "0" + hours : hours) + ":";
         formattedTime += (minutes < 10 ? "0" + minutes : minutes) + ":";
         formattedTime += (seconds < 10 ? "0" + seconds : seconds) + ":";
-        formattedTime += (milliseconds < 10 ? "00" + milliseconds : (milliseconds < 100 ? "0" + milliseconds : milliseconds));
+        if(milliseconds < 10){
+            formattedTime += "00" + milliseconds;
+        } else {
+            formattedTime += milliseconds < 100 ? "0" + milliseconds : milliseconds;
+        }
         return formattedTime;
     }
 
@@ -73,7 +77,8 @@ public class TimerThread implements Observable, Runnable {
             Thread.sleep(500);
             while (canRun) {
 
-                update(this.countdownTime-=100);
+                this.countdownTime-=100;
+                update(this.countdownTime);
                 if (this.countdownTime == Long.MAX_VALUE) {
                     break;
                 }

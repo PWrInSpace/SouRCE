@@ -13,7 +13,7 @@
       <Gauge fx:id="powerGauge3" layoutX="54.0" layoutY="112.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
       <Gauge fx:id="powerGauge7" layoutX="54.0" layoutY="246.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
       <Gauge fx:id="powerGauge2" layoutX="54.0" layoutY="78.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-      <Gauge fx:id="powerGauge1" layoutX="54.0" layoutY="44.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+      <Gauge fx:id="powerGauge1" layoutX="54.0" layoutY="44.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" threshold="30.0" thresholdVisible="true" />
       <Label fx:id="powerLabel7" layoutX="36.0" layoutY="255.0" text="Power7">
          <font>
             <Font size="10.0" />
@@ -54,5 +54,12 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label fx:id="powerValue1" layoutX="163.0" layoutY="60.0" text="V" />
+      <Label fx:id="powerValue2" layoutX="163.0" layoutY="94.0" text="V" />
+      <Label fx:id="powerValue3" layoutX="163.0" layoutY="128.0" text="V" />
+      <Label fx:id="powerValue4" layoutX="163.0" layoutY="161.0" text="V" />
+      <Label fx:id="powerValue5" layoutX="163.0" layoutY="195.0" text="V" />
+      <Label fx:id="powerValue6" layoutX="163.0" layoutY="229.0" text="V" />
+      <Label fx:id="powerValue7" layoutX="163.0" layoutY="262.0" text="V" />
    </children>
 </AnchorPane>

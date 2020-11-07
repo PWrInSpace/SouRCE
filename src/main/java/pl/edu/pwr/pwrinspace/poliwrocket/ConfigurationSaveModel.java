@@ -202,6 +202,33 @@ public class ConfigurationSaveModel {
         defaultConfig.notificationSchedule = schedules;
         //---------------
 
+        //power
+        Sensor power1 = new Sensor();
+        power1.setMaxRange(8.2);
+        power1.setMinRange(7.2);
+        power1.setName("Main computer");
+        power1.setDestination("powerGauge1");
+        power1.setUnit("V");
+        power1.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
+        defaultConfig.sensorRepository.addSensor(power1);
+        Sensor power2 = new Sensor();
+        power2.setMaxRange(8.2);
+        power2.setMinRange(7.2);
+        power2.setName("Recovery 1");
+        power2.setDestination("powerGauge2");
+        power2.setUnit("V");
+        power2.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
+        defaultConfig.sensorRepository.addSensor(power2);
+        Sensor power3 = new Sensor();
+        power3.setMaxRange(8.2);
+        power3.setMinRange(7.2);
+        power3.setName("Recovery 2");
+        power3.setDestination("powerGauge3");
+        power3.setUnit("V");
+        power3.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
+        defaultConfig.sensorRepository.addSensor(power3);
+
+        //---------------
         return defaultConfig;
     }
 }

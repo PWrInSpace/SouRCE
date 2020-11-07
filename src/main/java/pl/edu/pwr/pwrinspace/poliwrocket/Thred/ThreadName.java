@@ -1,7 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Thred;
 
 public enum ThreadName {
-    DISCORD_NOTIFICATION("DiscordNotificationThread");
+    DISCORD_NOTIFICATION("DiscordNotificationThread"),
+    COUNTDOWN("Countdown");
 
     private String name;
 

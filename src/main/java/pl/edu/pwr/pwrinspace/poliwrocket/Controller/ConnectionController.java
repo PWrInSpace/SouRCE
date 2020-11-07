@@ -1,5 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import eu.hansolo.medusa.Gauge;
 import gnu.io.NRSerialPort;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -10,7 +11,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
@@ -47,6 +50,10 @@ public class ConnectionController extends BasicButtonSensorController {
     @FXML
     private Label threadStatus;
 
+    @FXML
+    private Gauge signal;
+
+
     private ObservableList<String> availableSerialPorts = FXCollections.observableArrayList();
 
     private ObservableList<String> availableNotifications = FXCollections.observableArrayList();
@@ -71,7 +78,7 @@ public class ConnectionController extends BasicButtonSensorController {
             if (availableSerialPorts.isEmpty()) {
                 connectionStatus.setText("Error: no ports");
             } else {
-                if (!SerialPortManager.getInstance().isPortOpen) {
+                if (!SerialPortManager.getInstance().isPortOpen()) {
                     connectionStatus.setText("Connecting");
                     baudRate.setDisable(true);
                     serialPorts.setDisable(true);
@@ -124,13 +131,20 @@ public class ConnectionController extends BasicButtonSensorController {
 
     @Override
     protected void setUIBySensors() {
-        //TODO implement for signal
+        for (ISensor sensor : sensors) {
+            if (sensor.getDestination().equals(signal.getId())) {
+                signal.setVisible(true);
+                signal.setMaxValue(sensor.getMaxRange());
+                signal.setMinValue(sensor.getMinRange());
+                signal.setUnit(sensor.getUnit());
+            }
+        }
     }
 
     @Override
     public void invalidated(Observable observable) {
-        if (observable instanceof SerialPortManager) {
-            if (((SerialPortManager) observable).isPortOpen) {
+        if (observable instanceof ISerialPortManager) {
+            if (((ISerialPortManager) observable).isPortOpen()) {
                 connectionStatus.setText("Connected");
                 baudRate.setDisable(true);
                 serialPorts.setDisable(true);

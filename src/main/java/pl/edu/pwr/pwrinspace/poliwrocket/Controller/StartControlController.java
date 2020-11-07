@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Thred.TimerThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.CountdownThread;
 
 public class StartControlController extends BasicButtonSensorController {
 
@@ -43,11 +43,11 @@ public class StartControlController extends BasicButtonSensorController {
 
     private Thread countdownThread;
 
-    private TimerThread countdownTime;
+    private CountdownThread countdownTime;
     @FXML
     void initialize() {
         controllerNameEnum = ControllerNameEnum.START_CONTROL_CONTROLLER;
-        countdownTime = new TimerThread();
+        countdownTime = new CountdownThread();
         countdownTime.addListener(this);
         qucikDistonectButton.setDisable(true);
         armingButton1.setDisable(true);
@@ -139,8 +139,8 @@ public class StartControlController extends BasicButtonSensorController {
     @Override
     public void invalidated(Observable observable) {
         Platform.runLater(() -> {
-            countdownTimer.setText(((TimerThread) observable).getFormattedTimeResult());
-            if(-1000 <= ((TimerThread) observable).getCountdownTime() && ((TimerThread) observable).getCountdownTime() <= 0) {
+            countdownTimer.setText(((CountdownThread) observable).getFormattedTimeResult());
+            if(-1000 <= ((CountdownThread) observable).getCountdownTime() && ((CountdownThread) observable).getCountdownTime() <= 0) {
                 //SerialPortManager.getInstance().write("FIRE MESSAGE");
             }
         });
