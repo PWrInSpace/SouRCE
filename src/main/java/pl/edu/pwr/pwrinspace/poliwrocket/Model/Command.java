@@ -23,6 +23,11 @@ public class Command implements ICommand {
         this.trigger = trigger;
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
+
     //TODO SPRAWDZIC TO
     @Override
     public int hashCode() {

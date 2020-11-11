@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord;
+package pl.edu.pwr.pwrinspace.poliwrocket.Event;
 
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;

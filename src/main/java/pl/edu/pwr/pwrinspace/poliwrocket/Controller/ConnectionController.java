@@ -19,6 +19,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendSe
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
+import java.util.Collection;
 import java.util.List;
 
 public class ConnectionController extends BasicButtonSensorController {
@@ -53,10 +54,18 @@ public class ConnectionController extends BasicButtonSensorController {
     @FXML
     private Gauge signal;
 
+    @FXML
+    private ComboBox<ICommand> serialMessages;
+
+    @FXML
+    private Button sendSerialMessage;
+
 
     private ObservableList<String> availableSerialPorts = FXCollections.observableArrayList();
 
     private ObservableList<String> availableNotifications = FXCollections.observableArrayList();
+
+    private ObservableList<ICommand> availableMessages = FXCollections.observableArrayList();
 
     private NotificationSendService notificationSendService;
 
@@ -85,6 +94,7 @@ public class ConnectionController extends BasicButtonSensorController {
                     SerialPortManager.getInstance().initialize(serialPorts.getValue(), Integer.parseInt(baudRate.getText()));
                 } else {
                     connectionStatus.setText("Disconnecting");
+                    sendSerialMessage.setDisable(true);
                     SerialPortManager.getInstance().close();
                 }
             }
@@ -109,6 +119,10 @@ public class ConnectionController extends BasicButtonSensorController {
                 threadStatus.setText("Interrupted");
             }
         });
+
+        sendSerialMessage.setOnMouseClicked(mouseEvent -> {
+            SerialPortManager.getInstance().write(serialMessages.getValue().toString());
+        });
     }
 
     public void injectNotification(NotificationSendService notificationSendService, List<String> notificationsList, NotificationThread notificationThreadRunnable) {
@@ -120,6 +134,16 @@ public class ConnectionController extends BasicButtonSensorController {
             notifications.setValue(notificationsList.get(0));
         }
         this.notificationThreadRunnable = notificationThreadRunnable;
+    }
+
+    @Override
+    public void assignsCommands(Collection<ICommand> messagesList) {
+        this.availableMessages.clear();
+        this.availableMessages.addAll(messagesList);
+        serialMessages.setItems(availableMessages);
+        if (!messagesList.isEmpty()) {
+            serialMessages.setValue(availableMessages.get(0));
+        }
     }
 
     private void serialSetup() {
@@ -146,6 +170,7 @@ public class ConnectionController extends BasicButtonSensorController {
         if (observable instanceof ISerialPortManager) {
             if (((ISerialPortManager) observable).isPortOpen()) {
                 connectionStatus.setText("Connected");
+                sendSerialMessage.setDisable(false);
                 baudRate.setDisable(true);
                 serialPorts.setDisable(true);
             } else {
@@ -156,6 +181,7 @@ public class ConnectionController extends BasicButtonSensorController {
                 }
                 baudRate.setDisable(false);
                 serialPorts.setDisable(false);
+                sendSerialMessage.setDisable(true);
             }
         } else if (observable instanceof INotification) {
             boolean status = ((INotification) observable).isConnected();

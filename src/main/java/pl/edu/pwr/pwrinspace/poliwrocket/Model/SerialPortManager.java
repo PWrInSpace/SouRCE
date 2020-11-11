@@ -197,7 +197,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     public synchronized void write(String message) {
-        log.log(Level.INFO, "Written: {}", message);
+        log.log(Level.INFO, "Written: {0}", message);
         serialWriter.send(message);
     }
 

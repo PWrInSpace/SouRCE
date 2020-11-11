@@ -16,8 +16,10 @@ public class NotificationFormatDiscordService extends NotificationFormatService 
         super(sensorRepository);
     }
 
+    @Override
     public Object getFormattedMessage(String messageKey) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
+
         if (messageKey.equalsIgnoreCase("Data")) {
             embedBuilder.setTitle("Current data").setColor(Color.GRAY);
             sensorRepository.getAllBasicSensors().forEach((s, sensor) ->

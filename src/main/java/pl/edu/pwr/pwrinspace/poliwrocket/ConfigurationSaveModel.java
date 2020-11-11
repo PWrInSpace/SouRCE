@@ -135,6 +135,12 @@ public class ConfigurationSaveModel {
         Command command4 = new Command("open valveOpenButton4", "valveOpenButton4");
         command4.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
         defaultConfig.commandsListValves.add(command4);
+        Command command5 = new Command("test1", "test1");
+        command5.getDestinationControllerNames().add(ControllerNameEnum.CONNECTION_CONTROLLER);
+        defaultConfig.commandsListValves.add(command5);
+        Command command6 = new Command("test2", "test2");
+        command6.getDestinationControllerNames().add(ControllerNameEnum.CONNECTION_CONTROLLER);
+        defaultConfig.commandsListValves.add(command6);
         //--------
 
         //frame

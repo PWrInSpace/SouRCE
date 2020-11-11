@@ -5,11 +5,12 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 
 public class NotificationDiscordEvent extends NotificationEvent {
 
-    protected String channel = Configuration.getInstance().DISCORD_CHANNEL_NAME;
+    protected String channelName = Configuration.getInstance().DISCORD_CHANNEL_NAME;
 
     public NotificationDiscordEvent(NotificationFormatDiscordService notificationFormatDiscordService) {
         this.notification = notificationFormatDiscordService;
@@ -24,8 +25,8 @@ public class NotificationDiscordEvent extends NotificationEvent {
             if(message instanceof EmbedBuilder){
                 this.getChannel(event).sendMessage(((EmbedBuilder) message).build()).queue();
             } else if (message instanceof String){
-                var channel = this.getChannel(event);
-                if(!((String) message).contains("Error") || event.getChannel() == channel){
+                TextChannel channel = this.getChannel(event);
+                if(!((String) message).contains("Error") || event.getChannel().getName().equals(channelName)){
                     channel.sendMessage(((String) message)).queue();
 
                 }
@@ -35,8 +36,8 @@ public class NotificationDiscordEvent extends NotificationEvent {
 
     protected TextChannel getChannel(@NotNull GuildMessageReceivedEvent event) {
 
-        if (!channel.equals("")) {
-            var channels = event.getGuild().getTextChannelsByName(channel, true);
+        if (!channelName.equals("")) {
+            var channels = event.getGuild().getTextChannelsByName(channelName, true);
             if (!channels.isEmpty()) {
                 return channels.get(0);
             }
