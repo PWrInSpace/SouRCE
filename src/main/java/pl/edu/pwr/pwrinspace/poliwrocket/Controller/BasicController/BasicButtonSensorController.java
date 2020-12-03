@@ -3,7 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
 import java.util.Collection;
 import java.util.HashMap;

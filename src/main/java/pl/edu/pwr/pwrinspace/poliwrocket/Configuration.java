@@ -5,7 +5,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonC
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
@@ -40,7 +40,7 @@ public class Configuration {
 
     public List<String> FRAME_PATTERN = new ArrayList<>();
 
-    public List<Command> commandsListValves = new LinkedList<>();
+    public List<Command> commandsList = new LinkedList<>();
 
     public List<Schedule> notificationSchedule = new LinkedList<>();
 
@@ -62,7 +62,7 @@ public class Configuration {
         this.FRAME_PATTERN = config.FRAME_PATTERN;
         this.DISCORD_TOKEN = config.DISCORD_TOKEN;
         this.DISCORD_CHANNEL_NAME = config.DISCORD_CHANNEL_NAME;
-        this.commandsListValves = config.commandsListValves;
+        this.commandsList = config.commandsList;
         this.sensorRepository = config.sensorRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
@@ -92,9 +92,9 @@ public class Configuration {
                 }
             });
 
-            for (int j = 0; j < Configuration.getInstance().commandsListValves.size(); j++) {
-                if (Configuration.getInstance().commandsListValves.get(j).getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerNameEnum())) {
-                    controllersConfig.get(i).getValue2().add(Configuration.getInstance().commandsListValves.get(j));
+            for (int j = 0; j < Configuration.getInstance().commandsList.size(); j++) {
+                if (Configuration.getInstance().commandsList.get(j).getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerNameEnum())) {
+                    controllersConfig.get(i).getValue2().add(Configuration.getInstance().commandsList.get(j));
                 }
             }
         }

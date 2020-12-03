@@ -6,14 +6,14 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 
 public class NotificationDiscordEvent extends NotificationEvent {
 
     protected String channelName = Configuration.getInstance().DISCORD_CHANNEL_NAME;
 
-    public NotificationDiscordEvent(NotificationFormatDiscordService notificationFormatDiscordService) {
-        this.notification = notificationFormatDiscordService;
+    public NotificationDiscordEvent(NotificationFormatService notificationFormatService) {
+        super(notificationFormatService);
     }
 
     @Override

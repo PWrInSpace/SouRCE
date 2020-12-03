@@ -1,6 +1,5 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification;
 
-import javafx.beans.InvalidationListener;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -11,33 +10,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class DiscordNotification implements INotification {
+public class DiscordNotification extends Notification {
 
     private static final Logger logger = LoggerFactory.getLogger(DiscordNotification.class);
-
-    private List<InvalidationListener> observers = new ArrayList<>();
 
     private JDA jda;
 
     protected String channel = Configuration.getInstance().DISCORD_CHANNEL_NAME;
 
-    protected NotificationFormatDiscordService notificationFormatDiscordService;
-
-    public DiscordNotification(NotificationFormatDiscordService notificationFormatDiscordService) {
-        this.notificationFormatDiscordService = notificationFormatDiscordService;
+    public DiscordNotification(NotificationFormatService notificationFormatService) {
+        super(notificationFormatService);
     }
 
     public synchronized void setupConnection() {
         if (!Configuration.getInstance().DISCORD_TOKEN.equals("")) {
             try {
                 jda = JDABuilder.createDefault(Configuration.getInstance().DISCORD_TOKEN).build();
-                jda.addEventListener(new NotificationDiscordEvent(notificationFormatDiscordService));
+                jda.addEventListener(new NotificationDiscordEvent(notificationFormatService));
             } catch (Exception e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
@@ -57,7 +50,7 @@ public class DiscordNotification implements INotification {
 
             try {
                 jda = builder.build();
-                jda.addEventListener(new NotificationDiscordEvent(notificationFormatDiscordService));
+                jda.addEventListener(new NotificationDiscordEvent(notificationFormatService));
             } catch (Exception e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
@@ -81,10 +74,10 @@ public class DiscordNotification implements INotification {
 
     @Override
     public void sendNotification(String messageKey) {
-        var message = notificationFormatDiscordService.getFormattedMessage(messageKey);
-        if(message instanceof EmbedBuilder){
+        var message = notificationFormatService.getFormattedMessage(messageKey);
+        if (message instanceof EmbedBuilder) {
             getChannel().sendMessage(((EmbedBuilder) message).build()).queue();
-        } else if (message instanceof String){
+        } else if (message instanceof String) {
             getChannel().sendMessage(((String) message)).queue();
         }
     }
@@ -92,34 +85,18 @@ public class DiscordNotification implements INotification {
     @Override
     public synchronized void setup() {
         setupCustom();
-        if(jda != null){
+        if (jda != null) {
             try {
                 jda.awaitReady();
             } catch (InterruptedException e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
         }
-
-        notifyObserver();
+        super.setup();
     }
 
     @Override
     public boolean isConnected() {
         return !Configuration.getInstance().DISCORD_TOKEN.equals("") && jda != null && jda.getStatus() == JDA.Status.CONNECTED;
     }
-
-    @Override
-    public void addListener(InvalidationListener invalidationListener) {
-        observers.add(invalidationListener);
-    }
-
-    @Override
-    public void removeListener(InvalidationListener invalidationListener) {
-        observers.remove(invalidationListener);
-    }
-
-    private void notifyObserver() {
-        for (InvalidationListener obs : observers) {
-            obs.invalidated(this);
-        }
-    }}
+}

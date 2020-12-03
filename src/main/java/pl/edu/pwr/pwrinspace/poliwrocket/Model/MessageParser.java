@@ -47,12 +47,14 @@ public class MessageParser implements IMessageParser, Observable {
                 try {
                     sensorRepository.getSensorByName(sensorName).setValue(Double.parseDouble(splited[currentPosition]));
                 } catch (NumberFormatException e) {
+                    this.lastMessage = "Invalid: " + this.lastMessage;
                     Logger.getLogger(getClass().getName()).log(Level.WARNING, "Wrong message, value is not a number! " + lastMessage + " -> " + splited[currentPosition]);
                 } finally {
                     currentPosition++;
                 }
             }
         } else {
+            this.lastMessage = "Invalid: " + this.lastMessage;
             Logger.getLogger(getClass().getName()).log(Level.WARNING,"Wrong message length! Expected: " + Configuration.getInstance().FRAME_PATTERN.size() + " got: " + splited.length);
         }
 //        if(sensorRepository.getSensorsKeys().size() == splited.length){

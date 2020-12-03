@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
 
 

@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
 public interface ICommand {
     String getCommandValue();

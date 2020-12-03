@@ -11,12 +11,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
-import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.INotificationThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
 import java.util.Collection;
@@ -69,7 +70,7 @@ public class ConnectionController extends BasicButtonSensorController {
 
     private NotificationSendService notificationSendService;
 
-    private NotificationThread notificationThreadRunnable;
+    private INotificationThread notificationThreadRunnable;
 
     private Thread notificationThread;
 
@@ -125,7 +126,7 @@ public class ConnectionController extends BasicButtonSensorController {
         });
     }
 
-    public void injectNotification(NotificationSendService notificationSendService, List<String> notificationsList, NotificationThread notificationThreadRunnable) {
+    public void injectNotification(NotificationSendService notificationSendService, List<String> notificationsList, INotificationThread notificationThreadRunnable) {
         this.notificationSendService = notificationSendService;
         this.availableNotifications.clear();
         this.availableNotifications.addAll(notificationsList);

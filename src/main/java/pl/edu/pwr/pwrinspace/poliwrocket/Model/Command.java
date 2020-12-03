@@ -2,7 +2,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model;
 
 import com.google.gson.annotations.Expose;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ICommand;
 
 import java.util.ArrayList;
 import java.util.List;

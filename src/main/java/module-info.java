@@ -11,7 +11,7 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires importer;
     requires annotations;
     requires java.logging;
-    requires io;
+    requires nrjavaserial;
     requires com.google.gson;
     requires javatuples;
     requires net.dv8tion.jda;

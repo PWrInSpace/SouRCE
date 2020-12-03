@@ -22,7 +22,7 @@
       <TextField fx:id="baudRate" layoutX="256.0" layoutY="84.0" prefWidth="120.0" text="115200" />
       <Label layoutX="34.0" layoutY="88.0" text="Status:" />
       <Label fx:id="connectionStatus" layoutX="76.0" layoutY="88.0" prefHeight="18.0" prefWidth="82.0" text="Disconnected" />
-      <Gauge layoutX="34.0" layoutY="180.0" prefHeight="46.0" prefWidth="154.0" skinType="CHARGE" style="-fx-background-color: transparent;" />
+      <Gauge fx:id="signal" layoutX="34.0" layoutY="180.0" prefHeight="46.0" prefWidth="154.0" skinType="CHARGE" style="-fx-background-color: transparent;" />
       <Label layoutX="34.0" layoutY="170.0" prefHeight="18.0" prefWidth="35.0" text="Signal:" />
       <Label layoutX="19.0" layoutY="27.0" text="Serial:">
          <font>

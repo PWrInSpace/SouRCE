@@ -38,7 +38,7 @@ public class ConfigurationSaveModel {
     public List<String> FRAME_PATTERN = new ArrayList<>();
 
     @Expose
-    public List<Command> commandsListValves = new LinkedList<>();
+    public List<Command> commandsList = new LinkedList<>();
 
     @Expose
     public List<Schedule> notificationSchedule = new LinkedList<>();
@@ -58,7 +58,7 @@ public class ConfigurationSaveModel {
         config.FRAME_PATTERN = configuration.FRAME_PATTERN;
         config.DISCORD_TOKEN = configuration.DISCORD_TOKEN;
         config.DISCORD_CHANNEL_NAME = configuration.DISCORD_CHANNEL_NAME;
-        config.commandsListValves = configuration.commandsListValves;
+        config.commandsList = configuration.commandsList;
         config.notificationMessageKeys = configuration.notificationMessageKeys;
         config.notificationSchedule = configuration.notificationSchedule;
         config.sensorRepository.setGpsSensor(configuration.sensorRepository.getGpsSensor());
@@ -82,7 +82,7 @@ public class ConfigurationSaveModel {
         ConfigurationSaveModel defaultConfig = new ConfigurationSaveModel();
         defaultConfig.sensorRepository = new SensorRepository();
         defaultConfig.FPS = 2;
-        defaultConfig.commandsListValves = new LinkedList<>();
+        defaultConfig.commandsList = new LinkedList<>();
 
         Sensor basicSensor = new Sensor();
         basicSensor.setDestination("dataGauge1");
@@ -125,22 +125,22 @@ public class ConfigurationSaveModel {
         //komendy
         Command command = new Command("open valveOpenButton1", "valveOpenButton1");
         command.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
-        defaultConfig.commandsListValves.add(command);
+        defaultConfig.commandsList.add(command);
         Command command2 = new Command("open valveOpenButton2", "valveOpenButton2");
         command2.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
-        defaultConfig.commandsListValves.add(command2);
+        defaultConfig.commandsList.add(command2);
         Command command3 = new Command("open valveOpenButton3", "valveOpenButton3");
         command3.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
-        defaultConfig.commandsListValves.add(command3);
+        defaultConfig.commandsList.add(command3);
         Command command4 = new Command("open valveOpenButton4", "valveOpenButton4");
         command4.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
-        defaultConfig.commandsListValves.add(command4);
+        defaultConfig.commandsList.add(command4);
         Command command5 = new Command("test1", "test1");
         command5.getDestinationControllerNames().add(ControllerNameEnum.CONNECTION_CONTROLLER);
-        defaultConfig.commandsListValves.add(command5);
+        defaultConfig.commandsList.add(command5);
         Command command6 = new Command("test2", "test2");
         command6.getDestinationControllerNames().add(ControllerNameEnum.CONNECTION_CONTROLLER);
-        defaultConfig.commandsListValves.add(command6);
+        defaultConfig.commandsList.add(command6);
         //--------
 
         //frame

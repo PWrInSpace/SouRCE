@@ -7,4 +7,7 @@ public abstract class NotificationEvent extends ListenerAdapter {
 
     protected NotificationFormatService notification;
 
+    public NotificationEvent(NotificationFormatService notificationFormatService) {
+        this.notification = notificationFormatService;
+    }
 }
