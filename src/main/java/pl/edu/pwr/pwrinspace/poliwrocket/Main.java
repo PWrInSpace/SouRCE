@@ -16,6 +16,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.JsonMessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.StandardMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
@@ -126,7 +128,13 @@ public class Main extends Application {
             //--------------
 
             //IMessageParser setup
-            messageParser = new JsonMessageParser(Configuration.getInstance().sensorRepository);
+            if(Configuration.getInstance().PARSER_TYPE == MessageParserEnum.JSON){
+                messageParser = new JsonMessageParser(Configuration.getInstance().sensorRepository);
+            } else if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.STANDARD) {
+                messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
+            } else {
+                messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
+            }
             messageParser.addListener(mainController);
             //--------------
 

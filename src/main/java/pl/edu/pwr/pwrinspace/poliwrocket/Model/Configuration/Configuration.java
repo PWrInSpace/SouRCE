@@ -7,6 +7,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicControl
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
@@ -23,6 +24,8 @@ public class Configuration {
     public double START_POSITION_LAT = 49.013517;
 
     public double START_POSITION_LON = 8.404435;
+
+    public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
 
     public static final String CONFIG_PATH = "./";
 
@@ -58,6 +61,7 @@ public class Configuration {
         this.FPS = config.FPS;
         this.START_POSITION_LAT = config.START_POSITION_LAT;
         this.START_POSITION_LON = config.START_POSITION_LON;
+        this.PARSER_TYPE = config.PARSER_TYPE;
         this.FRAME_DELIMITER = config.FRAME_DELIMITER;
         this.FRAME_PATTERN = config.FRAME_PATTERN;
         this.DISCORD_TOKEN = config.DISCORD_TOKEN;

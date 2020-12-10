@@ -3,6 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 import com.google.gson.annotations.Expose;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GyroSensor;
@@ -24,6 +25,9 @@ public class ConfigurationSaveModel {
 
     @Expose
     public double START_POSITION_LON;
+
+    @Expose
+    public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
 
     @Expose
     public String FRAME_DELIMITER = ",";
@@ -54,6 +58,7 @@ public class ConfigurationSaveModel {
         config.FPS = configuration.FPS;
         config.START_POSITION_LAT = configuration.START_POSITION_LAT;
         config.START_POSITION_LON = configuration.START_POSITION_LON;
+        config.PARSER_TYPE = configuration.PARSER_TYPE;
         config.FRAME_DELIMITER = configuration.FRAME_DELIMITER;
         config.FRAME_PATTERN = configuration.FRAME_PATTERN;
         config.DISCORD_TOKEN = configuration.DISCORD_TOKEN;
@@ -82,6 +87,7 @@ public class ConfigurationSaveModel {
         ConfigurationSaveModel defaultConfig = new ConfigurationSaveModel();
         defaultConfig.sensorRepository = new SensorRepository();
         defaultConfig.FPS = 2;
+        defaultConfig.PARSER_TYPE = MessageParserEnum.STANDARD;
         defaultConfig.commandsList = new LinkedList<>();
         //TODO uncomment on deploy
         //defaultConfig.DISCORD_CHANNEL_NAME = "";
