@@ -16,7 +16,8 @@ import javafx.scene.transform.Rotate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.StandardMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 
 import java.io.IOException;
@@ -154,13 +155,16 @@ public class MainController extends BasicController implements InvalidationListe
 
     @Override
     public void invalidated(Observable observable) {
-        if (observable instanceof MessageParser) {
-            Platform.runLater(() -> inComing.appendText(((MessageParser) observable).getLastMessage()));
+        if (observable instanceof StandardMessageParser) {
+            Platform.runLater(() -> inComing.appendText(((StandardMessageParser) observable).getLastMessage()));
         }
         else if (observable instanceof IGyroSensor) {
             Platform.runLater(() -> root.rotateByX((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_X_KEY)) / 10) * 10));
             Platform.runLater(() -> root.rotateByY((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_Y_KEY)) / 10) * 10));
             Platform.runLater(() -> root.rotateByZ((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_Z_KEY)) / 10) * 10));
+        }
+        else if (observable instanceof ISerialPortManager) {
+            Platform.runLater(() -> outGoing.appendText(((ISerialPortManager) observable).getLastSend() + "\n"));
         }
     }
 

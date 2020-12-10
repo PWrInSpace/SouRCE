@@ -5,7 +5,9 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import javafx.beans.InvalidationListener;
 import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.FrameSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.Frame;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,17 +22,19 @@ import static java.lang.Thread.sleep;
 
 public class SerialPortManager implements SerialPortEventListener, ISerialPortManager {
 
-    public List<InvalidationListener> observers = new ArrayList<>();
+    private final List<InvalidationListener> observers = new ArrayList<>();
 
     private NRSerialPort serialPort;
-    // Na windowsie domyślnie posługujemy się portem COM3
     protected String PORT_NAME = "COM3";
-    private final Logger log = Logger.getLogger(getClass().getName()); //java.util.logging.Logger
+    private int DATA_RATE = 115200;
+    private final Logger log = Logger.getLogger(getClass().getName());
     private OutputStream outputStream;
     private InputStream inputStream;
     protected SerialWriter serialWriter;
     private boolean isPortOpen = false;
-    private FrameSaveService frameSaveService = new FrameSaveService();
+    private FrameSaveService frameSaveService;
+    private IMessageParser messageParser;
+    private String lastMessage = "";
 
     private SerialPortManager() {
         if (Holder.INSTANCE != null) {
@@ -52,6 +56,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         observers.remove(invalidationListener);
     }
 
+    @Override
+    public void setFrameSaveService(FrameSaveService frameSaveService) {
+        this.frameSaveService = frameSaveService;
+    }
+
     private void notifyObserver() {
         for (InvalidationListener obs : observers) {
             obs.invalidated(this);
@@ -62,66 +71,10 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         private static final SerialPortManager INSTANCE = new SerialPortManager();
     }
 
-    //    public void speak(){
-//        Thread speaker = new Thread(){
-//            @Override
-//            public void run() {
-//                try
-//                {
-//                    // set property as Kevin Dictionary
-//                    System.setProperty("freetts.voices",
-//                            "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-//
-//                    // Register Engine
-//                    Central.registerEngineCentral
-//                            ("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");
-//
-//                    // Create a Synthesizer
-//                    Synthesizer synthesizer =
-//                            Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));
-//
-//                    // Allocate synthesizer
-//
-//                    synthesizer.allocate();
-//
-//                    // Resume Synthesizer
-//                    synthesizer.resume();
-//                    synthesizer.speakPlainText(msgToSay, null);
-//                    synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-//                    /*
-//                    // speaks the given text until queue is empty.
-//                    synthesizer.speakPlainText("PoliWRocket Mission Control System Started", null);
-//                    synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-//                    synthesizer.speakPlainText("Altitiude 700 meters.", null);
-//                    synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-//                    synthesizer.speakPlainText("Apogee detected.", null);
-//                    synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-//                    synthesizer.speakPlainText("Main parachute deployed.", null);
-//                    synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);*/
-//                    // Deallocate the Synthesizer.
-//                    synthesizer.deallocate();
-//                }
-//
-//                catch (Exception e)
-//                {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//        speaker.start();
-//    }
-
-
-    /**
-     * Milliseconds to block while waiting for port open
-     */
-    private static final int TIME_OUT = 4000;
-    /**
-     * Default bits per second for COM port.
-     */
-    private int DATA_RATE = 115200;
-//    private static final int DATA_RATE = 9600; ->poprzednia wersja
-    //Singleton pattern
+    @Override
+    public void setMessageParser(IMessageParser messageParser) {
+        this.messageParser = messageParser;
+    }
 
     @Override
     public void initialize(String portName, int dataRate) {
@@ -137,32 +90,42 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     @Override
     public void initialize() {
-        try {
-            // otwieramy i konfigurujemy port
-            serialPort = new NRSerialPort(PORT_NAME, DATA_RATE);
-            serialPort.connect();
-            if(serialPort.isConnected()) {
-                // strumień wejścia
-                inputStream = serialPort.getInputStream();
+        if(messageParser != null) {
+            try {
+                // otwieramy i konfigurujemy port
+                serialPort = new NRSerialPort(PORT_NAME, DATA_RATE);
+                serialPort.connect();
+                if(serialPort.isConnected()) {
+                    // strumień wejścia
+                    inputStream = serialPort.getInputStream();
 
-                //strumień wyjścia
-                outputStream = serialPort.getOutputStream();
-                serialWriter = new SerialWriter(outputStream);
-                (new Thread(serialWriter)).start();
+                    //strumień wyjścia
+                    outputStream = serialPort.getOutputStream();
+                    serialWriter = new SerialWriter(outputStream);
+                    (new Thread(serialWriter)).start();
 
-                // dodajemy słuchaczy zdarzeń
-                serialPort.addEventListener(this);
-                serialPort.notifyOnDataAvailable(true);
-            } else {
-                serialPort.disconnect();
+                    // dodajemy słuchaczy zdarzeń
+                    serialPort.addEventListener(this);
+                    serialPort.notifyOnDataAvailable(true);
+                } else {
+                    serialPort.disconnect();
+                }
+                isPortOpen = serialPort.isConnected();
+            } catch (Exception e) {
+                isPortOpen = serialPort.isConnected();
+                log.log(Level.WARNING,e.toString());
+            } finally {
+                notifyObserver();
+                log.log(Level.INFO, "Serialport status open: {}", isPortOpen);
             }
+        } else {
             isPortOpen = serialPort.isConnected();
-        } catch (Exception e) {
-            isPortOpen = serialPort.isConnected();
-            log.log(Level.WARNING,e.toString());
-        } finally {
             notifyObserver();
+            log.log(Level.WARNING,"IMessageParser not set");
             log.log(Level.INFO, "Serialport status open: {}", isPortOpen);
+        }
+        if(frameSaveService == null) {
+            log.log(Level.WARNING,"FrameSaveService not set");
         }
     }
 
@@ -177,9 +140,6 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         }
     }
 
-    /**
-     * Metoda nasłuchuje na dane na wskazanym porcie i wyświetla je w konsoli
-     */
     @Override
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
@@ -187,8 +147,13 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 byte[] buffer = new byte[1024];
                 int length = this.inputStream.read(buffer);
                 Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
-                MessageParser.getInstance().parseMessage(frame);
-                frameSaveService.saveFrameToFile(frame);
+                messageParser.parseMessage(frame);
+                if(frameSaveService != null) {
+                    if(frame.getFormattedContent().isEmpty()) {
+                        frame.setFormattedContent(frame.getContent());
+                    }
+                    frameSaveService.saveFrameToFile(frame);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -199,11 +164,16 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public synchronized void write(String message) {
         log.log(Level.INFO, "Written: {0}", message);
         serialWriter.send(message);
+        this.lastMessage = message;
+        notifyObserver();
+
     }
 
-    /**
-     *
-     */
+    @Override
+    public String getLastSend() {
+        return this.lastMessage;
+    }
+
     public static class SerialWriter implements Runnable {
         OutputStream out;
 
@@ -215,11 +185,8 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
         @Override
         public void run() {
-
             try {
-
                 sleep(100);
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 Thread.currentThread().interrupt();
@@ -229,15 +196,6 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         public synchronized void send(String msg) {
             try {
                 out.write(msg.getBytes());
-                logger.info("Written: {}",msg);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public synchronized void sendInt(int msg) {
-            try {
-                out.write(msg);
                 logger.info("Written: {}",msg);
             } catch (IOException e) {
                 e.printStackTrace();

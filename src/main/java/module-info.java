@@ -21,11 +21,18 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
 
     opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model to com.google.gson;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command to com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor to com.google.gson;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification to com.google.gson;
 
     exports pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
-    exports pl.edu.pwr.pwrinspace.poliwrocket.Model;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Thred;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Service.Save;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
+    exports pl.edu.pwr.pwrinspace.poliwrocket;
 }

@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 
@@ -35,7 +35,6 @@ public class DiscordNotification extends Notification {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
         }
-
     }
 
     public synchronized void setupCustom() {
@@ -90,6 +89,7 @@ public class DiscordNotification extends Notification {
                 jda.awaitReady();
             } catch (InterruptedException e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
+                Thread.currentThread().interrupt();
             }
         }
         super.setup();

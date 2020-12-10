@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Thred;
 
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
 
 import java.util.ArrayList;

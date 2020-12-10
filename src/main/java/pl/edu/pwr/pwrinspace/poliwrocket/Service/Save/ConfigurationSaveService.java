@@ -1,15 +1,13 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Service;
+package pl.edu.pwr.pwrinspace.poliwrocket.Service.Save;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
-import pl.edu.pwr.pwrinspace.poliwrocket.ConfigurationSaveModel;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 public class ConfigurationSaveService {
 
@@ -26,7 +24,22 @@ public class ConfigurationSaveService {
         }
     }
 
-    public ConfigurationSaveModel readFromFile() {
+    public void persistOldConfig() {
+        File configFile = new File(Configuration.CONFIG_PATH + Configuration.CONFIG_FILE_NAME);
+        File copy = new File(Configuration.CONFIG_PATH + "BAD_" + Configuration.CONFIG_FILE_NAME);
+        try (FileInputStream fis = new FileInputStream(configFile);
+           FileOutputStream fos = new FileOutputStream(copy)) {
+            int len;
+            byte[] buffer = new byte[4096];
+            while ((len = fis.read(buffer)) > 0) {
+                fos.write(buffer, 0, len);
+            }
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    public ConfigurationSaveModel readFromFile() throws Exception {
         File configFile = new File(Configuration.CONFIG_PATH + Configuration.CONFIG_FILE_NAME);
         ConfigurationSaveModel config = null;
 
@@ -34,6 +47,7 @@ public class ConfigurationSaveService {
             config = new Gson().newBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson(reader, ConfigurationSaveModel.class);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            throw new Exception(e.getMessage());
         }
 
         return config;

@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification;
 
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
 
 public abstract class NotificationFormatService {
 

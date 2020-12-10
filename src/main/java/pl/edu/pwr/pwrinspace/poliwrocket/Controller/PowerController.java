@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import org.javatuples.Triplet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
@@ -76,8 +78,9 @@ public class PowerController extends BasicSensorController {
     @FXML
     private Label powerValue7;
 
-    private HashMap<String, Triplet<Gauge, Label, Label>> powerHashMap = new HashMap<>();
+    private final HashMap<String, Triplet<Gauge, Label, Label>> powerHashMap = new HashMap<>();
 
+    private static final Logger logger = LoggerFactory.getLogger(PowerController.class);
 
     @FXML
     void initialize() {
@@ -121,7 +124,6 @@ public class PowerController extends BasicSensorController {
                 powerHashMap.get(sensor.getDestination()).getValue0().setValue(Math.round((sensor.getValue() - sensor.getMinRange())/(sensor.getMaxRange()-sensor.getMinRange())*1000)/10.0);
                 powerHashMap.get(sensor.getDestination()).getValue2().setText((Math.round(sensor.getValue()*100)/100.0) + sensor.getUnit());
             });
-
         }
     }
 
@@ -131,22 +133,15 @@ public class PowerController extends BasicSensorController {
             var triplet = powerHashMap.get(sensor.getDestination());
             if (triplet != null) {
                 triplet.getValue0().setVisible(true);
-//                pair.getValue0().setMaxValue(sensor.getMaxRange());
-//                pair.getValue0().setMinValue(sensor.getMinRange());
-               System.out.println( triplet.getValue0().getThresholdColor());
                 triplet.getValue0().setThresholdColor(Color.BLUE);
                 triplet.getValue0().setValueVisible(true);
-//                pair.getValue0().setThreshold((sensor.getMinRange()+0.3)/10);
-//                System.out.println("tre " + pair.getValue0().getThreshold());
                 triplet.getValue0().setThresholdVisible(true);
-//                System.out.println("tre " + (sensor.getMinRange()+0.3)/10);
-//                System.out.println(pair.getValue0().getMaxValue());
                 triplet.getValue0().setUnit(sensor.getUnit());
                 triplet.getValue1().setVisible(true);
                 triplet.getValue1().setText(sensor.getName());
                 triplet.getValue2().setVisible(true);
             } else {
-                //TODO log error - nie istnieje tile o takiej nazwie
+                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
             }
         }
     }

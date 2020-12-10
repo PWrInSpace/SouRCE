@@ -76,7 +76,7 @@ public class ValvesController extends BasicButtonSensorController {
     private Button valveCloseButton5;
 
 
-    private HashMap<String,Indicator> indicatorHashMap = new HashMap<>();
+    private final HashMap<String,Indicator> indicatorHashMap = new HashMap<>();
 
     @FXML
     void initialize() {
@@ -145,6 +145,5 @@ public class ValvesController extends BasicButtonSensorController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

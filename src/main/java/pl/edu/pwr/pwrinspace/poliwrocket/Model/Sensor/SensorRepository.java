@@ -1,10 +1,6 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Model;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GyroSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 
 import java.util.HashMap;
 import java.util.Map;

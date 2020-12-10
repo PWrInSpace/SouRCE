@@ -1,15 +1,15 @@
-package pl.edu.pwr.pwrinspace.poliwrocket;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import org.javatuples.Triplet;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -99,14 +99,14 @@ public class Configuration {
             }
         }
 
-        for (int i = 0; i < controllersConfig.size(); i++) {
-            if (controllersConfig.get(i).getValue0() instanceof BasicButtonSensorController) {
-                ((BasicButtonSensorController) controllersConfig.get(i).getValue0()).injectSensorsModels(controllersConfig.get(i).getValue1());
-                ((BasicButtonSensorController) controllersConfig.get(i).getValue0()).assignsCommands(controllersConfig.get(i).getValue2());
-            } else if (controllersConfig.get(i).getValue0() instanceof BasicSensorController) {
-                ((BasicSensorController) controllersConfig.get(i).getValue0()).injectSensorsModels(controllersConfig.get(i).getValue1());
-            } else if (controllersConfig.get(i).getValue0() instanceof BasicButtonController) {
-                ((BasicButtonController) controllersConfig.get(i).getValue0()).assignsCommands(controllersConfig.get(i).getValue2());
+        for (Triplet<BasicController, List<ISensor>, List<ICommand>> objects : controllersConfig) {
+            if (objects.getValue0() instanceof BasicButtonSensorController) {
+                ((BasicButtonSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
+                ((BasicButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
+            } else if (objects.getValue0() instanceof BasicSensorController) {
+                ((BasicSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
+            } else if (objects.getValue0() instanceof BasicButtonController) {
+                ((BasicButtonController) objects.getValue0()).assignsCommands(objects.getValue2());
             }
         }
     }

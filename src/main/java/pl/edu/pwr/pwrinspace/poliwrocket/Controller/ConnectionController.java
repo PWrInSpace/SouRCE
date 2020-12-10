@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.medusa.Gauge;
 import gnu.io.NRSerialPort;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,8 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
@@ -61,12 +64,13 @@ public class ConnectionController extends BasicButtonSensorController {
     @FXML
     private Button sendSerialMessage;
 
+    private static final Logger logger = LoggerFactory.getLogger(ConnectionController.class);
 
-    private ObservableList<String> availableSerialPorts = FXCollections.observableArrayList();
+    private final ObservableList<String> availableSerialPorts = FXCollections.observableArrayList();
 
-    private ObservableList<String> availableNotifications = FXCollections.observableArrayList();
+    private final ObservableList<String> availableNotifications = FXCollections.observableArrayList();
 
-    private ObservableList<ICommand> availableMessages = FXCollections.observableArrayList();
+    private final ObservableList<ICommand> availableMessages = FXCollections.observableArrayList();
 
     private NotificationSendService notificationSendService;
 
@@ -79,10 +83,11 @@ public class ConnectionController extends BasicButtonSensorController {
         controllerNameEnum = ControllerNameEnum.CONNECTION_CONTROLLER;
 
         serialSetup();
+        sendNotification.setDisable(true);
+        notifications.setDisable(true);
+        threadButton.setDisable(true);
 
-        serialPorts.setOnMouseClicked(mouseEvent -> {
-            serialSetup();
-        });
+        serialPorts.setOnMouseClicked(mouseEvent -> serialSetup());
 
         connectionButton.setOnMouseClicked(mouseEvent -> {
             if (availableSerialPorts.isEmpty()) {
@@ -121,9 +126,7 @@ public class ConnectionController extends BasicButtonSensorController {
             }
         });
 
-        sendSerialMessage.setOnMouseClicked(mouseEvent -> {
-            SerialPortManager.getInstance().write(serialMessages.getValue().toString());
-        });
+        sendSerialMessage.setOnMouseClicked(mouseEvent -> SerialPortManager.getInstance().write(serialMessages.getValue().toString()));
     }
 
     public void injectNotification(NotificationSendService notificationSendService, List<String> notificationsList, INotificationThread notificationThreadRunnable) {
@@ -162,6 +165,8 @@ public class ConnectionController extends BasicButtonSensorController {
                 signal.setMaxValue(sensor.getMaxRange());
                 signal.setMinValue(sensor.getMinRange());
                 signal.setUnit(sensor.getUnit());
+            } else {
+                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
             }
         }
     }
@@ -191,6 +196,9 @@ public class ConnectionController extends BasicButtonSensorController {
             threadButton.setDisable(!status);
             notificationStatus.setText(status ? "Connected" : "Not connected");
             threadStatus.setText(status ? "Not running" : "Not enabled");
+        } else if (observable instanceof ISensor) {
+            var sensor = ((ISensor) observable);
+            Platform.runLater(() -> signal.setValue(Math.round((sensor.getValue() - sensor.getMinRange())/(sensor.getMaxRange()-sensor.getMinRange())*1000)/10.0));
         }
     }
 }

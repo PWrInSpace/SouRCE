@@ -1,9 +1,9 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGPSSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
 import java.awt.*;

@@ -4,6 +4,8 @@ import eu.hansolo.tilesfx.Tile;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
@@ -12,7 +14,7 @@ import java.util.HashMap;
 
 public class DataController extends BasicSensorController {
 
-    private static Duration DURATION = Duration.ofSeconds(10);
+    private static final Duration DURATION = Duration.ofSeconds(10);
 
     @FXML
     private Tile dataGauge1;
@@ -39,6 +41,8 @@ public class DataController extends BasicSensorController {
     private Tile dataGauge8;
 
     HashMap<String, Tile> tileHashMap = new HashMap<>();
+
+    private static final Logger logger = LoggerFactory.getLogger(DataController.class);
 
     @FXML
     void initialize() {
@@ -71,7 +75,7 @@ public class DataController extends BasicSensorController {
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
             } else {
-                //TODO log error - nie istnieje tile o takiej nazwie
+                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
             }
         }
         if (!dataGauge2.visibleProperty().get()) {

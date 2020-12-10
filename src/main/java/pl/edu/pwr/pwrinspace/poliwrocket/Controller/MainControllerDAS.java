@@ -16,7 +16,7 @@ import javafx.scene.SubScene;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.StandardMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 
 import java.io.IOException;
@@ -195,8 +195,8 @@ public class MainControllerDAS implements InvalidationListener {
 //
 //            }
 //        }
-        if(observable instanceof MessageParser){
-            Platform.runLater(new Thread( () -> inComing.appendText(((MessageParser) observable).getLastMessage())));
+        if(observable instanceof StandardMessageParser){
+            Platform.runLater(new Thread( () -> inComing.appendText(((StandardMessageParser) observable).getLastMessage())));
         }
 
 //        dataGauge9.setValue(Math.pow(((((GyroSensor) observable).getValueGyro()[0])/10)*10,2)/1000);

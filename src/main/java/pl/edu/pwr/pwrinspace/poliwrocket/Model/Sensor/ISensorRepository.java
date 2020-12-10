@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Model;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;

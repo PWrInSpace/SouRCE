@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Model;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification;
 
 import com.google.gson.annotations.Expose;
 

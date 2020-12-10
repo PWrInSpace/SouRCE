@@ -1,14 +1,14 @@
-package pl.edu.pwr.pwrinspace.poliwrocket;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import com.google.gson.annotations.Expose;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Schedule;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,10 +20,10 @@ public class ConfigurationSaveModel {
     public int FPS = 10;
 
     @Expose
-    public double START_POSITION_LAT = 49.013517;
+    public double START_POSITION_LAT;
 
     @Expose
-    public double START_POSITION_LON = 8.404435;
+    public double START_POSITION_LON;
 
     @Expose
     public String FRAME_DELIMITER = ",";
@@ -83,6 +83,11 @@ public class ConfigurationSaveModel {
         defaultConfig.sensorRepository = new SensorRepository();
         defaultConfig.FPS = 2;
         defaultConfig.commandsList = new LinkedList<>();
+        //TODO uncomment on deploy
+        //defaultConfig.DISCORD_CHANNEL_NAME = "";
+        //defaultConfig.DISCORD_TOKEN = "";
+        defaultConfig.START_POSITION_LON = 16.9333977;
+        defaultConfig.START_POSITION_LAT = 51.1266727;
 
         Sensor basicSensor = new Sensor();
         basicSensor.setDestination("dataGauge1");
@@ -141,6 +146,12 @@ public class ConfigurationSaveModel {
         Command command6 = new Command("test2", "test2");
         command6.getDestinationControllerNames().add(ControllerNameEnum.CONNECTION_CONTROLLER);
         defaultConfig.commandsList.add(command6);
+        Command abort = new Command("ABORT", "abortButton");
+        abort.getDestinationControllerNames().add(ControllerNameEnum.ABORT_CONTROLLER);
+        defaultConfig.commandsList.add(abort);
+        Command fire = new Command("FIRE", "fireButton");
+        fire.getDestinationControllerNames().add(ControllerNameEnum.START_CONTROL_CONTROLLER);
+        defaultConfig.commandsList.add(fire);
         //--------
 
         //frame

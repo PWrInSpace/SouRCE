@@ -71,35 +71,19 @@ public class StatesController extends BasicButtonSensorController {
         buttonHashMap.put(stateButton3.getId(), stateButton3);
         buttonHashMap.put(stateButton4.getId(), stateButton4);
 
-        safeSwitch1.setOnMouseClicked(actionEvent -> {
-            if (safeSwitch1.isActive()) {
-                stateButton1.setDisable(false);
-            } else {
-                stateButton1.setDisable(true);
-            }
-        });
+        safeSwitch1.setOnMouseClicked(actionEvent ->
+                stateButton1.setDisable(!safeSwitch1.isActive())
+        );
 
-        safeSwitch2.setOnMouseClicked(actionEvent -> {
-            if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
-                stateButton2.setDisable(false);
-            } else {
-                stateButton2.setDisable(true);
-            }
-        });
-         safeSwitch3.setOnMouseClicked(actionEvent -> {
-            if (safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive()) {
-                stateButton3.setDisable(false);
-            } else {
-                stateButton3.setDisable(true);
-            }
-        });
-         safeSwitch4.setOnMouseClicked(actionEvent -> {
-            if (safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive() && safeSwitch4.isActive()) {
-                stateButton4.setDisable(false);
-            } else {
-                stateButton4.setDisable(true);
-            }
-        });
+        safeSwitch2.setOnMouseClicked(actionEvent ->
+                stateButton2.setDisable(!safeSwitch1.isActive() || !safeSwitch2.isActive())
+        );
+        safeSwitch3.setOnMouseClicked(actionEvent ->
+                stateButton3.setDisable(!safeSwitch1.isActive() || !safeSwitch2.isActive() || !safeSwitch3.isActive())
+        );
+        safeSwitch4.setOnMouseClicked(actionEvent ->
+                stateButton4.setDisable(!safeSwitch1.isActive() || !safeSwitch2.isActive() || !safeSwitch3.isActive() || !safeSwitch4.isActive())
+        );
 
     }
 
