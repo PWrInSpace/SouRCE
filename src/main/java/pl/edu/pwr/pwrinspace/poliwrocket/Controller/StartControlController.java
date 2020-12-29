@@ -6,12 +6,12 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.CountdownThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
-public class StartControlController extends BasicButtonSensorController {
+public class StartControlController extends BasicButtonController {
 
     @FXML
     private Switch safeSwitch1;
@@ -135,11 +135,6 @@ public class StartControlController extends BasicButtonSensorController {
 
         });
 
-    }
-
-    @Override
-    protected void setUIBySensors() {
-        //its only button panel
     }
 
     @Override

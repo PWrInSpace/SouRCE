@@ -1,0 +1,197 @@
+{
+	"FPS": 1,
+	"START_POSITION_LAT": 51.20395820043864,
+	"START_POSITION_LON": 16.99416435080908,
+	"PARSER_TYPE": "JSON",
+	"FRAME_DELIMITER": ";",
+	"DISCORD_TOKEN": "NzY3MDE4NjExMjM1NjE4ODM5.X4rzvw.Lt1BwdXcZhgoWyl8WC2P1VCSwos",
+	"DISCORD_CHANNEL_NAME": "rocket",
+	"FRAME_PATTERN": [
+		"lat",
+		"lon",
+		"alt",
+		"hdop",
+		"hours",
+		"minutes",
+		"seconds",
+		"satelites",
+		"fix",
+		"rssi",
+		"snr"
+	],
+	"commandsList": [
+	],
+	"notificationSchedule": [
+		{
+			"messageKey": "Map",
+			"everySecond": 60
+		},
+		{
+			"messageKey": "Data",
+			"everySecond": 300
+		}
+	],
+	"notificationMessageKeys": [
+		"Map",
+		"Position",
+		"Data",
+		"Max",
+		"Thread status"
+	],
+	"sensorRepository": {
+		"sensors": {
+			"alt": {
+				"destination": "dataGauge9",
+				"name": "Altitude",
+				"unit": "m",
+				"destinationControllerNames": [
+					"MORE_DATA_CONTROLLER"
+				],
+				"maxRange": 40000.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			},
+			"hdop": {
+				"destination": "dataGauge1",
+				"name": "Hdop",
+				"unit": "",
+				"destinationControllerNames": [
+					"DATA_CONTROLLER"
+				],
+				"maxRange": 200.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			},
+			"hours": {
+				"destination": "dataGauge1",
+				"name": "Hours",
+				"unit": "h",
+				"destinationControllerNames": [
+				],
+				"maxRange": 24.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			},
+			"minutes": {
+				"destination": "dataGauge1",
+				"name": "Minutes",
+				"unit": "m",
+				"destinationControllerNames": [
+				],
+				"maxRange": 60.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			},
+			"seconds": {
+				"destination": "dataGauge1",
+				"name": "Seconds",
+				"unit": "s",
+				"destinationControllerNames": [
+				],
+				"maxRange": 60.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			},
+			"satelites": {
+				"destination": "dataGauge3",
+				"name": "Satelites",
+				"unit": "nr",
+				"destinationControllerNames": [
+					"DATA_CONTROLLER"
+				],
+				"maxRange": 50.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			},
+			"fix": {
+				"destination": "dataGauge5",
+				"name": "Fix",
+				"unit": "y/n",
+				"destinationControllerNames": [
+					"DATA_CONTROLLER"
+				],
+				"maxRange": 1.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			},
+			"rssi": {
+				"destination": "signal",
+				"name": "RSSI",
+				"unit": "",
+				"destinationControllerNames": [
+					"CONNECTION_CONTROLLER"
+				],
+				"maxRange": 50.0,
+				"minRange": 100.0,
+				"isBoolean": false
+			},
+			"snr": {
+				"destination": "dataGauge7",
+				"name": "SNR",
+				"unit": "",
+				"destinationControllerNames": [
+					"DATA_CONTROLLER"
+				],
+				"maxRange": 200.0,
+				"minRange": 0.0,
+				"isBoolean": false
+			}
+		},
+		"gpsSensor": {
+			"destinationControllerNames": [
+				"MAP_CONTROLLER"
+			],
+			"latitude": {
+				"name": "lat",
+				"unit": "",
+				"destinationControllerNames": [],
+				"maxRange": 360.0,
+				"minRange": -360.0,
+				"isBoolean": false
+			},
+			"longitude": {
+				"name": "lon",
+				"unit": "",
+				"destinationControllerNames": [],
+				"maxRange": 360.0,
+				"minRange": -360.0,
+				"isBoolean": false
+			}
+		},
+		"gyroSensor": {
+			"axis_x": {
+				"destination": "dataGauge3",
+				"name": "Gyro X",
+				"unit": "m",
+				"destinationControllerNames": [
+				],
+				"maxRange": 360.0,
+				"minRange": -360.0,
+				"isBoolean": false
+			},
+			"axis_y": {
+				"destination": "dataGauge5",
+				"name": "Gyro Y",
+				"unit": "m",
+				"destinationControllerNames": [
+				],
+				"maxRange": 360.0,
+				"minRange": -360.0,
+				"isBoolean": false
+			},
+			"axis_z": {
+				"destination": "dataGauge7",
+				"name": "Gyro Z",
+				"unit": "m",
+				"destinationControllerNames": [
+				],
+				"maxRange": 360.0,
+				"minRange": -360.0,
+				"isBoolean": false
+			},
+			"destinationControllerNames": [
+				"MAIN_CONTROLLER"
+			]
+		}
+	}
+}

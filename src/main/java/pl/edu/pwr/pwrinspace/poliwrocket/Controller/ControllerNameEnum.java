@@ -1,6 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-public enum ControllerNameEnum {
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.ControllerNameEnumInterface;
+
+public enum ControllerNameEnum implements ControllerNameEnumInterface {
     MAIN_CONTROLLER,
     MAP_CONTROLLER,
     POWER_CONTROLLER,

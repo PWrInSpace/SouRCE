@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Model;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort;
 
 import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;

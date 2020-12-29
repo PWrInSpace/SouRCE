@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Model;
+package pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort;
 
 import gnu.io.NRSerialPort;
 import gnu.io.SerialPortEvent;
@@ -42,7 +42,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         }
     }
 
-    public static ISerialPortManager getInstance() {
+    public static SerialPortManager getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -149,7 +149,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
                 messageParser.parseMessage(frame);
                 if(frameSaveService != null) {
-                    if(frame.getFormattedContent().isEmpty()) {
+                    if(frame.getFormattedContent() == null) {
                         frame.setFormattedContent(frame.getContent());
                     }
                     frameSaveService.saveFrameToFile(frame);

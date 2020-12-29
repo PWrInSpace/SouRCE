@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
@@ -21,7 +23,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.StandardMessagePars
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
@@ -44,6 +46,7 @@ public class Main extends Application {
     private NotificationThread notificationThread;
     private NotificationFormatService notificationFormatService;
     private IMessageParser messageParser;
+    private NotificationEvent notificationEvent;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -152,9 +155,10 @@ public class Main extends Application {
             //Notification setup
             if (!Configuration.getInstance().DISCORD_TOKEN.equals("")) {
                 notificationFormatService = new NotificationFormatDiscordService(Configuration.getInstance().sensorRepository);
-                INotification discord = new DiscordNotification(notificationFormatService);
+                notificationEvent = new NotificationDiscordEvent(notificationFormatService);
+                INotification discord = new DiscordNotification(notificationEvent);
                 discord.addListener(connectionController);
-                notificationSendService = new NotificationSendService(discord);
+                notificationSendService = new NotificationSendService(discord, notificationFormatService);
                 notificationThread = new NotificationThread(notificationSendService);
                 notificationThread.setupSchedule(Configuration.getInstance().notificationSchedule);
                 connectionController.injectNotification(notificationSendService, Configuration.getInstance().notificationMessageKeys, notificationThread);

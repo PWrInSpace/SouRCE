@@ -21,7 +21,6 @@ public class FrameSaveService {
             FileWriter fileWriter = new FileWriter(flightDataFile, true);
             try (BufferedWriter output = new BufferedWriter(fileWriter)) {
                 output.write(frame.getTimeInstant().toString() + Configuration.getInstance().FRAME_DELIMITER + frame.getFormattedContent());
-                output.newLine();
             }
         } catch (IOException e) {
             logger.error(e.getMessage());

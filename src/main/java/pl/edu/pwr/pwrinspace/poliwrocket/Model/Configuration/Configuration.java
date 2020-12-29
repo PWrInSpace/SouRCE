@@ -70,11 +70,21 @@ public class Configuration {
         this.sensorRepository = config.sensorRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
-        this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
-        this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
-        this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());
-        this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_y());
-        this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
+        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGpsSensor().getLatitude().getName())){
+            this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
+        }
+        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGpsSensor().getLongitude().getName())){
+            this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
+        }
+        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName())){
+            this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());
+        }
+        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName())){
+            this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_y());
+        }
+        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName())){
+            this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
+        }
         this.sensorRepository.getGyroSensor().observeFields();
         this.sensorRepository.getGpsSensor().observeFields();
     }

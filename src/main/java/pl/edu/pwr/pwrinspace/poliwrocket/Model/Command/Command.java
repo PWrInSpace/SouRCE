@@ -24,7 +24,7 @@ public class Command implements ICommand {
 
     @Override
     public String toString() {
-        return value;
+        return trigger;
     }
 
     //TODO SPRAWDZIC TO

@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
 import java.util.Collection;
 import java.util.HashMap;

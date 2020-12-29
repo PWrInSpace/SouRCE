@@ -63,6 +63,10 @@ public class CountdownThread implements Observable, Runnable {
         return formattedTime;
     }
 
+    public boolean isCanRun() {
+        return canRun;
+    }
+
     public void resetCountdown() {
         canRun = false;
         countdownTime = 10000;

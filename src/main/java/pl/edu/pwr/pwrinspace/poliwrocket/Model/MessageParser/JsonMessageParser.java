@@ -19,26 +19,33 @@ public class JsonMessageParser extends BaseMessageParser {
     public void parseMessage(Frame frame) {
         lastMessage = frame.getContent();
         logger.info("Message received: {}", lastMessage);
-        JsonObject jsonObject = JsonParser.parseString(lastMessage).getAsJsonObject();
-        String parsedMessage = "";
+        JsonObject jsonObject = null;
+        try {
+            jsonObject = JsonParser.parseString(lastMessage).getAsJsonObject();
+            String parsedMessage = "";
 
-        if(Configuration.getInstance().FRAME_PATTERN.size() == jsonObject.entrySet().size()){
-            for (String sensorName : Configuration.getInstance().FRAME_PATTERN) {
-                try {
-                    parsedMessage += jsonObject.get(sensorName).getAsString() + Configuration.getInstance().FRAME_DELIMITER;
-                    sensorRepository.getSensorByName(sensorName).setValue(Double.parseDouble(jsonObject.get(sensorName).getAsString()));
-                } catch (NumberFormatException e) {
-                    this.lastMessage = "Invalid: " + this.lastMessage;
-                    logger.warn("Wrong message, value is not a number! {}", lastMessage + " -> " + jsonObject.get(sensorName).getAsString());
+            if(Configuration.getInstance().FRAME_PATTERN.size() == jsonObject.entrySet().size()){
+                for (String sensorName : Configuration.getInstance().FRAME_PATTERN) {
+                    try {
+                        parsedMessage += jsonObject.get(sensorName).getAsString() + Configuration.getInstance().FRAME_DELIMITER;
+                        sensorRepository.getSensorByName(sensorName).setValue(Double.parseDouble(jsonObject.get(sensorName).getAsString()));
+                    } catch (NumberFormatException e) {
+                        this.lastMessage = "Invalid: " + this.lastMessage;
+                        logger.warn("Wrong message, value is not a number! {}", lastMessage + " -> " + jsonObject.get(sensorName).getAsString());
+                    }
                 }
+                frame.setFormattedContent(parsedMessage.substring(0,parsedMessage.length()-1) + "\n");
+            } else {
+                this.lastMessage = "Invalid: " + this.lastMessage;
+                var logMessage = Configuration.getInstance().FRAME_PATTERN.size() + " got: " + jsonObject.entrySet().size();
+                logger.warn("Wrong message length! Expected: {}", logMessage);
+                frame.setFormattedContent(lastMessage);
             }
-            frame.setFormattedContent(parsedMessage.substring(0,parsedMessage.length()-1));
-        } else {
-            this.lastMessage = "Invalid: " + this.lastMessage;
-            var logMessage = Configuration.getInstance().FRAME_PATTERN.size() + " got: " + jsonObject.entrySet().size();
-            logger.warn("Wrong message length! Expected: {}", logMessage);
-            frame.setFormattedContent(lastMessage);
+
+        } catch (Exception e) {
+            logger.error("Not valid json: {}",lastMessage);
         }
+
         notifyObserver();
     }
 }
