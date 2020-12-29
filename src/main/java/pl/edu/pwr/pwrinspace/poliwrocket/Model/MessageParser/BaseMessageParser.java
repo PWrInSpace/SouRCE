@@ -27,7 +27,7 @@ public abstract class BaseMessageParser implements IMessageParser {
 
     @Override
     public void removeListener(InvalidationListener invalidationListener) {
-        if(observer != null){
+        if(observer != null && observer.equals(invalidationListener)){
             observer = null;
         }
     }

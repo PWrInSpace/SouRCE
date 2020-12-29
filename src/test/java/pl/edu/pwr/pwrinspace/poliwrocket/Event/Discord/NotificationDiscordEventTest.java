@@ -34,7 +34,7 @@ class NotificationDiscordEventTest {
     }
 
     @Test
-    void testOnGuildMessageReceived() throws Exception {
+    void testOnGuildMessageReceived() {
         // Setup
         var mockResponseBuilder = mock(EmbedBuilder.class);
         var mockChannel = mock(TextChannel.class);
@@ -42,13 +42,22 @@ class NotificationDiscordEventTest {
         var mockEvent = mock(GuildMessageReceivedEvent.class);
         var mockAuthor = mock(User.class);
         var mockMessageAction = mock(MessageAction.class);
+        var channelName = "NAME";
+        var mockGuild = mock(Guild.class);
+
         when(mockAuthor.isBot()).thenReturn(false);
         when(mockEvent.getMessage()).thenReturn(mockMessage);
         when(mockEvent.getAuthor()).thenReturn(mockAuthor);
         Mockito.doNothing().when(mockMessageAction).queue();
         when(mockChannel.sendMessage(any(String.class))).thenReturn(mockMessageAction);
+        notificationDiscordEventUnderTest.channelName = channelName;
+
         var messageKey = "Key";
         when(mockMessage.getContentRaw()).thenReturn(messageKey);
+        when(mockEvent.getChannel()).thenReturn(mockChannel);
+        when(mockChannel.getName()).thenReturn(channelName);
+        when(mockEvent.getGuild()).thenReturn(mockGuild);
+        when(mockGuild.getTextChannelsByName(channelName,true)).thenReturn(new ArrayList<TextChannel>());
 
         PowerMockito.when(notificationDiscordEventUnderTest.getChannel(mockEvent)).thenReturn(mockChannel);
         when(mockNotificationFormatService.getFormattedMessage(messageKey)).thenReturn("Result");

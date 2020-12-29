@@ -43,6 +43,7 @@ public class JsonMessageParser extends BaseMessageParser {
             }
 
         } catch (Exception e) {
+            this.lastMessage = "Not valid json: " + lastMessage;
             logger.error("Not valid json: {}",lastMessage);
         }
 

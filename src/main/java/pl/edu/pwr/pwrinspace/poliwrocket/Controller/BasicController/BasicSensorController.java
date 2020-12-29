@@ -12,6 +12,9 @@ public abstract class BasicSensorController extends BasicController implements I
     protected HashSet<ISensor> sensors = new HashSet<>();
 
     public final void injectSensorsModels(Collection<ISensor> sensors) {
+        if(this.sensors == null) {
+            this.sensors = new HashSet<>();
+        }
         this.sensors.addAll(sensors);
         setUIBySensors();
     }

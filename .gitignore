@@ -81,3 +81,4 @@ gen
 target/
 flightData/
 *.log
+*.html

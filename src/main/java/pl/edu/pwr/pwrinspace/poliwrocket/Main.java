@@ -6,14 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.javatuples.Triplet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
@@ -22,7 +20,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.StandardMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
@@ -31,8 +28,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ConfigurationSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,7 +53,7 @@ public class Main extends Application {
 
             //Read config file
             try {
-                Configuration.getInstance().setupConfig(configurationSaveService.readFromFile());
+                Configuration.getInstance().setupConfigInstance(configurationSaveService.readFromFile());
             } catch (Exception e) {
                 logger.error("Bad config file, overwritten by default and loaded");
                 logger.error(e.getMessage());
@@ -64,7 +61,7 @@ public class Main extends Application {
                 logger.error(e.toString());
                 configurationSaveService.persistOldConfig();
                 configurationSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-                Configuration.getInstance().setupConfig(configurationSaveService.readFromFile());
+                Configuration.getInstance().setupConfigInstance(configurationSaveService.readFromFile());
             }
 //            finally {
 //                configurationSaveService.saveToFile(ConfigurationSaveModel.getConfigurationSaveModel(Configuration.getInstance()));
@@ -107,19 +104,18 @@ public class Main extends Application {
             //--------------
 
             //Mapping sensors and commands to controllers
-            List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig = new LinkedList<>();
-            controllersConfig.add(new Triplet<>(mainController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(dataController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(mapController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(powerController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(valvesController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(moreDataController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(abortController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(statesController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(startControlController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(connectionController, new LinkedList<>(), new LinkedList<>()));
-
-            Configuration.setupApplicationConfig(controllersConfig);
+            List<BasicController> controllerList = new ArrayList<>();
+            controllerList.add(mainController);
+            controllerList.add(dataController);
+            controllerList.add(mapController);
+            controllerList.add(powerController);
+            controllerList.add(valvesController);
+            controllerList.add(moreDataController);
+            controllerList.add(abortController);
+            controllerList.add(statesController);
+            controllerList.add(startControlController);
+            controllerList.add(connectionController);
+            Configuration.setupApplicationConfig(controllerList);
             //--------------
 
             //stage settings

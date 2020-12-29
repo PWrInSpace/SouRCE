@@ -57,7 +57,7 @@ public class Configuration {
         }
     }
 
-    public void setupConfig(ConfigurationSaveModel config) {
+    public void setupConfigInstance(ConfigurationSaveModel config) {
         this.FPS = config.FPS;
         this.START_POSITION_LAT = config.START_POSITION_LAT;
         this.START_POSITION_LON = config.START_POSITION_LON;
@@ -89,7 +89,10 @@ public class Configuration {
         this.sensorRepository.getGpsSensor().observeFields();
     }
 
-    public static void setupApplicationConfig(List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig) {
+    public static void setupApplicationConfig(List<BasicController> controllersList) {
+        List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig = new ArrayList<>();
+        controllersList.forEach(basicController -> controllersConfig.add(new Triplet<>(basicController,new ArrayList<>(),new ArrayList<>())));
+
         for (int i = 0; i < controllersConfig.size(); i++) {
 
             if (Configuration.getInstance().sensorRepository.getGpsSensor().getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerNameEnum())) {
