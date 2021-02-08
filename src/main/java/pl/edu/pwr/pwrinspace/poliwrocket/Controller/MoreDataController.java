@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 public class MoreDataController extends BasicSensorController {
 
-    private final Double thresholdPercent = 0.8;
+    private final static Double thresholdPercent = 0.8;
 
     @FXML
     private Gauge dataGauge9;
@@ -95,8 +95,6 @@ public class MoreDataController extends BasicSensorController {
                     ((Gauge)visualization).setVisible(true);
                 }
 
-            } else {
-                //TODO log error - nie istnieje tile o takiej nazwie
             }
         }
     }

@@ -10,7 +10,7 @@ public class NotificationThread implements INotificationThread {
 
     private List<Schedule> schedule;
 
-    private NotificationSendService notificationSendService;
+    private final NotificationSendService notificationSendService;
 
     private int seconds = 1;
 
@@ -49,7 +49,7 @@ public class NotificationThread implements INotificationThread {
                     Thread.sleep(1000);
 
                     seconds++;
-                    if (seconds == Integer.MIN_VALUE) {
+                    if (seconds == Integer.MAX_VALUE) {
                         break;
                     }
                 }

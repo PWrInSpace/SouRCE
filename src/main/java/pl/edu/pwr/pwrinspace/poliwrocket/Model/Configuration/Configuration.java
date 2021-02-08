@@ -5,8 +5,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonC
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;

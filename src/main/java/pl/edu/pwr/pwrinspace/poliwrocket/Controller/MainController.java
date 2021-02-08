@@ -98,13 +98,6 @@ public class MainController extends BasicController implements InvalidationListe
     void initialize() {
         controllerNameEnum = ControllerNameEnum.MAIN_CONTROLLER;
 
-        assert inComing != null : "fx:id=\"inComing\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert outGoing != null : "fx:id=\"outGoing\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert modelScene != null : "fx:id=\"modelScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataScene != null : "fx:id=\"dataScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert valvesScene != null : "fx:id=\"valvesScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert mapScene != null : "fx:id=\"mapScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert powerScene != null : "fx:id=\"powerScene\" was not injected: check your FXML file 'MainView.fxml'.";
         //set logo
         poliwrocketLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
         inSpaceLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("inSpaceLogo.png"))));
@@ -119,8 +112,6 @@ public class MainController extends BasicController implements InvalidationListe
         modelScene.setCamera(camera);
 
 
-        //nie usuwac, dziala, pozniej zdecyduje czy lepiej z czy bez
-
         PointLight light = new PointLight(Color.WHITE);
         light.setTranslateX(0);
         light.setTranslateY(6000);
@@ -132,7 +123,6 @@ public class MainController extends BasicController implements InvalidationListe
 
 
         //setting background color
-//        modelScene.setFill(Color.DEEPSKYBLUE);
 
         //importing 3ds model
         ModelImporter tdsImporter = new TdsModelImporter();

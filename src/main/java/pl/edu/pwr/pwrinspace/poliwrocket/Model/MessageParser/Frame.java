@@ -4,11 +4,11 @@ import java.time.Instant;
 
 public class Frame {
 
-    private String content;
+    private final String content;
 
     private String formattedContent;
 
-    private Instant timeInstant;
+    private final Instant timeInstant;
 
     public Frame(String content, Instant timeInstant) {
         this.content = content;

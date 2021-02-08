@@ -25,12 +25,12 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     private final List<InvalidationListener> observers = new ArrayList<>();
 
     private NRSerialPort serialPort;
-    protected String PORT_NAME = "COM3";
+    private String PORT_NAME = "COM3";
     private int DATA_RATE = 115200;
     private final Logger log = Logger.getLogger(getClass().getName());
     private OutputStream outputStream;
     private InputStream inputStream;
-    protected SerialWriter serialWriter;
+    private SerialWriter serialWriter;
     private boolean isPortOpen = false;
     private FrameSaveService frameSaveService;
     private IMessageParser messageParser;

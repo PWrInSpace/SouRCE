@@ -5,9 +5,9 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 
 public class NotificationSendService {
 
-    private INotification notification;
+    private final INotification notification;
 
-    private NotificationFormatService notificationFormatService;
+    private final NotificationFormatService notificationFormatService;
 
     public NotificationSendService(INotification notification, NotificationFormatService notificationFormatService) {
         this.notification = notification;

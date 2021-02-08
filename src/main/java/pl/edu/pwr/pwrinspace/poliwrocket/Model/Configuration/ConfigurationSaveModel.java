@@ -86,7 +86,7 @@ public class ConfigurationSaveModel {
     public static ConfigurationSaveModel defaultConfiguration() {
         ConfigurationSaveModel defaultConfig = new ConfigurationSaveModel();
         defaultConfig.sensorRepository = new SensorRepository();
-        defaultConfig.FPS = 2;
+        defaultConfig.FPS = 10;
         defaultConfig.PARSER_TYPE = MessageParserEnum.STANDARD;
         defaultConfig.commandsList = new LinkedList<>();
         //TODO uncomment on deploy

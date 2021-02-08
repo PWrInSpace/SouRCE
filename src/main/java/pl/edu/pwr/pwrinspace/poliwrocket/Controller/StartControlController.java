@@ -56,10 +56,10 @@ public class StartControlController extends BasicButtonController {
         armingButton1.setDisable(true);
         armingButton2.setDisable(true);
         fireButton.setDisable(true);
-//        safeSwitch2.setDisable(true);
-//        safeSwitch3.setDisable(true);
-//        safeSwitch4.setDisable(true);
-//        safeSwitch5.setDisable(true);
+        safeSwitch2.setDisable(true);
+        safeSwitch3.setDisable(true);
+        safeSwitch4.setDisable(true);
+        safeSwitch5.setDisable(true);
         buttonHashMap.put(qucikDistonectButton.getId(),qucikDistonectButton);
         buttonHashMap.put(armingButton1.getId(),armingButton1);
         buttonHashMap.put(armingButton2.getId(),armingButton2);

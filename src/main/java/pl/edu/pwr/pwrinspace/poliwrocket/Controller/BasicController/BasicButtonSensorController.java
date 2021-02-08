@@ -18,7 +18,7 @@ public abstract class BasicButtonSensorController extends BasicSensorController 
 
     protected HashSet<ICommand> commands = new HashSet<>();
 
-    private static final Logger logger = LoggerFactory.getLogger(BasicSensorController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BasicButtonSensorController.class);
 
     public void assignsCommands(Collection<ICommand> commands){
         this.commands.addAll(commands);

@@ -158,7 +158,6 @@ public class Sensor implements Observable, ISensor {
         return value;
     }
 
-    //TODO SPRAWDZIC TO
     @Override
     public int hashCode() {
         return name.hashCode();

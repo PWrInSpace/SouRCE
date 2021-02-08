@@ -76,7 +76,6 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
         return position;
     }
 
-    //TODO SPRAWDZIC TO //10.04 zmieniono - nadal sprawdzic
     @Override
     public void invalidated(Observable observable) {
         if (observable == longitude) {

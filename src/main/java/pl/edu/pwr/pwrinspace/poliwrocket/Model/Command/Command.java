@@ -27,7 +27,6 @@ public class Command implements ICommand {
         return trigger;
     }
 
-    //TODO SPRAWDZIC TO
     @Override
     public int hashCode() {
         return trigger.hashCode();
