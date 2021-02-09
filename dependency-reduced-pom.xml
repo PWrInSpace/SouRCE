@@ -156,11 +156,4 @@
       </exclusions>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <id>internal.repo</id>
-      <name>Internal repo</name>
-      <url>file//E:\Dane\Projekty\SouRCE\out\artifacts\SouRCE</url>
-    </repository>
-  </distributionManagement>
 </project>

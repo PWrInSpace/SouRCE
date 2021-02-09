@@ -9,14 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <distributionManagement>
-        <repository>
-            <id>internal.repo</id>
-            <name>Internal repo</name>
-            <url>file//E:\Dane\Projekty\SouRCE\out\artifacts\SouRCE</url>
-        </repository>
-    </distributionManagement>
-
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
         <dependency>
@@ -34,17 +26,6 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.28</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.slf4j</groupId>-->
-        <!--            <artifactId>slf4j-log4j12</artifactId>-->
-        <!--            <version>2.0.0-alpha1</version>-->
-        <!--            &lt;!&ndash;            <exclusions>&ndash;&gt;-->
-        <!--            &lt;!&ndash;                <exclusion>&ndash;&gt;-->
-        <!--            &lt;!&ndash;                    <groupId>org.apache.log4j</groupId>&ndash;&gt;-->
-        <!--            &lt;!&ndash;                    <artifactId>org.apache.log4j</artifactId>&ndash;&gt;-->
-        <!--            &lt;!&ndash;                </exclusion>&ndash;&gt;-->
-        <!--            &lt;!&ndash;            </exclusions>&ndash;&gt;-->
-        <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/eu.hansolo/tilesfx -->
         <dependency>
             <groupId>eu.hansolo</groupId>
@@ -81,15 +62,6 @@
             <artifactId>javafx-controls</artifactId>
             <version>13</version>
         </dependency>
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.openjfx/javafx &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.openjfx</groupId>-->
-        <!--            <artifactId>javafx</artifactId>-->
-        <!--            <version>13</version>-->
-        <!--            <type>pom</type>-->
-        <!--        </dependency>-->
-
-
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -102,12 +74,6 @@
             <artifactId>javafx-web</artifactId>
             <version>13</version>
         </dependency>
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.openjfx/javafx-base &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.openjfx</groupId>-->
-        <!--            <artifactId>javafx-base</artifactId>-->
-        <!--            <version>13</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -120,7 +86,6 @@
             <artifactId>nrjavaserial</artifactId>
             <version>5.1.1</version>
         </dependency>
-
         <dependency>
             <groupId>com.interactivemesh.jfx</groupId>
             <artifactId>importer</artifactId>
@@ -180,7 +145,6 @@
             <version>1.7.4</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
     <repositories>
         <!--        discord bot         -->
@@ -190,8 +154,6 @@
             <url>https://jcenter.bintray.com</url>
         </repository>
     </repositories>
-
-
     <build>
         <plugins>
             <plugin>
@@ -202,13 +164,6 @@
                     <mainClass>pl.edu.pwr.pwrinspace.poliwrocket.Main</mainClass>
                 </configuration>
                 <executions>
-                    <!--                    <execution>-->
-                    <!--                        &lt;!&ndash; Default configuration for running &ndash;&gt;-->
-                    <!--                        <id>default-cli</id>-->
-                    <!--                        <configuration>-->
-                    <!--                            <mainClass>pl.edu.pwr.pwrinspace.poliwrocket.Main</mainClass>-->
-                    <!--                        </configuration>-->
-                    <!--                    </execution>-->
                     <execution>
                         <!-- Configuration for debugging -->
                         <id>debug</id>
@@ -297,26 +252,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!--            <plugin>-->
-            <!--                <artifactId>maven-shade-plugin</artifactId>-->
-            <!--                <version>3.2.1</version>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <phase>package</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>shade</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <transformers>-->
-            <!--                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-            <!--                                    <mainClass>pl.edu.pwr.pwrinspace.poliwrocket.Main</mainClass>-->
-            <!--                                </transformer>-->
-            <!--                            </transformers>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--            </plugin>-->
         </plugins>
 
     </build>
