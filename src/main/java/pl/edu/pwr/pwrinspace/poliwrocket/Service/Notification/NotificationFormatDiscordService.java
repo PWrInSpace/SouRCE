@@ -1,9 +1,9 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGPSSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
 import java.awt.*;
@@ -23,14 +23,14 @@ public class NotificationFormatDiscordService extends NotificationFormatService 
         if (messageKey.equalsIgnoreCase("Data")) {
             embedBuilder.setTitle("Current data").setColor(Color.GRAY);
             sensorRepository.getAllBasicSensors().forEach((s, sensor) ->
-                embedBuilder.addField(sensor.getName(), sensor.getValue() + sensor.getUnit(), true)
+                embedBuilder.addField(sensor.getName(), sensor.getValue() + " " + sensor.getUnit(), true)
             );
             return embedBuilder;
 
         } else if (messageKey.equalsIgnoreCase("Max")) {
             embedBuilder.setTitle("Max values").setColor(Color.RED);
             sensorRepository.getAllBasicSensors().forEach((s, sensor) ->
-                embedBuilder.addField(sensor.getName(), sensor.getMaxValue() + sensor.getUnit(), true)
+                embedBuilder.addField(sensor.getName(), sensor.getMaxValue() + " " + sensor.getUnit(), true)
             );
             return embedBuilder;
 

@@ -6,10 +6,12 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.CountdownThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
-public class StartControlController extends BasicButtonSensorController {
+public class StartControlController extends BasicButtonController {
 
     @FXML
     private Switch safeSwitch1;
@@ -44,6 +46,7 @@ public class StartControlController extends BasicButtonSensorController {
     private Thread countdownThread;
 
     private CountdownThread countdownTime;
+
     @FXML
     void initialize() {
         controllerNameEnum = ControllerNameEnum.START_CONTROL_CONTROLLER;
@@ -53,10 +56,13 @@ public class StartControlController extends BasicButtonSensorController {
         armingButton1.setDisable(true);
         armingButton2.setDisable(true);
         fireButton.setDisable(true);
-//        safeSwitch2.setDisable(true);
-//        safeSwitch3.setDisable(true);
-//        safeSwitch4.setDisable(true);
-//        safeSwitch5.setDisable(true);
+        safeSwitch2.setDisable(true);
+        safeSwitch3.setDisable(true);
+        safeSwitch4.setDisable(true);
+        safeSwitch5.setDisable(true);
+        buttonHashMap.put(qucikDistonectButton.getId(),qucikDistonectButton);
+        buttonHashMap.put(armingButton1.getId(),armingButton1);
+        buttonHashMap.put(armingButton2.getId(),armingButton2);
 
         safeSwitch1.setOnMouseClicked(actionEvent -> {
             if (safeSwitch1.isActive()) {
@@ -123,7 +129,7 @@ public class StartControlController extends BasicButtonSensorController {
 
         fireButton.setOnMouseClicked(mouseEvent -> {
             if (countdownTime != null && (countdownThread == null || !countdownThread.isAlive())) {
-                countdownThread = new Thread(countdownTime, "coundown");
+                countdownThread = new Thread(countdownTime, ThreadName.COUNTDOWN.getName());
                 countdownThread.start();
             }
 
@@ -132,16 +138,15 @@ public class StartControlController extends BasicButtonSensorController {
     }
 
     @Override
-    protected void setUIBySensors() {
-        //its only button panel
-    }
-
-    @Override
     public void invalidated(Observable observable) {
         Platform.runLater(() -> {
             countdownTimer.setText(((CountdownThread) observable).getFormattedTimeResult());
             if(-1000 <= ((CountdownThread) observable).getCountdownTime() && ((CountdownThread) observable).getCountdownTime() <= 0) {
-                //SerialPortManager.getInstance().write("FIRE MESSAGE");
+                commands.forEach(c -> {
+                    if(c.getCommandTriggerKey().equals(fireButton.getId())) {
+                        SerialPortManager.getInstance().write(c.getCommandValue());
+                    }
+                });
             }
         });
     }

@@ -78,7 +78,9 @@ fabric.properties
 out
 gen
 .idea/
-src/test/
 target/
 flightData/
 *.log
+*.html
+testReport/
+*.json

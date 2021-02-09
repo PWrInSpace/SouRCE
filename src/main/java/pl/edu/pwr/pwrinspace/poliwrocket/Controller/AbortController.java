@@ -7,8 +7,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
 
 public class AbortController extends BasicButtonController {
@@ -37,10 +38,17 @@ public class AbortController extends BasicButtonController {
     @Override
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command) {
         button.setVisible(true);
-        if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
-            return actionEvent -> SerialPortManager.getInstance().write(command.getCommandValue());
-        }
-        return actionEvent -> {};
+
+        return actionEvent -> {
+            if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
+                SerialPortManager.getInstance().write(command.getCommandValue());
+                for (Thread thread : Thread.getAllStackTraces().keySet()) {
+                    if (thread.getName().equals(ThreadName.COUNTDOWN.getName())) {
+                        thread.interrupt();
+                    }
+                }
+            }
+        };
     }
 
 

@@ -8,23 +8,42 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
+import javafx.stage.Stage;
+import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class MainController extends BasicController implements InvalidationListener {
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+    private static final double initWidth = 1550.4;
+    private static final double initHeight = 838.4;
+
+    @FXML
+    private ScrollPane inCommingPanel;
+
+    @FXML
+    private ScrollPane outGoingPanel;
+    @FXML
+    private AnchorPane footer;
 
     @FXML
     private SubScene modelScene;
@@ -70,11 +89,16 @@ public class MainController extends BasicController implements InvalidationListe
 
     private final MainController.SmartGroup root = new SmartGroup();
 
+    private Stage primaryStage;
+
+    private final List<Node> nodes = new ArrayList<>();
+    private final HashMap<Node,Pair<Double,Double>> nodesInitPositions = new HashMap<>();
+
     public SubScene getMapScene() {
         return mapScene;
     }
 
-    public void initSubscenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower,
+    public void initSubScenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower,
                               FXMLLoader loaderValves, FXMLLoader loaderMoreData, FXMLLoader loaderAbort,
                               FXMLLoader loaderStates, FXMLLoader loaderStart, FXMLLoader loaderConnection) {
         try {
@@ -87,7 +111,6 @@ public class MainController extends BasicController implements InvalidationListe
             stateScene.setRoot(loaderStates.load());
             startControlScene.setRoot(loaderStart.load());
             connectionScene.setRoot(loaderConnection.load());
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,19 +120,29 @@ public class MainController extends BasicController implements InvalidationListe
     void initialize() {
         controllerNameEnum = ControllerNameEnum.MAIN_CONTROLLER;
 
-        assert inComing != null : "fx:id=\"inComing\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert outGoing != null : "fx:id=\"outGoing\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert modelScene != null : "fx:id=\"modelScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert dataScene != null : "fx:id=\"dataScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert valvesScene != null : "fx:id=\"valvesScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert mapScene != null : "fx:id=\"mapScene\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert powerScene != null : "fx:id=\"powerScene\" was not injected: check your FXML file 'MainView.fxml'.";
+        //add nodes to list
+        nodes.add(dataScene);
+        nodes.add(mapScene);
+        nodes.add(powerScene);
+        nodes.add(valvesScene);
+        nodes.add(abortScene);
+        nodes.add(stateScene);
+        nodes.add(startControlScene);
+        nodes.add(connectionScene);
+        nodes.add(moreDataScene);
+        nodes.add(modelScene);
+        nodes.add(outGoingPanel);
+        nodes.add(inCommingPanel);
+        nodes.add(footer);
+
+        nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
+
         //set logo
         poliwrocketLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
         inSpaceLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("inSpaceLogo.png"))));
 
 
-        //Creating camera - i don`t know why but this is in example
+        //Creating camera
         PerspectiveCamera camera = new PerspectiveCamera(true);
         camera.setTranslateZ(-125); //-900
         camera.setNearClip(0.01);
@@ -117,8 +150,6 @@ public class MainController extends BasicController implements InvalidationListe
         camera.setFieldOfView(60);
         modelScene.setCamera(camera);
 
-
-        //nie usuwac, dziala, pozniej zdecyduje czy lepiej z czy bez
 
         PointLight light = new PointLight(Color.WHITE);
         light.setTranslateX(0);
@@ -128,10 +159,6 @@ public class MainController extends BasicController implements InvalidationListe
 
         AmbientLight ambiance = new AmbientLight(Color.LIGHTGREY);
         root.getChildren().add(ambiance);
-
-
-        //setting background color
-//        modelScene.setFill(Color.DEEPSKYBLUE);
 
         //importing 3ds model
         ModelImporter tdsImporter = new TdsModelImporter();
@@ -154,14 +181,33 @@ public class MainController extends BasicController implements InvalidationListe
 
     @Override
     public void invalidated(Observable observable) {
-        if (observable instanceof MessageParser) {
-            Platform.runLater(() -> inComing.appendText(((MessageParser) observable).getLastMessage()));
-        }
-        else if (observable instanceof IGyroSensor) {
+        if (observable instanceof IMessageParser) {
+            Platform.runLater(() -> inComing.appendText(((IMessageParser) observable).getLastMessage()));
+        } else if (observable instanceof IGyroSensor) {
             Platform.runLater(() -> root.rotateByX((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_X_KEY)) / 10) * 10));
             Platform.runLater(() -> root.rotateByY((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_Y_KEY)) / 10) * 10));
             Platform.runLater(() -> root.rotateByZ((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_Z_KEY)) / 10) * 10));
+        } else if (observable instanceof ISerialPortManager) {
+            Platform.runLater(() -> outGoing.appendText(((ISerialPortManager) observable).getLastSend() + "\n"));
+        } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
+            scaleSubScenes(primaryStage.widthProperty().doubleValue()/initWidth,primaryStage.heightProperty().doubleValue()/initHeight);
         }
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    private void scaleSubScenes(double scaleX, double scaleY) {
+        nodes.forEach(scene -> {
+            if(!scene.getTransforms().isEmpty()) {
+                scene.getTransforms().clear();
+            }
+
+            scene.getTransforms().add(new Scale(scaleX,scaleY));
+            scene.setLayoutX(nodesInitPositions.get(scene).getValue0() * scaleX);
+            scene.setLayoutY(nodesInitPositions.get(scene).getValue1() * scaleY);
+        });
     }
 
 

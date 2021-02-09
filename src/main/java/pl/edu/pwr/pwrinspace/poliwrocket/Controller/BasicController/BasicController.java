@@ -1,12 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
 
 import javafx.beans.InvalidationListener;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 
 public abstract class BasicController implements InvalidationListener {
-    protected ControllerNameEnum controllerNameEnum;
+    protected ControllerNameEnumInterface controllerNameEnum;
 
-    public ControllerNameEnum getControllerNameEnum() {
+    public ControllerNameEnumInterface getControllerNameEnum() {
         return this.controllerNameEnum;
     }
 }

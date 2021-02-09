@@ -76,32 +76,11 @@ public class ValvesController extends BasicButtonSensorController {
     private Button valveCloseButton5;
 
 
-    private HashMap<String,Indicator> indicatorHashMap = new HashMap<>();
+    private final HashMap<String,Indicator> indicatorHashMap = new HashMap<>();
 
     @FXML
     void initialize() {
         controllerNameEnum = ControllerNameEnum.VALVES_CONTROLLER;
-
-        assert valveIndicator1 != null : "fx:id=\"valveIndicator1\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveLabel1 != null : "fx:id=\"valveLabel1\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveOpenButton1 != null : "fx:id=\"valveOpenButton1\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveCloseButton1 != null : "fx:id=\"valveCloseButton1\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveIndicator2 != null : "fx:id=\"valveIndicator2\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveLabel2 != null : "fx:id=\"valveLabel2\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveOpenButton2 != null : "fx:id=\"valveOpenButton2\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveCloseButton2 != null : "fx:id=\"valveCloseButton2\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveIndicator3 != null : "fx:id=\"valveIndicator3\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveLabel3 != null : "fx:id=\"valveLabel3\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveOpenButton3 != null : "fx:id=\"valveOpenButton3\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveCloseButton3 != null : "fx:id=\"valveCloseButton3\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveIndicator4 != null : "fx:id=\"valveIndicator4\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveLabel4 != null : "fx:id=\"valveLabel4\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveOpenButton4 != null : "fx:id=\"valveOpenButton4\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveCloseButton4 != null : "fx:id=\"valveCloseButton4\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveIndicator5 != null : "fx:id=\"valveIndicator5\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveLabel5 != null : "fx:id=\"valveLabel5\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveOpenButton5 != null : "fx:id=\"valveOpenButton5\" was not injected: check your FXML file 'ValvesController.fxml'.";
-        assert valveCloseButton5 != null : "fx:id=\"valveCloseButton5\" was not injected: check your FXML file 'ValvesController.fxml'.";
 
         buttonHashMap.put(valveOpenButton1.getId(),valveOpenButton1);
         buttonHashMap.put(valveOpenButton2.getId(),valveOpenButton2);
@@ -145,6 +124,5 @@ public class ValvesController extends BasicButtonSensorController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

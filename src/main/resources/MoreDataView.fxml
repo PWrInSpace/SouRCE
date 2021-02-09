@@ -18,7 +18,7 @@
       <Label fx:id="indicatorLabel2" alignment="CENTER" contentDisplay="CENTER" layoutX="129.0" layoutY="39.0" prefWidth="54.0" text="Indicator1" AnchorPane.bottomAnchor="278.4" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="227.39999999999998" AnchorPane.topAnchor="39.0" />
       <Label fx:id="indicatorLabel3" alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="39.0" prefWidth="54.0" text="Indicator1" AnchorPane.bottomAnchor="278.4" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="129.40000000000003" AnchorPane.topAnchor="39.0" />
       <Label fx:id="indicatorLabel4" alignment="CENTER" contentDisplay="CENTER" layoutX="326.0" layoutY="39.0" prefWidth="54.0" text="Indicator1" AnchorPane.bottomAnchor="278.4" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="30.399999999999977" AnchorPane.topAnchor="39.0" />
-      <Label layoutX="7.0" text="More data:">
+      <Label layoutX="7.0" text="Flight data:">
          <font>
             <Font size="18.0" />
          </font>

@@ -1,66 +1,71 @@
 package pl.edu.pwr.pwrinspace.poliwrocket;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.javatuples.Triplet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.ICommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPortManager;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.ConfigurationSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ConfigurationSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
 
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
+import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class Main extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    private ConfigurationSaveService configurationSaveService = new ConfigurationSaveService();
+    private final ConfigurationSaveService configurationSaveService = new ConfigurationSaveService();
+    private final FrameSaveService frameSaveService = new FrameSaveService();
     private NotificationSendService notificationSendService;
     private NotificationThread notificationThread;
+    private NotificationFormatService notificationFormatService;
+    private IMessageParser messageParser;
+    private NotificationEvent notificationEvent;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         try {
-
-
-            //now use only default config
-            configurationSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-
+            //Read config file
             try {
-                Configuration.getInstance().setupConfig(configurationSaveService.readFromFile());
+                Configuration.getInstance().setupConfigInstance(configurationSaveService.readFromFile());
             } catch (Exception e) {
+                logger.error("Bad config file, overwritten by default and loaded");
                 logger.error(e.getMessage());
                 logger.error(Arrays.toString(e.getStackTrace()));
-                logger.error(e.getCause().toString());
                 logger.error(e.toString());
-
+                configurationSaveService.persistOldConfig();
                 configurationSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-                Configuration.getInstance().setupConfig(configurationSaveService.readFromFile());
-            } finally {
-                configurationSaveService.saveToFile(ConfigurationSaveModel.getConfigurationSaveModel(Configuration.getInstance()));
+                Configuration.getInstance().setupConfigInstance(configurationSaveService.readFromFile());
             }
+            //--------------
 
             //FXMLLoader
             FXMLLoader loaderMain = new FXMLLoader(getClass().getClassLoader().getResource("MainView.fxml"));
-            //FXMLLoader loaderMain = new FXMLLoader(getClass().getClassLoader().getResource("MainViewDAS.fxml"));
-
             FXMLLoader loaderData = new FXMLLoader(getClass().getClassLoader().getResource("DataView.fxml"));
             FXMLLoader loaderMap = new FXMLLoader(getClass().getClassLoader().getResource("MapViewNew.fxml"));
             FXMLLoader loaderPower = new FXMLLoader(getClass().getClassLoader().getResource("PowerView.fxml"));
@@ -72,11 +77,13 @@ public class Main extends Application {
             FXMLLoader loaderConnection = new FXMLLoader(getClass().getClassLoader().getResource("ConnectionView.fxml"));
 
             Scene scene = new Scene(loaderMain.load(), 1550, 750);
+            //--------------
 
+            //Controllers
             MainController mainController = loaderMain.getController();
-//        MainControllerDAS mainController = loaderMain.getController();
-            mainController.initSubscenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
+            mainController.initSubScenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
                     loaderAbort, loaderStates, loaderStart, loaderConnection);
+            mainController.setPrimaryStage(primaryStage);
 
             DataController dataController = loaderData.getController();
             NewMapController mapController = loaderMap.getController();
@@ -91,93 +98,70 @@ public class Main extends Application {
             StatesController statesController = loaderStates.getController();
             StartControlController startControlController = loaderStart.getController();
             ConnectionController connectionController = loaderConnection.getController();
+            //--------------
 
-            List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig = new LinkedList<>();
-            controllersConfig.add(new Triplet<>(mainController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(dataController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(mapController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(powerController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(valvesController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(moreDataController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(abortController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(statesController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(startControlController, new LinkedList<>(), new LinkedList<>()));
-            controllersConfig.add(new Triplet<>(connectionController, new LinkedList<>(), new LinkedList<>()));
+            //Mapping sensors and commands to controllers
+            List<BasicController> controllerList = new ArrayList<>();
+            controllerList.add(mainController);
+            controllerList.add(dataController);
+            controllerList.add(mapController);
+            controllerList.add(powerController);
+            controllerList.add(valvesController);
+            controllerList.add(moreDataController);
+            controllerList.add(abortController);
+            controllerList.add(statesController);
+            controllerList.add(startControlController);
+            controllerList.add(connectionController);
+            Configuration.setupApplicationConfig(controllerList);
+            //--------------
 
-            Configuration.setupApplicationConfig(controllersConfig);
+            //IMessageParser setup
+            if(Configuration.getInstance().PARSER_TYPE == MessageParserEnum.JSON){
+                messageParser = new JsonMessageParser(Configuration.getInstance().sensorRepository);
+            } else if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.STANDARD) {
+                messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
+            } else {
+                messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
+            }
+            messageParser.addListener(mainController);
+            //--------------
 
-            primaryStage.setTitle("SouRCE");
-            primaryStage.setMaximized(true);
-            primaryStage.setScene(scene);
-            primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png")));
-            primaryStage.show();
+            //FrameSaveService setup
+            frameSaveService.writeFileHeader(Configuration.getInstance().FRAME_PATTERN);
+            //--------------
 
-            MessageParser.create(Configuration.getInstance().sensorRepository);
-            MessageParser.getInstance().addListener(mainController);
-
+            //SerialPortManager setup
+            SerialPortManager.getInstance().setMessageParser(messageParser);
+            SerialPortManager.getInstance().setFrameSaveService(frameSaveService);
             SerialPortManager.getInstance().addListener(connectionController);
+            SerialPortManager.getInstance().addListener(mainController);
+            //--------------
 
+            //Notification setup
             if (!Configuration.getInstance().DISCORD_TOKEN.equals("")) {
-                NotificationFormatDiscordService notificationFormatDiscordService = new NotificationFormatDiscordService(Configuration.getInstance().sensorRepository);
-                INotification discord = new DiscordNotification(notificationFormatDiscordService);
+                notificationFormatService = new NotificationFormatDiscordService(Configuration.getInstance().sensorRepository);
+                notificationEvent = new NotificationDiscordEvent(notificationFormatService);
+                INotification discord = new DiscordNotification(notificationEvent);
                 discord.addListener(connectionController);
-                notificationSendService = new NotificationSendService(discord);
+                notificationSendService = new NotificationSendService(discord, notificationFormatService);
                 notificationThread = new NotificationThread(notificationSendService);
                 notificationThread.setupSchedule(Configuration.getInstance().notificationSchedule);
                 connectionController.injectNotification(notificationSendService, Configuration.getInstance().notificationMessageKeys, notificationThread);
                 discord.setup();
             }
+            //--------------
 
+            //stage settings
+            primaryStage.setTitle("SouRCE");
+            primaryStage.setMaximized(true);
+            primaryStage.setScene(scene);
+            primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
+            primaryStage.heightProperty().addListener(mainController);
+            primaryStage.widthProperty().addListener(mainController);
+            primaryStage.show();
+            //--------------
 
-            new Thread(() -> {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                for (int i = 1; i <= 32; i++) {
-                    Configuration.getInstance().sensorRepository.getSensorByName("lat").setValue((49.013517 + (new Random().nextDouble() * 0.01)));
-                    Configuration.getInstance().sensorRepository.getSensorByName("long").setValue((8.404435 + (new Random().nextDouble() * 0.01)));
-
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-
-            new Thread(() -> {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                while (true) {
-                    Configuration.getInstance().sensorRepository.getSensorByName("Gyro X").setValue((new Random().nextDouble() * 121));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Gyro Y").setValue((new Random().nextDouble() * 111));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Gyro Z").setValue((new Random().nextDouble() * 107));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Altitude").setValue((new Random().nextDouble() * 212 + 10));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Velocity").setValue((new Random().nextDouble() * 100 + 200));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Altitude2").setValue((new Random().nextDouble() * 10000 / 1.75));
-
-                    Configuration.getInstance().sensorRepository.getSensorByName("Ind 1").setValue((new Random().nextBoolean() ? 1.0 : 0.0));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Ind 2").setValue((new Random().nextBoolean() ? 1.0 : 0.0));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Ind 3").setValue((new Random().nextBoolean() ? 1.0 : 0.0));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Ind 4").setValue((new Random().nextBoolean() ? 1.0 : 0.0));
-                    Configuration.getInstance().sensorRepository.getSensorByName("Main computer").setValue( 7.2 + (8.2 - 7.2) * new Random().nextDouble());
-                    Configuration.getInstance().sensorRepository.getSensorByName("Recovery 1").setValue( 7.2 + (8.2 - 7.2) * new Random().nextDouble());
-                    Configuration.getInstance().sensorRepository.getSensorByName("Recovery 2").setValue( 7.2 + (8.2 - 7.2) * new Random().nextDouble());
-
-
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+            //testMode();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -194,5 +178,102 @@ public class Main extends Application {
             SerialPortManager.getInstance().close();
         }
         System.exit(-1);
+    }
+
+    private void testMode() {
+
+            JsonObject raw = new Gson().fromJson("{\n" +
+                    "\t\"accel\": 100,\n" +
+                    "\t\"pressure\": 48,\n" +
+                    "\t\"satelites\": 12,\n" +
+                    "\t\"fix\": 1,\n" +
+                    "\t\"rocketWeight\": 24357,\n" +
+                    "\t\"rssi\": 57,\n" +
+                    "\t\"motherWeight\": 5357,\n" +
+                    "\t\"bat1\": 8.1,\n" +
+                    "\t\"bat2\": 8.2,\n" +
+                    "\t\"bat3\": 8.3,\n" +
+                    "\t\"bat4\": 8.0,\n" +
+                    "\t\"bat5\": 7.9,\n" +
+                    "\t\"bat6\": 7.8,\n" +
+                    "\t\"alt\": 0,\n" +
+                    "\t\"vel\": 12,\n" +
+                    "\t\"igni\": 0,\n" +
+                    "\t\"pilot\": 0,\n" +
+                    "\t\"apoge\": 1,\n" +
+                    "\t\"mainSchute\": 0,\n" +
+                    "\t\"lat\": 51.20395820043864,\n" +
+                    "\t\"lon\": 16.99416435080908\n" +
+                    "}",JsonObject.class);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                while (true) {
+                    if(SerialPortManager.getInstance().isPortOpen()) {
+                        Frame frame = new Frame(raw.toString(), Instant.now());
+                        messageParser.parseMessage(frame);
+                        frameSaveService.saveFrameToFile(frame);
+
+                        for (String sensorKey: Configuration.getInstance().FRAME_PATTERN) {
+                            if(sensorKey.equals("lat")) {
+                                raw.addProperty(sensorKey,Double.parseDouble(raw.get(sensorKey).toString())+0.000025);
+                            } else if(sensorKey.equals("lon")) {
+                                raw.addProperty(sensorKey,Double.parseDouble(raw.get(sensorKey).toString())+0.000025);
+                            } else if(sensorKey.contains("bat")) {
+                                double r = ThreadLocalRandom.current().nextDouble(7.0,8.4);
+                                raw.addProperty(sensorKey,r);
+                            } else if(sensorKey.equals("accel")){
+                                if(Double.parseDouble(raw.get(sensorKey).toString()) < 380){
+                                    double r = ThreadLocalRandom.current().nextDouble(Double.parseDouble(raw.get(sensorKey).toString()),Double.parseDouble(raw.get(sensorKey).toString())+10);
+                                    raw.addProperty(sensorKey,r);
+
+                                }
+                            } else if(sensorKey.equals("alt")){
+                                if(Double.parseDouble(raw.get(sensorKey).toString()) < 3850){
+                                    double r = ThreadLocalRandom.current().nextDouble(Double.parseDouble(raw.get(sensorKey).toString()),Double.parseDouble(raw.get(sensorKey).toString())+20);
+                                    raw.addProperty(sensorKey,r);
+
+                                }
+                            }else if(sensorKey.equals("vel")){
+                                if(Double.parseDouble(raw.get(sensorKey).toString()) < 380){
+                                    double r = ThreadLocalRandom.current().nextDouble(Double.parseDouble(raw.get(sensorKey).toString()),Double.parseDouble(raw.get(sensorKey).toString())+5);
+                                    raw.addProperty(sensorKey,r);
+
+                                }
+                            } else if(sensorKey.equals("rocketWeight")){
+                                double r = ThreadLocalRandom.current().nextDouble(16000,36000);
+                                raw.addProperty(sensorKey,r);
+                            } else if(sensorKey.equals("motherWeight")){
+                                double r = ThreadLocalRandom.current().nextDouble(4000,11600);
+                                raw.addProperty(sensorKey,r);
+                            }else if(sensorKey.equals("rssi")){
+                                double r = ThreadLocalRandom.current().nextDouble(50,100);
+                                raw.addProperty(sensorKey,r);
+                            }else if(sensorKey.equals("apoge")){
+                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
+                                raw.addProperty(sensorKey,r);
+                            }else if(sensorKey.equals("igni")){
+                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
+                                raw.addProperty(sensorKey,r);
+                            }else if(sensorKey.equals("pilot")){
+                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
+                                raw.addProperty(sensorKey,r);
+                            }else if(sensorKey.equals("mainSchute")){
+                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
+                                raw.addProperty(sensorKey,r);
+                            }
+                        }
+
+                    }
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
     }
 }

@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
-import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewMapController;
 
@@ -27,6 +27,8 @@ public class Sensor implements Observable, ISensor {
     private String unit = "m";
 
     private Instant timeStamp;
+
+    private Instant previousTimeStamp;
 
     @Expose
     private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
@@ -87,7 +89,7 @@ public class Sensor implements Observable, ISensor {
     private void notifyObserver() {
         for (InvalidationListener obs : observers) {
             if (isBoolean
-                    || Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000
+                    || this.timeStamp.toEpochMilli() - this.previousTimeStamp.toEpochMilli() >  1000
                     || this.values.size() % Configuration.getInstance().FPS == 0
                     || obs instanceof Observable
                     || obs instanceof NewMapController) {
@@ -101,7 +103,7 @@ public class Sensor implements Observable, ISensor {
     public void setValue(double newValue) {
         this.values.add(newValue);
 
-        if (isBoolean || Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() > Configuration.getInstance().FPS * 1000) {
+        if (isBoolean || Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() >  1000) {
             this.value = newValue;
         } else if (this.values.size() % Configuration.getInstance().FPS == 0) {
             this.value = this.getAverageFromSecond();
@@ -111,6 +113,7 @@ public class Sensor implements Observable, ISensor {
         if(this.value > this.maxValue) {
             this.maxValue = this.value;
         }
+        this.previousTimeStamp = this.timeStamp;
         this.timeStamp = Instant.now();
         notifyObserver();
     }
@@ -155,7 +158,6 @@ public class Sensor implements Observable, ISensor {
         return value;
     }
 
-    //TODO SPRAWDZIC TO
     @Override
     public int hashCode() {
         return name.hashCode();

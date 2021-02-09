@@ -17,7 +17,7 @@
     <MenuBar VBox.vgrow="NEVER" />
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-image: url('background.jpg'); -fx-background-size: stretch;">
       <children>
-            <ScrollPane layoutX="15.0" layoutY="695.0" prefHeight="30.0" prefWidth="850.0">
+            <ScrollPane fx:id="inCommingPanel" layoutX="15.0" layoutY="695.0" prefHeight="30.0" prefWidth="850.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -25,7 +25,7 @@
                      </children></AnchorPane>
               </content>
             </ScrollPane>
-            <ScrollPane layoutX="15.0" layoutY="740.0" prefHeight="30.0" prefWidth="850.0">
+            <ScrollPane fx:id="outGoingPanel" layoutX="15.0" layoutY="740.0" prefHeight="30.0" prefWidth="850.0">
                <content>
                   <AnchorPane minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -86,7 +86,7 @@
                   <Region />
                </root>
             </SubScene>
-            <AnchorPane layoutX="1329.0" layoutY="769.0" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css">
+            <AnchorPane fx:id="footer" layoutX="1329.0" layoutY="769.0" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css">
                <children>
                   <Label layoutX="2.0" layoutY="2.0" prefHeight="18.0" prefWidth="90.0" text="Software by Jan Zmysłowski">
                      <font>

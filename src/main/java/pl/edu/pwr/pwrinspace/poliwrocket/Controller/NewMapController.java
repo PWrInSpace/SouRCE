@@ -77,7 +77,7 @@ public class NewMapController extends BasicController implements InvalidationLis
 
     private void afterMapIsInitialized() {
         mapView.setZoom(ZOOM_DEFAULT);
-        Coordinate startPosition = new Coordinate(pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LAT+MAP_START_CORRECTION, pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LON-MAP_START_CORRECTION);
+        Coordinate startPosition = new Coordinate(pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration.getInstance().START_POSITION_LAT+MAP_START_CORRECTION, pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration.getInstance().START_POSITION_LON-MAP_START_CORRECTION);
         mapView.setCenter(startPosition);
     }
 
@@ -110,9 +110,9 @@ public class NewMapController extends BasicController implements InvalidationLis
         // named toRadians which converts from
         // degrees to radians.
         currentLon = Math.toRadians(currentLon);
-        double lon2 = Math.toRadians(pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LON);
+        double lon2 = Math.toRadians(pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration.getInstance().START_POSITION_LON);
         currentLat = Math.toRadians(currentLat);
-        double lat2 = Math.toRadians(pl.edu.pwr.pwrinspace.poliwrocket.Configuration.getInstance().START_POSITION_LAT);
+        double lat2 = Math.toRadians(pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration.getInstance().START_POSITION_LAT);
 
         // Haversine formula
         double dlon = lon2 - currentLon;

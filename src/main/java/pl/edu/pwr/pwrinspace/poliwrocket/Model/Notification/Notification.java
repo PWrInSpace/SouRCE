@@ -1,7 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification;
 
 import javafx.beans.InvalidationListener;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ public abstract class Notification implements INotification {
 
     private List<InvalidationListener> observers = new ArrayList<>();
 
-    protected NotificationFormatService notificationFormatService;
+    protected NotificationEvent notificationEvent;
 
-    public Notification(NotificationFormatService notificationFormatService) {
-        this.notificationFormatService = notificationFormatService;
+    public Notification(NotificationEvent notificationEvent){
+        this.notificationEvent = notificationEvent;
     }
 
     @Override

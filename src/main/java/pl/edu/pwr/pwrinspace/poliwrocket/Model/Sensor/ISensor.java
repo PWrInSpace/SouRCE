@@ -1,12 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 
 import java.time.Instant;
 import java.util.List;
 
-public interface ISensor extends Observable {
+public interface ISensor {
 
     double getValue();
     String getDestination();

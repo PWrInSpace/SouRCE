@@ -8,9 +8,8 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Configuration;
-import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
 import java.util.Arrays;
 
@@ -22,20 +21,19 @@ public class DiscordNotification extends Notification {
 
     protected String channel = Configuration.getInstance().DISCORD_CHANNEL_NAME;
 
-    public DiscordNotification(NotificationFormatService notificationFormatService) {
-        super(notificationFormatService);
+    public DiscordNotification(NotificationEvent notificationDiscordEvent) {
+        super(notificationDiscordEvent);
     }
 
     public synchronized void setupConnection() {
         if (!Configuration.getInstance().DISCORD_TOKEN.equals("")) {
             try {
                 jda = JDABuilder.createDefault(Configuration.getInstance().DISCORD_TOKEN).build();
-                jda.addEventListener(new NotificationDiscordEvent(notificationFormatService));
+                jda.addEventListener(notificationEvent);
             } catch (Exception e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
         }
-
     }
 
     public synchronized void setupCustom() {
@@ -50,7 +48,7 @@ public class DiscordNotification extends Notification {
 
             try {
                 jda = builder.build();
-                jda.addEventListener(new NotificationDiscordEvent(notificationFormatService));
+                jda.addEventListener(notificationEvent);
             } catch (Exception e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
@@ -73,13 +71,13 @@ public class DiscordNotification extends Notification {
     }
 
     @Override
-    public void sendNotification(String messageKey) {
-        var message = notificationFormatService.getFormattedMessage(messageKey);
-        if (message instanceof EmbedBuilder) {
-            getChannel().sendMessage(((EmbedBuilder) message).build()).queue();
-        } else if (message instanceof String) {
-            getChannel().sendMessage(((String) message)).queue();
-        }
+    public void sendNotification(String message) {
+        getChannel().sendMessage(message).queue();
+    }
+
+    @Override
+    public void sendNotification(EmbedBuilder message) {
+        getChannel().sendMessage(message.build()).queue();
     }
 
     @Override
@@ -90,6 +88,7 @@ public class DiscordNotification extends Notification {
                 jda.awaitReady();
             } catch (InterruptedException e) {
                 logger.error(Arrays.toString(e.getStackTrace()));
+                Thread.currentThread().interrupt();
             }
         }
         super.setup();
