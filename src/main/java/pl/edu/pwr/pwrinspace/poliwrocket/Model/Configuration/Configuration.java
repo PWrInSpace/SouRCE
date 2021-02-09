@@ -35,7 +35,7 @@ public class Configuration {
 
     public static final String FLIGHT_DATA_FILE_NAME = "Flight_" + Instant.now().getEpochSecond() + ".txt";
 
-    public String DISCORD_TOKEN = "NzY3MDE4NjExMjM1NjE4ODM5.X4rzvw.Lt1BwdXcZhgoWyl8WC2P1VCSwos";
+    public String DISCORD_TOKEN = "";
 
     public String DISCORD_CHANNEL_NAME = "";
 

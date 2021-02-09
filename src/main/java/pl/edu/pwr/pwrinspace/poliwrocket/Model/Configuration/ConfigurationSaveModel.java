@@ -33,7 +33,7 @@ public class ConfigurationSaveModel {
     public String FRAME_DELIMITER = ",";
 
     @Expose
-    public String DISCORD_TOKEN = "NzY3MDE4NjExMjM1NjE4ODM5.X4rzvw.Lt1BwdXcZhgoWyl8WC2P1VCSwos";
+    public String DISCORD_TOKEN = "";
 
     @Expose
     public String DISCORD_CHANNEL_NAME = "rocket";
@@ -89,9 +89,8 @@ public class ConfigurationSaveModel {
         defaultConfig.FPS = 10;
         defaultConfig.PARSER_TYPE = MessageParserEnum.STANDARD;
         defaultConfig.commandsList = new LinkedList<>();
-        //TODO uncomment on deploy
-        //defaultConfig.DISCORD_CHANNEL_NAME = "";
-        //defaultConfig.DISCORD_TOKEN = "";
+        defaultConfig.DISCORD_CHANNEL_NAME = "";
+        defaultConfig.DISCORD_TOKEN = "";
         defaultConfig.START_POSITION_LON = 16.9333977;
         defaultConfig.START_POSITION_LAT = 51.1266727;
 

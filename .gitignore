@@ -83,3 +83,5 @@ flightData/
 *.log
 *.html
 testReport/
+BAD_config.json
+config.json

@@ -50,9 +50,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            configurationSaveService.persistOldConfig();
-            configurationSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-
             //Read config file
             try {
                 Configuration.getInstance().setupConfigInstance(configurationSaveService.readFromFile());
@@ -84,8 +81,9 @@ public class Main extends Application {
 
             //Controllers
             MainController mainController = loaderMain.getController();
-            mainController.initSubscenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
+            mainController.initSubScenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
                     loaderAbort, loaderStates, loaderStart, loaderConnection);
+            mainController.setPrimaryStage(primaryStage);
 
             DataController dataController = loaderData.getController();
             NewMapController mapController = loaderMap.getController();
@@ -115,14 +113,6 @@ public class Main extends Application {
             controllerList.add(startControlController);
             controllerList.add(connectionController);
             Configuration.setupApplicationConfig(controllerList);
-            //--------------
-
-            //stage settings
-            primaryStage.setTitle("SouRCE");
-            primaryStage.setMaximized(true);
-            primaryStage.setScene(scene);
-            primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
-            primaryStage.show();
             //--------------
 
             //IMessageParser setup
@@ -161,7 +151,17 @@ public class Main extends Application {
             }
             //--------------
 
-           //testMode();
+            //stage settings
+            primaryStage.setTitle("SouRCE");
+            primaryStage.setMaximized(true);
+            primaryStage.setScene(scene);
+            primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
+            primaryStage.heightProperty().addListener(mainController);
+            primaryStage.widthProperty().addListener(mainController);
+            primaryStage.show();
+            //--------------
+
+            //testMode();
         } catch (Exception e) {
             e.printStackTrace();
         }
