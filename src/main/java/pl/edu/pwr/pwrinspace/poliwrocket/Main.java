@@ -20,11 +20,14 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech.SpeechDictionary;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Rule.RuleValidationService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ConfigurationSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech.SpeechService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
 
 import java.time.Instant;
@@ -33,7 +36,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
-
 
 public class Main extends Application {
 
@@ -46,7 +48,9 @@ public class Main extends Application {
     private NotificationFormatService notificationFormatService;
     private IMessageParser messageParser;
     private NotificationEvent notificationEvent;
-
+    private SpeechService speechService;
+    private final SpeechDictionary speechDictionary = new SpeechDictionary();
+    private final RuleValidationService ruleValidationService = new RuleValidationService();
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -151,6 +155,16 @@ public class Main extends Application {
             }
             //--------------
 
+            //SpeechService setup
+            //TODO speechDictionary setup and validate -> in read from file service?
+            speechDictionary.validateDictionary();
+            speechService = new SpeechService(ruleValidationService,speechDictionary);
+
+            //Add SpeechService as listener
+            Configuration.getInstance().sensorRepository.getAllBasicSensors().forEach((s, sensor) -> {
+                sensor.addListener(speechService);
+            });
+
             //stage settings
             primaryStage.setTitle("SouRCE");
             primaryStage.setMaximized(true);
@@ -160,6 +174,25 @@ public class Main extends Application {
             primaryStage.widthProperty().addListener(mainController);
             primaryStage.show();
             //--------------
+
+
+            new Thread(() -> {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                var s = Configuration.getInstance().sensorRepository.getSensorByName("Altitude");
+                s.setValue(0);
+                while (true) {
+                   s.setValue(s.getValue()+50);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
 
             //testMode();
         } catch (Exception e) {
@@ -174,6 +207,7 @@ public class Main extends Application {
     @Override
     public void stop() {
         logger.info("Stage is closing");
+        speechService.deallocate();
         if (SerialPortManager.getInstance().isPortOpen()) {
             SerialPortManager.getInstance().close();
         }
