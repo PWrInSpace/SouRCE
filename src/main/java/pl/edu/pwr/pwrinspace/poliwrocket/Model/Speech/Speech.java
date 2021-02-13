@@ -8,27 +8,26 @@ import java.util.List;
 
 public class Speech {
 
-
-
-    @Expose
-    private String trigger;
-
     @Expose
     private String textToSpeak;
 
     @Expose
     private  List<Rule> rules = new ArrayList<>();
 
+    public Speech() {
+    }
+
+    public Speech(String textToSpeak, List<Rule> rules) {
+        this.textToSpeak = textToSpeak;
+        this.rules = rules;
+    }
+
     public String getTextToSpeak() {
         return textToSpeak;
     }
 
-    public String getTextToSpeak(Object param) {
-        return MessageFormat.format(textToSpeak,param);
-    }
-
-    public String getTrigger() {
-        return trigger;
+    public String getTextToSpeak(Object ... params) {
+        return MessageFormat.format(textToSpeak,params);
     }
 
     public List<Rule> getRules() {

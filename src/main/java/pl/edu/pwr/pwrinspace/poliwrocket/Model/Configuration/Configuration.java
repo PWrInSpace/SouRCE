@@ -27,7 +27,7 @@ public class Configuration {
 
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
 
-    public static final String CONFIG_PATH = "./";
+    public static final String CONFIG_PATH = "./config/";
 
     public static final String CONFIG_FILE_NAME = "config.json";
 

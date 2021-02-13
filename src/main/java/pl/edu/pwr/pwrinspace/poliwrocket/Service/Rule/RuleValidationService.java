@@ -19,26 +19,25 @@ public class RuleValidationService {
     private boolean checkExpressionResult(List<SnippetEvent> snippetEvents) {
         AtomicBoolean returnValue = new AtomicBoolean(true);
         snippetEvents.forEach(snip -> {
-            if (snip.status() == jdk.jshell.Snippet.Status.VALID) {
-                if(!Boolean.parseBoolean(snip.value()) && returnValue.get()) {
-                    returnValue.set(false);
-                }
+            if (snip.status() == jdk.jshell.Snippet.Status.VALID
+                    && !Boolean.parseBoolean(snip.value())
+                    && returnValue.get()) {
+                returnValue.set(false);
             }
         });
-        System.out.println(returnValue.get());
         return returnValue.get();
     }
 
-    public boolean validate(double currentValue, Rule rule) {
+    public boolean validate(Rule rule, Object ... values) {
 
-        if(rule.getValidated() < rule.getValidationTimes()) {
-            String expression = MessageFormat.format(rule.getCondition(),currentValue);
-           return makeReturn(checkExpressionResult(js.eval(js.sourceCodeAnalysis().analyzeCompletion(expression).source())),rule);
+        if(rule.getValidated() < Math.abs(rule.getValidationTimes())) {
+            String expression = MessageFormat.format(rule.getCondition(),values);
+            return makeValidationReturn(checkExpressionResult(js.eval(js.sourceCodeAnalysis().analyzeCompletion(expression).source())),rule);
         }
         return false;
     }
 
-    private boolean makeReturn(boolean checkResult, Rule rule) {
+    private boolean makeValidationReturn(boolean checkResult, Rule rule) {
         if(checkResult) {
             rule.setValidated(rule.getValidated()+1);
         }

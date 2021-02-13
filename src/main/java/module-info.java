@@ -25,6 +25,7 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command to com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor to com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification to com.google.gson;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech to com.google.gson;
 
     exports pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
@@ -37,4 +38,5 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     exports pl.edu.pwr.pwrinspace.poliwrocket.Service.Save;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Event;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Model;
 }

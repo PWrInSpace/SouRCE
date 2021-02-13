@@ -50,8 +50,6 @@ public class SpeechService implements InvalidationListener {
 
             // Speaks the given text
             // until the queue is empty.
-            synthesizer.speakPlainText(
-                    "GeeksforGeeks", null);
             synthesizer.waitEngineState(
                     Synthesizer.QUEUE_EMPTY);
         } catch (Exception e) {
@@ -80,15 +78,25 @@ public class SpeechService implements InvalidationListener {
     @Override
     public void invalidated(Observable observable) {
         var sensor = (Sensor) observable;
-        AtomicBoolean valid = new AtomicBoolean(false);
-        var speechObject = speechDictionary.getSpeechByTrigger(sensor.getName());
-        speechObject.getRules().forEach(rule -> {
-            if(ruleValidationService.validate(sensor.getValue(),rule) && !valid.get()) {
-                valid.set(true);
-            }
-        });
-        if(valid.get()){
-            speak(speechObject.getTextToSpeak(sensor.getValue()));
+
+        if(sensor.isBoolean() && sensor.getPreviousValue() == sensor.getValue()) {
+            return;
+        }
+
+        var speechList = speechDictionary.getSpeechByTrigger(sensor.getName());
+        if(speechList != null && !speechList.isEmpty()) {
+            speechList.forEach(speechObject -> {
+                AtomicBoolean valid = new AtomicBoolean(false);
+                speechObject.getRules().forEach(rule -> {
+                    if(ruleValidationService.validate(rule,Double.toString(sensor.getValue()),Double.toString(sensor.getPreviousValue()))
+                            && !valid.get()) {
+                        valid.set(true);
+                    }
+                });
+                if(valid.get()){
+                    speak(speechObject.getTextToSpeak(Double.toString(sensor.getValue())));
+                }
+            });
         }
     }
 }

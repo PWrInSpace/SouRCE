@@ -1,29 +1,37 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech;
 
 import com.google.gson.annotations.Expose;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.List;
 
-public class SpeechDictionary {
+public class SpeechDictionary extends BaseSaveModel {
+
     @Expose
-    private HashMap<String, Speech> speechRules = new HashMap<>();
+    private HashMap<String, List<Speech>> speechRules = new HashMap<>();
 
-    public Speech getSpeechByTrigger(String key) {
+    public SpeechDictionary() {
+        super("./config/", "speechConfig.json");
+    }
+
+    public List<Speech> getSpeechByTrigger(String key) {
         return speechRules.get(key);
     }
 
-    public void add(Speech sp) {
-        speechRules.put(sp.getTrigger(),sp);
+    private void add(String key, List<Speech> value) {
+        speechRules.put(key, value);
     }
 
-    public boolean validateDictionary() {
-        AtomicBoolean valid = new AtomicBoolean(true);
-        speechRules.forEach((s, speech) -> {
-            if(s != speech.getTrigger() && valid.get()) {
-                valid.set(false);
-            }
-        });
-        return valid.get();
+    public static SpeechDictionary defaultModel() {
+        SpeechDictionary speechDictionary = new SpeechDictionary();
+        Rule rule = new Rule("{0} > 500",1);
+        Rule rule2 = new Rule("{0} > 1500",1);
+        Speech sp = new Speech("Reached altitude {0} meters.", List.of(rule,rule2));
+        Rule apogee = new Rule("{0} < {1}",1);
+        Speech sp2 = new Speech("Apogee detected on {0} meters.", List.of(apogee));
+        speechDictionary.add("Altitude",List.of(sp,sp2));
+
+        return speechDictionary;
     }
 }
