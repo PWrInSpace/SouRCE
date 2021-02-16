@@ -20,14 +20,14 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech.SpeechDictionary;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech.TextToSpeechDictionary;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Rule.RuleValidationService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech.SpeechService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech.TextToSpeechService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
 
 import java.time.Instant;
@@ -48,8 +48,8 @@ public class Main extends Application {
     private NotificationFormatService notificationFormatService;
     private IMessageParser messageParser;
     private NotificationEvent notificationEvent;
-    private SpeechService speechService;
-    private SpeechDictionary speechDictionary;
+    private TextToSpeechService ttsService;
+    private TextToSpeechDictionary textToSpeechDictionary;
     private final RuleValidationService ruleValidationService = new RuleValidationService();
 
     @Override
@@ -71,15 +71,15 @@ public class Main extends Application {
 
             //Read speech file
             try {
-                speechDictionary = (SpeechDictionary) modelAsJsonSaveService.readFromFile(new SpeechDictionary());
+                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
             } catch (Exception e) {
                 logger.error("Bad speech file, overwritten by default and loaded");
                 logger.error(e.getMessage());
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
-                modelAsJsonSaveService.persistOldFile(new SpeechDictionary());
-                modelAsJsonSaveService.saveToFile(SpeechDictionary.defaultModel());
-                speechDictionary = (SpeechDictionary) modelAsJsonSaveService.readFromFile(new SpeechDictionary());
+                modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
+                modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
+                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
             }
             //--------------
 
@@ -171,11 +171,11 @@ public class Main extends Application {
             //--------------
 
             //SpeechService setup
-            speechService = new SpeechService(ruleValidationService,speechDictionary);
+            ttsService = new TextToSpeechService(ruleValidationService, textToSpeechDictionary);
 
             //Add SpeechService as listener
             Configuration.getInstance().sensorRepository.getAllBasicSensors().forEach((s, sensor) -> {
-                sensor.addListener(speechService);
+                sensor.addListener(ttsService);
             });
             //--------------
 
@@ -188,7 +188,7 @@ public class Main extends Application {
             primaryStage.widthProperty().addListener(mainController);
             primaryStage.show();
             //--------------
-            
+
             //testMode();
         } catch (Exception e) {
             e.printStackTrace();
@@ -202,7 +202,7 @@ public class Main extends Application {
     @Override
     public void stop() {
         logger.info("Stage is closing");
-        speechService.deallocate();
+        ttsService.deallocate();
         if (SerialPortManager.getInstance().isPortOpen()) {
             SerialPortManager.getInstance().close();
         }

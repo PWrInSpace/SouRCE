@@ -6,7 +6,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Speech {
+public class TextToSpeech {
 
     @Expose
     private String textToSpeak;
@@ -14,10 +14,10 @@ public class Speech {
     @Expose
     private  List<Rule> rules = new ArrayList<>();
 
-    public Speech() {
+    public TextToSpeech() {
     }
 
-    public Speech(String textToSpeak, List<Rule> rules) {
+    public TextToSpeech(String textToSpeak, List<Rule> rules) {
         this.textToSpeak = textToSpeak;
         this.rules = rules;
     }

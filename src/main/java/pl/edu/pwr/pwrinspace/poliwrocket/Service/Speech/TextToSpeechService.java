@@ -4,7 +4,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech.SpeechDictionary;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech.TextToSpeechDictionary;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Rule.RuleValidationService;
 
 import javax.speech.Central;
@@ -14,17 +14,17 @@ import javax.speech.synthesis.SynthesizerModeDesc;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class SpeechService implements InvalidationListener {
+public class TextToSpeechService implements InvalidationListener {
 
     private Synthesizer synthesizer;
 
     private final RuleValidationService ruleValidationService;
 
-    private final SpeechDictionary speechDictionary;
+    private final TextToSpeechDictionary textToSpeechDictionary;
 
-    public SpeechService(RuleValidationService ruleValidationService, SpeechDictionary speechDictionary) {
+    public TextToSpeechService(RuleValidationService ruleValidationService, TextToSpeechDictionary textToSpeechDictionary) {
         this.ruleValidationService = ruleValidationService;
-        this.speechDictionary = speechDictionary;
+        this.textToSpeechDictionary = textToSpeechDictionary;
         try {
             // Set property as Kevin Dictionary
             System.setProperty(
@@ -83,7 +83,7 @@ public class SpeechService implements InvalidationListener {
             return;
         }
 
-        var speechList = speechDictionary.getSpeechByTrigger(sensor.getName());
+        var speechList = textToSpeechDictionary.getSpeechByTrigger(sensor.getName());
         if(speechList != null && !speechList.isEmpty()) {
             speechList.forEach(speechObject -> {
                 AtomicBoolean valid = new AtomicBoolean(false);
