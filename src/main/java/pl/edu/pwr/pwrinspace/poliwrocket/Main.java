@@ -20,11 +20,14 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech.TextToSpeechDictionary;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatDiscordService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormatService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ConfigurationSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Rule.RuleValidationService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech.TextToSpeechService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
 
 import java.time.Instant;
@@ -34,33 +37,49 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-
 public class Main extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    private final ConfigurationSaveService configurationSaveService = new ConfigurationSaveService();
+    private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
     private final FrameSaveService frameSaveService = new FrameSaveService();
     private NotificationSendService notificationSendService;
     private NotificationThread notificationThread;
     private NotificationFormatService notificationFormatService;
     private IMessageParser messageParser;
     private NotificationEvent notificationEvent;
+    private TextToSpeechService ttsService;
+    private TextToSpeechDictionary textToSpeechDictionary;
+    private final RuleValidationService ruleValidationService = new RuleValidationService();
 
     @Override
     public void start(Stage primaryStage) {
         try {
             //Read config file
             try {
-                Configuration.getInstance().setupConfigInstance(configurationSaveService.readFromFile());
+                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
             } catch (Exception e) {
                 logger.error("Bad config file, overwritten by default and loaded");
                 logger.error(e.getMessage());
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
-                configurationSaveService.persistOldConfig();
-                configurationSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-                Configuration.getInstance().setupConfigInstance(configurationSaveService.readFromFile());
+                modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
+                modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
+                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+            }
+            //--------------
+
+            //Read speech file
+            try {
+                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+            } catch (Exception e) {
+                logger.error("Bad speech file, overwritten by default and loaded");
+                logger.error(e.getMessage());
+                logger.error(Arrays.toString(e.getStackTrace()));
+                logger.error(e.toString());
+                modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
+                modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
+                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
             }
             //--------------
 
@@ -151,6 +170,15 @@ public class Main extends Application {
             }
             //--------------
 
+            //SpeechService setup
+            ttsService = new TextToSpeechService(ruleValidationService, textToSpeechDictionary);
+
+            //Add SpeechService as listener
+            Configuration.getInstance().sensorRepository.getAllBasicSensors().forEach((s, sensor) -> {
+                sensor.addListener(ttsService);
+            });
+            //--------------
+
             //stage settings
             primaryStage.setTitle("SouRCE");
             primaryStage.setMaximized(true);
@@ -174,6 +202,7 @@ public class Main extends Application {
     @Override
     public void stop() {
         logger.info("Stage is closing");
+        ttsService.deallocate();
         if (SerialPortManager.getInstance().isPortOpen()) {
             SerialPortManager.getInstance().close();
         }

@@ -199,4 +199,9 @@ public class Sensor implements Observable, ISensor {
     public void setBoolean(boolean aBoolean) {
         isBoolean = aBoolean;
     }
+
+    public double getPreviousValue() {
+        var size = this.values.size();
+        return size >= 2 ? this.values.get(size-2) : value;
+    }
 }
