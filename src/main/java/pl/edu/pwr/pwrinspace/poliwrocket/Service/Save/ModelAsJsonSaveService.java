@@ -13,7 +13,7 @@ public class ModelAsJsonSaveService {
     private static final Logger logger = LoggerFactory.getLogger(ModelAsJsonSaveService.class);
 
     public void saveToFile(BaseSaveModel configuration) {
-        String configContent = new Gson().newBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create().toJson(configuration);
+        String configContent = new Gson().newBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().disableHtmlEscaping().create().toJson(configuration);
         File configFile = new File(configuration.getPath() + configuration.getFileName());
 
         try (FileWriter configWriter = new FileWriter(configFile)) {
