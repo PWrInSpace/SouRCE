@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import com.google.gson.annotations.Expose;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ConfigurationSaveModel {
+public class ConfigurationSaveModel extends BaseSaveModel {
 
     @Expose
     public int FPS = 10;
@@ -52,6 +53,10 @@ public class ConfigurationSaveModel {
 
     @Expose
     public SensorRepository sensorRepository = new SensorRepository();
+
+    public ConfigurationSaveModel() {
+        super(Configuration.CONFIG_PATH, Configuration.CONFIG_FILE_NAME);
+    }
 
     public static ConfigurationSaveModel getConfigurationSaveModel(Configuration configuration) {
         ConfigurationSaveModel config = new ConfigurationSaveModel();
@@ -95,7 +100,10 @@ public class ConfigurationSaveModel {
         defaultConfig.START_POSITION_LAT = 51.1266727;
 
         Sensor basicSensor = new Sensor();
+        basicSensor.setName("Altitude");
         basicSensor.setDestination("dataGauge1");
+        basicSensor.setMaxRange(2000);
+        basicSensor.setMinRange(0);
         basicSensor.getDestinationControllerNames().add(ControllerNameEnum.DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(basicSensor);
 
