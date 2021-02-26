@@ -3,13 +3,18 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
 import javafx.beans.InvalidationListener;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensorRepository;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public abstract class BaseMessageParser implements IMessageParser {
 
     protected final ISensorRepository sensorRepository;
 
     protected String lastMessage;
 
-    private InvalidationListener observer;
+    protected ParsingResultStatus parsingResultStatus;
+
+    private final List<InvalidationListener> observers = new LinkedList<>();
 
     public BaseMessageParser(ISensorRepository sensorRepository) {
         this.sensorRepository = sensorRepository;
@@ -21,20 +26,22 @@ public abstract class BaseMessageParser implements IMessageParser {
     }
 
     @Override
+    public ParsingResultStatus getParsingStatus() {
+        return parsingResultStatus;
+    }
+
+
+    @Override
     public void addListener(InvalidationListener invalidationListener) {
-        this.observer = invalidationListener;
+        this.observers.add(invalidationListener);
     }
 
     @Override
     public void removeListener(InvalidationListener invalidationListener) {
-        if(observer != null && observer.equals(invalidationListener)){
-            observer = null;
-        }
+        this.observers.remove(invalidationListener);
     }
 
     protected void notifyObserver(){
-        if(observer!=null){
-            observer.invalidated(this);
-        }
+        this.observers.forEach(obs -> obs.invalidated(this));
     }
 }

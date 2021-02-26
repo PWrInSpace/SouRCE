@@ -28,7 +28,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Rule.RuleValidationService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech.TextToSpeechService;
-import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Notification.NotificationThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -143,6 +144,7 @@ public class Main extends Application {
                 messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
             }
             messageParser.addListener(mainController);
+            messageParser.addListener(UIThreadManager.getInstance());
             //--------------
 
             //FrameSaveService setup

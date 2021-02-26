@@ -10,7 +10,7 @@ import org.mockito.stubbing.Answer;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
-import pl.edu.pwr.pwrinspace.poliwrocket.Thred.NotificationThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Notification.NotificationThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
 import java.util.Map;

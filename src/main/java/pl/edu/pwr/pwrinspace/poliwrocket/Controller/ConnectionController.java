@@ -2,7 +2,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.medusa.Gauge;
 import gnu.io.NRSerialPort;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,13 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
-import pl.edu.pwr.pwrinspace.poliwrocket.Thred.INotificationThread;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Notification.INotificationThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.util.Collection;
 import java.util.List;
@@ -163,6 +163,9 @@ public class ConnectionController extends BasicButtonSensorController {
             if (sensor.getDestination().equals(signal.getId())) {
                 signal.setVisible(true);
                 signal.setUnit(sensor.getUnit());
+                if(!sensor.isBoolean()) {
+                    UIThreadManager.getInstance().addActiveSensor();
+                }
             } else {
                 logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
             }
@@ -196,7 +199,7 @@ public class ConnectionController extends BasicButtonSensorController {
             threadStatus.setText(status ? "Not running" : "Not enabled");
         } else if (observable instanceof ISensor) {
             var sensor = ((ISensor) observable);
-            Platform.runLater(() -> signal.setValue(Math.round((sensor.getValue() - sensor.getMinRange())/(sensor.getMaxRange()-sensor.getMinRange())*1000)/1000.0));
+            UIThreadManager.getInstance().addNormal(() -> signal.setValue(Math.round((sensor.getValue() - sensor.getMinRange())/(sensor.getMaxRange()-sensor.getMinRange())*1000)/1000.0));
         }
     }
 }
