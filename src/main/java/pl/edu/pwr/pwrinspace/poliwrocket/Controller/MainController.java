@@ -183,7 +183,6 @@ public class MainController extends BasicController implements InvalidationListe
     public void invalidated(Observable observable) {
         if (observable instanceof IMessageParser) {
             UIThreadManager.getInstance().addImmediate(() -> inComing.appendText(((IMessageParser) observable).getLastMessage()));
-            //Platform.runLater(() -> inComing.appendText(((IMessageParser) observable).getLastMessage()));
         } else if (observable instanceof IGyroSensor) {
             UIThreadManager.getInstance().addImmediate(() -> {
                 var sensorValues = ((IGyroSensor) observable).getValueGyro();
