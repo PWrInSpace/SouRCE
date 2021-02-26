@@ -3,12 +3,12 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.tilesfx.addons.Indicator;
 import eu.hansolo.tilesfx.addons.Switch;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.util.HashMap;
 
@@ -96,7 +96,7 @@ public class StatesController extends BasicButtonSensorController {
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
-            Platform.runLater(() -> {
+            UIThreadManager.getInstance().addImmediate(() -> {
                 var visualization = visualizationsHashMap.get(sensor.getDestination());
                 if(visualization instanceof Indicator) {
                     ((Indicator)visualization).setOn(sensor.getValue() == 1.0);

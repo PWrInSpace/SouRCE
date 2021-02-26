@@ -5,5 +5,6 @@ import javafx.beans.Observable;
 public interface IMessageParser extends Observable {
     void parseMessage(Frame frame);
     String getLastMessage();
+    ParsingResultStatus getParsingStatus();
 }
 

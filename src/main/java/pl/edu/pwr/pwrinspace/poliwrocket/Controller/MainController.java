@@ -2,7 +2,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.interactivemesh.jfx.importer.ModelImporter;
 import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
-import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
@@ -24,6 +23,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicControl
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -182,13 +182,16 @@ public class MainController extends BasicController implements InvalidationListe
     @Override
     public void invalidated(Observable observable) {
         if (observable instanceof IMessageParser) {
-            Platform.runLater(() -> inComing.appendText(((IMessageParser) observable).getLastMessage()));
+            UIThreadManager.getInstance().addImmediate(() -> inComing.appendText(((IMessageParser) observable).getLastMessage()));
         } else if (observable instanceof IGyroSensor) {
-            Platform.runLater(() -> root.rotateByX((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_X_KEY)) / 10) * 10));
-            Platform.runLater(() -> root.rotateByY((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_Y_KEY)) / 10) * 10));
-            Platform.runLater(() -> root.rotateByZ((int) Math.round((((IGyroSensor) observable).getValueGyro().get(IGyroSensor.AXIS_Z_KEY)) / 10) * 10));
+            UIThreadManager.getInstance().addImmediate(() -> {
+                var sensorValues = ((IGyroSensor) observable).getValueGyro();
+                root.rotateByX((int) Math.round((sensorValues.get(IGyroSensor.AXIS_X_KEY)) / 10) * 10);
+                root.rotateByY((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Y_KEY)) / 10) * 10);
+                root.rotateByZ((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Z_KEY)) / 10) * 10);
+            });
         } else if (observable instanceof ISerialPortManager) {
-            Platform.runLater(() -> outGoing.appendText(((ISerialPortManager) observable).getLastSend() + "\n"));
+            UIThreadManager.getInstance().addImmediate(() -> outGoing.appendText(((ISerialPortManager) observable).getLastSend() + "\n"));
         } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
             scaleSubScenes(primaryStage.widthProperty().doubleValue()/initWidth,primaryStage.heightProperty().doubleValue()/initHeight);
         }

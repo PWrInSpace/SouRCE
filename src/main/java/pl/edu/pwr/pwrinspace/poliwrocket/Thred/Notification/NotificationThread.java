@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Thred;
+package pl.edu.pwr.pwrinspace.poliwrocket.Thred.Notification;
 
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;

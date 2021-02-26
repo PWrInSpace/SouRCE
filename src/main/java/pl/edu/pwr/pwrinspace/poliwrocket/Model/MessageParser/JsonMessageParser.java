@@ -20,6 +20,7 @@ public class JsonMessageParser extends BaseMessageParser {
         lastMessage = frame.getContent();
         logger.info("Message received: {}", lastMessage);
         JsonObject jsonObject = null;
+        parsingResultStatus = ParsingResultStatus.PENDING;
         try {
             jsonObject = JsonParser.parseString(lastMessage).getAsJsonObject();
             String parsedMessage = "";
@@ -30,19 +31,23 @@ public class JsonMessageParser extends BaseMessageParser {
                         parsedMessage += jsonObject.get(sensorName).getAsString() + Configuration.getInstance().FRAME_DELIMITER;
                         sensorRepository.getSensorByName(sensorName).setValue(Double.parseDouble(jsonObject.get(sensorName).getAsString()));
                     } catch (NumberFormatException e) {
+                        parsingResultStatus = ParsingResultStatus.ERROR;
                         this.lastMessage = "Invalid: " + this.lastMessage;
                         logger.warn("Wrong message, value is not a number! {}", lastMessage + " -> " + jsonObject.get(sensorName).getAsString());
                     }
                 }
                 frame.setFormattedContent(parsedMessage.substring(0,parsedMessage.length()-1) + "\n");
             } else {
+                parsingResultStatus = ParsingResultStatus.ERROR;
                 this.lastMessage = "Invalid: " + this.lastMessage;
                 var logMessage = Configuration.getInstance().FRAME_PATTERN.size() + " got: " + jsonObject.entrySet().size();
                 logger.warn("Wrong message length! Expected: {}", logMessage);
                 frame.setFormattedContent(lastMessage);
             }
+            parsingResultStatus = ParsingResultStatus.OK;
 
         } catch (Exception e) {
+            parsingResultStatus = ParsingResultStatus.ERROR;
             this.lastMessage = "Not valid json: " + lastMessage;
             logger.error("Not valid json: {}",lastMessage);
         }

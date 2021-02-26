@@ -1,13 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.tilesfx.Tile;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -76,6 +76,9 @@ public class DataController extends BasicSensorController {
                 tile.setAverageVisible(true);
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
+                if(!sensor.isBoolean()) {
+                    UIThreadManager.getInstance().addActiveSensor();
+                }
                 //tile.setAveragingPeriod(_duration * Configuration.getInstance().FPS);
             } else {
                 logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
@@ -103,7 +106,7 @@ public class DataController extends BasicSensorController {
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
-            Platform.runLater(() -> tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue()));
+            UIThreadManager.getInstance().addNormal(() -> tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue()));
         } catch (Exception e) {
             e.printStackTrace();
         }

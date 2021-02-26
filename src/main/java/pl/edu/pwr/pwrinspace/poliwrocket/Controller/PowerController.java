@@ -1,7 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.medusa.Gauge;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.util.HashMap;
 
@@ -105,7 +105,7 @@ public class PowerController extends BasicSensorController {
     public void invalidated(Observable observable) {
         if (observable instanceof ISensor) {
             var sensor = ((ISensor) observable);
-            Platform.runLater(() -> {
+            UIThreadManager.getInstance().addNormal(() -> {
                 powerHashMap.get(sensor.getDestination()).getValue0().setValue(Math.round((sensor.getValue() - sensor.getMinRange())/(sensor.getMaxRange()-sensor.getMinRange())*1000)/10.0);
                 powerHashMap.get(sensor.getDestination()).getValue2().setText((Math.round(sensor.getValue()*100)/100.0) + sensor.getUnit());
             });
@@ -125,6 +125,9 @@ public class PowerController extends BasicSensorController {
                 triplet.getValue1().setVisible(true);
                 triplet.getValue1().setText(sensor.getName());
                 triplet.getValue2().setVisible(true);
+                if(!sensor.isBoolean()) {
+                    UIThreadManager.getInstance().addActiveSensor();
+                }
             } else {
                 logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
             }

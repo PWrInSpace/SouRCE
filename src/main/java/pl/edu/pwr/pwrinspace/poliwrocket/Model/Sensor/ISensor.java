@@ -16,5 +16,6 @@ public interface ISensor {
     String getUnit();
     double getMaxRange();
     double getMinRange();
+    boolean isBoolean();
     Instant getTimeStamp();
 }

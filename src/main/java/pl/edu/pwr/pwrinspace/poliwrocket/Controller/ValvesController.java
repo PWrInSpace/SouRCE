@@ -2,7 +2,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.util.HashMap;
 
@@ -113,7 +113,7 @@ public class ValvesController extends BasicButtonSensorController {
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
-            Platform.runLater(() -> {
+            UIThreadManager.getInstance().addImmediate(() -> {
                 if(sensor.getValue() != 1.0 && sensor.getValue() != 0.0){
                     indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Color.RED);
                 } else {
