@@ -2,7 +2,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.offline.OfflineCache;
-import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
@@ -13,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGPSSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -83,7 +83,7 @@ public class NewMapController extends BasicController implements InvalidationLis
 
     @Override
     public void invalidated(Observable observable) {
-        Platform.runLater(() -> {
+        UIThreadManager.getInstance().addImmediate(() -> {
             Coordinate nextCoordinate = new Coordinate(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY), ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY));
             currentLocation.setText(nextCoordinate.getLatitude() + ";" + nextCoordinate.getLongitude());
             currentDistance.setText("Distance: " + distance(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY), ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY)) + "m");
