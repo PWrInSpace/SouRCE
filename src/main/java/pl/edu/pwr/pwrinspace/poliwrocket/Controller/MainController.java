@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.interactivemesh.jfx.importer.ModelImporter;
 import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
@@ -182,16 +183,23 @@ public class MainController extends BasicController implements InvalidationListe
     @Override
     public void invalidated(Observable observable) {
         if (observable instanceof IMessageParser) {
-            UIThreadManager.getInstance().addImmediate(() -> inComing.appendText(((IMessageParser) observable).getLastMessage()));
+            var value = ((IMessageParser) observable).getLastMessage();
+            if(!value.contains("\n")) {
+                value += "\n";
+            }
+            String finalValue = value;
+            UIThreadManager.getInstance().addImmediate(() -> inComing.appendText(finalValue));
         } else if (observable instanceof IGyroSensor) {
-            UIThreadManager.getInstance().addImmediate(() -> {
-                var sensorValues = ((IGyroSensor) observable).getValueGyro();
+            var sensorValues = ((IGyroSensor) observable).getValueGyro();
+            UIThreadManager.getInstance().addImmediateOnOK(() -> {
                 root.rotateByX((int) Math.round((sensorValues.get(IGyroSensor.AXIS_X_KEY)) / 10) * 10);
                 root.rotateByY((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Y_KEY)) / 10) * 10);
                 root.rotateByZ((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Z_KEY)) / 10) * 10);
             });
         } else if (observable instanceof ISerialPortManager) {
-            UIThreadManager.getInstance().addImmediate(() -> outGoing.appendText(((ISerialPortManager) observable).getLastSend() + "\n"));
+            var value = ((ISerialPortManager) observable).getLastSend() + "\n";
+            Platform.runLater(() -> outGoing.appendText(value));
+            Platform.requestNextPulse();
         } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
             scaleSubScenes(primaryStage.widthProperty().doubleValue()/initWidth,primaryStage.heightProperty().doubleValue()/initHeight);
         }

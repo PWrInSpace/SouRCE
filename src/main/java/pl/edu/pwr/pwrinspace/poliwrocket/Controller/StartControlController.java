@@ -130,9 +130,22 @@ public class StartControlController extends BasicButtonController {
         fireButton.setOnMouseClicked(mouseEvent -> {
             if (countdownTime != null && (countdownThread == null || !countdownThread.isAlive())) {
                 countdownThread = new Thread(countdownTime, ThreadName.COUNTDOWN.getName());
+                countdownThread.setDaemon(true);
                 countdownThread.start();
+                commands.forEach(c -> {
+                    if(c.getCommandTriggerKey().equals(fireButton.getId())) {
+                        SerialPortManager.getInstance().write(c.getCommandValue());
+                    }
+                });
+            } else if(countdownTime != null && countdownThread != null && countdownThread.isAlive()) {
+                countdownTime.resetCountdown();
+                commands.forEach(c -> {
+                    if(c.getCommandTriggerKey().equals(fireButton.getId())) {
+                        SerialPortManager.getInstance().write(c.getCommandValue());
+                    }
+                });
+                countdownTime.makeCanRun();
             }
-
         });
 
     }
@@ -141,13 +154,13 @@ public class StartControlController extends BasicButtonController {
     public void invalidated(Observable observable) {
         Platform.runLater(() -> {
             countdownTimer.setText(((CountdownThread) observable).getFormattedTimeResult());
-            if(-1000 <= ((CountdownThread) observable).getCountdownTime() && ((CountdownThread) observable).getCountdownTime() <= 0) {
-                commands.forEach(c -> {
-                    if(c.getCommandTriggerKey().equals(fireButton.getId())) {
-                        SerialPortManager.getInstance().write(c.getCommandValue());
-                    }
-                });
-            }
+//            if(-10 <= ((CountdownThread) observable).getCountdownTime() && ((CountdownThread) observable).getCountdownTime() <= 0) {
+//                commands.forEach(c -> {
+//                    if(c.getCommandTriggerKey().equals(fireButton.getId())) {
+//                        SerialPortManager.getInstance().write(c.getCommandValue());
+//                    }
+//                });
+//            }
         });
     }
 

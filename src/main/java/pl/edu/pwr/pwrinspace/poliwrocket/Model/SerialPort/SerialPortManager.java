@@ -102,7 +102,9 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                     //strumień wyjścia
                     outputStream = serialPort.getOutputStream();
                     serialWriter = new SerialWriter(outputStream);
-                    (new Thread(serialWriter)).start();
+                    Thread writerThread = new Thread(serialWriter);
+                    writerThread.setDaemon(true);
+                    writerThread.start();
 
                     // dodajemy słuchaczy zdarzeń
                     serialPort.addEventListener(this);
@@ -144,7 +146,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
-                byte[] buffer = new byte[1024];
+                byte[] buffer = new byte[2048];
                 int length = this.inputStream.read(buffer);
                 Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
                 messageParser.parseMessage(frame);
@@ -166,7 +168,6 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         serialWriter.send(message);
         this.lastMessage = message;
         notifyObserver();
-
     }
 
     @Override

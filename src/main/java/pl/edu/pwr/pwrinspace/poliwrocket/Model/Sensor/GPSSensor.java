@@ -4,10 +4,11 @@ import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
 
 import java.util.*;
 
-public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
+public class GPSSensor implements Observable, IGPSSensor, InvalidationListener, IUIUpdateEventListener {
 
     List<InvalidationListener> observers = new ArrayList<>();
 
@@ -84,7 +85,7 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
         if (observable == latitude) {
             isLatUpToDate = true;
         }
-        if (isLongUpToDate && isLatUpToDate) {
+        if (isLongUpToDate && isLatUpToDate && latitude.getValue() != 0 && longitude.getValue() != 0) {
             notifyObserver();
             isLongUpToDate = false;
             isLatUpToDate = false;
@@ -97,5 +98,10 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener {
 
     public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
         this.destinationControllerNames = destinationControllerNames;
+    }
+
+    @Override
+    public void onUIUpdateEvent() {
+        notifyObserver();
     }
 }

@@ -83,7 +83,7 @@ public class NewMapController extends BasicController implements InvalidationLis
 
     @Override
     public void invalidated(Observable observable) {
-        UIThreadManager.getInstance().addImmediate(() -> {
+        UIThreadManager.getInstance().addImmediateOnOK(() -> {
             Coordinate nextCoordinate = new Coordinate(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY), ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY));
             currentLocation.setText(nextCoordinate.getLatitude() + ";" + nextCoordinate.getLongitude());
             currentDistance.setText("Distance: " + distance(((IGPSSensor) observable).getPosition().get(IGPSSensor.LATITUDE_KEY), ((IGPSSensor) observable).getPosition().get(IGPSSensor.LONGITUDE_KEY)) + "m");

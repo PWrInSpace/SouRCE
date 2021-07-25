@@ -4,16 +4,16 @@ import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewMapController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Sensor implements Observable, ISensor {
+public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     public List<InvalidationListener> observers = new ArrayList<>();
 
@@ -91,8 +91,7 @@ public class Sensor implements Observable, ISensor {
             if (isBoolean
                     || this.timeStamp.toEpochMilli() - this.previousTimeStamp.toEpochMilli() >  1000
                     || this.values.size() % Configuration.getInstance().FPS == 0
-                    || obs instanceof Observable
-                    || obs instanceof NewMapController) {
+                    || obs instanceof Observable) {
 
                 obs.invalidated(this);
             }
@@ -203,5 +202,10 @@ public class Sensor implements Observable, ISensor {
     public double getPreviousValue() {
         var size = this.values.size();
         return size >= 2 ? this.values.get(size-2) : value;
+    }
+
+    @Override
+    public void onUIUpdateEvent() {
+        notifyObserver();
     }
 }

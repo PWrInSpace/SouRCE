@@ -3,58 +3,101 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.ParsingResultStatus;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class UIThreadManager implements InvalidationListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(UIThreadManager.class);
+
     private final Queue<Runnable> activeRunnableQueue = new LinkedList<>();
     private UIRunnable waitingNormalRunnable = new UIRunnable();
+    private UIRunnable waitingImmediateOnOKRunnable = new UIRunnable();
     private UIRunnable waitingImmediateRunnable = new UIRunnable();
     private int normalTasksLimit = 0;
 
-    private static final UIThreadManager instance = new UIThreadManager();
+    private final Timer timerRunner = new Timer();
 
     private UIThreadManager() {
+        if (UIThreadManager.Holder.INSTANCE != null) {
+            throw new IllegalStateException("Singleton already constructed");
+        }
+        timerRunner.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                activeRunnable(waitingNormalRunnable);
+                waitingNormalRunnable = new UIRunnable();
+            }
+        },new Date(new Date().getTime() + 3000),1000);
+    }
+
+    private static class Holder {
+        private static final UIThreadManager INSTANCE = new UIThreadManager();
     }
 
     public static UIThreadManager getInstance() {
-        return instance;
+        return UIThreadManager.Holder.INSTANCE;
     }
 
     private synchronized void run() {
-        while (!activeRunnableQueue.isEmpty()) {
-            Platform.runLater(activeRunnableQueue.poll());
-        }
+        Platform.runLater(() -> {
+            while (!activeRunnableQueue.isEmpty()) {
+                activeRunnableQueue.poll().run();
+            }
+        });
+        Platform.requestNextPulse();
     }
 
     public void addNormal(InterfaceUpdateTask task) {
         waitingNormalRunnable.addTask(task);
-        if(waitingNormalRunnable.waitingTasks() == normalTasksLimit) {
-            activeRunnable(waitingNormalRunnable);
-            waitingNormalRunnable = new UIRunnable();
-        }
+//        if(waitingNormalRunnable.waitingTasks() == normalTasksLimit) {
+//            activeRunnable(waitingNormalRunnable);
+//            waitingNormalRunnable = new UIRunnable();
+//        }
     }
+
     public void addImmediate(InterfaceUpdateTask task) {
         waitingImmediateRunnable.addTask(task);
+    }
+
+    public void addImmediateOnOK(InterfaceUpdateTask task) {
+        waitingImmediateOnOKRunnable.addTask(task);
     }
 
     public void addActiveSensor() {
         normalTasksLimit++;
     }
 
-    private void activeRunnable(UIRunnable uiRunnable) {
-        activeRunnableQueue.add(uiRunnable);
+    private void activeRunnable(UIRunnable ...uiRunnable) {
+        activeRunnableQueue.addAll(Arrays.asList(uiRunnable));
         run();
     }
 
     @Override
     public void invalidated(Observable observable) {
-        if(observable instanceof IMessageParser && ((IMessageParser) observable).getParsingStatus() == ParsingResultStatus.OK) {
-            activeRunnable(waitingImmediateRunnable);
-            waitingImmediateRunnable = new UIRunnable();
+        if(observable instanceof  IMessageParser) {
+            var parser = (IMessageParser) observable;
+            switch (parser.getParsingStatus()) {
+                case OK:
+                    activeRunnable(waitingImmediateRunnable, waitingImmediateOnOKRunnable);
+                    waitingImmediateRunnable = new UIRunnable();
+                    waitingImmediateOnOKRunnable = new UIRunnable();
+                    break;
+                case ERROR:
+                    activeRunnable(waitingImmediateRunnable);
+                    waitingImmediateRunnable = new UIRunnable();
+                    waitingImmediateOnOKRunnable = new UIRunnable();
+                    break;
+                case PENDING:
+                    logger.warn("Invalidated while pending. Check your code.");
+                    break;
+                default:
+                    logger.error("Unrecognized parsing status: {}",parser.getParsingStatus());
+                    break;
+            }
         }
     }
 }

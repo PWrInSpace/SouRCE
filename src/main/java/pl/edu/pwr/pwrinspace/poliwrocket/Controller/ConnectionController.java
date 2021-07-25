@@ -118,6 +118,7 @@ public class ConnectionController extends BasicButtonSensorController {
         threadButton.setOnMouseClicked(mouseEvent -> {
             if (notificationThreadRunnable != null && (notificationThread == null || !notificationThread.isAlive())) {
                 notificationThread = new Thread(notificationThreadRunnable, ThreadName.DISCORD_NOTIFICATION.getName());
+                notificationThread.setDaemon(true);
                 notificationThread.start();
                 threadStatus.setText("Running");
             } else if (notificationThread != null && notificationThread.isAlive()) {

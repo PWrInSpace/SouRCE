@@ -108,7 +108,7 @@ public class MoreDataController extends BasicSensorController {
 
                 var visualization = visualizationsHashMap.get(sensor.getDestination());
                 if(visualization instanceof Indicator) {
-                    UIThreadManager.getInstance().addImmediate(() -> {
+                    UIThreadManager.getInstance().addImmediateOnOK(() -> {
                         if(sensor.getValue() != 1.0 && sensor.getValue() != 0.0){
                             ((Indicator)visualization).setDotOnColor(Color.RED);
                         } else {

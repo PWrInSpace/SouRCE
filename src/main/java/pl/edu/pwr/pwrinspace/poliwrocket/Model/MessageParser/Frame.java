@@ -10,6 +10,8 @@ public class Frame {
 
     private final Instant timeInstant;
 
+    private String key;
+
     public Frame(String content, Instant timeInstant) {
         this.content = content;
         this.timeInstant = timeInstant;
@@ -21,6 +23,14 @@ public class Frame {
 
     public String getFormattedContent() {
         return formattedContent;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public void setFormattedContent(String formattedContent) {

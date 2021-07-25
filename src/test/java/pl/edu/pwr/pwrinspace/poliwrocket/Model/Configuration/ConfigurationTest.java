@@ -1,31 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GyroSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-
 class ConfigurationTest {
 
-    private Configuration configurationUnderTest;
+   /* private Configuration configurationUnderTest;
 
     @BeforeEach
     void setUp() {
@@ -367,5 +344,5 @@ class ConfigurationTest {
 
         //---------------
         return defaultConfig;
-    }
+    }*/
 }

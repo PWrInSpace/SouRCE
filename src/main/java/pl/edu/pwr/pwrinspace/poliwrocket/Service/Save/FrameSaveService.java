@@ -9,16 +9,28 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Set;
 
 public class FrameSaveService {
 
     private static final Logger logger = LoggerFactory.getLogger(FrameSaveService.class);
-    private final File flightDataFile = new File(Configuration.FLIGHT_DATA_PATH + Configuration.FLIGHT_DATA_FILE_NAME);
+    private final HashMap<String,File> flightDataFiles;
+    private final File logFile = new File(Configuration.FLIGHT_DATA_PATH + "Flight_log_" + Instant.now() + ".txt");
+
+    public FrameSaveService(Set<String> framesKeys) {
+        flightDataFiles = new HashMap<>();
+        framesKeys.forEach(frameKey -> flightDataFiles.putIfAbsent(frameKey,new File(Configuration.FLIGHT_DATA_PATH + Configuration.getFlightDataFileName(frameKey))));
+    }
 
     public void saveFrameToFile(Frame frame) {
         try {
-            FileWriter fileWriter = new FileWriter(flightDataFile, true);
+            File file = flightDataFiles.get(frame.getKey());
+            if(file == null)
+                file = logFile;
+
+            FileWriter fileWriter = new FileWriter(file, true);
             try (BufferedWriter output = new BufferedWriter(fileWriter)) {
                 output.write(frame.getTimeInstant().toString() + Configuration.getInstance().FRAME_DELIMITER + frame.getFormattedContent());
             }
@@ -27,11 +39,17 @@ public class FrameSaveService {
         }
     }
 
-    public void writeFileHeader(List<String> headers) {
+    public void writeFileHeader(String key, Iterable<String> headers) {
         StringBuilder header = new StringBuilder();
         headers.forEach(h -> header.append(Configuration.getInstance().FRAME_DELIMITER).append(h));
         try {
-            FileWriter fileWriter = new FileWriter(flightDataFile, true);
+            File file = flightDataFiles.get(key);
+            if(file == null){
+                logger.error("File with key {} not found.", key);
+                return;
+            }
+
+            FileWriter fileWriter = new FileWriter(file, true);
             try (BufferedWriter output = new BufferedWriter(fileWriter)) {
                 output.write("Time" + header.toString());
                 output.newLine();

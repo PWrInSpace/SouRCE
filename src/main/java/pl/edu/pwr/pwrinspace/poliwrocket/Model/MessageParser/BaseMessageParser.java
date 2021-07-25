@@ -16,6 +16,8 @@ public abstract class BaseMessageParser implements IMessageParser {
 
     private final List<InvalidationListener> observers = new LinkedList<>();
 
+    private final List<ISensorUpdate> sensorUpdates = new LinkedList<>();
+
     public BaseMessageParser(ISensorRepository sensorRepository) {
         this.sensorRepository = sensorRepository;
     }
@@ -30,6 +32,20 @@ public abstract class BaseMessageParser implements IMessageParser {
         return parsingResultStatus;
     }
 
+    @Override
+    public void parseMessage(Frame frame) {
+        parsingResultStatus = ParsingResultStatus.PENDING;
+
+        parseInternal(frame);
+        if(parsingResultStatus == ParsingResultStatus.OK) {
+            commitParsing();
+        }
+        clearUpdatesList();
+
+        notifyObserver();
+    }
+
+    protected abstract void parseInternal(Frame frame);
 
     @Override
     public void addListener(InvalidationListener invalidationListener) {
@@ -41,7 +57,19 @@ public abstract class BaseMessageParser implements IMessageParser {
         this.observers.remove(invalidationListener);
     }
 
-    protected void notifyObserver(){
+    private void notifyObserver(){
         this.observers.forEach(obs -> obs.invalidated(this));
+    }
+
+    private void commitParsing() {
+        sensorUpdates.forEach(ISensorUpdate::execute);
+    }
+
+    private void clearUpdatesList() {
+        sensorUpdates.clear();
+    }
+
+    protected void addSensorUpdate(ISensorUpdate sensorUpdate) {
+        sensorUpdates.add(sensorUpdate);
     }
 }

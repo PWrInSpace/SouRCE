@@ -13,9 +13,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Configuration {
 
@@ -41,7 +39,7 @@ public class Configuration {
 
     public String FRAME_DELIMITER = ",";
 
-    public List<String> FRAME_PATTERN = new ArrayList<>();
+    public Map<String,List<String>> FRAME_PATTERN = new HashMap<>();
 
     public List<Command> commandsList = new LinkedList<>();
 
@@ -57,6 +55,10 @@ public class Configuration {
         }
     }
 
+    public static String getFlightDataFileName(String key) {
+        return "Flight_" + key + "_" + Instant.now().getEpochSecond() + ".txt";
+    }
+
     public void setupConfigInstance(ConfigurationSaveModel config) {
         this.FPS = config.FPS;
         this.START_POSITION_LAT = config.START_POSITION_LAT;
@@ -70,19 +72,19 @@ public class Configuration {
         this.sensorRepository = config.sensorRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
-        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGpsSensor().getLatitude().getName())){
+        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         }
-        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGpsSensor().getLongitude().getName())){
+        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
         }
-        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName())){
+        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());
         }
-        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName())){
+        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_y());
         }
-        if(config.FRAME_PATTERN.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName())){
+        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
         this.sensorRepository.getGyroSensor().observeFields();

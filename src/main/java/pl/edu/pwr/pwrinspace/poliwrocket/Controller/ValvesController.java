@@ -113,7 +113,7 @@ public class ValvesController extends BasicButtonSensorController {
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
-            UIThreadManager.getInstance().addImmediate(() -> {
+            UIThreadManager.getInstance().addImmediateOnOK(() -> {
                 if(sensor.getValue() != 1.0 && sensor.getValue() != 0.0){
                     indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Color.RED);
                 } else {

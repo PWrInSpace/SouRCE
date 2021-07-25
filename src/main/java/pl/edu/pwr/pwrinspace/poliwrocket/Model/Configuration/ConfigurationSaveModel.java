@@ -6,15 +6,9 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GPSSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.GyroSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ConfigurationSaveModel extends BaseSaveModel {
 
@@ -40,7 +34,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public String DISCORD_CHANNEL_NAME = "rocket";
 
     @Expose
-    public List<String> FRAME_PATTERN = new ArrayList<>();
+    public Map<String,List<String>> FRAME_PATTERN = new HashMap<>();
 
     @Expose
     public List<Command> commandsList = new LinkedList<>();
@@ -169,11 +163,13 @@ public class ConfigurationSaveModel extends BaseSaveModel {
 
         //frame
         defaultConfig.FRAME_DELIMITER = ",";
-        defaultConfig.FRAME_PATTERN.add("Gyro X");
-        defaultConfig.FRAME_PATTERN.add("Gyro Y");
-        defaultConfig.FRAME_PATTERN.add("Gyro Z");
+        List<String> pattern = new ArrayList<>();
+        pattern.add("Gyro X");
+        pattern.add("Gyro Y");
+        pattern.add("Gyro Z");
         //
-
+        defaultConfig.FRAME_PATTERN.put("PAT1",pattern)
+;
         Sensor velocity = new Sensor();
         velocity.setDestination("dataGauge9");
         velocity.setName("Velocity");

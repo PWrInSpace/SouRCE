@@ -96,7 +96,7 @@ public class StatesController extends BasicButtonSensorController {
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
-            UIThreadManager.getInstance().addImmediate(() -> {
+            UIThreadManager.getInstance().addImmediateOnOK(() -> {
                 var visualization = visualizationsHashMap.get(sensor.getDestination());
                 if(visualization instanceof Indicator) {
                     ((Indicator)visualization).setOn(sensor.getValue() == 1.0);

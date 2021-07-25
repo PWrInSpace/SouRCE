@@ -14,29 +14,47 @@ public class StandardMessageParser extends BaseMessageParser {
     }
 
     @Override
-    public void parseMessage(Frame frame) {
+    protected void parseInternal(Frame frame) {
         lastMessage = frame.getContent();
         logger.info("Message received: {}", lastMessage);
         String[] splitted = lastMessage.split(Configuration.getInstance().FRAME_DELIMITER);
         frame.setFormattedContent(lastMessage);
+        if (splitted.length > 0) {
+            var framePattern = Configuration.getInstance().FRAME_PATTERN.get(splitted[0]);
+            frame.setKey(splitted[0]);
 
-        if(Configuration.getInstance().FRAME_PATTERN.size() == splitted.length){
-            int currentPosition = 0;
-            for (String sensorName : Configuration.getInstance().FRAME_PATTERN) {
-                try {
-                    sensorRepository.getSensorByName(sensorName).setValue(Double.parseDouble(splitted[currentPosition]));
-                } catch (NumberFormatException e) {
-                    this.lastMessage = "Invalid: " + this.lastMessage;
-                    logger.warn("Wrong message, value is not a number! {}", lastMessage + " -> " + splitted[currentPosition]);
-                } finally {
-                    currentPosition++;
+            if (framePattern != null && framePattern.size() == splitted.length - 1) {
+                int currentPosition = 1;
+                for (String sensorName : framePattern) {
+                    try {
+                        if(!splitted[currentPosition].contains(":")) {
+                            var value = Double.parseDouble(splitted[currentPosition]);
+                            addSensorUpdate(() -> sensorRepository.getSensorByName(sensorName).setValue(value));
+                        }
+                    } catch (NumberFormatException e) {
+                        this.lastMessage = "Invalid: " + this.lastMessage;
+                        logger.warn("Wrong message, value is not a number! {}", lastMessage + " -> " + splitted[currentPosition]);
+                        this.parsingResultStatus = ParsingResultStatus.ERROR;
+                    } finally {
+                        currentPosition++;
+                    }
                 }
+            } else {
+                if(framePattern != null) {
+                    var logMessage = Configuration.getInstance().FRAME_PATTERN.get(splitted[0]).size() + " got: " + (splitted.length - 1);
+                    logger.warn("Wrong message length! Expected: {}", logMessage);
+                } else if(splitted.length > 0){
+                    logger.warn("Wrong message key {} - unrecognized.", splitted[0]);
+                } else {
+                    logger.warn("Wrong message, unrecognized problem. {}", lastMessage);
+                }
+                this.lastMessage = "Invalid: " + this.lastMessage;
+                this.parsingResultStatus = ParsingResultStatus.ERROR;
             }
-        } else {
-            this.lastMessage = "Invalid: " + this.lastMessage;
-            var logMessage = Configuration.getInstance().FRAME_PATTERN.size() + " got: " + splitted.length;
-            logger.warn("Wrong message length! Expected: {}", logMessage);
+
+            if (parsingResultStatus == ParsingResultStatus.PENDING) {
+                parsingResultStatus = ParsingResultStatus.OK;
+            }
         }
-        notifyObserver();
     }
 }
