@@ -9,8 +9,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
 
 import java.time.Instant;
 import java.util.*;
@@ -18,6 +17,8 @@ import java.util.*;
 public class Configuration {
 
     public int FPS = 10;
+
+    public int AVERAGING_PERIOD = 1000;
 
     public double START_POSITION_LAT = 49.013517;
 
@@ -61,6 +62,7 @@ public class Configuration {
 
     public void setupConfigInstance(ConfigurationSaveModel config) {
         this.FPS = config.FPS;
+        this.AVERAGING_PERIOD = config.AVERAGING_PERIOD;
         this.START_POSITION_LAT = config.START_POSITION_LAT;
         this.START_POSITION_LON = config.START_POSITION_LON;
         this.PARSER_TYPE = config.PARSER_TYPE;
@@ -87,8 +89,27 @@ public class Configuration {
         if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
+
+        var basicSensors = this.sensorRepository.getAllBasicSensors().values().stream().toArray();
+
+        Arrays.stream(basicSensors).filter(s -> s instanceof FillingLevelSensor).forEach(s -> {
+            var sensor = (FillingLevelSensor)s;
+            this.sensorRepository.addSensor(sensor.getHallSensor1());
+            this.sensorRepository.addSensor(sensor.getHallSensor2());
+            this.sensorRepository.addSensor(sensor.getHallSensor3());
+            this.sensorRepository.addSensor(sensor.getHallSensor4());
+            this.sensorRepository.addSensor(sensor.getHallSensor5());
+            sensor.observeFields();
+        });
+
         this.sensorRepository.getGyroSensor().observeFields();
         this.sensorRepository.getGpsSensor().observeFields();
+
+        Arrays.stream(basicSensors).filter(s -> s instanceof ByteSensor).forEach(s -> {
+            for (Sensor innerSensor: ((ByteSensor) s).getSensors()) {
+                this.sensorRepository.addSensor(innerSensor);
+            }
+        });
     }
 
     public static void setupApplicationConfig(List<BasicController> controllersList) {

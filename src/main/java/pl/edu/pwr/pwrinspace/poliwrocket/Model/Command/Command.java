@@ -15,6 +15,9 @@ public class Command implements ICommand {
     private String trigger = "y";
 
     @Expose
+    private String description = "";
+
+    @Expose
     private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
 
     public Command(String value, String trigger) {
@@ -45,6 +48,11 @@ public class Command implements ICommand {
     @Override
     public String getCommandTriggerKey() {
         return trigger;
+    }
+
+    @Override
+    public String getCommandDescription() {
+        return description;
     }
 
     public List<ControllerNameEnum> getDestinationControllerNames() {

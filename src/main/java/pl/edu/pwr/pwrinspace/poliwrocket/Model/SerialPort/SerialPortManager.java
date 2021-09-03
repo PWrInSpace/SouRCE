@@ -144,22 +144,24 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     @Override
     public synchronized void serialEvent(SerialPortEvent oEvent) {
-        if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-            try {
-                byte[] buffer = new byte[2048];
-                int length = this.inputStream.read(buffer);
-                Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
-                messageParser.parseMessage(frame);
-                if(frameSaveService != null) {
-                    if(frame.getFormattedContent() == null) {
-                        frame.setFormattedContent(frame.getContent());
+        synchronized (messageParser) {
+            if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
+                try {
+                    byte[] buffer = new byte[2048];
+                    int length = this.inputStream.read(buffer);
+                    Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
+                    messageParser.parseMessage(frame);
+                    if(frameSaveService != null) {
+                        if(frame.getFormattedContent() == null) {
+                            frame.setFormattedContent(frame.getContent());
+                        }
+                        frameSaveService.saveFrameToFile(frame);
                     }
-                    frameSaveService.saveFrameToFile(frame);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
+            }
         }
     }
 

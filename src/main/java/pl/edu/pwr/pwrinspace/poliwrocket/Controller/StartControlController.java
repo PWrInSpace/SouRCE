@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.CountdownThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
+
+import java.util.Collection;
 
 public class StartControlController extends BasicButtonController {
 
@@ -43,6 +46,27 @@ public class StartControlController extends BasicButtonController {
     @FXML
     private Label countdownTimer;
 
+    @FXML
+    private Button stateButton1;
+
+    @FXML
+    private Button stateButton2;
+
+    @FXML
+    private Button stateButton3;
+
+    @FXML
+    private Button stateButton4;
+
+    @FXML
+    private Button stateButton5;
+
+    @FXML
+    private Button stateButton6;
+
+    @FXML
+    private Button stateButton7;
+
     private Thread countdownThread;
 
     private CountdownThread countdownTime;
@@ -63,6 +87,14 @@ public class StartControlController extends BasicButtonController {
         buttonHashMap.put(qucikDistonectButton.getId(),qucikDistonectButton);
         buttonHashMap.put(armingButton1.getId(),armingButton1);
         buttonHashMap.put(armingButton2.getId(),armingButton2);
+
+        buttonHashMap.put(stateButton1.getId(),stateButton1);
+        buttonHashMap.put(stateButton2.getId(),stateButton2);
+        buttonHashMap.put(stateButton3.getId(),stateButton3);
+        buttonHashMap.put(stateButton4.getId(),stateButton4);
+        buttonHashMap.put(stateButton5.getId(),stateButton5);
+        buttonHashMap.put(stateButton6.getId(),stateButton6);
+        buttonHashMap.put(stateButton7.getId(),stateButton7);
 
         safeSwitch1.setOnMouseClicked(actionEvent -> {
             if (safeSwitch1.isActive()) {
@@ -147,6 +179,25 @@ public class StartControlController extends BasicButtonController {
                 countdownTime.makeCanRun();
             }
         });
+
+    }
+
+    @Override
+    public void assignsCommands(Collection<ICommand> commands){
+        this.commands.addAll(commands);
+
+        for (ICommand command : commands) {
+            var button = buttonHashMap.get(command.getCommandTriggerKey());
+            if (button != null) {
+                button.setOnAction(handleButtonsClickByCommand(button, command));
+                button.setVisible(true);
+                if(command.getCommandTriggerKey().contains("state")) {
+                    button.setText(command.getCommandDescription());
+                }
+            } else {
+                logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
+            }
+        }
 
     }
 

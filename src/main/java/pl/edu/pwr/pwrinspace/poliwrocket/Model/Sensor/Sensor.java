@@ -18,7 +18,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     public List<InvalidationListener> observers = new ArrayList<>();
 
     @Expose
-    private String destination;
+    private String destination = "";
 
     @Expose
     private String name = "Altitude";
@@ -29,6 +29,9 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private Instant timeStamp;
 
     private Instant previousTimeStamp;
+
+    private Instant lastAveragingTimeStamp = Instant.now();
+    private boolean shouldNotify = false;
 
     @Expose
     private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
@@ -43,6 +46,8 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private boolean isBoolean = false;
 
     private double value = 0;
+
+    private double lastReportedValue = 0;
 
     private double maxValue = Double.MIN_VALUE;
 
@@ -86,46 +91,53 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         return timeStamp;
     }
 
-    private void notifyObserver() {
+    protected void notifyObserver() {
         for (InvalidationListener obs : observers) {
-            if (isBoolean
-                    || this.timeStamp.toEpochMilli() - this.previousTimeStamp.toEpochMilli() >  1000
-                    || this.values.size() % Configuration.getInstance().FPS == 0
-                    || obs instanceof Observable) {
-
+            if (shouldNotify || obs instanceof Observable) {
                 obs.invalidated(this);
             }
         }
+        shouldNotify = false;
     }
 
     @Override
     public void setValue(double newValue) {
         this.values.add(newValue);
-
-        if (isBoolean || Instant.now().toEpochMilli() - this.timeStamp.toEpochMilli() >  1000) {
+        Instant currentTimeStamp = Instant.now();
+        long currentTime = currentTimeStamp.toEpochMilli();
+        if (isBoolean || currentTime - this.timeStamp.toEpochMilli() >=  1000) {
             this.value = newValue;
-        } else if (this.values.size() % Configuration.getInstance().FPS == 0) {
-            this.value = this.getAverageFromSecond();
+            this.shouldNotify = true;
+        } else if (currentTime - this.lastAveragingTimeStamp.toEpochMilli() >= Configuration.getInstance().AVERAGING_PERIOD) {
+            this.value = this.getAverage();
+            this.lastAveragingTimeStamp = currentTimeStamp;
+            this.lastReportedValue = this.value;
+            this.values.clear();
+            this.shouldNotify = true;
         } else {
             this.value = newValue;
         }
         if(this.value > this.maxValue) {
             this.maxValue = this.value;
         }
+
+        //protect overflow
+        if(this.values.size() > 500) {
+            this.values = new ArrayList<>();
+            this.values.add(this.lastReportedValue);
+            this.values.add(this.value);
+        }
         this.previousTimeStamp = this.timeStamp;
-        this.timeStamp = Instant.now();
+        this.timeStamp = currentTimeStamp;
         notifyObserver();
     }
 
-    private double getAverageFromSecond() {
+    private double getAverage() {
         double sum = 0;
-        int lastIndex = this.values.size();
-        int startIndex = lastIndex <= Configuration.getInstance().FPS ? 0 : lastIndex - Configuration.getInstance().FPS;
-        this.values = this.values.subList(startIndex, lastIndex);
-        for (Double oldValue : this.values) {
-            sum += oldValue;
+        for (Double val : this.values) {
+            sum += val;
         }
-        return sum / (double) (Configuration.getInstance().FPS);
+        return Math.round((sum / this.values.size())*100.0)/100.0;
     }
 
     public void setName(String name) {
@@ -200,8 +212,9 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     }
 
     public double getPreviousValue() {
-        var size = this.values.size();
-        return size >= 2 ? this.values.get(size-2) : value;
+        /*var size = this.values.size();
+        return size >= 2 ? this.values.get(size-2) : value;*/
+        return lastReportedValue;
     }
 
     @Override

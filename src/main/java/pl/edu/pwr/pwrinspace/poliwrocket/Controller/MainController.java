@@ -27,10 +27,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MainController extends BasicController implements InvalidationListener {
 
@@ -39,36 +37,13 @@ public class MainController extends BasicController implements InvalidationListe
     private static final double initHeight = 838.4;
 
     @FXML
-    private ScrollPane inCommingPanel;
+    private ScrollPane inComingPanel;
 
     @FXML
-    private ScrollPane outGoingPanel;
-    @FXML
-    private AnchorPane footer;
-
-    @FXML
-    private SubScene modelScene;
+    private TextArea inComing;
 
     @FXML
     private SubScene dataScene;
-
-    @FXML
-    private SubScene valvesScene;
-
-    @FXML
-    private SubScene moreDataScene;
-
-    @FXML
-    private SubScene stateScene;
-
-    @FXML
-    private SubScene startControlScene;
-
-    @FXML
-    private SubScene connectionScene;
-
-    @FXML
-    private SubScene abortScene;
 
     @FXML
     private SubScene mapScene;
@@ -77,16 +52,49 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene powerScene;
 
     @FXML
-    private TextArea inComing;
+    private SubScene abortScene;
 
     @FXML
-    private TextArea outGoing;
+    private AnchorPane footer;
 
     @FXML
     private ImageView poliwrocketLogo;
 
     @FXML
     private ImageView inSpaceLogo;
+
+    @FXML
+    private SubScene rawDataScene;
+
+    @FXML
+    private SubScene connectionScene;
+
+    @FXML
+    private ScrollPane outGoingPanel;
+
+    @FXML
+    private TextArea outGoing;
+
+    @FXML
+    private SubScene dataSceneFilling;
+
+    @FXML
+    private SubScene valvesScene;
+
+    @FXML
+    private SubScene dataSceneFlight;
+
+    @FXML
+    private SubScene modelScene;
+
+    @FXML
+    private SubScene moreDataScene;
+
+    @FXML
+    private SubScene indicatorsScene;
+
+    @FXML
+    private SubScene startControlScene;
 
     private final MainController.SmartGroup root = new SmartGroup();
 
@@ -101,7 +109,8 @@ public class MainController extends BasicController implements InvalidationListe
 
     public void initSubScenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower,
                               FXMLLoader loaderValves, FXMLLoader loaderMoreData, FXMLLoader loaderAbort,
-                              FXMLLoader loaderStates, FXMLLoader loaderStart, FXMLLoader loaderConnection) {
+                              FXMLLoader loaderIndicators, FXMLLoader loaderStart, FXMLLoader loaderConnection,
+                              FXMLLoader loaderRawData, FXMLLoader loaderFilling, FXMLLoader loaderFlight) {
         try {
             dataScene.setRoot(loaderData.load());
             mapScene.setRoot(loaderMap.load());
@@ -109,9 +118,12 @@ public class MainController extends BasicController implements InvalidationListe
             valvesScene.setRoot(loaderValves.load());
             moreDataScene.setRoot(loaderMoreData.load());
             abortScene.setRoot(loaderAbort.load());
-            stateScene.setRoot(loaderStates.load());
+            indicatorsScene.setRoot(loaderIndicators.load());
             startControlScene.setRoot(loaderStart.load());
             connectionScene.setRoot(loaderConnection.load());
+            rawDataScene.setRoot(loaderRawData.load());
+            dataSceneFilling.setRoot(loaderFilling.load());
+            dataSceneFlight.setRoot(loaderFlight.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,19 +133,21 @@ public class MainController extends BasicController implements InvalidationListe
     void initialize() {
         controllerNameEnum = ControllerNameEnum.MAIN_CONTROLLER;
 
+        modelScene.setVisible(false);
+
         //add nodes to list
         nodes.add(dataScene);
         nodes.add(mapScene);
         nodes.add(powerScene);
         nodes.add(valvesScene);
         nodes.add(abortScene);
-        nodes.add(stateScene);
-        nodes.add(startControlScene);
+        /*nodes.add(stateScene);
+        nodes.add(startControlScene);*/
         nodes.add(connectionScene);
         nodes.add(moreDataScene);
         nodes.add(modelScene);
-        nodes.add(outGoingPanel);
-        nodes.add(inCommingPanel);
+//        nodes.add(outGoingPanel);
+//        nodes.add(inComingPanel);
         nodes.add(footer);
 
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
@@ -187,8 +201,21 @@ public class MainController extends BasicController implements InvalidationListe
             if(!value.contains("\n")) {
                 value += "\n";
             }
-            String finalValue = value;
-            UIThreadManager.getInstance().addImmediate(() -> inComing.appendText(finalValue));
+            String currentLog = inComing.getText();
+            String[] currentLogs = currentLog.split("\n");
+            if(currentLogs.length > 30)
+                currentLog = Arrays.stream(currentLogs).skip(5).collect(Collectors.joining("\n"));
+            currentLog += value;
+            String finalValue = currentLog;
+            UIThreadManager.getInstance().addImmediate(() -> {
+                double pos = inComing.getScrollTop();
+                int anchor = inComing.getAnchor();
+                int caret = inComing.getCaretPosition();
+                inComing.clear();
+                inComing.appendText(finalValue);
+                inComing.setScrollTop(pos);
+                inComing.selectRange(anchor, caret);
+            });
         } else if (observable instanceof IGyroSensor) {
             var sensorValues = ((IGyroSensor) observable).getValueGyro();
             UIThreadManager.getInstance().addImmediateOnOK(() -> {

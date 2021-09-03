@@ -22,6 +22,11 @@ mvn install:install-file \
 
 Adjust configuration in config.json file.
 
+Add VM options:
+```bash
+--add-exports com.google.gson/com.google.gson.internal=pl.edu.pwr.pwrinspace.poliwrocket
+```
+
 To run the application with maps caching use VM options:
 ```bash
 --add-opens java.base/java.net=com.sothawo.mapjfx

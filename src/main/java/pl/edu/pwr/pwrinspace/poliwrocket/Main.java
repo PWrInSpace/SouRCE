@@ -15,10 +15,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.UIUpdateEventEmitter;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.JsonMessageParser;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.StandardMessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.DiscordNotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
@@ -34,10 +31,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Notification.NotificationThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.SchedulerThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.time.Instant;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -90,14 +85,17 @@ public class Main extends Application {
             //FXMLLoader
             FXMLLoader loaderMain = new FXMLLoader(getClass().getClassLoader().getResource("MainView.fxml"));
             FXMLLoader loaderData = new FXMLLoader(getClass().getClassLoader().getResource("DataView.fxml"));
+            FXMLLoader loaderDataFlight = new FXMLLoader(getClass().getClassLoader().getResource("DataFlightView.fxml"));
+            FXMLLoader loaderDataFilling = new FXMLLoader(getClass().getClassLoader().getResource("DataFillingView.fxml"));
             FXMLLoader loaderMap = new FXMLLoader(getClass().getClassLoader().getResource("MapViewNew.fxml"));
             FXMLLoader loaderPower = new FXMLLoader(getClass().getClassLoader().getResource("PowerView.fxml"));
             FXMLLoader loaderValves = new FXMLLoader(getClass().getClassLoader().getResource("ValvesView.fxml"));
             FXMLLoader loaderMoreData = new FXMLLoader(getClass().getClassLoader().getResource("MoreDataView.fxml"));
             FXMLLoader loaderAbort = new FXMLLoader(getClass().getClassLoader().getResource("AbortView.fxml"));
-            FXMLLoader loaderStates = new FXMLLoader(getClass().getClassLoader().getResource("StatesView.fxml"));
+            FXMLLoader loaderIndicators = new FXMLLoader(getClass().getClassLoader().getResource("IndicatorsView.fxml"));
             FXMLLoader loaderStart = new FXMLLoader(getClass().getClassLoader().getResource("StartControlView.fxml"));
             FXMLLoader loaderConnection = new FXMLLoader(getClass().getClassLoader().getResource("ConnectionView.fxml"));
+            FXMLLoader loaderRawData = new FXMLLoader(getClass().getClassLoader().getResource("RAWDataView.fxml"));
 
             Scene scene = new Scene(loaderMain.load(), 1550, 750);
             //--------------
@@ -105,10 +103,12 @@ public class Main extends Application {
             //Controllers
             MainController mainController = loaderMain.getController();
             mainController.initSubScenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
-                    loaderAbort, loaderStates, loaderStart, loaderConnection);
+                    loaderAbort, loaderIndicators, loaderStart, loaderConnection, loaderRawData,loaderDataFilling,loaderDataFlight);
             mainController.setPrimaryStage(primaryStage);
 
             DataController dataController = loaderData.getController();
+            DataFillingController dataFillingController = loaderDataFilling.getController();
+            DataFlightController dataFlightController = loaderDataFlight.getController();
             NewMapController mapController = loaderMap.getController();
             final Projection projection = getParameters().getUnnamed().contains("wgs84")
                     ? Projection.WGS_84 : Projection.WEB_MERCATOR;
@@ -118,28 +118,34 @@ public class Main extends Application {
             ValvesController valvesController = loaderValves.getController();
             MoreDataController moreDataController = loaderMoreData.getController();
             AbortController abortController = loaderAbort.getController();
-            StatesController statesController = loaderStates.getController();
+            IndicatorsController indicatorsController = loaderIndicators.getController();
             StartControlController startControlController = loaderStart.getController();
             ConnectionController connectionController = loaderConnection.getController();
+            RAWDataController rawDataController = loaderRawData.getController();
             //--------------
 
             //Mapping sensors and commands to controllers
             List<BasicController> controllerList = new ArrayList<>();
             controllerList.add(mainController);
             controllerList.add(dataController);
+            controllerList.add(dataFillingController);
+            controllerList.add(dataFlightController);
             controllerList.add(mapController);
             controllerList.add(powerController);
             controllerList.add(valvesController);
             controllerList.add(moreDataController);
             controllerList.add(abortController);
-            controllerList.add(statesController);
+            controllerList.add(indicatorsController);
+            //controllerList.add(statesController);
             controllerList.add(startControlController);
             controllerList.add(connectionController);
+
+            controllerList.add(rawDataController);
             Configuration.setupApplicationConfig(controllerList);
             //--------------
 
             //IMessageParser setup
-            if(Configuration.getInstance().PARSER_TYPE == MessageParserEnum.JSON){
+            if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.JSON) {
                 messageParser = new JsonMessageParser(Configuration.getInstance().sensorRepository);
             } else if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.STANDARD) {
                 messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
@@ -147,12 +153,13 @@ public class Main extends Application {
                 messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
             }
             messageParser.addListener(mainController);
+            messageParser.addListener(rawDataController);
             messageParser.addListener(UIThreadManager.getInstance());
             //--------------
 
             //FrameSaveService setup
             frameSaveService = new FrameSaveService(Configuration.getInstance().FRAME_PATTERN.keySet());
-            Configuration.getInstance().FRAME_PATTERN.forEach((key,value) -> frameSaveService.writeFileHeader(key,value));
+            Configuration.getInstance().FRAME_PATTERN.forEach((key, value) -> frameSaveService.writeFileHeader(key, value));
             //--------------
 
             //UIUpdateEventEmitter setup
@@ -204,7 +211,7 @@ public class Main extends Application {
             primaryStage.show();
             //--------------
 
-            //testMode();
+//            testMode();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -320,4 +327,45 @@ public class Main extends Application {
 //                }
 //            }).start();
 //    }
+
+    private void testMode() {
+
+        Random random = new Random();
+        var thread = new Thread(() -> {
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            while (true) {
+                if (SerialPortManager.getInstance().isPortOpen()) {
+
+
+                    for (Map.Entry<String, List<String>> frameKey : Configuration.getInstance().FRAME_PATTERN.entrySet()) {
+                        StringBuilder raw = new StringBuilder(frameKey.getKey() + Configuration.getInstance().FRAME_DELIMITER);
+
+                        for (String sensorKey : frameKey.getValue()) {
+                            switch (sensorKey) {
+                                default:
+                                    raw.append(random.nextDouble() * 100);
+                            }
+                            raw.append(Configuration.getInstance().FRAME_DELIMITER);
+                        }
+                        Frame frame = new Frame(raw.toString(), Instant.now());
+                        messageParser.parseMessage(frame);
+                        frameSaveService.saveFrameToFile(frame);
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
 }

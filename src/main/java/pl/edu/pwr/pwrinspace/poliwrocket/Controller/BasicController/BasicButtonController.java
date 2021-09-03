@@ -18,7 +18,7 @@ public abstract class BasicButtonController extends BasicController {
 
     protected HashSet<ICommand> commands = new HashSet<>();
 
-    private static final Logger logger = LoggerFactory.getLogger(BasicButtonController.class);
+    protected static final Logger logger = LoggerFactory.getLogger(BasicButtonController.class);
 
 
     public void assignsCommands(Collection<ICommand> commands){

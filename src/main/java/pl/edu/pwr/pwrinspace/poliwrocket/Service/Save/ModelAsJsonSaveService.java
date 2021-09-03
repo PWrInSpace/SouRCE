@@ -5,15 +5,22 @@ import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ByteSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.FillingLevelSensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 
 import java.io.*;
 
 public class ModelAsJsonSaveService {
 
     private static final Logger logger = LoggerFactory.getLogger(ModelAsJsonSaveService.class);
+    private final RuntimeTypeAdapterFactory<Sensor> sensorAdapterFactory = RuntimeTypeAdapterFactory.of(Sensor.class, "type")
+            .registerSubtype(Sensor.class, "Sensor")
+            .registerSubtype(FillingLevelSensor.class, "FillingLevelSensor")
+            .registerSubtype(ByteSensor.class, "ByteSensor");
 
     public void saveToFile(BaseSaveModel configuration) {
-        String configContent = new Gson().newBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().disableHtmlEscaping().create().toJson(configuration);
+        String configContent = new Gson().newBuilder().registerTypeAdapterFactory(sensorAdapterFactory).excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().disableHtmlEscaping().create().toJson(configuration);
         File configFile = new File(configuration.getPath() + configuration.getFileName());
 
         try (FileWriter configWriter = new FileWriter(configFile)) {
@@ -42,7 +49,7 @@ public class ModelAsJsonSaveService {
         File configFile = new File(config.getPath() + config.getFileName());
 
         try (JsonReader reader = new JsonReader(new FileReader(configFile))) {
-            config = new Gson().newBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson(reader, config.getClass());
+            config = new Gson().newBuilder().registerTypeAdapterFactory(sensorAdapterFactory).excludeFieldsWithoutExposeAnnotation().create().fromJson(reader, config.getClass());
         } catch (Exception e) {
             logger.error(e.getMessage());
             throw new Exception(e.getMessage());

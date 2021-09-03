@@ -5,6 +5,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
 import java.util.*;
 
@@ -85,7 +86,9 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener, 
         if (observable == latitude) {
             isLatUpToDate = true;
         }
-        if (isLongUpToDate && isLatUpToDate && latitude.getValue() != 0 && longitude.getValue() != 0) {
+        if (isLongUpToDate && isLatUpToDate
+                && Math.abs(latitude.getValue() - Configuration.getInstance().START_POSITION_LAT) > 2.0
+                && Math.abs(longitude.getValue() - Configuration.getInstance().START_POSITION_LON) > 2.0) {
             notifyObserver();
             isLongUpToDate = false;
             isLatUpToDate = false;
