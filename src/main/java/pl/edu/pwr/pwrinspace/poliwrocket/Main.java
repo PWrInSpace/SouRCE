@@ -96,6 +96,7 @@ public class Main extends Application {
             FXMLLoader loaderStart = new FXMLLoader(getClass().getClassLoader().getResource("StartControlView.fxml"));
             FXMLLoader loaderConnection = new FXMLLoader(getClass().getClassLoader().getResource("ConnectionView.fxml"));
             FXMLLoader loaderRawData = new FXMLLoader(getClass().getClassLoader().getResource("RAWDataView.fxml"));
+            FXMLLoader loaderSettings = new FXMLLoader(getClass().getClassLoader().getResource("SettingsView.fxml"));
 
             Scene scene = new Scene(loaderMain.load(), 1550, 750);
             //--------------
@@ -103,7 +104,8 @@ public class Main extends Application {
             //Controllers
             MainController mainController = loaderMain.getController();
             mainController.initSubScenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
-                    loaderAbort, loaderIndicators, loaderStart, loaderConnection, loaderRawData,loaderDataFilling,loaderDataFlight);
+                    loaderAbort, loaderIndicators, loaderStart, loaderConnection, loaderRawData,loaderDataFilling,
+                    loaderDataFlight, loaderSettings);
             mainController.setPrimaryStage(primaryStage);
 
             DataController dataController = loaderData.getController();

@@ -19,6 +19,9 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public int AVERAGING_PERIOD = 1000;
 
     @Expose
+    public int BUFFER_SIZE;
+
+    @Expose
     public double START_POSITION_LAT;
 
     @Expose
@@ -59,6 +62,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         ConfigurationSaveModel config = new ConfigurationSaveModel();
         config.FPS = configuration.FPS;
         config.AVERAGING_PERIOD = configuration.AVERAGING_PERIOD;
+        config.BUFFER_SIZE = configuration.BUFFER_SIZE;
         config.START_POSITION_LAT = configuration.START_POSITION_LAT;
         config.START_POSITION_LON = configuration.START_POSITION_LON;
         config.PARSER_TYPE = configuration.PARSER_TYPE;

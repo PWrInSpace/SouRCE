@@ -3,9 +3,11 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import eu.hansolo.tilesfx.Tile;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IAlert;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -14,7 +16,7 @@ import java.util.HashMap;
 
 public class DataFillingController extends BasicSensorController {
 
-    private static final int _duration = 10;
+    private static final int _duration = 30;
 
     private static final Duration DURATION = Duration.ofSeconds(_duration);
 
@@ -58,7 +60,8 @@ public class DataFillingController extends BasicSensorController {
         tileHashMap.put(dataGauge6.getId(), dataGauge6);
         tileHashMap.put(dataGauge7.getId(), dataGauge7);
         tileHashMap.put(dataGauge8.getId(), dataGauge8);
-
+        dataGauge1.setAlert(true);
+        dataGauge2.setValueColor(Color.WHITE);
         tileHashMap.forEach((s, tile) -> tile.setVisible(false));
     }
 
@@ -76,6 +79,7 @@ public class DataFillingController extends BasicSensorController {
                 tile.setAverageVisible(true);
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
+                tile.setAveragingPeriod(_duration);
                 if(!sensor.isBoolean()) {
                     UIThreadManager.getInstance().addActiveSensor();
                 }
@@ -106,7 +110,18 @@ public class DataFillingController extends BasicSensorController {
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
-            UIThreadManager.getInstance().addNormal(() -> tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue()));
+            UIThreadManager.getInstance().addNormal(() -> {
+                var gauge = tileHashMap.get(sensor.getDestination());
+                if(sensor instanceof IAlert) {
+                    if(((IAlert)sensor).getAlert()) {
+                        gauge.setValueColor(Color.rgb(0,255,68));
+                    } else {
+                        gauge.setValueColor(Color.WHITE);
+                    }
+                }
+                gauge.setValue(sensor.getValue());
+
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

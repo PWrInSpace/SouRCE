@@ -59,7 +59,7 @@
                   <Region />
                </root>
             </SubScene>
-            <TabPane layoutX="225.0" layoutY="10.0" prefHeight="700.0" prefWidth="890.0" style="-fx-background-color: black;" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" layoutX="225.0" layoutY="10.0" prefHeight="700.0" prefWidth="890.0" style="-fx-background-color: black;" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab closable="false" text="Filling">
                   <content>
@@ -110,6 +110,19 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="Settings">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <SubScene fx:id="settingsScene" height="650.0" layoutX="10.0" layoutY="10.0" width="460.0">
+                                <root>
+                                  <Region />
+                                </root>
+                              </SubScene>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
               </tabs>
             </TabPane>
             <SubScene fx:id="indicatorsScene" height="75.0" layoutX="226.0" layoutY="714.0" width="472.0">

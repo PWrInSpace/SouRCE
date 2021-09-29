@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class DataController extends BasicSensorController {
 
-    private static final int _duration = 10;
+    private static final int _duration = 30;
 
     private static final Duration DURATION = Duration.ofSeconds(_duration);
 
@@ -56,6 +56,7 @@ public class DataController extends BasicSensorController {
                 tile.setAverageVisible(true);
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
+                tile.setAveragingPeriod(_duration);
                 if(!sensor.isBoolean()) {
                     UIThreadManager.getInstance().addActiveSensor();
                 }

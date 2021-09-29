@@ -108,6 +108,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         if (isBoolean || currentTime - this.timeStamp.toEpochMilli() >=  1000) {
             this.value = newValue;
             this.shouldNotify = true;
+            this.lastReportedValue = this.value;
         } else if (currentTime - this.lastAveragingTimeStamp.toEpochMilli() >= Configuration.getInstance().AVERAGING_PERIOD) {
             this.value = this.getAverage();
             this.lastAveragingTimeStamp = currentTimeStamp;

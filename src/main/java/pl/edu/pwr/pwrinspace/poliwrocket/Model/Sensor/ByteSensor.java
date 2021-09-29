@@ -19,10 +19,26 @@ public class ByteSensor extends Sensor {
         return sensors;
     }
 
+   /* @Override
+    protected void notifyObserver() {
+        int valasInt= (int)this.getValue();
+        String values = String.format("%" + 8 + "s", Integer.toBinaryString(valasInt)).replaceAll(" ", "0");
+        int k = 0;
+        if(values.length() == 8)
+            for (int i = values.length() - 1; i >= 0; i--) {
+                sensors[k].setValue(bitToDouble(values.charAt(i)));
+                k++;
+            }
+    }*/
+
     @Override
     protected void notifyObserver() {
-        String values = Integer.toBinaryString((int)this.getValue());
-        if(values.length() == 7)
+        int valasInt= (int)this.getValue();
+        String values =Integer.toBinaryString(valasInt);
+        while (values.length() < 8) {
+            values += "0";
+        }
+        if(values.length() == 8)
             for (int i = 0; i < values.length(); i++) {
                 sensors[i].setValue(bitToDouble(values.charAt(i)));
             }

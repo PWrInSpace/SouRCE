@@ -5,9 +5,7 @@ import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ByteSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.FillingLevelSensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
 
 import java.io.*;
 
@@ -17,6 +15,8 @@ public class ModelAsJsonSaveService {
     private final RuntimeTypeAdapterFactory<Sensor> sensorAdapterFactory = RuntimeTypeAdapterFactory.of(Sensor.class, "type")
             .registerSubtype(Sensor.class, "Sensor")
             .registerSubtype(FillingLevelSensor.class, "FillingLevelSensor")
+            .registerSubtype(TareSensor.class, "TareSensor")
+            .registerSubtype(AlertSensor.class, "AlertSensor")
             .registerSubtype(ByteSensor.class, "ByteSensor");
 
     public void saveToFile(BaseSaveModel configuration) {

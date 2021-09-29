@@ -20,6 +20,8 @@ public class Configuration {
 
     public int AVERAGING_PERIOD = 1000;
 
+    public int BUFFER_SIZE;
+
     public double START_POSITION_LAT = 49.013517;
 
     public double START_POSITION_LON = 8.404435;
@@ -63,6 +65,7 @@ public class Configuration {
     public void setupConfigInstance(ConfigurationSaveModel config) {
         this.FPS = config.FPS;
         this.AVERAGING_PERIOD = config.AVERAGING_PERIOD;
+        this.BUFFER_SIZE = config.BUFFER_SIZE;
         this.START_POSITION_LAT = config.START_POSITION_LAT;
         this.START_POSITION_LON = config.START_POSITION_LON;
         this.PARSER_TYPE = config.PARSER_TYPE;
@@ -107,7 +110,8 @@ public class Configuration {
 
         Arrays.stream(basicSensors).filter(s -> s instanceof ByteSensor).forEach(s -> {
             for (Sensor innerSensor: ((ByteSensor) s).getSensors()) {
-                this.sensorRepository.addSensor(innerSensor);
+                if(!innerSensor.getName().isEmpty())
+                    this.sensorRepository.addSensor(innerSensor);
             }
         });
     }

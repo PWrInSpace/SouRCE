@@ -87,8 +87,8 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener, 
             isLatUpToDate = true;
         }
         if (isLongUpToDate && isLatUpToDate
-                && Math.abs(latitude.getValue() - Configuration.getInstance().START_POSITION_LAT) > 2.0
-                && Math.abs(longitude.getValue() - Configuration.getInstance().START_POSITION_LON) > 2.0) {
+                && Math.abs(latitude.getValue() - Configuration.getInstance().START_POSITION_LAT) < 2.0
+                && Math.abs(longitude.getValue() - Configuration.getInstance().START_POSITION_LON) < 2.0) {
             notifyObserver();
             isLongUpToDate = false;
             isLatUpToDate = false;

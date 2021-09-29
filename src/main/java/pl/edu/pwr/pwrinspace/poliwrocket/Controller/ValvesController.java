@@ -77,6 +77,9 @@ public class ValvesController extends BasicButtonSensorController {
 
 
     private final HashMap<String,Indicator> indicatorHashMap = new HashMap<>();
+    private final HashMap<String,Label> labelHashMap = new HashMap<>();
+    private final HashMap<String,Button> closeHashMap = new HashMap<>();
+    private final HashMap<String,Button> openHashMap = new HashMap<>();
 
     @FXML
     void initialize() {
@@ -99,6 +102,24 @@ public class ValvesController extends BasicButtonSensorController {
         indicatorHashMap.put(valveIndicator3.getId(),valveIndicator3);
         indicatorHashMap.put(valveIndicator4.getId(),valveIndicator4);
         indicatorHashMap.put(valveIndicator5.getId(),valveIndicator5);
+
+        labelHashMap.put(valveIndicator1.getId(),valveLabel1);
+        labelHashMap.put(valveIndicator2.getId(),valveLabel2);
+        labelHashMap.put(valveIndicator3.getId(),valveLabel3);
+        labelHashMap.put(valveIndicator4.getId(),valveLabel4);
+        labelHashMap.put(valveIndicator5.getId(),valveLabel5);
+
+        openHashMap.put(valveIndicator1.getId(),valveOpenButton1);
+        openHashMap.put(valveIndicator2.getId(),valveOpenButton2);
+        openHashMap.put(valveIndicator3.getId(),valveOpenButton3);
+        openHashMap.put(valveIndicator4.getId(),valveOpenButton4);
+        openHashMap.put(valveIndicator5.getId(),valveOpenButton5);
+
+        closeHashMap.put(valveIndicator1.getId(),valveCloseButton1);
+        closeHashMap.put(valveIndicator2.getId(),valveCloseButton2);
+        closeHashMap.put(valveIndicator3.getId(),valveCloseButton3);
+        closeHashMap.put(valveIndicator4.getId(),valveCloseButton4);
+        closeHashMap.put(valveIndicator5.getId(),valveCloseButton5);
     }
 
     @Override
@@ -106,6 +127,9 @@ public class ValvesController extends BasicButtonSensorController {
         for (ISensor s : sensors) {
             var indicator = indicatorHashMap.get(s.getDestination());
             indicator.setVisible(true);
+
+            var label = labelHashMap.get(s.getDestination());
+            label.setText(s.getName());
         }
     }
 
@@ -119,7 +143,16 @@ public class ValvesController extends BasicButtonSensorController {
                 } else {
                     indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Tile.BLUE);
                 }
-                indicatorHashMap.get(sensor.getDestination()).setOn(sensor.getValue() >= 1.0);
+
+                if(sensor.getValue() >= 1.0) {
+                    indicatorHashMap.get(sensor.getDestination()).setOn(true);
+                    closeHashMap.get(sensor.getDestination()).setDefaultButton(true);
+                    openHashMap.get(sensor.getDestination()).setDefaultButton(false);
+                } else {
+                    indicatorHashMap.get(sensor.getDestination()).setOn(false);
+                    closeHashMap.get(sensor.getDestination()).setDefaultButton(false);
+                    openHashMap.get(sensor.getDestination()).setDefaultButton(true);
+                }
             });
         } catch (Exception e) {
             e.printStackTrace();

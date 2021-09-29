@@ -1,81 +1,229 @@
 {
-  "FPS": 1,
-  "START_POSITION_LAT": 53.4801751,
-  "START_POSITION_LON": 15.6825776,
+  "FPS": 10,
+  "AVERAGING_PERIOD": 500,
+  "BUFFER_SIZE": 0,
+  "START_POSITION_LAT": 50.33749,
+  "START_POSITION_LON": 19.53130,
   "PARSER_TYPE": "STANDARD",
   "FRAME_DELIMITER": ";",
-  "DISCORD_TOKEN": "NzY3MDE4NjExMjM1NjE4ODM5.X4rzvw.wwSA1Tf7G_9W04wPBn9KZpqYtTI",
-  "DISCORD_CHANNEL_NAME": "rocket",
+  "DISCORD_TOKEN": "",
+  "DISCORD_CHANNEL_NAME": "",
   "FRAME_PATTERN": {
-    "ADAT": [
-	  "State",
-      "latitude",
-      "longitude",
-      "AltitudeGPS",
-	  "Time",
-	  "Quality",
-	  "Sats",
-	  "SD",
-	  "Presure",
-	  "PresureDynamic",
-	  "Altitude",
-	  "Velocity",
-	  "Sep1",
-	  "Sep2"
+    "R4GP": [
+      "lat",
+      "long",
+      "Altitude",
+      "Sats",
+      "GPSTIME",
+      "Hall1",
+      "Hall2",
+      "Hall3",
+      "Hall4",
+      "Hall5"
     ],
-	"DDAT": [
-	  "StateIgni",
-	  "Igniter"
+    "R4MC": [
+      "MCSTATE",
+      "TIME",
+      "MCVol",
+      "PSTAT",
+      "PDYN",
+      "PALT",
+      "PVEL",
+      "PTEMP",
+      "UKran",
+      "UPot",
+      "MVKran",
+      "MVPot",
+      "TankPressure",
+      "AtmoPressure",
+      "Alt2",
+      "Vel",
+      "Accel",
+      "ESPError",
+      "SDError",
+      "ByteStatuses",
+      "ByteStatuses2",
+      "Countdown"
+    ],
+    "R4TN": [
+      "TNVOL",
+      "TNSTATE",
+      "IGNI",
+      "FILVAL",
+      "DEPRVAL",
+      "QDISC",
+      "DODATKOWY",
+      "MWEIGHT",
+      "RWEIGHT"
     ]
   },
   "commandsList": [
     {
-      "value": "STAT;2;3",
-      "trigger": "Go to ARMED",
-      "destinationControllerNames": [
-        "CONNECTION_CONTROLLER"
-      ]
-    },
-    {
-      "value": "STAT;3;4",
-      "trigger": "Go to READY",
-      "destinationControllerNames": [
-        "CONNECTION_CONTROLLER"
-      ]
-    },
-	{
-      "value": "STAT;4;5",
-      "trigger": "Go to LAUNCH",
-      "destinationControllerNames": [
-        "CONNECTION_CONTROLLER"
-      ]
-    },
-	{
-      "value": "STAT;2;3",
-      "trigger": "armingButton1",
+      "value": "MNCP;STAT;1;2",
+      "trigger": "stateButton1",
+      "description": "M 1->2",
       "destinationControllerNames": [
         "START_CONTROL_CONTROLLER"
       ]
     },
     {
-      "value": "STAT;3;4",
-      "trigger": "armingButton2",
-      "destinationControllerNames": [
-        "START_CONTROL_CONTROLLER"
-      ]
-    },
-	{
-      "value": "STAT;4;5",
-      "trigger": "fireButton",
+      "value": "MNCP;STAT;2;3",
+      "trigger": "stateButton2",
+      "description": "M 2->3",
       "destinationControllerNames": [
         "START_CONTROL_CONTROLLER"
       ]
     },
     {
-      "value": "ABRT",
+      "value": "TNWN;STAT;1;2",
+      "trigger": "stateButton3",
+      "description": "TN 1->2",
+      "destinationControllerNames": [
+        "START_CONTROL_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;STAT;2;3",
+      "trigger": "stateButton4",
+      "description": "TN 2->3",
+      "destinationControllerNames": [
+        "START_CONTROL_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;STAT;5;6",
+      "trigger": "stateButton5",
+      "description": "M 5->6",
+      "destinationControllerNames": [
+        "START_CONTROL_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;STAT;6;7",
+      "trigger": "stateButton6",
+      "description": "M 6->7",
+      "destinationControllerNames": [
+        "START_CONTROL_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;ABRT",
       "trigger": "abortButton",
+      "description": "abort",
       "destinationControllerNames": [
         "ABORT_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWCT;000160",
+      "trigger": "TNWN;DWCT;000160",
+      "description": "",
+      "destinationControllerNames": [
+        "START_CONTROL_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWCR;3563",
+      "trigger": "TNWN;DWCR;3563",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;STAT;7;8",
+      "trigger": "M 7 -> 8",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;STAT;2;7",
+      "trigger": "M 2 -> 7",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DZTO",
+      "trigger": "valveOpenButton1",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DZTZ",
+      "trigger": "valveCloseButton1",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DZOO",
+      "trigger": "valveOpenButton2",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DZOZ",
+      "trigger": "valveCloseButton2",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DZDO",
+      "trigger": "valveOpenButton3",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DZDZ",
+      "trigger": "valveCloseButton3",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;UPST;1;0",
+      "trigger": "valveOpenButton4",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;UPST;0;0",
+      "trigger": "valveCloseButton4",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;UPST;1;250",
+      "trigger": "valveOpenButton5",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "MNCP;UPST;0;250",
+      "trigger": "valveCloseButton5",
+      "description": "",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
       ]
     }
   ],
@@ -98,106 +246,216 @@
   ],
   "sensorRepository": {
     "sensors": {
-      "AltitudeGPS": {
+      "Altitude": {
+        "type": "Sensor",
         "destination": "dataGauge10",
         "name": "AltitudeGPS",
         "unit": "m",
         "destinationControllerNames": [
           "MORE_DATA_CONTROLLER"
         ],
-        "maxRange": 1800.0,
+        "maxRange": 3500.0,
         "minRange": 0.0,
         "isBoolean": false
       },
-	   "Quality": {
-        "destination": "dataGauge8",
-        "name": "Quality",
-        "unit": "nr",
+      "Sats": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "Sats",
+        "unit": "",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 30.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "GPSTIME": {
+        "type": "Sensor",
+        "destination": "dataGauge2",
+        "name": "GPSTIME",
+        "unit": "s",
+        "destinationControllerNames": [
+          "DATA_FLIGHT_CONTROLLER"
+        ],
+        "maxRange": 60.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "MCSTATE": {
+        "type": "Sensor",
+        "destination": "dataGauge1",
+        "name": "Main STATE",
+        "unit": "",
         "destinationControllerNames": [
           "DATA_CONTROLLER"
         ],
         "maxRange": 10.0,
         "minRange": 0.0,
-        "isBoolean": false
-      },
-	   "Sats": {
-        "destination": "dataGauge5",
-        "name": "Sats",
-        "unit": "nr",
-        "destinationControllerNames": [
-          "DATA_CONTROLLER"
-        ],
-        "maxRange": 21.0,
-        "minRange": 0.0,
-        "isBoolean": false
-      },
-	   "Presure": {
-        "destination": "dataGauge6",
-        "name": "Presure",
-        "unit": "hPa",
-        "destinationControllerNames": [
-          "DATA_CONTROLLER"
-        ],
-        "maxRange": 1100.0,
-        "minRange": 0.0,
-        "isBoolean": false
-      },
-	   "PresureDynamic": {
-        "destination": "dataGauge7",
-        "name": "PresureDynamic",
-        "unit": "hPa",
-        "destinationControllerNames": [
-          "DATA_CONTROLLER"
-        ],
-        "maxRange": 3000.0,
-        "minRange": 0.0,
-        "isBoolean": false
-      },
-      "SD": {
-        "destination": "dataIndicator1",
-        "name": "SD",
-        "unit": "nr",
-        "destinationControllerNames": [
-          "MORE_DATA_CONTROLLER"
-        ],
-        "maxRange": 360.0,
-        "minRange": -360.0,
         "isBoolean": true
       },
-      "Sep1": {
-        "destination": "dataIndicator2",
-        "name": "Sep1",
+      "TIME": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "TIME",
+        "unit": "",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 60.0,
+        "minRange": 0.0,
+        "isBoolean": true
+      },
+      "MCVol": {
+        "type": "Sensor",
+        "destination": "powerGauge1",
+        "name": "MainComp",
+        "unit": "",
+        "destinationControllerNames": [
+          "POWER_CONTROLLER"
+        ],
+        "maxRange": 12.6,
+        "minRange": 9.9,
+        "isBoolean": false
+      },
+      "PSTAT": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "Pitot press STAT",
+        "unit": "Pa",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 1500.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "PDYN": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "Pitot press DYN",
+        "unit": "Pa",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 1500.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "PALT": {
+        "type": "Sensor",
+        "destination": "dataGauge3",
+        "name": "Pitot press ALT",
         "unit": "m",
         "destinationControllerNames": [
-          "MORE_DATA_CONTROLLER"
+          "DATA_FLIGHT_CONTROLLER"
         ],
-        "maxRange": 360.0,
-        "minRange": -360.0,
+        "maxRange": 4000.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "PVEL": {
+        "type": "Sensor",
+        "destination": "dataGauge4",
+        "name": "Pitot press VEL",
+        "unit": "m/s",
+        "destinationControllerNames": [
+          "DATA_FLIGHT_CONTROLLER"
+        ],
+        "maxRange": 400.0,
+        "minRange": 0.0,
         "isBoolean": true
       },
-      "Sep2": {
-        "destination": "dataIndicator3",
-        "name": "Sep2",
-        "unit": "nr",
+      "PTEMP": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "Temperature",
+        "unit": "C",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 40.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "UKran": {
+        "type": "Sensor",
+        "destination": "valveIndicator4",
+        "name": "UKran",
+        "unit": "",
+        "destinationControllerNames": [
+          "VALVES_CONTROLLER"
+        ],
+        "maxRange": 2.0,
+        "minRange": 0.0,
+        "isBoolean": true
+      },
+      "UPot": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "UPot",
+        "unit": "",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 30.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "MVKran": {
+        "type": "Sensor",
+        "destination": "dataIndicator1",
+        "name": "MainValve",
+        "unit": "",
         "destinationControllerNames": [
           "MORE_DATA_CONTROLLER"
         ],
-        "maxRange": 360.0,
-        "minRange": -360.0,
+        "maxRange": 2.0,
+        "minRange": 0.0,
         "isBoolean": true
       },
-	  "Igniter": {
-        "destination": "dataIndicator4",
-        "name": "Igniter",
-        "unit": "nr",
+      "MVPot": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "MVPot",
+        "unit": "",
         "destinationControllerNames": [
-          "MORE_DATA_CONTROLLER"
         ],
-        "maxRange": 360.0,
-        "minRange": -360.0,
-        "isBoolean": true
+        "maxRange": 120.0,
+        "minRange": 50.0,
+        "isBoolean": false
       },
-      "Velocity": {
+      "TankPressure": {
+        "type": "Sensor",
+        "destination": "dataGauge3",
+        "name": "TankPressure",
+        "unit": "",
+        "destinationControllerNames": [
+          "DATA_FILLING_CONTROLLER"
+        ],
+        "maxRange": 30.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "AtmoPressure": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "Atmo Pressure",
+        "unit": "Pa",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 1500.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "Alt2": {
+        "type": "Sensor",
+        "destination": "dataGauge7",
+        "name": "Height",
+        "unit": "m",
+        "destinationControllerNames": [
+          "DATA_FLIGHT_CONTROLLER"
+        ],
+        "maxRange": 4000.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "Vel": {
+        "type": "Sensor",
         "destination": "dataGauge9",
         "name": "Velocity",
         "unit": "m/s",
@@ -205,41 +463,457 @@
           "MORE_DATA_CONTROLLER"
         ],
         "maxRange": 400.0,
-        "minRange": 0.0,
+        "minRange": -100.0,
         "isBoolean": false
       },
-      "Altitude": {
-        "destination": "dataGauge1",
-        "name": "Altitude",
-        "unit": "m",
+      "Accel": {
+        "type": "Sensor",
+        "destination": "dataGauge8",
+        "name": "Accel",
+        "unit": "m/s^2",
+        "destinationControllerNames": [
+          "DATA_FLIGHT_CONTROLLER"
+        ],
+        "maxRange": 150.0,
+        "minRange": -20.0,
+        "isBoolean": false
+      },
+      "ESPError": {
+        "type": "Sensor",
+        "destination": "dataGauge2",
+        "name": "ESPError",
+        "unit": "",
         "destinationControllerNames": [
           "DATA_CONTROLLER"
         ],
-        "maxRange": 1800.0,
+        "maxRange": 10000.0,
         "minRange": 0.0,
         "isBoolean": false
       },
-	   "State": {
+      "SDError": {
+        "type": "Sensor",
         "destination": "dataGauge3",
-        "name": "State",
-        "unit": "nr",
+        "name": "SDError",
+        "unit": "",
         "destinationControllerNames": [
           "DATA_CONTROLLER"
         ],
-        "maxRange": 9.0,
+        "maxRange": 10000.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "Countdown": {
+        "type": "Sensor",
+        "destination": "dataGauge5",
+        "name": "Countdown",
+        "unit": "s",
+        "destinationControllerNames": [
+          "DATA_FLIGHT_CONTROLLER"
+        ],
+        "maxRange": 32.0,
         "minRange": 0.0,
         "isBoolean": true
       },
-	  "StateIgni": {
-        "destination": "dataGauge4",
-        "name": "StateIgni",
-        "unit": "nr",
+      "TNSTATE": {
+        "type": "Sensor",
+        "destination": "dataGauge1",
+        "name": "TNState",
+        "unit": "",
         "destinationControllerNames": [
-          "DATA_CONTROLLER"
+          "DATA_FLIGHT_CONTROLLER"
         ],
-        "maxRange": 9.0,
+        "maxRange": 10.0,
         "minRange": 0.0,
+        "isBoolean": true
+      },
+      "TNVOL": {
+        "type": "Sensor",
+        "destination": "powerGauge2",
+        "name": "TNVol",
+        "unit": "V",
+        "destinationControllerNames": [
+          "POWER_CONTROLLER"
+        ],
+        "maxRange": 12.6,
+        "minRange": 9.9,
         "isBoolean": false
+      },
+      "IGNI": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "Igniter",
+        "unit": "",
+        "destinationControllerNames": [
+
+        ],
+        "maxRange": 2.0,
+        "minRange": 0.0,
+        "isBoolean": true
+      },
+      "FILVAL": {
+        "type": "Sensor",
+        "destination": "valveIndicator1",
+        "name": "FILVAL",
+        "unit": "",
+        "destinationControllerNames": [
+          "VALVES_CONTROLLER"
+        ],
+        "maxRange": 2.0,
+        "minRange": 0.0,
+        "isBoolean": true
+      },
+      "DEPRVAL": {
+        "type": "Sensor",
+        "destination": "valveIndicator2",
+        "name": "DEPRVAL",
+        "unit": "",
+        "destinationControllerNames": [
+          "VALVES_CONTROLLER"
+        ],
+        "maxRange": 2.0,
+        "minRange": 0.0,
+        "isBoolean": true
+      },
+      "MWEIGHT": {
+        "type": "TareSensor",
+        "destination": "dataGauge2",
+        "name": "MotherWeight",
+        "unit": "kg",
+        "destinationControllerNames": [
+          "DATA_FILLING_CONTROLLER"
+        ],
+        "maxRange": 30.0,
+        "minRange": -30.0,
+        "isBoolean": false
+      },
+      "RWEIGHT": {
+        "type": "TareSensor",
+        "destination": "dataGauge1",
+        "name": "RocketWeight",
+        "unit": "kg",
+        "destinationControllerNames": [
+          "DATA_FILLING_CONTROLLER"
+        ],
+        "maxRange": 30.0,
+        "minRange": -30.0,
+        "isBoolean": false
+      },
+      "QDISC": {
+        "type": "Sensor",
+        "destination": "valveIndicator3",
+        "name": "Quick disconnect",
+        "unit": "",
+        "destinationControllerNames": [
+
+        ],
+        "maxRange": 2.0,
+        "minRange": 0.0,
+        "isBoolean": true
+      },
+      "DODATKOWY": {
+        "type": "Sensor",
+        "destination": "",
+        "name": "",
+        "unit": "",
+        "destinationControllerNames": [
+        ],
+        "maxRange": 2.0,
+        "minRange": 0.0,
+        "isBoolean": true
+      },
+      "N02Level": {
+        "type": "FillingLevelSensor",
+        "hallSensor1": {
+          "type": "AlertSensor",
+          "destination": "",
+          "name": "Hall1",
+          "unit": "",
+          "destinationControllerNames": [
+          ],
+          "maxRange": 4095.0,
+          "minRange": -360.0,
+          "isBoolean": false,
+          "alertDelta": 150.0,
+          "nominalValue": 3050.0
+        },
+        "hallSensor2": {
+          "type": "AlertSensor",
+          "destination": "",
+          "name": "Hall2",
+          "unit": "",
+          "destinationControllerNames": [
+          ],
+          "maxRange": 4095.0,
+          "minRange": -360.0,
+          "isBoolean": false,
+          "alertDelta": 150.0,
+          "nominalValue": 3050.0
+        },
+        "hallSensor3": {
+          "type": "AlertSensor",
+          "destination": "dataGauge5",
+          "name": "Hall3",
+          "unit": "",
+          "destinationControllerNames": [
+            "DATA_FILLING_CONTROLLER"
+          ],
+          "maxRange": 4095.0,
+          "minRange": -360.0,
+          "isBoolean": false,
+          "alertDelta": 150.0,
+          "nominalValue": 3050.0
+        },
+        "hallSensor4": {
+          "type": "AlertSensor",
+          "destination": "dataGauge6",
+          "name": "Hall4",
+          "unit": "",
+          "destinationControllerNames": [
+            "DATA_FILLING_CONTROLLER"
+          ],
+          "maxRange": 4095.0,
+          "minRange": -360.0,
+          "isBoolean": false,
+          "alertDelta": 150.0,
+          "nominalValue": 3050.0
+        },
+        "hallSensor5": {
+          "type": "AlertSensor",
+          "destination": "dataGauge7",
+          "name": "Hall5",
+          "unit": "",
+          "destinationControllerNames": [
+            "DATA_FILLING_CONTROLLER"
+          ],
+          "maxRange": 4095.0,
+          "minRange": -360.0,
+          "isBoolean": false,
+          "alertDelta": 150.0,
+          "nominalValue": 3050.0
+        },
+        "destination": "",
+        "name": "N02Level",
+        "unit": "%",
+        "destinationControllerNames": [],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": false
+      },
+      "ByteStatuses": {
+        "type": "ByteSensor",
+        "sensors": [
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator1",
+            "name": "AtmegaSoftArm",
+            "unit": "",
+            "destinationControllerNames": [
+              "INDICATORS_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator2",
+            "name": "Sep1Done",
+            "unit": "",
+            "destinationControllerNames": [
+              "MORE_DATA_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator3",
+            "name": "Sep2Done",
+            "unit": "",
+            "destinationControllerNames": [
+              "MORE_DATA_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator2",
+            "name": "Igni1",
+            "unit": "",
+            "destinationControllerNames": [
+              "INDICATORS_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator3",
+            "name": "Igni2",
+            "unit": "",
+            "destinationControllerNames": [
+              "INDICATORS_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator4",
+            "name": "AltApoge",
+            "unit": "",
+            "destinationControllerNames": [
+              "INDICATORS_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator5",
+            "name": "Alt200",
+            "unit": "",
+            "destinationControllerNames": [
+              "INDICATORS_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator6",
+            "name": "TelemApoge",
+            "unit": "",
+            "destinationControllerNames": [
+              "INDICATORS_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          }
+        ],
+        "destination": "",
+        "name": "ByteStatuses",
+        "unit": "",
+        "destinationControllerNames": [],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": true
+      },
+      "ByteStatuses2": {
+        "type": "ByteSensor",
+        "sensors": [
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator7",
+            "name": "Telem200",
+            "unit": "",
+            "destinationControllerNames": [
+              "INDICATORS_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+
+          {
+            "type": "Sensor",
+            "destination": "dataIndicator4",
+            "name": "Stozek",
+            "unit": "",
+            "destinationControllerNames": [
+              "MORE_DATA_CONTROLLER"
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "",
+            "name": "",
+            "unit": "",
+            "destinationControllerNames": [
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "",
+            "name": "",
+            "unit": "",
+            "destinationControllerNames": [
+
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "",
+            "name": "",
+            "unit": "",
+            "destinationControllerNames": [
+
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "",
+            "name": "",
+            "unit": "",
+            "destinationControllerNames": [
+
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "",
+            "name": "",
+            "unit": "",
+            "destinationControllerNames": [
+
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          },
+          {
+            "type": "Sensor",
+            "destination": "",
+            "name": "Tel200",
+            "unit": "",
+            "destinationControllerNames": [
+            ],
+            "maxRange": 2.0,
+            "minRange": 0.0,
+            "isBoolean": true
+          }
+        ],
+        "destination": "",
+        "name": "ByteStatuses",
+        "unit": "",
+        "destinationControllerNames": [],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": true
       }
     },
     "gpsSensor": {
@@ -247,7 +921,9 @@
         "MAP_CONTROLLER"
       ],
       "latitude": {
-        "name": "latitude",
+        "type": "Sensor",
+        "destination": "",
+        "name": "lat",
         "unit": "m",
         "destinationControllerNames": [],
         "maxRange": 360.0,
@@ -255,7 +931,9 @@
         "isBoolean": false
       },
       "longitude": {
-        "name": "longitude",
+        "type": "Sensor",
+        "destination": "",
+        "name": "long",
         "unit": "m",
         "destinationControllerNames": [],
         "maxRange": 360.0,
@@ -265,33 +943,33 @@
     },
     "gyroSensor": {
       "axis_x": {
+        "type": "Sensor",
         "destination": "",
         "name": "Gyro X",
         "unit": "m",
         "destinationControllerNames": [
-          
         ],
         "maxRange": 360.0,
         "minRange": -360.0,
         "isBoolean": false
       },
       "axis_y": {
+        "type": "Sensor",
         "destination": "",
         "name": "Gyro Y",
         "unit": "m",
         "destinationControllerNames": [
-          
         ],
         "maxRange": 360.0,
         "minRange": -360.0,
         "isBoolean": false
       },
       "axis_z": {
+        "type": "Sensor",
         "destination": "",
         "name": "Gyro Z",
         "unit": "m",
         "destinationControllerNames": [
-          
         ],
         "maxRange": 360.0,
         "minRange": -360.0,

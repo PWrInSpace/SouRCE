@@ -8,7 +8,7 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,9 +35,6 @@ public class MainController extends BasicController implements InvalidationListe
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
     private static final double initWidth = 1550.4;
     private static final double initHeight = 838.4;
-
-    @FXML
-    private ScrollPane inComingPanel;
 
     @FXML
     private TextArea inComing;
@@ -70,7 +67,7 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene connectionScene;
 
     @FXML
-    private ScrollPane outGoingPanel;
+    private TabPane tabPane;
 
     @FXML
     private TextArea outGoing;
@@ -96,6 +93,9 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene startControlScene;
 
+    @FXML
+    private SubScene settingsScene;
+
     private final MainController.SmartGroup root = new SmartGroup();
 
     private Stage primaryStage;
@@ -110,7 +110,8 @@ public class MainController extends BasicController implements InvalidationListe
     public void initSubScenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower,
                               FXMLLoader loaderValves, FXMLLoader loaderMoreData, FXMLLoader loaderAbort,
                               FXMLLoader loaderIndicators, FXMLLoader loaderStart, FXMLLoader loaderConnection,
-                              FXMLLoader loaderRawData, FXMLLoader loaderFilling, FXMLLoader loaderFlight) {
+                              FXMLLoader loaderRawData, FXMLLoader loaderFilling, FXMLLoader loaderFlight,
+                              FXMLLoader loaderSettings) {
         try {
             dataScene.setRoot(loaderData.load());
             mapScene.setRoot(loaderMap.load());
@@ -124,6 +125,7 @@ public class MainController extends BasicController implements InvalidationListe
             rawDataScene.setRoot(loaderRawData.load());
             dataSceneFilling.setRoot(loaderFilling.load());
             dataSceneFlight.setRoot(loaderFlight.load());
+            settingsScene.setRoot(loaderSettings.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -139,17 +141,15 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(dataScene);
         nodes.add(mapScene);
         nodes.add(powerScene);
-        nodes.add(valvesScene);
         nodes.add(abortScene);
-        /*nodes.add(stateScene);
-        nodes.add(startControlScene);*/
         nodes.add(connectionScene);
-        nodes.add(moreDataScene);
         nodes.add(modelScene);
-//        nodes.add(outGoingPanel);
-//        nodes.add(inComingPanel);
         nodes.add(footer);
-
+        nodes.add(rawDataScene);
+        nodes.add(indicatorsScene);
+        nodes.add(outGoing);
+        nodes.add(inComing);
+        nodes.add(tabPane);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
 
         //set logo

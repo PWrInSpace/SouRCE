@@ -27,7 +27,7 @@ public class StandardMessageParser extends BaseMessageParser {
                 int currentPosition = 1;
                 for (String sensorName : framePattern) {
                     try {
-                        if(!splitted[currentPosition].contains(":")) {
+                        if(!splitted[currentPosition].contains(":") && !splitted[currentPosition].contains("nan")) {
                             var value = Double.parseDouble(splitted[currentPosition]);
                             addSensorUpdate(() -> sensorRepository.getSensorByName(sensorName).setValue(value));
                         }
