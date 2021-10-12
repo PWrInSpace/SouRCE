@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="410.0" style="-fx-background-color: black;" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.DataFillingController">
+<AnchorPane prefHeight="680.0" prefWidth="410.0" style="-fx-background-color: #2a2a2a;" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.DataFillingController">
    <children>
       <Tile fx:id="dataGauge1" backgroundImageOpacity="1.0" decimals="2" layoutX="22.0" layoutY="35.0" maxHeight="135.0" maxWidth="-Infinity" prefHeight="135.0" prefWidth="170.0" skinType="SPARK_LINE" />
       <Tile fx:id="dataGauge2" animated="false" autoScale="false" averageVisible="true" averagingEnabled="true" decimals="2" layoutX="217.0" layoutY="35.0" maxHeight="135.0" maxWidth="-Infinity" prefHeight="142.0" prefWidth="170.0" skinType="SPARK_LINE" />

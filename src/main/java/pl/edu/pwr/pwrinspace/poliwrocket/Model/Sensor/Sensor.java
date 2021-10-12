@@ -47,7 +47,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     private double value = 0;
 
-    private double lastReportedValue = 0;
+    private double previousReportedValue = 0;
 
     private double maxValue = Double.MIN_VALUE;
 
@@ -106,13 +106,13 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         Instant currentTimeStamp = Instant.now();
         long currentTime = currentTimeStamp.toEpochMilli();
         if (isBoolean || currentTime - this.timeStamp.toEpochMilli() >=  1000) {
+            this.previousReportedValue = this.value;
             this.value = newValue;
             this.shouldNotify = true;
-            this.lastReportedValue = this.value;
         } else if (currentTime - this.lastAveragingTimeStamp.toEpochMilli() >= Configuration.getInstance().AVERAGING_PERIOD) {
+            this.previousReportedValue = this.value;
             this.value = this.getAverage();
             this.lastAveragingTimeStamp = currentTimeStamp;
-            this.lastReportedValue = this.value;
             this.values.clear();
             this.shouldNotify = true;
         } else {
@@ -125,7 +125,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         //protect overflow
         if(this.values.size() > 500) {
             this.values = new ArrayList<>();
-            this.values.add(this.lastReportedValue);
+            this.values.add(this.previousReportedValue);
             this.values.add(this.value);
         }
         this.previousTimeStamp = this.timeStamp;
@@ -215,7 +215,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     public double getPreviousValue() {
         /*var size = this.values.size();
         return size >= 2 ? this.values.get(size-2) : value;*/
-        return lastReportedValue;
+        return previousReportedValue;
     }
 
     @Override

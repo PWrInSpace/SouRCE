@@ -2,8 +2,8 @@
   "FPS": 10,
   "AVERAGING_PERIOD": 500,
   "BUFFER_SIZE": 0,
-  "START_POSITION_LAT": 50.33749,
-  "START_POSITION_LON": 19.53130,
+  "START_POSITION_LAT": 39.4145058,
+  "START_POSITION_LON": -7.6570097,
   "PARSER_TYPE": "STANDARD",
   "FRAME_DELIMITER": ";",
   "DISCORD_TOKEN": "",
@@ -41,8 +41,8 @@
       "Accel",
       "ESPError",
       "SDError",
-      "ByteStatuses",
       "ByteStatuses2",
+      "ByteStatuses",
       "Countdown"
     ],
     "R4TN": [
@@ -53,8 +53,8 @@
       "DEPRVAL",
       "QDISC",
       "DODATKOWY",
-      "MWEIGHT",
-      "RWEIGHT"
+      "RWEIGHT",
+      "MWEIGHT"
     ]
   },
   "commandsList": [
@@ -115,16 +115,64 @@
       ]
     },
     {
-      "value": "TNWN;DWCT;000160",
-      "trigger": "TNWN;DWCT;000160",
+      "value": "TNWN;DWRC;9000",
+      "trigger": "DWRC",
       "description": "",
       "destinationControllerNames": [
-        "START_CONTROL_CONTROLLER"
+        "CONNECTION_CONTROLLER"
       ]
     },
     {
-      "value": "TNWN;DWCR;3563",
-      "trigger": "TNWN;DWCR;3563",
+      "value": "TNWN;DWTC;9000",
+      "trigger": "DWTC",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWRT",
+      "trigger": "DWRT",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWRO;-12934",
+      "trigger": "DWRO",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWRR;26.9301147",
+      "trigger": "DWRR",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWTT",
+      "trigger": "DWTT",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWTO;-1209946",
+      "trigger": "DWTO",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DWTR;18.5304527",
+      "trigger": "DWTR",
       "description": "",
       "destinationControllerNames": [
         "CONNECTION_CONTROLLER"
@@ -133,6 +181,14 @@
     {
       "value": "MNCP;STAT;7;8",
       "trigger": "M 7 -> 8",
+      "description": "",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "TNWN;DRST",
+      "trigger": "DRST",
       "description": "",
       "destinationControllerNames": [
         "CONNECTION_CONTROLLER"
@@ -179,16 +235,16 @@
       ]
     },
     {
-      "value": "TNWN;DZDO",
-      "trigger": "valveOpenButton3",
+      "value": "TNWN;DZQO",
+      "trigger": "valveOpenButton6",
       "description": "",
       "destinationControllerNames": [
         "VALVES_CONTROLLER"
       ]
     },
     {
-      "value": "TNWN;DZDZ",
-      "trigger": "valveCloseButton3",
+      "value": "TNWN;DZQZ",
+      "trigger": "valveCloseButton6",
       "description": "",
       "destinationControllerNames": [
         "VALVES_CONTROLLER"
@@ -196,7 +252,7 @@
     },
     {
       "value": "MNCP;UPST;1;0",
-      "trigger": "valveOpenButton4",
+      "trigger": "valveOpenButton3",
       "description": "",
       "destinationControllerNames": [
         "VALVES_CONTROLLER"
@@ -204,7 +260,7 @@
     },
     {
       "value": "MNCP;UPST;0;0",
-      "trigger": "valveCloseButton4",
+      "trigger": "valveCloseButton3",
       "description": "",
       "destinationControllerNames": [
         "VALVES_CONTROLLER"
@@ -212,15 +268,7 @@
     },
     {
       "value": "MNCP;UPST;1;250",
-      "trigger": "valveOpenButton5",
-      "description": "",
-      "destinationControllerNames": [
-        "VALVES_CONTROLLER"
-      ]
-    },
-    {
-      "value": "MNCP;UPST;0;250",
-      "trigger": "valveCloseButton5",
+      "trigger": "valveTmpOpenButton3",
       "description": "",
       "destinationControllerNames": [
         "VALVES_CONTROLLER"
@@ -307,12 +355,12 @@
       "MCVol": {
         "type": "Sensor",
         "destination": "powerGauge1",
-        "name": "MainComp",
+        "name": "Main",
         "unit": "",
         "destinationControllerNames": [
           "POWER_CONTROLLER"
         ],
-        "maxRange": 12.6,
+        "maxRange": 13.5,
         "minRange": 9.9,
         "isBoolean": false
       },
@@ -375,8 +423,8 @@
       },
       "UKran": {
         "type": "Sensor",
-        "destination": "valveIndicator4",
-        "name": "UKran",
+        "destination": "valveIndicator3",
+        "name": "Upust",
         "unit": "",
         "destinationControllerNames": [
           "VALVES_CONTROLLER"
@@ -421,13 +469,13 @@
       },
       "TankPressure": {
         "type": "Sensor",
-        "destination": "dataGauge3",
+        "destination": "dataGauge4",
         "name": "TankPressure",
         "unit": "",
         "destinationControllerNames": [
           "DATA_FILLING_CONTROLLER"
         ],
-        "maxRange": 30.0,
+        "maxRange": 70.0,
         "minRange": 0.0,
         "isBoolean": false
       },
@@ -517,7 +565,7 @@
       "TNSTATE": {
         "type": "Sensor",
         "destination": "dataGauge1",
-        "name": "TNState",
+        "name": "Tanwa state",
         "unit": "",
         "destinationControllerNames": [
           "DATA_FLIGHT_CONTROLLER"
@@ -529,12 +577,12 @@
       "TNVOL": {
         "type": "Sensor",
         "destination": "powerGauge2",
-        "name": "TNVol",
+        "name": "Tanwa",
         "unit": "V",
         "destinationControllerNames": [
           "POWER_CONTROLLER"
         ],
-        "maxRange": 12.6,
+        "maxRange": 13.5,
         "minRange": 9.9,
         "isBoolean": false
       },
@@ -553,7 +601,7 @@
       "FILVAL": {
         "type": "Sensor",
         "destination": "valveIndicator1",
-        "name": "FILVAL",
+        "name": "Fill",
         "unit": "",
         "destinationControllerNames": [
           "VALVES_CONTROLLER"
@@ -565,7 +613,7 @@
       "DEPRVAL": {
         "type": "Sensor",
         "destination": "valveIndicator2",
-        "name": "DEPRVAL",
+        "name": "Depr",
         "unit": "",
         "destinationControllerNames": [
           "VALVES_CONTROLLER"
@@ -576,35 +624,34 @@
       },
       "MWEIGHT": {
         "type": "TareSensor",
-        "destination": "dataGauge2",
+        "destination": "",
         "name": "MotherWeight",
         "unit": "kg",
         "destinationControllerNames": [
-          "DATA_FILLING_CONTROLLER"
         ],
-        "maxRange": 30.0,
-        "minRange": -30.0,
+        "maxRange": 160.0,
+        "minRange": -160.0,
         "isBoolean": false
       },
       "RWEIGHT": {
         "type": "TareSensor",
-        "destination": "dataGauge1",
+        "destination": "dataGauge2",
         "name": "RocketWeight",
         "unit": "kg",
         "destinationControllerNames": [
           "DATA_FILLING_CONTROLLER"
         ],
-        "maxRange": 30.0,
-        "minRange": -30.0,
+        "maxRange": 80.0,
+        "minRange": -80.0,
         "isBoolean": false
       },
       "QDISC": {
         "type": "Sensor",
-        "destination": "valveIndicator3",
+        "destination": "valveIndicator6",
         "name": "Quick disconnect",
         "unit": "",
         "destinationControllerNames": [
-
+          "VALVES_CONTROLLER"
         ],
         "maxRange": 2.0,
         "minRange": 0.0,
@@ -625,28 +672,30 @@
         "type": "FillingLevelSensor",
         "hallSensor1": {
           "type": "AlertSensor",
-          "destination": "",
+          "destination": "dataGauge1",
           "name": "Hall1",
           "unit": "",
           "destinationControllerNames": [
+            "DATA_FILLING_CONTROLLER"
           ],
           "maxRange": 4095.0,
           "minRange": -360.0,
           "isBoolean": false,
-          "alertDelta": 150.0,
+          "alertDelta": 30.0,
           "nominalValue": 3050.0
         },
         "hallSensor2": {
           "type": "AlertSensor",
-          "destination": "",
+          "destination": "dataGauge3",
           "name": "Hall2",
           "unit": "",
           "destinationControllerNames": [
+            "DATA_FILLING_CONTROLLER"
           ],
           "maxRange": 4095.0,
           "minRange": -360.0,
           "isBoolean": false,
-          "alertDelta": 150.0,
+          "alertDelta": 30.0,
           "nominalValue": 3050.0
         },
         "hallSensor3": {
@@ -660,12 +709,12 @@
           "maxRange": 4095.0,
           "minRange": -360.0,
           "isBoolean": false,
-          "alertDelta": 150.0,
+          "alertDelta": 30.0,
           "nominalValue": 3050.0
         },
         "hallSensor4": {
           "type": "AlertSensor",
-          "destination": "dataGauge6",
+          "destination": "dataGauge7",
           "name": "Hall4",
           "unit": "",
           "destinationControllerNames": [
@@ -674,12 +723,12 @@
           "maxRange": 4095.0,
           "minRange": -360.0,
           "isBoolean": false,
-          "alertDelta": 150.0,
+          "alertDelta": 30.0,
           "nominalValue": 3050.0
         },
         "hallSensor5": {
           "type": "AlertSensor",
-          "destination": "dataGauge7",
+          "destination": "dataGauge8",
           "name": "Hall5",
           "unit": "",
           "destinationControllerNames": [
@@ -688,7 +737,7 @@
           "maxRange": 4095.0,
           "minRange": -360.0,
           "isBoolean": false,
-          "alertDelta": 150.0,
+          "alertDelta": 30.0,
           "nominalValue": 3050.0
         },
         "destination": "",

@@ -27,6 +27,7 @@ public abstract class BasicButtonSensorController extends BasicSensorController 
             var button = buttonHashMap.get(command.getCommandTriggerKey());
             if (button != null){
                 button.setOnAction(handleButtonsClickByCommand(button,command));
+                button.setVisible(true);
             } else {
                 logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
             }

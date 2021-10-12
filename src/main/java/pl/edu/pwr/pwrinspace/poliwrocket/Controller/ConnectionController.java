@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.medusa.Gauge;
 import gnu.io.NRSerialPort;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,7 +88,7 @@ public class ConnectionController extends BasicButtonSensorController {
         notifications.setDisable(true);
         threadButton.setDisable(true);
 
-        serialPorts.setOnMouseClicked(mouseEvent -> serialSetup());
+        serialPorts.setOnMouseClicked(mouseEvent -> Platform.runLater(this::serialSetup));
 
         connectionButton.setOnMouseClicked(mouseEvent -> {
             if (availableSerialPorts.isEmpty()) {

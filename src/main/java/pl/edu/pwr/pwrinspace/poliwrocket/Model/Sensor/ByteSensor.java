@@ -34,13 +34,12 @@ public class ByteSensor extends Sensor {
     @Override
     protected void notifyObserver() {
         int valasInt= (int)this.getValue();
-        String values =Integer.toBinaryString(valasInt);
-        while (values.length() < 8) {
-            values += "0";
-        }
+        String values = String.format("%8s", Integer.toBinaryString(valasInt)).replace(' ', '0');
+        int k = 7;
         if(values.length() == 8)
             for (int i = 0; i < values.length(); i++) {
-                sensors[i].setValue(bitToDouble(values.charAt(i)));
+                sensors[i].setValue(bitToDouble(values.charAt(k)));
+                k--;
             }
     }
 
