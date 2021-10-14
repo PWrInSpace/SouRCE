@@ -52,6 +52,8 @@ public class Configuration {
 
     public SensorRepository sensorRepository = new SensorRepository();
 
+    public List<BasicController> controllersList = new LinkedList<>();
+
     private Configuration() {
         if (Holder.INSTANCE != null) {
             throw new IllegalStateException("Singleton already constructed");
@@ -60,6 +62,11 @@ public class Configuration {
 
     public static String getFlightDataFileName(String key) {
         return "Flight_" + key + "_" + Instant.now().getEpochSecond() + ".txt";
+    }
+
+    public void reloadConfigInstance(ConfigurationSaveModel config) {
+        setupConfigInstance(config);
+        setupApplicationConfig(this.controllersList);
     }
 
     public void setupConfigInstance(ConfigurationSaveModel config) {
@@ -77,6 +84,7 @@ public class Configuration {
         this.sensorRepository = config.sensorRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
+
         if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         }
@@ -114,9 +122,17 @@ public class Configuration {
                     this.sensorRepository.addSensor(innerSensor);
             }
         });
+
+        Arrays.stream(basicSensors).filter(s -> s instanceof PoteznyTanwiarzSensor).forEach(s -> {
+            for (Sensor innerSensor: ((PoteznyTanwiarzSensor) s).getSensors()) {
+                if(!innerSensor.getName().isEmpty())
+                    this.sensorRepository.addSensor(innerSensor);
+            }
+        });
     }
 
-    public static void setupApplicationConfig(List<BasicController> controllersList) {
+    public void setupApplicationConfig(List<BasicController> controllersList) {
+        this.controllersList = controllersList;
         List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig = new ArrayList<>();
         controllersList.forEach(basicController -> controllersConfig.add(new Triplet<>(basicController,new ArrayList<>(),new ArrayList<>())));
 

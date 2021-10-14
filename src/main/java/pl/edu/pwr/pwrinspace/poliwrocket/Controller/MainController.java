@@ -96,6 +96,9 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene settingsScene;
 
+    @FXML
+    private SubScene tanwiarzScene;
+
     private final MainController.SmartGroup root = new SmartGroup();
 
     private Stage primaryStage;
@@ -111,7 +114,7 @@ public class MainController extends BasicController implements InvalidationListe
                               FXMLLoader loaderValves, FXMLLoader loaderMoreData, FXMLLoader loaderAbort,
                               FXMLLoader loaderIndicators, FXMLLoader loaderStart, FXMLLoader loaderConnection,
                               FXMLLoader loaderRawData, FXMLLoader loaderFilling, FXMLLoader loaderFlight,
-                              FXMLLoader loaderSettings) {
+                              FXMLLoader loaderSettings, FXMLLoader loaderTanwiarz) {
         try {
             dataScene.setRoot(loaderData.load());
             mapScene.setRoot(loaderMap.load());
@@ -126,6 +129,7 @@ public class MainController extends BasicController implements InvalidationListe
             dataSceneFilling.setRoot(loaderFilling.load());
             dataSceneFlight.setRoot(loaderFlight.load());
             settingsScene.setRoot(loaderSettings.load());
+            tanwiarzScene.setRoot(loaderTanwiarz.load());
         } catch (IOException e) {
             e.printStackTrace();
         }

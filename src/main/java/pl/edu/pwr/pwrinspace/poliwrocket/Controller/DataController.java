@@ -3,9 +3,11 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import eu.hansolo.tilesfx.Tile;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IAlert;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -71,7 +73,18 @@ public class DataController extends BasicSensorController {
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
-            UIThreadManager.getInstance().addNormal(() -> tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue()));
+            UIThreadManager.getInstance().addNormal(() -> {
+                var gauge = tileHashMap.get(sensor.getDestination());
+                if(sensor instanceof IAlert) {
+                    if(((IAlert)sensor).getAlert()) {
+                        gauge.setValueColor(Color.RED);
+                    } else {
+                        gauge.setValueColor(Color.WHITE);
+                    }
+                }
+                gauge.setValue(sensor.getValue());
+
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

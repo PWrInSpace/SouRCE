@@ -97,6 +97,7 @@ public class Main extends Application {
             FXMLLoader loaderConnection = new FXMLLoader(getClass().getClassLoader().getResource("ConnectionView.fxml"));
             FXMLLoader loaderRawData = new FXMLLoader(getClass().getClassLoader().getResource("RAWDataView.fxml"));
             FXMLLoader loaderSettings = new FXMLLoader(getClass().getClassLoader().getResource("SettingsView.fxml"));
+            FXMLLoader loaderTanwiarz= new FXMLLoader(getClass().getClassLoader().getResource("TanwiarzView.fxml"));
 
             Scene scene = new Scene(loaderMain.load(), 1550, 750);
             //--------------
@@ -105,7 +106,7 @@ public class Main extends Application {
             MainController mainController = loaderMain.getController();
             mainController.initSubScenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
                     loaderAbort, loaderIndicators, loaderStart, loaderConnection, loaderRawData,loaderDataFilling,
-                    loaderDataFlight, loaderSettings);
+                    loaderDataFlight, loaderSettings,loaderTanwiarz);
             mainController.setPrimaryStage(primaryStage);
 
             DataController dataController = loaderData.getController();
@@ -124,6 +125,7 @@ public class Main extends Application {
             StartControlController startControlController = loaderStart.getController();
             ConnectionController connectionController = loaderConnection.getController();
             RAWDataController rawDataController = loaderRawData.getController();
+            TanwiarzController tanwiarzController = loaderTanwiarz.getController();
             //--------------
 
             //Mapping sensors and commands to controllers
@@ -141,9 +143,10 @@ public class Main extends Application {
             //controllerList.add(statesController);
             controllerList.add(startControlController);
             controllerList.add(connectionController);
+            controllerList.add(tanwiarzController);
 
             controllerList.add(rawDataController);
-            Configuration.setupApplicationConfig(controllerList);
+            Configuration.getInstance().setupApplicationConfig(controllerList);
             //--------------
 
             //IMessageParser setup

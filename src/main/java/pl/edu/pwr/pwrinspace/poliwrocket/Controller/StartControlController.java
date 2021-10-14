@@ -127,6 +127,7 @@ public class StartControlController extends BasicButtonController {
             }
             checkReset();
         });
+
         safeSwitch3.setOnMouseClicked(actionEvent -> {
             if (safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive()) {
                 armingButton2.setDisable(false);
@@ -217,6 +218,10 @@ public class StartControlController extends BasicButtonController {
 
     private void checkReset() {
         if (!(safeSwitch1.isActive() && safeSwitch2.isActive() && safeSwitch3.isActive() && safeSwitch4.isActive() && safeSwitch5.isActive())) {
+            /*safeSwitch2.setDisable(true);
+            safeSwitch3.setDisable(true);
+            safeSwitch4.setDisable(true);
+            safeSwitch5.setDisable(true);*/
             countdownTime.resetCountdown();
         }
     }

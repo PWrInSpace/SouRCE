@@ -75,6 +75,11 @@
                                     <Region />
                                  </root>
                               </SubScene>
+                              <SubScene fx:id="tanwiarzScene" height="335.0" layoutX="445.0" layoutY="338.0" width="410.0">
+                                 <root>
+                                    <Region />
+                                 </root>
+                              </SubScene>
                            </children>
                         </AnchorPane>
                   </content>

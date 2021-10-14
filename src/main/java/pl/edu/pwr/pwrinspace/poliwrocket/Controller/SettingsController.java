@@ -8,10 +8,13 @@ import javafx.scene.layout.AnchorPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ITare;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SettingsController {
@@ -22,8 +25,12 @@ public class SettingsController {
     @FXML
     private Button applyButton;
 
+    @FXML
+    private Button reloadButton;
+
     private static final Logger logger = LoggerFactory.getLogger(SettingsController.class);
 
+    private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
 
     List<IAction> actionList = new ArrayList<>();
 
@@ -33,6 +40,7 @@ public class SettingsController {
         int initYLabel = 49;
         int initYInput = 45;
         int offsetY = 40;
+
         for (ISensor sensor : Configuration.getInstance().sensorRepository.getAllBasicSensors().values()) {
             if (sensor instanceof ITare) {
                 var tareSensor = (ITare) sensor;
@@ -62,10 +70,23 @@ public class SettingsController {
         }
 
         applyButton.setOnMouseClicked(event -> apply());
+        reloadButton.setOnMouseClicked(event -> reloadConfig());
     }
 
     void apply() {
         actionList.forEach(IAction::execute);
+    }
+
+    void reloadConfig() {
+        try {
+            Configuration.getInstance().reloadConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+        } catch (Exception e) {
+            logger.error("Bad config file");
+            logger.error(e.getMessage());
+            logger.error(Arrays.toString(e.getStackTrace()));
+            logger.error(e.toString());
+
+        }
     }
 
 }

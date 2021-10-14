@@ -17,6 +17,8 @@ public class ModelAsJsonSaveService {
             .registerSubtype(FillingLevelSensor.class, "FillingLevelSensor")
             .registerSubtype(TareSensor.class, "TareSensor")
             .registerSubtype(AlertSensor.class, "AlertSensor")
+            .registerSubtype(TanwiarzSensor.class, "TanwiarzSensor")
+            .registerSubtype(PoteznyTanwiarzSensor.class, "PoteznyTanwiarzSensor")
             .registerSubtype(ByteSensor.class, "ByteSensor");
 
     public void saveToFile(BaseSaveModel configuration) {

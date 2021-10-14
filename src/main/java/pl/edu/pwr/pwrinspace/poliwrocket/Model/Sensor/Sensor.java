@@ -45,7 +45,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     @Expose
     private boolean isBoolean = false;
 
-    private double value = 0;
+    protected double value = 0;
 
     private double previousReportedValue = 0;
 

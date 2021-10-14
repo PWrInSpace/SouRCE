@@ -17,4 +17,5 @@ public enum ControllerNameEnum implements ControllerNameEnumInterface {
     CONNECTION_CONTROLLER,
     RAW_DATA_CONTROLLER,
     INDICATORS_CONTROLLER,
+    TANWIARZ_CONTROLLER,
 }

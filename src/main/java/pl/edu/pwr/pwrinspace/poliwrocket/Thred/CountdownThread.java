@@ -8,7 +8,9 @@ import java.util.List;
 
 public class CountdownThread implements Observable, Runnable {
 
-    private long countdownTime = 30000;
+    private static  long basicCountdownTime = 16000;
+
+    private long countdownTime = basicCountdownTime;
 
     private String formattedTimeResult = "";
 
@@ -72,7 +74,7 @@ public class CountdownThread implements Observable, Runnable {
 
     public void resetCountdown() {
         canRun = false;
-        countdownTime = 30000;
+        countdownTime = basicCountdownTime;
         formattedTimeResult = formattedTime(countdownTime);
         notifyObserver();
     }
