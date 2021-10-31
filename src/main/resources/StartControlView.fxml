@@ -17,9 +17,9 @@
       <Switch fx:id="safeSwitch2" layoutX="35.0" layoutY="54.0" prefHeight="26.0" prefWidth="42.0" />
       <Switch fx:id="safeSwitch3" layoutX="35.0" layoutY="84.0" prefHeight="26.0" prefWidth="42.0" />
       <Switch fx:id="safeSwitch4" layoutX="35.0" layoutY="114.0" prefHeight="26.0" prefWidth="42.0" />
-      <Button fx:id="qucikDistonectButton" layoutX="117.0" layoutY="24.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Arming tanking" />
+      <Button fx:id="qucikDistonectButton" layoutX="117.0" layoutY="24.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Arming TN 1-&gt;2" />
       <Button fx:id="armingButton1" layoutX="117.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Quick disconect" />
-      <Button fx:id="armingButton2" layoutX="117.0" layoutY="84.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Arming" />
+      <Button fx:id="armingButton2" layoutX="117.0" layoutY="84.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Arming TN 2 -&gt; 3" />
       <Button fx:id="fireButton" layoutX="117.0" layoutY="115.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="116.0" text="LAUNCH" />
       <Switch fx:id="safeSwitch5" layoutX="35.0" layoutY="138.0" prefHeight="26.0" prefWidth="42.0" />
       <Label fx:id="countdownTimer" layoutX="243.0" layoutY="142.0" text="-00:00:10:000" />

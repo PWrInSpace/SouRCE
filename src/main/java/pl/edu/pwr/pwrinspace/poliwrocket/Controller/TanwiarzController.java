@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
@@ -55,12 +56,23 @@ public class TanwiarzController extends BasicButtonSensorController {
     @FXML
     private Button button5;*/
 
+    @FXML
+    private Label ratio1;
+
+    @FXML
+    private Label ratio2;
+
+    @FXML
+    private Label ratio3;
 
     HashMap<String, Tile> tileHashMap = new HashMap<>();
 
     private static final Logger logger = LoggerFactory.getLogger(TanwiarzController.class);
 
-    protected HashMap<String,String> buttonTileHashMap = new HashMap<>();
+    protected HashMap<String, String> buttonTileHashMap = new HashMap<>();
+
+    HashMap<String, Label> labelHashMap = new HashMap<>();
+
 
     @FXML
     void initialize() {
@@ -84,6 +96,10 @@ public class TanwiarzController extends BasicButtonSensorController {
        /* buttonTileHashMap.put(button4.getId(), dataGauge4.getId());
         buttonTileHashMap.put(button5.getId(), dataGauge5.getId());*/
 
+        labelHashMap.put(dataGauge1.getId(), ratio1);
+        labelHashMap.put(dataGauge2.getId(), ratio2);
+        labelHashMap.put(dataGauge3.getId(), ratio3);
+
     }
 
     @Override
@@ -101,12 +117,12 @@ public class TanwiarzController extends BasicButtonSensorController {
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
                 tile.setAveragingPeriod(_duration);
-                if(!sensor.isBoolean()) {
+                if (!sensor.isBoolean()) {
                     UIThreadManager.getInstance().addActiveSensor();
                 }
                 //tile.setAveragingPeriod(_duration * Configuration.getInstance().FPS);
             } else {
-                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
+                logger.error("Wrong UI binding - destination not found: {}", sensor.getDestination());
             }
         }
     }
@@ -114,22 +130,25 @@ public class TanwiarzController extends BasicButtonSensorController {
     @Override
     public void invalidated(Observable observable) {
         try {
-            var sensor = ((ISensor) observable);
-            UIThreadManager.getInstance().addNormal(() -> tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue()));
+            var sensor = ((TanwiarzSensor) observable);
+            UIThreadManager.getInstance().addNormal(() -> {
+                tileHashMap.get(sensor.getDestination()).setValue(sensor.getValue());
+                labelHashMap.get(sensor.getDestination()).setText(Double.toString(sensor.getRatio()));
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
+    protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command) {
 
         return actionEvent -> {
             String tileKey = buttonTileHashMap.get(button.getId());
             var sensors = Configuration.getInstance().sensorRepository.getAllBasicSensors().values().stream().filter((sensor -> sensor.getDestinationControllerNames().contains(controllerNameEnum) && sensor.getDestination().equals(tileKey))).toArray();
-            if(sensors.length > 0 && sensors[0] instanceof TanwiarzSensor){
-                var sensor = ((TanwiarzSensor)sensors[0]);
-                var weight =  Integer.toString(sensor.getCalibrationValue());
+            if (sensors.length > 0 && sensors[0] instanceof TanwiarzSensor) {
+                var sensor = ((TanwiarzSensor) sensors[0]);
+                var weight = Integer.toString(sensor.getCalibrationValue());
                 while (weight.length() < 4) {
                     weight = "0" + weight;
                 }

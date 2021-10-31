@@ -74,7 +74,7 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener, 
     public Map<String, Double> getPosition() {
         HashMap<String, Double> position = new HashMap<>();
         position.put(IGPSSensor.LATITUDE_KEY,latitude.getValue());
-        position.put(IGPSSensor.LONGITUDE_KEY,longitude.getValue());
+        position.put(IGPSSensor.LONGITUDE_KEY,longitude.getValue() * -1);
         return position;
     }
 
@@ -88,7 +88,7 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener, 
         }
         if (isLongUpToDate && isLatUpToDate
                 && Math.abs(latitude.getValue() - Configuration.getInstance().START_POSITION_LAT) < 2.0
-                && Math.abs(longitude.getValue() - Configuration.getInstance().START_POSITION_LON) < 2.0) {
+                ) {
             notifyObserver();
             isLongUpToDate = false;
             isLatUpToDate = false;
