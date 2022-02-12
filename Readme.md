@@ -1,4 +1,4 @@
-# SoundingRocketControlEnviroment
+# SoundingRocketControlEnvironment
 
 SouRCE is the application for duplex communication with sounding rocket via serial port and external ground station.
 
