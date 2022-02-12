@@ -18,7 +18,7 @@ public abstract class BasicButtonController extends BasicController {
 
     protected HashSet<ICommand> commands = new HashSet<>();
 
-    private static final Logger logger = LoggerFactory.getLogger(BasicButtonController.class);
+    protected static final Logger logger = LoggerFactory.getLogger(BasicButtonController.class);
 
 
     public void assignsCommands(Collection<ICommand> commands){
@@ -28,6 +28,7 @@ public abstract class BasicButtonController extends BasicController {
             var button = buttonHashMap.get(command.getCommandTriggerKey());
             if (button != null) {
                 button.setOnAction(handleButtonsClickByCommand(button, command));
+                button.setVisible(true);
             } else {
                 logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
             }

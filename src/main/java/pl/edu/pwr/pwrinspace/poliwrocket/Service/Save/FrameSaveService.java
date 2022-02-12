@@ -41,6 +41,7 @@ public class FrameSaveService {
 
     public void writeFileHeader(String key, Iterable<String> headers) {
         StringBuilder header = new StringBuilder();
+        header.append(Configuration.getInstance().FRAME_DELIMITER).append(key);
         headers.forEach(h -> header.append(Configuration.getInstance().FRAME_DELIMITER).append(h));
         try {
             File file = flightDataFiles.get(key);

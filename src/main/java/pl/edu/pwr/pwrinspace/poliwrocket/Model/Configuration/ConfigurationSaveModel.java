@@ -16,6 +16,12 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public int FPS = 10;
 
     @Expose
+    public int AVERAGING_PERIOD = 1000;
+
+    @Expose
+    public int BUFFER_SIZE;
+
+    @Expose
     public double START_POSITION_LAT;
 
     @Expose
@@ -55,6 +61,8 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public static ConfigurationSaveModel getConfigurationSaveModel(Configuration configuration) {
         ConfigurationSaveModel config = new ConfigurationSaveModel();
         config.FPS = configuration.FPS;
+        config.AVERAGING_PERIOD = configuration.AVERAGING_PERIOD;
+        config.BUFFER_SIZE = configuration.BUFFER_SIZE;
         config.START_POSITION_LAT = configuration.START_POSITION_LAT;
         config.START_POSITION_LON = configuration.START_POSITION_LON;
         config.PARSER_TYPE = configuration.PARSER_TYPE;
@@ -86,6 +94,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         ConfigurationSaveModel defaultConfig = new ConfigurationSaveModel();
         defaultConfig.sensorRepository = new SensorRepository();
         defaultConfig.FPS = 10;
+        defaultConfig.AVERAGING_PERIOD = 1000;
         defaultConfig.PARSER_TYPE = MessageParserEnum.STANDARD;
         defaultConfig.commandsList = new LinkedList<>();
         defaultConfig.DISCORD_CHANNEL_NAME = "";
@@ -134,6 +143,25 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.sensorRepository.setGpsSensor(gpsSensor);
         //--------
 
+        //filling level
+        FillingLevelSensor fillingLevelSensor = new FillingLevelSensor();
+        fillingLevelSensor.setName("N02Level");
+        Sensor hall1 = new Sensor();
+        Sensor hall2 = new Sensor();
+        Sensor hall3 = new Sensor();
+        Sensor hall4 = new Sensor();
+        Sensor hall5 = new Sensor();
+        fillingLevelSensor.setHallSensor1(hall1);
+        fillingLevelSensor.setHallSensor2(hall2);
+        fillingLevelSensor.setHallSensor3(hall3);
+        fillingLevelSensor.setHallSensor4(hall4);
+        fillingLevelSensor.setHallSensor5(hall5);
+        defaultConfig.sensorRepository.addSensor(fillingLevelSensor);
+        //--------
+
+        ByteSensor byteSensor = new ByteSensor();
+        defaultConfig.sensorRepository.addSensor(byteSensor);
+
         //komendy
         Command command = new Command("open valveOpenButton1", "valveOpenButton1");
         command.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
@@ -162,7 +190,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         //--------
 
         //frame
-        defaultConfig.FRAME_DELIMITER = ",";
+        defaultConfig.FRAME_DELIMITER = ";";
         List<String> pattern = new ArrayList<>();
         pattern.add("Gyro X");
         pattern.add("Gyro Y");

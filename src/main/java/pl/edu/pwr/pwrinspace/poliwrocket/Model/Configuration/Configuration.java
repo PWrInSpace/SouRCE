@@ -9,8 +9,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
 
 import java.time.Instant;
 import java.util.*;
@@ -18,6 +17,10 @@ import java.util.*;
 public class Configuration {
 
     public int FPS = 10;
+
+    public int AVERAGING_PERIOD = 1000;
+
+    public int BUFFER_SIZE;
 
     public double START_POSITION_LAT = 49.013517;
 
@@ -49,6 +52,8 @@ public class Configuration {
 
     public SensorRepository sensorRepository = new SensorRepository();
 
+    public List<BasicController> controllersList = new LinkedList<>();
+
     private Configuration() {
         if (Holder.INSTANCE != null) {
             throw new IllegalStateException("Singleton already constructed");
@@ -59,8 +64,15 @@ public class Configuration {
         return "Flight_" + key + "_" + Instant.now().getEpochSecond() + ".txt";
     }
 
+    public void reloadConfigInstance(ConfigurationSaveModel config) {
+        setupConfigInstance(config);
+        setupApplicationConfig(this.controllersList);
+    }
+
     public void setupConfigInstance(ConfigurationSaveModel config) {
         this.FPS = config.FPS;
+        this.AVERAGING_PERIOD = config.AVERAGING_PERIOD;
+        this.BUFFER_SIZE = config.BUFFER_SIZE;
         this.START_POSITION_LAT = config.START_POSITION_LAT;
         this.START_POSITION_LON = config.START_POSITION_LON;
         this.PARSER_TYPE = config.PARSER_TYPE;
@@ -72,6 +84,7 @@ public class Configuration {
         this.sensorRepository = config.sensorRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
+
         if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         }
@@ -87,11 +100,39 @@ public class Configuration {
         if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
+
+        var basicSensors = this.sensorRepository.getAllBasicSensors().values().stream().toArray();
+
+        Arrays.stream(basicSensors).filter(s -> s instanceof FillingLevelSensor).forEach(s -> {
+            var sensor = (FillingLevelSensor)s;
+            this.sensorRepository.addSensor(sensor.getHallSensor1());
+            this.sensorRepository.addSensor(sensor.getHallSensor2());
+            this.sensorRepository.addSensor(sensor.getHallSensor3());
+            this.sensorRepository.addSensor(sensor.getHallSensor4());
+            this.sensorRepository.addSensor(sensor.getHallSensor5());
+            sensor.observeFields();
+        });
+
         this.sensorRepository.getGyroSensor().observeFields();
         this.sensorRepository.getGpsSensor().observeFields();
+
+        Arrays.stream(basicSensors).filter(s -> s instanceof ByteSensor).forEach(s -> {
+            for (Sensor innerSensor: ((ByteSensor) s).getSensors()) {
+                if(!innerSensor.getName().isEmpty())
+                    this.sensorRepository.addSensor(innerSensor);
+            }
+        });
+
+        Arrays.stream(basicSensors).filter(s -> s instanceof PoteznyTanwiarzSensor).forEach(s -> {
+            for (Sensor innerSensor: ((PoteznyTanwiarzSensor) s).getSensors()) {
+                if(!innerSensor.getName().isEmpty())
+                    this.sensorRepository.addSensor(innerSensor);
+            }
+        });
     }
 
-    public static void setupApplicationConfig(List<BasicController> controllersList) {
+    public void setupApplicationConfig(List<BasicController> controllersList) {
+        this.controllersList = controllersList;
         List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig = new ArrayList<>();
         controllersList.forEach(basicController -> controllersConfig.add(new Triplet<>(basicController,new ArrayList<>(),new ArrayList<>())));
 

@@ -41,7 +41,6 @@ public abstract class BaseMessageParser implements IMessageParser {
             commitParsing();
         }
         clearUpdatesList();
-
         notifyObserver();
     }
 
@@ -61,7 +60,7 @@ public abstract class BaseMessageParser implements IMessageParser {
         this.observers.forEach(obs -> obs.invalidated(this));
     }
 
-    private void commitParsing() {
+    private synchronized void commitParsing() {
         sensorUpdates.forEach(ISensorUpdate::execute);
     }
 

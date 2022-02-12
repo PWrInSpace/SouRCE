@@ -5,6 +5,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 
 import java.util.*;
@@ -31,7 +32,7 @@ public class UIThreadManager implements InvalidationListener {
                 activeRunnable(waitingNormalRunnable);
                 waitingNormalRunnable = new UIRunnable();
             }
-        },new Date(new Date().getTime() + 3000),1000);
+        },new Date(new Date().getTime() + 3000),1000 / Configuration.getInstance().FPS);
     }
 
     private static class Holder {

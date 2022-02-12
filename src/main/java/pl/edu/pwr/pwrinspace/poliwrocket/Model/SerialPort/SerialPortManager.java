@@ -5,6 +5,7 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import javafx.beans.InvalidationListener;
 import org.slf4j.LoggerFactory;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.Frame;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
@@ -118,13 +119,13 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 log.log(Level.WARNING,e.toString());
             } finally {
                 notifyObserver();
-                log.log(Level.INFO, "Serialport status open: {}", isPortOpen);
+                log.log(Level.INFO, "Serialport status: {0}", isPortOpen);
             }
         } else {
             isPortOpen = serialPort.isConnected();
             notifyObserver();
             log.log(Level.WARNING,"IMessageParser not set");
-            log.log(Level.INFO, "Serialport status open: {}", isPortOpen);
+            log.log(Level.INFO, "Serialport status: {0}", isPortOpen);
         }
         if(frameSaveService == null) {
             log.log(Level.WARNING,"FrameSaveService not set");
@@ -143,27 +144,36 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     @Override
-    public synchronized void serialEvent(SerialPortEvent oEvent) {
-        if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-            try {
-                byte[] buffer = new byte[2048];
-                int length = this.inputStream.read(buffer);
-                Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
-                messageParser.parseMessage(frame);
-                if(frameSaveService != null) {
-                    if(frame.getFormattedContent() == null) {
-                        frame.setFormattedContent(frame.getContent());
+    public void serialEvent(SerialPortEvent oEvent) {
+        synchronized (messageParser) {
+            if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
+                try {
+                    Frame frame;
+                    if(Configuration.getInstance().BUFFER_SIZE != 0) {
+                        byte[] buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
+                        frame = new Frame(new String(buffer, 0, Configuration.getInstance().BUFFER_SIZE), Instant.now());
+                    } else {
+                        byte[] buffer = new byte[2048];
+                        int length = this.inputStream.read(buffer);
+                        frame = new Frame(new String(buffer, 0, length), Instant.now());
                     }
-                    frameSaveService.saveFrameToFile(frame);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
+                    messageParser.parseMessage(frame);
+                    if(frameSaveService != null) {
+                        if(frame.getFormattedContent() == null) {
+                            frame.setFormattedContent(frame.getContent());
+                        }
+                        frameSaveService.saveFrameToFile(frame);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
     }
 
-    public synchronized void write(String message) {
+    public void write(String message) {
         log.log(Level.INFO, "Written: {0}", message);
         serialWriter.send(message);
         this.lastMessage = message;
@@ -194,7 +204,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             }
         }
 
-        public synchronized void send(String msg) {
+        public void send(String msg) {
             try {
                 out.write(msg.getBytes());
                 logger.info("Written: {}",msg);

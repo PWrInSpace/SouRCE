@@ -14,7 +14,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 import java.time.Duration;
 import java.util.HashMap;
 
-public class DataController extends BasicSensorController {
+public class DataFillingController extends BasicSensorController {
 
     private static final int _duration = 30;
 
@@ -29,18 +29,39 @@ public class DataController extends BasicSensorController {
     @FXML
     private Tile dataGauge3;
 
+    @FXML
+    private Tile dataGauge4;
+
+    @FXML
+    private Tile dataGauge5;
+
+    @FXML
+    private Tile dataGauge6;
+
+    @FXML
+    private Tile dataGauge7;
+
+    @FXML
+    private Tile dataGauge8;
+
     HashMap<String, Tile> tileHashMap = new HashMap<>();
 
-    private static final Logger logger = LoggerFactory.getLogger(DataController.class);
+    private static final Logger logger = LoggerFactory.getLogger(DataFillingController.class);
 
     @FXML
     void initialize() {
-        controllerNameEnum = ControllerNameEnum.DATA_CONTROLLER;
+        controllerNameEnum = ControllerNameEnum.DATA_FILLING_CONTROLLER;
 
         tileHashMap.put(dataGauge1.getId(), dataGauge1);
         tileHashMap.put(dataGauge2.getId(), dataGauge2);
         tileHashMap.put(dataGauge3.getId(), dataGauge3);
-
+        tileHashMap.put(dataGauge4.getId(), dataGauge4);
+        tileHashMap.put(dataGauge5.getId(), dataGauge5);
+        tileHashMap.put(dataGauge6.getId(), dataGauge6);
+        tileHashMap.put(dataGauge7.getId(), dataGauge7);
+        tileHashMap.put(dataGauge8.getId(), dataGauge8);
+        dataGauge1.setAlert(true);
+        dataGauge2.setValueColor(Color.WHITE);
         tileHashMap.forEach((s, tile) -> tile.setVisible(false));
     }
 
@@ -67,6 +88,22 @@ public class DataController extends BasicSensorController {
                 logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
             }
         }
+        if (!dataGauge2.visibleProperty().get()) {
+            dataGauge1.setPrefWidth(dataGauge1.getPrefWidth() * 2 + 24);
+        }
+        if (!dataGauge4.visibleProperty().get()) {
+            dataGauge3.setPrefWidth(dataGauge3.getPrefWidth() * 2 + 24);
+
+        }
+        if (!dataGauge6.visibleProperty().get()) {
+            dataGauge5.setPrefWidth(dataGauge5.getPrefWidth() * 2 + 24);
+
+        }
+        if (!dataGauge8.visibleProperty().get()) {
+            dataGauge7.setPrefWidth(dataGauge7.getPrefWidth() * 2 + 24);
+
+        }
+
     }
 
     @Override
@@ -77,7 +114,7 @@ public class DataController extends BasicSensorController {
                 var gauge = tileHashMap.get(sensor.getDestination());
                 if(sensor instanceof IAlert) {
                     if(((IAlert)sensor).getAlert()) {
-                        gauge.setValueColor(Color.RED);
+                        gauge.setValueColor(Color.rgb(0,255,68));
                     } else {
                         gauge.setValueColor(Color.WHITE);
                     }
