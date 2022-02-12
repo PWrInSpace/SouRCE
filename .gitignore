@@ -84,5 +84,4 @@ flightData/
 *.html
 testReport/
 *.json
-!config.json
-config/config.json
+!sampleconfig.json
