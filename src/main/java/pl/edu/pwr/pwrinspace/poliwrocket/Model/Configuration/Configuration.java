@@ -51,6 +51,8 @@ public class Configuration {
 
     public SensorRepository sensorRepository = new SensorRepository();
 
+    public InterpreterRepository interpreterRepository = new InterpreterRepository();
+
     public Collection<BasicController> controllersList = new LinkedList<>();
 
     private final static Instant startUpTime = Instant.now();
@@ -74,6 +76,15 @@ public class Configuration {
         copyModelProperties(config);
         addSensorsToRepository(config);
         setupSensorsAsListeners(config);
+        setupSensorsInterpreters(config);
+    }
+
+    private void setupSensorsInterpreters(ConfigurationSaveModel config) {
+        config.sensorRepository.getAllBasicSensors().forEach((s, sensor) -> {
+            if(sensor.getInterpreterKey() != null && !sensor.getInterpreterKey().isEmpty()) {
+                sensor.setInterpreter(interpreterRepository.getInterpreter(sensor.getInterpreterKey()));
+            }
+        });
     }
 
     private void copyModelProperties(ConfigurationSaveModel config) {
@@ -89,6 +100,7 @@ public class Configuration {
         this.DISCORD_CHANNEL_NAME = config.DISCORD_CHANNEL_NAME;
         this.commandsList = config.commandsList;
         this.sensorRepository = config.sensorRepository;
+        this.interpreterRepository = config.interpreterRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
     }

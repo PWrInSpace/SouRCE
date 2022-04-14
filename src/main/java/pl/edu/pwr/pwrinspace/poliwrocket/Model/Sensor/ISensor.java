@@ -16,4 +16,8 @@ public interface ISensor {
     double getMinRange();
     boolean isBoolean();
     Instant getTimeStamp();
+    InterpreterValue getCodeMeaning();
+    void setInterpreter(CodeInterpreter interpreter);
+    String getInterpreterKey();
+    boolean hasInterpreter();
 }

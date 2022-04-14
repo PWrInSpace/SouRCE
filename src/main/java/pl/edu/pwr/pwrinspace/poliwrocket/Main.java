@@ -56,80 +56,69 @@ public class Main extends Application {
 
     private static final String mainView  = "MainView.fxml";
 
-    private void readAndLoadConfiguration() throws Exception {
-        //Read config file
-        try {
-            Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
-        } catch (UnsupportedOperationException e) {
-            logger.error("Wrong mapping in controller");
-            e.printStackTrace();
-            return;
-        } catch (Exception e) {
-            logger.error("Bad config file, overwritten by default and loaded");
-            logger.error(e.getMessage());
-            logger.error(Arrays.toString(e.getStackTrace()));
-            logger.error(e.toString());
-            modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-            modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-            Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
-        }
-        //--------------
-
-        //Read speech file
-        try {
-            textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
-        } catch (Exception e) {
-            logger.error("Bad speech file, overwritten by default and loaded");
-            logger.error(e.getMessage());
-            logger.error(Arrays.toString(e.getStackTrace()));
-            logger.error(e.toString());
-            modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
-            modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
-            textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
-        }
-        //--------------
-    }
-
-    private HashMap<String, FXMLLoader> getLoadersMap() throws Exception {
-        //Discover Views and create FXMLLoaders
-        var uri = Main.class.getResource("/Views").toURI();
-        Path dirPath;
-
-        try {
-            dirPath = Paths.get(uri);
-        } catch (FileSystemNotFoundException e) {
-            // If this is thrown, then it means that we are running the JAR directly (example: not from an IDE)
-            var env = new HashMap<String, String>();
-            var fileSystem = FileSystems.newFileSystem(uri, env);
-            dirPath = fileSystem.getPath("/Views");
-            fileSystem.close();
-        }
-        HashMap<String, FXMLLoader> loaders = new HashMap<>();
-
-        try (var filesStream = Files.list(dirPath)) {
-            filesStream.forEach(p -> {
-                if (p.getFileName().toString().endsWith("View.fxml")) {
-                    try {
-                        loaders.put(p.getFileName().toString(), new FXMLLoader(p.toUri().toURL()));
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-        //--------------
-
-        return loaders;
-    }
-
     @Override
     public void start(Stage primaryStage) {
         try {
-            readAndLoadConfiguration();
-            var loaders = getLoadersMap();
+            //Read config file
+            try {
+                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+            } catch (UnsupportedOperationException e) {
+                logger.error("Wrong mapping in controller");
+                e.printStackTrace();
+                return;
+            } catch (Exception e) {
+                logger.error("Bad config file, overwritten by default and loaded");
+                logger.error(e.getMessage());
+                logger.error(Arrays.toString(e.getStackTrace()));
+                logger.error(e.toString());
+                modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
+                modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
+                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+            }
+            //--------------
+
+            //Read speech file
+            try {
+                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+            } catch (Exception e) {
+                logger.error("Bad speech file, overwritten by default and loaded");
+                logger.error(e.getMessage());
+                logger.error(Arrays.toString(e.getStackTrace()));
+                logger.error(e.toString());
+                modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
+                modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
+                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+            }
+            //--------------
+
+            //Discover Views and create FXMLLoaders
+            var uri = Main.class.getResource("/Views").toURI();
+            Path dirPath;
+
+            try {
+                dirPath = Paths.get(uri);
+            } catch (FileSystemNotFoundException e) {
+                // If this is thrown, then it means that we are running the JAR directly (example: not from an IDE)
+                var env = new HashMap<String, String>();
+                dirPath = FileSystems.newFileSystem(uri, env).getPath("/Views");
+            }
+            HashMap<String, FXMLLoader> loaders = new HashMap<>();
+
+            Files.list(dirPath)
+                    .forEach(p -> {
+                        if (p.getFileName().toString().endsWith("View.fxml")) {
+                            try {
+                                loaders.put(p.getFileName().toString(), new FXMLLoader(p.toUri().toURL()));
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
 
             FXMLLoader loaderMain = loaders.get(mainView);
             Scene scene = new Scene(loaderMain.load(), 1550, 750);
+            //--------------
+
 
             //Controllers
             MainController mainController = loaderMain.getController();

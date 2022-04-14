@@ -53,6 +53,9 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     @Expose
     public SensorRepository sensorRepository = new SensorRepository();
 
+    @Expose
+    public InterpreterRepository interpreterRepository = new InterpreterRepository();
+
     public ConfigurationSaveModel() {
         super(Configuration.CONFIG_PATH, Configuration.CONFIG_FILE_NAME);
     }
@@ -86,12 +89,17 @@ public class ConfigurationSaveModel extends BaseSaveModel {
             }
         });
 
+        configuration.interpreterRepository.getRepositorySet().forEach((s, interpreter) -> {
+            config.interpreterRepository.addInterpreter(s,interpreter);
+        });
+
         return config;
     }
 
     public static ConfigurationSaveModel defaultConfiguration() {
         ConfigurationSaveModel defaultConfig = new ConfigurationSaveModel();
         defaultConfig.sensorRepository = new SensorRepository();
+        defaultConfig.interpreterRepository = new InterpreterRepository();
         defaultConfig.FPS = 10;
         defaultConfig.AVERAGING_PERIOD = 1000;
         defaultConfig.PARSER_TYPE = MessageParserEnum.STANDARD;

@@ -75,7 +75,15 @@ public class SensorRepository implements ISensorRepository {
 
     public String getSensorKeysAndValues(){
         StringBuilder res = new StringBuilder();
-        sensors.keySet().stream().sorted().forEach(key -> res.append(key).append('=').append(sensors.get(key).getValue()).append("\n"));
+        sensors.keySet().stream().sorted().forEach(key -> {
+            var sensor = sensors.get(key);
+            res.append(key).append('=').append(sensor.getValue());
+
+            if(sensor.hasInterpreter())
+                res.append(" - ").append(sensor.getCodeMeaning().text);
+
+            res.append("\n");
+        });
         return res.toString();
     }
 }

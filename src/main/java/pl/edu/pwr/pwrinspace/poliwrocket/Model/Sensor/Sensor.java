@@ -44,6 +44,11 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     @Expose
     private boolean isBoolean = false;
 
+    @Expose
+    private String interpreterKey;
+
+    private CodeInterpreter interpreter;
+
     protected double value = 0;
 
     private double previousReportedValue = 0;
@@ -88,6 +93,31 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     public Instant getTimeStamp() {
         return timeStamp;
+    }
+
+    @Override
+    public InterpreterValue getCodeMeaning() {
+        if(interpreter == null) {
+           throw new RuntimeException("Interpreter not set");
+        }
+
+        return interpreter.getCodeMeaning((int) value);
+    }
+
+    @Override
+    public void setInterpreter(CodeInterpreter interpreter) {
+        this.interpreter = interpreter;
+        isBoolean = true;
+    }
+
+    @Override
+    public String getInterpreterKey() {
+        return interpreterKey;
+    }
+
+    @Override
+    public boolean hasInterpreter() {
+        return interpreter != null;
     }
 
     protected void notifyObserver() {
@@ -212,8 +242,6 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     }
 
     public double getPreviousValue() {
-        /*var size = this.values.size();
-        return size >= 2 ? this.values.get(size-2) : value;*/
         return previousReportedValue;
     }
 
