@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.SceneAntialiasing?>
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
+<VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER" />
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-image: url('background.jpg'); -fx-background-size: stretch;">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1550.0" style="-fx-background-image: url('background.jpg'); -fx-background-size: stretch;" stylesheets="@constants.css">
       <children>
             <SubScene fx:id="dataScene" height="542.0" layoutX="15.0" layoutY="10.0" width="205.0">
               <root>
@@ -33,12 +33,12 @@
                 <Region />
               </root>
             </SubScene>
-            <SubScene fx:id="abortScene" height="75.0" layoutX="706.0" layoutY="714.0" width="410.0">
+            <SubScene fx:id="abortScene" height="75.0" layoutX="1124.0" layoutY="703.0" width="410.0">
                <root>
                   <Region />
                </root>
             </SubScene>
-            <AnchorPane fx:id="footer" layoutX="14.0" layoutY="765.0" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css">
+            <AnchorPane fx:id="footer" layoutX="14.0" layoutY="770.0" prefHeight="20.0" prefWidth="206.0" styleClass="baseScene" stylesheets="@constants.css">
                <children>
                   <Label layoutX="2.0" layoutY="2.0" prefHeight="18.0" prefWidth="90.0" text="Software by Jan Zmysłowski">
                      <font>
@@ -54,18 +54,13 @@
                   <Region />
                </root>
             </SubScene>
-            <SubScene fx:id="connectionScene" height="335.0" layoutX="1120.0" layoutY="454.0" width="410.0">
-               <root>
-                  <Region />
-               </root>
-            </SubScene>
-            <TabPane fx:id="tabPane" layoutX="225.0" layoutY="10.0" prefHeight="700.0" prefWidth="890.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" layoutX="225.0" layoutY="10.0" prefHeight="786.0" prefWidth="890.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab closable="false" text="Filling">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="754.0" prefWidth="890.0">
                            <children>
-                              <SubScene fx:id="dataSceneFilling" height="644.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                              <SubScene fx:id="dataFillingScene" height="740.0" layoutX="14.0" layoutY="14.0" width="410.0">
                                  <root>
                                     <Region />
                                  </root>
@@ -88,7 +83,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <SubScene fx:id="dataSceneFlight" height="644.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                              <SubScene fx:id="dataFlightScene" height="644.0" layoutX="14.0" layoutY="14.0" width="410.0">
                                  <root>
                                     <Region />
                                  </root>
@@ -128,15 +123,28 @@
                         </AnchorPane>
                     </content>
                   </Tab>
+                  <Tab text="Conection">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <SubScene fx:id="connectionScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                 <root>
+                                    <Region />
+                                 </root>
+                              </SubScene>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
               </tabs>
             </TabPane>
-            <SubScene fx:id="indicatorsScene" height="75.0" layoutX="226.0" layoutY="714.0" width="472.0">
+            <SubScene fx:id="indicatorsScene" height="75.0" layoutX="1063.0" layoutY="621.0" width="472.0">
                <root>
                   <Region />
                </root>
             </SubScene>
-            <TextArea fx:id="inComing" editable="false" layoutX="1116.0" layoutY="349.0" prefHeight="96.0" prefWidth="284.0" />
-            <TextArea fx:id="outGoing" editable="false" layoutX="1406.0" layoutY="349.0" prefHeight="96.0" prefWidth="130.0" />
+            <JFXTextArea fx:id="inComing" editable="false" layoutX="1116.0" layoutY="349.0" prefHeight="96.0" prefWidth="284.0" />
+            <JFXTextArea fx:id="outGoing" editable="false" layoutX="1406.0" layoutY="349.0" prefHeight="96.0" prefWidth="130.0" />
       </children>
     </AnchorPane>
   </children>

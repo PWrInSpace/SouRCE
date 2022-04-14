@@ -1,16 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import eu.hansolo.medusa.Gauge;
+import com.jfoenix.controls.JFXButton;
 import eu.hansolo.tilesfx.addons.Indicator;
 import eu.hansolo.tilesfx.addons.Switch;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
-
-import java.util.HashMap;
 
 public class StatesController extends BasicButtonSensorController {
 
@@ -27,49 +23,37 @@ public class StatesController extends BasicButtonSensorController {
     private Switch safeSwitch4;
 
     @FXML
-    private Button stateButton1;
+    protected JFXButton stateButton1;
 
     @FXML
-    private Button stateButton2;
+    protected JFXButton stateButton2;
 
     @FXML
-    private Button stateButton3;
+    protected JFXButton stateButton3;
 
     @FXML
-    private Button stateButton4;
+    protected JFXButton stateButton4;
 
     @FXML
-    private Indicator stateIndicator1;
+    protected Indicator stateIndicator1;
 
     @FXML
-    private Indicator stateIndicator2;
+    protected Indicator stateIndicator2;
 
     @FXML
-    private Indicator stateIndicator3;
+    protected Indicator stateIndicator3;
 
     @FXML
-    private Indicator stateIndicator4;
-
-    HashMap<String, Object> visualizationsHashMap = new HashMap<>();
+    protected Indicator stateIndicator4;
 
     @FXML
-    void initialize() {
-        controllerNameEnum = ControllerNameEnum.STATES_CONTROLLER;
-
-        visualizationsHashMap.put(stateIndicator1.getId(),stateIndicator1);
-        visualizationsHashMap.put(stateIndicator2.getId(),stateIndicator2);
-        visualizationsHashMap.put(stateIndicator3.getId(),stateIndicator3);
-        visualizationsHashMap.put(stateIndicator4.getId(),stateIndicator4);
+    protected void initialize() {
+        super.initialize();
 
         stateButton1.setDisable(true);
         stateButton2.setDisable(true);
         stateButton3.setDisable(true);
         stateButton4.setDisable(true);
-
-        buttonHashMap.put(stateButton1.getId(), stateButton1);
-        buttonHashMap.put(stateButton2.getId(), stateButton2);
-        buttonHashMap.put(stateButton3.getId(), stateButton3);
-        buttonHashMap.put(stateButton4.getId(), stateButton4);
 
         safeSwitch1.setOnMouseClicked(actionEvent ->
                 stateButton1.setDisable(!safeSwitch1.isActive())
@@ -97,12 +81,8 @@ public class StatesController extends BasicButtonSensorController {
         try {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
-                var visualization = visualizationsHashMap.get(sensor.getDestination());
-                if(visualization instanceof Indicator) {
-                    ((Indicator)visualization).setOn(sensor.getValue() == 1.0);
-                } else if (visualization instanceof  Gauge){
-                    ((Gauge)visualization).setValue(sensor.getValue());
-                }
+                var indicator = indicatorHashMap.get(sensor.getDestination());
+                indicator.setOn(sensor.getValue() == 1.0);
             });
         } catch (Exception e) {
             e.printStackTrace();

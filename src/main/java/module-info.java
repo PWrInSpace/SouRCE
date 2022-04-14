@@ -19,6 +19,7 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires java.desktop;
     requires freetts;
     requires jdk.jshell;
+    requires com.jfoenix;
 
     opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
@@ -28,7 +29,6 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech to com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Service.Save to com.google.gson;
 
-    exports pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
@@ -37,7 +37,7 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     exports pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Thred;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Service.Save;
-    exports pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Event;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.base, javafx.controls, javafx.fxml, javafx.graphics, javafx.media, javafx.web, pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 }

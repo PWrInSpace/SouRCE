@@ -3,18 +3,20 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class GPSSensor implements Observable, IGPSSensor, InvalidationListener, IUIUpdateEventListener {
+public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener {
 
     List<InvalidationListener> observers = new ArrayList<>();
 
     @Expose
-    private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
+    private List<String> destinationControllerNames = new ArrayList<>();
 
     @Expose
     private Sensor latitude;
@@ -95,11 +97,11 @@ public class GPSSensor implements Observable, IGPSSensor, InvalidationListener, 
         }
     }
 
-    public List<ControllerNameEnum> getDestinationControllerNames() {
+    public List<String> getDestinationControllerNames() {
         return destinationControllerNames;
     }
 
-    public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
+    public void setDestinationControllerNames(List<String> destinationControllerNames) {
         this.destinationControllerNames = destinationControllerNames;
     }
 

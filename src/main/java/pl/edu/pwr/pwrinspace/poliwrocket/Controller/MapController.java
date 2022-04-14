@@ -1,16 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import com.jfoenix.controls.JFXTextField;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.offline.OfflineCache;
-import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGPSSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -20,9 +16,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewMapController extends BasicController implements InvalidationListener {
-
-    private static final Logger logger = LoggerFactory.getLogger(NewMapController.class);
+public class MapController extends BasicController {
 
     private static final int ZOOM_DEFAULT = 60;
 
@@ -32,17 +26,16 @@ public class NewMapController extends BasicController implements InvalidationLis
     private MapView mapView;
 
     @FXML
-    public TextField currentLocation;
+    private JFXTextField currentLocation;
 
     @FXML
-    private Label currentDistance;
+    protected Label currentDistance;
 
     private CoordinateLine track;
 
 
     @FXML
-    void initialize() {
-        controllerNameEnum = ControllerNameEnum.MAP_CONTROLLER;
+    protected void initialize() {
     }
 
     public void initMapAndControls(Projection projection) {

@@ -13,18 +13,18 @@
    limitations under the License.
 -->
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.sothawo.mapjfx.MapView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="206.0" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewMapController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="206.0" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MapController">
    <top>
 <!--      <HBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">-->
 <!--         <children>-->
-<!--            <Button fx:id="buttonZoom" text="Zoom 14"/>-->
+<!--            <JFXButton fx:id="buttonZoom" text="Zoom 14"/>-->
 <!--            <Slider fx:id="sliderZoom" blockIncrement="1.0" majorTickUnit="7.0" max="28.0" minorTickCount="6"-->
 <!--                    showTickLabels="true" showTickMarks="true" snapToTicks="true" value="14.0" HBox.hgrow="ALWAYS"/>-->
 <!--         </children>-->
@@ -42,7 +42,7 @@
    <bottom>
       <HBox alignment="CENTER_LEFT" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="currentLocation" editable="false" prefHeight="26.0" prefWidth="210.0" />
+            <JFXTextField fx:id="currentLocation" editable="false" prefHeight="26.0" prefWidth="210.0" styleClass="map-cords" />
          </children>
       </HBox>
    </bottom>
@@ -53,11 +53,11 @@
 <!--               <content>-->
 <!--                  <VBox spacing="10.0">-->
 <!--                     <children>-->
-<!--                        <Button fx:id="buttonKaHarbour" text="Karlsruhe harbour" maxWidth="Infinity"/>-->
-<!--                        <Button fx:id="buttonKaCastle" text="Karlsruhe castle" maxWidth="Infinity"/>-->
-<!--                        <Button fx:id="buttonKaStation" text="Karlsruhe station" maxWidth="Infinity"/>-->
-<!--                        <Button fx:id="buttonKaSoccer" text="KSC soccer stadium" maxWidth="Infinity"/>-->
-<!--                        <Button fx:id="buttonAllLocations" text="All" maxWidth="Infinity"/>-->
+<!--                        <JFXButton fx:id="buttonKaHarbour" text="Karlsruhe harbour" maxWidth="Infinity"/>-->
+<!--                        <JFXButton fx:id="buttonKaCastle" text="Karlsruhe castle" maxWidth="Infinity"/>-->
+<!--                        <JFXButton fx:id="buttonKaStation" text="Karlsruhe station" maxWidth="Infinity"/>-->
+<!--                        <JFXButton fx:id="buttonKaSoccer" text="KSC soccer stadium" maxWidth="Infinity"/>-->
+<!--                        <JFXButton fx:id="buttonAllLocations" text="All" maxWidth="Infinity"/>-->
 <!--                     </children>-->
 <!--                  </VBox>-->
 <!--               </content>-->

@@ -6,9 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import org.javatuples.Triplet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -38,54 +35,50 @@ public class PowerController extends BasicSensorController {
     private Gauge powerGauge1;
 
     @FXML
-    private Label powerLabel7;
+    protected Label powerLabel7;
 
     @FXML
-    private Label powerLabel6;
+    protected Label powerLabel6;
 
     @FXML
-    private Label powerLabel5;
+    protected Label powerLabel5;
 
     @FXML
-    private Label powerLabel4;
+    protected Label powerLabel4;
 
     @FXML
-    private Label powerLabel3;
+    protected Label powerLabel3;
 
     @FXML
-    private Label powerLabel2;
+    protected Label powerLabel2;
 
     @FXML
-    private Label powerLabel1;
+    protected Label powerLabel1;
     @FXML
-    private Label powerValue1;
+    protected Label powerValue1;
 
     @FXML
-    private Label powerValue2;
+    protected Label powerValue2;
 
     @FXML
-    private Label powerValue3;
+    protected Label powerValue3;
 
     @FXML
-    private Label powerValue4;
+    protected Label powerValue4;
 
     @FXML
-    private Label powerValue5;
+    protected Label powerValue5;
 
     @FXML
-    private Label powerValue6;
+    protected Label powerValue6;
 
     @FXML
-    private Label powerValue7;
+    protected Label powerValue7;
 
     private final HashMap<String, Triplet<Gauge, Label, Label>> powerHashMap = new HashMap<>();
 
-    private static final Logger logger = LoggerFactory.getLogger(PowerController.class);
-
-    @FXML
-    void initialize() {
-        controllerNameEnum = ControllerNameEnum.POWER_CONTROLLER;
-
+    @Override
+    protected void buildVisualizationMap() {
         powerHashMap.put(powerGauge1.getId(), new Triplet<>(powerGauge1, powerLabel1, powerValue1));
         powerHashMap.put(powerGauge2.getId(), new Triplet<>(powerGauge2, powerLabel2, powerValue2));
         powerHashMap.put(powerGauge3.getId(), new Triplet<>(powerGauge3, powerLabel3, powerValue3));
@@ -125,9 +118,6 @@ public class PowerController extends BasicSensorController {
                 triplet.getValue1().setVisible(true);
                 triplet.getValue1().setText(sensor.getName());
                 triplet.getValue2().setVisible(true);
-                if(!sensor.isBoolean()) {
-                    UIThreadManager.getInstance().addActiveSensor();
-                }
             } else {
                 logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
             }

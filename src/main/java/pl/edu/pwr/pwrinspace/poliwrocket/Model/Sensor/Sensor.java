@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
@@ -34,7 +33,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private boolean shouldNotify = false;
 
     @Expose
-    private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
+    private List<String> destinationControllerNames = new ArrayList<>();
 
     @Expose
     private double maxRange = 360;
@@ -180,11 +179,11 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         return super.equals(obj);
     }
 
-    public List<ControllerNameEnum> getDestinationControllerNames() {
+    public List<String> getDestinationControllerNames() {
         return destinationControllerNames;
     }
 
-    public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
+    public void setDestinationControllerNames(List<String> destinationControllerNames) {
         this.destinationControllerNames = destinationControllerNames;
     }
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="335.0" prefWidth="410.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MoreDataController">
+<AnchorPane prefHeight="335.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@../Views/constants.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MoreDataController">
    <children>
       <Gauge fx:id="dataGauge9" layoutX="24.0" layoutY="160.0" prefHeight="135.0" prefWidth="170.0" skinType="SPACE_X" AnchorPane.bottomAnchor="39.80000000000001" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="160.0" />
       <Gauge fx:id="dataGauge10" layoutX="215.0" layoutY="160.0" prefHeight="135.0" prefWidth="170.0" skinType="SPACE_X" AnchorPane.bottomAnchor="39.80000000000001" AnchorPane.leftAnchor="214.99999999999997" AnchorPane.rightAnchor="24.599999999999994" AnchorPane.topAnchor="160.0" />

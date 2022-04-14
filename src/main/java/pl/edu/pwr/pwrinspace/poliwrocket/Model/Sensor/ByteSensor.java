@@ -2,7 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
 
-public class ByteSensor extends Sensor {
+public class ByteSensor extends Sensor implements ISensorsWrapper {
 
     @Expose
     private final Sensor[] sensors = new Sensor[7];

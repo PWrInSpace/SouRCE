@@ -7,7 +7,6 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -24,36 +23,34 @@ public class MoreDataController extends BasicSensorController {
     private Gauge dataGauge10;
 
     @FXML
-    private Indicator dataIndicator1;
+    protected Indicator dataIndicator1;
 
     @FXML
-    private Indicator dataIndicator2;
+    protected Indicator dataIndicator2;
 
     @FXML
-    private Indicator dataIndicator4;
+    protected Indicator dataIndicator4;
 
     @FXML
-    private Indicator dataIndicator3;
+    protected Indicator dataIndicator3;
 
     @FXML
-    private Label indicatorLabel1;
+    protected Label indicatorLabel1;
 
     @FXML
-    private Label indicatorLabel2;
+    protected Label indicatorLabel2;
 
     @FXML
-    private Label indicatorLabel3;
+    protected Label indicatorLabel3;
 
     @FXML
-    private Label indicatorLabel4;
+    protected Label indicatorLabel4;
 
     HashMap<String, Object> visualizationsHashMap = new HashMap<>();
     HashMap<String, Label> labelsHashMap = new HashMap<>();
 
-    @FXML
-    void initialize() {
-        controllerNameEnum = ControllerNameEnum.MORE_DATA_CONTROLLER;
-
+    @Override
+    protected void buildVisualizationMap() {
         visualizationsHashMap.put(dataIndicator1.getId(),dataIndicator1);
         visualizationsHashMap.put(dataIndicator2.getId(),dataIndicator2);
         visualizationsHashMap.put(dataIndicator3.getId(),dataIndicator3);
@@ -93,9 +90,6 @@ public class MoreDataController extends BasicSensorController {
                     ((Gauge)visualization).setUnit(sensor.getUnit());
                     ((Gauge)visualization).setThreshold(sensor.getMaxRange()*this.thresholdPercent);
                     ((Gauge)visualization).setVisible(true);
-                }
-                if(!sensor.isBoolean()) {
-                    UIThreadManager.getInstance().addActiveSensor();
                 }
             }
         }

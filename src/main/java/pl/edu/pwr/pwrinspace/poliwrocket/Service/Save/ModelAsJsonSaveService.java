@@ -33,6 +33,11 @@ public class ModelAsJsonSaveService {
     }
 
     public void persistOldFile(BaseSaveModel config) {
+        File dir = new File(config.getPath());
+        if(!dir.exists()) {
+            dir.mkdir();
+        }
+
         File configFile = new File(config.getPath() + config.getFileName());
         File copy = new File(config.getPath()  + config.getPersistPrefix() + config.getFileName());
         try (FileInputStream fis = new FileInputStream(configFile);

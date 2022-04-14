@@ -1,11 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import com.jfoenix.controls.JFXTextArea;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
@@ -13,18 +10,22 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 public class RAWDataController extends BasicSensorController {
 
     @FXML
-    private TextArea rawDataPanel;
-
-    private static final Logger logger = LoggerFactory.getLogger(RAWDataController.class);
+    private JFXTextArea rawDataPanel;
 
     @FXML
-    void initialize() {
-        controllerNameEnum = ControllerNameEnum.RAW_DATA_CONTROLLER;
+    protected void initialize() {
     }
 
     @Override
     protected void setUIBySensors() {
+        //there is now field to display sensor data
+        throw new UnsupportedOperationException();
+    }
 
+    @Override
+    protected void buildVisualizationMap() {
+        //there is now field to display sensor data
+        throw new UnsupportedOperationException();
     }
 
     @Override

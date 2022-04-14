@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.interactivemesh.jfx.importer.ModelImporter;
 import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -9,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -18,26 +18,23 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.javatuples.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MainController extends BasicController implements InvalidationListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
     private static final double initWidth = 1550.4;
     private static final double initHeight = 838.4;
 
     @FXML
-    private TextArea inComing;
+    private JFXTextArea inComing;
 
     @FXML
     private SubScene dataScene;
@@ -70,16 +67,16 @@ public class MainController extends BasicController implements InvalidationListe
     private TabPane tabPane;
 
     @FXML
-    private TextArea outGoing;
+    private JFXTextArea outGoing;
 
     @FXML
-    private SubScene dataSceneFilling;
+    private SubScene dataFillingScene;
 
     @FXML
     private SubScene valvesScene;
 
     @FXML
-    private SubScene dataSceneFlight;
+    private SubScene dataFlightScene;
 
     @FXML
     private SubScene modelScene;
@@ -110,35 +107,34 @@ public class MainController extends BasicController implements InvalidationListe
         return mapScene;
     }
 
-    public void initSubScenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower,
-                              FXMLLoader loaderValves, FXMLLoader loaderMoreData, FXMLLoader loaderAbort,
-                              FXMLLoader loaderIndicators, FXMLLoader loaderStart, FXMLLoader loaderConnection,
-                              FXMLLoader loaderRawData, FXMLLoader loaderFilling, FXMLLoader loaderFlight,
-                              FXMLLoader loaderSettings, FXMLLoader loaderTanwiarz) {
+
+    public void initSubScenes(Collection<FXMLLoader> fxmlLoaders) {
         try {
-            dataScene.setRoot(loaderData.load());
-            mapScene.setRoot(loaderMap.load());
-            powerScene.setRoot(loaderPower.load());
-            valvesScene.setRoot(loaderValves.load());
-            moreDataScene.setRoot(loaderMoreData.load());
-            abortScene.setRoot(loaderAbort.load());
-            indicatorsScene.setRoot(loaderIndicators.load());
-            startControlScene.setRoot(loaderStart.load());
-            connectionScene.setRoot(loaderConnection.load());
-            rawDataScene.setRoot(loaderRawData.load());
-            dataSceneFilling.setRoot(loaderFilling.load());
-            dataSceneFlight.setRoot(loaderFlight.load());
-            settingsScene.setRoot(loaderSettings.load());
-            tanwiarzScene.setRoot(loaderTanwiarz.load());
-        } catch (IOException e) {
+            HashMap<String, Field> fields = new HashMap<>();
+
+            for (Field declaredField : this.getClass().getDeclaredFields()) {
+                String fieldName = declaredField.getName();
+                if(fieldName.endsWith("Scene"))
+                    fields.put(fieldName.replace("Scene","").toLowerCase(),declaredField);
+            }
+
+            for (FXMLLoader fxmlLoader : fxmlLoaders) {
+                Parent loaded = fxmlLoader.load();
+                String className = fxmlLoader.getController().getClass().getSimpleName().replace("Controller", "").toLowerCase();
+                var field = fields.get(className);
+                if(field != null) {
+                    ((SubScene)field.get(this)).setRoot(loaded);
+                } else {
+                    logger.error(String.format("Scene not found for %s", className));
+                }
+            }
+        } catch (IOException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void initialize() {
-        controllerNameEnum = ControllerNameEnum.MAIN_CONTROLLER;
-
+    protected void initialize() {
         modelScene.setVisible(false);
 
         //add nodes to list

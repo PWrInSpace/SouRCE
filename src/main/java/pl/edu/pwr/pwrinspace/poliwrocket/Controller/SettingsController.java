@@ -1,12 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
@@ -16,27 +15,28 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class SettingsController {
+public class SettingsController extends BasicController {
 
     @FXML
     private AnchorPane mainPanel;
 
     @FXML
-    private Button applyButton;
+    protected JFXButton applyButton;
 
     @FXML
-    private Button reloadButton;
-
-    private static final Logger logger = LoggerFactory.getLogger(SettingsController.class);
+    protected JFXButton reloadButton;
 
     private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
 
     List<IAction> actionList = new ArrayList<>();
 
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @FXML
-    void initialize() {
+    protected void initialize() {
         int initYLabel = 49;
         int initYInput = 45;
         int offsetY = 40;
@@ -45,7 +45,7 @@ public class SettingsController {
             if (sensor instanceof ITare) {
                 var tareSensor = (ITare) sensor;
                 Label label = new Label(tareSensor.getName());
-                TextField input = new TextField(Double.toString(tareSensor.getTareValue()));
+                JFXTextField input = new JFXTextField(Double.toString(tareSensor.getTareValue()));
                 label.setLayoutX(42);
                 label.setLayoutY(initYLabel);
                 label.setPrefHeight(18);
@@ -69,8 +69,8 @@ public class SettingsController {
             }
         }
 
-        applyButton.setOnMouseClicked(event -> apply());
-        reloadButton.setOnMouseClicked(event -> reloadConfig());
+        applyButton.setOnMouseClicked(event -> executorService.execute(this::apply));
+        reloadButton.setOnMouseClicked(event -> executorService.execute(this::reloadConfig));
     }
 
     void apply() {
@@ -85,8 +85,11 @@ public class SettingsController {
             logger.error(e.getMessage());
             logger.error(Arrays.toString(e.getStackTrace()));
             logger.error(e.toString());
-
         }
     }
 
+    @Override
+    public void invalidated(Observable observable) {
+
+    }
 }

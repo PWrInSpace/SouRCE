@@ -1,7 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import com.google.gson.annotations.Expose;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
@@ -101,34 +100,42 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.DISCORD_TOKEN = "";
         defaultConfig.START_POSITION_LON = 16.9333977;
         defaultConfig.START_POSITION_LAT = 51.1266727;
-
+        String DATA_CONTROLLER = "Data";
+        String MORE_DATA_CONTROLLER = "MoreData";
+        String MAIN_CONTROLLER = "Main";
+        String MAP_CONTROLLER = "Map";
+        String VALVES_CONTROLLER = "Valves";
+        String CONNECTION_CONTROLLER = "Valves";
+        String POWER_CONTROLLER = "Power";
+        String ABORT_CONTROLLER = "Abort";
+        String START_CONTROL_CONTROLLER = "StartControl";
         Sensor basicSensor = new Sensor();
         basicSensor.setName("Altitude");
         basicSensor.setDestination("dataGauge1");
         basicSensor.setMaxRange(2000);
         basicSensor.setMinRange(0);
-        basicSensor.getDestinationControllerNames().add(ControllerNameEnum.DATA_CONTROLLER);
+        basicSensor.getDestinationControllerNames().add("Data");
         defaultConfig.sensorRepository.addSensor(basicSensor);
 
         //utworzenie 3xSensor for GYRO
         Sensor gryro1 = new Sensor();
         gryro1.setDestination("dataGauge3");
         gryro1.setName("Gyro X");
-        gryro1.getDestinationControllerNames().add(ControllerNameEnum.DATA_CONTROLLER);
+        gryro1.getDestinationControllerNames().add(DATA_CONTROLLER);
 
         Sensor gryro2 = new Sensor();
         gryro2.setDestination("dataGauge5");
         gryro2.setName("Gyro Y");
-        gryro2.getDestinationControllerNames().add(ControllerNameEnum.DATA_CONTROLLER);
+        gryro2.getDestinationControllerNames().add(DATA_CONTROLLER);
 
         Sensor gryro3 = new Sensor();
         gryro3.setDestination("dataGauge7");
         gryro3.setName("Gyro Z");
-        gryro3.getDestinationControllerNames().add(ControllerNameEnum.DATA_CONTROLLER);
+        gryro3.getDestinationControllerNames().add(DATA_CONTROLLER);
 
         //nowy gryo
         GyroSensor gyroSensor = new GyroSensor(gryro1, gryro2, gryro3);
-        gyroSensor.getDestinationControllerNames().add(ControllerNameEnum.MAIN_CONTROLLER);
+        gyroSensor.getDestinationControllerNames().add(MAIN_CONTROLLER);
         defaultConfig.sensorRepository.setGyroSensor(gyroSensor);
         //--------
 
@@ -139,18 +146,18 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         longitude.setName("long");
 
         GPSSensor gpsSensor = new GPSSensor(latitude, longitude);
-        gpsSensor.getDestinationControllerNames().add(ControllerNameEnum.MAP_CONTROLLER);
+        gpsSensor.getDestinationControllerNames().add(MAP_CONTROLLER);
         defaultConfig.sensorRepository.setGpsSensor(gpsSensor);
         //--------
 
         //filling level
         FillingLevelSensor fillingLevelSensor = new FillingLevelSensor();
         fillingLevelSensor.setName("N02Level");
-        Sensor hall1 = new Sensor();
-        Sensor hall2 = new Sensor();
-        Sensor hall3 = new Sensor();
-        Sensor hall4 = new Sensor();
-        Sensor hall5 = new Sensor();
+        AlertSensor hall1 = new AlertSensor();
+        AlertSensor hall2 = new AlertSensor();
+        AlertSensor hall3 = new AlertSensor();
+        AlertSensor hall4 = new AlertSensor();
+        AlertSensor hall5 = new AlertSensor();
         fillingLevelSensor.setHallSensor1(hall1);
         fillingLevelSensor.setHallSensor2(hall2);
         fillingLevelSensor.setHallSensor3(hall3);
@@ -164,28 +171,28 @@ public class ConfigurationSaveModel extends BaseSaveModel {
 
         //komendy
         Command command = new Command("open valveOpenButton1", "valveOpenButton1");
-        command.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
+        command.getDestinationControllerNames().add(VALVES_CONTROLLER);
         defaultConfig.commandsList.add(command);
         Command command2 = new Command("open valveOpenButton2", "valveOpenButton2");
-        command2.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
+        command2.getDestinationControllerNames().add(VALVES_CONTROLLER);
         defaultConfig.commandsList.add(command2);
         Command command3 = new Command("open valveOpenButton3", "valveOpenButton3");
-        command3.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
+        command3.getDestinationControllerNames().add(VALVES_CONTROLLER);
         defaultConfig.commandsList.add(command3);
         Command command4 = new Command("open valveOpenButton4", "valveOpenButton4");
-        command4.getDestinationControllerNames().add(ControllerNameEnum.VALVES_CONTROLLER);
+        command4.getDestinationControllerNames().add(VALVES_CONTROLLER);
         defaultConfig.commandsList.add(command4);
         Command command5 = new Command("test1", "test1");
-        command5.getDestinationControllerNames().add(ControllerNameEnum.CONNECTION_CONTROLLER);
+        command5.getDestinationControllerNames().add(CONNECTION_CONTROLLER);
         defaultConfig.commandsList.add(command5);
         Command command6 = new Command("test2", "test2");
-        command6.getDestinationControllerNames().add(ControllerNameEnum.CONNECTION_CONTROLLER);
+        command6.getDestinationControllerNames().add(CONNECTION_CONTROLLER);
         defaultConfig.commandsList.add(command6);
         Command abort = new Command("ABORT", "abortButton");
-        abort.getDestinationControllerNames().add(ControllerNameEnum.ABORT_CONTROLLER);
+        abort.getDestinationControllerNames().add(ABORT_CONTROLLER);
         defaultConfig.commandsList.add(abort);
         Command fire = new Command("FIRE", "fireButton");
-        fire.getDestinationControllerNames().add(ControllerNameEnum.START_CONTROL_CONTROLLER);
+        fire.getDestinationControllerNames().add(START_CONTROL_CONTROLLER);
         defaultConfig.commandsList.add(fire);
         //--------
 
@@ -204,7 +211,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         velocity.setMinRange(0);
         velocity.setMaxRange(400);
         velocity.setUnit("m/s");
-        velocity.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
+        velocity.getDestinationControllerNames().add(MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(velocity);
 
         Sensor altitude = new Sensor();
@@ -213,32 +220,32 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         altitude.setMinRange(0);
         altitude.setMaxRange(4500);
         altitude.setUnit("m");
-        altitude.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
+        altitude.getDestinationControllerNames().add(MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(altitude);
 
         Sensor indicator1 = new Sensor();
         indicator1.setDestination("dataIndicator1");
         indicator1.setName("Ind 1");
         indicator1.setBoolean(true);
-        indicator1.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
+        indicator1.getDestinationControllerNames().add(MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator1);
         Sensor indicator2 = new Sensor();
         indicator2.setDestination("dataIndicator2");
         indicator2.setName("Ind 2");
         indicator2.setBoolean(true);
-        indicator2.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
+        indicator2.getDestinationControllerNames().add(MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator2);
         Sensor indicator3 = new Sensor();
         indicator3.setDestination("dataIndicator3");
         indicator3.setName("Ind 3");
         indicator3.setBoolean(true);
-        indicator3.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
+        indicator3.getDestinationControllerNames().add(MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator3);
         Sensor indicator4 = new Sensor();
         indicator4.setDestination("dataIndicator4");
         indicator4.setName("Ind 4");
         indicator4.setBoolean(true);
-        indicator4.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
+        indicator4.getDestinationControllerNames().add(MORE_DATA_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(indicator4);
 
         //notification
@@ -263,7 +270,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         power1.setName("Main computer");
         power1.setDestination("powerGauge1");
         power1.setUnit("V");
-        power1.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
+        power1.getDestinationControllerNames().add(POWER_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(power1);
         Sensor power2 = new Sensor();
         power2.setMaxRange(8.2);
@@ -271,7 +278,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         power2.setName("Recovery 1");
         power2.setDestination("powerGauge2");
         power2.setUnit("V");
-        power2.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
+        power2.getDestinationControllerNames().add(POWER_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(power2);
         Sensor power3 = new Sensor();
         power3.setMaxRange(8.2);
@@ -279,7 +286,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         power3.setName("Recovery 2");
         power3.setDestination("powerGauge3");
         power3.setUnit("V");
-        power3.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
+        power3.getDestinationControllerNames().add(POWER_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(power3);
 
         //---------------

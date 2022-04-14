@@ -1,10 +1,9 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import org.javatuples.Triplet;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicButtonSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicButtonSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
@@ -52,7 +51,9 @@ public class Configuration {
 
     public SensorRepository sensorRepository = new SensorRepository();
 
-    public List<BasicController> controllersList = new LinkedList<>();
+    public Collection<BasicController> controllersList = new LinkedList<>();
+
+    private final static Instant startUpTime = Instant.now();
 
     private Configuration() {
         if (Holder.INSTANCE != null) {
@@ -61,7 +62,7 @@ public class Configuration {
     }
 
     public static String getFlightDataFileName(String key) {
-        return "Flight_" + key + "_" + Instant.now().getEpochSecond() + ".txt";
+        return "Flight_" + key + "_" + startUpTime.getEpochSecond() + ".txt";
     }
 
     public void reloadConfigInstance(ConfigurationSaveModel config) {
@@ -70,6 +71,12 @@ public class Configuration {
     }
 
     public void setupConfigInstance(ConfigurationSaveModel config) {
+        copyModelProperties(config);
+        addSensorsToRepository(config);
+        setupSensorsAsListeners(config);
+    }
+
+    private void copyModelProperties(ConfigurationSaveModel config) {
         this.FPS = config.FPS;
         this.AVERAGING_PERIOD = config.AVERAGING_PERIOD;
         this.BUFFER_SIZE = config.BUFFER_SIZE;
@@ -84,7 +91,9 @@ public class Configuration {
         this.sensorRepository = config.sensorRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
+    }
 
+    private void addSensorsToRepository(ConfigurationSaveModel config) {
         if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         }
@@ -101,7 +110,7 @@ public class Configuration {
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
 
-        var basicSensors = this.sensorRepository.getAllBasicSensors().values().stream().toArray();
+        var basicSensors = this.sensorRepository.getAllBasicSensors().values().toArray();
 
         Arrays.stream(basicSensors).filter(s -> s instanceof FillingLevelSensor).forEach(s -> {
             var sensor = (FillingLevelSensor)s;
@@ -110,63 +119,71 @@ public class Configuration {
             this.sensorRepository.addSensor(sensor.getHallSensor3());
             this.sensorRepository.addSensor(sensor.getHallSensor4());
             this.sensorRepository.addSensor(sensor.getHallSensor5());
-            sensor.observeFields();
         });
 
-        this.sensorRepository.getGyroSensor().observeFields();
-        this.sensorRepository.getGpsSensor().observeFields();
-
-        Arrays.stream(basicSensors).filter(s -> s instanceof ByteSensor).forEach(s -> {
-            for (Sensor innerSensor: ((ByteSensor) s).getSensors()) {
-                if(!innerSensor.getName().isEmpty())
-                    this.sensorRepository.addSensor(innerSensor);
-            }
-        });
-
-        Arrays.stream(basicSensors).filter(s -> s instanceof PoteznyTanwiarzSensor).forEach(s -> {
-            for (Sensor innerSensor: ((PoteznyTanwiarzSensor) s).getSensors()) {
+        Arrays.stream(basicSensors).filter(ISensorsWrapper.class::isInstance).forEach(s -> {
+            for (Sensor innerSensor: ((ISensorsWrapper) s).getSensors()) {
                 if(!innerSensor.getName().isEmpty())
                     this.sensorRepository.addSensor(innerSensor);
             }
         });
     }
 
-    public void setupApplicationConfig(List<BasicController> controllersList) {
+    private void setupSensorsAsListeners(ConfigurationSaveModel config) {
+        Arrays.stream(this.sensorRepository.getAllBasicSensors().values().toArray())
+                .filter(IFieldsObserver.class::isInstance)
+                .forEach(s -> ((IFieldsObserver) s).observeFields());
+
+        this.sensorRepository.getGyroSensor().observeFields();
+        this.sensorRepository.getGpsSensor().observeFields();
+    }
+
+    public void setupApplicationConfig(Collection<BasicController> controllersList) {
         this.controllersList = controllersList;
         List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig = new ArrayList<>();
         controllersList.forEach(basicController -> controllersConfig.add(new Triplet<>(basicController,new ArrayList<>(),new ArrayList<>())));
 
         for (int i = 0; i < controllersConfig.size(); i++) {
 
-            if (Configuration.getInstance().sensorRepository.getGpsSensor().getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerNameEnum())) {
+            String controllerName = controllersConfig.get(i).getValue0().getControllerName();
+            if (Configuration.getInstance().sensorRepository.getGpsSensor().getDestinationControllerNames().contains(controllerName)) {
                 Configuration.getInstance().sensorRepository.getGpsSensor().addListener(controllersConfig.get(i).getValue0());
             }
-            if (Configuration.getInstance().sensorRepository.getGyroSensor().getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerNameEnum())) {
+            if (Configuration.getInstance().sensorRepository.getGyroSensor().getDestinationControllerNames().contains(controllerName)) {
                 Configuration.getInstance().sensorRepository.getGyroSensor().addListener(controllersConfig.get(i).getValue0());
             }
             int finalI = i;
             Configuration.getInstance().sensorRepository.getAllBasicSensors().keySet().forEach(s -> {
-                if (Configuration.getInstance().sensorRepository.getAllBasicSensors().get(s).getDestinationControllerNames().contains(controllersConfig.get(finalI).getValue0().getControllerNameEnum())) {
+                if (Configuration.getInstance().sensorRepository.getAllBasicSensors().get(s).getDestinationControllerNames().contains(controllerName)) {
                     Configuration.getInstance().sensorRepository.getAllBasicSensors().get(s).addListener(controllersConfig.get(finalI).getValue0());
                     controllersConfig.get(finalI).getValue1().add(Configuration.getInstance().sensorRepository.getAllBasicSensors().get(s));
                 }
             });
 
             for (int j = 0; j < Configuration.getInstance().commandsList.size(); j++) {
-                if (Configuration.getInstance().commandsList.get(j).getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerNameEnum())) {
+                if (Configuration.getInstance().commandsList.get(j).getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerName())) {
                     controllersConfig.get(i).getValue2().add(Configuration.getInstance().commandsList.get(j));
                 }
             }
         }
 
         for (Triplet<BasicController, List<ISensor>, List<ICommand>> objects : controllersConfig) {
-            if (objects.getValue0() instanceof BasicButtonSensorController) {
-                ((BasicButtonSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
+/*            for (Method method : objects.getValue0().getClass().getMethods()) {
+                try {
+                    if(method.getName().equals("injectSensorsModels")) {
+                        method.invoke(objects.getValue0(), objects.getValue1());
+                    } else if(method.getName().equals("assignsCommands")) {
+                        method.invoke(objects.getValue0(), objects.getValue2());
+                    }
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }*/
+            if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BasicButtonSensorController) {
                 ((BasicButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
-            } else if (objects.getValue0() instanceof BasicSensorController) {
+            }
+            if (!objects.getValue1().isEmpty() && objects.getValue0() instanceof BasicSensorController) {
                 ((BasicSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
-            } else if (objects.getValue0() instanceof BasicButtonController) {
-                ((BasicButtonController) objects.getValue0()).assignsCommands(objects.getValue2());
             }
         }
     }

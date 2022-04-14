@@ -18,7 +18,6 @@ public class UIThreadManager implements InvalidationListener {
     private UIRunnable waitingNormalRunnable = new UIRunnable();
     private UIRunnable waitingImmediateOnOKRunnable = new UIRunnable();
     private UIRunnable waitingImmediateRunnable = new UIRunnable();
-    private int normalTasksLimit = 0;
 
     private final Timer timerRunner = new Timer();
 
@@ -26,13 +25,6 @@ public class UIThreadManager implements InvalidationListener {
         if (UIThreadManager.Holder.INSTANCE != null) {
             throw new IllegalStateException("Singleton already constructed");
         }
-        timerRunner.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                activeRunnable(waitingNormalRunnable);
-                waitingNormalRunnable = new UIRunnable();
-            }
-        },new Date(new Date().getTime() + 3000),1000 / Configuration.getInstance().FPS);
     }
 
     private static class Holder {
@@ -41,6 +33,16 @@ public class UIThreadManager implements InvalidationListener {
 
     public static UIThreadManager getInstance() {
         return UIThreadManager.Holder.INSTANCE;
+    }
+
+    public void start() {
+        timerRunner.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                activeRunnable(waitingNormalRunnable);
+                waitingNormalRunnable = new UIRunnable();
+            }
+        },new Date(new Date().getTime() + 2000),1000 / Configuration.getInstance().FPS);
     }
 
     private synchronized void run() {
@@ -54,10 +56,6 @@ public class UIThreadManager implements InvalidationListener {
 
     public void addNormal(InterfaceUpdateTask task) {
         waitingNormalRunnable.addTask(task);
-//        if(waitingNormalRunnable.waitingTasks() == normalTasksLimit) {
-//            activeRunnable(waitingNormalRunnable);
-//            waitingNormalRunnable = new UIRunnable();
-//        }
     }
 
     public void addImmediate(InterfaceUpdateTask task) {
@@ -66,10 +64,6 @@ public class UIThreadManager implements InvalidationListener {
 
     public void addImmediateOnOK(InterfaceUpdateTask task) {
         waitingImmediateOnOKRunnable.addTask(task);
-    }
-
-    public void addActiveSensor() {
-        normalTasksLimit++;
     }
 
     private void activeRunnable(UIRunnable ...uiRunnable) {

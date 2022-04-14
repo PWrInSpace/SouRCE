@@ -2,7 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import java.util.Map;
 
-public interface IGPSSensor {
+public interface IGPSSensor extends IFieldsObserver {
      String LATITUDE_KEY = "latitude";
      String LONGITUDE_KEY = "longitude";
 

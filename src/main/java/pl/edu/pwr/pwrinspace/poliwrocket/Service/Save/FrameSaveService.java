@@ -21,6 +21,10 @@ public class FrameSaveService {
 
     public FrameSaveService(Set<String> framesKeys) {
         flightDataFiles = new HashMap<>();
+        File directory = new File(Configuration.FLIGHT_DATA_PATH);
+        if(!directory.exists()){
+            directory.mkdirs();
+        }
         framesKeys.forEach(frameKey -> flightDataFiles.putIfAbsent(frameKey,new File(Configuration.FLIGHT_DATA_PATH + Configuration.getFlightDataFileName(frameKey))));
     }
 
@@ -41,7 +45,7 @@ public class FrameSaveService {
 
     public void writeFileHeader(String key, Iterable<String> headers) {
         StringBuilder header = new StringBuilder();
-        header.append(Configuration.getInstance().FRAME_DELIMITER).append(key);
+        header.append("Time").append(Configuration.getInstance().FRAME_DELIMITER).append(key);
         headers.forEach(h -> header.append(Configuration.getInstance().FRAME_DELIMITER).append(h));
         try {
             File file = flightDataFiles.get(key);
@@ -52,7 +56,7 @@ public class FrameSaveService {
 
             FileWriter fileWriter = new FileWriter(file, true);
             try (BufferedWriter output = new BufferedWriter(fileWriter)) {
-                output.write("Time" + header.toString());
+                output.write(header.toString());
                 output.newLine();
             }
         } catch (IOException e) {

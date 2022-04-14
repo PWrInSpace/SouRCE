@@ -2,7 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
 
-public class PoteznyTanwiarzSensor extends Sensor {
+public class PoteznyTanwiarzSensor extends Sensor implements ISensorsWrapper {
 
     @Expose
     private final TanwiarzSensor[] sensors = new TanwiarzSensor[5];

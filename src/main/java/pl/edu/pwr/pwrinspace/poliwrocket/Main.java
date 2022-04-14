@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.*;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.UIUpdateEventEmitter;
@@ -27,12 +26,16 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Rule.RuleValidationService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech.TextToSpeechService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Logger.AppStateLogger;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Notification.NotificationThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.SchedulerThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
+import java.net.MalformedURLException;
+import java.nio.file.*;
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main extends Application {
 
@@ -51,102 +54,103 @@ public class Main extends Application {
     private UIUpdateEventEmitter uiUpdateEventEmitter;
     private SchedulerThread schedulerThread;
 
+    private static final String mainView  = "MainView.fxml";
+
+    private void readAndLoadConfiguration() throws Exception {
+        //Read config file
+        try {
+            Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+        } catch (UnsupportedOperationException e) {
+            logger.error("Wrong mapping in controller");
+            e.printStackTrace();
+            return;
+        } catch (Exception e) {
+            logger.error("Bad config file, overwritten by default and loaded");
+            logger.error(e.getMessage());
+            logger.error(Arrays.toString(e.getStackTrace()));
+            logger.error(e.toString());
+            modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
+            modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
+            Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+        }
+        //--------------
+
+        //Read speech file
+        try {
+            textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+        } catch (Exception e) {
+            logger.error("Bad speech file, overwritten by default and loaded");
+            logger.error(e.getMessage());
+            logger.error(Arrays.toString(e.getStackTrace()));
+            logger.error(e.toString());
+            modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
+            modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
+            textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+        }
+        //--------------
+    }
+
+    private HashMap<String, FXMLLoader> getLoadersMap() throws Exception {
+        //Discover Views and create FXMLLoaders
+        var uri = Main.class.getResource("/Views").toURI();
+        Path dirPath;
+
+        try {
+            dirPath = Paths.get(uri);
+        } catch (FileSystemNotFoundException e) {
+            // If this is thrown, then it means that we are running the JAR directly (example: not from an IDE)
+            var env = new HashMap<String, String>();
+            var fileSystem = FileSystems.newFileSystem(uri, env);
+            dirPath = fileSystem.getPath("/Views");
+            fileSystem.close();
+        }
+        HashMap<String, FXMLLoader> loaders = new HashMap<>();
+
+        try (var filesStream = Files.list(dirPath)) {
+            filesStream.forEach(p -> {
+                if (p.getFileName().toString().endsWith("View.fxml")) {
+                    try {
+                        loaders.put(p.getFileName().toString(), new FXMLLoader(p.toUri().toURL()));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        //--------------
+
+        return loaders;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         try {
-            //Read config file
-            try {
-                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
-            } catch (Exception e) {
-                logger.error("Bad config file, overwritten by default and loaded");
-                logger.error(e.getMessage());
-                logger.error(Arrays.toString(e.getStackTrace()));
-                logger.error(e.toString());
-                modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-                modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
-            }
-            //--------------
+            readAndLoadConfiguration();
+            var loaders = getLoadersMap();
 
-            //Read speech file
-            try {
-                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
-            } catch (Exception e) {
-                logger.error("Bad speech file, overwritten by default and loaded");
-                logger.error(e.getMessage());
-                logger.error(Arrays.toString(e.getStackTrace()));
-                logger.error(e.toString());
-                modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
-                modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
-                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
-            }
-            //--------------
-
-            //FXMLLoader
-            FXMLLoader loaderMain = new FXMLLoader(getClass().getClassLoader().getResource("MainView.fxml"));
-            FXMLLoader loaderData = new FXMLLoader(getClass().getClassLoader().getResource("DataView.fxml"));
-            FXMLLoader loaderDataFlight = new FXMLLoader(getClass().getClassLoader().getResource("DataFlightView.fxml"));
-            FXMLLoader loaderDataFilling = new FXMLLoader(getClass().getClassLoader().getResource("DataFillingView.fxml"));
-            FXMLLoader loaderMap = new FXMLLoader(getClass().getClassLoader().getResource("MapViewNew.fxml"));
-            FXMLLoader loaderPower = new FXMLLoader(getClass().getClassLoader().getResource("PowerView.fxml"));
-            FXMLLoader loaderValves = new FXMLLoader(getClass().getClassLoader().getResource("ValvesView.fxml"));
-            FXMLLoader loaderMoreData = new FXMLLoader(getClass().getClassLoader().getResource("MoreDataView.fxml"));
-            FXMLLoader loaderAbort = new FXMLLoader(getClass().getClassLoader().getResource("AbortView.fxml"));
-            FXMLLoader loaderIndicators = new FXMLLoader(getClass().getClassLoader().getResource("IndicatorsView.fxml"));
-            FXMLLoader loaderStart = new FXMLLoader(getClass().getClassLoader().getResource("StartControlView.fxml"));
-            FXMLLoader loaderConnection = new FXMLLoader(getClass().getClassLoader().getResource("ConnectionView.fxml"));
-            FXMLLoader loaderRawData = new FXMLLoader(getClass().getClassLoader().getResource("RAWDataView.fxml"));
-            FXMLLoader loaderSettings = new FXMLLoader(getClass().getClassLoader().getResource("SettingsView.fxml"));
-            FXMLLoader loaderTanwiarz= new FXMLLoader(getClass().getClassLoader().getResource("TanwiarzView.fxml"));
-
+            FXMLLoader loaderMain = loaders.get(mainView);
             Scene scene = new Scene(loaderMain.load(), 1550, 750);
-            //--------------
 
             //Controllers
             MainController mainController = loaderMain.getController();
-            mainController.initSubScenes(loaderData, loaderMap, loaderPower, loaderValves, loaderMoreData,
-                    loaderAbort, loaderIndicators, loaderStart, loaderConnection, loaderRawData,loaderDataFilling,
-                    loaderDataFlight, loaderSettings,loaderTanwiarz);
+            mainController.initSubScenes(loaders.values().stream().filter(loader -> loader != loaderMain).collect(Collectors.toList()));
             mainController.setPrimaryStage(primaryStage);
 
-            DataController dataController = loaderData.getController();
-            DataFillingController dataFillingController = loaderDataFilling.getController();
-            DataFlightController dataFlightController = loaderDataFlight.getController();
-            NewMapController mapController = loaderMap.getController();
+            HashMap<String, BasicController> controllerList = new HashMap<>();
+            loaders.values().forEach(loader -> {
+                BasicController controller = loader.getController();
+                controllerList.put(controller.getClass().getSimpleName(), controller);
+            });
+
+            ConnectionController connectionController = (ConnectionController) controllerList.get(ConnectionController.class.getSimpleName());
+            MapController mapController = (MapController) controllerList.get(MapController.class.getSimpleName());
             final Projection projection = getParameters().getUnnamed().contains("wgs84")
                     ? Projection.WGS_84 : Projection.WEB_MERCATOR;
             mapController.initMapAndControls(projection);
-
-            PowerController powerController = loaderPower.getController();
-            ValvesController valvesController = loaderValves.getController();
-            MoreDataController moreDataController = loaderMoreData.getController();
-            AbortController abortController = loaderAbort.getController();
-            IndicatorsController indicatorsController = loaderIndicators.getController();
-            StartControlController startControlController = loaderStart.getController();
-            ConnectionController connectionController = loaderConnection.getController();
-            RAWDataController rawDataController = loaderRawData.getController();
-            TanwiarzController tanwiarzController = loaderTanwiarz.getController();
             //--------------
 
             //Mapping sensors and commands to controllers
-            List<BasicController> controllerList = new ArrayList<>();
-            controllerList.add(mainController);
-            controllerList.add(dataController);
-            controllerList.add(dataFillingController);
-            controllerList.add(dataFlightController);
-            controllerList.add(mapController);
-            controllerList.add(powerController);
-            controllerList.add(valvesController);
-            controllerList.add(moreDataController);
-            controllerList.add(abortController);
-            controllerList.add(indicatorsController);
-            //controllerList.add(statesController);
-            controllerList.add(startControlController);
-            controllerList.add(connectionController);
-            controllerList.add(tanwiarzController);
-
-            controllerList.add(rawDataController);
-            Configuration.getInstance().setupApplicationConfig(controllerList);
+            Configuration.getInstance().setupApplicationConfig(controllerList.values());
             //--------------
 
             //IMessageParser setup
@@ -158,7 +162,7 @@ public class Main extends Application {
                 messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
             }
             messageParser.addListener(mainController);
-            messageParser.addListener(rawDataController);
+            messageParser.addListener(controllerList.get(RAWDataController.class.getSimpleName()));
             messageParser.addListener(UIThreadManager.getInstance());
             //--------------
 
@@ -181,6 +185,7 @@ public class Main extends Application {
             SerialPortManager.getInstance().setFrameSaveService(frameSaveService);
             SerialPortManager.getInstance().addListener(connectionController);
             SerialPortManager.getInstance().addListener(mainController);
+            SerialPortManager.getInstance().addListener(AppStateLogger.getInstance());
             //--------------
 
             //Notification setup
@@ -206,34 +211,45 @@ public class Main extends Application {
             });
             //--------------
 
-            //stage settings
+            //Stage settings
             primaryStage.setTitle("SouRCE");
             primaryStage.setMaximized(true);
             primaryStage.setScene(scene);
             primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
             primaryStage.heightProperty().addListener(mainController);
             primaryStage.widthProperty().addListener(mainController);
+            primaryStage.setOnShown(windowEvent -> {
+                UIThreadManager.getInstance().start();
+                AppStateLogger.getInstance().start();
+            });
+            primaryStage.setOnCloseRequest(windowEvent -> {
+                System.exit(0);
+            });
             primaryStage.show();
             //--------------
 
-//            testMode();
         } catch (Exception e) {
             e.printStackTrace();
         }
+       /* new Thread(() -> {
+            while(true) {
+                Set<Thread> threads = Thread.getAllStackTraces().keySet();
+                System.out.printf("%-15s \t %-15s \t %-15s \t %s\n", "Name", "State", "Priority", "isDaemon");
+                for (Thread t : threads) {
+                    System.out.printf("%-15s \t %-15s \t %-15d \t %s\n", t.getName(), t.getState(), t.getPriority(), t.isDaemon());
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }).start();*/
     }
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    @Override
-    public void stop() {
-        logger.info("Stage is closing");
-        ttsService.deallocate();
-        if (SerialPortManager.getInstance().isPortOpen()) {
-            SerialPortManager.getInstance().close();
-        }
-        System.exit(-1);
     }
 
 //    private void testMode() {

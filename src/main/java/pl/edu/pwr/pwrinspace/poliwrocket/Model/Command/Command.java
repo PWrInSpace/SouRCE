@@ -1,7 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 
 import com.google.gson.annotations.Expose;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class Command implements ICommand {
     private String description = "";
 
     @Expose
-    private List<ControllerNameEnum> destinationControllerNames = new ArrayList<>();
+    private List<String> destinationControllerNames = new ArrayList<>();
 
     public Command(String value, String trigger) {
         this.value = value;
@@ -55,11 +54,11 @@ public class Command implements ICommand {
         return description;
     }
 
-    public List<ControllerNameEnum> getDestinationControllerNames() {
+    public List<String> getDestinationControllerNames() {
         return destinationControllerNames;
     }
 
-    public void setDestinationControllerNames(List<ControllerNameEnum> destinationControllerNames) {
+    public void setDestinationControllerNames(List<String> destinationControllerNames) {
         this.destinationControllerNames = destinationControllerNames;
     }
 }
