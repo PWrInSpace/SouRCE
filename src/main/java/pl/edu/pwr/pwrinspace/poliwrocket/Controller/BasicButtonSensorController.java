@@ -21,7 +21,7 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
 
     protected HashSet<ICommand> commands = new HashSet<>();
 
-    protected ExecutorService executorService = Executors.newSingleThreadExecutor();
+    protected static final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @FXML
     protected void initialize() {

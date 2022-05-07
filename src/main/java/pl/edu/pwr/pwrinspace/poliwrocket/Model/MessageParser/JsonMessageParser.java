@@ -2,15 +2,10 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensorRepository;
 
 public class JsonMessageParser extends BaseMessageParser {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonMessageParser.class);
-
-    public JsonMessageParser(ISensorRepository sensorRepository) {
-        super(sensorRepository);
-    }
 
     //TODO adjust to new key/frame pattern
     @Override

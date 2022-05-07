@@ -16,13 +16,12 @@ public abstract class BasicSensorController extends BasicController {
         Platform.runLater(this::buildUI);
     }
 
-    public final void buildUI() {
+    private void buildUI() {
         buildVisualizationMap();
         setUIBySensors();
     }
 
-    protected abstract void setUIBySensors();
-
     protected abstract void buildVisualizationMap();
 
+    protected abstract void setUIBySensors();
 }

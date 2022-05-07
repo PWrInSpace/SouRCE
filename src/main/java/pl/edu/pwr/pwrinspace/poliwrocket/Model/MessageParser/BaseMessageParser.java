@@ -1,14 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
 
 import javafx.beans.InvalidationListener;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensorRepository;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class BaseMessageParser implements IMessageParser {
-
-    protected final ISensorRepository sensorRepository;
 
     protected String lastMessage;
 
@@ -18,9 +15,6 @@ public abstract class BaseMessageParser implements IMessageParser {
 
     private final List<ISensorUpdate> sensorUpdates = new LinkedList<>();
 
-    public BaseMessageParser(ISensorRepository sensorRepository) {
-        this.sensorRepository = sensorRepository;
-    }
 
     @Override
     public String getLastMessage() {

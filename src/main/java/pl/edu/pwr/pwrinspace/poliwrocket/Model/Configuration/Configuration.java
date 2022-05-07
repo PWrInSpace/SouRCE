@@ -165,10 +165,14 @@ public class Configuration {
                 Configuration.getInstance().sensorRepository.getGyroSensor().addListener(controllersConfig.get(i).getValue0());
             }
             int finalI = i;
-            Configuration.getInstance().sensorRepository.getAllBasicSensors().keySet().forEach(s -> {
-                if (Configuration.getInstance().sensorRepository.getAllBasicSensors().get(s).getDestinationControllerNames().contains(controllerName)) {
-                    Configuration.getInstance().sensorRepository.getAllBasicSensors().get(s).addListener(controllersConfig.get(finalI).getValue0());
-                    controllersConfig.get(finalI).getValue1().add(Configuration.getInstance().sensorRepository.getAllBasicSensors().get(s));
+            Configuration.getInstance().sensorRepository.getAllBasicSensors().values().forEach(s -> {
+                if (s.getDestinationControllerNames().contains(controllerName) && s.getDestination() != null && !s.getDestination().isEmpty()) {
+                    s.addListener(controllersConfig.get(finalI).getValue0());
+                    controllersConfig.get(finalI).getValue1().add(s);
+
+                    if (s instanceof SettingsSensor) {
+                        controllersConfig.get(finalI).getValue2().add((SettingsSensor)s);
+                    }
                 }
             });
 
@@ -191,12 +195,14 @@ public class Configuration {
                     e.printStackTrace();
                 }
             }*/
-            if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BasicButtonSensorController) {
-                ((BasicButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
-            }
             if (!objects.getValue1().isEmpty() && objects.getValue0() instanceof BasicSensorController) {
                 ((BasicSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
             }
+
+            if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BasicButtonSensorController) {
+                ((BasicButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
+            }
+
         }
     }
 

@@ -9,9 +9,6 @@ public class StandardMessageParser extends BaseMessageParser {
 
     private static final Logger logger = LoggerFactory.getLogger(StandardMessageParser.class);
 
-    public StandardMessageParser(ISensorRepository sensorRepository) {
-        super(sensorRepository);
-    }
 
     @Override
     protected void parseInternal(Frame frame) {
@@ -29,7 +26,7 @@ public class StandardMessageParser extends BaseMessageParser {
                     try {
                         if(!splitted[currentPosition].contains(":") && !splitted[currentPosition].contains("nan")) {
                             var value = Double.parseDouble(splitted[currentPosition]);
-                            addSensorUpdate(() -> sensorRepository.getSensorByName(sensorName).setValue(value));
+                            addSensorUpdate(() -> Configuration.getInstance().sensorRepository.getSensorByName(sensorName).setValue(value));
                         }
                     } catch (NumberFormatException e) {
                         this.lastMessage = "Invalid: " + this.lastMessage;

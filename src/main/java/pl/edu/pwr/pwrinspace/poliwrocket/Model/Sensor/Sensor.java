@@ -20,10 +20,10 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private String destination = "";
 
     @Expose
-    private String name = "Altitude";
+    private String name;
 
     @Expose
-    private String unit = "m";
+    private String unit;
 
     private Instant timeStamp;
 
@@ -36,10 +36,10 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private List<String> destinationControllerNames = new ArrayList<>();
 
     @Expose
-    private double maxRange = 360;
+    private double maxRange;
 
     @Expose
-    private double minRange = -360;
+    private double minRange;
 
     @Expose
     private boolean isBoolean = false;
@@ -137,13 +137,13 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         if (isBoolean || currentTime - this.timeStamp.toEpochMilli() >=  1000) {
             this.previousReportedValue = this.value;
             this.value = newValue;
-            this.shouldNotify = true;
+            this.shouldNotify = this.previousReportedValue != this.value;
         } else if (currentTime - this.lastAveragingTimeStamp.toEpochMilli() >= Configuration.getInstance().AVERAGING_PERIOD) {
             this.previousReportedValue = this.value;
             this.value = this.getAverage();
             this.lastAveragingTimeStamp = currentTimeStamp;
             this.values.clear();
-            this.shouldNotify = true;
+            this.shouldNotify = this.previousReportedValue != this.value;
         } else {
             this.value = newValue;
         }

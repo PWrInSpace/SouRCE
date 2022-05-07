@@ -8,13 +8,13 @@ import java.util.List;
 public class Command implements ICommand {
 
     @Expose
-    private String value = "x";
+    private String value;
 
     @Expose
-    private String trigger = "y";
+    private String trigger;
 
     @Expose
-    private String description = "";
+    private String description;
 
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();

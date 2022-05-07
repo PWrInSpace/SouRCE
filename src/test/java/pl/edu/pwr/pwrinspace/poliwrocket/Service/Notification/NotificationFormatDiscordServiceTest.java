@@ -32,7 +32,7 @@ class NotificationFormatDiscordServiceTest {
     @BeforeEach
     void setUp() {
         initMocks(this);
-        notificationFormatDiscordServiceUnderTest = new NotificationFormatDiscordService(mockSensorRepository);
+        notificationFormatDiscordServiceUnderTest = new NotificationFormatDiscordService();
     }
 
     @Test

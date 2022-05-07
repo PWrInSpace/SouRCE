@@ -144,11 +144,11 @@ public class Main extends Application {
 
             //IMessageParser setup
             if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.JSON) {
-                messageParser = new JsonMessageParser(Configuration.getInstance().sensorRepository);
+                messageParser = new JsonMessageParser();
             } else if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.STANDARD) {
-                messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
+                messageParser = new StandardMessageParser();
             } else {
-                messageParser = new StandardMessageParser(Configuration.getInstance().sensorRepository);
+                messageParser = new StandardMessageParser();
             }
             messageParser.addListener(mainController);
             messageParser.addListener(controllerList.get(RAWDataController.class.getSimpleName()));
@@ -179,7 +179,7 @@ public class Main extends Application {
 
             //Notification setup
             if (!Configuration.getInstance().DISCORD_TOKEN.equals("")) {
-                notificationFormatService = new NotificationFormatDiscordService(Configuration.getInstance().sensorRepository);
+                notificationFormatService = new NotificationFormatDiscordService();
                 notificationEvent = new NotificationDiscordEvent(notificationFormatService);
                 INotification discord = new DiscordNotification(notificationEvent);
                 discord.addListener(connectionController);

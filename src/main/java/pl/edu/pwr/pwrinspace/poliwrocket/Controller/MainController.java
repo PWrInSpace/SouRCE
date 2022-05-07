@@ -94,7 +94,10 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene settingsScene;
 
     @FXML
-    private SubScene tanwiarzScene;
+    private SubScene interpretersScene;
+
+    @FXML
+    private SubScene rocketSettingsScene;
 
     private final MainController.SmartGroup root = new SmartGroup();
 
@@ -150,6 +153,7 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(outGoing);
         nodes.add(inComing);
         nodes.add(tabPane);
+        nodes.add(interpretersScene);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
 
         //set logo

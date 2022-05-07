@@ -49,11 +49,11 @@ public class SettingsController extends BasicController {
                 label.setLayoutX(42);
                 label.setLayoutY(initYLabel);
                 label.setPrefHeight(18);
-                label.setPrefWidth(125);
-                input.setLayoutX(252);
+                label.setPrefWidth(110);
+                input.setLayoutX(215);
                 input.setLayoutY(initYInput);
                 input.setPrefHeight(26);
-                input.setPrefWidth(170);
+                input.setPrefWidth(150);
                 mainPanel.getChildren().add(label);
                 mainPanel.getChildren().add(input);
                 actionList.add(() -> {

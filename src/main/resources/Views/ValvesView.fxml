@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import eu.hansolo.tilesfx.addons.*?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import eu.hansolo.tilesfx.addons.Indicator?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="335.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.ValvesController">
+
+<AnchorPane prefHeight="335.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.ValvesController">
    <children>
       <Label layoutX="7.0" text="Valves:">
          <font>
@@ -42,5 +43,11 @@
       <JFXButton fx:id="valveTmpOpenButton4" layoutX="326.0" layoutY="192.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="TmpOpen" visible="false" />
       <JFXButton fx:id="valveTmpOpenButton5" layoutX="326.0" layoutY="243.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="TmpOpen" visible="false" />
       <JFXButton fx:id="valveTmpOpenButton6" layoutX="326.0" layoutY="292.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="TmpOpen" visible="false" />
+      <Label fx:id="indicatorValueLabel1" layoutX="34.0" layoutY="46.0" text="Valve1" visible="false" />
+      <Label fx:id="indicatorValueLabel2" layoutX="34.0" layoutY="97.0" text="Valve2" visible="false" />
+      <Label fx:id="indicatorValueLabel3" layoutX="34.0" layoutY="151.0" text="Valve3" visible="false" />
+      <Label fx:id="indicatorValueLabel4" layoutX="34.0" layoutY="202.0" text="Valve4" visible="false" />
+      <Label fx:id="indicatorValueLabel5" layoutX="34.0" layoutY="253.0" text="Valve5" visible="false" />
+      <Label fx:id="indicatorValueLabel6" layoutX="34.0" layoutY="302.0" text="Valve6" visible="false" />
    </children>
 </AnchorPane>

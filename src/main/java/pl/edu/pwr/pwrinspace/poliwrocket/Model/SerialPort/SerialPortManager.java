@@ -118,6 +118,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 isPortOpen = serialPort.isConnected();
                 log.log(Level.WARNING,e.toString());
             } finally {
+                lastMessage = "";
                 notifyObserver();
                 log.log(Level.INFO, "Serialport status: {0}", isPortOpen);
             }

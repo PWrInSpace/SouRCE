@@ -4,5 +4,7 @@ public enum CodeInterpreterUIHint {
     OK,
     ERROR,
     WARNING,
-    INFO
+    INFO,
+    OPEN,
+    CLOSE
 }
