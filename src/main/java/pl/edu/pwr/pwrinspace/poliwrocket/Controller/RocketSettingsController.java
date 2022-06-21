@@ -27,12 +27,6 @@ public class RocketSettingsController extends BasicButtonSensorController {
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
     protected final HashMap<String, Label> valueHashMap = new HashMap<>();
 
-/*    @Override
-    protected void initialize() {
-        super.initialize();
-        this.buildVisualizationMap();
-    }*/
-
     protected void buildVisualizationMap() {
 
         mainPanel.getChildren().removeIf(node ->

@@ -76,7 +76,7 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
     public Map<String, Double> getPosition() {
         HashMap<String, Double> position = new HashMap<>();
         position.put(IGPSSensor.LATITUDE_KEY,latitude.getValue());
-        position.put(IGPSSensor.LONGITUDE_KEY,longitude.getValue() * -1);
+        position.put(IGPSSensor.LONGITUDE_KEY,longitude.getValue());
         return position;
     }
 

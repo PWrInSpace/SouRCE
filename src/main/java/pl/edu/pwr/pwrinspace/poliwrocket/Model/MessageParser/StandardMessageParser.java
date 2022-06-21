@@ -3,7 +3,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensorRepository;
 
 public class StandardMessageParser extends BaseMessageParser {
 
@@ -26,7 +25,13 @@ public class StandardMessageParser extends BaseMessageParser {
                     try {
                         if(!splitted[currentPosition].contains(":") && !splitted[currentPosition].contains("nan")) {
                             var value = Double.parseDouble(splitted[currentPosition]);
-                            addSensorUpdate(() -> Configuration.getInstance().sensorRepository.getSensorByName(sensorName).setValue(value));
+                            addSensorUpdate(() ->  {
+                                try {
+                                    Configuration.getInstance().sensorRepository.getSensorByName(sensorName).setValue(value);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
                         }
                     } catch (NumberFormatException e) {
                         this.lastMessage = "Invalid: " + this.lastMessage;

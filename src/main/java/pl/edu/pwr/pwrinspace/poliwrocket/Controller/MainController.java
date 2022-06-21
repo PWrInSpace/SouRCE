@@ -49,6 +49,9 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene abortScene;
 
     @FXML
+    private SubScene commandsScene;
+
+    @FXML
     private AnchorPane footer;
 
     @FXML
@@ -88,6 +91,12 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene indicatorsScene;
 
     @FXML
+    private SubScene indicators2Scene;
+
+    @FXML
+    private SubScene indicatorsFlightScene;
+
+    @FXML
     private SubScene startControlScene;
 
     @FXML
@@ -98,6 +107,9 @@ public class MainController extends BasicController implements InvalidationListe
 
     @FXML
     private SubScene rocketSettingsScene;
+
+    @FXML
+    private SubScene interpretersFlightScene;
 
     private final MainController.SmartGroup root = new SmartGroup();
 
@@ -138,28 +150,37 @@ public class MainController extends BasicController implements InvalidationListe
 
     @FXML
     protected void initialize() {
-        modelScene.setVisible(false);
+        addNodesForAppScalingPurpose();
+        setAppImages();
+        setup3DModel();
+    }
 
-        //add nodes to list
+    private void setAppImages() {
+        //set logo
+        poliwrocketLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
+        inSpaceLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("inSpaceLogo.png"))));
+    }
+
+    private void addNodesForAppScalingPurpose() {
+        //add nodes to list, ONLY nodes that are directly on main panel, it is necessary for scaling app window
         nodes.add(dataScene);
         nodes.add(mapScene);
         nodes.add(powerScene);
         nodes.add(abortScene);
-        nodes.add(connectionScene);
         nodes.add(modelScene);
         nodes.add(footer);
         nodes.add(rawDataScene);
         nodes.add(indicatorsScene);
+        nodes.add(indicators2Scene);
         nodes.add(outGoing);
         nodes.add(inComing);
-        nodes.add(tabPane);
         nodes.add(interpretersScene);
+        nodes.add(tabPane);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
+    }
 
-        //set logo
-        poliwrocketLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
-        inSpaceLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("inSpaceLogo.png"))));
-
+    private void setup3DModel() {
+        modelScene.setVisible(false); //tmp off
 
         //Creating camera
         PerspectiveCamera camera = new PerspectiveCamera(true);

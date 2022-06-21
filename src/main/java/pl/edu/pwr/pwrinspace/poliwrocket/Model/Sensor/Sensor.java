@@ -47,6 +47,9 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     @Expose
     private String interpreterKey;
 
+    @Expose
+    private boolean hidden = false;
+
     private CodeInterpreter interpreter;
 
     protected double value = 0;
@@ -69,6 +72,11 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         this.maxRange = sensor.maxRange;
         this.value = sensor.value;
         this.timeStamp = sensor.timeStamp;
+    }
+
+    public Sensor(String name) {
+        this.timeStamp = Instant.now();
+        this.name = name;
     }
 
     @Override
@@ -120,6 +128,11 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         return interpreter != null;
     }
 
+    @Override
+    public boolean isHidden() {
+        return hidden;
+    }
+
     protected void notifyObserver() {
         for (InvalidationListener obs : observers) {
             if (shouldNotify || obs instanceof Observable) {
@@ -137,13 +150,13 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         if (isBoolean || currentTime - this.timeStamp.toEpochMilli() >=  1000) {
             this.previousReportedValue = this.value;
             this.value = newValue;
-            this.shouldNotify = this.previousReportedValue != this.value;
+            this.shouldNotify = true;
         } else if (currentTime - this.lastAveragingTimeStamp.toEpochMilli() >= Configuration.getInstance().AVERAGING_PERIOD) {
             this.previousReportedValue = this.value;
             this.value = this.getAverage();
             this.lastAveragingTimeStamp = currentTimeStamp;
             this.values.clear();
-            this.shouldNotify = this.previousReportedValue != this.value;
+            this.shouldNotify = true;
         } else {
             this.value = newValue;
         }

@@ -9,7 +9,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -17,7 +16,7 @@ public class FrameSaveService {
 
     private static final Logger logger = LoggerFactory.getLogger(FrameSaveService.class);
     private final HashMap<String,File> flightDataFiles;
-    private final File logFile = new File(Configuration.FLIGHT_DATA_PATH + "Flight_log_" + Instant.now() + ".txt");
+    private final File logFile = new File(Configuration.FLIGHT_DATA_PATH + "Flight_log_" + Configuration.startUpTime.getEpochSecond()  + ".txt");
 
     public FrameSaveService(Set<String> framesKeys) {
         flightDataFiles = new HashMap<>();

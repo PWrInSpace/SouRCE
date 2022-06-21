@@ -72,8 +72,9 @@ public class Main extends Application {
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
                 modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-                modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
-                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+               // modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
+                //Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+                return;
             }
             //--------------
 

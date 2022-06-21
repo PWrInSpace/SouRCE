@@ -11,6 +11,10 @@ public class UIHelper {
                 return Color.ORANGERED;
             case ERROR:
                 return Color.RED;
+            case SUCCESS:
+                return Color.GREENYELLOW;
+            case OPEN:
+                return Color.BLUE;
             default:
                 return Color.WHITE;
         }

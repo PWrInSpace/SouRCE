@@ -33,20 +33,20 @@
                 <Region />
               </root>
             </SubScene>
-            <SubScene fx:id="abortScene" height="75.0" layoutX="1117.0" layoutY="719.0" width="418.0">
+            <SubScene fx:id="abortScene" height="75.0" layoutX="1117.0" layoutY="724.0" width="418.0">
                <root>
                   <Region />
                </root>
             </SubScene>
-            <AnchorPane fx:id="footer" layoutX="14.0" layoutY="770.0" prefHeight="20.0" prefWidth="206.0" styleClass="baseScene" stylesheets="@constants.css">
+            <AnchorPane fx:id="footer" layoutX="14.0" layoutY="762.0" prefHeight="30.0" prefWidth="206.0" styleClass="baseScene" stylesheets="@constants.css">
                <children>
-                  <Label layoutX="2.0" layoutY="2.0" prefHeight="18.0" prefWidth="90.0" text="Software by Jan Zmysłowski">
+                  <Label layoutX="4.0" layoutY="4.0" prefHeight="18.0" prefWidth="90.0" text="Software by Jan Zmysłowski">
                      <font>
                         <Font size="7.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="poliwrocketLogo" fitHeight="20.0" fitWidth="20.0" layoutX="170.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="inSpaceLogo" fitHeight="20.0" fitWidth="75.0" layoutX="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="poliwrocketLogo" fitHeight="20.0" fitWidth="20.0" layoutX="170.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="inSpaceLogo" fitHeight="20.0" fitWidth="75.0" layoutX="100.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <SubScene fx:id="rawDataScene" height="335.0" layoutX="1116.0" layoutY="10.0" width="206.0">
@@ -91,12 +91,22 @@
                                     <Region stylesheets="@constants.css" />
                                  </root>
                               </SubScene>
-                              <SubScene fx:id="moreDataScene" height="335.0" layoutX="465.0" layoutY="323.0" width="410.0">
+                              <SubScene fx:id="moreDataScene" height="335.0" layoutX="465.0" layoutY="186.0" width="410.0">
                                  <root>
                                     <Region />
                                  </root>
                               </SubScene>
-                              <SubScene fx:id="startControlScene" height="165.0" layoutX="465.0" layoutY="149.0" width="410.0">
+                              <SubScene fx:id="startControlScene" height="165.0" layoutX="465.0" layoutY="14.0" width="410.0">
+                                 <root>
+                                    <Region />
+                                 </root>
+                              </SubScene>
+                              <SubScene fx:id="interpretersFlightScene" height="176.0" layoutX="465.0" layoutY="527.0" width="410.0">
+                                 <root>
+                                    <Region />
+                                 </root>
+                              </SubScene>
+                              <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="10.0" layoutY="666.0" width="418.0">
                                  <root>
                                     <Region />
                                  </root>
@@ -125,30 +135,38 @@
                   </Tab>
                   <Tab text="Conection">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <SubScene fx:id="connectionScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">
-                                 <root>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                             <SubScene fx:id="connectionScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                <root>
                                     <Region />
-                                 </root>
-                              </SubScene>
-                           </children>
-                        </AnchorPane>
+                                </root>
+                             </SubScene>
+                             <SubScene fx:id="commandsScene" height="744.0" layoutX="445.0" layoutY="14.0" width="430.0">
+                                <root>
+                                    <Region />
+                                </root>
+                             </SubScene>
+                         </AnchorPane>
                      </content>
                   </Tab>
               </tabs>
             </TabPane>
-            <SubScene fx:id="indicatorsScene" height="75.0" layoutX="1117.0" layoutY="635.0" width="418.0">
+            <SubScene fx:id="indicators2Scene" height="75.0" layoutX="1117.0" layoutY="646.0" width="418.0">
                <root>
                   <Region />
                </root>
             </SubScene>
             <JFXTextArea fx:id="inComing" editable="false" layoutX="1115.0" layoutY="349.0" prefHeight="96.0" prefWidth="284.0" />
             <JFXTextArea fx:id="outGoing" editable="false" layoutX="1406.0" layoutY="349.0" prefHeight="96.0" prefWidth="130.0" />
-            <SubScene fx:id="interpretersScene" height="176.0" layoutX="1117.0" layoutY="451.0" width="418.0">
+            <SubScene fx:id="interpretersScene" height="114.0" layoutX="1117.0" layoutY="451.0" width="418.0">
               <root>
                 <Region />
               </root>
+            </SubScene>
+            <SubScene fx:id="indicatorsScene" height="75.0" layoutX="1117.0" layoutY="568.0" width="418.0">
+               <root>
+                  <Region />
+               </root>
             </SubScene>
       </children>
     </AnchorPane>

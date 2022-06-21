@@ -8,8 +8,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
 import java.lang.reflect.Field;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public abstract class BasicTilesFXSensorController extends BasicSensorController {
 
@@ -25,7 +25,10 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
         tileHashMap.clear();
         indicatorHashMap.clear();
         labelHashMap.clear();
-        for (Field declaredField : this.getClass().getDeclaredFields()) {
+        var fields = new LinkedList<Field>();
+        BasicSensorController.getAllFields(fields, this.getClass());
+
+        for (Field declaredField : fields) {
             try {
                 if (declaredField.getType().isAssignableFrom(Tile.class)) {
                     ((Tile) declaredField.get(this)).setVisible(false);
@@ -34,7 +37,7 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                 } else if (declaredField.getType().isAssignableFrom(Indicator.class)) {
                     ((Indicator) declaredField.get(this)).setVisible(false);
                     indicatorHashMap.put(declaredField.getName(), (Indicator) declaredField.get(this));
-                    var label = Arrays.stream(this.getClass().getDeclaredFields()).filter(f -> f.getName().equals("indicatorLabel" + declaredField.getName().charAt(declaredField.getName().length() - 1))).findFirst();
+                    var label = fields.stream().filter(f -> f.getName().equals("indicatorLabel" + declaredField.getName().charAt(declaredField.getName().length() - 1))).findFirst();
                     if(label.isPresent()) {
                         labelHashMap.put(declaredField.getName(), (Label) label.get().get(this));
                     } else {
@@ -62,6 +65,7 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                 tile.setSmoothing(true);
                 tile.setTimePeriod(DURATION);
                 tile.setAveragingPeriod(_duration);
+                tile.setTextVisible(true);
                 if(sensor instanceof FillingLevelSensor) {
                     tile.setSkinType(Tile.SkinType.FLUID);
                 }

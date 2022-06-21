@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 public class ByteSensor extends Sensor implements ISensorsWrapper {
 
     @Expose
-    private final Sensor[] sensors = new Sensor[7];
+    private final Sensor[] sensors = new Sensor[8];
 
     public ByteSensor() {
         super();
@@ -33,8 +33,8 @@ public class ByteSensor extends Sensor implements ISensorsWrapper {
 
     @Override
     protected void notifyObserver() {
-        int valasInt= (int)this.getValue();
-        String values = String.format("%8s", Integer.toBinaryString(valasInt)).replace(' ', '0');
+        int valueInt = (int)this.getValue();
+        String values = String.format("%8s", Integer.toBinaryString(valueInt)).replace(' ', '0');
         int k = 7;
         if(values.length() == 8)
             for (int i = 0; i < values.length(); i++) {

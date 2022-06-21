@@ -4,6 +4,7 @@ import javafx.beans.InvalidationListener;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 public abstract class BaseMessageParser implements IMessageParser {
 
@@ -15,6 +16,9 @@ public abstract class BaseMessageParser implements IMessageParser {
 
     private final List<ISensorUpdate> sensorUpdates = new LinkedList<>();
 
+    private final Semaphore available = new Semaphore(1, true);
+
+    public Object _lock = new Object();
 
     @Override
     public String getLastMessage() {
@@ -28,11 +32,13 @@ public abstract class BaseMessageParser implements IMessageParser {
 
     @Override
     public void parseMessage(Frame frame) {
+
         parsingResultStatus = ParsingResultStatus.PENDING;
 
         parseInternal(frame);
         if(parsingResultStatus == ParsingResultStatus.OK) {
             commitParsing();
+
         }
         clearUpdatesList();
         notifyObserver();

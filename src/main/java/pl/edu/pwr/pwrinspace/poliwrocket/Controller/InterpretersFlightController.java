@@ -4,9 +4,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
-public  class InterpretersController extends BaseInterpretersController {
+public  class InterpretersFlightController extends BaseInterpretersController {
 
-    private static final int  MAX_ELEMENTS = 8;
     @Override
     protected void buildVisualizationMap() {
         super.buildVisualizationMap();
@@ -21,7 +20,7 @@ public  class InterpretersController extends BaseInterpretersController {
 
         int element = 0;
         for (ISensor sensor : this.getSortedSensors()) {
-            if(element < MAX_ELEMENTS) {
+            if(element < 12) {
                 if(element != 0 && element % 2 == 0) {
                     layoutY += 26;
                     layoutX -= 185;

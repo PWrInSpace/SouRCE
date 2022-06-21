@@ -20,4 +20,5 @@ public interface ISensor {
     void setInterpreter(CodeInterpreter interpreter);
     String getInterpreterKey();
     boolean hasInterpreter();
+    boolean isHidden();
 }

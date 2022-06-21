@@ -20,6 +20,7 @@ public class ModelAsJsonSaveService {
             .registerSubtype(TanwiarzSensor.class, "TanwiarzSensor")
             .registerSubtype(PoteznyTanwiarzSensor.class, "PoteznyTanwiarzSensor")
             .registerSubtype(SettingsSensor.class, "SettingsSensor")
+            .registerSubtype(CompositeBitSensor.class, "CompositeBitSensor")
             .registerSubtype(ByteSensor.class, "ByteSensor");
 
     public void saveToFile(BaseSaveModel configuration) {

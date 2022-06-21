@@ -22,17 +22,23 @@ public class SensorRepository implements ISensorRepository {
     private GyroSensor gyroSensor = new GyroSensor();
 
     @Override
-    public Sensor getSensorByName(String name) {
-        try {
-            return sensors.get(name);
-        } catch (NullPointerException e) {
-            logger.error("Sensor not found in repository: {}",name);
-            throw e;
+    public Sensor getSensorByName(String name) throws NullPointerException {
+        var sensor = sensors.get(name);
+        if(sensor == null) {
+            logger.error("Sensor not found in repository: {}", name);
+            throw new NullPointerException();
         }
+        return sensor;
     }
 
     @Override
-    public void addSensor(Sensor sensor) {
+    public void addSensor(Sensor sensor) throws RuntimeException {
+        if(sensors.get(sensor.getName()) != null) {
+            var message = "Sensor with name " + sensor.getName() + " already exist.";
+            logger.error(message);
+            throw new RuntimeException(message);
+
+        }
         sensors.put(sensor.getName(),sensor);
     }
 
@@ -77,12 +83,14 @@ public class SensorRepository implements ISensorRepository {
         StringBuilder res = new StringBuilder();
         sensors.keySet().stream().sorted().forEach(key -> {
             var sensor = sensors.get(key);
-            res.append(key).append('=').append(sensor.getValue());
+            if(!sensor.isHidden()) {
+                res.append(key).append('=').append(sensor.getValue());
 
-            if(sensor.hasInterpreter())
-                res.append(" - ").append(sensor.getCodeMeaning().text);
+                if(sensor.hasInterpreter())
+                    res.append(" - ").append(sensor.getCodeMeaning().text);
 
-            res.append("\n");
+                res.append("\n");
+            }
         });
         return res.toString();
     }

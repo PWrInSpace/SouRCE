@@ -1,6 +1,9 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
+import org.javatuples.KeyValue;
 import org.javatuples.Triplet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicSensorController;
@@ -15,6 +18,8 @@ import java.util.*;
 
 public class Configuration {
 
+    private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
+
     public int FPS = 10;
 
     public int AVERAGING_PERIOD = 1000;
@@ -27,7 +32,7 @@ public class Configuration {
 
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
 
-    public static final String CONFIG_PATH = "./config/";
+    protected static String CONFIG_PATH = "./config/";
 
     public static final String CONFIG_FILE_NAME = "config.json";
 
@@ -55,12 +60,16 @@ public class Configuration {
 
     public Collection<BasicController> controllersList = new LinkedList<>();
 
-    private final static Instant startUpTime = Instant.now();
+    public final static Instant startUpTime = Instant.now();
 
     private Configuration() {
         if (Holder.INSTANCE != null) {
             throw new IllegalStateException("Singleton already constructed");
         }
+    }
+
+    public void setConfigPath(String path) {
+        CONFIG_PATH = path;
     }
 
     public static String getFlightDataFileName(String key) {
@@ -75,6 +84,7 @@ public class Configuration {
     public void setupConfigInstance(ConfigurationSaveModel config) {
         copyModelProperties(config);
         addSensorsToRepository(config);
+        validateFrameAndRepository();
         setupSensorsAsListeners(config);
         setupSensorsInterpreters(config);
     }
@@ -84,6 +94,19 @@ public class Configuration {
             if(sensor.getInterpreterKey() != null && !sensor.getInterpreterKey().isEmpty()) {
                 sensor.setInterpreter(interpreterRepository.getInterpreter(sensor.getInterpreterKey()));
             }
+        });
+    }
+
+    private void validateFrameAndRepository() {
+        FRAME_PATTERN.forEach((frameKey,pattern) -> {
+            pattern.forEach(key -> {
+                try {
+                    sensorRepository.getSensorByName(key);
+                } catch (NullPointerException e) {
+                    logger.info("Sensor {} in frame {} is not configured in repository and will be automatically added", key, frameKey);
+                    sensorRepository.addSensor(new Sensor(key));
+                }
+            });
         });
     }
 
@@ -138,6 +161,22 @@ public class Configuration {
                 if(!innerSensor.getName().isEmpty())
                     this.sensorRepository.addSensor(innerSensor);
             }
+        });
+
+        Arrays.stream(basicSensors).filter(CompositeBitSensor.class::isInstance).forEach(s -> {
+            List<KeyValue<String,Sensor>> sensorList = new LinkedList<>();
+            var composite = ((CompositeBitSensor) s);
+            this.sensorRepository.getAllBasicSensors().forEach((k,v) -> {
+                if(Arrays.asList(composite.getSensorsKeys()).contains(k)) {
+                    sensorList.add(new KeyValue<>(k,v));
+                }
+            });
+            try {
+                composite.injectSensors(sensorList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         });
     }
 

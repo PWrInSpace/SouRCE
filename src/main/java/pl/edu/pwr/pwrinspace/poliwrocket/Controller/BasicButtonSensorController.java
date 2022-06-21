@@ -37,10 +37,9 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
     }
 
     public void assignsCommands(Collection<ICommand> commands){
+        this.commands.clear();
+        this.commands.addAll(commands);
         Platform.runLater(() -> {
-            this.commands.clear();
-            this.commands.addAll(commands);
-
             for (ICommand command : commands) {
                 var button = buttonHashMap.get(command.getCommandTriggerKey());
                 if (button != null){

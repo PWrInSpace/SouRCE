@@ -123,6 +123,6 @@
 <!--      </Accordion>-->
    </left>
    <top>
-      <Label fx:id="currentDistance" prefWidth="100.0" style="-fx-background-color: white;" text="Distance: 0m" BorderPane.alignment="TOP_RIGHT" />
+      <Label fx:id="currentDistance" prefWidth="100.0" style="-fx-background-color: white; -fx-text-fill: black" text="Distance: 0m" BorderPane.alignment="TOP_RIGHT" />
    </top>
 </BorderPane>

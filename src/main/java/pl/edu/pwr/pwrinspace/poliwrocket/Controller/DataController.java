@@ -32,6 +32,12 @@ public class DataController extends BasicTilesFXSensorController {
                         gauge.setValueColor(Color.WHITE);
                     }
                 }
+
+                if(sensor.hasInterpreter()) {
+                    var code = sensor.getCodeMeaning();
+                    gauge.setText(code.text);
+                    gauge.setTextColor(UIHelper.resolveUIHintColor(code.UIHint));
+                }
                 gauge.setValue(sensor.getValue());
 
             });

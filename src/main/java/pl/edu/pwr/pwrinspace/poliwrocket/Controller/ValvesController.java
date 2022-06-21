@@ -165,7 +165,7 @@ public class ValvesController extends BasicButtonSensorController {
         for (ISensor sensor : sensors) {
             var label = valueLabelHashMap.get(sensor.getDestination());
             label.setVisible(sensor.hasInterpreter());
-            //label.setText("");
+            label.setText("STATE");
         }
     }
 
@@ -175,9 +175,9 @@ public class ValvesController extends BasicButtonSensorController {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
                 if(sensor.getValue() != 1.0 && sensor.getValue() != 0.0){
-                    indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Color.RED);
+                    indicatorHashMap.get(sensor.getDestination()).setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.RED);
                 } else {
-                    indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Tile.BLUE);
+                    indicatorHashMap.get(sensor.getDestination()).setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Tile.BLUE);
                 }
 
                 if(sensor.hasInterpreter()) {
