@@ -111,7 +111,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                     serialPort.addEventListener(this);
                     serialPort.notifyOnDataAvailable(true);
                 } else {
-                    serialPort.disconnect();
+                    try {
+                        serialPort.disconnect();
+                    } catch (NullPointerException e) {
+                        serialPort = new NRSerialPort(PORT_NAME, DATA_RATE);
+                    }
                 }
                 isPortOpen = serialPort.isConnected();
             } catch (Exception e) {

@@ -194,9 +194,7 @@ public class StartControlController extends BasicButtonSensorController {
                     if (button != null) {
                         button.setOnAction(handleButtonsClickByCommand(button, command));
                         button.setVisible(true);
-                        if(command.getCommandTriggerKey().contains("state")) {
-                            button.setText(command.getCommandDescription());
-                        }
+                        button.setText(command.getCommandDescription());
                     } else {
                         logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
                     }

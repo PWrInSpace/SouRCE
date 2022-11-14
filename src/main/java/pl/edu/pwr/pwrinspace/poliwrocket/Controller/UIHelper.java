@@ -15,6 +15,8 @@ public class UIHelper {
                 return Color.GREENYELLOW;
             case OPEN:
                 return Color.BLUE;
+            case CLOSE:
+                return Color.TRANSPARENT;
             default:
                 return Color.WHITE;
         }

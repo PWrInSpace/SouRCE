@@ -83,7 +83,7 @@ public class MapController extends BasicController {
             final List<Coordinate> coordinates = new ArrayList<>();
             if (track != null) {
                 track.setVisible(false);
-                track.getCoordinateStream().forEach(coordinates::add);
+                track.getCoordinateStream().limit(480).forEach(coordinates::add);
                 mapView.removeCoordinateLine(track);
                 track = null;
             }

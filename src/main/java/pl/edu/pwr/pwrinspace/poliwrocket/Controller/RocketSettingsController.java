@@ -63,7 +63,7 @@ public class RocketSettingsController extends BasicButtonSensorController {
                 value.setLayoutX(112);
                 value.setLayoutY(initYLabel);
                 value.setPrefHeight(18);
-                value.setPrefWidth(40);
+                value.setPrefWidth(70);
 
                 input.setLayoutX(215);
                 input.setLayoutY(initYInput);

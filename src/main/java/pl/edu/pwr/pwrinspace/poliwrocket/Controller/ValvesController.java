@@ -1,13 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
-import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -166,6 +166,8 @@ public class ValvesController extends BasicButtonSensorController {
             var label = valueLabelHashMap.get(sensor.getDestination());
             label.setVisible(sensor.hasInterpreter());
             label.setText("STATE");
+            indicatorHashMap.get(sensor.getDestination()).setOn(true);
+            indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Color.TRANSPARENT);
         }
     }
 
@@ -174,24 +176,15 @@ public class ValvesController extends BasicButtonSensorController {
         try {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
-                if(sensor.getValue() != 1.0 && sensor.getValue() != 0.0){
-                    indicatorHashMap.get(sensor.getDestination()).setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.RED);
-                } else {
-                    indicatorHashMap.get(sensor.getDestination()).setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Tile.BLUE);
-                }
+
+                indicatorHashMap.get(sensor.getDestination()).setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.HOTPINK);
+                indicatorHashMap.get(sensor.getDestination()).setOn(true);
 
                 if(sensor.hasInterpreter()) {
                     valueLabelHashMap.get(sensor.getDestination()).setText(sensor.getCodeMeaning().text);
-                }
-
-                if(sensor.getValue() >= 1.0) {
-                    indicatorHashMap.get(sensor.getDestination()).setOn(true);
-                    closeHashMap.get(sensor.getDestination()).setDefaultButton(true);
-                    openHashMap.get(sensor.getDestination()).setDefaultButton(false);
-                } else {
-                    indicatorHashMap.get(sensor.getDestination()).setOn(false);
-                    closeHashMap.get(sensor.getDestination()).setDefaultButton(false);
-                    openHashMap.get(sensor.getDestination()).setDefaultButton(true);
+                    var isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
+                    closeHashMap.get(sensor.getDestination()).setDefaultButton(isNotClosed);
+                    openHashMap.get(sensor.getDestination()).setDefaultButton(!isNotClosed);
                 }
             });
         } catch (Exception e) {
