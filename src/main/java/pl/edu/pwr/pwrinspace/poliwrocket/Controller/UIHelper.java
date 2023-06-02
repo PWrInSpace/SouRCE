@@ -17,6 +17,7 @@ public class UIHelper {
                 return Color.BLUE;
             case CLOSE:
                 return Color.TRANSPARENT;
+            case INFO:
             default:
                 return Color.WHITE;
         }

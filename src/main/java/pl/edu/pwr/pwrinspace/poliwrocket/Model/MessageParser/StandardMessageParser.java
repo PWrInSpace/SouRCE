@@ -11,7 +11,7 @@ public class StandardMessageParser extends BaseMessageParser {
 
     @Override
     protected void parseInternal(Frame frame) {
-        lastMessage = frame.getContent();
+        lastMessage = frame.getStringContent();
         logger.info("Message received: {}", lastMessage);
         String[] splitted = lastMessage.split(Configuration.getInstance().FRAME_DELIMITER);
         frame.setFormattedContent(lastMessage);

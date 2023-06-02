@@ -14,12 +14,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.javatuples.Pair;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -111,7 +110,7 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene interpretersFlightScene;
 
-    private final MainController.SmartGroup root = new SmartGroup();
+    private final SmartGroup root = new SmartGroup();
 
     private Stage primaryStage;
 
@@ -241,17 +240,16 @@ public class MainController extends BasicController implements InvalidationListe
                 inComing.setScrollTop(pos);
                 inComing.selectRange(anchor, caret);
             });
-        } else if (observable instanceof IGyroSensor) {
-            var sensorValues = ((IGyroSensor) observable).getValueGyro();
-            UIThreadManager.getInstance().addImmediateOnOK(() -> {
-                root.rotateByX((int) Math.round((sensorValues.get(IGyroSensor.AXIS_X_KEY)) / 10) * 10);
-                root.rotateByY((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Y_KEY)) / 10) * 10);
-                root.rotateByZ((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Z_KEY)) / 10) * 10);
-            });
         } else if (observable instanceof ISerialPortManager) {
             var value = ((ISerialPortManager) observable).getLastSend() + "\n";
             Platform.runLater(() -> outGoing.appendText(value));
             Platform.requestNextPulse();
+        } else if (observable == Configuration.getInstance()) {
+            if(Configuration.getInstance().isForceCommandsActive()) {
+                outGoing.setStyle("-fx-border-color: red;");
+            } else {
+                outGoing.setStyle("");
+            }
         } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
             scaleSubScenes(primaryStage.widthProperty().doubleValue()/initWidth,primaryStage.heightProperty().doubleValue()/initHeight);
         }
@@ -273,27 +271,4 @@ public class MainController extends BasicController implements InvalidationListe
         });
     }
 
-
-    static class SmartGroup extends Group {
-
-        private final Rotate rotateX = new Rotate(0, Rotate.X_AXIS);
-        private final Rotate rotateY = new Rotate(0, Rotate.Y_AXIS);
-        private final Rotate rotateZ = new Rotate(0, Rotate.Z_AXIS);
-
-        public SmartGroup() {
-            this.getTransforms().addAll(rotateX, rotateY, rotateZ);
-        }
-
-        void rotateByX(int ang) {
-            rotateX.setAngle(ang);
-        }
-
-        void rotateByY(int ang) {
-            rotateY.setAngle(ang);
-        }
-
-        void rotateByZ(int ang) {
-            rotateZ.setAngle(ang);
-        }
-    }
 }

@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+//do not change this properties
+option java_package = "pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser";
+option java_outer_classname = "FrameProtos";
+
+message LoRaFrame {
+  // mcb frame
+  required uint32 obc_state = 1;
+  required uint32 uptime = 2;
+  required uint32 flight_time = 3;
+  required float mcb_battery = 4;
+  required float gps_lat = 5;
+  required float gps_long = 6;
+  required float gps_sat = 7;
+  required float mcb_altitude = 8;
+  required float mcb_velocity = 9;
+  required int32 mcb_temperature = 10;
+  required float euler_fi = 11;
+  required float euler_psi = 12;
+  required float euler_theta = 13;
+
+  // recovery frame
+  required uint32 recov_pressure_1 = 14;
+  required uint32 recov_pressure_2 = 15;
+  required fixed32 recov_byte_data = 16;
+
+  // pitot frame
+  required float pitot_battery = 17;
+  required int32 pitot_altitude = 18;
+  required int32 pitot_velocity = 19;
+  required int32 pitot_temperature = 20;
+
+  // main valve
+  required float mval_battery = 21;
+  required fixed32 mval_byte_data = 22;
+
+  // vent valve
+  required float vent_battery = 23;
+  required float tank_pressure = 24;
+  required fixed32 vent_byte_data = 25;
+
+  // tanwa frame
+  required float tanwa_battery = 26;
+  required fixed32 tanwa_byte_data = 27;
+  required uint32 tanwa_state = 28;
+  required float rocket_weight = 29;
+  required float tank_weight = 30;
+  required float temperature1 = 31;
+  required float temperature2 = 32;
+  required float pressure = 33;
+
+  required fixed32 esp_now_byte_data = 34;
+  required fixed32 errors = 35;
+}
+
+message LoRaCommand {
+  required uint32 lora_dev_id = 1;
+  required uint32 sys_dev_id = 2;
+  required uint32 command = 3;
+  required int32 payload = 4;
+}

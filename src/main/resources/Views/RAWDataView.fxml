@@ -13,5 +13,10 @@
          </font>
       </Label>
       <JFXTextArea fx:id="rawDataPanel" editable="false" layoutX="5.0" layoutY="27.0" prefHeight="298.0" prefWidth="194.0" />
+      <Label fx:id="lastMessageField" layoutX="142.0" layoutY="1.0" prefHeight="27.0" prefWidth="57.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -166,14 +166,14 @@ public class StartControlController extends BasicButtonSensorController {
                     countdownThread.start();
                     commands.forEach(c -> {
                         if (c.getCommandTriggerKey().equals(fireButton.getId())) {
-                            SerialPortManager.getInstance().write(c.getCommandValue());
+                            SerialPortManager.getInstance().write(c);
                         }
                     });
                 } else if (countdownTime != null && countdownThread != null && countdownThread.isAlive()) {
                     countdownTime.resetCountdown();
                     commands.forEach(c -> {
                         if (c.getCommandTriggerKey().equals(fireButton.getId())) {
-                            SerialPortManager.getInstance().write(c.getCommandValue());
+                            SerialPortManager.getInstance().write(c);
                         }
                     });
                     countdownTime.makeCanRun();

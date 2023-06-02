@@ -5,6 +5,7 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import javafx.beans.InvalidationListener;
 import org.slf4j.LoggerFactory;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.Frame;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
@@ -15,6 +16,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,7 @@ import static java.lang.Thread.sleep;
 public class SerialPortManager implements SerialPortEventListener, ISerialPortManager {
 
     private final List<InvalidationListener> observers = new ArrayList<>();
+    private final List<InvalidationListener> portStatusObservers = new ArrayList<>();
 
     private NRSerialPort serialPort;
     private String PORT_NAME = "COM3";
@@ -62,8 +65,19 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         this.frameSaveService = frameSaveService;
     }
 
+    @Override
+    public void addPortStatusListener(InvalidationListener invalidationListener) {
+        this.portStatusObservers.add(invalidationListener);
+    }
+
     private void notifyObserver() {
         for (InvalidationListener obs : observers) {
+            obs.invalidated(this);
+        }
+    }
+
+    private void notifyPortStatusObserver() {
+        for (InvalidationListener obs : portStatusObservers) {
             obs.invalidated(this);
         }
     }
@@ -124,11 +138,13 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             } finally {
                 lastMessage = "";
                 notifyObserver();
+                notifyPortStatusObserver();
                 log.log(Level.INFO, "Serialport status: {0}", isPortOpen);
             }
         } else {
             isPortOpen = serialPort.isConnected();
             notifyObserver();
+            notifyPortStatusObserver();
             log.log(Level.WARNING,"IMessageParser not set");
             log.log(Level.INFO, "Serialport status: {0}", isPortOpen);
         }
@@ -145,6 +161,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             log.log(Level.INFO, "Serialport closed.");
             isPortOpen = serialPort.isConnected();
             notifyObserver();
+            notifyPortStatusObserver();
         }
     }
 
@@ -154,19 +171,21 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
                 try {
                     Frame frame;
+                    byte[] buffer;
                     if(Configuration.getInstance().BUFFER_SIZE != 0) {
-                        byte[] buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
-                        frame = new Frame(new String(buffer, 0, Configuration.getInstance().BUFFER_SIZE), Instant.now());
+                        buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
                     } else {
-                        byte[] buffer = new byte[2048];
+                        buffer = new byte[2048];
                         int length = this.inputStream.read(buffer);
-                        frame = new Frame(new String(buffer, 0, length), Instant.now());
+                        buffer = Arrays.copyOfRange(buffer, 0, length);
                     }
+
+                    frame = new Frame(buffer, Instant.now());
 
                     messageParser.parseMessage(frame);
                     if(frameSaveService != null) {
                         if(frame.getFormattedContent() == null) {
-                            frame.setFormattedContent(frame.getContent());
+                            frame.setFormattedContent(frame.getStringContent());
                         }
                         frameSaveService.saveFrameToFile(frame);
                     }
@@ -182,6 +201,14 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         log.log(Level.INFO, "Written: {0}", message);
         serialWriter.send(message);
         this.lastMessage = message;
+        notifyObserver();
+    }
+
+    public void write(ICommand command) {
+        var msg = command.getCommandValueAsString() + '\n';
+        log.log(Level.INFO, "Written: {0}", msg);
+        serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));
+        this.lastMessage = msg;
         notifyObserver();
     }
 
@@ -210,8 +237,12 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         }
 
         public void send(String msg) {
+            send(msg.getBytes());
+        }
+
+        public void send(byte[] msg) {
             try {
-                out.write(msg.getBytes());
+                out.write(msg);
                 logger.info("Written: {}",msg);
             } catch (IOException e) {
                 e.printStackTrace();

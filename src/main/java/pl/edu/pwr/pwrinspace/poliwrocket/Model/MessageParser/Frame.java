@@ -4,7 +4,8 @@ import java.time.Instant;
 
 public class Frame {
 
-    private final String content;
+    private final String stringContent;
+    private final byte[] byteContent;
 
     private String formattedContent;
 
@@ -12,13 +13,14 @@ public class Frame {
 
     private String key;
 
-    public Frame(String content, Instant timeInstant) {
-        this.content = content;
+    public Frame(byte[] buffer, Instant timeInstant) {
+        this.stringContent = new String(buffer);
+        this.byteContent = buffer;
         this.timeInstant = timeInstant;
     }
 
-    public String getContent() {
-        return content;
+    public String getStringContent() {
+        return stringContent;
     }
 
     public String getFormattedContent() {
@@ -39,5 +41,9 @@ public class Frame {
 
     public Instant getTimeInstant() {
         return timeInstant;
+    }
+
+    public byte[] getByteContent() {
+        return byteContent;
     }
 }

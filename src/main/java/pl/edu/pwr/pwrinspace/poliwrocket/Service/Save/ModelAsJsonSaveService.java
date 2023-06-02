@@ -5,6 +5,7 @@ import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
 
 import java.io.*;
@@ -23,8 +24,21 @@ public class ModelAsJsonSaveService {
             .registerSubtype(CompositeBitSensor.class, "CompositeBitSensor")
             .registerSubtype(ByteSensor.class, "ByteSensor");
 
+    private final RuntimeTypeAdapterFactory<Command> commandAdapterFactory = RuntimeTypeAdapterFactory.of(Command.class, "type")
+            .registerSubtype(ProtobufCommand.class, "ProtobufCommand")
+            .registerSubtype(ProtobufSimpleCommand.class, "ProtobufSimpleCommand")
+            .registerSubtype(StandardCommand.class);
+
     public void saveToFile(BaseSaveModel configuration) {
-        String configContent = new Gson().newBuilder().registerTypeAdapterFactory(sensorAdapterFactory).excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().disableHtmlEscaping().create().toJson(configuration);
+        String configContent = new Gson().newBuilder()
+                .registerTypeAdapterFactory(sensorAdapterFactory)
+                .registerTypeAdapterFactory(commandAdapterFactory)
+                .excludeFieldsWithoutExposeAnnotation()
+                .setPrettyPrinting()
+                .disableHtmlEscaping()
+                .create()
+                .toJson(configuration);
+
         File configFile = new File(configuration.getPath() + configuration.getFileName());
 
         try (FileWriter configWriter = new FileWriter(configFile)) {
@@ -54,11 +68,14 @@ public class ModelAsJsonSaveService {
         }
     }
 
-    public BaseSaveModel readFromFile(BaseSaveModel config) throws Exception {
+    public <T extends BaseSaveModel> T readFromFile(T config) throws Exception {
         File configFile = new File(config.getPath() + config.getFileName());
 
         try (JsonReader reader = new JsonReader(new FileReader(configFile))) {
-            config = new Gson().newBuilder().registerTypeAdapterFactory(sensorAdapterFactory).excludeFieldsWithoutExposeAnnotation().create().fromJson(reader, config.getClass());
+            config = new Gson().newBuilder()
+                    .registerTypeAdapterFactory(sensorAdapterFactory)
+                    .registerTypeAdapterFactory(commandAdapterFactory)
+                    .excludeFieldsWithoutExposeAnnotation().create().fromJson(reader, config.getClass());
         } catch (Exception e) {
             logger.error(e.getMessage());
             throw new Exception(e.getMessage());

@@ -7,7 +7,6 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires org.slf4j;
     requires eu.hansolo.tilesfx;
     requires eu.hansolo.medusa;
-    requires GMapsFX;
     requires importer;
     requires annotations;
     requires java.logging;
@@ -20,6 +19,7 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires freetts;
     requires jdk.jshell;
     requires com.jfoenix;
+    requires protobuf.java;
 
     opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
@@ -40,4 +40,8 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     exports pl.edu.pwr.pwrinspace.poliwrocket.Event;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.base, javafx.controls, javafx.fxml, javafx.graphics, javafx.media, javafx.web, pl.edu.pwr.pwrinspace.poliwrocket.Controller;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf to com.google.gson;
+    exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content to com.google.gson;
 }

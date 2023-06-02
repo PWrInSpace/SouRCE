@@ -5,9 +5,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GyroSensor implements Observable, IGyroSensor {
 
@@ -59,12 +57,18 @@ public class GyroSensor implements Observable, IGyroSensor {
     }
 
     @Override
-    public Map<String, Double> getValueGyro() {
-        HashMap<String, Double> gyro = new HashMap<String,Double>();
-        gyro.put(IGyroSensor.AXIS_X_KEY,axis_x.getValue());
-        gyro.put(IGyroSensor.AXIS_Y_KEY,axis_y.getValue());
-        gyro.put(IGyroSensor.AXIS_Z_KEY,axis_z.getValue());
-        return gyro;
+    public double getX() {
+        return axis_x.getValue();
+    }
+
+    @Override
+    public double getY() {
+        return axis_y.getValue();
+    }
+
+    @Override
+    public double getZ() {
+        return axis_z.getValue();
     }
 
     @Override

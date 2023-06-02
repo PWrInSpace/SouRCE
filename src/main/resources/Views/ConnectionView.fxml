@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
 <?import eu.hansolo.medusa.Gauge?>
-<?import javafx.scene.control.Label?>
+<?import eu.hansolo.tilesfx.addons.Switch?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane prefHeight="335.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.ConnectionController">
    <children>
       <JFXComboBox fx:id="serialPorts" layoutX="256.0" layoutY="51.0" prefHeight="26.0" prefWidth="120.0" />
@@ -51,5 +49,11 @@
       <JFXComboBox fx:id="serialMessages" layoutX="256.0" layoutY="114.0" prefHeight="26.0" prefWidth="120.0" />
       <Label layoutX="203.0" layoutY="118.0" text="Message:" />
       <JFXButton fx:id="sendSerialMessage" disable="true" layoutX="34.0" layoutY="114.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Send" />
+      <Switch fx:id="sudoToggle" layoutX="275.0" layoutY="4.0" prefHeight="26.0" prefWidth="42.0" />
+      <Label layoutX="330.0" layoutY="8.0" text="use force">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

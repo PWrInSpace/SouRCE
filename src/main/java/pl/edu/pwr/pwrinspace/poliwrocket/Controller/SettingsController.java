@@ -79,7 +79,7 @@ public class SettingsController extends BasicController {
 
     void reloadConfig() {
         try {
-            Configuration.getInstance().reloadConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+            Configuration.getInstance().reloadConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
         } catch (Exception e) {
             logger.error("Bad config file");
             logger.error(e.getMessage());

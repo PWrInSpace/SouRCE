@@ -11,6 +11,9 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     @Expose
     private String commandPrefixValue;
 
+    @Expose
+    private String payload;
+
     private static final String _destinationCommandPrefix = "button";
     private static final String _destinationInoutPrefix = "button";
 
@@ -25,8 +28,13 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     }
 
     @Override
-    public String getCommandValue() {
+    public String getCommandValueAsString() {
         return commandPrefixValue;
+    }
+
+    @Override
+    public void setPayload(String payload) {
+        this.payload = payload;
     }
 
     @Override
@@ -37,5 +45,15 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     @Override
     public String getCommandDescription() {
         return this.getName();
+    }
+
+    @Override
+    public byte[] getCommandValueAsBytes(boolean force) {
+        return new byte[0];
+    }
+
+    @Override
+    public byte[] getCommandValueAsBytes() {
+        return getCommandValueAsBytes(false);
     }
 }

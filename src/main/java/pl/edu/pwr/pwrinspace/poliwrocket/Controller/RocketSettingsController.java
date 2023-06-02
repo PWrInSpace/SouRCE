@@ -97,7 +97,10 @@ public class RocketSettingsController extends BasicButtonSensorController {
     }
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command.getCommandValue() + inputHashMap.get(((ISettingsSensor)command).getInputKey()).getText()));
+        return actionEvent -> executorService.execute(() -> {
+            command.setPayload(inputHashMap.get(((ISettingsSensor)command).getInputKey()).getText());
+            SerialPortManager.getInstance().write(command);
+        });
     }
 
     @Override

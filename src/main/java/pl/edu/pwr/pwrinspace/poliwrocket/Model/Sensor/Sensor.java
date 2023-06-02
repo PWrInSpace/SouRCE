@@ -23,7 +23,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private String name;
 
     @Expose
-    private String unit;
+    private String unit = "";
 
     private Instant timeStamp;
 
@@ -36,10 +36,10 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private List<String> destinationControllerNames = new ArrayList<>();
 
     @Expose
-    private double maxRange;
+    private double maxRange = 0;
 
     @Expose
-    private double minRange;
+    private double minRange = 0;
 
     @Expose
     private boolean isBoolean = false;

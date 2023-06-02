@@ -21,7 +21,6 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
 
     protected HashSet<ICommand> commands = new HashSet<>();
 
-    protected static final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @FXML
     protected void initialize() {
@@ -53,7 +52,7 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
     }
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command.getCommandValue()));
+        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command));
     }
 
 }

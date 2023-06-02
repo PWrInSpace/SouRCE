@@ -78,7 +78,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <SubScene fx:id="dataFlightScene" height="644.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                              <SubScene fx:id="dataFlightScene" height="654.0" layoutX="14.0" layoutY="14.0" width="410.0">
                                  <root>
                                     <Region />
                                  </root>
@@ -106,7 +106,7 @@
                                     <Region />
                                  </root>
                               </SubScene>
-                              <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="10.0" layoutY="666.0" width="418.0">
+                              <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="10.0" layoutY="678.0" width="418.0">
                                  <root>
                                     <Region />
                                  </root>

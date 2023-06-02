@@ -5,14 +5,13 @@ import com.google.gson.annotations.Expose;
 public class ByteSensor extends Sensor implements ISensorsWrapper {
 
     @Expose
-    private final Sensor[] sensors = new Sensor[8];
+    private int numberOfBytes = 1;
+    @Expose
+    private Sensor[] sensors = new Sensor[this.numberOfBits()];
 
-    public ByteSensor() {
-        super();
-        this.setBoolean(true);
-        for (int i = 0; i < sensors.length; i++) {
-            sensors[i] = new Sensor();
-        }
+
+    private int numberOfBits() {
+        return numberOfBytes * 8;
     }
 
     public Sensor[] getSensors() {
@@ -34,13 +33,14 @@ public class ByteSensor extends Sensor implements ISensorsWrapper {
     @Override
     protected void notifyObserver() {
         int valueInt = (int)this.getValue();
-        String values = String.format("%8s", Integer.toBinaryString(valueInt)).replace(' ', '0');
-        int k = 7;
-        if(values.length() == 8)
-            for (int i = 0; i < values.length(); i++) {
-                sensors[i].setValue(bitToDouble(values.charAt(k)));
-                k--;
-            }
+        String values = String.format("%"+numberOfBits()+"s", Integer.toBinaryString(valueInt)).replace(' ', '0');
+        int k = values.length() - 1;
+
+        for (int i = 0; i < sensors.length; i++) {
+            sensors[i].setValue(bitToDouble(values.charAt(k)));
+            k--;
+        }
+
     }
 
     private double bitToDouble(char value) {

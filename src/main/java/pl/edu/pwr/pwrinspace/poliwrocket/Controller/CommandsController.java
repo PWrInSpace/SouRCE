@@ -91,7 +91,10 @@ public class CommandsController extends BasicButtonSensorController {
     }
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command.getCommandValue() + inputHashMap.get(command.getCommandTriggerKey()).getText()));
+        return actionEvent -> executorService.execute(() -> {
+            command.setPayload(inputHashMap.get(command.getCommandTriggerKey()).getText());
+            SerialPortManager.getInstance().write(command);
+        });
     }
 
     @Override
