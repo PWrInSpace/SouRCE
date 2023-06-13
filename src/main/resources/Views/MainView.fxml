@@ -149,6 +149,17 @@
                          </AnchorPane>
                      </content>
                   </Tab>
+                  <Tab text="Errors">
+                      <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <SubScene fx:id="errorsScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                  <root>
+                                      <Region />
+                                  </root>
+                              </SubScene>
+                          </AnchorPane>
+                      </content>
+                  </Tab>
               </tabs>
             </TabPane>
             <SubScene fx:id="indicators2Scene" height="75.0" layoutX="1117.0" layoutY="646.0" width="418.0">

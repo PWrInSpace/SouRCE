@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import eu.hansolo.tilesfx.addons.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import eu.hansolo.tilesfx.addons.Switch?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="165.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.StartControlController">
+
+<AnchorPane prefHeight="165.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.StartControlController">
    <children>
       <Label layoutX="7.0" prefHeight="27.0" prefWidth="116.0" text="Start control:">
          <font>
@@ -30,5 +31,6 @@
       <JFXButton fx:id="stateButton5" layoutX="244.0" layoutY="84.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="S5" visible="false" />
       <JFXButton fx:id="stateButton6" layoutX="325.0" layoutY="84.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="S6" visible="false" />
       <JFXButton fx:id="stateButton7" layoutX="325.0" layoutY="114.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="S7" visible="false" />
+      <JFXButton fx:id="voidButton" layoutX="325.0" layoutY="135.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="Void" />
    </children>
 </AnchorPane>

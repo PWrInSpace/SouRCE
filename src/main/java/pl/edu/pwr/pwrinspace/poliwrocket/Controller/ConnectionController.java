@@ -135,10 +135,10 @@ public class ConnectionController extends BasicButtonSensorController {
                     notificationThread = new Thread(notificationThreadRunnable, ThreadName.DISCORD_NOTIFICATION.getName());
                     notificationThread.setDaemon(true);
                     notificationThread.start();
-                    threadStatus.setText("Running");
+                    Platform.runLater(() -> threadStatus.setText("Running"));
                 } else if (notificationThread != null && notificationThread.isAlive()) {
                     notificationThread.interrupt();
-                    threadStatus.setText("Interrupted");
+                    Platform.runLater(() -> threadStatus.setText("Interrupted"));
                 }
             });
         });

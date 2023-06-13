@@ -33,6 +33,9 @@ public class MainController extends BasicController implements InvalidationListe
     private static final double initHeight = 838.4;
 
     @FXML
+    private SubScene errorsScene;
+
+    @FXML
     private JFXTextArea inComing;
 
     @FXML
@@ -174,6 +177,7 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(outGoing);
         nodes.add(inComing);
         nodes.add(interpretersScene);
+        nodes.add(errorsScene);
         nodes.add(tabPane);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
     }

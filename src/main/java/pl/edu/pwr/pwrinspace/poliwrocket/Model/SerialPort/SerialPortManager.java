@@ -1,5 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort;
 
+import com.google.common.primitives.Bytes;
 import gnu.io.NRSerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
@@ -39,6 +40,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     private FrameSaveService frameSaveService;
     private IMessageParser messageParser;
     private String lastMessage = "";
+    protected static String msgPrefix = "SP3MIK";
 
     private SerialPortManager() {
         if (Holder.INSTANCE != null) {
@@ -177,7 +179,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                     } else {
                         buffer = new byte[2048];
                         int length = this.inputStream.read(buffer);
-                        buffer = Arrays.copyOfRange(buffer, 0, length);
+                        buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
                     }
 
                     frame = new Frame(buffer, Instant.now());
@@ -242,11 +244,27 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
         public void send(byte[] msg) {
             try {
-                out.write(msg);
-                logger.info("Written: {}",msg);
+                //out.write(msg);
+                var finalMsg = getMessageWithPrefixAndCRC(msg);
+                out.write(finalMsg);
+                logger.info("Written msg: {}",msg);
+                logger.info("Written with prefix and crc: {}",finalMsg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        private byte[] getMessageCRC(byte[] msg) {
+            Integer messageCounter = 0;
+            for (byte msgByte : msg) {
+                messageCounter += msgByte;
+            }
+
+            return new byte[]{ (byte)(messageCounter % 256) };
+        }
+
+        private byte[] getMessageWithPrefixAndCRC(byte[] msg) {
+            return Bytes.concat(SerialPortManager.msgPrefix.getBytes(), msg, getMessageCRC(msg));
         }
     }
 }

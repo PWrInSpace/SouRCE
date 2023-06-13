@@ -37,6 +37,9 @@ public class StartControlController extends BasicButtonSensorController {
     protected JFXButton armingButton2;
 
     @FXML
+    protected JFXButton voidButton;
+
+    @FXML
     protected JFXButton fireButton;
 
     @FXML

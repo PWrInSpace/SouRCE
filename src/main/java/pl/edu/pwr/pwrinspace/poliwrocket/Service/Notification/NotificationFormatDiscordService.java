@@ -17,8 +17,12 @@ public class NotificationFormatDiscordService extends NotificationFormatService 
 
         if (messageKey.equalsIgnoreCase("Data")) {
             embedBuilder.setTitle("Current data").setColor(Color.GRAY);
-            Configuration.getInstance().sensorRepository.getAllBasicSensors().forEach((s, sensor) ->
-                embedBuilder.addField(sensor.getName(), sensor.getValue() + " " + sensor.getUnit(), true)
+            Configuration.getInstance().sensorRepository.getAllBasicSensors().forEach((s, sensor) ->{
+                if(!sensor.isHidden()) {
+                    embedBuilder.addField(sensor.getName(), sensor.getValue() + " " + sensor.getUnit(), true);
+
+                }
+            }
             );
             return embedBuilder;
 

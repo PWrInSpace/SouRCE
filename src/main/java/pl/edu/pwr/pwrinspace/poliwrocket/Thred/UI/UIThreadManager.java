@@ -50,7 +50,10 @@ public class UIThreadManager implements InvalidationListener {
         Platform.runLater(() -> {
             UITaskProvider.getInstance().runTasks();
             while (!activeRunnableQueue.isEmpty()) {
-                activeRunnableQueue.poll().run();
+                var task = activeRunnableQueue.poll();
+                if(task != null) {
+                    task.run();
+                }
             }
         });
         Platform.requestNextPulse();

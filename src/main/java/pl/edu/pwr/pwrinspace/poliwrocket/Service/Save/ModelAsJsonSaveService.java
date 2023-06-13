@@ -27,7 +27,7 @@ public class ModelAsJsonSaveService {
     private final RuntimeTypeAdapterFactory<Command> commandAdapterFactory = RuntimeTypeAdapterFactory.of(Command.class, "type")
             .registerSubtype(ProtobufCommand.class, "ProtobufCommand")
             .registerSubtype(ProtobufSimpleCommand.class, "ProtobufSimpleCommand")
-            .registerSubtype(StandardCommand.class);
+            .registerSubtype(StandardCommand.class, "StandardCommand");
 
     public void saveToFile(BaseSaveModel configuration) {
         String configContent = new Gson().newBuilder()
