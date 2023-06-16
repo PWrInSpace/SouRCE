@@ -146,6 +146,11 @@
                                     <Region />
                                 </root>
                              </SubScene>
+                           <SubScene fx:id="commands2Scene" height="400.0" layoutX="14.0" layoutY="361.0" width="410.0">
+                              <root>
+                                 <Region />
+                              </root>
+                           </SubScene>
                          </AnchorPane>
                      </content>
                   </Tab>

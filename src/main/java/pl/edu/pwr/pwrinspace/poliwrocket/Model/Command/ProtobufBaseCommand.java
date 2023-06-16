@@ -11,10 +11,14 @@ public abstract class ProtobufBaseCommand<T extends BaseProtobufContent> extends
                 .setSysDevId(sysDevId)
                 .setCommand(Integer.decode(value.getCommand()));
 
-        var payloadAsNumber = 0;
+        int payloadAsNumber = 0;
         if(payload != null && !payload.isEmpty()) {
             try {
-                payloadAsNumber = Integer.parseInt(payload);
+                if(payload.contains(".") || payload.contains(",")) {
+                    payloadAsNumber = (int) Double.parseDouble(payload);
+                } else {
+                    payloadAsNumber = Integer.parseInt(payload);
+                }
             } catch (NumberFormatException ignored) {
 
             }

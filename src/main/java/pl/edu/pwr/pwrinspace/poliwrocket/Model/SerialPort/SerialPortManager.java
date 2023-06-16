@@ -177,8 +177,20 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                     if(Configuration.getInstance().BUFFER_SIZE != 0) {
                         buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
                     } else {
-                        buffer = new byte[2048];
-                        int length = this.inputStream.read(buffer);
+                        buffer = new byte[256];
+                        int length = 0;
+                        while(this.inputStream.available() > 0) {
+                            buffer[length] = (byte)this.inputStream.read();
+                            length++;
+
+                            if(length == 256) {
+                                return;
+                            }
+
+                            if(this.inputStream.available() == 0) {
+                                Thread.sleep(1);
+                            }
+                        }
                         buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
                     }
 
@@ -193,6 +205,8 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
 
             }
@@ -200,6 +214,10 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     public void write(String message) {
+        if(serialWriter == null) {
+            log.log(Level.WARNING, "Not connected");
+            return;
+        }
         log.log(Level.INFO, "Written: {0}", message);
         serialWriter.send(message);
         this.lastMessage = message;
@@ -207,6 +225,10 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     public void write(ICommand command) {
+        if(serialWriter == null) {
+            log.log(Level.WARNING, "Not connected");
+            return;
+        }
         var msg = command.getCommandValueAsString() + '\n';
         log.log(Level.INFO, "Written: {0}", msg);
         serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));

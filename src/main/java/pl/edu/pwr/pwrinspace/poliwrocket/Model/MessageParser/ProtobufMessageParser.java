@@ -21,7 +21,13 @@ public class ProtobufMessageParser extends BaseMessageParser {
         message.getAllFields().forEach((fieldDescriptor, o) -> {
             if (fieldDescriptor.getJavaType() != Descriptors.FieldDescriptor.JavaType.MESSAGE) {
                 var sensorName = fieldDescriptor.getName();
-                var value = Double.parseDouble(o.toString());
+                double value;
+                if (fieldDescriptor.getJavaType() == Descriptors.FieldDescriptor.JavaType.BOOLEAN) {
+                    value = (boolean)o ? 1.0 : 0;
+                } else {
+                    value = Double.parseDouble(o.toString());
+                }
+
                 addSensorUpdate(() ->  {
                     try {
                         Configuration.getInstance().sensorRepository.getSensorByName(sensorName).setValue(value);
@@ -67,6 +73,7 @@ public class ProtobufMessageParser extends BaseMessageParser {
             }
 
         }catch (Exception e){
+            logger.error(e.getMessage());
             logger.error("Protobuf parsing error");
             setParsingError();
         }

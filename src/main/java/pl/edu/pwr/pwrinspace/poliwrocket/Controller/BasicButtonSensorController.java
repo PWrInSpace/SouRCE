@@ -12,8 +12,6 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public abstract class BasicButtonSensorController extends BasicTilesFXSensorController {
 
@@ -44,6 +42,9 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
                 if (button != null){
                     button.setOnAction(handleButtonsClickByCommand(button,command));
                     button.setVisible(true);
+                    if(!command.getCommandDescription().isBlank()) {
+                        button.setText(command.getCommandDescription());
+                    }
                 } else {
                     logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
                 }

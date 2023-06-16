@@ -11,10 +11,13 @@ public class Command<T> implements ICommand {
     protected T value;
 
     @Expose
+    private boolean isFinal = false;
+
+    @Expose
     private String trigger;
 
     @Expose
-    private String description;
+    private String description = "";
 
     @Expose
     protected String payload = "";
@@ -39,6 +42,16 @@ public class Command<T> implements ICommand {
     @Override
     public void setPayload(String payload) {
         this.payload = payload;
+    }
+
+    @Override
+    public String getPayload() {
+        return payload;
+    }
+
+    @Override
+    public boolean isFinal() {
+        return isFinal;
     }
 
     @Override

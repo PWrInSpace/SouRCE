@@ -54,6 +54,9 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene commandsScene;
 
     @FXML
+    private SubScene commands2Scene;
+
+    @FXML
     private AnchorPane footer;
 
     @FXML
@@ -177,7 +180,6 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(outGoing);
         nodes.add(inComing);
         nodes.add(interpretersScene);
-        nodes.add(errorsScene);
         nodes.add(tabPane);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
     }

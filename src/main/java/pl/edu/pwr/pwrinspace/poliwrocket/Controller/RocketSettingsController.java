@@ -27,6 +27,7 @@ public class RocketSettingsController extends BasicButtonSensorController {
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
     protected final HashMap<String, Label> valueHashMap = new HashMap<>();
 
+    @Override
     protected void buildVisualizationMap() {
 
         mainPanel.getChildren().removeIf(node ->
@@ -51,7 +52,17 @@ public class RocketSettingsController extends BasicButtonSensorController {
                 var settingsSensor = (SettingsSensor) sensor;
                 Label label = new Label(settingsSensor.getName());
                 Label value = new Label();
-                JFXTextField input = new JFXTextField(Double.toString(settingsSensor.getDefaultValue()));
+
+                Double defaultValue = settingsSensor.getDefaultValue();
+                JFXTextField input = new JFXTextField();
+
+                if(defaultValue == null) {
+                    input.setVisible(false);
+                } else {
+                    input.setText(Double.toString(defaultValue));
+                    input.setDisable(settingsSensor.isFinal());
+                }
+
                 JFXButton button = new JFXButton("Send");
 
                 label.setLayoutX(14);
@@ -98,7 +109,9 @@ public class RocketSettingsController extends BasicButtonSensorController {
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
         return actionEvent -> executorService.execute(() -> {
-            command.setPayload(inputHashMap.get(((ISettingsSensor)command).getInputKey()).getText());
+            var input = inputHashMap.get(((ISettingsSensor)command).getInputKey());
+            if(input.isVisible())
+                command.setPayload(input.getText());
             SerialPortManager.getInstance().write(command);
         });
     }

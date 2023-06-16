@@ -4652,105 +4652,131 @@ public final class FrameProtos {
     int getMotorState4();
 
     /**
-     * <code>required float rocketWeight_temp = 15;</code>
+     * <code>required uint32 rocketWeight_blink = 15;</code>
+     * @return Whether the rocketWeightBlink field is set.
+     */
+    boolean hasRocketWeightBlink();
+    /**
+     * <code>required uint32 rocketWeight_blink = 15;</code>
+     * @return The rocketWeightBlink.
+     */
+    int getRocketWeightBlink();
+
+    /**
+     * <code>required float rocketWeight_temp = 16;</code>
      * @return Whether the rocketWeightTemp field is set.
      */
     boolean hasRocketWeightTemp();
     /**
-     * <code>required float rocketWeight_temp = 15;</code>
+     * <code>required float rocketWeight_temp = 16;</code>
      * @return The rocketWeightTemp.
      */
     float getRocketWeightTemp();
 
     /**
-     * <code>required float tankWeight_temp = 16;</code>
+     * <code>required uint32 tankWeight_blink = 17;</code>
+     * @return Whether the tankWeightBlink field is set.
+     */
+    boolean hasTankWeightBlink();
+    /**
+     * <code>required uint32 tankWeight_blink = 17;</code>
+     * @return The tankWeightBlink.
+     */
+    int getTankWeightBlink();
+
+    /**
+     * <code>required float tankWeight_temp = 18;</code>
      * @return Whether the tankWeightTemp field is set.
      */
     boolean hasTankWeightTemp();
     /**
-     * <code>required float tankWeight_temp = 16;</code>
+     * <code>required float tankWeight_temp = 18;</code>
      * @return The tankWeightTemp.
      */
     float getTankWeightTemp();
 
     /**
-     * <code>required float rocketWeight_val = 17;</code>
+     * <code>required float rocketWeight_val = 19;</code>
      * @return Whether the rocketWeightVal field is set.
      */
     boolean hasRocketWeightVal();
     /**
-     * <code>required float rocketWeight_val = 17;</code>
+     * <code>required float rocketWeight_val = 19;</code>
      * @return The rocketWeightVal.
      */
     float getRocketWeightVal();
 
     /**
-     * <code>required float tankWeight_val = 18;</code>
+     * <code>required float tankWeight_val = 20;</code>
      * @return Whether the tankWeightVal field is set.
      */
     boolean hasTankWeightVal();
     /**
-     * <code>required float tankWeight_val = 18;</code>
+     * <code>required float tankWeight_val = 20;</code>
      * @return The tankWeightVal.
      */
     float getTankWeightVal();
 
     /**
-     * <code>required uint32 rocketWeightRaw_val = 19;</code>
+     * <code>required uint32 rocketWeightRaw_val = 21;</code>
      * @return Whether the rocketWeightRawVal field is set.
      */
     boolean hasRocketWeightRawVal();
     /**
-     * <code>required uint32 rocketWeightRaw_val = 19;</code>
+     * <code>required uint32 rocketWeightRaw_val = 21;</code>
      * @return The rocketWeightRawVal.
      */
     int getRocketWeightRawVal();
 
     /**
-     * <code>required uint32 tankWeightRaw_val = 20;</code>
+     * <code>required uint32 tankWeightRaw_val = 22;</code>
      * @return Whether the tankWeightRawVal field is set.
      */
     boolean hasTankWeightRawVal();
     /**
-     * <code>required uint32 tankWeightRaw_val = 20;</code>
+     * <code>required uint32 tankWeightRaw_val = 22;</code>
      * @return The tankWeightRawVal.
      */
     int getTankWeightRawVal();
 
     /**
-     * <code>required bool interface_rck = 21;</code>
+     * <code>required bool interface_rck = 23;</code>
      * @return Whether the interfaceRck field is set.
      */
     boolean hasInterfaceRck();
     /**
-     * <code>required bool interface_rck = 21;</code>
+     * <code>required bool interface_rck = 23;</code>
      * @return The interfaceRck.
      */
     boolean getInterfaceRck();
 
     /**
-     * <code>required bool interface_tank = 22;</code>
+     * <code>required bool interface_tank = 24;</code>
      * @return Whether the interfaceTank field is set.
      */
     boolean hasInterfaceTank();
     /**
-     * <code>required bool interface_tank = 22;</code>
+     * <code>required bool interface_tank = 24;</code>
      * @return The interfaceTank.
      */
     boolean getInterfaceTank();
 
     /**
-     * <code>required bool interface_mcu = 23;</code>
+     * <code>required bool interface_mcu = 25;</code>
      * @return Whether the interfaceMcu field is set.
      */
     boolean hasInterfaceMcu();
     /**
-     * <code>required bool interface_mcu = 23;</code>
+     * <code>required bool interface_mcu = 25;</code>
      * @return The interfaceMcu.
      */
     boolean getInterfaceMcu();
   }
   /**
+   * <pre>
+   * tanwa frame
+   * </pre>
+   *
    * Protobuf type {@code LoRaFrameTanwa}
    */
   public static final class LoRaFrameTanwa extends
@@ -5068,18 +5094,37 @@ public final class FrameProtos {
       return motorState4_;
     }
 
-    public static final int ROCKETWEIGHT_TEMP_FIELD_NUMBER = 15;
+    public static final int ROCKETWEIGHT_BLINK_FIELD_NUMBER = 15;
+    private int rocketWeightBlink_ = 0;
+    /**
+     * <code>required uint32 rocketWeight_blink = 15;</code>
+     * @return Whether the rocketWeightBlink field is set.
+     */
+    @java.lang.Override
+    public boolean hasRocketWeightBlink() {
+      return ((bitField0_ & 0x00004000) != 0);
+    }
+    /**
+     * <code>required uint32 rocketWeight_blink = 15;</code>
+     * @return The rocketWeightBlink.
+     */
+    @java.lang.Override
+    public int getRocketWeightBlink() {
+      return rocketWeightBlink_;
+    }
+
+    public static final int ROCKETWEIGHT_TEMP_FIELD_NUMBER = 16;
     private float rocketWeightTemp_ = 0F;
     /**
-     * <code>required float rocketWeight_temp = 15;</code>
+     * <code>required float rocketWeight_temp = 16;</code>
      * @return Whether the rocketWeightTemp field is set.
      */
     @java.lang.Override
     public boolean hasRocketWeightTemp() {
-      return ((bitField0_ & 0x00004000) != 0);
+      return ((bitField0_ & 0x00008000) != 0);
     }
     /**
-     * <code>required float rocketWeight_temp = 15;</code>
+     * <code>required float rocketWeight_temp = 16;</code>
      * @return The rocketWeightTemp.
      */
     @java.lang.Override
@@ -5087,18 +5132,37 @@ public final class FrameProtos {
       return rocketWeightTemp_;
     }
 
-    public static final int TANKWEIGHT_TEMP_FIELD_NUMBER = 16;
+    public static final int TANKWEIGHT_BLINK_FIELD_NUMBER = 17;
+    private int tankWeightBlink_ = 0;
+    /**
+     * <code>required uint32 tankWeight_blink = 17;</code>
+     * @return Whether the tankWeightBlink field is set.
+     */
+    @java.lang.Override
+    public boolean hasTankWeightBlink() {
+      return ((bitField0_ & 0x00010000) != 0);
+    }
+    /**
+     * <code>required uint32 tankWeight_blink = 17;</code>
+     * @return The tankWeightBlink.
+     */
+    @java.lang.Override
+    public int getTankWeightBlink() {
+      return tankWeightBlink_;
+    }
+
+    public static final int TANKWEIGHT_TEMP_FIELD_NUMBER = 18;
     private float tankWeightTemp_ = 0F;
     /**
-     * <code>required float tankWeight_temp = 16;</code>
+     * <code>required float tankWeight_temp = 18;</code>
      * @return Whether the tankWeightTemp field is set.
      */
     @java.lang.Override
     public boolean hasTankWeightTemp() {
-      return ((bitField0_ & 0x00008000) != 0);
+      return ((bitField0_ & 0x00020000) != 0);
     }
     /**
-     * <code>required float tankWeight_temp = 16;</code>
+     * <code>required float tankWeight_temp = 18;</code>
      * @return The tankWeightTemp.
      */
     @java.lang.Override
@@ -5106,18 +5170,18 @@ public final class FrameProtos {
       return tankWeightTemp_;
     }
 
-    public static final int ROCKETWEIGHT_VAL_FIELD_NUMBER = 17;
+    public static final int ROCKETWEIGHT_VAL_FIELD_NUMBER = 19;
     private float rocketWeightVal_ = 0F;
     /**
-     * <code>required float rocketWeight_val = 17;</code>
+     * <code>required float rocketWeight_val = 19;</code>
      * @return Whether the rocketWeightVal field is set.
      */
     @java.lang.Override
     public boolean hasRocketWeightVal() {
-      return ((bitField0_ & 0x00010000) != 0);
+      return ((bitField0_ & 0x00040000) != 0);
     }
     /**
-     * <code>required float rocketWeight_val = 17;</code>
+     * <code>required float rocketWeight_val = 19;</code>
      * @return The rocketWeightVal.
      */
     @java.lang.Override
@@ -5125,18 +5189,18 @@ public final class FrameProtos {
       return rocketWeightVal_;
     }
 
-    public static final int TANKWEIGHT_VAL_FIELD_NUMBER = 18;
+    public static final int TANKWEIGHT_VAL_FIELD_NUMBER = 20;
     private float tankWeightVal_ = 0F;
     /**
-     * <code>required float tankWeight_val = 18;</code>
+     * <code>required float tankWeight_val = 20;</code>
      * @return Whether the tankWeightVal field is set.
      */
     @java.lang.Override
     public boolean hasTankWeightVal() {
-      return ((bitField0_ & 0x00020000) != 0);
+      return ((bitField0_ & 0x00080000) != 0);
     }
     /**
-     * <code>required float tankWeight_val = 18;</code>
+     * <code>required float tankWeight_val = 20;</code>
      * @return The tankWeightVal.
      */
     @java.lang.Override
@@ -5144,18 +5208,18 @@ public final class FrameProtos {
       return tankWeightVal_;
     }
 
-    public static final int ROCKETWEIGHTRAW_VAL_FIELD_NUMBER = 19;
+    public static final int ROCKETWEIGHTRAW_VAL_FIELD_NUMBER = 21;
     private int rocketWeightRawVal_ = 0;
     /**
-     * <code>required uint32 rocketWeightRaw_val = 19;</code>
+     * <code>required uint32 rocketWeightRaw_val = 21;</code>
      * @return Whether the rocketWeightRawVal field is set.
      */
     @java.lang.Override
     public boolean hasRocketWeightRawVal() {
-      return ((bitField0_ & 0x00040000) != 0);
+      return ((bitField0_ & 0x00100000) != 0);
     }
     /**
-     * <code>required uint32 rocketWeightRaw_val = 19;</code>
+     * <code>required uint32 rocketWeightRaw_val = 21;</code>
      * @return The rocketWeightRawVal.
      */
     @java.lang.Override
@@ -5163,18 +5227,18 @@ public final class FrameProtos {
       return rocketWeightRawVal_;
     }
 
-    public static final int TANKWEIGHTRAW_VAL_FIELD_NUMBER = 20;
+    public static final int TANKWEIGHTRAW_VAL_FIELD_NUMBER = 22;
     private int tankWeightRawVal_ = 0;
     /**
-     * <code>required uint32 tankWeightRaw_val = 20;</code>
+     * <code>required uint32 tankWeightRaw_val = 22;</code>
      * @return Whether the tankWeightRawVal field is set.
      */
     @java.lang.Override
     public boolean hasTankWeightRawVal() {
-      return ((bitField0_ & 0x00080000) != 0);
+      return ((bitField0_ & 0x00200000) != 0);
     }
     /**
-     * <code>required uint32 tankWeightRaw_val = 20;</code>
+     * <code>required uint32 tankWeightRaw_val = 22;</code>
      * @return The tankWeightRawVal.
      */
     @java.lang.Override
@@ -5182,18 +5246,18 @@ public final class FrameProtos {
       return tankWeightRawVal_;
     }
 
-    public static final int INTERFACE_RCK_FIELD_NUMBER = 21;
+    public static final int INTERFACE_RCK_FIELD_NUMBER = 23;
     private boolean interfaceRck_ = false;
     /**
-     * <code>required bool interface_rck = 21;</code>
+     * <code>required bool interface_rck = 23;</code>
      * @return Whether the interfaceRck field is set.
      */
     @java.lang.Override
     public boolean hasInterfaceRck() {
-      return ((bitField0_ & 0x00100000) != 0);
+      return ((bitField0_ & 0x00400000) != 0);
     }
     /**
-     * <code>required bool interface_rck = 21;</code>
+     * <code>required bool interface_rck = 23;</code>
      * @return The interfaceRck.
      */
     @java.lang.Override
@@ -5201,18 +5265,18 @@ public final class FrameProtos {
       return interfaceRck_;
     }
 
-    public static final int INTERFACE_TANK_FIELD_NUMBER = 22;
+    public static final int INTERFACE_TANK_FIELD_NUMBER = 24;
     private boolean interfaceTank_ = false;
     /**
-     * <code>required bool interface_tank = 22;</code>
+     * <code>required bool interface_tank = 24;</code>
      * @return Whether the interfaceTank field is set.
      */
     @java.lang.Override
     public boolean hasInterfaceTank() {
-      return ((bitField0_ & 0x00200000) != 0);
+      return ((bitField0_ & 0x00800000) != 0);
     }
     /**
-     * <code>required bool interface_tank = 22;</code>
+     * <code>required bool interface_tank = 24;</code>
      * @return The interfaceTank.
      */
     @java.lang.Override
@@ -5220,18 +5284,18 @@ public final class FrameProtos {
       return interfaceTank_;
     }
 
-    public static final int INTERFACE_MCU_FIELD_NUMBER = 23;
+    public static final int INTERFACE_MCU_FIELD_NUMBER = 25;
     private boolean interfaceMcu_ = false;
     /**
-     * <code>required bool interface_mcu = 23;</code>
+     * <code>required bool interface_mcu = 25;</code>
      * @return Whether the interfaceMcu field is set.
      */
     @java.lang.Override
     public boolean hasInterfaceMcu() {
-      return ((bitField0_ & 0x00400000) != 0);
+      return ((bitField0_ & 0x01000000) != 0);
     }
     /**
-     * <code>required bool interface_mcu = 23;</code>
+     * <code>required bool interface_mcu = 25;</code>
      * @return The interfaceMcu.
      */
     @java.lang.Override
@@ -5302,7 +5366,15 @@ public final class FrameProtos {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!hasRocketWeightBlink()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasRocketWeightTemp()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasTankWeightBlink()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -5388,31 +5460,37 @@ public final class FrameProtos {
         output.writeUInt32(14, motorState4_);
       }
       if (((bitField0_ & 0x00004000) != 0)) {
-        output.writeFloat(15, rocketWeightTemp_);
+        output.writeUInt32(15, rocketWeightBlink_);
       }
       if (((bitField0_ & 0x00008000) != 0)) {
-        output.writeFloat(16, tankWeightTemp_);
+        output.writeFloat(16, rocketWeightTemp_);
       }
       if (((bitField0_ & 0x00010000) != 0)) {
-        output.writeFloat(17, rocketWeightVal_);
+        output.writeUInt32(17, tankWeightBlink_);
       }
       if (((bitField0_ & 0x00020000) != 0)) {
-        output.writeFloat(18, tankWeightVal_);
+        output.writeFloat(18, tankWeightTemp_);
       }
       if (((bitField0_ & 0x00040000) != 0)) {
-        output.writeUInt32(19, rocketWeightRawVal_);
+        output.writeFloat(19, rocketWeightVal_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
-        output.writeUInt32(20, tankWeightRawVal_);
+        output.writeFloat(20, tankWeightVal_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
-        output.writeBool(21, interfaceRck_);
+        output.writeUInt32(21, rocketWeightRawVal_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
-        output.writeBool(22, interfaceTank_);
+        output.writeUInt32(22, tankWeightRawVal_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
-        output.writeBool(23, interfaceMcu_);
+        output.writeBool(23, interfaceRck_);
+      }
+      if (((bitField0_ & 0x00800000) != 0)) {
+        output.writeBool(24, interfaceTank_);
+      }
+      if (((bitField0_ & 0x01000000) != 0)) {
+        output.writeBool(25, interfaceMcu_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5481,39 +5559,47 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00004000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(15, rocketWeightTemp_);
+          .computeUInt32Size(15, rocketWeightBlink_);
       }
       if (((bitField0_ & 0x00008000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(16, tankWeightTemp_);
+          .computeFloatSize(16, rocketWeightTemp_);
       }
       if (((bitField0_ & 0x00010000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(17, rocketWeightVal_);
+          .computeUInt32Size(17, tankWeightBlink_);
       }
       if (((bitField0_ & 0x00020000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(18, tankWeightVal_);
+          .computeFloatSize(18, tankWeightTemp_);
       }
       if (((bitField0_ & 0x00040000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(19, rocketWeightRawVal_);
+          .computeFloatSize(19, rocketWeightVal_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20, tankWeightRawVal_);
+          .computeFloatSize(20, tankWeightVal_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(21, interfaceRck_);
+          .computeUInt32Size(21, rocketWeightRawVal_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(22, interfaceTank_);
+          .computeUInt32Size(22, tankWeightRawVal_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(23, interfaceMcu_);
+          .computeBoolSize(23, interfaceRck_);
+      }
+      if (((bitField0_ & 0x00800000) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(24, interfaceTank_);
+      }
+      if (((bitField0_ & 0x01000000) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(25, interfaceMcu_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -5601,11 +5687,21 @@ public final class FrameProtos {
         if (getMotorState4()
             != other.getMotorState4()) return false;
       }
+      if (hasRocketWeightBlink() != other.hasRocketWeightBlink()) return false;
+      if (hasRocketWeightBlink()) {
+        if (getRocketWeightBlink()
+            != other.getRocketWeightBlink()) return false;
+      }
       if (hasRocketWeightTemp() != other.hasRocketWeightTemp()) return false;
       if (hasRocketWeightTemp()) {
         if (java.lang.Float.floatToIntBits(getRocketWeightTemp())
             != java.lang.Float.floatToIntBits(
                 other.getRocketWeightTemp())) return false;
+      }
+      if (hasTankWeightBlink() != other.hasTankWeightBlink()) return false;
+      if (hasTankWeightBlink()) {
+        if (getTankWeightBlink()
+            != other.getTankWeightBlink()) return false;
       }
       if (hasTankWeightTemp() != other.hasTankWeightTemp()) return false;
       if (hasTankWeightTemp()) {
@@ -5721,10 +5817,18 @@ public final class FrameProtos {
         hash = (37 * hash) + MOTORSTATE_4_FIELD_NUMBER;
         hash = (53 * hash) + getMotorState4();
       }
+      if (hasRocketWeightBlink()) {
+        hash = (37 * hash) + ROCKETWEIGHT_BLINK_FIELD_NUMBER;
+        hash = (53 * hash) + getRocketWeightBlink();
+      }
       if (hasRocketWeightTemp()) {
         hash = (37 * hash) + ROCKETWEIGHT_TEMP_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getRocketWeightTemp());
+      }
+      if (hasTankWeightBlink()) {
+        hash = (37 * hash) + TANKWEIGHT_BLINK_FIELD_NUMBER;
+        hash = (53 * hash) + getTankWeightBlink();
       }
       if (hasTankWeightTemp()) {
         hash = (37 * hash) + TANKWEIGHT_TEMP_FIELD_NUMBER;
@@ -5860,6 +5964,10 @@ public final class FrameProtos {
       return builder;
     }
     /**
+     * <pre>
+     * tanwa frame
+     * </pre>
+     *
      * Protobuf type {@code LoRaFrameTanwa}
      */
     public static final class Builder extends
@@ -5907,7 +6015,9 @@ public final class FrameProtos {
         motorState2_ = 0;
         motorState3_ = 0;
         motorState4_ = 0;
+        rocketWeightBlink_ = 0;
         rocketWeightTemp_ = 0F;
+        tankWeightBlink_ = 0;
         tankWeightTemp_ = 0F;
         rocketWeightVal_ = 0F;
         tankWeightVal_ = 0F;
@@ -6007,40 +6117,48 @@ public final class FrameProtos {
           to_bitField0_ |= 0x00002000;
         }
         if (((from_bitField0_ & 0x00004000) != 0)) {
-          result.rocketWeightTemp_ = rocketWeightTemp_;
+          result.rocketWeightBlink_ = rocketWeightBlink_;
           to_bitField0_ |= 0x00004000;
         }
         if (((from_bitField0_ & 0x00008000) != 0)) {
-          result.tankWeightTemp_ = tankWeightTemp_;
+          result.rocketWeightTemp_ = rocketWeightTemp_;
           to_bitField0_ |= 0x00008000;
         }
         if (((from_bitField0_ & 0x00010000) != 0)) {
-          result.rocketWeightVal_ = rocketWeightVal_;
+          result.tankWeightBlink_ = tankWeightBlink_;
           to_bitField0_ |= 0x00010000;
         }
         if (((from_bitField0_ & 0x00020000) != 0)) {
-          result.tankWeightVal_ = tankWeightVal_;
+          result.tankWeightTemp_ = tankWeightTemp_;
           to_bitField0_ |= 0x00020000;
         }
         if (((from_bitField0_ & 0x00040000) != 0)) {
-          result.rocketWeightRawVal_ = rocketWeightRawVal_;
+          result.rocketWeightVal_ = rocketWeightVal_;
           to_bitField0_ |= 0x00040000;
         }
         if (((from_bitField0_ & 0x00080000) != 0)) {
-          result.tankWeightRawVal_ = tankWeightRawVal_;
+          result.tankWeightVal_ = tankWeightVal_;
           to_bitField0_ |= 0x00080000;
         }
         if (((from_bitField0_ & 0x00100000) != 0)) {
-          result.interfaceRck_ = interfaceRck_;
+          result.rocketWeightRawVal_ = rocketWeightRawVal_;
           to_bitField0_ |= 0x00100000;
         }
         if (((from_bitField0_ & 0x00200000) != 0)) {
-          result.interfaceTank_ = interfaceTank_;
+          result.tankWeightRawVal_ = tankWeightRawVal_;
           to_bitField0_ |= 0x00200000;
         }
         if (((from_bitField0_ & 0x00400000) != 0)) {
-          result.interfaceMcu_ = interfaceMcu_;
+          result.interfaceRck_ = interfaceRck_;
           to_bitField0_ |= 0x00400000;
+        }
+        if (((from_bitField0_ & 0x00800000) != 0)) {
+          result.interfaceTank_ = interfaceTank_;
+          to_bitField0_ |= 0x00800000;
+        }
+        if (((from_bitField0_ & 0x01000000) != 0)) {
+          result.interfaceMcu_ = interfaceMcu_;
+          to_bitField0_ |= 0x01000000;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -6099,8 +6217,14 @@ public final class FrameProtos {
         if (other.hasMotorState4()) {
           setMotorState4(other.getMotorState4());
         }
+        if (other.hasRocketWeightBlink()) {
+          setRocketWeightBlink(other.getRocketWeightBlink());
+        }
         if (other.hasRocketWeightTemp()) {
           setRocketWeightTemp(other.getRocketWeightTemp());
+        }
+        if (other.hasTankWeightBlink()) {
+          setTankWeightBlink(other.getTankWeightBlink());
         }
         if (other.hasTankWeightTemp()) {
           setTankWeightTemp(other.getTankWeightTemp());
@@ -6175,7 +6299,13 @@ public final class FrameProtos {
         if (!hasMotorState4()) {
           return false;
         }
+        if (!hasRocketWeightBlink()) {
+          return false;
+        }
         if (!hasRocketWeightTemp()) {
+          return false;
+        }
+        if (!hasTankWeightBlink()) {
           return false;
         }
         if (!hasTankWeightTemp()) {
@@ -6291,51 +6421,61 @@ public final class FrameProtos {
                 bitField0_ |= 0x00002000;
                 break;
               } // case 112
-              case 125: {
-                rocketWeightTemp_ = input.readFloat();
+              case 120: {
+                rocketWeightBlink_ = input.readUInt32();
                 bitField0_ |= 0x00004000;
                 break;
-              } // case 125
+              } // case 120
               case 133: {
-                tankWeightTemp_ = input.readFloat();
+                rocketWeightTemp_ = input.readFloat();
                 bitField0_ |= 0x00008000;
                 break;
               } // case 133
-              case 141: {
-                rocketWeightVal_ = input.readFloat();
+              case 136: {
+                tankWeightBlink_ = input.readUInt32();
                 bitField0_ |= 0x00010000;
                 break;
-              } // case 141
+              } // case 136
               case 149: {
-                tankWeightVal_ = input.readFloat();
+                tankWeightTemp_ = input.readFloat();
                 bitField0_ |= 0x00020000;
                 break;
               } // case 149
-              case 152: {
-                rocketWeightRawVal_ = input.readUInt32();
+              case 157: {
+                rocketWeightVal_ = input.readFloat();
                 bitField0_ |= 0x00040000;
                 break;
-              } // case 152
-              case 160: {
-                tankWeightRawVal_ = input.readUInt32();
+              } // case 157
+              case 165: {
+                tankWeightVal_ = input.readFloat();
                 bitField0_ |= 0x00080000;
                 break;
-              } // case 160
+              } // case 165
               case 168: {
-                interfaceRck_ = input.readBool();
+                rocketWeightRawVal_ = input.readUInt32();
                 bitField0_ |= 0x00100000;
                 break;
               } // case 168
               case 176: {
-                interfaceTank_ = input.readBool();
+                tankWeightRawVal_ = input.readUInt32();
                 bitField0_ |= 0x00200000;
                 break;
               } // case 176
               case 184: {
-                interfaceMcu_ = input.readBool();
+                interfaceRck_ = input.readBool();
                 bitField0_ |= 0x00400000;
                 break;
               } // case 184
+              case 192: {
+                interfaceTank_ = input.readBool();
+                bitField0_ |= 0x00800000;
+                break;
+              } // case 192
+              case 200: {
+                interfaceMcu_ = input.readBool();
+                bitField0_ |= 0x01000000;
+                break;
+              } // case 200
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6945,17 +7085,57 @@ public final class FrameProtos {
         return this;
       }
 
+      private int rocketWeightBlink_ ;
+      /**
+       * <code>required uint32 rocketWeight_blink = 15;</code>
+       * @return Whether the rocketWeightBlink field is set.
+       */
+      @java.lang.Override
+      public boolean hasRocketWeightBlink() {
+        return ((bitField0_ & 0x00004000) != 0);
+      }
+      /**
+       * <code>required uint32 rocketWeight_blink = 15;</code>
+       * @return The rocketWeightBlink.
+       */
+      @java.lang.Override
+      public int getRocketWeightBlink() {
+        return rocketWeightBlink_;
+      }
+      /**
+       * <code>required uint32 rocketWeight_blink = 15;</code>
+       * @param value The rocketWeightBlink to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRocketWeightBlink(int value) {
+
+        rocketWeightBlink_ = value;
+        bitField0_ |= 0x00004000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 rocketWeight_blink = 15;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRocketWeightBlink() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        rocketWeightBlink_ = 0;
+        onChanged();
+        return this;
+      }
+
       private float rocketWeightTemp_ ;
       /**
-       * <code>required float rocketWeight_temp = 15;</code>
+       * <code>required float rocketWeight_temp = 16;</code>
        * @return Whether the rocketWeightTemp field is set.
        */
       @java.lang.Override
       public boolean hasRocketWeightTemp() {
-        return ((bitField0_ & 0x00004000) != 0);
+        return ((bitField0_ & 0x00008000) != 0);
       }
       /**
-       * <code>required float rocketWeight_temp = 15;</code>
+       * <code>required float rocketWeight_temp = 16;</code>
        * @return The rocketWeightTemp.
        */
       @java.lang.Override
@@ -6963,39 +7143,79 @@ public final class FrameProtos {
         return rocketWeightTemp_;
       }
       /**
-       * <code>required float rocketWeight_temp = 15;</code>
+       * <code>required float rocketWeight_temp = 16;</code>
        * @param value The rocketWeightTemp to set.
        * @return This builder for chaining.
        */
       public Builder setRocketWeightTemp(float value) {
 
         rocketWeightTemp_ = value;
-        bitField0_ |= 0x00004000;
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
       /**
-       * <code>required float rocketWeight_temp = 15;</code>
+       * <code>required float rocketWeight_temp = 16;</code>
        * @return This builder for chaining.
        */
       public Builder clearRocketWeightTemp() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00008000);
         rocketWeightTemp_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private int tankWeightBlink_ ;
+      /**
+       * <code>required uint32 tankWeight_blink = 17;</code>
+       * @return Whether the tankWeightBlink field is set.
+       */
+      @java.lang.Override
+      public boolean hasTankWeightBlink() {
+        return ((bitField0_ & 0x00010000) != 0);
+      }
+      /**
+       * <code>required uint32 tankWeight_blink = 17;</code>
+       * @return The tankWeightBlink.
+       */
+      @java.lang.Override
+      public int getTankWeightBlink() {
+        return tankWeightBlink_;
+      }
+      /**
+       * <code>required uint32 tankWeight_blink = 17;</code>
+       * @param value The tankWeightBlink to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTankWeightBlink(int value) {
+
+        tankWeightBlink_ = value;
+        bitField0_ |= 0x00010000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 tankWeight_blink = 17;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTankWeightBlink() {
+        bitField0_ = (bitField0_ & ~0x00010000);
+        tankWeightBlink_ = 0;
         onChanged();
         return this;
       }
 
       private float tankWeightTemp_ ;
       /**
-       * <code>required float tankWeight_temp = 16;</code>
+       * <code>required float tankWeight_temp = 18;</code>
        * @return Whether the tankWeightTemp field is set.
        */
       @java.lang.Override
       public boolean hasTankWeightTemp() {
-        return ((bitField0_ & 0x00008000) != 0);
+        return ((bitField0_ & 0x00020000) != 0);
       }
       /**
-       * <code>required float tankWeight_temp = 16;</code>
+       * <code>required float tankWeight_temp = 18;</code>
        * @return The tankWeightTemp.
        */
       @java.lang.Override
@@ -7003,23 +7223,23 @@ public final class FrameProtos {
         return tankWeightTemp_;
       }
       /**
-       * <code>required float tankWeight_temp = 16;</code>
+       * <code>required float tankWeight_temp = 18;</code>
        * @param value The tankWeightTemp to set.
        * @return This builder for chaining.
        */
       public Builder setTankWeightTemp(float value) {
 
         tankWeightTemp_ = value;
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
       /**
-       * <code>required float tankWeight_temp = 16;</code>
+       * <code>required float tankWeight_temp = 18;</code>
        * @return This builder for chaining.
        */
       public Builder clearTankWeightTemp() {
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00020000);
         tankWeightTemp_ = 0F;
         onChanged();
         return this;
@@ -7027,15 +7247,15 @@ public final class FrameProtos {
 
       private float rocketWeightVal_ ;
       /**
-       * <code>required float rocketWeight_val = 17;</code>
+       * <code>required float rocketWeight_val = 19;</code>
        * @return Whether the rocketWeightVal field is set.
        */
       @java.lang.Override
       public boolean hasRocketWeightVal() {
-        return ((bitField0_ & 0x00010000) != 0);
+        return ((bitField0_ & 0x00040000) != 0);
       }
       /**
-       * <code>required float rocketWeight_val = 17;</code>
+       * <code>required float rocketWeight_val = 19;</code>
        * @return The rocketWeightVal.
        */
       @java.lang.Override
@@ -7043,23 +7263,23 @@ public final class FrameProtos {
         return rocketWeightVal_;
       }
       /**
-       * <code>required float rocketWeight_val = 17;</code>
+       * <code>required float rocketWeight_val = 19;</code>
        * @param value The rocketWeightVal to set.
        * @return This builder for chaining.
        */
       public Builder setRocketWeightVal(float value) {
 
         rocketWeightVal_ = value;
-        bitField0_ |= 0x00010000;
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
       /**
-       * <code>required float rocketWeight_val = 17;</code>
+       * <code>required float rocketWeight_val = 19;</code>
        * @return This builder for chaining.
        */
       public Builder clearRocketWeightVal() {
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x00040000);
         rocketWeightVal_ = 0F;
         onChanged();
         return this;
@@ -7067,15 +7287,15 @@ public final class FrameProtos {
 
       private float tankWeightVal_ ;
       /**
-       * <code>required float tankWeight_val = 18;</code>
+       * <code>required float tankWeight_val = 20;</code>
        * @return Whether the tankWeightVal field is set.
        */
       @java.lang.Override
       public boolean hasTankWeightVal() {
-        return ((bitField0_ & 0x00020000) != 0);
+        return ((bitField0_ & 0x00080000) != 0);
       }
       /**
-       * <code>required float tankWeight_val = 18;</code>
+       * <code>required float tankWeight_val = 20;</code>
        * @return The tankWeightVal.
        */
       @java.lang.Override
@@ -7083,23 +7303,23 @@ public final class FrameProtos {
         return tankWeightVal_;
       }
       /**
-       * <code>required float tankWeight_val = 18;</code>
+       * <code>required float tankWeight_val = 20;</code>
        * @param value The tankWeightVal to set.
        * @return This builder for chaining.
        */
       public Builder setTankWeightVal(float value) {
 
         tankWeightVal_ = value;
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
       /**
-       * <code>required float tankWeight_val = 18;</code>
+       * <code>required float tankWeight_val = 20;</code>
        * @return This builder for chaining.
        */
       public Builder clearTankWeightVal() {
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00080000);
         tankWeightVal_ = 0F;
         onChanged();
         return this;
@@ -7107,15 +7327,15 @@ public final class FrameProtos {
 
       private int rocketWeightRawVal_ ;
       /**
-       * <code>required uint32 rocketWeightRaw_val = 19;</code>
+       * <code>required uint32 rocketWeightRaw_val = 21;</code>
        * @return Whether the rocketWeightRawVal field is set.
        */
       @java.lang.Override
       public boolean hasRocketWeightRawVal() {
-        return ((bitField0_ & 0x00040000) != 0);
+        return ((bitField0_ & 0x00100000) != 0);
       }
       /**
-       * <code>required uint32 rocketWeightRaw_val = 19;</code>
+       * <code>required uint32 rocketWeightRaw_val = 21;</code>
        * @return The rocketWeightRawVal.
        */
       @java.lang.Override
@@ -7123,23 +7343,23 @@ public final class FrameProtos {
         return rocketWeightRawVal_;
       }
       /**
-       * <code>required uint32 rocketWeightRaw_val = 19;</code>
+       * <code>required uint32 rocketWeightRaw_val = 21;</code>
        * @param value The rocketWeightRawVal to set.
        * @return This builder for chaining.
        */
       public Builder setRocketWeightRawVal(int value) {
 
         rocketWeightRawVal_ = value;
-        bitField0_ |= 0x00040000;
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
       /**
-       * <code>required uint32 rocketWeightRaw_val = 19;</code>
+       * <code>required uint32 rocketWeightRaw_val = 21;</code>
        * @return This builder for chaining.
        */
       public Builder clearRocketWeightRawVal() {
-        bitField0_ = (bitField0_ & ~0x00040000);
+        bitField0_ = (bitField0_ & ~0x00100000);
         rocketWeightRawVal_ = 0;
         onChanged();
         return this;
@@ -7147,15 +7367,15 @@ public final class FrameProtos {
 
       private int tankWeightRawVal_ ;
       /**
-       * <code>required uint32 tankWeightRaw_val = 20;</code>
+       * <code>required uint32 tankWeightRaw_val = 22;</code>
        * @return Whether the tankWeightRawVal field is set.
        */
       @java.lang.Override
       public boolean hasTankWeightRawVal() {
-        return ((bitField0_ & 0x00080000) != 0);
+        return ((bitField0_ & 0x00200000) != 0);
       }
       /**
-       * <code>required uint32 tankWeightRaw_val = 20;</code>
+       * <code>required uint32 tankWeightRaw_val = 22;</code>
        * @return The tankWeightRawVal.
        */
       @java.lang.Override
@@ -7163,23 +7383,23 @@ public final class FrameProtos {
         return tankWeightRawVal_;
       }
       /**
-       * <code>required uint32 tankWeightRaw_val = 20;</code>
+       * <code>required uint32 tankWeightRaw_val = 22;</code>
        * @param value The tankWeightRawVal to set.
        * @return This builder for chaining.
        */
       public Builder setTankWeightRawVal(int value) {
 
         tankWeightRawVal_ = value;
-        bitField0_ |= 0x00080000;
+        bitField0_ |= 0x00200000;
         onChanged();
         return this;
       }
       /**
-       * <code>required uint32 tankWeightRaw_val = 20;</code>
+       * <code>required uint32 tankWeightRaw_val = 22;</code>
        * @return This builder for chaining.
        */
       public Builder clearTankWeightRawVal() {
-        bitField0_ = (bitField0_ & ~0x00080000);
+        bitField0_ = (bitField0_ & ~0x00200000);
         tankWeightRawVal_ = 0;
         onChanged();
         return this;
@@ -7187,15 +7407,15 @@ public final class FrameProtos {
 
       private boolean interfaceRck_ ;
       /**
-       * <code>required bool interface_rck = 21;</code>
+       * <code>required bool interface_rck = 23;</code>
        * @return Whether the interfaceRck field is set.
        */
       @java.lang.Override
       public boolean hasInterfaceRck() {
-        return ((bitField0_ & 0x00100000) != 0);
+        return ((bitField0_ & 0x00400000) != 0);
       }
       /**
-       * <code>required bool interface_rck = 21;</code>
+       * <code>required bool interface_rck = 23;</code>
        * @return The interfaceRck.
        */
       @java.lang.Override
@@ -7203,23 +7423,23 @@ public final class FrameProtos {
         return interfaceRck_;
       }
       /**
-       * <code>required bool interface_rck = 21;</code>
+       * <code>required bool interface_rck = 23;</code>
        * @param value The interfaceRck to set.
        * @return This builder for chaining.
        */
       public Builder setInterfaceRck(boolean value) {
 
         interfaceRck_ = value;
-        bitField0_ |= 0x00100000;
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
       /**
-       * <code>required bool interface_rck = 21;</code>
+       * <code>required bool interface_rck = 23;</code>
        * @return This builder for chaining.
        */
       public Builder clearInterfaceRck() {
-        bitField0_ = (bitField0_ & ~0x00100000);
+        bitField0_ = (bitField0_ & ~0x00400000);
         interfaceRck_ = false;
         onChanged();
         return this;
@@ -7227,15 +7447,15 @@ public final class FrameProtos {
 
       private boolean interfaceTank_ ;
       /**
-       * <code>required bool interface_tank = 22;</code>
+       * <code>required bool interface_tank = 24;</code>
        * @return Whether the interfaceTank field is set.
        */
       @java.lang.Override
       public boolean hasInterfaceTank() {
-        return ((bitField0_ & 0x00200000) != 0);
+        return ((bitField0_ & 0x00800000) != 0);
       }
       /**
-       * <code>required bool interface_tank = 22;</code>
+       * <code>required bool interface_tank = 24;</code>
        * @return The interfaceTank.
        */
       @java.lang.Override
@@ -7243,23 +7463,23 @@ public final class FrameProtos {
         return interfaceTank_;
       }
       /**
-       * <code>required bool interface_tank = 22;</code>
+       * <code>required bool interface_tank = 24;</code>
        * @param value The interfaceTank to set.
        * @return This builder for chaining.
        */
       public Builder setInterfaceTank(boolean value) {
 
         interfaceTank_ = value;
-        bitField0_ |= 0x00200000;
+        bitField0_ |= 0x00800000;
         onChanged();
         return this;
       }
       /**
-       * <code>required bool interface_tank = 22;</code>
+       * <code>required bool interface_tank = 24;</code>
        * @return This builder for chaining.
        */
       public Builder clearInterfaceTank() {
-        bitField0_ = (bitField0_ & ~0x00200000);
+        bitField0_ = (bitField0_ & ~0x00800000);
         interfaceTank_ = false;
         onChanged();
         return this;
@@ -7267,15 +7487,15 @@ public final class FrameProtos {
 
       private boolean interfaceMcu_ ;
       /**
-       * <code>required bool interface_mcu = 23;</code>
+       * <code>required bool interface_mcu = 25;</code>
        * @return Whether the interfaceMcu field is set.
        */
       @java.lang.Override
       public boolean hasInterfaceMcu() {
-        return ((bitField0_ & 0x00400000) != 0);
+        return ((bitField0_ & 0x01000000) != 0);
       }
       /**
-       * <code>required bool interface_mcu = 23;</code>
+       * <code>required bool interface_mcu = 25;</code>
        * @return The interfaceMcu.
        */
       @java.lang.Override
@@ -7283,23 +7503,23 @@ public final class FrameProtos {
         return interfaceMcu_;
       }
       /**
-       * <code>required bool interface_mcu = 23;</code>
+       * <code>required bool interface_mcu = 25;</code>
        * @param value The interfaceMcu to set.
        * @return This builder for chaining.
        */
       public Builder setInterfaceMcu(boolean value) {
 
         interfaceMcu_ = value;
-        bitField0_ |= 0x00400000;
+        bitField0_ |= 0x01000000;
         onChanged();
         return this;
       }
       /**
-       * <code>required bool interface_mcu = 23;</code>
+       * <code>required bool interface_mcu = 25;</code>
        * @return This builder for chaining.
        */
       public Builder clearInterfaceMcu() {
-        bitField0_ = (bitField0_ & ~0x00400000);
+        bitField0_ = (bitField0_ & ~0x01000000);
         interfaceMcu_ = false;
         onChanged();
         return this;
@@ -9011,7 +9231,7 @@ public final class FrameProtos {
       "\030\035 \002(\002\022\023\n\013tank_weight\030\036 \002(\002\022\024\n\014temperatu" +
       "re1\030\037 \002(\002\022\024\n\014temperature2\030  \002(\002\022\020\n\010press" +
       "ure\030! \002(\002\022\027\n\017payload_battery\030\" \002(\002\022\031\n\021es" +
-      "p_now_byte_data\030# \002(\007\022\016\n\006errors\030$ \002(\007\"\264\004" +
+      "p_now_byte_data\030# \002(\007\022\016\n\006errors\030$ \002(\007\"\352\004" +
       "\n\016LoRaFrameTanwa\022\022\n\ntanWaState\030\001 \002(\r\022\026\n\016" +
       "pressureSensor\030\002 \002(\r\022\025\n\rsolenoid_fill\030\003 " +
       "\002(\r\022\025\n\rsolenoid_depr\030\004 \002(\r\022\023\n\013abortButto" +
@@ -9020,19 +9240,21 @@ public final class FrameProtos {
       "_RCK\030\010 \002(\r\022\026\n\016hxRequest_TANK\030\t \002(\r\022\014\n\004vb" +
       "at\030\n \002(\002\022\024\n\014motorState_1\030\013 \002(\r\022\024\n\014motorS" +
       "tate_2\030\014 \002(\r\022\024\n\014motorState_3\030\r \002(\r\022\024\n\014mo" +
-      "torState_4\030\016 \002(\r\022\031\n\021rocketWeight_temp\030\017 " +
-      "\002(\002\022\027\n\017tankWeight_temp\030\020 \002(\002\022\030\n\020rocketWe" +
-      "ight_val\030\021 \002(\002\022\026\n\016tankWeight_val\030\022 \002(\002\022\033" +
-      "\n\023rocketWeightRaw_val\030\023 \002(\r\022\031\n\021tankWeigh" +
-      "tRaw_val\030\024 \002(\r\022\025\n\rinterface_rck\030\025 \002(\010\022\026\n" +
-      "\016interface_tank\030\026 \002(\010\022\025\n\rinterface_mcu\030\027" +
-      " \002(\010\"n\n\014LoRaSettings\022\025\n\rlora_freq_khz\030\001 " +
-      "\002(\005\022\030\n\020lora_transmit_ms\030\002 \002(\005\022\026\n\016countdo" +
-      "wn_time\030\003 \002(\005\022\025\n\ringition_time\030\004 \002(\005\"X\n\013" +
-      "LoRaCommand\022\023\n\013lora_dev_id\030\001 \002(\r\022\022\n\nsys_" +
-      "dev_id\030\002 \002(\r\022\017\n\007command\030\003 \002(\r\022\017\n\007payload" +
-      "\030\004 \002(\005BD\n5pl.edu.pwr.pwrinspace.poliwroc" +
-      "ket.Model.MessageParserB\013FrameProtos"
+      "torState_4\030\016 \002(\r\022\032\n\022rocketWeight_blink\030\017" +
+      " \002(\r\022\031\n\021rocketWeight_temp\030\020 \002(\002\022\030\n\020tankW" +
+      "eight_blink\030\021 \002(\r\022\027\n\017tankWeight_temp\030\022 \002" +
+      "(\002\022\030\n\020rocketWeight_val\030\023 \002(\002\022\026\n\016tankWeig" +
+      "ht_val\030\024 \002(\002\022\033\n\023rocketWeightRaw_val\030\025 \002(" +
+      "\r\022\031\n\021tankWeightRaw_val\030\026 \002(\r\022\025\n\rinterfac" +
+      "e_rck\030\027 \002(\010\022\026\n\016interface_tank\030\030 \002(\010\022\025\n\ri" +
+      "nterface_mcu\030\031 \002(\010\"n\n\014LoRaSettings\022\025\n\rlo" +
+      "ra_freq_khz\030\001 \002(\005\022\030\n\020lora_transmit_ms\030\002 " +
+      "\002(\005\022\026\n\016countdown_time\030\003 \002(\005\022\025\n\ringition_" +
+      "time\030\004 \002(\005\"X\n\013LoRaCommand\022\023\n\013lora_dev_id" +
+      "\030\001 \002(\r\022\022\n\nsys_dev_id\030\002 \002(\r\022\017\n\007command\030\003 " +
+      "\002(\r\022\017\n\007payload\030\004 \002(\005BD\n5pl.edu.pwr.pwrin" +
+      "space.poliwrocket.Model.MessageParserB\013F" +
+      "rameProtos"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -9049,7 +9271,7 @@ public final class FrameProtos {
     internal_static_LoRaFrameTanwa_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaFrameTanwa_descriptor,
-        new java.lang.String[] { "TanWaState", "PressureSensor", "SolenoidFill", "SolenoidDepr", "AbortButton", "IgniterContinouity1", "IgniterContinouity2", "HxRequestRCK", "HxRequestTANK", "Vbat", "MotorState1", "MotorState2", "MotorState3", "MotorState4", "RocketWeightTemp", "TankWeightTemp", "RocketWeightVal", "TankWeightVal", "RocketWeightRawVal", "TankWeightRawVal", "InterfaceRck", "InterfaceTank", "InterfaceMcu", });
+        new java.lang.String[] { "TanWaState", "PressureSensor", "SolenoidFill", "SolenoidDepr", "AbortButton", "IgniterContinouity1", "IgniterContinouity2", "HxRequestRCK", "HxRequestTANK", "Vbat", "MotorState1", "MotorState2", "MotorState3", "MotorState4", "RocketWeightBlink", "RocketWeightTemp", "TankWeightBlink", "TankWeightTemp", "RocketWeightVal", "TankWeightVal", "RocketWeightRawVal", "TankWeightRawVal", "InterfaceRck", "InterfaceTank", "InterfaceMcu", });
     internal_static_LoRaSettings_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_LoRaSettings_fieldAccessorTable = new

@@ -1,24 +1,22 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 
 public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand {
 
     @Expose
-    private double defaultValue;
+    private Double defaultValue = 0.0;
 
     @Expose
-    private String commandPrefixValue;
-
-    @Expose
-    private String payload;
+    private Command command;
 
     private static final String _destinationCommandPrefix = "button";
     private static final String _destinationInoutPrefix = "button";
 
     @Override
-    public double getDefaultValue() {
+    public Double getDefaultValue() {
         return defaultValue;
     }
 
@@ -28,32 +26,48 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     }
 
     @Override
+    public Command getCommand() {
+        return command;
+    }
+
+    @Override
     public String getCommandValueAsString() {
-        return commandPrefixValue;
+        return command.getCommandValueAsString();
     }
 
     @Override
     public void setPayload(String payload) {
-        this.payload = payload;
+        command.setPayload(payload);
+
+    }
+
+    @Override
+    public String getPayload() {
+        return command.getPayload();
+    }
+
+    @Override
+    public boolean isFinal() {
+        return command.isFinal();
     }
 
     @Override
     public String getCommandTriggerKey() {
-        return _destinationCommandPrefix + this.getDestination();
+        return command.getCommandTriggerKey();
     }
 
     @Override
     public String getCommandDescription() {
-        return this.getName();
+        return command.getCommandDescription();
     }
 
     @Override
     public byte[] getCommandValueAsBytes(boolean force) {
-        return new byte[0];
+        return command.getCommandValueAsBytes(force);
     }
 
     @Override
     public byte[] getCommandValueAsBytes() {
-        return getCommandValueAsBytes(false);
+        return command.getCommandValueAsBytes();
     }
 }
