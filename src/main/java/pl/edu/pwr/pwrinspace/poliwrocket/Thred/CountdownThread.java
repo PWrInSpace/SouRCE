@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CountdownThread implements Observable, Runnable {
 
-    private static  long basicCountdownTime = 16000;
+    private static  long basicCountdownTime = 30000;
 
     private long countdownTime = basicCountdownTime;
 

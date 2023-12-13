@@ -3,6 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import com.jfoenix.controls.JFXTextField;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.offline.OfflineCache;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,6 +37,7 @@ public class MapController extends BasicController {
 
     @FXML
     protected void initialize() {
+        initMapAndControls(Projection.WEB_MERCATOR);
     }
 
     public void initMapAndControls(Projection projection) {
@@ -48,7 +50,7 @@ public class MapController extends BasicController {
             Files.createDirectories(Paths.get(cacheDir));
             offlineCache.setCacheDirectory(cacheDir);
             offlineCache.setActive(true);
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             logger.warn("could not activate offline cache", e);
         }
 
@@ -59,13 +61,20 @@ public class MapController extends BasicController {
             }
         });
 
-        mapView.setMapType(MapType.OSM);
+        Platform.runLater(() -> {
+            try {
+                mapView.setMapType(MapType.OSM);
 
-        // finally initialize the map view
-        mapView.initialize(Configuration.builder()
-                .projection(projection)
-                .showZoomControls(false)
-                .build());
+                // finally initialize the map view
+                mapView.initialize(Configuration.builder()
+                        .projection(projection)
+                        .showZoomControls(false)
+                        .build());
+            } catch (Exception e) {
+                logger.error("Map init error", e);
+            }
+        });
+
     }
 
     private void afterMapIsInitialized() {

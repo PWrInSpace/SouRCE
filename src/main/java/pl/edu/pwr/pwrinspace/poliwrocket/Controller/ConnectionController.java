@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import eu.hansolo.medusa.Gauge;
+import eu.hansolo.tilesfx.addons.Switch;
 import gnu.io.NRSerialPort;
 import javafx.application.Platform;
 import javafx.beans.Observable;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.INotification;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
@@ -78,6 +80,9 @@ public class ConnectionController extends BasicButtonSensorController {
 
     private Thread notificationThread;
 
+    @FXML
+    private Switch sudoToggle;
+
     @Override
     @FXML
     protected void initialize() {
@@ -130,17 +135,22 @@ public class ConnectionController extends BasicButtonSensorController {
                     notificationThread = new Thread(notificationThreadRunnable, ThreadName.DISCORD_NOTIFICATION.getName());
                     notificationThread.setDaemon(true);
                     notificationThread.start();
-                    threadStatus.setText("Running");
+                    Platform.runLater(() -> threadStatus.setText("Running"));
                 } else if (notificationThread != null && notificationThread.isAlive()) {
                     notificationThread.interrupt();
-                    threadStatus.setText("Interrupted");
+                    Platform.runLater(() -> threadStatus.setText("Interrupted"));
                 }
             });
         });
 
         sendSerialMessage.setOnMouseClicked(mouseEvent ->
-                executorService.execute(() -> SerialPortManager.getInstance().write(serialMessages.getValue().getCommandValue()))
+                executorService.execute(() -> SerialPortManager.getInstance().write(serialMessages.getValue()))
         );
+
+        sudoToggle.setActive(Configuration.getInstance().isForceCommandsActive());
+        sudoToggle.setOnMouseClicked(actionEvent -> {
+            Configuration.getInstance().setForceCommandsActive(sudoToggle.isActive());
+        });
     }
 
     public void injectNotification(NotificationSendService notificationSendService, List<String> notificationsList, INotificationThread notificationThreadRunnable) {

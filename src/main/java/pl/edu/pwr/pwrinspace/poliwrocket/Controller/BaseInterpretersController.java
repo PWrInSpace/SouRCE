@@ -31,7 +31,11 @@ public abstract class BaseInterpretersController extends BasicSensorController {
             labelHashMap.get(sensor.getDestination()).setText(sensor.getName());
 
             if(sensor.hasInterpreter()) {
-                valueHashMap.get(sensor.getDestination()).setText(sensor.getCodeMeaning().text);
+                var valueLabel = valueHashMap.get(sensor.getDestination());
+                var code = sensor.getCodeMeaning();
+                valueLabel.setText(code.text);
+                valueLabel.setTextFill(UIHelper.resolveUIHintColor(code.UIHint));
+
             } else {
                 valueHashMap.get(sensor.getDestination()).setText(Double.toString(sensor.getValue()));
             }

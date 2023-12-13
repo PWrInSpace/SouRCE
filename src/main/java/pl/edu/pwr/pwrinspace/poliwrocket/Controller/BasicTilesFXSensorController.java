@@ -44,7 +44,7 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                         logger.error("Indicator without label!");
                     }
                 }
-            } catch (IllegalAccessException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -57,8 +57,16 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
             var label = labelHashMap.get(sensor.getDestination());
             if (tile != null) {
                 tile.setVisible(true);
-                tile.setMaxValue(sensor.getMaxRange());
-                tile.setMinValue(sensor.getMinRange());
+
+                if(sensor.getMinRange() != sensor.getMaxRange()) {
+                    tile.setMinValue(sensor.getMinRange());
+                    tile.setMaxValue(sensor.getMaxRange());
+                } else {
+                    tile.setAutoScale(true);
+                    tile.setMinValue(Double.MIN_VALUE);
+                    tile.setMaxValue(Double.MAX_VALUE);
+                }
+                
                 tile.setTitle(sensor.getName());
                 tile.setUnit(sensor.getUnit());
                 tile.setAverageVisible(true);

@@ -1,6 +1,5 @@
 package pl.edu.pwr.pwrinspace.poliwrocket;
 
-import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +7,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.*;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ConnectionController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.RAWDataController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.Discord.NotificationDiscordEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.NotificationEvent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.UIUpdateEventEmitter;
@@ -33,7 +35,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.net.MalformedURLException;
 import java.nio.file.*;
-import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,10 +59,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        System.setProperty("jbr.jfx.media.disabled", "true");
+        System.setProperty("jfx.media.disabled", "true");
+
+        logger.warn(System.getProperty("jbr.jfx.media.disabled"));
         try {
             //Read config file
             try {
-                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+                Configuration.getInstance().setupConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
             } catch (UnsupportedOperationException e) {
                 logger.error("Wrong mapping in controller");
                 e.printStackTrace();
@@ -80,7 +85,7 @@ public class Main extends Application {
 
             //Read speech file
             try {
-                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
             } catch (Exception e) {
                 logger.error("Bad speech file, overwritten by default and loaded");
                 logger.error(e.getMessage());
@@ -88,7 +93,7 @@ public class Main extends Application {
                 logger.error(e.toString());
                 modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
                 modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
-                textToSpeechDictionary = (TextToSpeechDictionary) modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
             }
             //--------------
 
@@ -133,10 +138,15 @@ public class Main extends Application {
             });
 
             ConnectionController connectionController = (ConnectionController) controllerList.get(ConnectionController.class.getSimpleName());
-            MapController mapController = (MapController) controllerList.get(MapController.class.getSimpleName());
-            final Projection projection = getParameters().getUnnamed().contains("wgs84")
-                    ? Projection.WGS_84 : Projection.WEB_MERCATOR;
-            mapController.initMapAndControls(projection);
+//            try {
+//                MapController mapController = (MapController) controllerList.get(MapController.class.getSimpleName());
+//                final Projection projection = getParameters().getUnnamed().contains("wgs84")
+//                        ? Projection.WGS_84 : Projection.WEB_MERCATOR;
+//                mapController.initMapAndControls(projection);
+//            }catch (Exception e) {
+//                logger.error("Map init error", e);
+//            }
+            Configuration.getInstance().addListener(mainController);
             //--------------
 
             //Mapping sensors and commands to controllers
@@ -148,6 +158,8 @@ public class Main extends Application {
                 messageParser = new JsonMessageParser();
             } else if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.STANDARD) {
                 messageParser = new StandardMessageParser();
+            }else if (Configuration.getInstance().PARSER_TYPE == MessageParserEnum.PROTOBUF) {
+                messageParser = new ProtobufMessageParser();
             } else {
                 messageParser = new StandardMessageParser();
             }
@@ -362,9 +374,9 @@ public class Main extends Application {
                             }
                             raw.append(Configuration.getInstance().FRAME_DELIMITER);
                         }
-                        Frame frame = new Frame(raw.toString(), Instant.now());
-                        messageParser.parseMessage(frame);
-                        frameSaveService.saveFrameToFile(frame);
+//                        Frame frame = new Frame(raw.toString(), new byte[], Instant.now());
+//                        messageParser.parseMessage(frame);
+//                        frameSaveService.saveFrameToFile(frame);
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {

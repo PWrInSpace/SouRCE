@@ -39,7 +39,7 @@ public class AbortController extends BasicButtonSensorController {
         return actionEvent -> {
             executorService.execute(() -> {
                 if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
-                    SerialPortManager.getInstance().write(command.getCommandValue());
+                    SerialPortManager.getInstance().write(command);
                     for (Thread thread : Thread.getAllStackTraces().keySet()) {
                         if (thread.getName().equals(ThreadName.COUNTDOWN.getName())) {
                             thread.interrupt();

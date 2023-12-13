@@ -1,5 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import org.javatuples.KeyValue;
 import org.javatuples.Triplet;
 import org.slf4j.Logger;
@@ -11,14 +13,17 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf.ProtobufDeviceRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf.ProtobufSystemRepository;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
 
 import java.time.Instant;
 import java.util.*;
 
-public class Configuration {
+public class Configuration implements Observable {
 
     private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
+    public List<InvalidationListener> observers = new ArrayList<>();
 
     public int FPS = 10;
 
@@ -29,6 +34,7 @@ public class Configuration {
     public double START_POSITION_LAT = 49.013517;
 
     public double START_POSITION_LON = 8.404435;
+    private boolean forceCommandsActive = false;
 
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
 
@@ -57,6 +63,8 @@ public class Configuration {
     public SensorRepository sensorRepository = new SensorRepository();
 
     public InterpreterRepository interpreterRepository = new InterpreterRepository();
+    public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
+    public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
 
     public Collection<BasicController> controllersList = new LinkedList<>();
 
@@ -70,6 +78,10 @@ public class Configuration {
 
     public void setConfigPath(String path) {
         CONFIG_PATH = path;
+    }
+
+    public static String getConfigFilesPath() {
+        return CONFIG_PATH;
     }
 
     public static String getFlightDataFileName(String key) {
@@ -124,24 +136,26 @@ public class Configuration {
         this.commandsList = config.commandsList;
         this.sensorRepository = config.sensorRepository;
         this.interpreterRepository = config.interpreterRepository;
+        this.protobufDeviceRepository = config.protobufDeviceRepository;
+        this.protobufSystemRepository = config.protobufSystemRepository;
         this.notificationMessageKeys = config.notificationMessageKeys;
         this.notificationSchedule = config.notificationSchedule;
     }
 
     private void addSensorsToRepository(ConfigurationSaveModel config) {
-        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
+        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         }
-        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))){
+        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
         }
-        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))){
+        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());
         }
-        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))){
+        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_y());
         }
-        if(config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
+        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
 
@@ -247,6 +261,31 @@ public class Configuration {
 
     public static Configuration getInstance() {
         return Holder.INSTANCE;
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        observers.add(invalidationListener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        observers.remove(invalidationListener);
+    }
+
+    protected void notifyObserver() {
+        for (InvalidationListener obs : observers) {
+            obs.invalidated(this);
+        }
+    }
+
+    public boolean isForceCommandsActive() {
+        return forceCommandsActive;
+    }
+
+    public void setForceCommandsActive(boolean forceCommandsActive) {
+        this.forceCommandsActive = forceCommandsActive;
+        notifyObserver();
     }
 
     private static class Holder {

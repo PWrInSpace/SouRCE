@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech;
 
 import com.google.gson.annotations.Expose;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ public class TextToSpeechDictionary extends BaseSaveModel {
     private HashMap<String, List<TextToSpeech>> speechRules = new HashMap<>();
 
     public TextToSpeechDictionary() {
-        super("./config/", "speechConfig.json");
+        super(Configuration.getConfigFilesPath(), "speechConfig.json");
     }
 
     public List<TextToSpeech> getSpeechByTrigger(String key) {

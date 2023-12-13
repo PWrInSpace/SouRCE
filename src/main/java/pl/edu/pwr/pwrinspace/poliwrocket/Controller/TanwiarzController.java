@@ -105,7 +105,7 @@ public class TanwiarzController extends BasicButtonSensorController {
                     while (weight.length() < 4) {
                         weight = "0" + weight;
                     }
-                    SerialPortManager.getInstance().write(command.getCommandValue() + ";" + weight);
+                    SerialPortManager.getInstance().write(command.getCommandValueAsString() + ";" + weight);
                     sensor.startCalibration();
                 }
             });

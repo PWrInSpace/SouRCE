@@ -5,6 +5,8 @@ SouRCE is the application for duplex communication with sounding rocket via seri
 ## Installation
 Requires Java 11, JavaFX 13, and Maven.
 
+Download and install [Protobuf](https://grpc.io/docs/protoc-installation/).
+
 Download [3dsModelImporterJFX](http://www.interactivemesh.org/models/jfx3dimporter.html) library for 3D model.
 
 Add library to local mvn repository:
@@ -22,9 +24,13 @@ mvn install:install-file \
 
 Adjust configuration in config.json file.
 
+To regenerate classes for protobuf adjust `src\main\resources\lora.proto` file and run:
+```bash
+.\protoGenerate.sh
+```
 Add VM options:
 ```bash
---add-exports com.google.gson/com.google.gson.internal=pl.edu.pwr.pwrinspace.poliwrocket
+--add-opens java.base/java.net=com.sothawo.mapjfx --add-opens java.base/java.lang.reflect=com.jfoenix --add-exports com.google.gson/com.google.gson.internal=pl.edu.pwr.pwrinspace.poliwrocket
 ```
 To run the application on Linux download JavaFX and add modules:
 ```bash

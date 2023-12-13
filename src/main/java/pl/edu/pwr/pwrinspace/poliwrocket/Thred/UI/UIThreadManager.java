@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
+import pl.edu.pwr.pwrinspace.poliwrocket.Provider.UITaskProvider;
 
 import java.util.*;
 
@@ -47,8 +48,12 @@ public class UIThreadManager implements InvalidationListener {
 
     private synchronized void run() {
         Platform.runLater(() -> {
+            UITaskProvider.getInstance().runTasks();
             while (!activeRunnableQueue.isEmpty()) {
-                activeRunnableQueue.poll().run();
+                var task = activeRunnableQueue.poll();
+                if(task != null) {
+                    task.run();
+                }
             }
         });
         Platform.requestNextPulse();

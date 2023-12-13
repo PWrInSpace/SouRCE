@@ -1,10 +1,14 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import com.google.gson.annotations.Expose;
+import com.google.protobuf.Descriptors;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf.ProtobufDeviceRepository;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf.ProtobufSystemRepository;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
 
 import java.util.*;
@@ -39,7 +43,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public String DISCORD_CHANNEL_NAME = "rocket";
 
     @Expose
-    public Map<String,List<String>> FRAME_PATTERN = new HashMap<>();
+    public Map<String, List<String>> FRAME_PATTERN = new HashMap<>();
 
     @Expose
     public List<Command> commandsList = new LinkedList<>();
@@ -55,6 +59,12 @@ public class ConfigurationSaveModel extends BaseSaveModel {
 
     @Expose
     public InterpreterRepository interpreterRepository = new InterpreterRepository();
+
+    @Expose
+    public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
+
+    @Expose
+    public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
 
     public ConfigurationSaveModel() {
         super(Configuration.CONFIG_PATH, Configuration.CONFIG_FILE_NAME);
@@ -83,17 +93,50 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_x());
         partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_y());
         partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_z());
-        configuration.sensorRepository.getSensorsKeys().forEach(s -> {
-            if(!partOfSensor.contains(configuration.sensorRepository.getSensorByName(s))){
-                config.sensorRepository.addSensor(configuration.sensorRepository.getSensorByName(s));
-            }
-        });
+        config.sensorRepository = configuration.sensorRepository;
+//        configuration.sensorRepository.getSensorsKeys().forEach(s -> {
+//            if(!partOfSensor.contains(configuration.sensorRepository.getSensorByName(s))){
+//                config.sensorRepository.addSensor(configuration.sensorRepository.getSensorByName(s));
+//            }
+//        });
 
-        configuration.interpreterRepository.getRepositorySet().forEach((s, interpreter) -> {
-            config.interpreterRepository.addInterpreter(s,interpreter);
-        });
+        config.interpreterRepository = configuration.interpreterRepository;
+        ;
+//        configuration.interpreterRepository.getRepositorySet().forEach((s, interpreter) -> {
+//            config.interpreterRepository.addInterpreter(s,interpreter);
+//        });
+
+        config.protobufSystemRepository = configuration.protobufSystemRepository;
+        config.protobufDeviceRepository = configuration.protobufDeviceRepository;
 
         return config;
+    }
+
+    public static ConfigurationSaveModel protobufBasedConfiguration(Configuration configuration) {
+        var defaultConfig = getConfigurationSaveModel(configuration);
+        defaultConfig.BUFFER_SIZE = 0;
+        defaultConfig.FRAME_DELIMITER = "";
+        defaultConfig.PARSER_TYPE = MessageParserEnum.PROTOBUF;
+        defaultConfig.FRAME_PATTERN = new HashMap<>();
+        defaultConfig.sensorRepository = new SensorRepository();
+        defaultConfig.sensorRepository.setGpsSensor(configuration.sensorRepository.getGpsSensor());
+        defaultConfig.sensorRepository.setGyroSensor(configuration.sensorRepository.getGyroSensor());
+        List<ISensor> partOfSensor = new ArrayList<>();
+        partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLatitude());
+        partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLongitude());
+        partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_x());
+        partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_y());
+        partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_z());
+
+        FrameProtos.getDescriptor().getMessageTypes().forEach(descriptor -> {
+            descriptor.getFields().forEach(fieldDescriptor -> {
+                if (fieldDescriptor.getJavaType() != Descriptors.FieldDescriptor.JavaType.MESSAGE) {
+                    defaultConfig.sensorRepository.addSensor(new Sensor(fieldDescriptor.getName()));
+                }
+            });
+        });
+
+        return defaultConfig;
     }
 
     public static ConfigurationSaveModel defaultConfiguration() {
@@ -108,6 +151,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.DISCORD_TOKEN = "";
         defaultConfig.START_POSITION_LON = 16.9333977;
         defaultConfig.START_POSITION_LAT = 51.1266727;
+
         String DATA_CONTROLLER = "Data";
         String MORE_DATA_CONTROLLER = "MoreData";
         String MAIN_CONTROLLER = "Main";
@@ -178,30 +222,30 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.sensorRepository.addSensor(byteSensor);
 
         //komendy
-        Command command = new Command("open valveOpenButton1", "valveOpenButton1");
-        command.getDestinationControllerNames().add(VALVES_CONTROLLER);
-        defaultConfig.commandsList.add(command);
-        Command command2 = new Command("open valveOpenButton2", "valveOpenButton2");
-        command2.getDestinationControllerNames().add(VALVES_CONTROLLER);
-        defaultConfig.commandsList.add(command2);
-        Command command3 = new Command("open valveOpenButton3", "valveOpenButton3");
-        command3.getDestinationControllerNames().add(VALVES_CONTROLLER);
-        defaultConfig.commandsList.add(command3);
-        Command command4 = new Command("open valveOpenButton4", "valveOpenButton4");
-        command4.getDestinationControllerNames().add(VALVES_CONTROLLER);
-        defaultConfig.commandsList.add(command4);
-        Command command5 = new Command("test1", "test1");
-        command5.getDestinationControllerNames().add(CONNECTION_CONTROLLER);
-        defaultConfig.commandsList.add(command5);
-        Command command6 = new Command("test2", "test2");
-        command6.getDestinationControllerNames().add(CONNECTION_CONTROLLER);
-        defaultConfig.commandsList.add(command6);
-        Command abort = new Command("ABORT", "abortButton");
-        abort.getDestinationControllerNames().add(ABORT_CONTROLLER);
-        defaultConfig.commandsList.add(abort);
-        Command fire = new Command("FIRE", "fireButton");
-        fire.getDestinationControllerNames().add(START_CONTROL_CONTROLLER);
-        defaultConfig.commandsList.add(fire);
+//        Command command = new Command("open valveOpenButton1", "valveOpenButton1");
+//        command.getDestinationControllerNames().add(VALVES_CONTROLLER);
+//        defaultConfig.commandsList.add(command);
+//        Command command2 = new Command("open valveOpenButton2", "valveOpenButton2");
+//        command2.getDestinationControllerNames().add(VALVES_CONTROLLER);
+//        defaultConfig.commandsList.add(command2);
+//        Command command3 = new Command("open valveOpenButton3", "valveOpenButton3");
+//        command3.getDestinationControllerNames().add(VALVES_CONTROLLER);
+//        defaultConfig.commandsList.add(command3);
+//        Command command4 = new Command("open valveOpenButton4", "valveOpenButton4");
+//        command4.getDestinationControllerNames().add(VALVES_CONTROLLER);
+//        defaultConfig.commandsList.add(command4);
+//        Command command5 = new Command("test1", "test1");
+//        command5.getDestinationControllerNames().add(CONNECTION_CONTROLLER);
+//        defaultConfig.commandsList.add(command5);
+//        Command command6 = new Command("test2", "test2");
+//        command6.getDestinationControllerNames().add(CONNECTION_CONTROLLER);
+//        defaultConfig.commandsList.add(command6);
+//        Command abort = new Command("ABORT", "abortButton");
+//        abort.getDestinationControllerNames().add(ABORT_CONTROLLER);
+//        defaultConfig.commandsList.add(abort);
+//        Command fire = new Command("FIRE", "fireButton");
+//        fire.getDestinationControllerNames().add(START_CONTROL_CONTROLLER);
+//        defaultConfig.commandsList.add(fire);
         //--------
 
         //frame
@@ -211,8 +255,8 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         pattern.add("Gyro Y");
         pattern.add("Gyro Z");
         //
-        defaultConfig.FRAME_PATTERN.put("PAT1",pattern)
-;
+        defaultConfig.FRAME_PATTERN.put("PAT1", pattern)
+        ;
         Sensor velocity = new Sensor();
         velocity.setDestination("dataGauge9");
         velocity.setName("Velocity");
@@ -266,8 +310,8 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.notificationMessageKeys = notificationsListStrings;
 
         List<Schedule> schedules = new ArrayList<>();
-        schedules.add( new Schedule("Map",5));
-        schedules.add( new Schedule("Data",10));
+        schedules.add(new Schedule("Map", 5));
+        schedules.add(new Schedule("Data", 10));
         defaultConfig.notificationSchedule = schedules;
         //---------------
 

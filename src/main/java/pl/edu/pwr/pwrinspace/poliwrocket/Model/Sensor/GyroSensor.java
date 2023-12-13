@@ -5,9 +5,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GyroSensor implements Observable, IGyroSensor {
 
@@ -19,6 +17,10 @@ public class GyroSensor implements Observable, IGyroSensor {
 
     @Expose
     private Sensor axis_z;
+
+    private boolean axis_z_updated = false;
+    private boolean axis_x_updated = false;
+    private boolean axis_y_updated = false;
 
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
@@ -59,12 +61,18 @@ public class GyroSensor implements Observable, IGyroSensor {
     }
 
     @Override
-    public Map<String, Double> getValueGyro() {
-        HashMap<String, Double> gyro = new HashMap<String,Double>();
-        gyro.put(IGyroSensor.AXIS_X_KEY,axis_x.getValue());
-        gyro.put(IGyroSensor.AXIS_Y_KEY,axis_y.getValue());
-        gyro.put(IGyroSensor.AXIS_Z_KEY,axis_z.getValue());
-        return gyro;
+    public double getX() {
+        return axis_x.getValue();
+    }
+
+    @Override
+    public double getY() {
+        return axis_y.getValue();
+    }
+
+    @Override
+    public double getZ() {
+        return axis_z.getValue();
     }
 
     @Override
@@ -92,7 +100,24 @@ public class GyroSensor implements Observable, IGyroSensor {
 
     @Override
     public void invalidated(Observable observable) {
-        notifyObserver();
+        if (observable == axis_x) {
+            axis_x_updated = true;
+        }
+
+        if (observable == axis_y) {
+            axis_y_updated = true;
+        }
+
+        if (observable == axis_z) {
+            axis_z_updated = true;
+        }
+
+        if (axis_x_updated && axis_y_updated && axis_z_updated) {
+            notifyObserver();
+            axis_x_updated = false;
+            axis_y_updated = false;
+            axis_z_updated = false;
+        }
     }
 
     public List<String> getDestinationControllerNames() {

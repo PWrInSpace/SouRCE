@@ -12,8 +12,6 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public abstract class BasicButtonSensorController extends BasicTilesFXSensorController {
 
@@ -21,7 +19,6 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
 
     protected HashSet<ICommand> commands = new HashSet<>();
 
-    protected static final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @FXML
     protected void initialize() {
@@ -53,7 +50,7 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
     }
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command.getCommandValue()));
+        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command));
     }
 
 }

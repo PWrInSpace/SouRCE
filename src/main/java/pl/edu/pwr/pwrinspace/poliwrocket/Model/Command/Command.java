@@ -5,25 +5,25 @@ import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Command implements ICommand {
+public class Command<T> implements ICommand {
 
     @Expose
-    private String value;
+    protected T value;
+
+    @Expose
+    private boolean isFinal = false;
 
     @Expose
     private String trigger;
 
     @Expose
-    private String description;
+    private String description = "";
+
+    @Expose
+    protected String payload = "";
 
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
-
-    public Command(String value, String trigger) {
-        this.value = value;
-        this.trigger = trigger;
-    }
-
     @Override
     public String toString() {
         return trigger;
@@ -40,8 +40,18 @@ public class Command implements ICommand {
     }
 
     @Override
-    public String getCommandValue() {
-        return value;
+    public void setPayload(String payload) {
+        this.payload = payload;
+    }
+
+    @Override
+    public String getPayload() {
+        return payload;
+    }
+
+    @Override
+    public boolean isFinal() {
+        return isFinal;
     }
 
     @Override
@@ -54,11 +64,25 @@ public class Command implements ICommand {
         return description;
     }
 
+    @Override
+    public byte[] getCommandValueAsBytes(boolean force) {
+        return getCommandValueAsString().getBytes();
+    }
+
+    @Override
+    public byte[] getCommandValueAsBytes() {
+        return getCommandValueAsBytes(false);
+    }
+
     public List<String> getDestinationControllerNames() {
         return destinationControllerNames;
     }
 
     public void setDestinationControllerNames(List<String> destinationControllerNames) {
         this.destinationControllerNames = destinationControllerNames;
+    }
+    @Override
+    public String getCommandValueAsString() {
+        return value.toString() + payload;
     }
 }
