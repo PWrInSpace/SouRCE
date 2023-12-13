@@ -70,6 +70,11 @@
                                     <Region />
                                  </root>
                               </SubScene>
+                              <SubScene fx:id="fillingCommandsScene" height="390.0" layoutX="445.0" layoutY="364.0" width="410.0">
+                                 <root>
+                                    <Region />
+                                 </root>
+                              </SubScene>
                            </children>
                         </AnchorPane>
                   </content>
@@ -146,7 +151,7 @@
                                     <Region />
                                 </root>
                              </SubScene>
-                           <SubScene fx:id="commands2Scene" height="400.0" layoutX="14.0" layoutY="361.0" width="410.0">
+                           <SubScene fx:id="commands2Scene" height="390.0" layoutX="14.0" layoutY="361.0" width="410.0">
                               <root>
                                  <Region />
                               </root>

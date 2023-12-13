@@ -18,6 +18,10 @@ public class GyroSensor implements Observable, IGyroSensor {
     @Expose
     private Sensor axis_z;
 
+    private boolean axis_z_updated = false;
+    private boolean axis_x_updated = false;
+    private boolean axis_y_updated = false;
+
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
 
@@ -96,7 +100,24 @@ public class GyroSensor implements Observable, IGyroSensor {
 
     @Override
     public void invalidated(Observable observable) {
-        notifyObserver();
+        if (observable == axis_x) {
+            axis_x_updated = true;
+        }
+
+        if (observable == axis_y) {
+            axis_y_updated = true;
+        }
+
+        if (observable == axis_z) {
+            axis_z_updated = true;
+        }
+
+        if (axis_x_updated && axis_y_updated && axis_z_updated) {
+            notifyObserver();
+            axis_x_updated = false;
+            axis_y_updated = false;
+            axis_z_updated = false;
+        }
     }
 
     public List<String> getDestinationControllerNames() {

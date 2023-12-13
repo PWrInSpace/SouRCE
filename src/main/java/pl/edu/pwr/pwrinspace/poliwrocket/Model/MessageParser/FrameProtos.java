@@ -7635,6 +7635,28 @@ public final class FrameProtos {
      * @return The ingitionTime.
      */
     int getIngitionTime();
+
+    /**
+     * <code>required uint32 flash_enable = 5;</code>
+     * @return Whether the flashEnable field is set.
+     */
+    boolean hasFlashEnable();
+    /**
+     * <code>required uint32 flash_enable = 5;</code>
+     * @return The flashEnable.
+     */
+    int getFlashEnable();
+
+    /**
+     * <code>required uint32 buzzer_enable = 6;</code>
+     * @return Whether the buzzerEnable field is set.
+     */
+    boolean hasBuzzerEnable();
+    /**
+     * <code>required uint32 buzzer_enable = 6;</code>
+     * @return The buzzerEnable.
+     */
+    int getBuzzerEnable();
   }
   /**
    * Protobuf type {@code LoRaSettings}
@@ -7748,6 +7770,44 @@ public final class FrameProtos {
       return ingitionTime_;
     }
 
+    public static final int FLASH_ENABLE_FIELD_NUMBER = 5;
+    private int flashEnable_ = 0;
+    /**
+     * <code>required uint32 flash_enable = 5;</code>
+     * @return Whether the flashEnable field is set.
+     */
+    @java.lang.Override
+    public boolean hasFlashEnable() {
+      return ((bitField0_ & 0x00000010) != 0);
+    }
+    /**
+     * <code>required uint32 flash_enable = 5;</code>
+     * @return The flashEnable.
+     */
+    @java.lang.Override
+    public int getFlashEnable() {
+      return flashEnable_;
+    }
+
+    public static final int BUZZER_ENABLE_FIELD_NUMBER = 6;
+    private int buzzerEnable_ = 0;
+    /**
+     * <code>required uint32 buzzer_enable = 6;</code>
+     * @return Whether the buzzerEnable field is set.
+     */
+    @java.lang.Override
+    public boolean hasBuzzerEnable() {
+      return ((bitField0_ & 0x00000020) != 0);
+    }
+    /**
+     * <code>required uint32 buzzer_enable = 6;</code>
+     * @return The buzzerEnable.
+     */
+    @java.lang.Override
+    public int getBuzzerEnable() {
+      return buzzerEnable_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -7771,6 +7831,14 @@ public final class FrameProtos {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!hasFlashEnable()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasBuzzerEnable()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -7789,6 +7857,12 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         output.writeInt32(4, ingitionTime_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        output.writeUInt32(5, flashEnable_);
+      }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        output.writeUInt32(6, buzzerEnable_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -7814,6 +7888,14 @@ public final class FrameProtos {
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, ingitionTime_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, flashEnable_);
+      }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(6, buzzerEnable_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -7850,6 +7932,16 @@ public final class FrameProtos {
         if (getIngitionTime()
             != other.getIngitionTime()) return false;
       }
+      if (hasFlashEnable() != other.hasFlashEnable()) return false;
+      if (hasFlashEnable()) {
+        if (getFlashEnable()
+            != other.getFlashEnable()) return false;
+      }
+      if (hasBuzzerEnable() != other.hasBuzzerEnable()) return false;
+      if (hasBuzzerEnable()) {
+        if (getBuzzerEnable()
+            != other.getBuzzerEnable()) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -7876,6 +7968,14 @@ public final class FrameProtos {
       if (hasIngitionTime()) {
         hash = (37 * hash) + INGITION_TIME_FIELD_NUMBER;
         hash = (53 * hash) + getIngitionTime();
+      }
+      if (hasFlashEnable()) {
+        hash = (37 * hash) + FLASH_ENABLE_FIELD_NUMBER;
+        hash = (53 * hash) + getFlashEnable();
+      }
+      if (hasBuzzerEnable()) {
+        hash = (37 * hash) + BUZZER_ENABLE_FIELD_NUMBER;
+        hash = (53 * hash) + getBuzzerEnable();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -8010,6 +8110,8 @@ public final class FrameProtos {
         loraTransmitMs_ = 0;
         countdownTime_ = 0;
         ingitionTime_ = 0;
+        flashEnable_ = 0;
+        buzzerEnable_ = 0;
         return this;
       }
 
@@ -8060,6 +8162,14 @@ public final class FrameProtos {
           result.ingitionTime_ = ingitionTime_;
           to_bitField0_ |= 0x00000008;
         }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.flashEnable_ = flashEnable_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.buzzerEnable_ = buzzerEnable_;
+          to_bitField0_ |= 0x00000020;
+        }
         result.bitField0_ |= to_bitField0_;
       }
 
@@ -8087,6 +8197,12 @@ public final class FrameProtos {
         if (other.hasIngitionTime()) {
           setIngitionTime(other.getIngitionTime());
         }
+        if (other.hasFlashEnable()) {
+          setFlashEnable(other.getFlashEnable());
+        }
+        if (other.hasBuzzerEnable()) {
+          setBuzzerEnable(other.getBuzzerEnable());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -8104,6 +8220,12 @@ public final class FrameProtos {
           return false;
         }
         if (!hasIngitionTime()) {
+          return false;
+        }
+        if (!hasFlashEnable()) {
+          return false;
+        }
+        if (!hasBuzzerEnable()) {
           return false;
         }
         return true;
@@ -8145,6 +8267,16 @@ public final class FrameProtos {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 32
+              case 40: {
+                flashEnable_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                buzzerEnable_ = input.readUInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -8318,6 +8450,86 @@ public final class FrameProtos {
       public Builder clearIngitionTime() {
         bitField0_ = (bitField0_ & ~0x00000008);
         ingitionTime_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int flashEnable_ ;
+      /**
+       * <code>required uint32 flash_enable = 5;</code>
+       * @return Whether the flashEnable field is set.
+       */
+      @java.lang.Override
+      public boolean hasFlashEnable() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <code>required uint32 flash_enable = 5;</code>
+       * @return The flashEnable.
+       */
+      @java.lang.Override
+      public int getFlashEnable() {
+        return flashEnable_;
+      }
+      /**
+       * <code>required uint32 flash_enable = 5;</code>
+       * @param value The flashEnable to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFlashEnable(int value) {
+
+        flashEnable_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 flash_enable = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFlashEnable() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        flashEnable_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int buzzerEnable_ ;
+      /**
+       * <code>required uint32 buzzer_enable = 6;</code>
+       * @return Whether the buzzerEnable field is set.
+       */
+      @java.lang.Override
+      public boolean hasBuzzerEnable() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <code>required uint32 buzzer_enable = 6;</code>
+       * @return The buzzerEnable.
+       */
+      @java.lang.Override
+      public int getBuzzerEnable() {
+        return buzzerEnable_;
+      }
+      /**
+       * <code>required uint32 buzzer_enable = 6;</code>
+       * @param value The buzzerEnable to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBuzzerEnable(int value) {
+
+        buzzerEnable_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 buzzer_enable = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBuzzerEnable() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        buzzerEnable_ = 0;
         onChanged();
         return this;
       }
@@ -9247,14 +9459,15 @@ public final class FrameProtos {
       "ht_val\030\024 \002(\002\022\033\n\023rocketWeightRaw_val\030\025 \002(" +
       "\r\022\031\n\021tankWeightRaw_val\030\026 \002(\r\022\025\n\rinterfac" +
       "e_rck\030\027 \002(\010\022\026\n\016interface_tank\030\030 \002(\010\022\025\n\ri" +
-      "nterface_mcu\030\031 \002(\010\"n\n\014LoRaSettings\022\025\n\rlo" +
-      "ra_freq_khz\030\001 \002(\005\022\030\n\020lora_transmit_ms\030\002 " +
-      "\002(\005\022\026\n\016countdown_time\030\003 \002(\005\022\025\n\ringition_" +
-      "time\030\004 \002(\005\"X\n\013LoRaCommand\022\023\n\013lora_dev_id" +
-      "\030\001 \002(\r\022\022\n\nsys_dev_id\030\002 \002(\r\022\017\n\007command\030\003 " +
-      "\002(\r\022\017\n\007payload\030\004 \002(\005BD\n5pl.edu.pwr.pwrin" +
-      "space.poliwrocket.Model.MessageParserB\013F" +
-      "rameProtos"
+      "nterface_mcu\030\031 \002(\010\"\233\001\n\014LoRaSettings\022\025\n\rl" +
+      "ora_freq_khz\030\001 \002(\005\022\030\n\020lora_transmit_ms\030\002" +
+      " \002(\005\022\026\n\016countdown_time\030\003 \002(\005\022\025\n\ringition" +
+      "_time\030\004 \002(\005\022\024\n\014flash_enable\030\005 \002(\r\022\025\n\rbuz" +
+      "zer_enable\030\006 \002(\r\"X\n\013LoRaCommand\022\023\n\013lora_" +
+      "dev_id\030\001 \002(\r\022\022\n\nsys_dev_id\030\002 \002(\r\022\017\n\007comm" +
+      "and\030\003 \002(\r\022\017\n\007payload\030\004 \002(\005BD\n5pl.edu.pwr" +
+      ".pwrinspace.poliwrocket.Model.MessagePar" +
+      "serB\013FrameProtos"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -9277,7 +9490,7 @@ public final class FrameProtos {
     internal_static_LoRaSettings_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaSettings_descriptor,
-        new java.lang.String[] { "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", });
+        new java.lang.String[] { "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", });
     internal_static_LoRaCommand_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_LoRaCommand_fieldAccessorTable = new

@@ -62,6 +62,7 @@ public class ProtobufMessageParser extends BaseMessageParser {
                     setParsingError();
                 }
             }
+            frame.setFormattedContent(frameName + Configuration.getInstance().FRAME_DELIMITER + frame.getByteContent().toString());
 
             if(message != null) {
                 readFields(message);

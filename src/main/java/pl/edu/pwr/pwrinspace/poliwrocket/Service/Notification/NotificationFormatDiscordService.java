@@ -74,6 +74,15 @@ public class NotificationFormatDiscordService extends NotificationFormatService 
             }
             embedBuilder.addField("Status","There is no notification thread active.",false);
             return embedBuilder;
+        } else {
+            try {
+                var sensor = Configuration.getInstance().sensorRepository.getSensorByName(messageKey);
+                embedBuilder.addField(sensor.getName() + ":", String.valueOf(sensor.getValue()), true);
+                embedBuilder.addField(sensor.getName() + " -max:", String.valueOf(sensor.getMaxValue()), true);
+                return embedBuilder;
+            } catch (NullPointerException ignored) {
+
+            }
         }
 
         return "Error - Request \"" + messageKey + "\" not recognized.";

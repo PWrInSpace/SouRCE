@@ -54,7 +54,7 @@ public class AppStateLogger implements InvalidationListener {
                     writeLineToLogFile(getSensorsLog() + Configuration.getInstance().FRAME_DELIMITER + "-");
                 }
             }
-        },new Date(new Date().getTime() + 2000),2000);
+        },new Date(new Date().getTime() + 2000),1000);
     }
 
     private String getSensorsLog() {

@@ -116,6 +116,9 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene interpretersFlightScene;
 
+    @FXML
+    private SubScene fillingCommandsScene;
+
     private final SmartGroup root = new SmartGroup();
 
     private Stage primaryStage;
