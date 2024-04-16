@@ -187,7 +187,7 @@ public class ConnectionController extends BasicButtonSensorController {
 
     private void serialSetup() {
         try {
-            final Set<String> ports = executorService.submit(NRSerialPort::getAvailableSerialPorts).get(5, TimeUnit.SECONDS);
+            final Set<String> ports = executorService.submit(NRSerialPort::getAvailableSerialPorts).get(30, TimeUnit.SECONDS);
             Platform.runLater(() -> {
                 availableSerialPorts.clear();
                 availableSerialPorts.addAll(ports);
