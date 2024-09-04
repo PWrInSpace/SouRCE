@@ -60,21 +60,21 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="754.0" prefWidth="890.0">
                            <children>
-                              <SubScene fx:id="dataFillingScene" height="740.0" layoutX="14.0" layoutY="14.0" width="410.0">
-                                 <root>
-                                    <Region />
-                                 </root>
-                              </SubScene>
-                              <SubScene fx:id="valvesScene" height="335.0" layoutX="445.0" layoutY="14.0" width="410.0">
-                                 <root>
-                                    <Region />
-                                 </root>
-                              </SubScene>
-                              <SubScene fx:id="fillingCommandsScene" height="390.0" layoutX="445.0" layoutY="364.0" width="410.0">
-                                 <root>
-                                    <Region />
-                                 </root>
-                              </SubScene>
+                               <SubScene fx:id="dataFillingScene" height="740.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                   <root>
+                                       <Region />
+                                   </root>
+                               </SubScene>
+                               <SubScene fx:id="valvesScene" height="280.0" layoutX="445.0" layoutY="14.0" width="410.0">
+                                   <root>
+                                       <Region />
+                                   </root>
+                               </SubScene>
+                               <SubScene fx:id="fillingCommandsScene" height="450.0" layoutX="445.0" layoutY="300.0" width="410.0">
+                                   <root>
+                                       <Region />
+                                   </root>
+                               </SubScene>
                            </children>
                         </AnchorPane>
                   </content>
@@ -138,7 +138,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Conection">
+                  <Tab text="Connection">
                      <content>
                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                              <SubScene fx:id="connectionScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">

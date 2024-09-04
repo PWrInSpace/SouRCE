@@ -32,6 +32,9 @@ public class MainController extends BasicController implements InvalidationListe
     private static final double initWidth = 1550.4;
     private static final double initHeight = 838.4;
 
+//    @FXML
+//    public SubScene newScene;
+
     @FXML
     private SubScene errorsScene;
 
@@ -184,6 +187,7 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(inComing);
         nodes.add(interpretersScene);
         nodes.add(tabPane);
+//        nodes.add(newScene);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
     }
 

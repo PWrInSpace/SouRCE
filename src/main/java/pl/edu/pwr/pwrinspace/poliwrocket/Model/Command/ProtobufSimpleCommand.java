@@ -2,9 +2,16 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.SimpleProtobufContent;
 
+import java.util.List;
+
 public class ProtobufSimpleCommand extends ProtobufBaseCommand<SimpleProtobufContent> {
 
+    public ProtobufSimpleCommand() {
+    }
 
+    public ProtobufSimpleCommand(String trigger, SimpleProtobufContent value, String description, List<String> destinationControllerNames, boolean isFinal, String payload) {
+        super(trigger, value, description, destinationControllerNames, isFinal, payload);
+    }
 
     @Override
     public byte[] getCommandValueAsBytes(boolean force) {

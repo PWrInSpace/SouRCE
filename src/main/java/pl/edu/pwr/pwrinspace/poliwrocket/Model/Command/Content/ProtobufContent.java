@@ -9,12 +9,26 @@ public class ProtobufContent extends BaseProtobufContent {
     @Expose
     private String system;
 
+    public ProtobufContent(String command, String device, String system) {
+        super(command);
+        this.device = device;
+        this.system = system;
+    }
+
     public String getDevice() {
         return device;
     }
 
     public String getSystem() {
         return system;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
+    public void setSystem(String system) {
+        this.system = system;
     }
 
     @Override
