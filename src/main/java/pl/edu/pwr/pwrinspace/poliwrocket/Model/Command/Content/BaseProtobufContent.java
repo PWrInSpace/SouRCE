@@ -6,10 +6,6 @@ public class BaseProtobufContent {
     @Expose
     private String command;
 
-    public BaseProtobufContent(String command) {
-        this.command = command;
-    }
-
 
     public String getCommand() {
         return command;

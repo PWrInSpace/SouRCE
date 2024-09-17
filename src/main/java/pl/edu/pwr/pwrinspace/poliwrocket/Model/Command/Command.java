@@ -25,18 +25,6 @@ public class Command<T> implements ICommand {
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
 
-    public Command() {
-    }
-
-    public Command(String trigger, T value, String description, List<String> destinationControllerNames, boolean isFinal, String payload) {
-        this.trigger = trigger;
-        this.value = value;
-        this.description = description;
-        this.destinationControllerNames = destinationControllerNames;
-        this.isFinal = isFinal;
-        this.payload = payload;
-    }
-
     @Override
     public String toString() {
         return trigger;

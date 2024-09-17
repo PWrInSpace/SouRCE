@@ -12,13 +12,6 @@ public class SimpleProtobufContent extends BaseProtobufContent {
     @Expose
     private String sudoMask;
 
-    public SimpleProtobufContent(String command, String loraDevId, String sysDevId, String sudoMask) {
-        super(command);
-        this.loraDevId = loraDevId;
-        this.sysDevId = sysDevId;
-        this.sudoMask = sudoMask;
-    }
-
     public String getLoraDevId() {
         return loraDevId;
     }

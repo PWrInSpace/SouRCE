@@ -1,81 +1,68 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.ProtobufContent;
 
 import java.util.*;
 
-public class TimerSensor extends Sensor implements InvalidationListener {
+public class TimerSensor extends Sensor {
 
-    private long abortTime = 300000;
     @Expose
-    Sensor timerSensor = new Sensor("Timer");
-    private Timer timer;
-    private TimerTask timerTask;
-    private TimerTask timerTask1;
-    private SerialPortManager serialPortManager = SerialPortManager.getInstance();
+    private int abortTime;
 
-    public TimerSensor(String name) {
-        super(name);
-        this.timer = new Timer();
-    }
+    private final Timer timer = new Timer();
 
-    public TimerSensor(Sensor sensor) {
-        super(sensor);
-        this.timer = new Timer();
-    }
+    private TimerTask mainTask;
+
+    private TimerTask controlTask;
+
+    @Expose
+    private Command<ProtobufCommand> command;
+
+    @Expose
+    private int controlTime;
 
     private void resetTimer(long timeToAbort) {
-        if (timerTask != null) {
-            timerTask.cancel();
+        if (mainTask != null) {
+            mainTask.cancel();
         }
 
-        timerTask1 = new TimerTask() {
+        controlTask = new TimerTask() {
             @Override
             public void run() {
-                if (timerSensor.getValue() <= 300000) {
+                if (getValue() <= abortTime) {
                     sendVoidCommand();
-                    timer.schedule(timerTask1, 5000);
+                    timer.schedule(controlTask, controlTime);
                 }
             }
         };
 
-        timerTask = new TimerTask() {
+        mainTask = new TimerTask() {
             @Override
             public void run() {
                 sendVoidCommand();
-                timer.schedule(timerTask1, 5000);
+                timer.schedule(controlTask, controlTime);
             }
         };
 
-        long delay = timeToAbort - abortTime;
+        long delay = Math.max(timeToAbort - abortTime, 100);
 
-        timer.schedule(timerTask, delay);
+        timer.schedule(mainTask, delay);
     }
 
     private void sendVoidCommand() {
-        ProtobufContent content = new ProtobufContent("0XFF", "ALL", "MCB");
-        ProtobufCommand command = new ProtobufCommand("voidButton", content, "Void", List.of("StartControl"));
-
-        serialPortManager.write(command);
+        SerialPortManager.getInstance().write(this.command);
     }
 
     @Override
-    public void invalidated(Observable observable) {
-
-        if (observable instanceof Sensor) {
-            Sensor sensor = (Sensor) observable;
-            if ("Timer".equals(sensor.getName())) {
-                resetTimer((long) sensor.getValue());
-            }
-        }
+    public void notifyObserver() {
+        super.notifyObserver();
+        resetTimer((long) this.getValue());
     }
 
-    public void setAbortTime(long abortTime) {
+    public void setAbortTime(int abortTime) {
         this.abortTime = abortTime;
     }
 
@@ -84,8 +71,8 @@ public class TimerSensor extends Sensor implements InvalidationListener {
     }
 
     public void cancelTimer() {
-        if (timerTask != null) {
-            timerTask.cancel();
+        if (mainTask != null) {
+            mainTask.cancel();
         }
     }
 }

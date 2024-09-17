@@ -7,13 +7,6 @@ import java.util.List;
 
 public abstract class ProtobufBaseCommand<T extends BaseProtobufContent> extends Command<T> {
 
-    public ProtobufBaseCommand() {
-    }
-
-    public ProtobufBaseCommand(String trigger, T value, String description, List<String> destinationControllerNames, boolean isFinal, String payload) {
-        super(trigger, value, description, destinationControllerNames, isFinal, payload);
-    }
-
     protected byte[] buildLoRaCommand(int loraDevId, int sysDevId) {
         var builder = FrameProtos.LoRaCommand.newBuilder()
                 .setLoraDevId(loraDevId)

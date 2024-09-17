@@ -7,13 +7,6 @@ import java.util.List;
 
 public class ProtobufCommand extends ProtobufBaseCommand<ProtobufContent> {
 
-    public ProtobufCommand() {
-    }
-
-    public ProtobufCommand(String trigger, ProtobufContent value, String description, List<String> destinationControllerNames, boolean isFinal, String payload) {
-        super(trigger, value, description, destinationControllerNames, isFinal, payload);
-    }
-
     @Override
     public byte[] getCommandValueAsBytes(boolean force) {
         var protobufDevice = Configuration.getInstance().protobufDeviceRepository.getDevice(value.getDevice());

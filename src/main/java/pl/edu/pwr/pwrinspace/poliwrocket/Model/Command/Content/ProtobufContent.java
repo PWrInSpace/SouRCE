@@ -9,12 +9,6 @@ public class ProtobufContent extends BaseProtobufContent {
     @Expose
     private String system;
 
-    public ProtobufContent(String command, String device, String system) {
-        super(command);
-        this.device = device;
-        this.system = system;
-    }
-
     public String getDevice() {
         return device;
     }
