@@ -397,59 +397,67 @@ public final class FrameProtos {
     float getTankWeight();
 
     /**
-     * <code>required float temperature_btl = 31;</code>
-     * @return Whether the temperatureBtl field is set.
-     */
-    boolean hasTemperatureBtl();
-    /**
-     * <code>required float temperature_btl = 31;</code>
-     * @return The temperatureBtl.
-     */
-    float getTemperatureBtl();
-
-    /**
-     * <code>required float temperature_fill = 32;</code>
+     * <code>required float temperature_fill = 31;</code>
      * @return Whether the temperatureFill field is set.
      */
     boolean hasTemperatureFill();
     /**
-     * <code>required float temperature_fill = 32;</code>
+     * <code>required float temperature_fill = 31;</code>
      * @return The temperatureFill.
      */
     float getTemperatureFill();
 
     /**
-     * <code>required float pre_fill_pressure = 33;</code>
+     * <code>required float pre_fill_pressure = 32;</code>
      * @return Whether the preFillPressure field is set.
      */
     boolean hasPreFillPressure();
     /**
-     * <code>required float pre_fill_pressure = 33;</code>
+     * <code>required float pre_fill_pressure = 32;</code>
      * @return The preFillPressure.
      */
     float getPreFillPressure();
 
     /**
-     * <code>required float post_fill_pressure = 34;</code>
+     * <code>required float post_fill_pressure = 33;</code>
      * @return Whether the postFillPressure field is set.
      */
     boolean hasPostFillPressure();
     /**
-     * <code>required float post_fill_pressure = 34;</code>
+     * <code>required float post_fill_pressure = 33;</code>
      * @return The postFillPressure.
      */
     float getPostFillPressure();
 
     /**
-     * <code>required float btl_pressure = 35;</code>
+     * <code>required float btl_pressure = 34;</code>
      * @return Whether the btlPressure field is set.
      */
     boolean hasBtlPressure();
     /**
-     * <code>required float btl_pressure = 35;</code>
+     * <code>required float btl_pressure = 34;</code>
      * @return The btlPressure.
      */
     float getBtlPressure();
+
+    /**
+     * <pre>
+     * payload
+     * </pre>
+     *
+     * <code>required float payload_battery = 35;</code>
+     * @return Whether the payloadBattery field is set.
+     */
+    boolean hasPayloadBattery();
+    /**
+     * <pre>
+     * payload
+     * </pre>
+     *
+     * <code>required float payload_battery = 35;</code>
+     * @return The payloadBattery.
+     */
+    float getPayloadBattery();
 
     /**
      * <code>required fixed32 esp_now_byte_data = 36;</code>
@@ -672,27 +680,27 @@ public final class FrameProtos {
             }
             case 253: {
               bitField0_ |= 0x40000000;
-              temperatureBtl_ = input.readFloat();
+              temperatureFill_ = input.readFloat();
               break;
             }
             case 261: {
               bitField0_ |= 0x80000000;
-              temperatureFill_ = input.readFloat();
+              preFillPressure_ = input.readFloat();
               break;
             }
             case 269: {
               bitField1_ |= 0x00000001;
-              preFillPressure_ = input.readFloat();
+              postFillPressure_ = input.readFloat();
               break;
             }
             case 277: {
               bitField1_ |= 0x00000002;
-              postFillPressure_ = input.readFloat();
+              btlPressure_ = input.readFloat();
               break;
             }
             case 285: {
               bitField1_ |= 0x00000004;
-              btlPressure_ = input.readFloat();
+              payloadBattery_ = input.readFloat();
               break;
             }
             case 293: {
@@ -1357,37 +1365,18 @@ public final class FrameProtos {
       return tankWeight_;
     }
 
-    public static final int TEMPERATURE_BTL_FIELD_NUMBER = 31;
-    private float temperatureBtl_;
-    /**
-     * <code>required float temperature_btl = 31;</code>
-     * @return Whether the temperatureBtl field is set.
-     */
-    @java.lang.Override
-    public boolean hasTemperatureBtl() {
-      return ((bitField0_ & 0x40000000) != 0);
-    }
-    /**
-     * <code>required float temperature_btl = 31;</code>
-     * @return The temperatureBtl.
-     */
-    @java.lang.Override
-    public float getTemperatureBtl() {
-      return temperatureBtl_;
-    }
-
-    public static final int TEMPERATURE_FILL_FIELD_NUMBER = 32;
+    public static final int TEMPERATURE_FILL_FIELD_NUMBER = 31;
     private float temperatureFill_;
     /**
-     * <code>required float temperature_fill = 32;</code>
+     * <code>required float temperature_fill = 31;</code>
      * @return Whether the temperatureFill field is set.
      */
     @java.lang.Override
     public boolean hasTemperatureFill() {
-      return ((bitField0_ & 0x80000000) != 0);
+      return ((bitField0_ & 0x40000000) != 0);
     }
     /**
-     * <code>required float temperature_fill = 32;</code>
+     * <code>required float temperature_fill = 31;</code>
      * @return The temperatureFill.
      */
     @java.lang.Override
@@ -1395,18 +1384,18 @@ public final class FrameProtos {
       return temperatureFill_;
     }
 
-    public static final int PRE_FILL_PRESSURE_FIELD_NUMBER = 33;
+    public static final int PRE_FILL_PRESSURE_FIELD_NUMBER = 32;
     private float preFillPressure_;
     /**
-     * <code>required float pre_fill_pressure = 33;</code>
+     * <code>required float pre_fill_pressure = 32;</code>
      * @return Whether the preFillPressure field is set.
      */
     @java.lang.Override
     public boolean hasPreFillPressure() {
-      return ((bitField1_ & 0x00000001) != 0);
+      return ((bitField0_ & 0x80000000) != 0);
     }
     /**
-     * <code>required float pre_fill_pressure = 33;</code>
+     * <code>required float pre_fill_pressure = 32;</code>
      * @return The preFillPressure.
      */
     @java.lang.Override
@@ -1414,18 +1403,18 @@ public final class FrameProtos {
       return preFillPressure_;
     }
 
-    public static final int POST_FILL_PRESSURE_FIELD_NUMBER = 34;
+    public static final int POST_FILL_PRESSURE_FIELD_NUMBER = 33;
     private float postFillPressure_;
     /**
-     * <code>required float post_fill_pressure = 34;</code>
+     * <code>required float post_fill_pressure = 33;</code>
      * @return Whether the postFillPressure field is set.
      */
     @java.lang.Override
     public boolean hasPostFillPressure() {
-      return ((bitField1_ & 0x00000002) != 0);
+      return ((bitField1_ & 0x00000001) != 0);
     }
     /**
-     * <code>required float post_fill_pressure = 34;</code>
+     * <code>required float post_fill_pressure = 33;</code>
      * @return The postFillPressure.
      */
     @java.lang.Override
@@ -1433,23 +1422,50 @@ public final class FrameProtos {
       return postFillPressure_;
     }
 
-    public static final int BTL_PRESSURE_FIELD_NUMBER = 35;
+    public static final int BTL_PRESSURE_FIELD_NUMBER = 34;
     private float btlPressure_;
     /**
-     * <code>required float btl_pressure = 35;</code>
+     * <code>required float btl_pressure = 34;</code>
      * @return Whether the btlPressure field is set.
      */
     @java.lang.Override
     public boolean hasBtlPressure() {
-      return ((bitField1_ & 0x00000004) != 0);
+      return ((bitField1_ & 0x00000002) != 0);
     }
     /**
-     * <code>required float btl_pressure = 35;</code>
+     * <code>required float btl_pressure = 34;</code>
      * @return The btlPressure.
      */
     @java.lang.Override
     public float getBtlPressure() {
       return btlPressure_;
+    }
+
+    public static final int PAYLOAD_BATTERY_FIELD_NUMBER = 35;
+    private float payloadBattery_;
+    /**
+     * <pre>
+     * payload
+     * </pre>
+     *
+     * <code>required float payload_battery = 35;</code>
+     * @return Whether the payloadBattery field is set.
+     */
+    @java.lang.Override
+    public boolean hasPayloadBattery() {
+      return ((bitField1_ & 0x00000004) != 0);
+    }
+    /**
+     * <pre>
+     * payload
+     * </pre>
+     *
+     * <code>required float payload_battery = 35;</code>
+     * @return The payloadBattery.
+     */
+    @java.lang.Override
+    public float getPayloadBattery() {
+      return payloadBattery_;
     }
 
     public static final int ESP_NOW_BYTE_DATA_FIELD_NUMBER = 36;
@@ -1617,10 +1633,6 @@ public final class FrameProtos {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasTemperatureBtl()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasTemperatureFill()) {
         memoizedIsInitialized = 0;
         return false;
@@ -1634,6 +1646,10 @@ public final class FrameProtos {
         return false;
       }
       if (!hasBtlPressure()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPayloadBattery()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1743,19 +1759,19 @@ public final class FrameProtos {
         output.writeFloat(30, tankWeight_);
       }
       if (((bitField0_ & 0x40000000) != 0)) {
-        output.writeFloat(31, temperatureBtl_);
+        output.writeFloat(31, temperatureFill_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
-        output.writeFloat(32, temperatureFill_);
+        output.writeFloat(32, preFillPressure_);
       }
       if (((bitField1_ & 0x00000001) != 0)) {
-        output.writeFloat(33, preFillPressure_);
+        output.writeFloat(33, postFillPressure_);
       }
       if (((bitField1_ & 0x00000002) != 0)) {
-        output.writeFloat(34, postFillPressure_);
+        output.writeFloat(34, btlPressure_);
       }
       if (((bitField1_ & 0x00000004) != 0)) {
-        output.writeFloat(35, btlPressure_);
+        output.writeFloat(35, payloadBattery_);
       }
       if (((bitField1_ & 0x00000008) != 0)) {
         output.writeFixed32(36, espNowByteData_);
@@ -1894,23 +1910,23 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x40000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(31, temperatureBtl_);
+          .computeFloatSize(31, temperatureFill_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(32, temperatureFill_);
+          .computeFloatSize(32, preFillPressure_);
       }
       if (((bitField1_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(33, preFillPressure_);
+          .computeFloatSize(33, postFillPressure_);
       }
       if (((bitField1_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(34, postFillPressure_);
+          .computeFloatSize(34, btlPressure_);
       }
       if (((bitField1_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(35, btlPressure_);
+          .computeFloatSize(35, payloadBattery_);
       }
       if (((bitField1_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2101,12 +2117,6 @@ public final class FrameProtos {
             != java.lang.Float.floatToIntBits(
                 other.getTankWeight())) return false;
       }
-      if (hasTemperatureBtl() != other.hasTemperatureBtl()) return false;
-      if (hasTemperatureBtl()) {
-        if (java.lang.Float.floatToIntBits(getTemperatureBtl())
-            != java.lang.Float.floatToIntBits(
-                other.getTemperatureBtl())) return false;
-      }
       if (hasTemperatureFill() != other.hasTemperatureFill()) return false;
       if (hasTemperatureFill()) {
         if (java.lang.Float.floatToIntBits(getTemperatureFill())
@@ -2130,6 +2140,12 @@ public final class FrameProtos {
         if (java.lang.Float.floatToIntBits(getBtlPressure())
             != java.lang.Float.floatToIntBits(
                 other.getBtlPressure())) return false;
+      }
+      if (hasPayloadBattery() != other.hasPayloadBattery()) return false;
+      if (hasPayloadBattery()) {
+        if (java.lang.Float.floatToIntBits(getPayloadBattery())
+            != java.lang.Float.floatToIntBits(
+                other.getPayloadBattery())) return false;
       }
       if (hasEspNowByteData() != other.hasEspNowByteData()) return false;
       if (hasEspNowByteData()) {
@@ -2288,11 +2304,6 @@ public final class FrameProtos {
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getTankWeight());
       }
-      if (hasTemperatureBtl()) {
-        hash = (37 * hash) + TEMPERATURE_BTL_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTemperatureBtl());
-      }
       if (hasTemperatureFill()) {
         hash = (37 * hash) + TEMPERATURE_FILL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
@@ -2312,6 +2323,11 @@ public final class FrameProtos {
         hash = (37 * hash) + BTL_PRESSURE_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getBtlPressure());
+      }
+      if (hasPayloadBattery()) {
+        hash = (37 * hash) + PAYLOAD_BATTERY_FIELD_NUMBER;
+        hash = (53 * hash) + java.lang.Float.floatToIntBits(
+            getPayloadBattery());
       }
       if (hasEspNowByteData()) {
         hash = (37 * hash) + ESP_NOW_BYTE_DATA_FIELD_NUMBER;
@@ -2514,15 +2530,15 @@ public final class FrameProtos {
         bitField0_ = (bitField0_ & ~0x10000000);
         tankWeight_ = 0F;
         bitField0_ = (bitField0_ & ~0x20000000);
-        temperatureBtl_ = 0F;
-        bitField0_ = (bitField0_ & ~0x40000000);
         temperatureFill_ = 0F;
-        bitField0_ = (bitField0_ & ~0x80000000);
+        bitField0_ = (bitField0_ & ~0x40000000);
         preFillPressure_ = 0F;
-        bitField1_ = (bitField1_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x80000000);
         postFillPressure_ = 0F;
-        bitField1_ = (bitField1_ & ~0x00000002);
+        bitField1_ = (bitField1_ & ~0x00000001);
         btlPressure_ = 0F;
+        bitField1_ = (bitField1_ & ~0x00000002);
+        payloadBattery_ = 0F;
         bitField1_ = (bitField1_ & ~0x00000004);
         espNowByteData_ = 0;
         bitField1_ = (bitField1_ & ~0x00000008);
@@ -2679,23 +2695,23 @@ public final class FrameProtos {
           to_bitField0_ |= 0x20000000;
         }
         if (((from_bitField0_ & 0x40000000) != 0)) {
-          result.temperatureBtl_ = temperatureBtl_;
+          result.temperatureFill_ = temperatureFill_;
           to_bitField0_ |= 0x40000000;
         }
         if (((from_bitField0_ & 0x80000000) != 0)) {
-          result.temperatureFill_ = temperatureFill_;
+          result.preFillPressure_ = preFillPressure_;
           to_bitField0_ |= 0x80000000;
         }
         if (((from_bitField1_ & 0x00000001) != 0)) {
-          result.preFillPressure_ = preFillPressure_;
+          result.postFillPressure_ = postFillPressure_;
           to_bitField1_ |= 0x00000001;
         }
         if (((from_bitField1_ & 0x00000002) != 0)) {
-          result.postFillPressure_ = postFillPressure_;
+          result.btlPressure_ = btlPressure_;
           to_bitField1_ |= 0x00000002;
         }
         if (((from_bitField1_ & 0x00000004) != 0)) {
-          result.btlPressure_ = btlPressure_;
+          result.payloadBattery_ = payloadBattery_;
           to_bitField1_ |= 0x00000004;
         }
         if (((from_bitField1_ & 0x00000008) != 0)) {
@@ -2846,9 +2862,6 @@ public final class FrameProtos {
         if (other.hasTankWeight()) {
           setTankWeight(other.getTankWeight());
         }
-        if (other.hasTemperatureBtl()) {
-          setTemperatureBtl(other.getTemperatureBtl());
-        }
         if (other.hasTemperatureFill()) {
           setTemperatureFill(other.getTemperatureFill());
         }
@@ -2860,6 +2873,9 @@ public final class FrameProtos {
         }
         if (other.hasBtlPressure()) {
           setBtlPressure(other.getBtlPressure());
+        }
+        if (other.hasPayloadBattery()) {
+          setPayloadBattery(other.getPayloadBattery());
         }
         if (other.hasEspNowByteData()) {
           setEspNowByteData(other.getEspNowByteData());
@@ -2964,9 +2980,6 @@ public final class FrameProtos {
         if (!hasTankWeight()) {
           return false;
         }
-        if (!hasTemperatureBtl()) {
-          return false;
-        }
         if (!hasTemperatureFill()) {
           return false;
         }
@@ -2977,6 +2990,9 @@ public final class FrameProtos {
           return false;
         }
         if (!hasBtlPressure()) {
+          return false;
+        }
+        if (!hasPayloadBattery()) {
           return false;
         }
         if (!hasEspNowByteData()) {
@@ -4275,56 +4291,17 @@ public final class FrameProtos {
         return this;
       }
 
-      private float temperatureBtl_ ;
-      /**
-       * <code>required float temperature_btl = 31;</code>
-       * @return Whether the temperatureBtl field is set.
-       */
-      @java.lang.Override
-      public boolean hasTemperatureBtl() {
-        return ((bitField0_ & 0x40000000) != 0);
-      }
-      /**
-       * <code>required float temperature_btl = 31;</code>
-       * @return The temperatureBtl.
-       */
-      @java.lang.Override
-      public float getTemperatureBtl() {
-        return temperatureBtl_;
-      }
-      /**
-       * <code>required float temperature_btl = 31;</code>
-       * @param value The temperatureBtl to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTemperatureBtl(float value) {
-        bitField0_ |= 0x40000000;
-        temperatureBtl_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float temperature_btl = 31;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTemperatureBtl() {
-        bitField0_ = (bitField0_ & ~0x40000000);
-        temperatureBtl_ = 0F;
-        onChanged();
-        return this;
-      }
-
       private float temperatureFill_ ;
       /**
-       * <code>required float temperature_fill = 32;</code>
+       * <code>required float temperature_fill = 31;</code>
        * @return Whether the temperatureFill field is set.
        */
       @java.lang.Override
       public boolean hasTemperatureFill() {
-        return ((bitField0_ & 0x80000000) != 0);
+        return ((bitField0_ & 0x40000000) != 0);
       }
       /**
-       * <code>required float temperature_fill = 32;</code>
+       * <code>required float temperature_fill = 31;</code>
        * @return The temperatureFill.
        */
       @java.lang.Override
@@ -4332,22 +4309,22 @@ public final class FrameProtos {
         return temperatureFill_;
       }
       /**
-       * <code>required float temperature_fill = 32;</code>
+       * <code>required float temperature_fill = 31;</code>
        * @param value The temperatureFill to set.
        * @return This builder for chaining.
        */
       public Builder setTemperatureFill(float value) {
-        bitField0_ |= 0x80000000;
+        bitField0_ |= 0x40000000;
         temperatureFill_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float temperature_fill = 32;</code>
+       * <code>required float temperature_fill = 31;</code>
        * @return This builder for chaining.
        */
       public Builder clearTemperatureFill() {
-        bitField0_ = (bitField0_ & ~0x80000000);
+        bitField0_ = (bitField0_ & ~0x40000000);
         temperatureFill_ = 0F;
         onChanged();
         return this;
@@ -4355,15 +4332,15 @@ public final class FrameProtos {
 
       private float preFillPressure_ ;
       /**
-       * <code>required float pre_fill_pressure = 33;</code>
+       * <code>required float pre_fill_pressure = 32;</code>
        * @return Whether the preFillPressure field is set.
        */
       @java.lang.Override
       public boolean hasPreFillPressure() {
-        return ((bitField1_ & 0x00000001) != 0);
+        return ((bitField0_ & 0x80000000) != 0);
       }
       /**
-       * <code>required float pre_fill_pressure = 33;</code>
+       * <code>required float pre_fill_pressure = 32;</code>
        * @return The preFillPressure.
        */
       @java.lang.Override
@@ -4371,22 +4348,22 @@ public final class FrameProtos {
         return preFillPressure_;
       }
       /**
-       * <code>required float pre_fill_pressure = 33;</code>
+       * <code>required float pre_fill_pressure = 32;</code>
        * @param value The preFillPressure to set.
        * @return This builder for chaining.
        */
       public Builder setPreFillPressure(float value) {
-        bitField1_ |= 0x00000001;
+        bitField0_ |= 0x80000000;
         preFillPressure_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float pre_fill_pressure = 33;</code>
+       * <code>required float pre_fill_pressure = 32;</code>
        * @return This builder for chaining.
        */
       public Builder clearPreFillPressure() {
-        bitField1_ = (bitField1_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x80000000);
         preFillPressure_ = 0F;
         onChanged();
         return this;
@@ -4394,15 +4371,15 @@ public final class FrameProtos {
 
       private float postFillPressure_ ;
       /**
-       * <code>required float post_fill_pressure = 34;</code>
+       * <code>required float post_fill_pressure = 33;</code>
        * @return Whether the postFillPressure field is set.
        */
       @java.lang.Override
       public boolean hasPostFillPressure() {
-        return ((bitField1_ & 0x00000002) != 0);
+        return ((bitField1_ & 0x00000001) != 0);
       }
       /**
-       * <code>required float post_fill_pressure = 34;</code>
+       * <code>required float post_fill_pressure = 33;</code>
        * @return The postFillPressure.
        */
       @java.lang.Override
@@ -4410,22 +4387,22 @@ public final class FrameProtos {
         return postFillPressure_;
       }
       /**
-       * <code>required float post_fill_pressure = 34;</code>
+       * <code>required float post_fill_pressure = 33;</code>
        * @param value The postFillPressure to set.
        * @return This builder for chaining.
        */
       public Builder setPostFillPressure(float value) {
-        bitField1_ |= 0x00000002;
+        bitField1_ |= 0x00000001;
         postFillPressure_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float post_fill_pressure = 34;</code>
+       * <code>required float post_fill_pressure = 33;</code>
        * @return This builder for chaining.
        */
       public Builder clearPostFillPressure() {
-        bitField1_ = (bitField1_ & ~0x00000002);
+        bitField1_ = (bitField1_ & ~0x00000001);
         postFillPressure_ = 0F;
         onChanged();
         return this;
@@ -4433,15 +4410,15 @@ public final class FrameProtos {
 
       private float btlPressure_ ;
       /**
-       * <code>required float btl_pressure = 35;</code>
+       * <code>required float btl_pressure = 34;</code>
        * @return Whether the btlPressure field is set.
        */
       @java.lang.Override
       public boolean hasBtlPressure() {
-        return ((bitField1_ & 0x00000004) != 0);
+        return ((bitField1_ & 0x00000002) != 0);
       }
       /**
-       * <code>required float btl_pressure = 35;</code>
+       * <code>required float btl_pressure = 34;</code>
        * @return The btlPressure.
        */
       @java.lang.Override
@@ -4449,23 +4426,78 @@ public final class FrameProtos {
         return btlPressure_;
       }
       /**
-       * <code>required float btl_pressure = 35;</code>
+       * <code>required float btl_pressure = 34;</code>
        * @param value The btlPressure to set.
        * @return This builder for chaining.
        */
       public Builder setBtlPressure(float value) {
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000002;
         btlPressure_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float btl_pressure = 35;</code>
+       * <code>required float btl_pressure = 34;</code>
        * @return This builder for chaining.
        */
       public Builder clearBtlPressure() {
-        bitField1_ = (bitField1_ & ~0x00000004);
+        bitField1_ = (bitField1_ & ~0x00000002);
         btlPressure_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float payloadBattery_ ;
+      /**
+       * <pre>
+       * payload
+       * </pre>
+       *
+       * <code>required float payload_battery = 35;</code>
+       * @return Whether the payloadBattery field is set.
+       */
+      @java.lang.Override
+      public boolean hasPayloadBattery() {
+        return ((bitField1_ & 0x00000004) != 0);
+      }
+      /**
+       * <pre>
+       * payload
+       * </pre>
+       *
+       * <code>required float payload_battery = 35;</code>
+       * @return The payloadBattery.
+       */
+      @java.lang.Override
+      public float getPayloadBattery() {
+        return payloadBattery_;
+      }
+      /**
+       * <pre>
+       * payload
+       * </pre>
+       *
+       * <code>required float payload_battery = 35;</code>
+       * @param value The payloadBattery to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPayloadBattery(float value) {
+        bitField1_ |= 0x00000004;
+        payloadBattery_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * payload
+       * </pre>
+       *
+       * <code>required float payload_battery = 35;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPayloadBattery() {
+        bitField1_ = (bitField1_ & ~0x00000004);
+        payloadBattery_ = 0F;
         onChanged();
         return this;
       }
@@ -9716,10 +9748,10 @@ public final class FrameProtos {
       "sure\030\030 \002(\002\022\026\n\016vent_byte_data\030\031 \002(\007\022\025\n\rta" +
       "nwa_battery\030\032 \002(\002\022\027\n\017tanwa_byte_data\030\033 \002" +
       "(\007\022\023\n\013tanwa_state\030\034 \002(\r\022\025\n\rrocket_weight" +
-      "\030\035 \002(\002\022\023\n\013tank_weight\030\036 \002(\002\022\027\n\017temperatu" +
-      "re_btl\030\037 \002(\002\022\030\n\020temperature_fill\030  \002(\002\022\031" +
-      "\n\021pre_fill_pressure\030! \002(\002\022\032\n\022post_fill_p" +
-      "ressure\030\" \002(\002\022\024\n\014btl_pressure\030# \002(\002\022\031\n\021e" +
+      "\030\035 \002(\002\022\023\n\013tank_weight\030\036 \002(\002\022\030\n\020temperatu" +
+      "re_fill\030\037 \002(\002\022\031\n\021pre_fill_pressure\030  \002(\002" +
+      "\022\032\n\022post_fill_pressure\030! \002(\002\022\024\n\014btl_pres" +
+      "sure\030\" \002(\002\022\027\n\017payload_battery\030# \002(\002\022\031\n\021e" +
       "sp_now_byte_data\030$ \002(\007\022\016\n\006errors\030% \002(\007\"\352" +
       "\004\n\016LoRaFrameTanwa\022\022\n\ntanWaState\030\001 \002(\r\022\026\n" +
       "\016pressureSensor\030\002 \002(\r\022\025\n\rsolenoid_fill\030\003" +
@@ -9755,7 +9787,7 @@ public final class FrameProtos {
     internal_static_LoRaFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaFrame_descriptor,
-        new java.lang.String[] { "ObcState", "DcTime", "FlightTime", "McbBattery", "GpsLat", "GpsLong", "GpsSat", "McbAltitude", "McbVelocity", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecovPressure1", "RecovPressure2", "RecovByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MvalBattery", "MvalByteData", "VentBattery", "TankPressure", "VentByteData", "TanwaBattery", "TanwaByteData", "TanwaState", "RocketWeight", "TankWeight", "TemperatureBtl", "TemperatureFill", "PreFillPressure", "PostFillPressure", "BtlPressure", "EspNowByteData", "Errors", });
+        new java.lang.String[] { "ObcState", "DcTime", "FlightTime", "McbBattery", "GpsLat", "GpsLong", "GpsSat", "McbAltitude", "McbVelocity", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecovPressure1", "RecovPressure2", "RecovByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MvalBattery", "MvalByteData", "VentBattery", "TankPressure", "VentByteData", "TanwaBattery", "TanwaByteData", "TanwaState", "RocketWeight", "TankWeight", "TemperatureFill", "PreFillPressure", "PostFillPressure", "BtlPressure", "PayloadBattery", "EspNowByteData", "Errors", });
     internal_static_LoRaFrameTanwa_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_LoRaFrameTanwa_fieldAccessorTable = new

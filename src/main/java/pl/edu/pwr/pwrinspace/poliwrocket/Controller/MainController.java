@@ -25,6 +25,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.logging.XMLFormatter;
 import java.util.stream.Collectors;
 
 public class MainController extends BasicController implements InvalidationListener {
@@ -100,6 +101,9 @@ public class MainController extends BasicController implements InvalidationListe
 
     @FXML
     private SubScene indicators2Scene;
+
+    @FXML
+    private SubScene CANIndicatorsScene;
 
     @FXML
     private SubScene indicatorsFlightScene;
@@ -187,6 +191,7 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(inComing);
         nodes.add(interpretersScene);
         nodes.add(tabPane);
+        nodes.add(CANIndicatorsScene);
 //        nodes.add(newScene);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
     }
