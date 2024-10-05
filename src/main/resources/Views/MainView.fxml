@@ -18,12 +18,7 @@
         <MenuBar VBox.vgrow="NEVER" />
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('background.jpg'); -fx-background-size: stretch; -fx-background-color: grey;" stylesheets="@constants.css">
             <children>
-                <SubScene fx:id="dataScene" height="350.0" layoutX="15.0" layoutY="10.0" width="205.0">
-                    <root>
-                        <Region />
-                    </root>
-                </SubScene>
-                <SubScene fx:id="timerScene" height="180.0" layoutX="15.0" layoutY="365.0" width="205.0">
+                <SubScene fx:id="dataScene" height="542.0" layoutX="15.0" layoutY="10.0" width="205.0">
                     <root>
                         <Region />
                     </root>

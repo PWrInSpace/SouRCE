@@ -45,9 +45,6 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene dataScene;
 
     @FXML
-    private SubScene timerScene;
-
-    @FXML
     private SubScene mapScene;
 
     @FXML
@@ -178,7 +175,6 @@ public class MainController extends BasicController implements InvalidationListe
     private void addNodesForAppScalingPurpose() {
         //add nodes to list, ONLY nodes that are directly on main panel, it is necessary for scaling app window
         nodes.add(dataScene);
-        nodes.add(timerScene);
         nodes.add(mapScene);
         nodes.add(powerScene);
         nodes.add(abortScene);
