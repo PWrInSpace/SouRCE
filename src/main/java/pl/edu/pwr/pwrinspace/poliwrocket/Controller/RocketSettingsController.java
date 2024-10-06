@@ -2,13 +2,16 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import gnu.io.SerialPort;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
@@ -26,6 +29,9 @@ public class RocketSettingsController extends BasicButtonSensorController {
 
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
     protected final HashMap<String, Label> valueHashMap = new HashMap<>();
+
+    @FXML
+
 
     @Override
     protected void buildVisualizationMap() {
@@ -113,6 +119,11 @@ public class RocketSettingsController extends BasicButtonSensorController {
             if(input.isVisible())
                 command.setPayload(input.getText());
             SerialPortManager.getInstance().write(command);
+            String comStr = command.getCommandValueAsString();
+
+            if (comStr.contains("0x10")) {
+                SerialPortManager.getInstance().writeWithoutCRC("GS;FREQ;" + command.getPayload());
+            }
         });
     }
 

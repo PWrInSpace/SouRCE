@@ -40,6 +40,7 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
             for (ICommand command : commands) {
                 var button = buttonHashMap.get(command.getCommandTriggerKey());
                 if (button != null){
+
                     button.setOnAction(handleButtonsClickByCommand(button,command));
                     button.setVisible(true);
                 } else {

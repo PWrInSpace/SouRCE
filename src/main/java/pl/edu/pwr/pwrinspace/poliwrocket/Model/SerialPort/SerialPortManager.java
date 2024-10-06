@@ -236,9 +236,24 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         notifyObserver();
     }
 
+    public void writeWithoutCRC(String message) {
+        if(serialWriter == null) {
+            log.log(Level.WARNING, "Not connected");
+            return;
+        }
+        log.log(Level.INFO, "Written: {0}", message);
+        serialWriter.sendWithoutCRC(message);
+        this.lastMessage = message;
+        notifyObserver();
+    }
+
     @Override
     public String getLastSend() {
         return this.lastMessage;
+    }
+
+    public SerialWriter getSerialWriter() {
+        return serialWriter;
     }
 
     public static class SerialWriter implements Runnable {
@@ -271,6 +286,19 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 out.write(finalMsg);
                 logger.info("Written msg: {}",msg);
                 logger.info("Written with prefix and crc: {}",finalMsg);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void sendWithoutCRC(String msg) {
+            sendWithoutCRC(msg.getBytes());
+        }
+
+        public void sendWithoutCRC(byte[] msg) {
+            try {
+                out.write(msg);
+                logger.info("Written msg: {}",msg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
