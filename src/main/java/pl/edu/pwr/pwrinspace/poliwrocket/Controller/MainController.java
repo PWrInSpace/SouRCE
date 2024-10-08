@@ -128,6 +128,9 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene fillingCommandsScene;
 
+    @FXML
+    private SubScene timeOpenCommandsScene;
+
     private final SmartGroup root = new SmartGroup();
 
     private Stage primaryStage;

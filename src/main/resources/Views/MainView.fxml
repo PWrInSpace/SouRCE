@@ -70,12 +70,17 @@
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="valvesScene" height="290.0" layoutX="430.0" layoutY="10.0" width="460.0">
+                                        <SubScene fx:id="valvesScene" height="240.0" layoutX="430.0" layoutY="10.0" width="460.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="fillingCommandsScene" height="433.0" layoutX="430.0" layoutY="310.0" width="460.0">
+                                        <SubScene fx:id="timeOpenCommandsScene" height="65.0" layoutX="430.0" layoutY="249.8" width="460.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="fillingCommandsScene" height="240" layoutX="430.0" layoutY="415" width="460.0">
                                             <root>
                                                 <Region />
                                             </root>

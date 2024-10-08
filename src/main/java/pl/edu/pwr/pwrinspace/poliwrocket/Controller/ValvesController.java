@@ -67,47 +67,7 @@ public class ValvesController extends BasicButtonSensorController {
     protected JFXButton valveCloseButton4;
 
     @FXML
-    protected Indicator dataIndicator5;
-
-    @FXML
-    protected Label indicatorLabel5;
-
-    @FXML
-    protected JFXButton valveOpenButton5;
-
-    @FXML
-    protected JFXButton valveCloseButton5;
-
-    @FXML
-    protected Indicator dataIndicator6;
-
-    @FXML
-    protected Label indicatorLabel6;
-
-    @FXML
-    protected JFXButton valveOpenButton6;
-
-    @FXML
-    protected JFXButton valveCloseButton6;
-
-    @FXML
-    protected JFXButton valveTmpOpenButton1;
-
-    @FXML
-    protected JFXButton valveTmpOpenButton2;
-
-    @FXML
     protected JFXButton valveTmpOpenButton3;
-
-    @FXML
-    protected JFXButton valveTmpOpenButton4;
-
-    @FXML
-    protected JFXButton valveTmpOpenButton5;
-
-    @FXML
-    protected JFXButton valveTmpOpenButton6;
-
 
     @FXML
     private Label indicatorValueLabel1;
@@ -122,10 +82,7 @@ public class ValvesController extends BasicButtonSensorController {
     private Label indicatorValueLabel4;
 
     @FXML
-    private Label indicatorValueLabel5;
-
-    @FXML
-    private Label indicatorValueLabel6;
+    private Label commandLabel1;
 
     private final HashMap<String,Button> closeHashMap = new HashMap<>();
     private final HashMap<String,Button> openHashMap = new HashMap<>();
@@ -143,22 +100,16 @@ public class ValvesController extends BasicButtonSensorController {
         openHashMap.put(dataIndicator2.getId(),valveOpenButton2);
         openHashMap.put(dataIndicator3.getId(),valveOpenButton3);
         openHashMap.put(dataIndicator4.getId(),valveOpenButton4);
-        openHashMap.put(dataIndicator5.getId(),valveOpenButton5);
-        openHashMap.put(dataIndicator6.getId(),valveOpenButton6);
 
         closeHashMap.put(dataIndicator1.getId(),valveCloseButton1);
         closeHashMap.put(dataIndicator2.getId(),valveCloseButton2);
         closeHashMap.put(dataIndicator3.getId(),valveCloseButton3);
         closeHashMap.put(dataIndicator4.getId(),valveCloseButton4);
-        closeHashMap.put(dataIndicator5.getId(),valveCloseButton5);
-        closeHashMap.put(dataIndicator6.getId(),valveCloseButton6);
 
         valueLabelHashMap.put(dataIndicator1.getId(),indicatorValueLabel1);
         valueLabelHashMap.put(dataIndicator2.getId(),indicatorValueLabel2);
         valueLabelHashMap.put(dataIndicator3.getId(),indicatorValueLabel3);
         valueLabelHashMap.put(dataIndicator4.getId(),indicatorValueLabel4);
-        valueLabelHashMap.put(dataIndicator5.getId(),indicatorValueLabel5);
-        valueLabelHashMap.put(dataIndicator6.getId(),indicatorValueLabel6);
     }
 
 
@@ -212,3 +163,4 @@ public class ValvesController extends BasicButtonSensorController {
         }
     }
 }
+
