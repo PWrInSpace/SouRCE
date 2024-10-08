@@ -197,7 +197,6 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(inComing);
         nodes.add(interpretersScene);
         nodes.add(tabPane);
-        nodes.add(CANIndicatorsScene);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
     }
 

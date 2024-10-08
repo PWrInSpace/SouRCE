@@ -85,6 +85,11 @@
                                                 <Region />
                                             </root>
                                         </SubScene>
+                                        <SubScene fx:id="CANIndicatorsScene" height="75.0" layoutX="430.0" layoutY="668.0" width="460.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -200,24 +205,19 @@
                         </Tab>
                     </tabs>
                 </TabPane>
-                <SubScene fx:id="indicators2Scene" height="75.0" layoutX="1117.0" layoutY="570.0" width="418.0">
+                <SubScene fx:id="indicators2Scene" height="75.0" layoutX="1117.0" layoutY="646.0" width="418.0">
                     <root>
                         <Region />
                     </root>
                 </SubScene>
-                <JFXTextArea fx:id="inComing" editable="false" layoutX="1115.0" layoutY="270.0" prefHeight="96.0" prefWidth="284.0" />
-                <JFXTextArea fx:id="outGoing" editable="false" layoutX="1406.0" layoutY="270.0" prefHeight="96.0" prefWidth="130.0" />
-                <SubScene fx:id="interpretersScene" height="114.0" layoutX="1117.0" layoutY="371.0" width="418.0">
+                <JFXTextArea fx:id="inComing" editable="false" layoutX="1115.0" layoutY="270.0" prefHeight="175.0" prefWidth="284.0" />
+                <JFXTextArea fx:id="outGoing" editable="false" layoutX="1406.0" layoutY="270.0" prefHeight="175.0" prefWidth="130.0" />
+                <SubScene fx:id="interpretersScene" height="114.0" layoutX="1117.0" layoutY="451.0" width="418.0">
                     <root>
                         <Region />
                     </root>
                 </SubScene>
-                <SubScene fx:id="indicatorsScene" height="75.0" layoutX="1117.0" layoutY="490.0" width="418.0">
-                    <root>
-                        <Region />
-                    </root>
-                </SubScene>
-                <SubScene fx:id="CANIndicatorsScene" height="75.0" layoutX="1117.0" layoutY="650.0" width="418.0">
+                <SubScene fx:id="indicatorsScene" height="75.0" layoutX="1117.0" layoutY="568.0" width="418.0">
                     <root>
                         <Region />
                     </root>
