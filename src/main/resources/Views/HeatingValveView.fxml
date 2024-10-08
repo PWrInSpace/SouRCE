@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import eu.hansolo.tilesfx.addons.Indicator?>
+<?import com.jfoenix.controls.JFXButton?>
+<AnchorPane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.HeatingValveController">
+    <children>
+        <Label layoutX="10.0" layoutY="7.0" prefHeight="20.0" prefWidth="150.0" text="Heating:">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Indicator fx:id="dataIndicator1" layoutX="120.0" layoutY="32.0" prefHeight="42.0" prefWidth="40.0" visible="false" />
+        <Label fx:id="indicatorLabel1" layoutX="34.0" layoutY="27.0" text="Valve1" visible="false" />
+        <Label fx:id="indicatorValueLabel1" layoutX="34.0" layoutY="46.0" text="Valve1" visible="false" />
+        <JFXButton fx:id="valveOnButton1" layoutX="180.0" layoutY="36.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" visible="false" />
+        <JFXButton fx:id="valveOffButton1" layoutX="260.0" layoutY="36.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" visible="false" />
+    </children>
+</AnchorPane>

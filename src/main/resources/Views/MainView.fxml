@@ -80,6 +80,11 @@
                                                 <Region />
                                             </root>
                                         </SubScene>
+                                        <SubScene fx:id="heatingValveScene" height="80.0" layoutX="430.0" layoutY="325.0" width="460.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
                                         <SubScene fx:id="fillingCommandsScene" height="240" layoutX="430.0" layoutY="415" width="460.0">
                                             <root>
                                                 <Region />
