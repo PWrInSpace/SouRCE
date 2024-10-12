@@ -25,6 +25,41 @@
     -fx-border-width: 0px 2px 2px 2px;
 }
 
+.qdPushScene {
+    -fx-background-radius: 0px;
+    -fx-background-color: rgb(11, 66, 116, 0.7);
+    -fx-border-color: -inspace-base-border-color;
+    -fx-border-width: 0px 0px 2px 2px;
+}
+
+.qdPullScene {
+    -fx-background-radius: 0px;
+    -fx-background-color: rgb(11, 66, 116, 0.7);
+    -fx-border-color: -inspace-base-border-color;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+
+.qdStopScene {
+    -fx-background-radius: 0px;
+    -fx-background-color: rgb(11, 66, 116, 0.7);
+    -fx-border-color: -inspace-base-border-color;
+    -fx-border-width: 0px 2px 2px 0px;
+}
+
+.tanwaOpenScene {
+    -fx-background-radius: 0px;
+    -fx-background-color: rgb(11, 66, 116, 0.7);
+    -fx-border-color: -inspace-base-border-color;
+    -fx-border-width: 2px 0px 0px 2px;
+}
+
+.tanwaCloseScene {
+    -fx-background-radius: 0px;
+    -fx-background-color: rgb(11, 66, 116, 0.7);
+    -fx-border-color: -inspace-base-border-color;
+    -fx-border-width: 2px 2px 0px 0px;
+}
+
 /*Flat button example */
 .jfx-button {
     -jfx-button-type: FLAT;

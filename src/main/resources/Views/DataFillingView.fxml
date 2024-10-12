@@ -12,21 +12,21 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Tile fx:id="dataGauge1" layoutX="22.0" layoutY="35.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge2" layoutX="217.0" layoutY="35.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge3" layoutX="22.0" layoutY="175.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge4" layoutX="217.0" layoutY="175.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge5" layoutX="22.0" layoutY="315.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
+      <Tile fx:id="dataGauge1" layoutX="22.0" layoutY="35.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge2" layoutX="217.0" layoutY="35.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge3" layoutX="22.0" layoutY="175.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge4" layoutX="217.0" layoutY="175.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge5" layoutX="22.0" layoutY="315.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
 
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="7.0" prefHeight="22.0" prefWidth="205.0" text="Rocket data:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Tile fx:id="dataGauge6" layoutX="217.0" layoutY="315.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge7" layoutX="22.0" layoutY="455.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge8" layoutX="217.0" layoutY="455.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge9" layoutX="22.0" layoutY="595.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
-      <Tile fx:id="dataGauge10" layoutX="217.0" layoutY="595.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" />
+      <Tile fx:id="dataGauge6" layoutX="217.0" layoutY="315.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge7" layoutX="22.0" layoutY="455.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge8" layoutX="217.0" layoutY="455.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge9" layoutX="22.0" layoutY="595.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
+      <Tile fx:id="dataGauge10" layoutX="217.0" layoutY="595.0" decimals="2" maxHeight="120.0" prefHeight="120.0" prefWidth="170.0" skinType="SPARK_LINE" textSize="BIGGER"/>
    </children>
 </AnchorPane>

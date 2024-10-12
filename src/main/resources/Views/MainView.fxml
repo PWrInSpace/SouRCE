@@ -85,7 +85,27 @@
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="fillingCommandsScene" height="240" layoutX="430.0" layoutY="415" width="460.0">
+                                        <SubScene fx:id="tanwaOpenScene" height="127.0" layoutX="430.0" layoutY="415.0" width="255.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="tanwaCloseScene" height="127.0" layoutX="685.0" layoutY="415.0" width="205.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="QDPushScene" height="113.0" layoutX="430.0" layoutY="542.0" width="255.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="QDPullScene" height="113.0" layoutX="685.0" layoutY="542.0" width="82.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="QDStopScene" height="113.0" layoutX="767" layoutY="542.0" width="123.0">
                                             <root>
                                                 <Region />
                                             </root>
@@ -192,19 +212,6 @@
                                             <Region />
                                         </root>
                                     </SubScene>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab closable="false" text="Termo">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <SubScene fx:id="termoScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                    </children>
                                 </AnchorPane>
                             </content>
                         </Tab>

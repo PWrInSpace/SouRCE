@@ -39,9 +39,6 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene serialPortMonitorScene;
 
     @FXML
-    private SubScene termoScene;
-
-    @FXML
     private SubScene errorsScene;
 
     @FXML
@@ -126,7 +123,19 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene interpretersFlightScene;
 
     @FXML
-    private SubScene fillingCommandsScene;
+    private SubScene tanwaOpenScene;
+
+    @FXML
+    private SubScene tanwaCloseScene;
+
+    @FXML
+    private SubScene QDPushScene;
+
+    @FXML
+    private SubScene QDPullScene;
+
+    @FXML
+    private SubScene QDStopScene;
 
     @FXML
     private SubScene timeOpenCommandsScene;
@@ -187,7 +196,6 @@ public class MainController extends BasicController implements InvalidationListe
     private void addNodesForAppScalingPurpose() {
         //add nodes to list, ONLY nodes that are directly on main panel, it is necessary for scaling app window
         nodes.add(dataScene);
-        nodes.add(termoScene);
         nodes.add(mapScene);
         nodes.add(powerScene);
         nodes.add(abortScene);
