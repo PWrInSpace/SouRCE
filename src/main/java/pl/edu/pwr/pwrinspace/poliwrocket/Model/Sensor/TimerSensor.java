@@ -12,8 +12,6 @@ import java.util.*;
 
 public class TimerSensor extends Sensor {
 
-    private static final Logger logger = LoggerFactory.getLogger(TimerSensor.class);
-
     @Expose
     private int abortTime;
 
@@ -64,7 +62,6 @@ public class TimerSensor extends Sensor {
     @Override
     public void notifyObserver() {
         super.notifyObserver();
-        logger.info("timer destination: " + getDestination());
         resetTimer((long) this.getValue());
     }
 

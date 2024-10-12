@@ -284,8 +284,8 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 //out.write(msg);
                 var finalMsg = getMessageWithPrefixAndCRC(msg);
                 out.write(finalMsg);
-                logger.info("Written msg: {}",msg);
-                logger.info("Written with prefix and crc: {}",finalMsg);
+//                logger.info("Written msg: {}",msg);
+//                logger.info("Written with prefix and crc: {}",finalMsg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
