@@ -74,21 +74,21 @@ public class RocketSettingsController extends BasicButtonSensorController {
                 label.setLayoutX(14);
                 label.setLayoutY(initYLabel);
                 label.setPrefHeight(18);
-                label.setPrefWidth(80);
+                label.setPrefWidth(250);
 
                 value.setId(settingsSensor.getDestination());
-                value.setLayoutX(112);
+                value.setLayoutX(200);
                 value.setLayoutY(initYLabel);
                 value.setPrefHeight(18);
                 value.setPrefWidth(70);
 
-                input.setLayoutX(215);
+                input.setLayoutX(300);
                 input.setLayoutY(initYInput);
                 input.setPrefHeight(26);
                 input.setPrefWidth(70);
 
                 button.setId(settingsSensor.getCommandTriggerKey());
-                button.setLayoutX(305);
+                button.setLayoutX(390);
                 button.setLayoutY(initYInput);
                 button.setPrefHeight(26);
                 button.setPrefWidth(60);
@@ -119,11 +119,11 @@ public class RocketSettingsController extends BasicButtonSensorController {
             if(input.isVisible())
                 command.setPayload(input.getText());
             SerialPortManager.getInstance().write(command);
-            String comStr = command.getCommandValueAsString();
+            //String comStr = command.getCommandValueAsString();
 
-            if (comStr.contains("0x10")) {
-                SerialPortManager.getInstance().writeWithoutCRC("GS;FREQ;" + command.getPayload());
-            }
+            //if (comStr.contains("0x10")) {
+                //SerialPortManager.getInstance().writeWithoutCRC("GS;FREQ;" + command.getPayload());
+            //}
         });
     }
 

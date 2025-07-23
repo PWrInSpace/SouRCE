@@ -77,7 +77,7 @@ public class DiscordNotification extends Notification {
 
     @Override
     public void sendNotification(EmbedBuilder message) {
-        getChannel().sendMessage(message.build()).queue();
+        getChannel().sendMessage((CharSequence) message.build()).queue();
     }
 
     @Override

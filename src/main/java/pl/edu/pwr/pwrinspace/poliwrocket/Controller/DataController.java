@@ -11,13 +11,10 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 public class DataController extends BasicTilesFXSensorController {
 
     @FXML
-    protected Tile dataGauge1;
+    protected Tile tanwaState;
 
     @FXML
-    protected Tile dataGauge2;
-
-    @FXML
-    protected Tile dataGauge3;
+    protected Tile upTime;
 
     @Override
     public void invalidated(Observable observable) {

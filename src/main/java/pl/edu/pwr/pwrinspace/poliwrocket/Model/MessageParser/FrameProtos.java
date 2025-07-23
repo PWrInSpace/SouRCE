@@ -19,467 +19,279 @@ public final class FrameProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * mcb frame
-     * </pre>
-     *
-     * <code>required uint32 obc_state = 1;</code>
-     * @return Whether the obcState field is set.
-     */
-    boolean hasObcState();
-    /**
-     * <pre>
-     * mcb frame
-     * </pre>
-     *
-     * <code>required uint32 obc_state = 1;</code>
-     * @return The obcState.
-     */
-    int getObcState();
-
-    /**
-     * <code>required uint32 dc_time = 2;</code>
-     * @return Whether the dcTime field is set.
-     */
-    boolean hasDcTime();
-    /**
-     * <code>required uint32 dc_time = 2;</code>
-     * @return The dcTime.
-     */
-    int getDcTime();
-
-    /**
-     * <code>required uint32 flight_time = 3;</code>
-     * @return Whether the flightTime field is set.
-     */
-    boolean hasFlightTime();
-    /**
-     * <code>required uint32 flight_time = 3;</code>
-     * @return The flightTime.
-     */
-    int getFlightTime();
-
-    /**
-     * <code>required float mcb_battery = 4;</code>
-     * @return Whether the mcbBattery field is set.
-     */
-    boolean hasMcbBattery();
-    /**
-     * <code>required float mcb_battery = 4;</code>
-     * @return The mcbBattery.
-     */
-    float getMcbBattery();
-
-    /**
-     * <code>required float gps_lat = 5;</code>
-     * @return Whether the gpsLat field is set.
-     */
-    boolean hasGpsLat();
-    /**
-     * <code>required float gps_lat = 5;</code>
-     * @return The gpsLat.
-     */
-    float getGpsLat();
-
-    /**
-     * <code>required float gps_long = 6;</code>
-     * @return Whether the gpsLong field is set.
-     */
-    boolean hasGpsLong();
-    /**
-     * <code>required float gps_long = 6;</code>
-     * @return The gpsLong.
-     */
-    float getGpsLong();
-
-    /**
-     * <code>required float gps_sat = 7;</code>
-     * @return Whether the gpsSat field is set.
-     */
-    boolean hasGpsSat();
-    /**
-     * <code>required float gps_sat = 7;</code>
-     * @return The gpsSat.
-     */
-    float getGpsSat();
-
-    /**
-     * <code>required float mcb_altitude = 8;</code>
-     * @return Whether the mcbAltitude field is set.
-     */
-    boolean hasMcbAltitude();
-    /**
-     * <code>required float mcb_altitude = 8;</code>
-     * @return The mcbAltitude.
-     */
-    float getMcbAltitude();
-
-    /**
-     * <code>required float mcb_velocity = 9;</code>
-     * @return Whether the mcbVelocity field is set.
-     */
-    boolean hasMcbVelocity();
-    /**
-     * <code>required float mcb_velocity = 9;</code>
-     * @return The mcbVelocity.
-     */
-    float getMcbVelocity();
-
-    /**
-     * <code>required int32 mcb_temperature = 10;</code>
-     * @return Whether the mcbTemperature field is set.
-     */
-    boolean hasMcbTemperature();
-    /**
-     * <code>required int32 mcb_temperature = 10;</code>
-     * @return The mcbTemperature.
-     */
-    int getMcbTemperature();
-
-    /**
-     * <code>required float euler_fi = 11;</code>
-     * @return Whether the eulerFi field is set.
-     */
-    boolean hasEulerFi();
-    /**
-     * <code>required float euler_fi = 11;</code>
-     * @return The eulerFi.
-     */
-    float getEulerFi();
-
-    /**
-     * <code>required float euler_psi = 12;</code>
-     * @return Whether the eulerPsi field is set.
-     */
-    boolean hasEulerPsi();
-    /**
-     * <code>required float euler_psi = 12;</code>
-     * @return The eulerPsi.
-     */
-    float getEulerPsi();
-
-    /**
-     * <code>required float euler_theta = 13;</code>
-     * @return Whether the eulerTheta field is set.
-     */
-    boolean hasEulerTheta();
-    /**
-     * <code>required float euler_theta = 13;</code>
-     * @return The eulerTheta.
-     */
-    float getEulerTheta();
-
-    /**
-     * <pre>
-     * recovery frame
-     * </pre>
-     *
-     * <code>required uint32 recov_pressure_1 = 14;</code>
-     * @return Whether the recovPressure1 field is set.
-     */
-    boolean hasRecovPressure1();
-    /**
-     * <pre>
-     * recovery frame
-     * </pre>
-     *
-     * <code>required uint32 recov_pressure_1 = 14;</code>
-     * @return The recovPressure1.
-     */
-    int getRecovPressure1();
-
-    /**
-     * <code>required uint32 recov_pressure_2 = 15;</code>
-     * @return Whether the recovPressure2 field is set.
-     */
-    boolean hasRecovPressure2();
-    /**
-     * <code>required uint32 recov_pressure_2 = 15;</code>
-     * @return The recovPressure2.
-     */
-    int getRecovPressure2();
-
-    /**
-     * <code>required fixed32 recov_byte_data = 16;</code>
-     * @return Whether the recovByteData field is set.
-     */
-    boolean hasRecovByteData();
-    /**
-     * <code>required fixed32 recov_byte_data = 16;</code>
-     * @return The recovByteData.
-     */
-    int getRecovByteData();
-
-    /**
-     * <pre>
-     * pitot frame
-     * </pre>
-     *
-     * <code>required float pitot_battery = 17;</code>
-     * @return Whether the pitotBattery field is set.
-     */
-    boolean hasPitotBattery();
-    /**
-     * <pre>
-     * pitot frame
-     * </pre>
-     *
-     * <code>required float pitot_battery = 17;</code>
-     * @return The pitotBattery.
-     */
-    float getPitotBattery();
-
-    /**
-     * <code>required int32 pitot_altitude = 18;</code>
-     * @return Whether the pitotAltitude field is set.
-     */
-    boolean hasPitotAltitude();
-    /**
-     * <code>required int32 pitot_altitude = 18;</code>
-     * @return The pitotAltitude.
-     */
-    int getPitotAltitude();
-
-    /**
-     * <code>required int32 pitot_velocity = 19;</code>
-     * @return Whether the pitotVelocity field is set.
-     */
-    boolean hasPitotVelocity();
-    /**
-     * <code>required int32 pitot_velocity = 19;</code>
-     * @return The pitotVelocity.
-     */
-    int getPitotVelocity();
-
-    /**
-     * <code>required int32 pitot_temperature = 20;</code>
-     * @return Whether the pitotTemperature field is set.
-     */
-    boolean hasPitotTemperature();
-    /**
-     * <code>required int32 pitot_temperature = 20;</code>
-     * @return The pitotTemperature.
-     */
-    int getPitotTemperature();
-
-    /**
-     * <pre>
-     * main valve
-     * </pre>
-     *
-     * <code>required float mval_battery = 21;</code>
-     * @return Whether the mvalBattery field is set.
-     */
-    boolean hasMvalBattery();
-    /**
-     * <pre>
-     * main valve
-     * </pre>
-     *
-     * <code>required float mval_battery = 21;</code>
-     * @return The mvalBattery.
-     */
-    float getMvalBattery();
-
-    /**
-     * <code>required fixed32 mval_byte_data = 22;</code>
-     * @return Whether the mvalByteData field is set.
-     */
-    boolean hasMvalByteData();
-    /**
-     * <code>required fixed32 mval_byte_data = 22;</code>
-     * @return The mvalByteData.
-     */
-    int getMvalByteData();
-
-    /**
-     * <pre>
-     * vent valve
-     * </pre>
-     *
-     * <code>required float vent_battery = 23;</code>
-     * @return Whether the ventBattery field is set.
-     */
-    boolean hasVentBattery();
-    /**
-     * <pre>
-     * vent valve
-     * </pre>
-     *
-     * <code>required float vent_battery = 23;</code>
-     * @return The ventBattery.
-     */
-    float getVentBattery();
-
-    /**
-     * <code>required float tank_pressure = 24;</code>
-     * @return Whether the tankPressure field is set.
-     */
-    boolean hasTankPressure();
-    /**
-     * <code>required float tank_pressure = 24;</code>
-     * @return The tankPressure.
-     */
-    float getTankPressure();
-
-    /**
-     * <code>required fixed32 vent_byte_data = 25;</code>
-     * @return Whether the ventByteData field is set.
-     */
-    boolean hasVentByteData();
-    /**
-     * <code>required fixed32 vent_byte_data = 25;</code>
-     * @return The ventByteData.
-     */
-    int getVentByteData();
-
-    /**
-     * <pre>
-     * tanwa frame
-     * </pre>
-     *
-     * <code>required float tanwa_battery = 26;</code>
-     * @return Whether the tanwaBattery field is set.
-     */
-    boolean hasTanwaBattery();
-    /**
-     * <pre>
-     * tanwa frame
-     * </pre>
-     *
-     * <code>required float tanwa_battery = 26;</code>
-     * @return The tanwaBattery.
-     */
-    float getTanwaBattery();
-
-    /**
-     * <code>required fixed32 tanwa_byte_data = 27;</code>
-     * @return Whether the tanwaByteData field is set.
-     */
-    boolean hasTanwaByteData();
-    /**
-     * <code>required fixed32 tanwa_byte_data = 27;</code>
-     * @return The tanwaByteData.
-     */
-    int getTanwaByteData();
-
-    /**
-     * <code>required uint32 tanwa_state = 28;</code>
+     * <code>uint32 tanwaState = 1;</code>
      * @return Whether the tanwaState field is set.
      */
     boolean hasTanwaState();
     /**
-     * <code>required uint32 tanwa_state = 28;</code>
+     * <code>uint32 tanwaState = 1;</code>
      * @return The tanwaState.
      */
     int getTanwaState();
 
     /**
-     * <code>required float rocket_weight = 29;</code>
+     * <code>uint32 upTime = 2;</code>
+     * @return Whether the upTime field is set.
+     */
+    boolean hasUpTime();
+    /**
+     * <code>uint32 upTime = 2;</code>
+     * @return The upTime.
+     */
+    int getUpTime();
+
+    /**
+     * <code>int32 engineWorkingTime = 3;</code>
+     * @return Whether the engineWorkingTime field is set.
+     */
+    boolean hasEngineWorkingTime();
+    /**
+     * <code>int32 engineWorkingTime = 3;</code>
+     * @return The engineWorkingTime.
+     */
+    int getEngineWorkingTime();
+
+    /**
+     * <code>float pressureFuel = 4;</code>
+     * @return Whether the pressureFuel field is set.
+     */
+    boolean hasPressureFuel();
+    /**
+     * <code>float pressureFuel = 4;</code>
+     * @return The pressureFuel.
+     */
+    float getPressureFuel();
+
+    /**
+     * <code>float pressurePastFill = 5;</code>
+     * @return Whether the pressurePastFill field is set.
+     */
+    boolean hasPressurePastFill();
+    /**
+     * <code>float pressurePastFill = 5;</code>
+     * @return The pressurePastFill.
+     */
+    float getPressurePastFill();
+
+    /**
+     * <code>float pressureBeforeFill = 6;</code>
+     * @return Whether the pressureBeforeFill field is set.
+     */
+    boolean hasPressureBeforeFill();
+    /**
+     * <code>float pressureBeforeFill = 6;</code>
+     * @return The pressureBeforeFill.
+     */
+    float getPressureBeforeFill();
+
+    /**
+     * <code>float pressureOxi = 7;</code>
+     * @return Whether the pressureOxi field is set.
+     */
+    boolean hasPressureOxi();
+    /**
+     * <code>float pressureOxi = 7;</code>
+     * @return The pressureOxi.
+     */
+    float getPressureOxi();
+
+    /**
+     * <code>float pressureInjectorFuel = 8;</code>
+     * @return Whether the pressureInjectorFuel field is set.
+     */
+    boolean hasPressureInjectorFuel();
+    /**
+     * <code>float pressureInjectorFuel = 8;</code>
+     * @return The pressureInjectorFuel.
+     */
+    float getPressureInjectorFuel();
+
+    /**
+     * <code>float pressureInjectorOxi = 9;</code>
+     * @return Whether the pressureInjectorOxi field is set.
+     */
+    boolean hasPressureInjectorOxi();
+    /**
+     * <code>float pressureInjectorOxi = 9;</code>
+     * @return The pressureInjectorOxi.
+     */
+    float getPressureInjectorOxi();
+
+    /**
+     * <code>float pressureCombustionChamber = 10;</code>
+     * @return Whether the pressureCombustionChamber field is set.
+     */
+    boolean hasPressureCombustionChamber();
+    /**
+     * <code>float pressureCombustionChamber = 10;</code>
+     * @return The pressureCombustionChamber.
+     */
+    float getPressureCombustionChamber();
+
+    /**
+     * <code>bool fillState = 11;</code>
+     * @return Whether the fillState field is set.
+     */
+    boolean hasFillState();
+    /**
+     * <code>bool fillState = 11;</code>
+     * @return The fillState.
+     */
+    boolean getFillState();
+
+    /**
+     * <code>bool deprState = 12;</code>
+     * @return Whether the deprState field is set.
+     */
+    boolean hasDeprState();
+    /**
+     * <code>bool deprState = 12;</code>
+     * @return The deprState.
+     */
+    boolean getDeprState();
+
+    /**
+     * <code>bool ventState = 13;</code>
+     * @return Whether the ventState field is set.
+     */
+    boolean hasVentState();
+    /**
+     * <code>bool ventState = 13;</code>
+     * @return The ventState.
+     */
+    boolean getVentState();
+
+    /**
+     * <code>bool statusArm = 14;</code>
+     * @return Whether the statusArm field is set.
+     */
+    boolean hasStatusArm();
+    /**
+     * <code>bool statusArm = 14;</code>
+     * @return The statusArm.
+     */
+    boolean getStatusArm();
+
+    /**
+     * <code>bool igniterCont1 = 15;</code>
+     * @return Whether the igniterCont1 field is set.
+     */
+    boolean hasIgniterCont1();
+    /**
+     * <code>bool igniterCont1 = 15;</code>
+     * @return The igniterCont1.
+     */
+    boolean getIgniterCont1();
+
+    /**
+     * <code>bool igniterCont2 = 16;</code>
+     * @return Whether the igniterCont2 field is set.
+     */
+    boolean hasIgniterCont2();
+    /**
+     * <code>bool igniterCont2 = 16;</code>
+     * @return The igniterCont2.
+     */
+    boolean getIgniterCont2();
+
+    /**
+     * <code>float tanwaBattery = 17;</code>
+     * @return Whether the tanwaBattery field is set.
+     */
+    boolean hasTanwaBattery();
+    /**
+     * <code>float tanwaBattery = 17;</code>
+     * @return The tanwaBattery.
+     */
+    float getTanwaBattery();
+
+    /**
+     * <code>float engineThrust = 18;</code>
+     * @return Whether the engineThrust field is set.
+     */
+    boolean hasEngineThrust();
+    /**
+     * <code>float engineThrust = 18;</code>
+     * @return The engineThrust.
+     */
+    float getEngineThrust();
+
+    /**
+     * <code>float rocketWeight = 19;</code>
      * @return Whether the rocketWeight field is set.
      */
     boolean hasRocketWeight();
     /**
-     * <code>required float rocket_weight = 29;</code>
+     * <code>float rocketWeight = 19;</code>
      * @return The rocketWeight.
      */
     float getRocketWeight();
 
     /**
-     * <code>required float tank_weight = 30;</code>
+     * <code>float tankWeight = 20;</code>
      * @return Whether the tankWeight field is set.
      */
     boolean hasTankWeight();
     /**
-     * <code>required float tank_weight = 30;</code>
+     * <code>float tankWeight = 20;</code>
      * @return The tankWeight.
      */
     float getTankWeight();
 
     /**
-     * <code>required float temperature_fill = 31;</code>
-     * @return Whether the temperatureFill field is set.
+     * <code>float tempInjector = 21;</code>
+     * @return Whether the tempInjector field is set.
      */
-    boolean hasTemperatureFill();
+    boolean hasTempInjector();
     /**
-     * <code>required float temperature_fill = 31;</code>
-     * @return The temperatureFill.
+     * <code>float tempInjector = 21;</code>
+     * @return The tempInjector.
      */
-    float getTemperatureFill();
+    float getTempInjector();
 
     /**
-     * <code>required float pre_fill_pressure = 32;</code>
-     * @return Whether the preFillPressure field is set.
+     * <code>float tempCombustionChamber = 22;</code>
+     * @return Whether the tempCombustionChamber field is set.
      */
-    boolean hasPreFillPressure();
+    boolean hasTempCombustionChamber();
     /**
-     * <code>required float pre_fill_pressure = 32;</code>
-     * @return The preFillPressure.
+     * <code>float tempCombustionChamber = 22;</code>
+     * @return The tempCombustionChamber.
      */
-    float getPreFillPressure();
+    float getTempCombustionChamber();
 
     /**
-     * <code>required float post_fill_pressure = 33;</code>
-     * @return Whether the postFillPressure field is set.
+     * <code>float tempExternalTank = 23;</code>
+     * @return Whether the tempExternalTank field is set.
      */
-    boolean hasPostFillPressure();
+    boolean hasTempExternalTank();
     /**
-     * <code>required float post_fill_pressure = 33;</code>
-     * @return The postFillPressure.
+     * <code>float tempExternalTank = 23;</code>
+     * @return The tempExternalTank.
      */
-    float getPostFillPressure();
+    float getTempExternalTank();
 
     /**
-     * <code>required float btl_pressure = 34;</code>
-     * @return Whether the btlPressure field is set.
+     * <code>bool statusOxy = 24;</code>
+     * @return Whether the statusOxy field is set.
      */
-    boolean hasBtlPressure();
+    boolean hasStatusOxy();
     /**
-     * <code>required float btl_pressure = 34;</code>
-     * @return The btlPressure.
+     * <code>bool statusOxy = 24;</code>
+     * @return The statusOxy.
      */
-    float getBtlPressure();
+    boolean getStatusOxy();
 
     /**
-     * <pre>
-     * payload
-     * </pre>
-     *
-     * <code>required float payload_battery = 35;</code>
-     * @return Whether the payloadBattery field is set.
+     * <code>bool statusFuel = 25;</code>
+     * @return Whether the statusFuel field is set.
      */
-    boolean hasPayloadBattery();
+    boolean hasStatusFuel();
     /**
-     * <pre>
-     * payload
-     * </pre>
-     *
-     * <code>required float payload_battery = 35;</code>
-     * @return The payloadBattery.
+     * <code>bool statusFuel = 25;</code>
+     * @return The statusFuel.
      */
-    float getPayloadBattery();
-
-    /**
-     * <code>required fixed32 esp_now_byte_data = 36;</code>
-     * @return Whether the espNowByteData field is set.
-     */
-    boolean hasEspNowByteData();
-    /**
-     * <code>required fixed32 esp_now_byte_data = 36;</code>
-     * @return The espNowByteData.
-     */
-    int getEspNowByteData();
-
-    /**
-     * <code>required fixed32 errors = 37;</code>
-     * @return Whether the errors field is set.
-     */
-    boolean hasErrors();
-    /**
-     * <code>required fixed32 errors = 37;</code>
-     * @return The errors.
-     */
-    int getErrors();
+    boolean getStatusFuel();
   }
   /**
    * Protobuf type {@code LoRaFrame}
@@ -517,7 +329,6 @@ public final class FrameProtos {
         throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
-      int mutable_bitField1_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -530,187 +341,127 @@ public final class FrameProtos {
               break;
             case 8: {
               bitField0_ |= 0x00000001;
-              obcState_ = input.readUInt32();
+              tanwaState_ = input.readUInt32();
               break;
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              dcTime_ = input.readUInt32();
+              upTime_ = input.readUInt32();
               break;
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              flightTime_ = input.readUInt32();
+              engineWorkingTime_ = input.readInt32();
               break;
             }
             case 37: {
               bitField0_ |= 0x00000008;
-              mcbBattery_ = input.readFloat();
+              pressureFuel_ = input.readFloat();
               break;
             }
             case 45: {
               bitField0_ |= 0x00000010;
-              gpsLat_ = input.readFloat();
+              pressurePastFill_ = input.readFloat();
               break;
             }
             case 53: {
               bitField0_ |= 0x00000020;
-              gpsLong_ = input.readFloat();
+              pressureBeforeFill_ = input.readFloat();
               break;
             }
             case 61: {
               bitField0_ |= 0x00000040;
-              gpsSat_ = input.readFloat();
+              pressureOxi_ = input.readFloat();
               break;
             }
             case 69: {
               bitField0_ |= 0x00000080;
-              mcbAltitude_ = input.readFloat();
+              pressureInjectorFuel_ = input.readFloat();
               break;
             }
             case 77: {
               bitField0_ |= 0x00000100;
-              mcbVelocity_ = input.readFloat();
+              pressureInjectorOxi_ = input.readFloat();
               break;
             }
-            case 80: {
+            case 85: {
               bitField0_ |= 0x00000200;
-              mcbTemperature_ = input.readInt32();
+              pressureCombustionChamber_ = input.readFloat();
               break;
             }
-            case 93: {
+            case 88: {
               bitField0_ |= 0x00000400;
-              eulerFi_ = input.readFloat();
+              fillState_ = input.readBool();
               break;
             }
-            case 101: {
+            case 96: {
               bitField0_ |= 0x00000800;
-              eulerPsi_ = input.readFloat();
+              deprState_ = input.readBool();
               break;
             }
-            case 109: {
+            case 104: {
               bitField0_ |= 0x00001000;
-              eulerTheta_ = input.readFloat();
+              ventState_ = input.readBool();
               break;
             }
             case 112: {
               bitField0_ |= 0x00002000;
-              recovPressure1_ = input.readUInt32();
+              statusArm_ = input.readBool();
               break;
             }
             case 120: {
               bitField0_ |= 0x00004000;
-              recovPressure2_ = input.readUInt32();
+              igniterCont1_ = input.readBool();
               break;
             }
-            case 133: {
+            case 128: {
               bitField0_ |= 0x00008000;
-              recovByteData_ = input.readFixed32();
+              igniterCont2_ = input.readBool();
               break;
             }
             case 141: {
               bitField0_ |= 0x00010000;
-              pitotBattery_ = input.readFloat();
+              tanwaBattery_ = input.readFloat();
               break;
             }
-            case 144: {
+            case 149: {
               bitField0_ |= 0x00020000;
-              pitotAltitude_ = input.readInt32();
+              engineThrust_ = input.readFloat();
               break;
             }
-            case 152: {
+            case 157: {
               bitField0_ |= 0x00040000;
-              pitotVelocity_ = input.readInt32();
+              rocketWeight_ = input.readFloat();
               break;
             }
-            case 160: {
+            case 165: {
               bitField0_ |= 0x00080000;
-              pitotTemperature_ = input.readInt32();
+              tankWeight_ = input.readFloat();
               break;
             }
             case 173: {
               bitField0_ |= 0x00100000;
-              mvalBattery_ = input.readFloat();
+              tempInjector_ = input.readFloat();
               break;
             }
             case 181: {
               bitField0_ |= 0x00200000;
-              mvalByteData_ = input.readFixed32();
+              tempCombustionChamber_ = input.readFloat();
               break;
             }
             case 189: {
               bitField0_ |= 0x00400000;
-              ventBattery_ = input.readFloat();
+              tempExternalTank_ = input.readFloat();
               break;
             }
-            case 197: {
+            case 192: {
               bitField0_ |= 0x00800000;
-              tankPressure_ = input.readFloat();
+              statusOxy_ = input.readBool();
               break;
             }
-            case 205: {
+            case 200: {
               bitField0_ |= 0x01000000;
-              ventByteData_ = input.readFixed32();
-              break;
-            }
-            case 213: {
-              bitField0_ |= 0x02000000;
-              tanwaBattery_ = input.readFloat();
-              break;
-            }
-            case 221: {
-              bitField0_ |= 0x04000000;
-              tanwaByteData_ = input.readFixed32();
-              break;
-            }
-            case 224: {
-              bitField0_ |= 0x08000000;
-              tanwaState_ = input.readUInt32();
-              break;
-            }
-            case 237: {
-              bitField0_ |= 0x10000000;
-              rocketWeight_ = input.readFloat();
-              break;
-            }
-            case 245: {
-              bitField0_ |= 0x20000000;
-              tankWeight_ = input.readFloat();
-              break;
-            }
-            case 253: {
-              bitField0_ |= 0x40000000;
-              temperatureFill_ = input.readFloat();
-              break;
-            }
-            case 261: {
-              bitField0_ |= 0x80000000;
-              preFillPressure_ = input.readFloat();
-              break;
-            }
-            case 269: {
-              bitField1_ |= 0x00000001;
-              postFillPressure_ = input.readFloat();
-              break;
-            }
-            case 277: {
-              bitField1_ |= 0x00000002;
-              btlPressure_ = input.readFloat();
-              break;
-            }
-            case 285: {
-              bitField1_ |= 0x00000004;
-              payloadBattery_ = input.readFloat();
-              break;
-            }
-            case 293: {
-              bitField1_ |= 0x00000008;
-              espNowByteData_ = input.readFixed32();
-              break;
-            }
-            case 301: {
-              bitField1_ |= 0x00000010;
-              errors_ = input.readFixed32();
+              statusFuel_ = input.readBool();
               break;
             }
             default: {
@@ -746,580 +497,18 @@ public final class FrameProtos {
     }
 
     private int bitField0_;
-    private int bitField1_;
-    public static final int OBC_STATE_FIELD_NUMBER = 1;
-    private int obcState_;
-    /**
-     * <pre>
-     * mcb frame
-     * </pre>
-     *
-     * <code>required uint32 obc_state = 1;</code>
-     * @return Whether the obcState field is set.
-     */
-    @java.lang.Override
-    public boolean hasObcState() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <pre>
-     * mcb frame
-     * </pre>
-     *
-     * <code>required uint32 obc_state = 1;</code>
-     * @return The obcState.
-     */
-    @java.lang.Override
-    public int getObcState() {
-      return obcState_;
-    }
-
-    public static final int DC_TIME_FIELD_NUMBER = 2;
-    private int dcTime_;
-    /**
-     * <code>required uint32 dc_time = 2;</code>
-     * @return Whether the dcTime field is set.
-     */
-    @java.lang.Override
-    public boolean hasDcTime() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
-    /**
-     * <code>required uint32 dc_time = 2;</code>
-     * @return The dcTime.
-     */
-    @java.lang.Override
-    public int getDcTime() {
-      return dcTime_;
-    }
-
-    public static final int FLIGHT_TIME_FIELD_NUMBER = 3;
-    private int flightTime_;
-    /**
-     * <code>required uint32 flight_time = 3;</code>
-     * @return Whether the flightTime field is set.
-     */
-    @java.lang.Override
-    public boolean hasFlightTime() {
-      return ((bitField0_ & 0x00000004) != 0);
-    }
-    /**
-     * <code>required uint32 flight_time = 3;</code>
-     * @return The flightTime.
-     */
-    @java.lang.Override
-    public int getFlightTime() {
-      return flightTime_;
-    }
-
-    public static final int MCB_BATTERY_FIELD_NUMBER = 4;
-    private float mcbBattery_;
-    /**
-     * <code>required float mcb_battery = 4;</code>
-     * @return Whether the mcbBattery field is set.
-     */
-    @java.lang.Override
-    public boolean hasMcbBattery() {
-      return ((bitField0_ & 0x00000008) != 0);
-    }
-    /**
-     * <code>required float mcb_battery = 4;</code>
-     * @return The mcbBattery.
-     */
-    @java.lang.Override
-    public float getMcbBattery() {
-      return mcbBattery_;
-    }
-
-    public static final int GPS_LAT_FIELD_NUMBER = 5;
-    private float gpsLat_;
-    /**
-     * <code>required float gps_lat = 5;</code>
-     * @return Whether the gpsLat field is set.
-     */
-    @java.lang.Override
-    public boolean hasGpsLat() {
-      return ((bitField0_ & 0x00000010) != 0);
-    }
-    /**
-     * <code>required float gps_lat = 5;</code>
-     * @return The gpsLat.
-     */
-    @java.lang.Override
-    public float getGpsLat() {
-      return gpsLat_;
-    }
-
-    public static final int GPS_LONG_FIELD_NUMBER = 6;
-    private float gpsLong_;
-    /**
-     * <code>required float gps_long = 6;</code>
-     * @return Whether the gpsLong field is set.
-     */
-    @java.lang.Override
-    public boolean hasGpsLong() {
-      return ((bitField0_ & 0x00000020) != 0);
-    }
-    /**
-     * <code>required float gps_long = 6;</code>
-     * @return The gpsLong.
-     */
-    @java.lang.Override
-    public float getGpsLong() {
-      return gpsLong_;
-    }
-
-    public static final int GPS_SAT_FIELD_NUMBER = 7;
-    private float gpsSat_;
-    /**
-     * <code>required float gps_sat = 7;</code>
-     * @return Whether the gpsSat field is set.
-     */
-    @java.lang.Override
-    public boolean hasGpsSat() {
-      return ((bitField0_ & 0x00000040) != 0);
-    }
-    /**
-     * <code>required float gps_sat = 7;</code>
-     * @return The gpsSat.
-     */
-    @java.lang.Override
-    public float getGpsSat() {
-      return gpsSat_;
-    }
-
-    public static final int MCB_ALTITUDE_FIELD_NUMBER = 8;
-    private float mcbAltitude_;
-    /**
-     * <code>required float mcb_altitude = 8;</code>
-     * @return Whether the mcbAltitude field is set.
-     */
-    @java.lang.Override
-    public boolean hasMcbAltitude() {
-      return ((bitField0_ & 0x00000080) != 0);
-    }
-    /**
-     * <code>required float mcb_altitude = 8;</code>
-     * @return The mcbAltitude.
-     */
-    @java.lang.Override
-    public float getMcbAltitude() {
-      return mcbAltitude_;
-    }
-
-    public static final int MCB_VELOCITY_FIELD_NUMBER = 9;
-    private float mcbVelocity_;
-    /**
-     * <code>required float mcb_velocity = 9;</code>
-     * @return Whether the mcbVelocity field is set.
-     */
-    @java.lang.Override
-    public boolean hasMcbVelocity() {
-      return ((bitField0_ & 0x00000100) != 0);
-    }
-    /**
-     * <code>required float mcb_velocity = 9;</code>
-     * @return The mcbVelocity.
-     */
-    @java.lang.Override
-    public float getMcbVelocity() {
-      return mcbVelocity_;
-    }
-
-    public static final int MCB_TEMPERATURE_FIELD_NUMBER = 10;
-    private int mcbTemperature_;
-    /**
-     * <code>required int32 mcb_temperature = 10;</code>
-     * @return Whether the mcbTemperature field is set.
-     */
-    @java.lang.Override
-    public boolean hasMcbTemperature() {
-      return ((bitField0_ & 0x00000200) != 0);
-    }
-    /**
-     * <code>required int32 mcb_temperature = 10;</code>
-     * @return The mcbTemperature.
-     */
-    @java.lang.Override
-    public int getMcbTemperature() {
-      return mcbTemperature_;
-    }
-
-    public static final int EULER_FI_FIELD_NUMBER = 11;
-    private float eulerFi_;
-    /**
-     * <code>required float euler_fi = 11;</code>
-     * @return Whether the eulerFi field is set.
-     */
-    @java.lang.Override
-    public boolean hasEulerFi() {
-      return ((bitField0_ & 0x00000400) != 0);
-    }
-    /**
-     * <code>required float euler_fi = 11;</code>
-     * @return The eulerFi.
-     */
-    @java.lang.Override
-    public float getEulerFi() {
-      return eulerFi_;
-    }
-
-    public static final int EULER_PSI_FIELD_NUMBER = 12;
-    private float eulerPsi_;
-    /**
-     * <code>required float euler_psi = 12;</code>
-     * @return Whether the eulerPsi field is set.
-     */
-    @java.lang.Override
-    public boolean hasEulerPsi() {
-      return ((bitField0_ & 0x00000800) != 0);
-    }
-    /**
-     * <code>required float euler_psi = 12;</code>
-     * @return The eulerPsi.
-     */
-    @java.lang.Override
-    public float getEulerPsi() {
-      return eulerPsi_;
-    }
-
-    public static final int EULER_THETA_FIELD_NUMBER = 13;
-    private float eulerTheta_;
-    /**
-     * <code>required float euler_theta = 13;</code>
-     * @return Whether the eulerTheta field is set.
-     */
-    @java.lang.Override
-    public boolean hasEulerTheta() {
-      return ((bitField0_ & 0x00001000) != 0);
-    }
-    /**
-     * <code>required float euler_theta = 13;</code>
-     * @return The eulerTheta.
-     */
-    @java.lang.Override
-    public float getEulerTheta() {
-      return eulerTheta_;
-    }
-
-    public static final int RECOV_PRESSURE_1_FIELD_NUMBER = 14;
-    private int recovPressure1_;
-    /**
-     * <pre>
-     * recovery frame
-     * </pre>
-     *
-     * <code>required uint32 recov_pressure_1 = 14;</code>
-     * @return Whether the recovPressure1 field is set.
-     */
-    @java.lang.Override
-    public boolean hasRecovPressure1() {
-      return ((bitField0_ & 0x00002000) != 0);
-    }
-    /**
-     * <pre>
-     * recovery frame
-     * </pre>
-     *
-     * <code>required uint32 recov_pressure_1 = 14;</code>
-     * @return The recovPressure1.
-     */
-    @java.lang.Override
-    public int getRecovPressure1() {
-      return recovPressure1_;
-    }
-
-    public static final int RECOV_PRESSURE_2_FIELD_NUMBER = 15;
-    private int recovPressure2_;
-    /**
-     * <code>required uint32 recov_pressure_2 = 15;</code>
-     * @return Whether the recovPressure2 field is set.
-     */
-    @java.lang.Override
-    public boolean hasRecovPressure2() {
-      return ((bitField0_ & 0x00004000) != 0);
-    }
-    /**
-     * <code>required uint32 recov_pressure_2 = 15;</code>
-     * @return The recovPressure2.
-     */
-    @java.lang.Override
-    public int getRecovPressure2() {
-      return recovPressure2_;
-    }
-
-    public static final int RECOV_BYTE_DATA_FIELD_NUMBER = 16;
-    private int recovByteData_;
-    /**
-     * <code>required fixed32 recov_byte_data = 16;</code>
-     * @return Whether the recovByteData field is set.
-     */
-    @java.lang.Override
-    public boolean hasRecovByteData() {
-      return ((bitField0_ & 0x00008000) != 0);
-    }
-    /**
-     * <code>required fixed32 recov_byte_data = 16;</code>
-     * @return The recovByteData.
-     */
-    @java.lang.Override
-    public int getRecovByteData() {
-      return recovByteData_;
-    }
-
-    public static final int PITOT_BATTERY_FIELD_NUMBER = 17;
-    private float pitotBattery_;
-    /**
-     * <pre>
-     * pitot frame
-     * </pre>
-     *
-     * <code>required float pitot_battery = 17;</code>
-     * @return Whether the pitotBattery field is set.
-     */
-    @java.lang.Override
-    public boolean hasPitotBattery() {
-      return ((bitField0_ & 0x00010000) != 0);
-    }
-    /**
-     * <pre>
-     * pitot frame
-     * </pre>
-     *
-     * <code>required float pitot_battery = 17;</code>
-     * @return The pitotBattery.
-     */
-    @java.lang.Override
-    public float getPitotBattery() {
-      return pitotBattery_;
-    }
-
-    public static final int PITOT_ALTITUDE_FIELD_NUMBER = 18;
-    private int pitotAltitude_;
-    /**
-     * <code>required int32 pitot_altitude = 18;</code>
-     * @return Whether the pitotAltitude field is set.
-     */
-    @java.lang.Override
-    public boolean hasPitotAltitude() {
-      return ((bitField0_ & 0x00020000) != 0);
-    }
-    /**
-     * <code>required int32 pitot_altitude = 18;</code>
-     * @return The pitotAltitude.
-     */
-    @java.lang.Override
-    public int getPitotAltitude() {
-      return pitotAltitude_;
-    }
-
-    public static final int PITOT_VELOCITY_FIELD_NUMBER = 19;
-    private int pitotVelocity_;
-    /**
-     * <code>required int32 pitot_velocity = 19;</code>
-     * @return Whether the pitotVelocity field is set.
-     */
-    @java.lang.Override
-    public boolean hasPitotVelocity() {
-      return ((bitField0_ & 0x00040000) != 0);
-    }
-    /**
-     * <code>required int32 pitot_velocity = 19;</code>
-     * @return The pitotVelocity.
-     */
-    @java.lang.Override
-    public int getPitotVelocity() {
-      return pitotVelocity_;
-    }
-
-    public static final int PITOT_TEMPERATURE_FIELD_NUMBER = 20;
-    private int pitotTemperature_;
-    /**
-     * <code>required int32 pitot_temperature = 20;</code>
-     * @return Whether the pitotTemperature field is set.
-     */
-    @java.lang.Override
-    public boolean hasPitotTemperature() {
-      return ((bitField0_ & 0x00080000) != 0);
-    }
-    /**
-     * <code>required int32 pitot_temperature = 20;</code>
-     * @return The pitotTemperature.
-     */
-    @java.lang.Override
-    public int getPitotTemperature() {
-      return pitotTemperature_;
-    }
-
-    public static final int MVAL_BATTERY_FIELD_NUMBER = 21;
-    private float mvalBattery_;
-    /**
-     * <pre>
-     * main valve
-     * </pre>
-     *
-     * <code>required float mval_battery = 21;</code>
-     * @return Whether the mvalBattery field is set.
-     */
-    @java.lang.Override
-    public boolean hasMvalBattery() {
-      return ((bitField0_ & 0x00100000) != 0);
-    }
-    /**
-     * <pre>
-     * main valve
-     * </pre>
-     *
-     * <code>required float mval_battery = 21;</code>
-     * @return The mvalBattery.
-     */
-    @java.lang.Override
-    public float getMvalBattery() {
-      return mvalBattery_;
-    }
-
-    public static final int MVAL_BYTE_DATA_FIELD_NUMBER = 22;
-    private int mvalByteData_;
-    /**
-     * <code>required fixed32 mval_byte_data = 22;</code>
-     * @return Whether the mvalByteData field is set.
-     */
-    @java.lang.Override
-    public boolean hasMvalByteData() {
-      return ((bitField0_ & 0x00200000) != 0);
-    }
-    /**
-     * <code>required fixed32 mval_byte_data = 22;</code>
-     * @return The mvalByteData.
-     */
-    @java.lang.Override
-    public int getMvalByteData() {
-      return mvalByteData_;
-    }
-
-    public static final int VENT_BATTERY_FIELD_NUMBER = 23;
-    private float ventBattery_;
-    /**
-     * <pre>
-     * vent valve
-     * </pre>
-     *
-     * <code>required float vent_battery = 23;</code>
-     * @return Whether the ventBattery field is set.
-     */
-    @java.lang.Override
-    public boolean hasVentBattery() {
-      return ((bitField0_ & 0x00400000) != 0);
-    }
-    /**
-     * <pre>
-     * vent valve
-     * </pre>
-     *
-     * <code>required float vent_battery = 23;</code>
-     * @return The ventBattery.
-     */
-    @java.lang.Override
-    public float getVentBattery() {
-      return ventBattery_;
-    }
-
-    public static final int TANK_PRESSURE_FIELD_NUMBER = 24;
-    private float tankPressure_;
-    /**
-     * <code>required float tank_pressure = 24;</code>
-     * @return Whether the tankPressure field is set.
-     */
-    @java.lang.Override
-    public boolean hasTankPressure() {
-      return ((bitField0_ & 0x00800000) != 0);
-    }
-    /**
-     * <code>required float tank_pressure = 24;</code>
-     * @return The tankPressure.
-     */
-    @java.lang.Override
-    public float getTankPressure() {
-      return tankPressure_;
-    }
-
-    public static final int VENT_BYTE_DATA_FIELD_NUMBER = 25;
-    private int ventByteData_;
-    /**
-     * <code>required fixed32 vent_byte_data = 25;</code>
-     * @return Whether the ventByteData field is set.
-     */
-    @java.lang.Override
-    public boolean hasVentByteData() {
-      return ((bitField0_ & 0x01000000) != 0);
-    }
-    /**
-     * <code>required fixed32 vent_byte_data = 25;</code>
-     * @return The ventByteData.
-     */
-    @java.lang.Override
-    public int getVentByteData() {
-      return ventByteData_;
-    }
-
-    public static final int TANWA_BATTERY_FIELD_NUMBER = 26;
-    private float tanwaBattery_;
-    /**
-     * <pre>
-     * tanwa frame
-     * </pre>
-     *
-     * <code>required float tanwa_battery = 26;</code>
-     * @return Whether the tanwaBattery field is set.
-     */
-    @java.lang.Override
-    public boolean hasTanwaBattery() {
-      return ((bitField0_ & 0x02000000) != 0);
-    }
-    /**
-     * <pre>
-     * tanwa frame
-     * </pre>
-     *
-     * <code>required float tanwa_battery = 26;</code>
-     * @return The tanwaBattery.
-     */
-    @java.lang.Override
-    public float getTanwaBattery() {
-      return tanwaBattery_;
-    }
-
-    public static final int TANWA_BYTE_DATA_FIELD_NUMBER = 27;
-    private int tanwaByteData_;
-    /**
-     * <code>required fixed32 tanwa_byte_data = 27;</code>
-     * @return Whether the tanwaByteData field is set.
-     */
-    @java.lang.Override
-    public boolean hasTanwaByteData() {
-      return ((bitField0_ & 0x04000000) != 0);
-    }
-    /**
-     * <code>required fixed32 tanwa_byte_data = 27;</code>
-     * @return The tanwaByteData.
-     */
-    @java.lang.Override
-    public int getTanwaByteData() {
-      return tanwaByteData_;
-    }
-
-    public static final int TANWA_STATE_FIELD_NUMBER = 28;
+    public static final int TANWASTATE_FIELD_NUMBER = 1;
     private int tanwaState_;
     /**
-     * <code>required uint32 tanwa_state = 28;</code>
+     * <code>uint32 tanwaState = 1;</code>
      * @return Whether the tanwaState field is set.
      */
     @java.lang.Override
     public boolean hasTanwaState() {
-      return ((bitField0_ & 0x08000000) != 0);
+      return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>required uint32 tanwa_state = 28;</code>
+     * <code>uint32 tanwaState = 1;</code>
      * @return The tanwaState.
      */
     @java.lang.Override
@@ -1327,18 +516,341 @@ public final class FrameProtos {
       return tanwaState_;
     }
 
-    public static final int ROCKET_WEIGHT_FIELD_NUMBER = 29;
+    public static final int UPTIME_FIELD_NUMBER = 2;
+    private int upTime_;
+    /**
+     * <code>uint32 upTime = 2;</code>
+     * @return Whether the upTime field is set.
+     */
+    @java.lang.Override
+    public boolean hasUpTime() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <code>uint32 upTime = 2;</code>
+     * @return The upTime.
+     */
+    @java.lang.Override
+    public int getUpTime() {
+      return upTime_;
+    }
+
+    public static final int ENGINEWORKINGTIME_FIELD_NUMBER = 3;
+    private int engineWorkingTime_;
+    /**
+     * <code>int32 engineWorkingTime = 3;</code>
+     * @return Whether the engineWorkingTime field is set.
+     */
+    @java.lang.Override
+    public boolean hasEngineWorkingTime() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>int32 engineWorkingTime = 3;</code>
+     * @return The engineWorkingTime.
+     */
+    @java.lang.Override
+    public int getEngineWorkingTime() {
+      return engineWorkingTime_;
+    }
+
+    public static final int PRESSUREFUEL_FIELD_NUMBER = 4;
+    private float pressureFuel_;
+    /**
+     * <code>float pressureFuel = 4;</code>
+     * @return Whether the pressureFuel field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressureFuel() {
+      return ((bitField0_ & 0x00000008) != 0);
+    }
+    /**
+     * <code>float pressureFuel = 4;</code>
+     * @return The pressureFuel.
+     */
+    @java.lang.Override
+    public float getPressureFuel() {
+      return pressureFuel_;
+    }
+
+    public static final int PRESSUREPASTFILL_FIELD_NUMBER = 5;
+    private float pressurePastFill_;
+    /**
+     * <code>float pressurePastFill = 5;</code>
+     * @return Whether the pressurePastFill field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressurePastFill() {
+      return ((bitField0_ & 0x00000010) != 0);
+    }
+    /**
+     * <code>float pressurePastFill = 5;</code>
+     * @return The pressurePastFill.
+     */
+    @java.lang.Override
+    public float getPressurePastFill() {
+      return pressurePastFill_;
+    }
+
+    public static final int PRESSUREBEFOREFILL_FIELD_NUMBER = 6;
+    private float pressureBeforeFill_;
+    /**
+     * <code>float pressureBeforeFill = 6;</code>
+     * @return Whether the pressureBeforeFill field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressureBeforeFill() {
+      return ((bitField0_ & 0x00000020) != 0);
+    }
+    /**
+     * <code>float pressureBeforeFill = 6;</code>
+     * @return The pressureBeforeFill.
+     */
+    @java.lang.Override
+    public float getPressureBeforeFill() {
+      return pressureBeforeFill_;
+    }
+
+    public static final int PRESSUREOXI_FIELD_NUMBER = 7;
+    private float pressureOxi_;
+    /**
+     * <code>float pressureOxi = 7;</code>
+     * @return Whether the pressureOxi field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressureOxi() {
+      return ((bitField0_ & 0x00000040) != 0);
+    }
+    /**
+     * <code>float pressureOxi = 7;</code>
+     * @return The pressureOxi.
+     */
+    @java.lang.Override
+    public float getPressureOxi() {
+      return pressureOxi_;
+    }
+
+    public static final int PRESSUREINJECTORFUEL_FIELD_NUMBER = 8;
+    private float pressureInjectorFuel_;
+    /**
+     * <code>float pressureInjectorFuel = 8;</code>
+     * @return Whether the pressureInjectorFuel field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressureInjectorFuel() {
+      return ((bitField0_ & 0x00000080) != 0);
+    }
+    /**
+     * <code>float pressureInjectorFuel = 8;</code>
+     * @return The pressureInjectorFuel.
+     */
+    @java.lang.Override
+    public float getPressureInjectorFuel() {
+      return pressureInjectorFuel_;
+    }
+
+    public static final int PRESSUREINJECTOROXI_FIELD_NUMBER = 9;
+    private float pressureInjectorOxi_;
+    /**
+     * <code>float pressureInjectorOxi = 9;</code>
+     * @return Whether the pressureInjectorOxi field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressureInjectorOxi() {
+      return ((bitField0_ & 0x00000100) != 0);
+    }
+    /**
+     * <code>float pressureInjectorOxi = 9;</code>
+     * @return The pressureInjectorOxi.
+     */
+    @java.lang.Override
+    public float getPressureInjectorOxi() {
+      return pressureInjectorOxi_;
+    }
+
+    public static final int PRESSURECOMBUSTIONCHAMBER_FIELD_NUMBER = 10;
+    private float pressureCombustionChamber_;
+    /**
+     * <code>float pressureCombustionChamber = 10;</code>
+     * @return Whether the pressureCombustionChamber field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressureCombustionChamber() {
+      return ((bitField0_ & 0x00000200) != 0);
+    }
+    /**
+     * <code>float pressureCombustionChamber = 10;</code>
+     * @return The pressureCombustionChamber.
+     */
+    @java.lang.Override
+    public float getPressureCombustionChamber() {
+      return pressureCombustionChamber_;
+    }
+
+    public static final int FILLSTATE_FIELD_NUMBER = 11;
+    private boolean fillState_;
+    /**
+     * <code>bool fillState = 11;</code>
+     * @return Whether the fillState field is set.
+     */
+    @java.lang.Override
+    public boolean hasFillState() {
+      return ((bitField0_ & 0x00000400) != 0);
+    }
+    /**
+     * <code>bool fillState = 11;</code>
+     * @return The fillState.
+     */
+    @java.lang.Override
+    public boolean getFillState() {
+      return fillState_;
+    }
+
+    public static final int DEPRSTATE_FIELD_NUMBER = 12;
+    private boolean deprState_;
+    /**
+     * <code>bool deprState = 12;</code>
+     * @return Whether the deprState field is set.
+     */
+    @java.lang.Override
+    public boolean hasDeprState() {
+      return ((bitField0_ & 0x00000800) != 0);
+    }
+    /**
+     * <code>bool deprState = 12;</code>
+     * @return The deprState.
+     */
+    @java.lang.Override
+    public boolean getDeprState() {
+      return deprState_;
+    }
+
+    public static final int VENTSTATE_FIELD_NUMBER = 13;
+    private boolean ventState_;
+    /**
+     * <code>bool ventState = 13;</code>
+     * @return Whether the ventState field is set.
+     */
+    @java.lang.Override
+    public boolean hasVentState() {
+      return ((bitField0_ & 0x00001000) != 0);
+    }
+    /**
+     * <code>bool ventState = 13;</code>
+     * @return The ventState.
+     */
+    @java.lang.Override
+    public boolean getVentState() {
+      return ventState_;
+    }
+
+    public static final int STATUSARM_FIELD_NUMBER = 14;
+    private boolean statusArm_;
+    /**
+     * <code>bool statusArm = 14;</code>
+     * @return Whether the statusArm field is set.
+     */
+    @java.lang.Override
+    public boolean hasStatusArm() {
+      return ((bitField0_ & 0x00002000) != 0);
+    }
+    /**
+     * <code>bool statusArm = 14;</code>
+     * @return The statusArm.
+     */
+    @java.lang.Override
+    public boolean getStatusArm() {
+      return statusArm_;
+    }
+
+    public static final int IGNITERCONT1_FIELD_NUMBER = 15;
+    private boolean igniterCont1_;
+    /**
+     * <code>bool igniterCont1 = 15;</code>
+     * @return Whether the igniterCont1 field is set.
+     */
+    @java.lang.Override
+    public boolean hasIgniterCont1() {
+      return ((bitField0_ & 0x00004000) != 0);
+    }
+    /**
+     * <code>bool igniterCont1 = 15;</code>
+     * @return The igniterCont1.
+     */
+    @java.lang.Override
+    public boolean getIgniterCont1() {
+      return igniterCont1_;
+    }
+
+    public static final int IGNITERCONT2_FIELD_NUMBER = 16;
+    private boolean igniterCont2_;
+    /**
+     * <code>bool igniterCont2 = 16;</code>
+     * @return Whether the igniterCont2 field is set.
+     */
+    @java.lang.Override
+    public boolean hasIgniterCont2() {
+      return ((bitField0_ & 0x00008000) != 0);
+    }
+    /**
+     * <code>bool igniterCont2 = 16;</code>
+     * @return The igniterCont2.
+     */
+    @java.lang.Override
+    public boolean getIgniterCont2() {
+      return igniterCont2_;
+    }
+
+    public static final int TANWABATTERY_FIELD_NUMBER = 17;
+    private float tanwaBattery_;
+    /**
+     * <code>float tanwaBattery = 17;</code>
+     * @return Whether the tanwaBattery field is set.
+     */
+    @java.lang.Override
+    public boolean hasTanwaBattery() {
+      return ((bitField0_ & 0x00010000) != 0);
+    }
+    /**
+     * <code>float tanwaBattery = 17;</code>
+     * @return The tanwaBattery.
+     */
+    @java.lang.Override
+    public float getTanwaBattery() {
+      return tanwaBattery_;
+    }
+
+    public static final int ENGINETHRUST_FIELD_NUMBER = 18;
+    private float engineThrust_;
+    /**
+     * <code>float engineThrust = 18;</code>
+     * @return Whether the engineThrust field is set.
+     */
+    @java.lang.Override
+    public boolean hasEngineThrust() {
+      return ((bitField0_ & 0x00020000) != 0);
+    }
+    /**
+     * <code>float engineThrust = 18;</code>
+     * @return The engineThrust.
+     */
+    @java.lang.Override
+    public float getEngineThrust() {
+      return engineThrust_;
+    }
+
+    public static final int ROCKETWEIGHT_FIELD_NUMBER = 19;
     private float rocketWeight_;
     /**
-     * <code>required float rocket_weight = 29;</code>
+     * <code>float rocketWeight = 19;</code>
      * @return Whether the rocketWeight field is set.
      */
     @java.lang.Override
     public boolean hasRocketWeight() {
-      return ((bitField0_ & 0x10000000) != 0);
+      return ((bitField0_ & 0x00040000) != 0);
     }
     /**
-     * <code>required float rocket_weight = 29;</code>
+     * <code>float rocketWeight = 19;</code>
      * @return The rocketWeight.
      */
     @java.lang.Override
@@ -1346,18 +858,18 @@ public final class FrameProtos {
       return rocketWeight_;
     }
 
-    public static final int TANK_WEIGHT_FIELD_NUMBER = 30;
+    public static final int TANKWEIGHT_FIELD_NUMBER = 20;
     private float tankWeight_;
     /**
-     * <code>required float tank_weight = 30;</code>
+     * <code>float tankWeight = 20;</code>
      * @return Whether the tankWeight field is set.
      */
     @java.lang.Override
     public boolean hasTankWeight() {
-      return ((bitField0_ & 0x20000000) != 0);
+      return ((bitField0_ & 0x00080000) != 0);
     }
     /**
-     * <code>required float tank_weight = 30;</code>
+     * <code>float tankWeight = 20;</code>
      * @return The tankWeight.
      */
     @java.lang.Override
@@ -1365,145 +877,99 @@ public final class FrameProtos {
       return tankWeight_;
     }
 
-    public static final int TEMPERATURE_FILL_FIELD_NUMBER = 31;
-    private float temperatureFill_;
+    public static final int TEMPINJECTOR_FIELD_NUMBER = 21;
+    private float tempInjector_;
     /**
-     * <code>required float temperature_fill = 31;</code>
-     * @return Whether the temperatureFill field is set.
+     * <code>float tempInjector = 21;</code>
+     * @return Whether the tempInjector field is set.
      */
     @java.lang.Override
-    public boolean hasTemperatureFill() {
-      return ((bitField0_ & 0x40000000) != 0);
+    public boolean hasTempInjector() {
+      return ((bitField0_ & 0x00100000) != 0);
     }
     /**
-     * <code>required float temperature_fill = 31;</code>
-     * @return The temperatureFill.
+     * <code>float tempInjector = 21;</code>
+     * @return The tempInjector.
      */
     @java.lang.Override
-    public float getTemperatureFill() {
-      return temperatureFill_;
-    }
-
-    public static final int PRE_FILL_PRESSURE_FIELD_NUMBER = 32;
-    private float preFillPressure_;
-    /**
-     * <code>required float pre_fill_pressure = 32;</code>
-     * @return Whether the preFillPressure field is set.
-     */
-    @java.lang.Override
-    public boolean hasPreFillPressure() {
-      return ((bitField0_ & 0x80000000) != 0);
-    }
-    /**
-     * <code>required float pre_fill_pressure = 32;</code>
-     * @return The preFillPressure.
-     */
-    @java.lang.Override
-    public float getPreFillPressure() {
-      return preFillPressure_;
+    public float getTempInjector() {
+      return tempInjector_;
     }
 
-    public static final int POST_FILL_PRESSURE_FIELD_NUMBER = 33;
-    private float postFillPressure_;
+    public static final int TEMPCOMBUSTIONCHAMBER_FIELD_NUMBER = 22;
+    private float tempCombustionChamber_;
     /**
-     * <code>required float post_fill_pressure = 33;</code>
-     * @return Whether the postFillPressure field is set.
+     * <code>float tempCombustionChamber = 22;</code>
+     * @return Whether the tempCombustionChamber field is set.
      */
     @java.lang.Override
-    public boolean hasPostFillPressure() {
-      return ((bitField1_ & 0x00000001) != 0);
+    public boolean hasTempCombustionChamber() {
+      return ((bitField0_ & 0x00200000) != 0);
     }
     /**
-     * <code>required float post_fill_pressure = 33;</code>
-     * @return The postFillPressure.
+     * <code>float tempCombustionChamber = 22;</code>
+     * @return The tempCombustionChamber.
      */
     @java.lang.Override
-    public float getPostFillPressure() {
-      return postFillPressure_;
-    }
-
-    public static final int BTL_PRESSURE_FIELD_NUMBER = 34;
-    private float btlPressure_;
-    /**
-     * <code>required float btl_pressure = 34;</code>
-     * @return Whether the btlPressure field is set.
-     */
-    @java.lang.Override
-    public boolean hasBtlPressure() {
-      return ((bitField1_ & 0x00000002) != 0);
-    }
-    /**
-     * <code>required float btl_pressure = 34;</code>
-     * @return The btlPressure.
-     */
-    @java.lang.Override
-    public float getBtlPressure() {
-      return btlPressure_;
+    public float getTempCombustionChamber() {
+      return tempCombustionChamber_;
     }
 
-    public static final int PAYLOAD_BATTERY_FIELD_NUMBER = 35;
-    private float payloadBattery_;
+    public static final int TEMPEXTERNALTANK_FIELD_NUMBER = 23;
+    private float tempExternalTank_;
     /**
-     * <pre>
-     * payload
-     * </pre>
-     *
-     * <code>required float payload_battery = 35;</code>
-     * @return Whether the payloadBattery field is set.
+     * <code>float tempExternalTank = 23;</code>
+     * @return Whether the tempExternalTank field is set.
      */
     @java.lang.Override
-    public boolean hasPayloadBattery() {
-      return ((bitField1_ & 0x00000004) != 0);
+    public boolean hasTempExternalTank() {
+      return ((bitField0_ & 0x00400000) != 0);
     }
     /**
-     * <pre>
-     * payload
-     * </pre>
-     *
-     * <code>required float payload_battery = 35;</code>
-     * @return The payloadBattery.
+     * <code>float tempExternalTank = 23;</code>
+     * @return The tempExternalTank.
      */
     @java.lang.Override
-    public float getPayloadBattery() {
-      return payloadBattery_;
+    public float getTempExternalTank() {
+      return tempExternalTank_;
     }
 
-    public static final int ESP_NOW_BYTE_DATA_FIELD_NUMBER = 36;
-    private int espNowByteData_;
+    public static final int STATUSOXY_FIELD_NUMBER = 24;
+    private boolean statusOxy_;
     /**
-     * <code>required fixed32 esp_now_byte_data = 36;</code>
-     * @return Whether the espNowByteData field is set.
+     * <code>bool statusOxy = 24;</code>
+     * @return Whether the statusOxy field is set.
      */
     @java.lang.Override
-    public boolean hasEspNowByteData() {
-      return ((bitField1_ & 0x00000008) != 0);
+    public boolean hasStatusOxy() {
+      return ((bitField0_ & 0x00800000) != 0);
     }
     /**
-     * <code>required fixed32 esp_now_byte_data = 36;</code>
-     * @return The espNowByteData.
+     * <code>bool statusOxy = 24;</code>
+     * @return The statusOxy.
      */
     @java.lang.Override
-    public int getEspNowByteData() {
-      return espNowByteData_;
+    public boolean getStatusOxy() {
+      return statusOxy_;
     }
 
-    public static final int ERRORS_FIELD_NUMBER = 37;
-    private int errors_;
+    public static final int STATUSFUEL_FIELD_NUMBER = 25;
+    private boolean statusFuel_;
     /**
-     * <code>required fixed32 errors = 37;</code>
-     * @return Whether the errors field is set.
+     * <code>bool statusFuel = 25;</code>
+     * @return Whether the statusFuel field is set.
      */
     @java.lang.Override
-    public boolean hasErrors() {
-      return ((bitField1_ & 0x00000010) != 0);
+    public boolean hasStatusFuel() {
+      return ((bitField0_ & 0x01000000) != 0);
     }
     /**
-     * <code>required fixed32 errors = 37;</code>
-     * @return The errors.
+     * <code>bool statusFuel = 25;</code>
+     * @return The statusFuel.
      */
     @java.lang.Override
-    public int getErrors() {
-      return errors_;
+    public boolean getStatusFuel() {
+      return statusFuel_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1513,154 +979,6 @@ public final class FrameProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasObcState()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasDcTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFlightTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMcbBattery()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGpsLat()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGpsLong()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGpsSat()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMcbAltitude()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMcbVelocity()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMcbTemperature()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasEulerFi()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasEulerPsi()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasEulerTheta()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRecovPressure1()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRecovPressure2()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRecovByteData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPitotBattery()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPitotAltitude()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPitotVelocity()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPitotTemperature()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMvalBattery()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMvalByteData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasVentBattery()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTankPressure()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasVentByteData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTanwaBattery()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTanwaByteData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTanwaState()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRocketWeight()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTankWeight()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTemperatureFill()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPreFillPressure()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPostFillPressure()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasBtlPressure()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPayloadBattery()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasEspNowByteData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasErrors()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1669,115 +987,79 @@ public final class FrameProtos {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeUInt32(1, obcState_);
+        output.writeUInt32(1, tanwaState_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeUInt32(2, dcTime_);
+        output.writeUInt32(2, upTime_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeUInt32(3, flightTime_);
+        output.writeInt32(3, engineWorkingTime_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
-        output.writeFloat(4, mcbBattery_);
+        output.writeFloat(4, pressureFuel_);
       }
       if (((bitField0_ & 0x00000010) != 0)) {
-        output.writeFloat(5, gpsLat_);
+        output.writeFloat(5, pressurePastFill_);
       }
       if (((bitField0_ & 0x00000020) != 0)) {
-        output.writeFloat(6, gpsLong_);
+        output.writeFloat(6, pressureBeforeFill_);
       }
       if (((bitField0_ & 0x00000040) != 0)) {
-        output.writeFloat(7, gpsSat_);
+        output.writeFloat(7, pressureOxi_);
       }
       if (((bitField0_ & 0x00000080) != 0)) {
-        output.writeFloat(8, mcbAltitude_);
+        output.writeFloat(8, pressureInjectorFuel_);
       }
       if (((bitField0_ & 0x00000100) != 0)) {
-        output.writeFloat(9, mcbVelocity_);
+        output.writeFloat(9, pressureInjectorOxi_);
       }
       if (((bitField0_ & 0x00000200) != 0)) {
-        output.writeInt32(10, mcbTemperature_);
+        output.writeFloat(10, pressureCombustionChamber_);
       }
       if (((bitField0_ & 0x00000400) != 0)) {
-        output.writeFloat(11, eulerFi_);
+        output.writeBool(11, fillState_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
-        output.writeFloat(12, eulerPsi_);
+        output.writeBool(12, deprState_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
-        output.writeFloat(13, eulerTheta_);
+        output.writeBool(13, ventState_);
       }
       if (((bitField0_ & 0x00002000) != 0)) {
-        output.writeUInt32(14, recovPressure1_);
+        output.writeBool(14, statusArm_);
       }
       if (((bitField0_ & 0x00004000) != 0)) {
-        output.writeUInt32(15, recovPressure2_);
+        output.writeBool(15, igniterCont1_);
       }
       if (((bitField0_ & 0x00008000) != 0)) {
-        output.writeFixed32(16, recovByteData_);
+        output.writeBool(16, igniterCont2_);
       }
       if (((bitField0_ & 0x00010000) != 0)) {
-        output.writeFloat(17, pitotBattery_);
+        output.writeFloat(17, tanwaBattery_);
       }
       if (((bitField0_ & 0x00020000) != 0)) {
-        output.writeInt32(18, pitotAltitude_);
+        output.writeFloat(18, engineThrust_);
       }
       if (((bitField0_ & 0x00040000) != 0)) {
-        output.writeInt32(19, pitotVelocity_);
+        output.writeFloat(19, rocketWeight_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
-        output.writeInt32(20, pitotTemperature_);
+        output.writeFloat(20, tankWeight_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
-        output.writeFloat(21, mvalBattery_);
+        output.writeFloat(21, tempInjector_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
-        output.writeFixed32(22, mvalByteData_);
+        output.writeFloat(22, tempCombustionChamber_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
-        output.writeFloat(23, ventBattery_);
+        output.writeFloat(23, tempExternalTank_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
-        output.writeFloat(24, tankPressure_);
+        output.writeBool(24, statusOxy_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
-        output.writeFixed32(25, ventByteData_);
-      }
-      if (((bitField0_ & 0x02000000) != 0)) {
-        output.writeFloat(26, tanwaBattery_);
-      }
-      if (((bitField0_ & 0x04000000) != 0)) {
-        output.writeFixed32(27, tanwaByteData_);
-      }
-      if (((bitField0_ & 0x08000000) != 0)) {
-        output.writeUInt32(28, tanwaState_);
-      }
-      if (((bitField0_ & 0x10000000) != 0)) {
-        output.writeFloat(29, rocketWeight_);
-      }
-      if (((bitField0_ & 0x20000000) != 0)) {
-        output.writeFloat(30, tankWeight_);
-      }
-      if (((bitField0_ & 0x40000000) != 0)) {
-        output.writeFloat(31, temperatureFill_);
-      }
-      if (((bitField0_ & 0x80000000) != 0)) {
-        output.writeFloat(32, preFillPressure_);
-      }
-      if (((bitField1_ & 0x00000001) != 0)) {
-        output.writeFloat(33, postFillPressure_);
-      }
-      if (((bitField1_ & 0x00000002) != 0)) {
-        output.writeFloat(34, btlPressure_);
-      }
-      if (((bitField1_ & 0x00000004) != 0)) {
-        output.writeFloat(35, payloadBattery_);
-      }
-      if (((bitField1_ & 0x00000008) != 0)) {
-        output.writeFixed32(36, espNowByteData_);
-      }
-      if (((bitField1_ & 0x00000010) != 0)) {
-        output.writeFixed32(37, errors_);
+        output.writeBool(25, statusFuel_);
       }
       unknownFields.writeTo(output);
     }
@@ -1790,151 +1072,103 @@ public final class FrameProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, obcState_);
+          .computeUInt32Size(1, tanwaState_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, dcTime_);
+          .computeUInt32Size(2, upTime_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, flightTime_);
+          .computeInt32Size(3, engineWorkingTime_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, mcbBattery_);
+          .computeFloatSize(4, pressureFuel_);
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(5, gpsLat_);
+          .computeFloatSize(5, pressurePastFill_);
       }
       if (((bitField0_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, gpsLong_);
+          .computeFloatSize(6, pressureBeforeFill_);
       }
       if (((bitField0_ & 0x00000040) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, gpsSat_);
+          .computeFloatSize(7, pressureOxi_);
       }
       if (((bitField0_ & 0x00000080) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(8, mcbAltitude_);
+          .computeFloatSize(8, pressureInjectorFuel_);
       }
       if (((bitField0_ & 0x00000100) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(9, mcbVelocity_);
+          .computeFloatSize(9, pressureInjectorOxi_);
       }
       if (((bitField0_ & 0x00000200) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, mcbTemperature_);
+          .computeFloatSize(10, pressureCombustionChamber_);
       }
       if (((bitField0_ & 0x00000400) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(11, eulerFi_);
+          .computeBoolSize(11, fillState_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(12, eulerPsi_);
+          .computeBoolSize(12, deprState_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(13, eulerTheta_);
+          .computeBoolSize(13, ventState_);
       }
       if (((bitField0_ & 0x00002000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(14, recovPressure1_);
+          .computeBoolSize(14, statusArm_);
       }
       if (((bitField0_ & 0x00004000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(15, recovPressure2_);
+          .computeBoolSize(15, igniterCont1_);
       }
       if (((bitField0_ & 0x00008000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(16, recovByteData_);
+          .computeBoolSize(16, igniterCont2_);
       }
       if (((bitField0_ & 0x00010000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(17, pitotBattery_);
+          .computeFloatSize(17, tanwaBattery_);
       }
       if (((bitField0_ & 0x00020000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(18, pitotAltitude_);
+          .computeFloatSize(18, engineThrust_);
       }
       if (((bitField0_ & 0x00040000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(19, pitotVelocity_);
+          .computeFloatSize(19, rocketWeight_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(20, pitotTemperature_);
+          .computeFloatSize(20, tankWeight_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(21, mvalBattery_);
+          .computeFloatSize(21, tempInjector_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(22, mvalByteData_);
+          .computeFloatSize(22, tempCombustionChamber_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(23, ventBattery_);
+          .computeFloatSize(23, tempExternalTank_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(24, tankPressure_);
+          .computeBoolSize(24, statusOxy_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(25, ventByteData_);
-      }
-      if (((bitField0_ & 0x02000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(26, tanwaBattery_);
-      }
-      if (((bitField0_ & 0x04000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(27, tanwaByteData_);
-      }
-      if (((bitField0_ & 0x08000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(28, tanwaState_);
-      }
-      if (((bitField0_ & 0x10000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(29, rocketWeight_);
-      }
-      if (((bitField0_ & 0x20000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(30, tankWeight_);
-      }
-      if (((bitField0_ & 0x40000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(31, temperatureFill_);
-      }
-      if (((bitField0_ & 0x80000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(32, preFillPressure_);
-      }
-      if (((bitField1_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(33, postFillPressure_);
-      }
-      if (((bitField1_ & 0x00000002) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(34, btlPressure_);
-      }
-      if (((bitField1_ & 0x00000004) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(35, payloadBattery_);
-      }
-      if (((bitField1_ & 0x00000008) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(36, espNowByteData_);
-      }
-      if (((bitField1_ & 0x00000010) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(37, errors_);
+          .computeBoolSize(25, statusFuel_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1951,143 +1185,92 @@ public final class FrameProtos {
       }
       pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame) obj;
 
-      if (hasObcState() != other.hasObcState()) return false;
-      if (hasObcState()) {
-        if (getObcState()
-            != other.getObcState()) return false;
+      if (hasTanwaState() != other.hasTanwaState()) return false;
+      if (hasTanwaState()) {
+        if (getTanwaState()
+            != other.getTanwaState()) return false;
       }
-      if (hasDcTime() != other.hasDcTime()) return false;
-      if (hasDcTime()) {
-        if (getDcTime()
-            != other.getDcTime()) return false;
+      if (hasUpTime() != other.hasUpTime()) return false;
+      if (hasUpTime()) {
+        if (getUpTime()
+            != other.getUpTime()) return false;
       }
-      if (hasFlightTime() != other.hasFlightTime()) return false;
-      if (hasFlightTime()) {
-        if (getFlightTime()
-            != other.getFlightTime()) return false;
+      if (hasEngineWorkingTime() != other.hasEngineWorkingTime()) return false;
+      if (hasEngineWorkingTime()) {
+        if (getEngineWorkingTime()
+            != other.getEngineWorkingTime()) return false;
       }
-      if (hasMcbBattery() != other.hasMcbBattery()) return false;
-      if (hasMcbBattery()) {
-        if (java.lang.Float.floatToIntBits(getMcbBattery())
+      if (hasPressureFuel() != other.hasPressureFuel()) return false;
+      if (hasPressureFuel()) {
+        if (java.lang.Float.floatToIntBits(getPressureFuel())
             != java.lang.Float.floatToIntBits(
-                other.getMcbBattery())) return false;
+                other.getPressureFuel())) return false;
       }
-      if (hasGpsLat() != other.hasGpsLat()) return false;
-      if (hasGpsLat()) {
-        if (java.lang.Float.floatToIntBits(getGpsLat())
+      if (hasPressurePastFill() != other.hasPressurePastFill()) return false;
+      if (hasPressurePastFill()) {
+        if (java.lang.Float.floatToIntBits(getPressurePastFill())
             != java.lang.Float.floatToIntBits(
-                other.getGpsLat())) return false;
+                other.getPressurePastFill())) return false;
       }
-      if (hasGpsLong() != other.hasGpsLong()) return false;
-      if (hasGpsLong()) {
-        if (java.lang.Float.floatToIntBits(getGpsLong())
+      if (hasPressureBeforeFill() != other.hasPressureBeforeFill()) return false;
+      if (hasPressureBeforeFill()) {
+        if (java.lang.Float.floatToIntBits(getPressureBeforeFill())
             != java.lang.Float.floatToIntBits(
-                other.getGpsLong())) return false;
+                other.getPressureBeforeFill())) return false;
       }
-      if (hasGpsSat() != other.hasGpsSat()) return false;
-      if (hasGpsSat()) {
-        if (java.lang.Float.floatToIntBits(getGpsSat())
+      if (hasPressureOxi() != other.hasPressureOxi()) return false;
+      if (hasPressureOxi()) {
+        if (java.lang.Float.floatToIntBits(getPressureOxi())
             != java.lang.Float.floatToIntBits(
-                other.getGpsSat())) return false;
+                other.getPressureOxi())) return false;
       }
-      if (hasMcbAltitude() != other.hasMcbAltitude()) return false;
-      if (hasMcbAltitude()) {
-        if (java.lang.Float.floatToIntBits(getMcbAltitude())
+      if (hasPressureInjectorFuel() != other.hasPressureInjectorFuel()) return false;
+      if (hasPressureInjectorFuel()) {
+        if (java.lang.Float.floatToIntBits(getPressureInjectorFuel())
             != java.lang.Float.floatToIntBits(
-                other.getMcbAltitude())) return false;
+                other.getPressureInjectorFuel())) return false;
       }
-      if (hasMcbVelocity() != other.hasMcbVelocity()) return false;
-      if (hasMcbVelocity()) {
-        if (java.lang.Float.floatToIntBits(getMcbVelocity())
+      if (hasPressureInjectorOxi() != other.hasPressureInjectorOxi()) return false;
+      if (hasPressureInjectorOxi()) {
+        if (java.lang.Float.floatToIntBits(getPressureInjectorOxi())
             != java.lang.Float.floatToIntBits(
-                other.getMcbVelocity())) return false;
+                other.getPressureInjectorOxi())) return false;
       }
-      if (hasMcbTemperature() != other.hasMcbTemperature()) return false;
-      if (hasMcbTemperature()) {
-        if (getMcbTemperature()
-            != other.getMcbTemperature()) return false;
-      }
-      if (hasEulerFi() != other.hasEulerFi()) return false;
-      if (hasEulerFi()) {
-        if (java.lang.Float.floatToIntBits(getEulerFi())
+      if (hasPressureCombustionChamber() != other.hasPressureCombustionChamber()) return false;
+      if (hasPressureCombustionChamber()) {
+        if (java.lang.Float.floatToIntBits(getPressureCombustionChamber())
             != java.lang.Float.floatToIntBits(
-                other.getEulerFi())) return false;
+                other.getPressureCombustionChamber())) return false;
       }
-      if (hasEulerPsi() != other.hasEulerPsi()) return false;
-      if (hasEulerPsi()) {
-        if (java.lang.Float.floatToIntBits(getEulerPsi())
-            != java.lang.Float.floatToIntBits(
-                other.getEulerPsi())) return false;
+      if (hasFillState() != other.hasFillState()) return false;
+      if (hasFillState()) {
+        if (getFillState()
+            != other.getFillState()) return false;
       }
-      if (hasEulerTheta() != other.hasEulerTheta()) return false;
-      if (hasEulerTheta()) {
-        if (java.lang.Float.floatToIntBits(getEulerTheta())
-            != java.lang.Float.floatToIntBits(
-                other.getEulerTheta())) return false;
+      if (hasDeprState() != other.hasDeprState()) return false;
+      if (hasDeprState()) {
+        if (getDeprState()
+            != other.getDeprState()) return false;
       }
-      if (hasRecovPressure1() != other.hasRecovPressure1()) return false;
-      if (hasRecovPressure1()) {
-        if (getRecovPressure1()
-            != other.getRecovPressure1()) return false;
+      if (hasVentState() != other.hasVentState()) return false;
+      if (hasVentState()) {
+        if (getVentState()
+            != other.getVentState()) return false;
       }
-      if (hasRecovPressure2() != other.hasRecovPressure2()) return false;
-      if (hasRecovPressure2()) {
-        if (getRecovPressure2()
-            != other.getRecovPressure2()) return false;
+      if (hasStatusArm() != other.hasStatusArm()) return false;
+      if (hasStatusArm()) {
+        if (getStatusArm()
+            != other.getStatusArm()) return false;
       }
-      if (hasRecovByteData() != other.hasRecovByteData()) return false;
-      if (hasRecovByteData()) {
-        if (getRecovByteData()
-            != other.getRecovByteData()) return false;
+      if (hasIgniterCont1() != other.hasIgniterCont1()) return false;
+      if (hasIgniterCont1()) {
+        if (getIgniterCont1()
+            != other.getIgniterCont1()) return false;
       }
-      if (hasPitotBattery() != other.hasPitotBattery()) return false;
-      if (hasPitotBattery()) {
-        if (java.lang.Float.floatToIntBits(getPitotBattery())
-            != java.lang.Float.floatToIntBits(
-                other.getPitotBattery())) return false;
-      }
-      if (hasPitotAltitude() != other.hasPitotAltitude()) return false;
-      if (hasPitotAltitude()) {
-        if (getPitotAltitude()
-            != other.getPitotAltitude()) return false;
-      }
-      if (hasPitotVelocity() != other.hasPitotVelocity()) return false;
-      if (hasPitotVelocity()) {
-        if (getPitotVelocity()
-            != other.getPitotVelocity()) return false;
-      }
-      if (hasPitotTemperature() != other.hasPitotTemperature()) return false;
-      if (hasPitotTemperature()) {
-        if (getPitotTemperature()
-            != other.getPitotTemperature()) return false;
-      }
-      if (hasMvalBattery() != other.hasMvalBattery()) return false;
-      if (hasMvalBattery()) {
-        if (java.lang.Float.floatToIntBits(getMvalBattery())
-            != java.lang.Float.floatToIntBits(
-                other.getMvalBattery())) return false;
-      }
-      if (hasMvalByteData() != other.hasMvalByteData()) return false;
-      if (hasMvalByteData()) {
-        if (getMvalByteData()
-            != other.getMvalByteData()) return false;
-      }
-      if (hasVentBattery() != other.hasVentBattery()) return false;
-      if (hasVentBattery()) {
-        if (java.lang.Float.floatToIntBits(getVentBattery())
-            != java.lang.Float.floatToIntBits(
-                other.getVentBattery())) return false;
-      }
-      if (hasTankPressure() != other.hasTankPressure()) return false;
-      if (hasTankPressure()) {
-        if (java.lang.Float.floatToIntBits(getTankPressure())
-            != java.lang.Float.floatToIntBits(
-                other.getTankPressure())) return false;
-      }
-      if (hasVentByteData() != other.hasVentByteData()) return false;
-      if (hasVentByteData()) {
-        if (getVentByteData()
-            != other.getVentByteData()) return false;
+      if (hasIgniterCont2() != other.hasIgniterCont2()) return false;
+      if (hasIgniterCont2()) {
+        if (getIgniterCont2()
+            != other.getIgniterCont2()) return false;
       }
       if (hasTanwaBattery() != other.hasTanwaBattery()) return false;
       if (hasTanwaBattery()) {
@@ -2095,15 +1278,11 @@ public final class FrameProtos {
             != java.lang.Float.floatToIntBits(
                 other.getTanwaBattery())) return false;
       }
-      if (hasTanwaByteData() != other.hasTanwaByteData()) return false;
-      if (hasTanwaByteData()) {
-        if (getTanwaByteData()
-            != other.getTanwaByteData()) return false;
-      }
-      if (hasTanwaState() != other.hasTanwaState()) return false;
-      if (hasTanwaState()) {
-        if (getTanwaState()
-            != other.getTanwaState()) return false;
+      if (hasEngineThrust() != other.hasEngineThrust()) return false;
+      if (hasEngineThrust()) {
+        if (java.lang.Float.floatToIntBits(getEngineThrust())
+            != java.lang.Float.floatToIntBits(
+                other.getEngineThrust())) return false;
       }
       if (hasRocketWeight() != other.hasRocketWeight()) return false;
       if (hasRocketWeight()) {
@@ -2117,45 +1296,33 @@ public final class FrameProtos {
             != java.lang.Float.floatToIntBits(
                 other.getTankWeight())) return false;
       }
-      if (hasTemperatureFill() != other.hasTemperatureFill()) return false;
-      if (hasTemperatureFill()) {
-        if (java.lang.Float.floatToIntBits(getTemperatureFill())
+      if (hasTempInjector() != other.hasTempInjector()) return false;
+      if (hasTempInjector()) {
+        if (java.lang.Float.floatToIntBits(getTempInjector())
             != java.lang.Float.floatToIntBits(
-                other.getTemperatureFill())) return false;
+                other.getTempInjector())) return false;
       }
-      if (hasPreFillPressure() != other.hasPreFillPressure()) return false;
-      if (hasPreFillPressure()) {
-        if (java.lang.Float.floatToIntBits(getPreFillPressure())
+      if (hasTempCombustionChamber() != other.hasTempCombustionChamber()) return false;
+      if (hasTempCombustionChamber()) {
+        if (java.lang.Float.floatToIntBits(getTempCombustionChamber())
             != java.lang.Float.floatToIntBits(
-                other.getPreFillPressure())) return false;
+                other.getTempCombustionChamber())) return false;
       }
-      if (hasPostFillPressure() != other.hasPostFillPressure()) return false;
-      if (hasPostFillPressure()) {
-        if (java.lang.Float.floatToIntBits(getPostFillPressure())
+      if (hasTempExternalTank() != other.hasTempExternalTank()) return false;
+      if (hasTempExternalTank()) {
+        if (java.lang.Float.floatToIntBits(getTempExternalTank())
             != java.lang.Float.floatToIntBits(
-                other.getPostFillPressure())) return false;
+                other.getTempExternalTank())) return false;
       }
-      if (hasBtlPressure() != other.hasBtlPressure()) return false;
-      if (hasBtlPressure()) {
-        if (java.lang.Float.floatToIntBits(getBtlPressure())
-            != java.lang.Float.floatToIntBits(
-                other.getBtlPressure())) return false;
+      if (hasStatusOxy() != other.hasStatusOxy()) return false;
+      if (hasStatusOxy()) {
+        if (getStatusOxy()
+            != other.getStatusOxy()) return false;
       }
-      if (hasPayloadBattery() != other.hasPayloadBattery()) return false;
-      if (hasPayloadBattery()) {
-        if (java.lang.Float.floatToIntBits(getPayloadBattery())
-            != java.lang.Float.floatToIntBits(
-                other.getPayloadBattery())) return false;
-      }
-      if (hasEspNowByteData() != other.hasEspNowByteData()) return false;
-      if (hasEspNowByteData()) {
-        if (getEspNowByteData()
-            != other.getEspNowByteData()) return false;
-      }
-      if (hasErrors() != other.hasErrors()) return false;
-      if (hasErrors()) {
-        if (getErrors()
-            != other.getErrors()) return false;
+      if (hasStatusFuel() != other.hasStatusFuel()) return false;
+      if (hasStatusFuel()) {
+        if (getStatusFuel()
+            != other.getStatusFuel()) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -2168,174 +1335,127 @@ public final class FrameProtos {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasObcState()) {
-        hash = (37 * hash) + OBC_STATE_FIELD_NUMBER;
-        hash = (53 * hash) + getObcState();
+      if (hasTanwaState()) {
+        hash = (37 * hash) + TANWASTATE_FIELD_NUMBER;
+        hash = (53 * hash) + getTanwaState();
       }
-      if (hasDcTime()) {
-        hash = (37 * hash) + DC_TIME_FIELD_NUMBER;
-        hash = (53 * hash) + getDcTime();
+      if (hasUpTime()) {
+        hash = (37 * hash) + UPTIME_FIELD_NUMBER;
+        hash = (53 * hash) + getUpTime();
       }
-      if (hasFlightTime()) {
-        hash = (37 * hash) + FLIGHT_TIME_FIELD_NUMBER;
-        hash = (53 * hash) + getFlightTime();
+      if (hasEngineWorkingTime()) {
+        hash = (37 * hash) + ENGINEWORKINGTIME_FIELD_NUMBER;
+        hash = (53 * hash) + getEngineWorkingTime();
       }
-      if (hasMcbBattery()) {
-        hash = (37 * hash) + MCB_BATTERY_FIELD_NUMBER;
+      if (hasPressureFuel()) {
+        hash = (37 * hash) + PRESSUREFUEL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getMcbBattery());
+            getPressureFuel());
       }
-      if (hasGpsLat()) {
-        hash = (37 * hash) + GPS_LAT_FIELD_NUMBER;
+      if (hasPressurePastFill()) {
+        hash = (37 * hash) + PRESSUREPASTFILL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getGpsLat());
+            getPressurePastFill());
       }
-      if (hasGpsLong()) {
-        hash = (37 * hash) + GPS_LONG_FIELD_NUMBER;
+      if (hasPressureBeforeFill()) {
+        hash = (37 * hash) + PRESSUREBEFOREFILL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getGpsLong());
+            getPressureBeforeFill());
       }
-      if (hasGpsSat()) {
-        hash = (37 * hash) + GPS_SAT_FIELD_NUMBER;
+      if (hasPressureOxi()) {
+        hash = (37 * hash) + PRESSUREOXI_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getGpsSat());
+            getPressureOxi());
       }
-      if (hasMcbAltitude()) {
-        hash = (37 * hash) + MCB_ALTITUDE_FIELD_NUMBER;
+      if (hasPressureInjectorFuel()) {
+        hash = (37 * hash) + PRESSUREINJECTORFUEL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getMcbAltitude());
+            getPressureInjectorFuel());
       }
-      if (hasMcbVelocity()) {
-        hash = (37 * hash) + MCB_VELOCITY_FIELD_NUMBER;
+      if (hasPressureInjectorOxi()) {
+        hash = (37 * hash) + PRESSUREINJECTOROXI_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getMcbVelocity());
+            getPressureInjectorOxi());
       }
-      if (hasMcbTemperature()) {
-        hash = (37 * hash) + MCB_TEMPERATURE_FIELD_NUMBER;
-        hash = (53 * hash) + getMcbTemperature();
-      }
-      if (hasEulerFi()) {
-        hash = (37 * hash) + EULER_FI_FIELD_NUMBER;
+      if (hasPressureCombustionChamber()) {
+        hash = (37 * hash) + PRESSURECOMBUSTIONCHAMBER_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getEulerFi());
+            getPressureCombustionChamber());
       }
-      if (hasEulerPsi()) {
-        hash = (37 * hash) + EULER_PSI_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getEulerPsi());
+      if (hasFillState()) {
+        hash = (37 * hash) + FILLSTATE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getFillState());
       }
-      if (hasEulerTheta()) {
-        hash = (37 * hash) + EULER_THETA_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getEulerTheta());
+      if (hasDeprState()) {
+        hash = (37 * hash) + DEPRSTATE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getDeprState());
       }
-      if (hasRecovPressure1()) {
-        hash = (37 * hash) + RECOV_PRESSURE_1_FIELD_NUMBER;
-        hash = (53 * hash) + getRecovPressure1();
+      if (hasVentState()) {
+        hash = (37 * hash) + VENTSTATE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getVentState());
       }
-      if (hasRecovPressure2()) {
-        hash = (37 * hash) + RECOV_PRESSURE_2_FIELD_NUMBER;
-        hash = (53 * hash) + getRecovPressure2();
+      if (hasStatusArm()) {
+        hash = (37 * hash) + STATUSARM_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getStatusArm());
       }
-      if (hasRecovByteData()) {
-        hash = (37 * hash) + RECOV_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getRecovByteData();
+      if (hasIgniterCont1()) {
+        hash = (37 * hash) + IGNITERCONT1_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getIgniterCont1());
       }
-      if (hasPitotBattery()) {
-        hash = (37 * hash) + PITOT_BATTERY_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPitotBattery());
-      }
-      if (hasPitotAltitude()) {
-        hash = (37 * hash) + PITOT_ALTITUDE_FIELD_NUMBER;
-        hash = (53 * hash) + getPitotAltitude();
-      }
-      if (hasPitotVelocity()) {
-        hash = (37 * hash) + PITOT_VELOCITY_FIELD_NUMBER;
-        hash = (53 * hash) + getPitotVelocity();
-      }
-      if (hasPitotTemperature()) {
-        hash = (37 * hash) + PITOT_TEMPERATURE_FIELD_NUMBER;
-        hash = (53 * hash) + getPitotTemperature();
-      }
-      if (hasMvalBattery()) {
-        hash = (37 * hash) + MVAL_BATTERY_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getMvalBattery());
-      }
-      if (hasMvalByteData()) {
-        hash = (37 * hash) + MVAL_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getMvalByteData();
-      }
-      if (hasVentBattery()) {
-        hash = (37 * hash) + VENT_BATTERY_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getVentBattery());
-      }
-      if (hasTankPressure()) {
-        hash = (37 * hash) + TANK_PRESSURE_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTankPressure());
-      }
-      if (hasVentByteData()) {
-        hash = (37 * hash) + VENT_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getVentByteData();
+      if (hasIgniterCont2()) {
+        hash = (37 * hash) + IGNITERCONT2_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getIgniterCont2());
       }
       if (hasTanwaBattery()) {
-        hash = (37 * hash) + TANWA_BATTERY_FIELD_NUMBER;
+        hash = (37 * hash) + TANWABATTERY_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getTanwaBattery());
       }
-      if (hasTanwaByteData()) {
-        hash = (37 * hash) + TANWA_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getTanwaByteData();
-      }
-      if (hasTanwaState()) {
-        hash = (37 * hash) + TANWA_STATE_FIELD_NUMBER;
-        hash = (53 * hash) + getTanwaState();
+      if (hasEngineThrust()) {
+        hash = (37 * hash) + ENGINETHRUST_FIELD_NUMBER;
+        hash = (53 * hash) + java.lang.Float.floatToIntBits(
+            getEngineThrust());
       }
       if (hasRocketWeight()) {
-        hash = (37 * hash) + ROCKET_WEIGHT_FIELD_NUMBER;
+        hash = (37 * hash) + ROCKETWEIGHT_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getRocketWeight());
       }
       if (hasTankWeight()) {
-        hash = (37 * hash) + TANK_WEIGHT_FIELD_NUMBER;
+        hash = (37 * hash) + TANKWEIGHT_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getTankWeight());
       }
-      if (hasTemperatureFill()) {
-        hash = (37 * hash) + TEMPERATURE_FILL_FIELD_NUMBER;
+      if (hasTempInjector()) {
+        hash = (37 * hash) + TEMPINJECTOR_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTemperatureFill());
+            getTempInjector());
       }
-      if (hasPreFillPressure()) {
-        hash = (37 * hash) + PRE_FILL_PRESSURE_FIELD_NUMBER;
+      if (hasTempCombustionChamber()) {
+        hash = (37 * hash) + TEMPCOMBUSTIONCHAMBER_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPreFillPressure());
+            getTempCombustionChamber());
       }
-      if (hasPostFillPressure()) {
-        hash = (37 * hash) + POST_FILL_PRESSURE_FIELD_NUMBER;
+      if (hasTempExternalTank()) {
+        hash = (37 * hash) + TEMPEXTERNALTANK_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPostFillPressure());
+            getTempExternalTank());
       }
-      if (hasBtlPressure()) {
-        hash = (37 * hash) + BTL_PRESSURE_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getBtlPressure());
+      if (hasStatusOxy()) {
+        hash = (37 * hash) + STATUSOXY_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getStatusOxy());
       }
-      if (hasPayloadBattery()) {
-        hash = (37 * hash) + PAYLOAD_BATTERY_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPayloadBattery());
-      }
-      if (hasEspNowByteData()) {
-        hash = (37 * hash) + ESP_NOW_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getEspNowByteData();
-      }
-      if (hasErrors()) {
-        hash = (37 * hash) + ERRORS_FIELD_NUMBER;
-        hash = (53 * hash) + getErrors();
+      if (hasStatusFuel()) {
+        hash = (37 * hash) + STATUSFUEL_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getStatusFuel());
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -2470,80 +1590,56 @@ public final class FrameProtos {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        obcState_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        dcTime_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        flightTime_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        mcbBattery_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        gpsLat_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        gpsLong_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        gpsSat_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        mcbAltitude_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        mcbVelocity_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        mcbTemperature_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000200);
-        eulerFi_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000400);
-        eulerPsi_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000800);
-        eulerTheta_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00001000);
-        recovPressure1_ = 0;
-        bitField0_ = (bitField0_ & ~0x00002000);
-        recovPressure2_ = 0;
-        bitField0_ = (bitField0_ & ~0x00004000);
-        recovByteData_ = 0;
-        bitField0_ = (bitField0_ & ~0x00008000);
-        pitotBattery_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00010000);
-        pitotAltitude_ = 0;
-        bitField0_ = (bitField0_ & ~0x00020000);
-        pitotVelocity_ = 0;
-        bitField0_ = (bitField0_ & ~0x00040000);
-        pitotTemperature_ = 0;
-        bitField0_ = (bitField0_ & ~0x00080000);
-        mvalBattery_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00100000);
-        mvalByteData_ = 0;
-        bitField0_ = (bitField0_ & ~0x00200000);
-        ventBattery_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00400000);
-        tankPressure_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00800000);
-        ventByteData_ = 0;
-        bitField0_ = (bitField0_ & ~0x01000000);
-        tanwaBattery_ = 0F;
-        bitField0_ = (bitField0_ & ~0x02000000);
-        tanwaByteData_ = 0;
-        bitField0_ = (bitField0_ & ~0x04000000);
         tanwaState_ = 0;
-        bitField0_ = (bitField0_ & ~0x08000000);
+        bitField0_ = (bitField0_ & ~0x00000001);
+        upTime_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        engineWorkingTime_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        pressureFuel_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        pressurePastFill_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        pressureBeforeFill_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        pressureOxi_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        pressureInjectorFuel_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        pressureInjectorOxi_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        pressureCombustionChamber_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        fillState_ = false;
+        bitField0_ = (bitField0_ & ~0x00000400);
+        deprState_ = false;
+        bitField0_ = (bitField0_ & ~0x00000800);
+        ventState_ = false;
+        bitField0_ = (bitField0_ & ~0x00001000);
+        statusArm_ = false;
+        bitField0_ = (bitField0_ & ~0x00002000);
+        igniterCont1_ = false;
+        bitField0_ = (bitField0_ & ~0x00004000);
+        igniterCont2_ = false;
+        bitField0_ = (bitField0_ & ~0x00008000);
+        tanwaBattery_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00010000);
+        engineThrust_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00020000);
         rocketWeight_ = 0F;
-        bitField0_ = (bitField0_ & ~0x10000000);
+        bitField0_ = (bitField0_ & ~0x00040000);
         tankWeight_ = 0F;
-        bitField0_ = (bitField0_ & ~0x20000000);
-        temperatureFill_ = 0F;
-        bitField0_ = (bitField0_ & ~0x40000000);
-        preFillPressure_ = 0F;
-        bitField0_ = (bitField0_ & ~0x80000000);
-        postFillPressure_ = 0F;
-        bitField1_ = (bitField1_ & ~0x00000001);
-        btlPressure_ = 0F;
-        bitField1_ = (bitField1_ & ~0x00000002);
-        payloadBattery_ = 0F;
-        bitField1_ = (bitField1_ & ~0x00000004);
-        espNowByteData_ = 0;
-        bitField1_ = (bitField1_ & ~0x00000008);
-        errors_ = 0;
-        bitField1_ = (bitField1_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00080000);
+        tempInjector_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00100000);
+        tempCombustionChamber_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00200000);
+        tempExternalTank_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00400000);
+        statusOxy_ = false;
+        bitField0_ = (bitField0_ & ~0x00800000);
+        statusFuel_ = false;
+        bitField0_ = (bitField0_ & ~0x01000000);
         return this;
       }
 
@@ -2571,159 +1667,108 @@ public final class FrameProtos {
       public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame buildPartial() {
         pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame(this);
         int from_bitField0_ = bitField0_;
-        int from_bitField1_ = bitField1_;
         int to_bitField0_ = 0;
-        int to_bitField1_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.obcState_ = obcState_;
+          result.tanwaState_ = tanwaState_;
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.dcTime_ = dcTime_;
+          result.upTime_ = upTime_;
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.flightTime_ = flightTime_;
+          result.engineWorkingTime_ = engineWorkingTime_;
           to_bitField0_ |= 0x00000004;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.mcbBattery_ = mcbBattery_;
+          result.pressureFuel_ = pressureFuel_;
           to_bitField0_ |= 0x00000008;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
-          result.gpsLat_ = gpsLat_;
+          result.pressurePastFill_ = pressurePastFill_;
           to_bitField0_ |= 0x00000010;
         }
         if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.gpsLong_ = gpsLong_;
+          result.pressureBeforeFill_ = pressureBeforeFill_;
           to_bitField0_ |= 0x00000020;
         }
         if (((from_bitField0_ & 0x00000040) != 0)) {
-          result.gpsSat_ = gpsSat_;
+          result.pressureOxi_ = pressureOxi_;
           to_bitField0_ |= 0x00000040;
         }
         if (((from_bitField0_ & 0x00000080) != 0)) {
-          result.mcbAltitude_ = mcbAltitude_;
+          result.pressureInjectorFuel_ = pressureInjectorFuel_;
           to_bitField0_ |= 0x00000080;
         }
         if (((from_bitField0_ & 0x00000100) != 0)) {
-          result.mcbVelocity_ = mcbVelocity_;
+          result.pressureInjectorOxi_ = pressureInjectorOxi_;
           to_bitField0_ |= 0x00000100;
         }
         if (((from_bitField0_ & 0x00000200) != 0)) {
-          result.mcbTemperature_ = mcbTemperature_;
+          result.pressureCombustionChamber_ = pressureCombustionChamber_;
           to_bitField0_ |= 0x00000200;
         }
         if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.eulerFi_ = eulerFi_;
+          result.fillState_ = fillState_;
           to_bitField0_ |= 0x00000400;
         }
         if (((from_bitField0_ & 0x00000800) != 0)) {
-          result.eulerPsi_ = eulerPsi_;
+          result.deprState_ = deprState_;
           to_bitField0_ |= 0x00000800;
         }
         if (((from_bitField0_ & 0x00001000) != 0)) {
-          result.eulerTheta_ = eulerTheta_;
+          result.ventState_ = ventState_;
           to_bitField0_ |= 0x00001000;
         }
         if (((from_bitField0_ & 0x00002000) != 0)) {
-          result.recovPressure1_ = recovPressure1_;
+          result.statusArm_ = statusArm_;
           to_bitField0_ |= 0x00002000;
         }
         if (((from_bitField0_ & 0x00004000) != 0)) {
-          result.recovPressure2_ = recovPressure2_;
+          result.igniterCont1_ = igniterCont1_;
           to_bitField0_ |= 0x00004000;
         }
         if (((from_bitField0_ & 0x00008000) != 0)) {
-          result.recovByteData_ = recovByteData_;
+          result.igniterCont2_ = igniterCont2_;
           to_bitField0_ |= 0x00008000;
         }
         if (((from_bitField0_ & 0x00010000) != 0)) {
-          result.pitotBattery_ = pitotBattery_;
+          result.tanwaBattery_ = tanwaBattery_;
           to_bitField0_ |= 0x00010000;
         }
         if (((from_bitField0_ & 0x00020000) != 0)) {
-          result.pitotAltitude_ = pitotAltitude_;
+          result.engineThrust_ = engineThrust_;
           to_bitField0_ |= 0x00020000;
         }
         if (((from_bitField0_ & 0x00040000) != 0)) {
-          result.pitotVelocity_ = pitotVelocity_;
+          result.rocketWeight_ = rocketWeight_;
           to_bitField0_ |= 0x00040000;
         }
         if (((from_bitField0_ & 0x00080000) != 0)) {
-          result.pitotTemperature_ = pitotTemperature_;
+          result.tankWeight_ = tankWeight_;
           to_bitField0_ |= 0x00080000;
         }
         if (((from_bitField0_ & 0x00100000) != 0)) {
-          result.mvalBattery_ = mvalBattery_;
+          result.tempInjector_ = tempInjector_;
           to_bitField0_ |= 0x00100000;
         }
         if (((from_bitField0_ & 0x00200000) != 0)) {
-          result.mvalByteData_ = mvalByteData_;
+          result.tempCombustionChamber_ = tempCombustionChamber_;
           to_bitField0_ |= 0x00200000;
         }
         if (((from_bitField0_ & 0x00400000) != 0)) {
-          result.ventBattery_ = ventBattery_;
+          result.tempExternalTank_ = tempExternalTank_;
           to_bitField0_ |= 0x00400000;
         }
         if (((from_bitField0_ & 0x00800000) != 0)) {
-          result.tankPressure_ = tankPressure_;
+          result.statusOxy_ = statusOxy_;
           to_bitField0_ |= 0x00800000;
         }
         if (((from_bitField0_ & 0x01000000) != 0)) {
-          result.ventByteData_ = ventByteData_;
+          result.statusFuel_ = statusFuel_;
           to_bitField0_ |= 0x01000000;
         }
-        if (((from_bitField0_ & 0x02000000) != 0)) {
-          result.tanwaBattery_ = tanwaBattery_;
-          to_bitField0_ |= 0x02000000;
-        }
-        if (((from_bitField0_ & 0x04000000) != 0)) {
-          result.tanwaByteData_ = tanwaByteData_;
-          to_bitField0_ |= 0x04000000;
-        }
-        if (((from_bitField0_ & 0x08000000) != 0)) {
-          result.tanwaState_ = tanwaState_;
-          to_bitField0_ |= 0x08000000;
-        }
-        if (((from_bitField0_ & 0x10000000) != 0)) {
-          result.rocketWeight_ = rocketWeight_;
-          to_bitField0_ |= 0x10000000;
-        }
-        if (((from_bitField0_ & 0x20000000) != 0)) {
-          result.tankWeight_ = tankWeight_;
-          to_bitField0_ |= 0x20000000;
-        }
-        if (((from_bitField0_ & 0x40000000) != 0)) {
-          result.temperatureFill_ = temperatureFill_;
-          to_bitField0_ |= 0x40000000;
-        }
-        if (((from_bitField0_ & 0x80000000) != 0)) {
-          result.preFillPressure_ = preFillPressure_;
-          to_bitField0_ |= 0x80000000;
-        }
-        if (((from_bitField1_ & 0x00000001) != 0)) {
-          result.postFillPressure_ = postFillPressure_;
-          to_bitField1_ |= 0x00000001;
-        }
-        if (((from_bitField1_ & 0x00000002) != 0)) {
-          result.btlPressure_ = btlPressure_;
-          to_bitField1_ |= 0x00000002;
-        }
-        if (((from_bitField1_ & 0x00000004) != 0)) {
-          result.payloadBattery_ = payloadBattery_;
-          to_bitField1_ |= 0x00000004;
-        }
-        if (((from_bitField1_ & 0x00000008) != 0)) {
-          result.espNowByteData_ = espNowByteData_;
-          to_bitField1_ |= 0x00000008;
-        }
-        if (((from_bitField1_ & 0x00000010) != 0)) {
-          result.errors_ = errors_;
-          to_bitField1_ |= 0x00000010;
-        }
         result.bitField0_ = to_bitField0_;
-        result.bitField1_ = to_bitField1_;
         onBuilt();
         return result;
       }
@@ -2772,89 +1817,59 @@ public final class FrameProtos {
 
       public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame other) {
         if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.getDefaultInstance()) return this;
-        if (other.hasObcState()) {
-          setObcState(other.getObcState());
+        if (other.hasTanwaState()) {
+          setTanwaState(other.getTanwaState());
         }
-        if (other.hasDcTime()) {
-          setDcTime(other.getDcTime());
+        if (other.hasUpTime()) {
+          setUpTime(other.getUpTime());
         }
-        if (other.hasFlightTime()) {
-          setFlightTime(other.getFlightTime());
+        if (other.hasEngineWorkingTime()) {
+          setEngineWorkingTime(other.getEngineWorkingTime());
         }
-        if (other.hasMcbBattery()) {
-          setMcbBattery(other.getMcbBattery());
+        if (other.hasPressureFuel()) {
+          setPressureFuel(other.getPressureFuel());
         }
-        if (other.hasGpsLat()) {
-          setGpsLat(other.getGpsLat());
+        if (other.hasPressurePastFill()) {
+          setPressurePastFill(other.getPressurePastFill());
         }
-        if (other.hasGpsLong()) {
-          setGpsLong(other.getGpsLong());
+        if (other.hasPressureBeforeFill()) {
+          setPressureBeforeFill(other.getPressureBeforeFill());
         }
-        if (other.hasGpsSat()) {
-          setGpsSat(other.getGpsSat());
+        if (other.hasPressureOxi()) {
+          setPressureOxi(other.getPressureOxi());
         }
-        if (other.hasMcbAltitude()) {
-          setMcbAltitude(other.getMcbAltitude());
+        if (other.hasPressureInjectorFuel()) {
+          setPressureInjectorFuel(other.getPressureInjectorFuel());
         }
-        if (other.hasMcbVelocity()) {
-          setMcbVelocity(other.getMcbVelocity());
+        if (other.hasPressureInjectorOxi()) {
+          setPressureInjectorOxi(other.getPressureInjectorOxi());
         }
-        if (other.hasMcbTemperature()) {
-          setMcbTemperature(other.getMcbTemperature());
+        if (other.hasPressureCombustionChamber()) {
+          setPressureCombustionChamber(other.getPressureCombustionChamber());
         }
-        if (other.hasEulerFi()) {
-          setEulerFi(other.getEulerFi());
+        if (other.hasFillState()) {
+          setFillState(other.getFillState());
         }
-        if (other.hasEulerPsi()) {
-          setEulerPsi(other.getEulerPsi());
+        if (other.hasDeprState()) {
+          setDeprState(other.getDeprState());
         }
-        if (other.hasEulerTheta()) {
-          setEulerTheta(other.getEulerTheta());
+        if (other.hasVentState()) {
+          setVentState(other.getVentState());
         }
-        if (other.hasRecovPressure1()) {
-          setRecovPressure1(other.getRecovPressure1());
+        if (other.hasStatusArm()) {
+          setStatusArm(other.getStatusArm());
         }
-        if (other.hasRecovPressure2()) {
-          setRecovPressure2(other.getRecovPressure2());
+        if (other.hasIgniterCont1()) {
+          setIgniterCont1(other.getIgniterCont1());
         }
-        if (other.hasRecovByteData()) {
-          setRecovByteData(other.getRecovByteData());
-        }
-        if (other.hasPitotBattery()) {
-          setPitotBattery(other.getPitotBattery());
-        }
-        if (other.hasPitotAltitude()) {
-          setPitotAltitude(other.getPitotAltitude());
-        }
-        if (other.hasPitotVelocity()) {
-          setPitotVelocity(other.getPitotVelocity());
-        }
-        if (other.hasPitotTemperature()) {
-          setPitotTemperature(other.getPitotTemperature());
-        }
-        if (other.hasMvalBattery()) {
-          setMvalBattery(other.getMvalBattery());
-        }
-        if (other.hasMvalByteData()) {
-          setMvalByteData(other.getMvalByteData());
-        }
-        if (other.hasVentBattery()) {
-          setVentBattery(other.getVentBattery());
-        }
-        if (other.hasTankPressure()) {
-          setTankPressure(other.getTankPressure());
-        }
-        if (other.hasVentByteData()) {
-          setVentByteData(other.getVentByteData());
+        if (other.hasIgniterCont2()) {
+          setIgniterCont2(other.getIgniterCont2());
         }
         if (other.hasTanwaBattery()) {
           setTanwaBattery(other.getTanwaBattery());
         }
-        if (other.hasTanwaByteData()) {
-          setTanwaByteData(other.getTanwaByteData());
-        }
-        if (other.hasTanwaState()) {
-          setTanwaState(other.getTanwaState());
+        if (other.hasEngineThrust()) {
+          setEngineThrust(other.getEngineThrust());
         }
         if (other.hasRocketWeight()) {
           setRocketWeight(other.getRocketWeight());
@@ -2862,26 +1877,20 @@ public final class FrameProtos {
         if (other.hasTankWeight()) {
           setTankWeight(other.getTankWeight());
         }
-        if (other.hasTemperatureFill()) {
-          setTemperatureFill(other.getTemperatureFill());
+        if (other.hasTempInjector()) {
+          setTempInjector(other.getTempInjector());
         }
-        if (other.hasPreFillPressure()) {
-          setPreFillPressure(other.getPreFillPressure());
+        if (other.hasTempCombustionChamber()) {
+          setTempCombustionChamber(other.getTempCombustionChamber());
         }
-        if (other.hasPostFillPressure()) {
-          setPostFillPressure(other.getPostFillPressure());
+        if (other.hasTempExternalTank()) {
+          setTempExternalTank(other.getTempExternalTank());
         }
-        if (other.hasBtlPressure()) {
-          setBtlPressure(other.getBtlPressure());
+        if (other.hasStatusOxy()) {
+          setStatusOxy(other.getStatusOxy());
         }
-        if (other.hasPayloadBattery()) {
-          setPayloadBattery(other.getPayloadBattery());
-        }
-        if (other.hasEspNowByteData()) {
-          setEspNowByteData(other.getEspNowByteData());
-        }
-        if (other.hasErrors()) {
-          setErrors(other.getErrors());
+        if (other.hasStatusFuel()) {
+          setStatusFuel(other.getStatusFuel());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2890,117 +1899,6 @@ public final class FrameProtos {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasObcState()) {
-          return false;
-        }
-        if (!hasDcTime()) {
-          return false;
-        }
-        if (!hasFlightTime()) {
-          return false;
-        }
-        if (!hasMcbBattery()) {
-          return false;
-        }
-        if (!hasGpsLat()) {
-          return false;
-        }
-        if (!hasGpsLong()) {
-          return false;
-        }
-        if (!hasGpsSat()) {
-          return false;
-        }
-        if (!hasMcbAltitude()) {
-          return false;
-        }
-        if (!hasMcbVelocity()) {
-          return false;
-        }
-        if (!hasMcbTemperature()) {
-          return false;
-        }
-        if (!hasEulerFi()) {
-          return false;
-        }
-        if (!hasEulerPsi()) {
-          return false;
-        }
-        if (!hasEulerTheta()) {
-          return false;
-        }
-        if (!hasRecovPressure1()) {
-          return false;
-        }
-        if (!hasRecovPressure2()) {
-          return false;
-        }
-        if (!hasRecovByteData()) {
-          return false;
-        }
-        if (!hasPitotBattery()) {
-          return false;
-        }
-        if (!hasPitotAltitude()) {
-          return false;
-        }
-        if (!hasPitotVelocity()) {
-          return false;
-        }
-        if (!hasPitotTemperature()) {
-          return false;
-        }
-        if (!hasMvalBattery()) {
-          return false;
-        }
-        if (!hasMvalByteData()) {
-          return false;
-        }
-        if (!hasVentBattery()) {
-          return false;
-        }
-        if (!hasTankPressure()) {
-          return false;
-        }
-        if (!hasVentByteData()) {
-          return false;
-        }
-        if (!hasTanwaBattery()) {
-          return false;
-        }
-        if (!hasTanwaByteData()) {
-          return false;
-        }
-        if (!hasTanwaState()) {
-          return false;
-        }
-        if (!hasRocketWeight()) {
-          return false;
-        }
-        if (!hasTankWeight()) {
-          return false;
-        }
-        if (!hasTemperatureFill()) {
-          return false;
-        }
-        if (!hasPreFillPressure()) {
-          return false;
-        }
-        if (!hasPostFillPressure()) {
-          return false;
-        }
-        if (!hasBtlPressure()) {
-          return false;
-        }
-        if (!hasPayloadBattery()) {
-          return false;
-        }
-        if (!hasEspNowByteData()) {
-          return false;
-        }
-        if (!hasErrors()) {
-          return false;
-        }
         return true;
       }
 
@@ -3023,1168 +1921,18 @@ public final class FrameProtos {
         return this;
       }
       private int bitField0_;
-      private int bitField1_;
-
-      private int obcState_ ;
-      /**
-       * <pre>
-       * mcb frame
-       * </pre>
-       *
-       * <code>required uint32 obc_state = 1;</code>
-       * @return Whether the obcState field is set.
-       */
-      @java.lang.Override
-      public boolean hasObcState() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <pre>
-       * mcb frame
-       * </pre>
-       *
-       * <code>required uint32 obc_state = 1;</code>
-       * @return The obcState.
-       */
-      @java.lang.Override
-      public int getObcState() {
-        return obcState_;
-      }
-      /**
-       * <pre>
-       * mcb frame
-       * </pre>
-       *
-       * <code>required uint32 obc_state = 1;</code>
-       * @param value The obcState to set.
-       * @return This builder for chaining.
-       */
-      public Builder setObcState(int value) {
-        bitField0_ |= 0x00000001;
-        obcState_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * mcb frame
-       * </pre>
-       *
-       * <code>required uint32 obc_state = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearObcState() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        obcState_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int dcTime_ ;
-      /**
-       * <code>required uint32 dc_time = 2;</code>
-       * @return Whether the dcTime field is set.
-       */
-      @java.lang.Override
-      public boolean hasDcTime() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <code>required uint32 dc_time = 2;</code>
-       * @return The dcTime.
-       */
-      @java.lang.Override
-      public int getDcTime() {
-        return dcTime_;
-      }
-      /**
-       * <code>required uint32 dc_time = 2;</code>
-       * @param value The dcTime to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDcTime(int value) {
-        bitField0_ |= 0x00000002;
-        dcTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 dc_time = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDcTime() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        dcTime_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int flightTime_ ;
-      /**
-       * <code>required uint32 flight_time = 3;</code>
-       * @return Whether the flightTime field is set.
-       */
-      @java.lang.Override
-      public boolean hasFlightTime() {
-        return ((bitField0_ & 0x00000004) != 0);
-      }
-      /**
-       * <code>required uint32 flight_time = 3;</code>
-       * @return The flightTime.
-       */
-      @java.lang.Override
-      public int getFlightTime() {
-        return flightTime_;
-      }
-      /**
-       * <code>required uint32 flight_time = 3;</code>
-       * @param value The flightTime to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFlightTime(int value) {
-        bitField0_ |= 0x00000004;
-        flightTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 flight_time = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFlightTime() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        flightTime_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float mcbBattery_ ;
-      /**
-       * <code>required float mcb_battery = 4;</code>
-       * @return Whether the mcbBattery field is set.
-       */
-      @java.lang.Override
-      public boolean hasMcbBattery() {
-        return ((bitField0_ & 0x00000008) != 0);
-      }
-      /**
-       * <code>required float mcb_battery = 4;</code>
-       * @return The mcbBattery.
-       */
-      @java.lang.Override
-      public float getMcbBattery() {
-        return mcbBattery_;
-      }
-      /**
-       * <code>required float mcb_battery = 4;</code>
-       * @param value The mcbBattery to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMcbBattery(float value) {
-        bitField0_ |= 0x00000008;
-        mcbBattery_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float mcb_battery = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMcbBattery() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        mcbBattery_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float gpsLat_ ;
-      /**
-       * <code>required float gps_lat = 5;</code>
-       * @return Whether the gpsLat field is set.
-       */
-      @java.lang.Override
-      public boolean hasGpsLat() {
-        return ((bitField0_ & 0x00000010) != 0);
-      }
-      /**
-       * <code>required float gps_lat = 5;</code>
-       * @return The gpsLat.
-       */
-      @java.lang.Override
-      public float getGpsLat() {
-        return gpsLat_;
-      }
-      /**
-       * <code>required float gps_lat = 5;</code>
-       * @param value The gpsLat to set.
-       * @return This builder for chaining.
-       */
-      public Builder setGpsLat(float value) {
-        bitField0_ |= 0x00000010;
-        gpsLat_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float gps_lat = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearGpsLat() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        gpsLat_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float gpsLong_ ;
-      /**
-       * <code>required float gps_long = 6;</code>
-       * @return Whether the gpsLong field is set.
-       */
-      @java.lang.Override
-      public boolean hasGpsLong() {
-        return ((bitField0_ & 0x00000020) != 0);
-      }
-      /**
-       * <code>required float gps_long = 6;</code>
-       * @return The gpsLong.
-       */
-      @java.lang.Override
-      public float getGpsLong() {
-        return gpsLong_;
-      }
-      /**
-       * <code>required float gps_long = 6;</code>
-       * @param value The gpsLong to set.
-       * @return This builder for chaining.
-       */
-      public Builder setGpsLong(float value) {
-        bitField0_ |= 0x00000020;
-        gpsLong_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float gps_long = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearGpsLong() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        gpsLong_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float gpsSat_ ;
-      /**
-       * <code>required float gps_sat = 7;</code>
-       * @return Whether the gpsSat field is set.
-       */
-      @java.lang.Override
-      public boolean hasGpsSat() {
-        return ((bitField0_ & 0x00000040) != 0);
-      }
-      /**
-       * <code>required float gps_sat = 7;</code>
-       * @return The gpsSat.
-       */
-      @java.lang.Override
-      public float getGpsSat() {
-        return gpsSat_;
-      }
-      /**
-       * <code>required float gps_sat = 7;</code>
-       * @param value The gpsSat to set.
-       * @return This builder for chaining.
-       */
-      public Builder setGpsSat(float value) {
-        bitField0_ |= 0x00000040;
-        gpsSat_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float gps_sat = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearGpsSat() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        gpsSat_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float mcbAltitude_ ;
-      /**
-       * <code>required float mcb_altitude = 8;</code>
-       * @return Whether the mcbAltitude field is set.
-       */
-      @java.lang.Override
-      public boolean hasMcbAltitude() {
-        return ((bitField0_ & 0x00000080) != 0);
-      }
-      /**
-       * <code>required float mcb_altitude = 8;</code>
-       * @return The mcbAltitude.
-       */
-      @java.lang.Override
-      public float getMcbAltitude() {
-        return mcbAltitude_;
-      }
-      /**
-       * <code>required float mcb_altitude = 8;</code>
-       * @param value The mcbAltitude to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMcbAltitude(float value) {
-        bitField0_ |= 0x00000080;
-        mcbAltitude_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float mcb_altitude = 8;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMcbAltitude() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        mcbAltitude_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float mcbVelocity_ ;
-      /**
-       * <code>required float mcb_velocity = 9;</code>
-       * @return Whether the mcbVelocity field is set.
-       */
-      @java.lang.Override
-      public boolean hasMcbVelocity() {
-        return ((bitField0_ & 0x00000100) != 0);
-      }
-      /**
-       * <code>required float mcb_velocity = 9;</code>
-       * @return The mcbVelocity.
-       */
-      @java.lang.Override
-      public float getMcbVelocity() {
-        return mcbVelocity_;
-      }
-      /**
-       * <code>required float mcb_velocity = 9;</code>
-       * @param value The mcbVelocity to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMcbVelocity(float value) {
-        bitField0_ |= 0x00000100;
-        mcbVelocity_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float mcb_velocity = 9;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMcbVelocity() {
-        bitField0_ = (bitField0_ & ~0x00000100);
-        mcbVelocity_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int mcbTemperature_ ;
-      /**
-       * <code>required int32 mcb_temperature = 10;</code>
-       * @return Whether the mcbTemperature field is set.
-       */
-      @java.lang.Override
-      public boolean hasMcbTemperature() {
-        return ((bitField0_ & 0x00000200) != 0);
-      }
-      /**
-       * <code>required int32 mcb_temperature = 10;</code>
-       * @return The mcbTemperature.
-       */
-      @java.lang.Override
-      public int getMcbTemperature() {
-        return mcbTemperature_;
-      }
-      /**
-       * <code>required int32 mcb_temperature = 10;</code>
-       * @param value The mcbTemperature to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMcbTemperature(int value) {
-        bitField0_ |= 0x00000200;
-        mcbTemperature_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 mcb_temperature = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMcbTemperature() {
-        bitField0_ = (bitField0_ & ~0x00000200);
-        mcbTemperature_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float eulerFi_ ;
-      /**
-       * <code>required float euler_fi = 11;</code>
-       * @return Whether the eulerFi field is set.
-       */
-      @java.lang.Override
-      public boolean hasEulerFi() {
-        return ((bitField0_ & 0x00000400) != 0);
-      }
-      /**
-       * <code>required float euler_fi = 11;</code>
-       * @return The eulerFi.
-       */
-      @java.lang.Override
-      public float getEulerFi() {
-        return eulerFi_;
-      }
-      /**
-       * <code>required float euler_fi = 11;</code>
-       * @param value The eulerFi to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEulerFi(float value) {
-        bitField0_ |= 0x00000400;
-        eulerFi_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float euler_fi = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEulerFi() {
-        bitField0_ = (bitField0_ & ~0x00000400);
-        eulerFi_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float eulerPsi_ ;
-      /**
-       * <code>required float euler_psi = 12;</code>
-       * @return Whether the eulerPsi field is set.
-       */
-      @java.lang.Override
-      public boolean hasEulerPsi() {
-        return ((bitField0_ & 0x00000800) != 0);
-      }
-      /**
-       * <code>required float euler_psi = 12;</code>
-       * @return The eulerPsi.
-       */
-      @java.lang.Override
-      public float getEulerPsi() {
-        return eulerPsi_;
-      }
-      /**
-       * <code>required float euler_psi = 12;</code>
-       * @param value The eulerPsi to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEulerPsi(float value) {
-        bitField0_ |= 0x00000800;
-        eulerPsi_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float euler_psi = 12;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEulerPsi() {
-        bitField0_ = (bitField0_ & ~0x00000800);
-        eulerPsi_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float eulerTheta_ ;
-      /**
-       * <code>required float euler_theta = 13;</code>
-       * @return Whether the eulerTheta field is set.
-       */
-      @java.lang.Override
-      public boolean hasEulerTheta() {
-        return ((bitField0_ & 0x00001000) != 0);
-      }
-      /**
-       * <code>required float euler_theta = 13;</code>
-       * @return The eulerTheta.
-       */
-      @java.lang.Override
-      public float getEulerTheta() {
-        return eulerTheta_;
-      }
-      /**
-       * <code>required float euler_theta = 13;</code>
-       * @param value The eulerTheta to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEulerTheta(float value) {
-        bitField0_ |= 0x00001000;
-        eulerTheta_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float euler_theta = 13;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEulerTheta() {
-        bitField0_ = (bitField0_ & ~0x00001000);
-        eulerTheta_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int recovPressure1_ ;
-      /**
-       * <pre>
-       * recovery frame
-       * </pre>
-       *
-       * <code>required uint32 recov_pressure_1 = 14;</code>
-       * @return Whether the recovPressure1 field is set.
-       */
-      @java.lang.Override
-      public boolean hasRecovPressure1() {
-        return ((bitField0_ & 0x00002000) != 0);
-      }
-      /**
-       * <pre>
-       * recovery frame
-       * </pre>
-       *
-       * <code>required uint32 recov_pressure_1 = 14;</code>
-       * @return The recovPressure1.
-       */
-      @java.lang.Override
-      public int getRecovPressure1() {
-        return recovPressure1_;
-      }
-      /**
-       * <pre>
-       * recovery frame
-       * </pre>
-       *
-       * <code>required uint32 recov_pressure_1 = 14;</code>
-       * @param value The recovPressure1 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRecovPressure1(int value) {
-        bitField0_ |= 0x00002000;
-        recovPressure1_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * recovery frame
-       * </pre>
-       *
-       * <code>required uint32 recov_pressure_1 = 14;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRecovPressure1() {
-        bitField0_ = (bitField0_ & ~0x00002000);
-        recovPressure1_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int recovPressure2_ ;
-      /**
-       * <code>required uint32 recov_pressure_2 = 15;</code>
-       * @return Whether the recovPressure2 field is set.
-       */
-      @java.lang.Override
-      public boolean hasRecovPressure2() {
-        return ((bitField0_ & 0x00004000) != 0);
-      }
-      /**
-       * <code>required uint32 recov_pressure_2 = 15;</code>
-       * @return The recovPressure2.
-       */
-      @java.lang.Override
-      public int getRecovPressure2() {
-        return recovPressure2_;
-      }
-      /**
-       * <code>required uint32 recov_pressure_2 = 15;</code>
-       * @param value The recovPressure2 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRecovPressure2(int value) {
-        bitField0_ |= 0x00004000;
-        recovPressure2_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 recov_pressure_2 = 15;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRecovPressure2() {
-        bitField0_ = (bitField0_ & ~0x00004000);
-        recovPressure2_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int recovByteData_ ;
-      /**
-       * <code>required fixed32 recov_byte_data = 16;</code>
-       * @return Whether the recovByteData field is set.
-       */
-      @java.lang.Override
-      public boolean hasRecovByteData() {
-        return ((bitField0_ & 0x00008000) != 0);
-      }
-      /**
-       * <code>required fixed32 recov_byte_data = 16;</code>
-       * @return The recovByteData.
-       */
-      @java.lang.Override
-      public int getRecovByteData() {
-        return recovByteData_;
-      }
-      /**
-       * <code>required fixed32 recov_byte_data = 16;</code>
-       * @param value The recovByteData to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRecovByteData(int value) {
-        bitField0_ |= 0x00008000;
-        recovByteData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required fixed32 recov_byte_data = 16;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRecovByteData() {
-        bitField0_ = (bitField0_ & ~0x00008000);
-        recovByteData_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float pitotBattery_ ;
-      /**
-       * <pre>
-       * pitot frame
-       * </pre>
-       *
-       * <code>required float pitot_battery = 17;</code>
-       * @return Whether the pitotBattery field is set.
-       */
-      @java.lang.Override
-      public boolean hasPitotBattery() {
-        return ((bitField0_ & 0x00010000) != 0);
-      }
-      /**
-       * <pre>
-       * pitot frame
-       * </pre>
-       *
-       * <code>required float pitot_battery = 17;</code>
-       * @return The pitotBattery.
-       */
-      @java.lang.Override
-      public float getPitotBattery() {
-        return pitotBattery_;
-      }
-      /**
-       * <pre>
-       * pitot frame
-       * </pre>
-       *
-       * <code>required float pitot_battery = 17;</code>
-       * @param value The pitotBattery to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPitotBattery(float value) {
-        bitField0_ |= 0x00010000;
-        pitotBattery_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * pitot frame
-       * </pre>
-       *
-       * <code>required float pitot_battery = 17;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPitotBattery() {
-        bitField0_ = (bitField0_ & ~0x00010000);
-        pitotBattery_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int pitotAltitude_ ;
-      /**
-       * <code>required int32 pitot_altitude = 18;</code>
-       * @return Whether the pitotAltitude field is set.
-       */
-      @java.lang.Override
-      public boolean hasPitotAltitude() {
-        return ((bitField0_ & 0x00020000) != 0);
-      }
-      /**
-       * <code>required int32 pitot_altitude = 18;</code>
-       * @return The pitotAltitude.
-       */
-      @java.lang.Override
-      public int getPitotAltitude() {
-        return pitotAltitude_;
-      }
-      /**
-       * <code>required int32 pitot_altitude = 18;</code>
-       * @param value The pitotAltitude to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPitotAltitude(int value) {
-        bitField0_ |= 0x00020000;
-        pitotAltitude_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 pitot_altitude = 18;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPitotAltitude() {
-        bitField0_ = (bitField0_ & ~0x00020000);
-        pitotAltitude_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int pitotVelocity_ ;
-      /**
-       * <code>required int32 pitot_velocity = 19;</code>
-       * @return Whether the pitotVelocity field is set.
-       */
-      @java.lang.Override
-      public boolean hasPitotVelocity() {
-        return ((bitField0_ & 0x00040000) != 0);
-      }
-      /**
-       * <code>required int32 pitot_velocity = 19;</code>
-       * @return The pitotVelocity.
-       */
-      @java.lang.Override
-      public int getPitotVelocity() {
-        return pitotVelocity_;
-      }
-      /**
-       * <code>required int32 pitot_velocity = 19;</code>
-       * @param value The pitotVelocity to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPitotVelocity(int value) {
-        bitField0_ |= 0x00040000;
-        pitotVelocity_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 pitot_velocity = 19;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPitotVelocity() {
-        bitField0_ = (bitField0_ & ~0x00040000);
-        pitotVelocity_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int pitotTemperature_ ;
-      /**
-       * <code>required int32 pitot_temperature = 20;</code>
-       * @return Whether the pitotTemperature field is set.
-       */
-      @java.lang.Override
-      public boolean hasPitotTemperature() {
-        return ((bitField0_ & 0x00080000) != 0);
-      }
-      /**
-       * <code>required int32 pitot_temperature = 20;</code>
-       * @return The pitotTemperature.
-       */
-      @java.lang.Override
-      public int getPitotTemperature() {
-        return pitotTemperature_;
-      }
-      /**
-       * <code>required int32 pitot_temperature = 20;</code>
-       * @param value The pitotTemperature to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPitotTemperature(int value) {
-        bitField0_ |= 0x00080000;
-        pitotTemperature_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 pitot_temperature = 20;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPitotTemperature() {
-        bitField0_ = (bitField0_ & ~0x00080000);
-        pitotTemperature_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float mvalBattery_ ;
-      /**
-       * <pre>
-       * main valve
-       * </pre>
-       *
-       * <code>required float mval_battery = 21;</code>
-       * @return Whether the mvalBattery field is set.
-       */
-      @java.lang.Override
-      public boolean hasMvalBattery() {
-        return ((bitField0_ & 0x00100000) != 0);
-      }
-      /**
-       * <pre>
-       * main valve
-       * </pre>
-       *
-       * <code>required float mval_battery = 21;</code>
-       * @return The mvalBattery.
-       */
-      @java.lang.Override
-      public float getMvalBattery() {
-        return mvalBattery_;
-      }
-      /**
-       * <pre>
-       * main valve
-       * </pre>
-       *
-       * <code>required float mval_battery = 21;</code>
-       * @param value The mvalBattery to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMvalBattery(float value) {
-        bitField0_ |= 0x00100000;
-        mvalBattery_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * main valve
-       * </pre>
-       *
-       * <code>required float mval_battery = 21;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMvalBattery() {
-        bitField0_ = (bitField0_ & ~0x00100000);
-        mvalBattery_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int mvalByteData_ ;
-      /**
-       * <code>required fixed32 mval_byte_data = 22;</code>
-       * @return Whether the mvalByteData field is set.
-       */
-      @java.lang.Override
-      public boolean hasMvalByteData() {
-        return ((bitField0_ & 0x00200000) != 0);
-      }
-      /**
-       * <code>required fixed32 mval_byte_data = 22;</code>
-       * @return The mvalByteData.
-       */
-      @java.lang.Override
-      public int getMvalByteData() {
-        return mvalByteData_;
-      }
-      /**
-       * <code>required fixed32 mval_byte_data = 22;</code>
-       * @param value The mvalByteData to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMvalByteData(int value) {
-        bitField0_ |= 0x00200000;
-        mvalByteData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required fixed32 mval_byte_data = 22;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMvalByteData() {
-        bitField0_ = (bitField0_ & ~0x00200000);
-        mvalByteData_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float ventBattery_ ;
-      /**
-       * <pre>
-       * vent valve
-       * </pre>
-       *
-       * <code>required float vent_battery = 23;</code>
-       * @return Whether the ventBattery field is set.
-       */
-      @java.lang.Override
-      public boolean hasVentBattery() {
-        return ((bitField0_ & 0x00400000) != 0);
-      }
-      /**
-       * <pre>
-       * vent valve
-       * </pre>
-       *
-       * <code>required float vent_battery = 23;</code>
-       * @return The ventBattery.
-       */
-      @java.lang.Override
-      public float getVentBattery() {
-        return ventBattery_;
-      }
-      /**
-       * <pre>
-       * vent valve
-       * </pre>
-       *
-       * <code>required float vent_battery = 23;</code>
-       * @param value The ventBattery to set.
-       * @return This builder for chaining.
-       */
-      public Builder setVentBattery(float value) {
-        bitField0_ |= 0x00400000;
-        ventBattery_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * vent valve
-       * </pre>
-       *
-       * <code>required float vent_battery = 23;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearVentBattery() {
-        bitField0_ = (bitField0_ & ~0x00400000);
-        ventBattery_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float tankPressure_ ;
-      /**
-       * <code>required float tank_pressure = 24;</code>
-       * @return Whether the tankPressure field is set.
-       */
-      @java.lang.Override
-      public boolean hasTankPressure() {
-        return ((bitField0_ & 0x00800000) != 0);
-      }
-      /**
-       * <code>required float tank_pressure = 24;</code>
-       * @return The tankPressure.
-       */
-      @java.lang.Override
-      public float getTankPressure() {
-        return tankPressure_;
-      }
-      /**
-       * <code>required float tank_pressure = 24;</code>
-       * @param value The tankPressure to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTankPressure(float value) {
-        bitField0_ |= 0x00800000;
-        tankPressure_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float tank_pressure = 24;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTankPressure() {
-        bitField0_ = (bitField0_ & ~0x00800000);
-        tankPressure_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int ventByteData_ ;
-      /**
-       * <code>required fixed32 vent_byte_data = 25;</code>
-       * @return Whether the ventByteData field is set.
-       */
-      @java.lang.Override
-      public boolean hasVentByteData() {
-        return ((bitField0_ & 0x01000000) != 0);
-      }
-      /**
-       * <code>required fixed32 vent_byte_data = 25;</code>
-       * @return The ventByteData.
-       */
-      @java.lang.Override
-      public int getVentByteData() {
-        return ventByteData_;
-      }
-      /**
-       * <code>required fixed32 vent_byte_data = 25;</code>
-       * @param value The ventByteData to set.
-       * @return This builder for chaining.
-       */
-      public Builder setVentByteData(int value) {
-        bitField0_ |= 0x01000000;
-        ventByteData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required fixed32 vent_byte_data = 25;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearVentByteData() {
-        bitField0_ = (bitField0_ & ~0x01000000);
-        ventByteData_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float tanwaBattery_ ;
-      /**
-       * <pre>
-       * tanwa frame
-       * </pre>
-       *
-       * <code>required float tanwa_battery = 26;</code>
-       * @return Whether the tanwaBattery field is set.
-       */
-      @java.lang.Override
-      public boolean hasTanwaBattery() {
-        return ((bitField0_ & 0x02000000) != 0);
-      }
-      /**
-       * <pre>
-       * tanwa frame
-       * </pre>
-       *
-       * <code>required float tanwa_battery = 26;</code>
-       * @return The tanwaBattery.
-       */
-      @java.lang.Override
-      public float getTanwaBattery() {
-        return tanwaBattery_;
-      }
-      /**
-       * <pre>
-       * tanwa frame
-       * </pre>
-       *
-       * <code>required float tanwa_battery = 26;</code>
-       * @param value The tanwaBattery to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTanwaBattery(float value) {
-        bitField0_ |= 0x02000000;
-        tanwaBattery_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * tanwa frame
-       * </pre>
-       *
-       * <code>required float tanwa_battery = 26;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTanwaBattery() {
-        bitField0_ = (bitField0_ & ~0x02000000);
-        tanwaBattery_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int tanwaByteData_ ;
-      /**
-       * <code>required fixed32 tanwa_byte_data = 27;</code>
-       * @return Whether the tanwaByteData field is set.
-       */
-      @java.lang.Override
-      public boolean hasTanwaByteData() {
-        return ((bitField0_ & 0x04000000) != 0);
-      }
-      /**
-       * <code>required fixed32 tanwa_byte_data = 27;</code>
-       * @return The tanwaByteData.
-       */
-      @java.lang.Override
-      public int getTanwaByteData() {
-        return tanwaByteData_;
-      }
-      /**
-       * <code>required fixed32 tanwa_byte_data = 27;</code>
-       * @param value The tanwaByteData to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTanwaByteData(int value) {
-        bitField0_ |= 0x04000000;
-        tanwaByteData_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required fixed32 tanwa_byte_data = 27;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTanwaByteData() {
-        bitField0_ = (bitField0_ & ~0x04000000);
-        tanwaByteData_ = 0;
-        onChanged();
-        return this;
-      }
 
       private int tanwaState_ ;
       /**
-       * <code>required uint32 tanwa_state = 28;</code>
+       * <code>uint32 tanwaState = 1;</code>
        * @return Whether the tanwaState field is set.
        */
       @java.lang.Override
       public boolean hasTanwaState() {
-        return ((bitField0_ & 0x08000000) != 0);
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>required uint32 tanwa_state = 28;</code>
+       * <code>uint32 tanwaState = 1;</code>
        * @return The tanwaState.
        */
       @java.lang.Override
@@ -4192,38 +1940,701 @@ public final class FrameProtos {
         return tanwaState_;
       }
       /**
-       * <code>required uint32 tanwa_state = 28;</code>
+       * <code>uint32 tanwaState = 1;</code>
        * @param value The tanwaState to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaState(int value) {
-        bitField0_ |= 0x08000000;
+        bitField0_ |= 0x00000001;
         tanwaState_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required uint32 tanwa_state = 28;</code>
+       * <code>uint32 tanwaState = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaState() {
-        bitField0_ = (bitField0_ & ~0x08000000);
+        bitField0_ = (bitField0_ & ~0x00000001);
         tanwaState_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int upTime_ ;
+      /**
+       * <code>uint32 upTime = 2;</code>
+       * @return Whether the upTime field is set.
+       */
+      @java.lang.Override
+      public boolean hasUpTime() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>uint32 upTime = 2;</code>
+       * @return The upTime.
+       */
+      @java.lang.Override
+      public int getUpTime() {
+        return upTime_;
+      }
+      /**
+       * <code>uint32 upTime = 2;</code>
+       * @param value The upTime to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUpTime(int value) {
+        bitField0_ |= 0x00000002;
+        upTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 upTime = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUpTime() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        upTime_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int engineWorkingTime_ ;
+      /**
+       * <code>int32 engineWorkingTime = 3;</code>
+       * @return Whether the engineWorkingTime field is set.
+       */
+      @java.lang.Override
+      public boolean hasEngineWorkingTime() {
+        return ((bitField0_ & 0x00000004) != 0);
+      }
+      /**
+       * <code>int32 engineWorkingTime = 3;</code>
+       * @return The engineWorkingTime.
+       */
+      @java.lang.Override
+      public int getEngineWorkingTime() {
+        return engineWorkingTime_;
+      }
+      /**
+       * <code>int32 engineWorkingTime = 3;</code>
+       * @param value The engineWorkingTime to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEngineWorkingTime(int value) {
+        bitField0_ |= 0x00000004;
+        engineWorkingTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 engineWorkingTime = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEngineWorkingTime() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        engineWorkingTime_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private float pressureFuel_ ;
+      /**
+       * <code>float pressureFuel = 4;</code>
+       * @return Whether the pressureFuel field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressureFuel() {
+        return ((bitField0_ & 0x00000008) != 0);
+      }
+      /**
+       * <code>float pressureFuel = 4;</code>
+       * @return The pressureFuel.
+       */
+      @java.lang.Override
+      public float getPressureFuel() {
+        return pressureFuel_;
+      }
+      /**
+       * <code>float pressureFuel = 4;</code>
+       * @param value The pressureFuel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressureFuel(float value) {
+        bitField0_ |= 0x00000008;
+        pressureFuel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressureFuel = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressureFuel() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        pressureFuel_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float pressurePastFill_ ;
+      /**
+       * <code>float pressurePastFill = 5;</code>
+       * @return Whether the pressurePastFill field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressurePastFill() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <code>float pressurePastFill = 5;</code>
+       * @return The pressurePastFill.
+       */
+      @java.lang.Override
+      public float getPressurePastFill() {
+        return pressurePastFill_;
+      }
+      /**
+       * <code>float pressurePastFill = 5;</code>
+       * @param value The pressurePastFill to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressurePastFill(float value) {
+        bitField0_ |= 0x00000010;
+        pressurePastFill_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressurePastFill = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressurePastFill() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        pressurePastFill_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float pressureBeforeFill_ ;
+      /**
+       * <code>float pressureBeforeFill = 6;</code>
+       * @return Whether the pressureBeforeFill field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressureBeforeFill() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <code>float pressureBeforeFill = 6;</code>
+       * @return The pressureBeforeFill.
+       */
+      @java.lang.Override
+      public float getPressureBeforeFill() {
+        return pressureBeforeFill_;
+      }
+      /**
+       * <code>float pressureBeforeFill = 6;</code>
+       * @param value The pressureBeforeFill to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressureBeforeFill(float value) {
+        bitField0_ |= 0x00000020;
+        pressureBeforeFill_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressureBeforeFill = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressureBeforeFill() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        pressureBeforeFill_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float pressureOxi_ ;
+      /**
+       * <code>float pressureOxi = 7;</code>
+       * @return Whether the pressureOxi field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressureOxi() {
+        return ((bitField0_ & 0x00000040) != 0);
+      }
+      /**
+       * <code>float pressureOxi = 7;</code>
+       * @return The pressureOxi.
+       */
+      @java.lang.Override
+      public float getPressureOxi() {
+        return pressureOxi_;
+      }
+      /**
+       * <code>float pressureOxi = 7;</code>
+       * @param value The pressureOxi to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressureOxi(float value) {
+        bitField0_ |= 0x00000040;
+        pressureOxi_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressureOxi = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressureOxi() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        pressureOxi_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float pressureInjectorFuel_ ;
+      /**
+       * <code>float pressureInjectorFuel = 8;</code>
+       * @return Whether the pressureInjectorFuel field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressureInjectorFuel() {
+        return ((bitField0_ & 0x00000080) != 0);
+      }
+      /**
+       * <code>float pressureInjectorFuel = 8;</code>
+       * @return The pressureInjectorFuel.
+       */
+      @java.lang.Override
+      public float getPressureInjectorFuel() {
+        return pressureInjectorFuel_;
+      }
+      /**
+       * <code>float pressureInjectorFuel = 8;</code>
+       * @param value The pressureInjectorFuel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressureInjectorFuel(float value) {
+        bitField0_ |= 0x00000080;
+        pressureInjectorFuel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressureInjectorFuel = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressureInjectorFuel() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        pressureInjectorFuel_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float pressureInjectorOxi_ ;
+      /**
+       * <code>float pressureInjectorOxi = 9;</code>
+       * @return Whether the pressureInjectorOxi field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressureInjectorOxi() {
+        return ((bitField0_ & 0x00000100) != 0);
+      }
+      /**
+       * <code>float pressureInjectorOxi = 9;</code>
+       * @return The pressureInjectorOxi.
+       */
+      @java.lang.Override
+      public float getPressureInjectorOxi() {
+        return pressureInjectorOxi_;
+      }
+      /**
+       * <code>float pressureInjectorOxi = 9;</code>
+       * @param value The pressureInjectorOxi to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressureInjectorOxi(float value) {
+        bitField0_ |= 0x00000100;
+        pressureInjectorOxi_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressureInjectorOxi = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressureInjectorOxi() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        pressureInjectorOxi_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float pressureCombustionChamber_ ;
+      /**
+       * <code>float pressureCombustionChamber = 10;</code>
+       * @return Whether the pressureCombustionChamber field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressureCombustionChamber() {
+        return ((bitField0_ & 0x00000200) != 0);
+      }
+      /**
+       * <code>float pressureCombustionChamber = 10;</code>
+       * @return The pressureCombustionChamber.
+       */
+      @java.lang.Override
+      public float getPressureCombustionChamber() {
+        return pressureCombustionChamber_;
+      }
+      /**
+       * <code>float pressureCombustionChamber = 10;</code>
+       * @param value The pressureCombustionChamber to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressureCombustionChamber(float value) {
+        bitField0_ |= 0x00000200;
+        pressureCombustionChamber_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressureCombustionChamber = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressureCombustionChamber() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        pressureCombustionChamber_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private boolean fillState_ ;
+      /**
+       * <code>bool fillState = 11;</code>
+       * @return Whether the fillState field is set.
+       */
+      @java.lang.Override
+      public boolean hasFillState() {
+        return ((bitField0_ & 0x00000400) != 0);
+      }
+      /**
+       * <code>bool fillState = 11;</code>
+       * @return The fillState.
+       */
+      @java.lang.Override
+      public boolean getFillState() {
+        return fillState_;
+      }
+      /**
+       * <code>bool fillState = 11;</code>
+       * @param value The fillState to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFillState(boolean value) {
+        bitField0_ |= 0x00000400;
+        fillState_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool fillState = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFillState() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        fillState_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean deprState_ ;
+      /**
+       * <code>bool deprState = 12;</code>
+       * @return Whether the deprState field is set.
+       */
+      @java.lang.Override
+      public boolean hasDeprState() {
+        return ((bitField0_ & 0x00000800) != 0);
+      }
+      /**
+       * <code>bool deprState = 12;</code>
+       * @return The deprState.
+       */
+      @java.lang.Override
+      public boolean getDeprState() {
+        return deprState_;
+      }
+      /**
+       * <code>bool deprState = 12;</code>
+       * @param value The deprState to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDeprState(boolean value) {
+        bitField0_ |= 0x00000800;
+        deprState_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool deprState = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDeprState() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        deprState_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean ventState_ ;
+      /**
+       * <code>bool ventState = 13;</code>
+       * @return Whether the ventState field is set.
+       */
+      @java.lang.Override
+      public boolean hasVentState() {
+        return ((bitField0_ & 0x00001000) != 0);
+      }
+      /**
+       * <code>bool ventState = 13;</code>
+       * @return The ventState.
+       */
+      @java.lang.Override
+      public boolean getVentState() {
+        return ventState_;
+      }
+      /**
+       * <code>bool ventState = 13;</code>
+       * @param value The ventState to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVentState(boolean value) {
+        bitField0_ |= 0x00001000;
+        ventState_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool ventState = 13;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVentState() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        ventState_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean statusArm_ ;
+      /**
+       * <code>bool statusArm = 14;</code>
+       * @return Whether the statusArm field is set.
+       */
+      @java.lang.Override
+      public boolean hasStatusArm() {
+        return ((bitField0_ & 0x00002000) != 0);
+      }
+      /**
+       * <code>bool statusArm = 14;</code>
+       * @return The statusArm.
+       */
+      @java.lang.Override
+      public boolean getStatusArm() {
+        return statusArm_;
+      }
+      /**
+       * <code>bool statusArm = 14;</code>
+       * @param value The statusArm to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatusArm(boolean value) {
+        bitField0_ |= 0x00002000;
+        statusArm_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool statusArm = 14;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatusArm() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        statusArm_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean igniterCont1_ ;
+      /**
+       * <code>bool igniterCont1 = 15;</code>
+       * @return Whether the igniterCont1 field is set.
+       */
+      @java.lang.Override
+      public boolean hasIgniterCont1() {
+        return ((bitField0_ & 0x00004000) != 0);
+      }
+      /**
+       * <code>bool igniterCont1 = 15;</code>
+       * @return The igniterCont1.
+       */
+      @java.lang.Override
+      public boolean getIgniterCont1() {
+        return igniterCont1_;
+      }
+      /**
+       * <code>bool igniterCont1 = 15;</code>
+       * @param value The igniterCont1 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIgniterCont1(boolean value) {
+        bitField0_ |= 0x00004000;
+        igniterCont1_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool igniterCont1 = 15;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIgniterCont1() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        igniterCont1_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean igniterCont2_ ;
+      /**
+       * <code>bool igniterCont2 = 16;</code>
+       * @return Whether the igniterCont2 field is set.
+       */
+      @java.lang.Override
+      public boolean hasIgniterCont2() {
+        return ((bitField0_ & 0x00008000) != 0);
+      }
+      /**
+       * <code>bool igniterCont2 = 16;</code>
+       * @return The igniterCont2.
+       */
+      @java.lang.Override
+      public boolean getIgniterCont2() {
+        return igniterCont2_;
+      }
+      /**
+       * <code>bool igniterCont2 = 16;</code>
+       * @param value The igniterCont2 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIgniterCont2(boolean value) {
+        bitField0_ |= 0x00008000;
+        igniterCont2_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool igniterCont2 = 16;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIgniterCont2() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        igniterCont2_ = false;
+        onChanged();
+        return this;
+      }
+
+      private float tanwaBattery_ ;
+      /**
+       * <code>float tanwaBattery = 17;</code>
+       * @return Whether the tanwaBattery field is set.
+       */
+      @java.lang.Override
+      public boolean hasTanwaBattery() {
+        return ((bitField0_ & 0x00010000) != 0);
+      }
+      /**
+       * <code>float tanwaBattery = 17;</code>
+       * @return The tanwaBattery.
+       */
+      @java.lang.Override
+      public float getTanwaBattery() {
+        return tanwaBattery_;
+      }
+      /**
+       * <code>float tanwaBattery = 17;</code>
+       * @param value The tanwaBattery to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTanwaBattery(float value) {
+        bitField0_ |= 0x00010000;
+        tanwaBattery_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float tanwaBattery = 17;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTanwaBattery() {
+        bitField0_ = (bitField0_ & ~0x00010000);
+        tanwaBattery_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float engineThrust_ ;
+      /**
+       * <code>float engineThrust = 18;</code>
+       * @return Whether the engineThrust field is set.
+       */
+      @java.lang.Override
+      public boolean hasEngineThrust() {
+        return ((bitField0_ & 0x00020000) != 0);
+      }
+      /**
+       * <code>float engineThrust = 18;</code>
+       * @return The engineThrust.
+       */
+      @java.lang.Override
+      public float getEngineThrust() {
+        return engineThrust_;
+      }
+      /**
+       * <code>float engineThrust = 18;</code>
+       * @param value The engineThrust to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEngineThrust(float value) {
+        bitField0_ |= 0x00020000;
+        engineThrust_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float engineThrust = 18;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEngineThrust() {
+        bitField0_ = (bitField0_ & ~0x00020000);
+        engineThrust_ = 0F;
         onChanged();
         return this;
       }
 
       private float rocketWeight_ ;
       /**
-       * <code>required float rocket_weight = 29;</code>
+       * <code>float rocketWeight = 19;</code>
        * @return Whether the rocketWeight field is set.
        */
       @java.lang.Override
       public boolean hasRocketWeight() {
-        return ((bitField0_ & 0x10000000) != 0);
+        return ((bitField0_ & 0x00040000) != 0);
       }
       /**
-       * <code>required float rocket_weight = 29;</code>
+       * <code>float rocketWeight = 19;</code>
        * @return The rocketWeight.
        */
       @java.lang.Override
@@ -4231,22 +2642,22 @@ public final class FrameProtos {
         return rocketWeight_;
       }
       /**
-       * <code>required float rocket_weight = 29;</code>
+       * <code>float rocketWeight = 19;</code>
        * @param value The rocketWeight to set.
        * @return This builder for chaining.
        */
       public Builder setRocketWeight(float value) {
-        bitField0_ |= 0x10000000;
+        bitField0_ |= 0x00040000;
         rocketWeight_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float rocket_weight = 29;</code>
+       * <code>float rocketWeight = 19;</code>
        * @return This builder for chaining.
        */
       public Builder clearRocketWeight() {
-        bitField0_ = (bitField0_ & ~0x10000000);
+        bitField0_ = (bitField0_ & ~0x00040000);
         rocketWeight_ = 0F;
         onChanged();
         return this;
@@ -4254,15 +2665,15 @@ public final class FrameProtos {
 
       private float tankWeight_ ;
       /**
-       * <code>required float tank_weight = 30;</code>
+       * <code>float tankWeight = 20;</code>
        * @return Whether the tankWeight field is set.
        */
       @java.lang.Override
       public boolean hasTankWeight() {
-        return ((bitField0_ & 0x20000000) != 0);
+        return ((bitField0_ & 0x00080000) != 0);
       }
       /**
-       * <code>required float tank_weight = 30;</code>
+       * <code>float tankWeight = 20;</code>
        * @return The tankWeight.
        */
       @java.lang.Override
@@ -4270,312 +2681,218 @@ public final class FrameProtos {
         return tankWeight_;
       }
       /**
-       * <code>required float tank_weight = 30;</code>
+       * <code>float tankWeight = 20;</code>
        * @param value The tankWeight to set.
        * @return This builder for chaining.
        */
       public Builder setTankWeight(float value) {
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x00080000;
         tankWeight_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float tank_weight = 30;</code>
+       * <code>float tankWeight = 20;</code>
        * @return This builder for chaining.
        */
       public Builder clearTankWeight() {
-        bitField0_ = (bitField0_ & ~0x20000000);
+        bitField0_ = (bitField0_ & ~0x00080000);
         tankWeight_ = 0F;
         onChanged();
         return this;
       }
 
-      private float temperatureFill_ ;
+      private float tempInjector_ ;
       /**
-       * <code>required float temperature_fill = 31;</code>
-       * @return Whether the temperatureFill field is set.
+       * <code>float tempInjector = 21;</code>
+       * @return Whether the tempInjector field is set.
        */
       @java.lang.Override
-      public boolean hasTemperatureFill() {
-        return ((bitField0_ & 0x40000000) != 0);
+      public boolean hasTempInjector() {
+        return ((bitField0_ & 0x00100000) != 0);
       }
       /**
-       * <code>required float temperature_fill = 31;</code>
-       * @return The temperatureFill.
+       * <code>float tempInjector = 21;</code>
+       * @return The tempInjector.
        */
       @java.lang.Override
-      public float getTemperatureFill() {
-        return temperatureFill_;
+      public float getTempInjector() {
+        return tempInjector_;
       }
       /**
-       * <code>required float temperature_fill = 31;</code>
-       * @param value The temperatureFill to set.
+       * <code>float tempInjector = 21;</code>
+       * @param value The tempInjector to set.
        * @return This builder for chaining.
        */
-      public Builder setTemperatureFill(float value) {
-        bitField0_ |= 0x40000000;
-        temperatureFill_ = value;
+      public Builder setTempInjector(float value) {
+        bitField0_ |= 0x00100000;
+        tempInjector_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float temperature_fill = 31;</code>
+       * <code>float tempInjector = 21;</code>
        * @return This builder for chaining.
        */
-      public Builder clearTemperatureFill() {
-        bitField0_ = (bitField0_ & ~0x40000000);
-        temperatureFill_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float preFillPressure_ ;
-      /**
-       * <code>required float pre_fill_pressure = 32;</code>
-       * @return Whether the preFillPressure field is set.
-       */
-      @java.lang.Override
-      public boolean hasPreFillPressure() {
-        return ((bitField0_ & 0x80000000) != 0);
-      }
-      /**
-       * <code>required float pre_fill_pressure = 32;</code>
-       * @return The preFillPressure.
-       */
-      @java.lang.Override
-      public float getPreFillPressure() {
-        return preFillPressure_;
-      }
-      /**
-       * <code>required float pre_fill_pressure = 32;</code>
-       * @param value The preFillPressure to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPreFillPressure(float value) {
-        bitField0_ |= 0x80000000;
-        preFillPressure_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float pre_fill_pressure = 32;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPreFillPressure() {
-        bitField0_ = (bitField0_ & ~0x80000000);
-        preFillPressure_ = 0F;
+      public Builder clearTempInjector() {
+        bitField0_ = (bitField0_ & ~0x00100000);
+        tempInjector_ = 0F;
         onChanged();
         return this;
       }
 
-      private float postFillPressure_ ;
+      private float tempCombustionChamber_ ;
       /**
-       * <code>required float post_fill_pressure = 33;</code>
-       * @return Whether the postFillPressure field is set.
+       * <code>float tempCombustionChamber = 22;</code>
+       * @return Whether the tempCombustionChamber field is set.
        */
       @java.lang.Override
-      public boolean hasPostFillPressure() {
-        return ((bitField1_ & 0x00000001) != 0);
+      public boolean hasTempCombustionChamber() {
+        return ((bitField0_ & 0x00200000) != 0);
       }
       /**
-       * <code>required float post_fill_pressure = 33;</code>
-       * @return The postFillPressure.
+       * <code>float tempCombustionChamber = 22;</code>
+       * @return The tempCombustionChamber.
        */
       @java.lang.Override
-      public float getPostFillPressure() {
-        return postFillPressure_;
+      public float getTempCombustionChamber() {
+        return tempCombustionChamber_;
       }
       /**
-       * <code>required float post_fill_pressure = 33;</code>
-       * @param value The postFillPressure to set.
+       * <code>float tempCombustionChamber = 22;</code>
+       * @param value The tempCombustionChamber to set.
        * @return This builder for chaining.
        */
-      public Builder setPostFillPressure(float value) {
-        bitField1_ |= 0x00000001;
-        postFillPressure_ = value;
+      public Builder setTempCombustionChamber(float value) {
+        bitField0_ |= 0x00200000;
+        tempCombustionChamber_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required float post_fill_pressure = 33;</code>
+       * <code>float tempCombustionChamber = 22;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPostFillPressure() {
-        bitField1_ = (bitField1_ & ~0x00000001);
-        postFillPressure_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float btlPressure_ ;
-      /**
-       * <code>required float btl_pressure = 34;</code>
-       * @return Whether the btlPressure field is set.
-       */
-      @java.lang.Override
-      public boolean hasBtlPressure() {
-        return ((bitField1_ & 0x00000002) != 0);
-      }
-      /**
-       * <code>required float btl_pressure = 34;</code>
-       * @return The btlPressure.
-       */
-      @java.lang.Override
-      public float getBtlPressure() {
-        return btlPressure_;
-      }
-      /**
-       * <code>required float btl_pressure = 34;</code>
-       * @param value The btlPressure to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBtlPressure(float value) {
-        bitField1_ |= 0x00000002;
-        btlPressure_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float btl_pressure = 34;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearBtlPressure() {
-        bitField1_ = (bitField1_ & ~0x00000002);
-        btlPressure_ = 0F;
+      public Builder clearTempCombustionChamber() {
+        bitField0_ = (bitField0_ & ~0x00200000);
+        tempCombustionChamber_ = 0F;
         onChanged();
         return this;
       }
 
-      private float payloadBattery_ ;
+      private float tempExternalTank_ ;
       /**
-       * <pre>
-       * payload
-       * </pre>
-       *
-       * <code>required float payload_battery = 35;</code>
-       * @return Whether the payloadBattery field is set.
+       * <code>float tempExternalTank = 23;</code>
+       * @return Whether the tempExternalTank field is set.
        */
       @java.lang.Override
-      public boolean hasPayloadBattery() {
-        return ((bitField1_ & 0x00000004) != 0);
+      public boolean hasTempExternalTank() {
+        return ((bitField0_ & 0x00400000) != 0);
       }
       /**
-       * <pre>
-       * payload
-       * </pre>
-       *
-       * <code>required float payload_battery = 35;</code>
-       * @return The payloadBattery.
+       * <code>float tempExternalTank = 23;</code>
+       * @return The tempExternalTank.
        */
       @java.lang.Override
-      public float getPayloadBattery() {
-        return payloadBattery_;
+      public float getTempExternalTank() {
+        return tempExternalTank_;
       }
       /**
-       * <pre>
-       * payload
-       * </pre>
-       *
-       * <code>required float payload_battery = 35;</code>
-       * @param value The payloadBattery to set.
+       * <code>float tempExternalTank = 23;</code>
+       * @param value The tempExternalTank to set.
        * @return This builder for chaining.
        */
-      public Builder setPayloadBattery(float value) {
-        bitField1_ |= 0x00000004;
-        payloadBattery_ = value;
+      public Builder setTempExternalTank(float value) {
+        bitField0_ |= 0x00400000;
+        tempExternalTank_ = value;
         onChanged();
         return this;
       }
       /**
-       * <pre>
-       * payload
-       * </pre>
-       *
-       * <code>required float payload_battery = 35;</code>
+       * <code>float tempExternalTank = 23;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPayloadBattery() {
-        bitField1_ = (bitField1_ & ~0x00000004);
-        payloadBattery_ = 0F;
+      public Builder clearTempExternalTank() {
+        bitField0_ = (bitField0_ & ~0x00400000);
+        tempExternalTank_ = 0F;
         onChanged();
         return this;
       }
 
-      private int espNowByteData_ ;
+      private boolean statusOxy_ ;
       /**
-       * <code>required fixed32 esp_now_byte_data = 36;</code>
-       * @return Whether the espNowByteData field is set.
+       * <code>bool statusOxy = 24;</code>
+       * @return Whether the statusOxy field is set.
        */
       @java.lang.Override
-      public boolean hasEspNowByteData() {
-        return ((bitField1_ & 0x00000008) != 0);
+      public boolean hasStatusOxy() {
+        return ((bitField0_ & 0x00800000) != 0);
       }
       /**
-       * <code>required fixed32 esp_now_byte_data = 36;</code>
-       * @return The espNowByteData.
+       * <code>bool statusOxy = 24;</code>
+       * @return The statusOxy.
        */
       @java.lang.Override
-      public int getEspNowByteData() {
-        return espNowByteData_;
+      public boolean getStatusOxy() {
+        return statusOxy_;
       }
       /**
-       * <code>required fixed32 esp_now_byte_data = 36;</code>
-       * @param value The espNowByteData to set.
+       * <code>bool statusOxy = 24;</code>
+       * @param value The statusOxy to set.
        * @return This builder for chaining.
        */
-      public Builder setEspNowByteData(int value) {
-        bitField1_ |= 0x00000008;
-        espNowByteData_ = value;
+      public Builder setStatusOxy(boolean value) {
+        bitField0_ |= 0x00800000;
+        statusOxy_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required fixed32 esp_now_byte_data = 36;</code>
+       * <code>bool statusOxy = 24;</code>
        * @return This builder for chaining.
        */
-      public Builder clearEspNowByteData() {
-        bitField1_ = (bitField1_ & ~0x00000008);
-        espNowByteData_ = 0;
+      public Builder clearStatusOxy() {
+        bitField0_ = (bitField0_ & ~0x00800000);
+        statusOxy_ = false;
         onChanged();
         return this;
       }
 
-      private int errors_ ;
+      private boolean statusFuel_ ;
       /**
-       * <code>required fixed32 errors = 37;</code>
-       * @return Whether the errors field is set.
+       * <code>bool statusFuel = 25;</code>
+       * @return Whether the statusFuel field is set.
        */
       @java.lang.Override
-      public boolean hasErrors() {
-        return ((bitField1_ & 0x00000010) != 0);
+      public boolean hasStatusFuel() {
+        return ((bitField0_ & 0x01000000) != 0);
       }
       /**
-       * <code>required fixed32 errors = 37;</code>
-       * @return The errors.
+       * <code>bool statusFuel = 25;</code>
+       * @return The statusFuel.
        */
       @java.lang.Override
-      public int getErrors() {
-        return errors_;
+      public boolean getStatusFuel() {
+        return statusFuel_;
       }
       /**
-       * <code>required fixed32 errors = 37;</code>
-       * @param value The errors to set.
+       * <code>bool statusFuel = 25;</code>
+       * @param value The statusFuel to set.
        * @return This builder for chaining.
        */
-      public Builder setErrors(int value) {
-        bitField1_ |= 0x00000010;
-        errors_ = value;
+      public Builder setStatusFuel(boolean value) {
+        bitField0_ |= 0x01000000;
+        statusFuel_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required fixed32 errors = 37;</code>
+       * <code>bool statusFuel = 25;</code>
        * @return This builder for chaining.
        */
-      public Builder clearErrors() {
-        bitField1_ = (bitField1_ & ~0x00000010);
-        errors_ = 0;
+      public Builder clearStatusFuel() {
+        bitField0_ = (bitField0_ & ~0x01000000);
+        statusFuel_ = false;
         onChanged();
         return this;
       }
@@ -4605,7 +2922,7 @@ public final class FrameProtos {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<LoRaFrame>
+    private static final com.google.protobuf.Parser<LoRaFrame>
         PARSER = new com.google.protobuf.AbstractParser<LoRaFrame>() {
       @java.lang.Override
       public LoRaFrame parsePartialFrom(
@@ -4632,3234 +2949,72 @@ public final class FrameProtos {
 
   }
 
-  public interface LoRaFrameTanwaOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaFrameTanwa)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>required uint32 tanWaState = 1;</code>
-     * @return Whether the tanWaState field is set.
-     */
-    boolean hasTanWaState();
-    /**
-     * <code>required uint32 tanWaState = 1;</code>
-     * @return The tanWaState.
-     */
-    int getTanWaState();
-
-    /**
-     * <code>required uint32 pressureSensor = 2;</code>
-     * @return Whether the pressureSensor field is set.
-     */
-    boolean hasPressureSensor();
-    /**
-     * <code>required uint32 pressureSensor = 2;</code>
-     * @return The pressureSensor.
-     */
-    int getPressureSensor();
-
-    /**
-     * <code>required uint32 solenoid_fill = 3;</code>
-     * @return Whether the solenoidFill field is set.
-     */
-    boolean hasSolenoidFill();
-    /**
-     * <code>required uint32 solenoid_fill = 3;</code>
-     * @return The solenoidFill.
-     */
-    int getSolenoidFill();
-
-    /**
-     * <code>required uint32 solenoid_depr = 4;</code>
-     * @return Whether the solenoidDepr field is set.
-     */
-    boolean hasSolenoidDepr();
-    /**
-     * <code>required uint32 solenoid_depr = 4;</code>
-     * @return The solenoidDepr.
-     */
-    int getSolenoidDepr();
-
-    /**
-     * <code>required bool abortButton = 5;</code>
-     * @return Whether the abortButton field is set.
-     */
-    boolean hasAbortButton();
-    /**
-     * <code>required bool abortButton = 5;</code>
-     * @return The abortButton.
-     */
-    boolean getAbortButton();
-
-    /**
-     * <code>required bool igniterContinouity_1 = 6;</code>
-     * @return Whether the igniterContinouity1 field is set.
-     */
-    boolean hasIgniterContinouity1();
-    /**
-     * <code>required bool igniterContinouity_1 = 6;</code>
-     * @return The igniterContinouity1.
-     */
-    boolean getIgniterContinouity1();
-
-    /**
-     * <code>required bool igniterContinouity_2 = 7;</code>
-     * @return Whether the igniterContinouity2 field is set.
-     */
-    boolean hasIgniterContinouity2();
-    /**
-     * <code>required bool igniterContinouity_2 = 7;</code>
-     * @return The igniterContinouity2.
-     */
-    boolean getIgniterContinouity2();
-
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_RCK = 8;</code>
-     * @return Whether the hxRequestRCK field is set.
-     */
-    boolean hasHxRequestRCK();
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_RCK = 8;</code>
-     * @return The hxRequestRCK.
-     */
-    int getHxRequestRCK();
-
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_TANK = 9;</code>
-     * @return Whether the hxRequestTANK field is set.
-     */
-    boolean hasHxRequestTANK();
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_TANK = 9;</code>
-     * @return The hxRequestTANK.
-     */
-    int getHxRequestTANK();
-
-    /**
-     * <code>required float vbat = 10;</code>
-     * @return Whether the vbat field is set.
-     */
-    boolean hasVbat();
-    /**
-     * <code>required float vbat = 10;</code>
-     * @return The vbat.
-     */
-    float getVbat();
-
-    /**
-     * <code>required uint32 motorState_1 = 11;</code>
-     * @return Whether the motorState1 field is set.
-     */
-    boolean hasMotorState1();
-    /**
-     * <code>required uint32 motorState_1 = 11;</code>
-     * @return The motorState1.
-     */
-    int getMotorState1();
-
-    /**
-     * <code>required uint32 motorState_2 = 12;</code>
-     * @return Whether the motorState2 field is set.
-     */
-    boolean hasMotorState2();
-    /**
-     * <code>required uint32 motorState_2 = 12;</code>
-     * @return The motorState2.
-     */
-    int getMotorState2();
-
-    /**
-     * <code>required uint32 motorState_3 = 13;</code>
-     * @return Whether the motorState3 field is set.
-     */
-    boolean hasMotorState3();
-    /**
-     * <code>required uint32 motorState_3 = 13;</code>
-     * @return The motorState3.
-     */
-    int getMotorState3();
-
-    /**
-     * <code>required uint32 motorState_4 = 14;</code>
-     * @return Whether the motorState4 field is set.
-     */
-    boolean hasMotorState4();
-    /**
-     * <code>required uint32 motorState_4 = 14;</code>
-     * @return The motorState4.
-     */
-    int getMotorState4();
-
-    /**
-     * <code>required uint32 rocketWeight_blink = 15;</code>
-     * @return Whether the rocketWeightBlink field is set.
-     */
-    boolean hasRocketWeightBlink();
-    /**
-     * <code>required uint32 rocketWeight_blink = 15;</code>
-     * @return The rocketWeightBlink.
-     */
-    int getRocketWeightBlink();
-
-    /**
-     * <code>required float rocketWeight_temp = 16;</code>
-     * @return Whether the rocketWeightTemp field is set.
-     */
-    boolean hasRocketWeightTemp();
-    /**
-     * <code>required float rocketWeight_temp = 16;</code>
-     * @return The rocketWeightTemp.
-     */
-    float getRocketWeightTemp();
-
-    /**
-     * <code>required uint32 tankWeight_blink = 17;</code>
-     * @return Whether the tankWeightBlink field is set.
-     */
-    boolean hasTankWeightBlink();
-    /**
-     * <code>required uint32 tankWeight_blink = 17;</code>
-     * @return The tankWeightBlink.
-     */
-    int getTankWeightBlink();
-
-    /**
-     * <code>required float tankWeight_temp = 18;</code>
-     * @return Whether the tankWeightTemp field is set.
-     */
-    boolean hasTankWeightTemp();
-    /**
-     * <code>required float tankWeight_temp = 18;</code>
-     * @return The tankWeightTemp.
-     */
-    float getTankWeightTemp();
-
-    /**
-     * <code>required float rocketWeight_val = 19;</code>
-     * @return Whether the rocketWeightVal field is set.
-     */
-    boolean hasRocketWeightVal();
-    /**
-     * <code>required float rocketWeight_val = 19;</code>
-     * @return The rocketWeightVal.
-     */
-    float getRocketWeightVal();
-
-    /**
-     * <code>required float tankWeight_val = 20;</code>
-     * @return Whether the tankWeightVal field is set.
-     */
-    boolean hasTankWeightVal();
-    /**
-     * <code>required float tankWeight_val = 20;</code>
-     * @return The tankWeightVal.
-     */
-    float getTankWeightVal();
-
-    /**
-     * <code>required uint32 rocketWeightRaw_val = 21;</code>
-     * @return Whether the rocketWeightRawVal field is set.
-     */
-    boolean hasRocketWeightRawVal();
-    /**
-     * <code>required uint32 rocketWeightRaw_val = 21;</code>
-     * @return The rocketWeightRawVal.
-     */
-    int getRocketWeightRawVal();
-
-    /**
-     * <code>required uint32 tankWeightRaw_val = 22;</code>
-     * @return Whether the tankWeightRawVal field is set.
-     */
-    boolean hasTankWeightRawVal();
-    /**
-     * <code>required uint32 tankWeightRaw_val = 22;</code>
-     * @return The tankWeightRawVal.
-     */
-    int getTankWeightRawVal();
-
-    /**
-     * <code>required bool interface_rck = 23;</code>
-     * @return Whether the interfaceRck field is set.
-     */
-    boolean hasInterfaceRck();
-    /**
-     * <code>required bool interface_rck = 23;</code>
-     * @return The interfaceRck.
-     */
-    boolean getInterfaceRck();
-
-    /**
-     * <code>required bool interface_tank = 24;</code>
-     * @return Whether the interfaceTank field is set.
-     */
-    boolean hasInterfaceTank();
-    /**
-     * <code>required bool interface_tank = 24;</code>
-     * @return The interfaceTank.
-     */
-    boolean getInterfaceTank();
-
-    /**
-     * <code>required bool interface_mcu = 25;</code>
-     * @return Whether the interfaceMcu field is set.
-     */
-    boolean hasInterfaceMcu();
-    /**
-     * <code>required bool interface_mcu = 25;</code>
-     * @return The interfaceMcu.
-     */
-    boolean getInterfaceMcu();
-  }
-  /**
-   * <pre>
-   * tanwa frame
-   * </pre>
-   *
-   * Protobuf type {@code LoRaFrameTanwa}
-   */
-  public static final class LoRaFrameTanwa extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaFrameTanwa)
-      LoRaFrameTanwaOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use LoRaFrameTanwa.newBuilder() to construct.
-    private LoRaFrameTanwa(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private LoRaFrameTanwa() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new LoRaFrameTanwa();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LoRaFrameTanwa(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              bitField0_ |= 0x00000001;
-              tanWaState_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              pressureSensor_ = input.readUInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              solenoidFill_ = input.readUInt32();
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              solenoidDepr_ = input.readUInt32();
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              abortButton_ = input.readBool();
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              igniterContinouity1_ = input.readBool();
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
-              igniterContinouity2_ = input.readBool();
-              break;
-            }
-            case 64: {
-              bitField0_ |= 0x00000080;
-              hxRequestRCK_ = input.readUInt32();
-              break;
-            }
-            case 72: {
-              bitField0_ |= 0x00000100;
-              hxRequestTANK_ = input.readUInt32();
-              break;
-            }
-            case 85: {
-              bitField0_ |= 0x00000200;
-              vbat_ = input.readFloat();
-              break;
-            }
-            case 88: {
-              bitField0_ |= 0x00000400;
-              motorState1_ = input.readUInt32();
-              break;
-            }
-            case 96: {
-              bitField0_ |= 0x00000800;
-              motorState2_ = input.readUInt32();
-              break;
-            }
-            case 104: {
-              bitField0_ |= 0x00001000;
-              motorState3_ = input.readUInt32();
-              break;
-            }
-            case 112: {
-              bitField0_ |= 0x00002000;
-              motorState4_ = input.readUInt32();
-              break;
-            }
-            case 120: {
-              bitField0_ |= 0x00004000;
-              rocketWeightBlink_ = input.readUInt32();
-              break;
-            }
-            case 133: {
-              bitField0_ |= 0x00008000;
-              rocketWeightTemp_ = input.readFloat();
-              break;
-            }
-            case 136: {
-              bitField0_ |= 0x00010000;
-              tankWeightBlink_ = input.readUInt32();
-              break;
-            }
-            case 149: {
-              bitField0_ |= 0x00020000;
-              tankWeightTemp_ = input.readFloat();
-              break;
-            }
-            case 157: {
-              bitField0_ |= 0x00040000;
-              rocketWeightVal_ = input.readFloat();
-              break;
-            }
-            case 165: {
-              bitField0_ |= 0x00080000;
-              tankWeightVal_ = input.readFloat();
-              break;
-            }
-            case 168: {
-              bitField0_ |= 0x00100000;
-              rocketWeightRawVal_ = input.readUInt32();
-              break;
-            }
-            case 176: {
-              bitField0_ |= 0x00200000;
-              tankWeightRawVal_ = input.readUInt32();
-              break;
-            }
-            case 184: {
-              bitField0_ |= 0x00400000;
-              interfaceRck_ = input.readBool();
-              break;
-            }
-            case 192: {
-              bitField0_ |= 0x00800000;
-              interfaceTank_ = input.readBool();
-              break;
-            }
-            case 200: {
-              bitField0_ |= 0x01000000;
-              interfaceMcu_ = input.readBool();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int TANWASTATE_FIELD_NUMBER = 1;
-    private int tanWaState_;
-    /**
-     * <code>required uint32 tanWaState = 1;</code>
-     * @return Whether the tanWaState field is set.
-     */
-    @java.lang.Override
-    public boolean hasTanWaState() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <code>required uint32 tanWaState = 1;</code>
-     * @return The tanWaState.
-     */
-    @java.lang.Override
-    public int getTanWaState() {
-      return tanWaState_;
-    }
-
-    public static final int PRESSURESENSOR_FIELD_NUMBER = 2;
-    private int pressureSensor_;
-    /**
-     * <code>required uint32 pressureSensor = 2;</code>
-     * @return Whether the pressureSensor field is set.
-     */
-    @java.lang.Override
-    public boolean hasPressureSensor() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
-    /**
-     * <code>required uint32 pressureSensor = 2;</code>
-     * @return The pressureSensor.
-     */
-    @java.lang.Override
-    public int getPressureSensor() {
-      return pressureSensor_;
-    }
-
-    public static final int SOLENOID_FILL_FIELD_NUMBER = 3;
-    private int solenoidFill_;
-    /**
-     * <code>required uint32 solenoid_fill = 3;</code>
-     * @return Whether the solenoidFill field is set.
-     */
-    @java.lang.Override
-    public boolean hasSolenoidFill() {
-      return ((bitField0_ & 0x00000004) != 0);
-    }
-    /**
-     * <code>required uint32 solenoid_fill = 3;</code>
-     * @return The solenoidFill.
-     */
-    @java.lang.Override
-    public int getSolenoidFill() {
-      return solenoidFill_;
-    }
-
-    public static final int SOLENOID_DEPR_FIELD_NUMBER = 4;
-    private int solenoidDepr_;
-    /**
-     * <code>required uint32 solenoid_depr = 4;</code>
-     * @return Whether the solenoidDepr field is set.
-     */
-    @java.lang.Override
-    public boolean hasSolenoidDepr() {
-      return ((bitField0_ & 0x00000008) != 0);
-    }
-    /**
-     * <code>required uint32 solenoid_depr = 4;</code>
-     * @return The solenoidDepr.
-     */
-    @java.lang.Override
-    public int getSolenoidDepr() {
-      return solenoidDepr_;
-    }
-
-    public static final int ABORTBUTTON_FIELD_NUMBER = 5;
-    private boolean abortButton_;
-    /**
-     * <code>required bool abortButton = 5;</code>
-     * @return Whether the abortButton field is set.
-     */
-    @java.lang.Override
-    public boolean hasAbortButton() {
-      return ((bitField0_ & 0x00000010) != 0);
-    }
-    /**
-     * <code>required bool abortButton = 5;</code>
-     * @return The abortButton.
-     */
-    @java.lang.Override
-    public boolean getAbortButton() {
-      return abortButton_;
-    }
-
-    public static final int IGNITERCONTINOUITY_1_FIELD_NUMBER = 6;
-    private boolean igniterContinouity1_;
-    /**
-     * <code>required bool igniterContinouity_1 = 6;</code>
-     * @return Whether the igniterContinouity1 field is set.
-     */
-    @java.lang.Override
-    public boolean hasIgniterContinouity1() {
-      return ((bitField0_ & 0x00000020) != 0);
-    }
-    /**
-     * <code>required bool igniterContinouity_1 = 6;</code>
-     * @return The igniterContinouity1.
-     */
-    @java.lang.Override
-    public boolean getIgniterContinouity1() {
-      return igniterContinouity1_;
-    }
-
-    public static final int IGNITERCONTINOUITY_2_FIELD_NUMBER = 7;
-    private boolean igniterContinouity2_;
-    /**
-     * <code>required bool igniterContinouity_2 = 7;</code>
-     * @return Whether the igniterContinouity2 field is set.
-     */
-    @java.lang.Override
-    public boolean hasIgniterContinouity2() {
-      return ((bitField0_ & 0x00000040) != 0);
-    }
-    /**
-     * <code>required bool igniterContinouity_2 = 7;</code>
-     * @return The igniterContinouity2.
-     */
-    @java.lang.Override
-    public boolean getIgniterContinouity2() {
-      return igniterContinouity2_;
-    }
-
-    public static final int HXREQUEST_RCK_FIELD_NUMBER = 8;
-    private int hxRequestRCK_;
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_RCK = 8;</code>
-     * @return Whether the hxRequestRCK field is set.
-     */
-    @java.lang.Override
-    public boolean hasHxRequestRCK() {
-      return ((bitField0_ & 0x00000080) != 0);
-    }
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_RCK = 8;</code>
-     * @return The hxRequestRCK.
-     */
-    @java.lang.Override
-    public int getHxRequestRCK() {
-      return hxRequestRCK_;
-    }
-
-    public static final int HXREQUEST_TANK_FIELD_NUMBER = 9;
-    private int hxRequestTANK_;
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_TANK = 9;</code>
-     * @return Whether the hxRequestTANK field is set.
-     */
-    @java.lang.Override
-    public boolean hasHxRequestTANK() {
-      return ((bitField0_ & 0x00000100) != 0);
-    }
-    /**
-     * <pre>
-     * arduino string
-     * </pre>
-     *
-     * <code>required uint32 hxRequest_TANK = 9;</code>
-     * @return The hxRequestTANK.
-     */
-    @java.lang.Override
-    public int getHxRequestTANK() {
-      return hxRequestTANK_;
-    }
-
-    public static final int VBAT_FIELD_NUMBER = 10;
-    private float vbat_;
-    /**
-     * <code>required float vbat = 10;</code>
-     * @return Whether the vbat field is set.
-     */
-    @java.lang.Override
-    public boolean hasVbat() {
-      return ((bitField0_ & 0x00000200) != 0);
-    }
-    /**
-     * <code>required float vbat = 10;</code>
-     * @return The vbat.
-     */
-    @java.lang.Override
-    public float getVbat() {
-      return vbat_;
-    }
-
-    public static final int MOTORSTATE_1_FIELD_NUMBER = 11;
-    private int motorState1_;
-    /**
-     * <code>required uint32 motorState_1 = 11;</code>
-     * @return Whether the motorState1 field is set.
-     */
-    @java.lang.Override
-    public boolean hasMotorState1() {
-      return ((bitField0_ & 0x00000400) != 0);
-    }
-    /**
-     * <code>required uint32 motorState_1 = 11;</code>
-     * @return The motorState1.
-     */
-    @java.lang.Override
-    public int getMotorState1() {
-      return motorState1_;
-    }
-
-    public static final int MOTORSTATE_2_FIELD_NUMBER = 12;
-    private int motorState2_;
-    /**
-     * <code>required uint32 motorState_2 = 12;</code>
-     * @return Whether the motorState2 field is set.
-     */
-    @java.lang.Override
-    public boolean hasMotorState2() {
-      return ((bitField0_ & 0x00000800) != 0);
-    }
-    /**
-     * <code>required uint32 motorState_2 = 12;</code>
-     * @return The motorState2.
-     */
-    @java.lang.Override
-    public int getMotorState2() {
-      return motorState2_;
-    }
-
-    public static final int MOTORSTATE_3_FIELD_NUMBER = 13;
-    private int motorState3_;
-    /**
-     * <code>required uint32 motorState_3 = 13;</code>
-     * @return Whether the motorState3 field is set.
-     */
-    @java.lang.Override
-    public boolean hasMotorState3() {
-      return ((bitField0_ & 0x00001000) != 0);
-    }
-    /**
-     * <code>required uint32 motorState_3 = 13;</code>
-     * @return The motorState3.
-     */
-    @java.lang.Override
-    public int getMotorState3() {
-      return motorState3_;
-    }
-
-    public static final int MOTORSTATE_4_FIELD_NUMBER = 14;
-    private int motorState4_;
-    /**
-     * <code>required uint32 motorState_4 = 14;</code>
-     * @return Whether the motorState4 field is set.
-     */
-    @java.lang.Override
-    public boolean hasMotorState4() {
-      return ((bitField0_ & 0x00002000) != 0);
-    }
-    /**
-     * <code>required uint32 motorState_4 = 14;</code>
-     * @return The motorState4.
-     */
-    @java.lang.Override
-    public int getMotorState4() {
-      return motorState4_;
-    }
-
-    public static final int ROCKETWEIGHT_BLINK_FIELD_NUMBER = 15;
-    private int rocketWeightBlink_;
-    /**
-     * <code>required uint32 rocketWeight_blink = 15;</code>
-     * @return Whether the rocketWeightBlink field is set.
-     */
-    @java.lang.Override
-    public boolean hasRocketWeightBlink() {
-      return ((bitField0_ & 0x00004000) != 0);
-    }
-    /**
-     * <code>required uint32 rocketWeight_blink = 15;</code>
-     * @return The rocketWeightBlink.
-     */
-    @java.lang.Override
-    public int getRocketWeightBlink() {
-      return rocketWeightBlink_;
-    }
-
-    public static final int ROCKETWEIGHT_TEMP_FIELD_NUMBER = 16;
-    private float rocketWeightTemp_;
-    /**
-     * <code>required float rocketWeight_temp = 16;</code>
-     * @return Whether the rocketWeightTemp field is set.
-     */
-    @java.lang.Override
-    public boolean hasRocketWeightTemp() {
-      return ((bitField0_ & 0x00008000) != 0);
-    }
-    /**
-     * <code>required float rocketWeight_temp = 16;</code>
-     * @return The rocketWeightTemp.
-     */
-    @java.lang.Override
-    public float getRocketWeightTemp() {
-      return rocketWeightTemp_;
-    }
-
-    public static final int TANKWEIGHT_BLINK_FIELD_NUMBER = 17;
-    private int tankWeightBlink_;
-    /**
-     * <code>required uint32 tankWeight_blink = 17;</code>
-     * @return Whether the tankWeightBlink field is set.
-     */
-    @java.lang.Override
-    public boolean hasTankWeightBlink() {
-      return ((bitField0_ & 0x00010000) != 0);
-    }
-    /**
-     * <code>required uint32 tankWeight_blink = 17;</code>
-     * @return The tankWeightBlink.
-     */
-    @java.lang.Override
-    public int getTankWeightBlink() {
-      return tankWeightBlink_;
-    }
-
-    public static final int TANKWEIGHT_TEMP_FIELD_NUMBER = 18;
-    private float tankWeightTemp_;
-    /**
-     * <code>required float tankWeight_temp = 18;</code>
-     * @return Whether the tankWeightTemp field is set.
-     */
-    @java.lang.Override
-    public boolean hasTankWeightTemp() {
-      return ((bitField0_ & 0x00020000) != 0);
-    }
-    /**
-     * <code>required float tankWeight_temp = 18;</code>
-     * @return The tankWeightTemp.
-     */
-    @java.lang.Override
-    public float getTankWeightTemp() {
-      return tankWeightTemp_;
-    }
-
-    public static final int ROCKETWEIGHT_VAL_FIELD_NUMBER = 19;
-    private float rocketWeightVal_;
-    /**
-     * <code>required float rocketWeight_val = 19;</code>
-     * @return Whether the rocketWeightVal field is set.
-     */
-    @java.lang.Override
-    public boolean hasRocketWeightVal() {
-      return ((bitField0_ & 0x00040000) != 0);
-    }
-    /**
-     * <code>required float rocketWeight_val = 19;</code>
-     * @return The rocketWeightVal.
-     */
-    @java.lang.Override
-    public float getRocketWeightVal() {
-      return rocketWeightVal_;
-    }
-
-    public static final int TANKWEIGHT_VAL_FIELD_NUMBER = 20;
-    private float tankWeightVal_;
-    /**
-     * <code>required float tankWeight_val = 20;</code>
-     * @return Whether the tankWeightVal field is set.
-     */
-    @java.lang.Override
-    public boolean hasTankWeightVal() {
-      return ((bitField0_ & 0x00080000) != 0);
-    }
-    /**
-     * <code>required float tankWeight_val = 20;</code>
-     * @return The tankWeightVal.
-     */
-    @java.lang.Override
-    public float getTankWeightVal() {
-      return tankWeightVal_;
-    }
-
-    public static final int ROCKETWEIGHTRAW_VAL_FIELD_NUMBER = 21;
-    private int rocketWeightRawVal_;
-    /**
-     * <code>required uint32 rocketWeightRaw_val = 21;</code>
-     * @return Whether the rocketWeightRawVal field is set.
-     */
-    @java.lang.Override
-    public boolean hasRocketWeightRawVal() {
-      return ((bitField0_ & 0x00100000) != 0);
-    }
-    /**
-     * <code>required uint32 rocketWeightRaw_val = 21;</code>
-     * @return The rocketWeightRawVal.
-     */
-    @java.lang.Override
-    public int getRocketWeightRawVal() {
-      return rocketWeightRawVal_;
-    }
-
-    public static final int TANKWEIGHTRAW_VAL_FIELD_NUMBER = 22;
-    private int tankWeightRawVal_;
-    /**
-     * <code>required uint32 tankWeightRaw_val = 22;</code>
-     * @return Whether the tankWeightRawVal field is set.
-     */
-    @java.lang.Override
-    public boolean hasTankWeightRawVal() {
-      return ((bitField0_ & 0x00200000) != 0);
-    }
-    /**
-     * <code>required uint32 tankWeightRaw_val = 22;</code>
-     * @return The tankWeightRawVal.
-     */
-    @java.lang.Override
-    public int getTankWeightRawVal() {
-      return tankWeightRawVal_;
-    }
-
-    public static final int INTERFACE_RCK_FIELD_NUMBER = 23;
-    private boolean interfaceRck_;
-    /**
-     * <code>required bool interface_rck = 23;</code>
-     * @return Whether the interfaceRck field is set.
-     */
-    @java.lang.Override
-    public boolean hasInterfaceRck() {
-      return ((bitField0_ & 0x00400000) != 0);
-    }
-    /**
-     * <code>required bool interface_rck = 23;</code>
-     * @return The interfaceRck.
-     */
-    @java.lang.Override
-    public boolean getInterfaceRck() {
-      return interfaceRck_;
-    }
-
-    public static final int INTERFACE_TANK_FIELD_NUMBER = 24;
-    private boolean interfaceTank_;
-    /**
-     * <code>required bool interface_tank = 24;</code>
-     * @return Whether the interfaceTank field is set.
-     */
-    @java.lang.Override
-    public boolean hasInterfaceTank() {
-      return ((bitField0_ & 0x00800000) != 0);
-    }
-    /**
-     * <code>required bool interface_tank = 24;</code>
-     * @return The interfaceTank.
-     */
-    @java.lang.Override
-    public boolean getInterfaceTank() {
-      return interfaceTank_;
-    }
-
-    public static final int INTERFACE_MCU_FIELD_NUMBER = 25;
-    private boolean interfaceMcu_;
-    /**
-     * <code>required bool interface_mcu = 25;</code>
-     * @return Whether the interfaceMcu field is set.
-     */
-    @java.lang.Override
-    public boolean hasInterfaceMcu() {
-      return ((bitField0_ & 0x01000000) != 0);
-    }
-    /**
-     * <code>required bool interface_mcu = 25;</code>
-     * @return The interfaceMcu.
-     */
-    @java.lang.Override
-    public boolean getInterfaceMcu() {
-      return interfaceMcu_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasTanWaState()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPressureSensor()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSolenoidFill()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSolenoidDepr()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasAbortButton()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasIgniterContinouity1()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasIgniterContinouity2()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasHxRequestRCK()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasHxRequestTANK()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasVbat()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMotorState1()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMotorState2()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMotorState3()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMotorState4()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRocketWeightBlink()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRocketWeightTemp()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTankWeightBlink()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTankWeightTemp()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRocketWeightVal()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTankWeightVal()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRocketWeightRawVal()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTankWeightRawVal()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasInterfaceRck()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasInterfaceTank()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasInterfaceMcu()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeUInt32(1, tanWaState_);
-      }
-      if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeUInt32(2, pressureSensor_);
-      }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeUInt32(3, solenoidFill_);
-      }
-      if (((bitField0_ & 0x00000008) != 0)) {
-        output.writeUInt32(4, solenoidDepr_);
-      }
-      if (((bitField0_ & 0x00000010) != 0)) {
-        output.writeBool(5, abortButton_);
-      }
-      if (((bitField0_ & 0x00000020) != 0)) {
-        output.writeBool(6, igniterContinouity1_);
-      }
-      if (((bitField0_ & 0x00000040) != 0)) {
-        output.writeBool(7, igniterContinouity2_);
-      }
-      if (((bitField0_ & 0x00000080) != 0)) {
-        output.writeUInt32(8, hxRequestRCK_);
-      }
-      if (((bitField0_ & 0x00000100) != 0)) {
-        output.writeUInt32(9, hxRequestTANK_);
-      }
-      if (((bitField0_ & 0x00000200) != 0)) {
-        output.writeFloat(10, vbat_);
-      }
-      if (((bitField0_ & 0x00000400) != 0)) {
-        output.writeUInt32(11, motorState1_);
-      }
-      if (((bitField0_ & 0x00000800) != 0)) {
-        output.writeUInt32(12, motorState2_);
-      }
-      if (((bitField0_ & 0x00001000) != 0)) {
-        output.writeUInt32(13, motorState3_);
-      }
-      if (((bitField0_ & 0x00002000) != 0)) {
-        output.writeUInt32(14, motorState4_);
-      }
-      if (((bitField0_ & 0x00004000) != 0)) {
-        output.writeUInt32(15, rocketWeightBlink_);
-      }
-      if (((bitField0_ & 0x00008000) != 0)) {
-        output.writeFloat(16, rocketWeightTemp_);
-      }
-      if (((bitField0_ & 0x00010000) != 0)) {
-        output.writeUInt32(17, tankWeightBlink_);
-      }
-      if (((bitField0_ & 0x00020000) != 0)) {
-        output.writeFloat(18, tankWeightTemp_);
-      }
-      if (((bitField0_ & 0x00040000) != 0)) {
-        output.writeFloat(19, rocketWeightVal_);
-      }
-      if (((bitField0_ & 0x00080000) != 0)) {
-        output.writeFloat(20, tankWeightVal_);
-      }
-      if (((bitField0_ & 0x00100000) != 0)) {
-        output.writeUInt32(21, rocketWeightRawVal_);
-      }
-      if (((bitField0_ & 0x00200000) != 0)) {
-        output.writeUInt32(22, tankWeightRawVal_);
-      }
-      if (((bitField0_ & 0x00400000) != 0)) {
-        output.writeBool(23, interfaceRck_);
-      }
-      if (((bitField0_ & 0x00800000) != 0)) {
-        output.writeBool(24, interfaceTank_);
-      }
-      if (((bitField0_ & 0x01000000) != 0)) {
-        output.writeBool(25, interfaceMcu_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, tanWaState_);
-      }
-      if (((bitField0_ & 0x00000002) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, pressureSensor_);
-      }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, solenoidFill_);
-      }
-      if (((bitField0_ & 0x00000008) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(4, solenoidDepr_);
-      }
-      if (((bitField0_ & 0x00000010) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(5, abortButton_);
-      }
-      if (((bitField0_ & 0x00000020) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(6, igniterContinouity1_);
-      }
-      if (((bitField0_ & 0x00000040) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, igniterContinouity2_);
-      }
-      if (((bitField0_ & 0x00000080) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(8, hxRequestRCK_);
-      }
-      if (((bitField0_ & 0x00000100) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(9, hxRequestTANK_);
-      }
-      if (((bitField0_ & 0x00000200) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(10, vbat_);
-      }
-      if (((bitField0_ & 0x00000400) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(11, motorState1_);
-      }
-      if (((bitField0_ & 0x00000800) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(12, motorState2_);
-      }
-      if (((bitField0_ & 0x00001000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(13, motorState3_);
-      }
-      if (((bitField0_ & 0x00002000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(14, motorState4_);
-      }
-      if (((bitField0_ & 0x00004000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(15, rocketWeightBlink_);
-      }
-      if (((bitField0_ & 0x00008000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(16, rocketWeightTemp_);
-      }
-      if (((bitField0_ & 0x00010000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(17, tankWeightBlink_);
-      }
-      if (((bitField0_ & 0x00020000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(18, tankWeightTemp_);
-      }
-      if (((bitField0_ & 0x00040000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(19, rocketWeightVal_);
-      }
-      if (((bitField0_ & 0x00080000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20, tankWeightVal_);
-      }
-      if (((bitField0_ & 0x00100000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(21, rocketWeightRawVal_);
-      }
-      if (((bitField0_ & 0x00200000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(22, tankWeightRawVal_);
-      }
-      if (((bitField0_ & 0x00400000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(23, interfaceRck_);
-      }
-      if (((bitField0_ & 0x00800000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(24, interfaceTank_);
-      }
-      if (((bitField0_ & 0x01000000) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(25, interfaceMcu_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa)) {
-        return super.equals(obj);
-      }
-      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa) obj;
-
-      if (hasTanWaState() != other.hasTanWaState()) return false;
-      if (hasTanWaState()) {
-        if (getTanWaState()
-            != other.getTanWaState()) return false;
-      }
-      if (hasPressureSensor() != other.hasPressureSensor()) return false;
-      if (hasPressureSensor()) {
-        if (getPressureSensor()
-            != other.getPressureSensor()) return false;
-      }
-      if (hasSolenoidFill() != other.hasSolenoidFill()) return false;
-      if (hasSolenoidFill()) {
-        if (getSolenoidFill()
-            != other.getSolenoidFill()) return false;
-      }
-      if (hasSolenoidDepr() != other.hasSolenoidDepr()) return false;
-      if (hasSolenoidDepr()) {
-        if (getSolenoidDepr()
-            != other.getSolenoidDepr()) return false;
-      }
-      if (hasAbortButton() != other.hasAbortButton()) return false;
-      if (hasAbortButton()) {
-        if (getAbortButton()
-            != other.getAbortButton()) return false;
-      }
-      if (hasIgniterContinouity1() != other.hasIgniterContinouity1()) return false;
-      if (hasIgniterContinouity1()) {
-        if (getIgniterContinouity1()
-            != other.getIgniterContinouity1()) return false;
-      }
-      if (hasIgniterContinouity2() != other.hasIgniterContinouity2()) return false;
-      if (hasIgniterContinouity2()) {
-        if (getIgniterContinouity2()
-            != other.getIgniterContinouity2()) return false;
-      }
-      if (hasHxRequestRCK() != other.hasHxRequestRCK()) return false;
-      if (hasHxRequestRCK()) {
-        if (getHxRequestRCK()
-            != other.getHxRequestRCK()) return false;
-      }
-      if (hasHxRequestTANK() != other.hasHxRequestTANK()) return false;
-      if (hasHxRequestTANK()) {
-        if (getHxRequestTANK()
-            != other.getHxRequestTANK()) return false;
-      }
-      if (hasVbat() != other.hasVbat()) return false;
-      if (hasVbat()) {
-        if (java.lang.Float.floatToIntBits(getVbat())
-            != java.lang.Float.floatToIntBits(
-                other.getVbat())) return false;
-      }
-      if (hasMotorState1() != other.hasMotorState1()) return false;
-      if (hasMotorState1()) {
-        if (getMotorState1()
-            != other.getMotorState1()) return false;
-      }
-      if (hasMotorState2() != other.hasMotorState2()) return false;
-      if (hasMotorState2()) {
-        if (getMotorState2()
-            != other.getMotorState2()) return false;
-      }
-      if (hasMotorState3() != other.hasMotorState3()) return false;
-      if (hasMotorState3()) {
-        if (getMotorState3()
-            != other.getMotorState3()) return false;
-      }
-      if (hasMotorState4() != other.hasMotorState4()) return false;
-      if (hasMotorState4()) {
-        if (getMotorState4()
-            != other.getMotorState4()) return false;
-      }
-      if (hasRocketWeightBlink() != other.hasRocketWeightBlink()) return false;
-      if (hasRocketWeightBlink()) {
-        if (getRocketWeightBlink()
-            != other.getRocketWeightBlink()) return false;
-      }
-      if (hasRocketWeightTemp() != other.hasRocketWeightTemp()) return false;
-      if (hasRocketWeightTemp()) {
-        if (java.lang.Float.floatToIntBits(getRocketWeightTemp())
-            != java.lang.Float.floatToIntBits(
-                other.getRocketWeightTemp())) return false;
-      }
-      if (hasTankWeightBlink() != other.hasTankWeightBlink()) return false;
-      if (hasTankWeightBlink()) {
-        if (getTankWeightBlink()
-            != other.getTankWeightBlink()) return false;
-      }
-      if (hasTankWeightTemp() != other.hasTankWeightTemp()) return false;
-      if (hasTankWeightTemp()) {
-        if (java.lang.Float.floatToIntBits(getTankWeightTemp())
-            != java.lang.Float.floatToIntBits(
-                other.getTankWeightTemp())) return false;
-      }
-      if (hasRocketWeightVal() != other.hasRocketWeightVal()) return false;
-      if (hasRocketWeightVal()) {
-        if (java.lang.Float.floatToIntBits(getRocketWeightVal())
-            != java.lang.Float.floatToIntBits(
-                other.getRocketWeightVal())) return false;
-      }
-      if (hasTankWeightVal() != other.hasTankWeightVal()) return false;
-      if (hasTankWeightVal()) {
-        if (java.lang.Float.floatToIntBits(getTankWeightVal())
-            != java.lang.Float.floatToIntBits(
-                other.getTankWeightVal())) return false;
-      }
-      if (hasRocketWeightRawVal() != other.hasRocketWeightRawVal()) return false;
-      if (hasRocketWeightRawVal()) {
-        if (getRocketWeightRawVal()
-            != other.getRocketWeightRawVal()) return false;
-      }
-      if (hasTankWeightRawVal() != other.hasTankWeightRawVal()) return false;
-      if (hasTankWeightRawVal()) {
-        if (getTankWeightRawVal()
-            != other.getTankWeightRawVal()) return false;
-      }
-      if (hasInterfaceRck() != other.hasInterfaceRck()) return false;
-      if (hasInterfaceRck()) {
-        if (getInterfaceRck()
-            != other.getInterfaceRck()) return false;
-      }
-      if (hasInterfaceTank() != other.hasInterfaceTank()) return false;
-      if (hasInterfaceTank()) {
-        if (getInterfaceTank()
-            != other.getInterfaceTank()) return false;
-      }
-      if (hasInterfaceMcu() != other.hasInterfaceMcu()) return false;
-      if (hasInterfaceMcu()) {
-        if (getInterfaceMcu()
-            != other.getInterfaceMcu()) return false;
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTanWaState()) {
-        hash = (37 * hash) + TANWASTATE_FIELD_NUMBER;
-        hash = (53 * hash) + getTanWaState();
-      }
-      if (hasPressureSensor()) {
-        hash = (37 * hash) + PRESSURESENSOR_FIELD_NUMBER;
-        hash = (53 * hash) + getPressureSensor();
-      }
-      if (hasSolenoidFill()) {
-        hash = (37 * hash) + SOLENOID_FILL_FIELD_NUMBER;
-        hash = (53 * hash) + getSolenoidFill();
-      }
-      if (hasSolenoidDepr()) {
-        hash = (37 * hash) + SOLENOID_DEPR_FIELD_NUMBER;
-        hash = (53 * hash) + getSolenoidDepr();
-      }
-      if (hasAbortButton()) {
-        hash = (37 * hash) + ABORTBUTTON_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getAbortButton());
-      }
-      if (hasIgniterContinouity1()) {
-        hash = (37 * hash) + IGNITERCONTINOUITY_1_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getIgniterContinouity1());
-      }
-      if (hasIgniterContinouity2()) {
-        hash = (37 * hash) + IGNITERCONTINOUITY_2_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getIgniterContinouity2());
-      }
-      if (hasHxRequestRCK()) {
-        hash = (37 * hash) + HXREQUEST_RCK_FIELD_NUMBER;
-        hash = (53 * hash) + getHxRequestRCK();
-      }
-      if (hasHxRequestTANK()) {
-        hash = (37 * hash) + HXREQUEST_TANK_FIELD_NUMBER;
-        hash = (53 * hash) + getHxRequestTANK();
-      }
-      if (hasVbat()) {
-        hash = (37 * hash) + VBAT_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getVbat());
-      }
-      if (hasMotorState1()) {
-        hash = (37 * hash) + MOTORSTATE_1_FIELD_NUMBER;
-        hash = (53 * hash) + getMotorState1();
-      }
-      if (hasMotorState2()) {
-        hash = (37 * hash) + MOTORSTATE_2_FIELD_NUMBER;
-        hash = (53 * hash) + getMotorState2();
-      }
-      if (hasMotorState3()) {
-        hash = (37 * hash) + MOTORSTATE_3_FIELD_NUMBER;
-        hash = (53 * hash) + getMotorState3();
-      }
-      if (hasMotorState4()) {
-        hash = (37 * hash) + MOTORSTATE_4_FIELD_NUMBER;
-        hash = (53 * hash) + getMotorState4();
-      }
-      if (hasRocketWeightBlink()) {
-        hash = (37 * hash) + ROCKETWEIGHT_BLINK_FIELD_NUMBER;
-        hash = (53 * hash) + getRocketWeightBlink();
-      }
-      if (hasRocketWeightTemp()) {
-        hash = (37 * hash) + ROCKETWEIGHT_TEMP_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getRocketWeightTemp());
-      }
-      if (hasTankWeightBlink()) {
-        hash = (37 * hash) + TANKWEIGHT_BLINK_FIELD_NUMBER;
-        hash = (53 * hash) + getTankWeightBlink();
-      }
-      if (hasTankWeightTemp()) {
-        hash = (37 * hash) + TANKWEIGHT_TEMP_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTankWeightTemp());
-      }
-      if (hasRocketWeightVal()) {
-        hash = (37 * hash) + ROCKETWEIGHT_VAL_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getRocketWeightVal());
-      }
-      if (hasTankWeightVal()) {
-        hash = (37 * hash) + TANKWEIGHT_VAL_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTankWeightVal());
-      }
-      if (hasRocketWeightRawVal()) {
-        hash = (37 * hash) + ROCKETWEIGHTRAW_VAL_FIELD_NUMBER;
-        hash = (53 * hash) + getRocketWeightRawVal();
-      }
-      if (hasTankWeightRawVal()) {
-        hash = (37 * hash) + TANKWEIGHTRAW_VAL_FIELD_NUMBER;
-        hash = (53 * hash) + getTankWeightRawVal();
-      }
-      if (hasInterfaceRck()) {
-        hash = (37 * hash) + INTERFACE_RCK_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getInterfaceRck());
-      }
-      if (hasInterfaceTank()) {
-        hash = (37 * hash) + INTERFACE_TANK_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getInterfaceTank());
-      }
-      if (hasInterfaceMcu()) {
-        hash = (37 * hash) + INTERFACE_MCU_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getInterfaceMcu());
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * tanwa frame
-     * </pre>
-     *
-     * Protobuf type {@code LoRaFrameTanwa}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaFrameTanwa)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwaOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
-      }
-
-      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        tanWaState_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        pressureSensor_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        solenoidFill_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        solenoidDepr_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        abortButton_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        igniterContinouity1_ = false;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        igniterContinouity2_ = false;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        hxRequestRCK_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        hxRequestTANK_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        vbat_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000200);
-        motorState1_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000400);
-        motorState2_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000800);
-        motorState3_ = 0;
-        bitField0_ = (bitField0_ & ~0x00001000);
-        motorState4_ = 0;
-        bitField0_ = (bitField0_ & ~0x00002000);
-        rocketWeightBlink_ = 0;
-        bitField0_ = (bitField0_ & ~0x00004000);
-        rocketWeightTemp_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00008000);
-        tankWeightBlink_ = 0;
-        bitField0_ = (bitField0_ & ~0x00010000);
-        tankWeightTemp_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00020000);
-        rocketWeightVal_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00040000);
-        tankWeightVal_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00080000);
-        rocketWeightRawVal_ = 0;
-        bitField0_ = (bitField0_ & ~0x00100000);
-        tankWeightRawVal_ = 0;
-        bitField0_ = (bitField0_ & ~0x00200000);
-        interfaceRck_ = false;
-        bitField0_ = (bitField0_ & ~0x00400000);
-        interfaceTank_ = false;
-        bitField0_ = (bitField0_ & ~0x00800000);
-        interfaceMcu_ = false;
-        bitField0_ = (bitField0_ & ~0x01000000);
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
-      }
-
-      @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa getDefaultInstanceForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa build() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa buildPartial() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.tanWaState_ = tanWaState_;
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.pressureSensor_ = pressureSensor_;
-          to_bitField0_ |= 0x00000002;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.solenoidFill_ = solenoidFill_;
-          to_bitField0_ |= 0x00000004;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.solenoidDepr_ = solenoidDepr_;
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          result.abortButton_ = abortButton_;
-          to_bitField0_ |= 0x00000010;
-        }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.igniterContinouity1_ = igniterContinouity1_;
-          to_bitField0_ |= 0x00000020;
-        }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          result.igniterContinouity2_ = igniterContinouity2_;
-          to_bitField0_ |= 0x00000040;
-        }
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          result.hxRequestRCK_ = hxRequestRCK_;
-          to_bitField0_ |= 0x00000080;
-        }
-        if (((from_bitField0_ & 0x00000100) != 0)) {
-          result.hxRequestTANK_ = hxRequestTANK_;
-          to_bitField0_ |= 0x00000100;
-        }
-        if (((from_bitField0_ & 0x00000200) != 0)) {
-          result.vbat_ = vbat_;
-          to_bitField0_ |= 0x00000200;
-        }
-        if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.motorState1_ = motorState1_;
-          to_bitField0_ |= 0x00000400;
-        }
-        if (((from_bitField0_ & 0x00000800) != 0)) {
-          result.motorState2_ = motorState2_;
-          to_bitField0_ |= 0x00000800;
-        }
-        if (((from_bitField0_ & 0x00001000) != 0)) {
-          result.motorState3_ = motorState3_;
-          to_bitField0_ |= 0x00001000;
-        }
-        if (((from_bitField0_ & 0x00002000) != 0)) {
-          result.motorState4_ = motorState4_;
-          to_bitField0_ |= 0x00002000;
-        }
-        if (((from_bitField0_ & 0x00004000) != 0)) {
-          result.rocketWeightBlink_ = rocketWeightBlink_;
-          to_bitField0_ |= 0x00004000;
-        }
-        if (((from_bitField0_ & 0x00008000) != 0)) {
-          result.rocketWeightTemp_ = rocketWeightTemp_;
-          to_bitField0_ |= 0x00008000;
-        }
-        if (((from_bitField0_ & 0x00010000) != 0)) {
-          result.tankWeightBlink_ = tankWeightBlink_;
-          to_bitField0_ |= 0x00010000;
-        }
-        if (((from_bitField0_ & 0x00020000) != 0)) {
-          result.tankWeightTemp_ = tankWeightTemp_;
-          to_bitField0_ |= 0x00020000;
-        }
-        if (((from_bitField0_ & 0x00040000) != 0)) {
-          result.rocketWeightVal_ = rocketWeightVal_;
-          to_bitField0_ |= 0x00040000;
-        }
-        if (((from_bitField0_ & 0x00080000) != 0)) {
-          result.tankWeightVal_ = tankWeightVal_;
-          to_bitField0_ |= 0x00080000;
-        }
-        if (((from_bitField0_ & 0x00100000) != 0)) {
-          result.rocketWeightRawVal_ = rocketWeightRawVal_;
-          to_bitField0_ |= 0x00100000;
-        }
-        if (((from_bitField0_ & 0x00200000) != 0)) {
-          result.tankWeightRawVal_ = tankWeightRawVal_;
-          to_bitField0_ |= 0x00200000;
-        }
-        if (((from_bitField0_ & 0x00400000) != 0)) {
-          result.interfaceRck_ = interfaceRck_;
-          to_bitField0_ |= 0x00400000;
-        }
-        if (((from_bitField0_ & 0x00800000) != 0)) {
-          result.interfaceTank_ = interfaceTank_;
-          to_bitField0_ |= 0x00800000;
-        }
-        if (((from_bitField0_ & 0x01000000) != 0)) {
-          result.interfaceMcu_ = interfaceMcu_;
-          to_bitField0_ |= 0x01000000;
-        }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa) {
-          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa other) {
-        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.getDefaultInstance()) return this;
-        if (other.hasTanWaState()) {
-          setTanWaState(other.getTanWaState());
-        }
-        if (other.hasPressureSensor()) {
-          setPressureSensor(other.getPressureSensor());
-        }
-        if (other.hasSolenoidFill()) {
-          setSolenoidFill(other.getSolenoidFill());
-        }
-        if (other.hasSolenoidDepr()) {
-          setSolenoidDepr(other.getSolenoidDepr());
-        }
-        if (other.hasAbortButton()) {
-          setAbortButton(other.getAbortButton());
-        }
-        if (other.hasIgniterContinouity1()) {
-          setIgniterContinouity1(other.getIgniterContinouity1());
-        }
-        if (other.hasIgniterContinouity2()) {
-          setIgniterContinouity2(other.getIgniterContinouity2());
-        }
-        if (other.hasHxRequestRCK()) {
-          setHxRequestRCK(other.getHxRequestRCK());
-        }
-        if (other.hasHxRequestTANK()) {
-          setHxRequestTANK(other.getHxRequestTANK());
-        }
-        if (other.hasVbat()) {
-          setVbat(other.getVbat());
-        }
-        if (other.hasMotorState1()) {
-          setMotorState1(other.getMotorState1());
-        }
-        if (other.hasMotorState2()) {
-          setMotorState2(other.getMotorState2());
-        }
-        if (other.hasMotorState3()) {
-          setMotorState3(other.getMotorState3());
-        }
-        if (other.hasMotorState4()) {
-          setMotorState4(other.getMotorState4());
-        }
-        if (other.hasRocketWeightBlink()) {
-          setRocketWeightBlink(other.getRocketWeightBlink());
-        }
-        if (other.hasRocketWeightTemp()) {
-          setRocketWeightTemp(other.getRocketWeightTemp());
-        }
-        if (other.hasTankWeightBlink()) {
-          setTankWeightBlink(other.getTankWeightBlink());
-        }
-        if (other.hasTankWeightTemp()) {
-          setTankWeightTemp(other.getTankWeightTemp());
-        }
-        if (other.hasRocketWeightVal()) {
-          setRocketWeightVal(other.getRocketWeightVal());
-        }
-        if (other.hasTankWeightVal()) {
-          setTankWeightVal(other.getTankWeightVal());
-        }
-        if (other.hasRocketWeightRawVal()) {
-          setRocketWeightRawVal(other.getRocketWeightRawVal());
-        }
-        if (other.hasTankWeightRawVal()) {
-          setTankWeightRawVal(other.getTankWeightRawVal());
-        }
-        if (other.hasInterfaceRck()) {
-          setInterfaceRck(other.getInterfaceRck());
-        }
-        if (other.hasInterfaceTank()) {
-          setInterfaceTank(other.getInterfaceTank());
-        }
-        if (other.hasInterfaceMcu()) {
-          setInterfaceMcu(other.getInterfaceMcu());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        if (!hasTanWaState()) {
-          return false;
-        }
-        if (!hasPressureSensor()) {
-          return false;
-        }
-        if (!hasSolenoidFill()) {
-          return false;
-        }
-        if (!hasSolenoidDepr()) {
-          return false;
-        }
-        if (!hasAbortButton()) {
-          return false;
-        }
-        if (!hasIgniterContinouity1()) {
-          return false;
-        }
-        if (!hasIgniterContinouity2()) {
-          return false;
-        }
-        if (!hasHxRequestRCK()) {
-          return false;
-        }
-        if (!hasHxRequestTANK()) {
-          return false;
-        }
-        if (!hasVbat()) {
-          return false;
-        }
-        if (!hasMotorState1()) {
-          return false;
-        }
-        if (!hasMotorState2()) {
-          return false;
-        }
-        if (!hasMotorState3()) {
-          return false;
-        }
-        if (!hasMotorState4()) {
-          return false;
-        }
-        if (!hasRocketWeightBlink()) {
-          return false;
-        }
-        if (!hasRocketWeightTemp()) {
-          return false;
-        }
-        if (!hasTankWeightBlink()) {
-          return false;
-        }
-        if (!hasTankWeightTemp()) {
-          return false;
-        }
-        if (!hasRocketWeightVal()) {
-          return false;
-        }
-        if (!hasTankWeightVal()) {
-          return false;
-        }
-        if (!hasRocketWeightRawVal()) {
-          return false;
-        }
-        if (!hasTankWeightRawVal()) {
-          return false;
-        }
-        if (!hasInterfaceRck()) {
-          return false;
-        }
-        if (!hasInterfaceTank()) {
-          return false;
-        }
-        if (!hasInterfaceMcu()) {
-          return false;
-        }
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int tanWaState_ ;
-      /**
-       * <code>required uint32 tanWaState = 1;</code>
-       * @return Whether the tanWaState field is set.
-       */
-      @java.lang.Override
-      public boolean hasTanWaState() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <code>required uint32 tanWaState = 1;</code>
-       * @return The tanWaState.
-       */
-      @java.lang.Override
-      public int getTanWaState() {
-        return tanWaState_;
-      }
-      /**
-       * <code>required uint32 tanWaState = 1;</code>
-       * @param value The tanWaState to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTanWaState(int value) {
-        bitField0_ |= 0x00000001;
-        tanWaState_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 tanWaState = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTanWaState() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        tanWaState_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int pressureSensor_ ;
-      /**
-       * <code>required uint32 pressureSensor = 2;</code>
-       * @return Whether the pressureSensor field is set.
-       */
-      @java.lang.Override
-      public boolean hasPressureSensor() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <code>required uint32 pressureSensor = 2;</code>
-       * @return The pressureSensor.
-       */
-      @java.lang.Override
-      public int getPressureSensor() {
-        return pressureSensor_;
-      }
-      /**
-       * <code>required uint32 pressureSensor = 2;</code>
-       * @param value The pressureSensor to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPressureSensor(int value) {
-        bitField0_ |= 0x00000002;
-        pressureSensor_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 pressureSensor = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPressureSensor() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        pressureSensor_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int solenoidFill_ ;
-      /**
-       * <code>required uint32 solenoid_fill = 3;</code>
-       * @return Whether the solenoidFill field is set.
-       */
-      @java.lang.Override
-      public boolean hasSolenoidFill() {
-        return ((bitField0_ & 0x00000004) != 0);
-      }
-      /**
-       * <code>required uint32 solenoid_fill = 3;</code>
-       * @return The solenoidFill.
-       */
-      @java.lang.Override
-      public int getSolenoidFill() {
-        return solenoidFill_;
-      }
-      /**
-       * <code>required uint32 solenoid_fill = 3;</code>
-       * @param value The solenoidFill to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSolenoidFill(int value) {
-        bitField0_ |= 0x00000004;
-        solenoidFill_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 solenoid_fill = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSolenoidFill() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        solenoidFill_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int solenoidDepr_ ;
-      /**
-       * <code>required uint32 solenoid_depr = 4;</code>
-       * @return Whether the solenoidDepr field is set.
-       */
-      @java.lang.Override
-      public boolean hasSolenoidDepr() {
-        return ((bitField0_ & 0x00000008) != 0);
-      }
-      /**
-       * <code>required uint32 solenoid_depr = 4;</code>
-       * @return The solenoidDepr.
-       */
-      @java.lang.Override
-      public int getSolenoidDepr() {
-        return solenoidDepr_;
-      }
-      /**
-       * <code>required uint32 solenoid_depr = 4;</code>
-       * @param value The solenoidDepr to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSolenoidDepr(int value) {
-        bitField0_ |= 0x00000008;
-        solenoidDepr_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 solenoid_depr = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSolenoidDepr() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        solenoidDepr_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private boolean abortButton_ ;
-      /**
-       * <code>required bool abortButton = 5;</code>
-       * @return Whether the abortButton field is set.
-       */
-      @java.lang.Override
-      public boolean hasAbortButton() {
-        return ((bitField0_ & 0x00000010) != 0);
-      }
-      /**
-       * <code>required bool abortButton = 5;</code>
-       * @return The abortButton.
-       */
-      @java.lang.Override
-      public boolean getAbortButton() {
-        return abortButton_;
-      }
-      /**
-       * <code>required bool abortButton = 5;</code>
-       * @param value The abortButton to set.
-       * @return This builder for chaining.
-       */
-      public Builder setAbortButton(boolean value) {
-        bitField0_ |= 0x00000010;
-        abortButton_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required bool abortButton = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearAbortButton() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        abortButton_ = false;
-        onChanged();
-        return this;
-      }
-
-      private boolean igniterContinouity1_ ;
-      /**
-       * <code>required bool igniterContinouity_1 = 6;</code>
-       * @return Whether the igniterContinouity1 field is set.
-       */
-      @java.lang.Override
-      public boolean hasIgniterContinouity1() {
-        return ((bitField0_ & 0x00000020) != 0);
-      }
-      /**
-       * <code>required bool igniterContinouity_1 = 6;</code>
-       * @return The igniterContinouity1.
-       */
-      @java.lang.Override
-      public boolean getIgniterContinouity1() {
-        return igniterContinouity1_;
-      }
-      /**
-       * <code>required bool igniterContinouity_1 = 6;</code>
-       * @param value The igniterContinouity1 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIgniterContinouity1(boolean value) {
-        bitField0_ |= 0x00000020;
-        igniterContinouity1_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required bool igniterContinouity_1 = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearIgniterContinouity1() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        igniterContinouity1_ = false;
-        onChanged();
-        return this;
-      }
-
-      private boolean igniterContinouity2_ ;
-      /**
-       * <code>required bool igniterContinouity_2 = 7;</code>
-       * @return Whether the igniterContinouity2 field is set.
-       */
-      @java.lang.Override
-      public boolean hasIgniterContinouity2() {
-        return ((bitField0_ & 0x00000040) != 0);
-      }
-      /**
-       * <code>required bool igniterContinouity_2 = 7;</code>
-       * @return The igniterContinouity2.
-       */
-      @java.lang.Override
-      public boolean getIgniterContinouity2() {
-        return igniterContinouity2_;
-      }
-      /**
-       * <code>required bool igniterContinouity_2 = 7;</code>
-       * @param value The igniterContinouity2 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIgniterContinouity2(boolean value) {
-        bitField0_ |= 0x00000040;
-        igniterContinouity2_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required bool igniterContinouity_2 = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearIgniterContinouity2() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        igniterContinouity2_ = false;
-        onChanged();
-        return this;
-      }
-
-      private int hxRequestRCK_ ;
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_RCK = 8;</code>
-       * @return Whether the hxRequestRCK field is set.
-       */
-      @java.lang.Override
-      public boolean hasHxRequestRCK() {
-        return ((bitField0_ & 0x00000080) != 0);
-      }
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_RCK = 8;</code>
-       * @return The hxRequestRCK.
-       */
-      @java.lang.Override
-      public int getHxRequestRCK() {
-        return hxRequestRCK_;
-      }
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_RCK = 8;</code>
-       * @param value The hxRequestRCK to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHxRequestRCK(int value) {
-        bitField0_ |= 0x00000080;
-        hxRequestRCK_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_RCK = 8;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearHxRequestRCK() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        hxRequestRCK_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int hxRequestTANK_ ;
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_TANK = 9;</code>
-       * @return Whether the hxRequestTANK field is set.
-       */
-      @java.lang.Override
-      public boolean hasHxRequestTANK() {
-        return ((bitField0_ & 0x00000100) != 0);
-      }
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_TANK = 9;</code>
-       * @return The hxRequestTANK.
-       */
-      @java.lang.Override
-      public int getHxRequestTANK() {
-        return hxRequestTANK_;
-      }
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_TANK = 9;</code>
-       * @param value The hxRequestTANK to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHxRequestTANK(int value) {
-        bitField0_ |= 0x00000100;
-        hxRequestTANK_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * arduino string
-       * </pre>
-       *
-       * <code>required uint32 hxRequest_TANK = 9;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearHxRequestTANK() {
-        bitField0_ = (bitField0_ & ~0x00000100);
-        hxRequestTANK_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float vbat_ ;
-      /**
-       * <code>required float vbat = 10;</code>
-       * @return Whether the vbat field is set.
-       */
-      @java.lang.Override
-      public boolean hasVbat() {
-        return ((bitField0_ & 0x00000200) != 0);
-      }
-      /**
-       * <code>required float vbat = 10;</code>
-       * @return The vbat.
-       */
-      @java.lang.Override
-      public float getVbat() {
-        return vbat_;
-      }
-      /**
-       * <code>required float vbat = 10;</code>
-       * @param value The vbat to set.
-       * @return This builder for chaining.
-       */
-      public Builder setVbat(float value) {
-        bitField0_ |= 0x00000200;
-        vbat_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float vbat = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearVbat() {
-        bitField0_ = (bitField0_ & ~0x00000200);
-        vbat_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int motorState1_ ;
-      /**
-       * <code>required uint32 motorState_1 = 11;</code>
-       * @return Whether the motorState1 field is set.
-       */
-      @java.lang.Override
-      public boolean hasMotorState1() {
-        return ((bitField0_ & 0x00000400) != 0);
-      }
-      /**
-       * <code>required uint32 motorState_1 = 11;</code>
-       * @return The motorState1.
-       */
-      @java.lang.Override
-      public int getMotorState1() {
-        return motorState1_;
-      }
-      /**
-       * <code>required uint32 motorState_1 = 11;</code>
-       * @param value The motorState1 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMotorState1(int value) {
-        bitField0_ |= 0x00000400;
-        motorState1_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 motorState_1 = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMotorState1() {
-        bitField0_ = (bitField0_ & ~0x00000400);
-        motorState1_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int motorState2_ ;
-      /**
-       * <code>required uint32 motorState_2 = 12;</code>
-       * @return Whether the motorState2 field is set.
-       */
-      @java.lang.Override
-      public boolean hasMotorState2() {
-        return ((bitField0_ & 0x00000800) != 0);
-      }
-      /**
-       * <code>required uint32 motorState_2 = 12;</code>
-       * @return The motorState2.
-       */
-      @java.lang.Override
-      public int getMotorState2() {
-        return motorState2_;
-      }
-      /**
-       * <code>required uint32 motorState_2 = 12;</code>
-       * @param value The motorState2 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMotorState2(int value) {
-        bitField0_ |= 0x00000800;
-        motorState2_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 motorState_2 = 12;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMotorState2() {
-        bitField0_ = (bitField0_ & ~0x00000800);
-        motorState2_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int motorState3_ ;
-      /**
-       * <code>required uint32 motorState_3 = 13;</code>
-       * @return Whether the motorState3 field is set.
-       */
-      @java.lang.Override
-      public boolean hasMotorState3() {
-        return ((bitField0_ & 0x00001000) != 0);
-      }
-      /**
-       * <code>required uint32 motorState_3 = 13;</code>
-       * @return The motorState3.
-       */
-      @java.lang.Override
-      public int getMotorState3() {
-        return motorState3_;
-      }
-      /**
-       * <code>required uint32 motorState_3 = 13;</code>
-       * @param value The motorState3 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMotorState3(int value) {
-        bitField0_ |= 0x00001000;
-        motorState3_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 motorState_3 = 13;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMotorState3() {
-        bitField0_ = (bitField0_ & ~0x00001000);
-        motorState3_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int motorState4_ ;
-      /**
-       * <code>required uint32 motorState_4 = 14;</code>
-       * @return Whether the motorState4 field is set.
-       */
-      @java.lang.Override
-      public boolean hasMotorState4() {
-        return ((bitField0_ & 0x00002000) != 0);
-      }
-      /**
-       * <code>required uint32 motorState_4 = 14;</code>
-       * @return The motorState4.
-       */
-      @java.lang.Override
-      public int getMotorState4() {
-        return motorState4_;
-      }
-      /**
-       * <code>required uint32 motorState_4 = 14;</code>
-       * @param value The motorState4 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMotorState4(int value) {
-        bitField0_ |= 0x00002000;
-        motorState4_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 motorState_4 = 14;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMotorState4() {
-        bitField0_ = (bitField0_ & ~0x00002000);
-        motorState4_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int rocketWeightBlink_ ;
-      /**
-       * <code>required uint32 rocketWeight_blink = 15;</code>
-       * @return Whether the rocketWeightBlink field is set.
-       */
-      @java.lang.Override
-      public boolean hasRocketWeightBlink() {
-        return ((bitField0_ & 0x00004000) != 0);
-      }
-      /**
-       * <code>required uint32 rocketWeight_blink = 15;</code>
-       * @return The rocketWeightBlink.
-       */
-      @java.lang.Override
-      public int getRocketWeightBlink() {
-        return rocketWeightBlink_;
-      }
-      /**
-       * <code>required uint32 rocketWeight_blink = 15;</code>
-       * @param value The rocketWeightBlink to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRocketWeightBlink(int value) {
-        bitField0_ |= 0x00004000;
-        rocketWeightBlink_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 rocketWeight_blink = 15;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRocketWeightBlink() {
-        bitField0_ = (bitField0_ & ~0x00004000);
-        rocketWeightBlink_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float rocketWeightTemp_ ;
-      /**
-       * <code>required float rocketWeight_temp = 16;</code>
-       * @return Whether the rocketWeightTemp field is set.
-       */
-      @java.lang.Override
-      public boolean hasRocketWeightTemp() {
-        return ((bitField0_ & 0x00008000) != 0);
-      }
-      /**
-       * <code>required float rocketWeight_temp = 16;</code>
-       * @return The rocketWeightTemp.
-       */
-      @java.lang.Override
-      public float getRocketWeightTemp() {
-        return rocketWeightTemp_;
-      }
-      /**
-       * <code>required float rocketWeight_temp = 16;</code>
-       * @param value The rocketWeightTemp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRocketWeightTemp(float value) {
-        bitField0_ |= 0x00008000;
-        rocketWeightTemp_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float rocketWeight_temp = 16;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRocketWeightTemp() {
-        bitField0_ = (bitField0_ & ~0x00008000);
-        rocketWeightTemp_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int tankWeightBlink_ ;
-      /**
-       * <code>required uint32 tankWeight_blink = 17;</code>
-       * @return Whether the tankWeightBlink field is set.
-       */
-      @java.lang.Override
-      public boolean hasTankWeightBlink() {
-        return ((bitField0_ & 0x00010000) != 0);
-      }
-      /**
-       * <code>required uint32 tankWeight_blink = 17;</code>
-       * @return The tankWeightBlink.
-       */
-      @java.lang.Override
-      public int getTankWeightBlink() {
-        return tankWeightBlink_;
-      }
-      /**
-       * <code>required uint32 tankWeight_blink = 17;</code>
-       * @param value The tankWeightBlink to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTankWeightBlink(int value) {
-        bitField0_ |= 0x00010000;
-        tankWeightBlink_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 tankWeight_blink = 17;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTankWeightBlink() {
-        bitField0_ = (bitField0_ & ~0x00010000);
-        tankWeightBlink_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float tankWeightTemp_ ;
-      /**
-       * <code>required float tankWeight_temp = 18;</code>
-       * @return Whether the tankWeightTemp field is set.
-       */
-      @java.lang.Override
-      public boolean hasTankWeightTemp() {
-        return ((bitField0_ & 0x00020000) != 0);
-      }
-      /**
-       * <code>required float tankWeight_temp = 18;</code>
-       * @return The tankWeightTemp.
-       */
-      @java.lang.Override
-      public float getTankWeightTemp() {
-        return tankWeightTemp_;
-      }
-      /**
-       * <code>required float tankWeight_temp = 18;</code>
-       * @param value The tankWeightTemp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTankWeightTemp(float value) {
-        bitField0_ |= 0x00020000;
-        tankWeightTemp_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float tankWeight_temp = 18;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTankWeightTemp() {
-        bitField0_ = (bitField0_ & ~0x00020000);
-        tankWeightTemp_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float rocketWeightVal_ ;
-      /**
-       * <code>required float rocketWeight_val = 19;</code>
-       * @return Whether the rocketWeightVal field is set.
-       */
-      @java.lang.Override
-      public boolean hasRocketWeightVal() {
-        return ((bitField0_ & 0x00040000) != 0);
-      }
-      /**
-       * <code>required float rocketWeight_val = 19;</code>
-       * @return The rocketWeightVal.
-       */
-      @java.lang.Override
-      public float getRocketWeightVal() {
-        return rocketWeightVal_;
-      }
-      /**
-       * <code>required float rocketWeight_val = 19;</code>
-       * @param value The rocketWeightVal to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRocketWeightVal(float value) {
-        bitField0_ |= 0x00040000;
-        rocketWeightVal_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float rocketWeight_val = 19;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRocketWeightVal() {
-        bitField0_ = (bitField0_ & ~0x00040000);
-        rocketWeightVal_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float tankWeightVal_ ;
-      /**
-       * <code>required float tankWeight_val = 20;</code>
-       * @return Whether the tankWeightVal field is set.
-       */
-      @java.lang.Override
-      public boolean hasTankWeightVal() {
-        return ((bitField0_ & 0x00080000) != 0);
-      }
-      /**
-       * <code>required float tankWeight_val = 20;</code>
-       * @return The tankWeightVal.
-       */
-      @java.lang.Override
-      public float getTankWeightVal() {
-        return tankWeightVal_;
-      }
-      /**
-       * <code>required float tankWeight_val = 20;</code>
-       * @param value The tankWeightVal to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTankWeightVal(float value) {
-        bitField0_ |= 0x00080000;
-        tankWeightVal_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required float tankWeight_val = 20;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTankWeightVal() {
-        bitField0_ = (bitField0_ & ~0x00080000);
-        tankWeightVal_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private int rocketWeightRawVal_ ;
-      /**
-       * <code>required uint32 rocketWeightRaw_val = 21;</code>
-       * @return Whether the rocketWeightRawVal field is set.
-       */
-      @java.lang.Override
-      public boolean hasRocketWeightRawVal() {
-        return ((bitField0_ & 0x00100000) != 0);
-      }
-      /**
-       * <code>required uint32 rocketWeightRaw_val = 21;</code>
-       * @return The rocketWeightRawVal.
-       */
-      @java.lang.Override
-      public int getRocketWeightRawVal() {
-        return rocketWeightRawVal_;
-      }
-      /**
-       * <code>required uint32 rocketWeightRaw_val = 21;</code>
-       * @param value The rocketWeightRawVal to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRocketWeightRawVal(int value) {
-        bitField0_ |= 0x00100000;
-        rocketWeightRawVal_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 rocketWeightRaw_val = 21;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRocketWeightRawVal() {
-        bitField0_ = (bitField0_ & ~0x00100000);
-        rocketWeightRawVal_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int tankWeightRawVal_ ;
-      /**
-       * <code>required uint32 tankWeightRaw_val = 22;</code>
-       * @return Whether the tankWeightRawVal field is set.
-       */
-      @java.lang.Override
-      public boolean hasTankWeightRawVal() {
-        return ((bitField0_ & 0x00200000) != 0);
-      }
-      /**
-       * <code>required uint32 tankWeightRaw_val = 22;</code>
-       * @return The tankWeightRawVal.
-       */
-      @java.lang.Override
-      public int getTankWeightRawVal() {
-        return tankWeightRawVal_;
-      }
-      /**
-       * <code>required uint32 tankWeightRaw_val = 22;</code>
-       * @param value The tankWeightRawVal to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTankWeightRawVal(int value) {
-        bitField0_ |= 0x00200000;
-        tankWeightRawVal_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 tankWeightRaw_val = 22;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTankWeightRawVal() {
-        bitField0_ = (bitField0_ & ~0x00200000);
-        tankWeightRawVal_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private boolean interfaceRck_ ;
-      /**
-       * <code>required bool interface_rck = 23;</code>
-       * @return Whether the interfaceRck field is set.
-       */
-      @java.lang.Override
-      public boolean hasInterfaceRck() {
-        return ((bitField0_ & 0x00400000) != 0);
-      }
-      /**
-       * <code>required bool interface_rck = 23;</code>
-       * @return The interfaceRck.
-       */
-      @java.lang.Override
-      public boolean getInterfaceRck() {
-        return interfaceRck_;
-      }
-      /**
-       * <code>required bool interface_rck = 23;</code>
-       * @param value The interfaceRck to set.
-       * @return This builder for chaining.
-       */
-      public Builder setInterfaceRck(boolean value) {
-        bitField0_ |= 0x00400000;
-        interfaceRck_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required bool interface_rck = 23;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearInterfaceRck() {
-        bitField0_ = (bitField0_ & ~0x00400000);
-        interfaceRck_ = false;
-        onChanged();
-        return this;
-      }
-
-      private boolean interfaceTank_ ;
-      /**
-       * <code>required bool interface_tank = 24;</code>
-       * @return Whether the interfaceTank field is set.
-       */
-      @java.lang.Override
-      public boolean hasInterfaceTank() {
-        return ((bitField0_ & 0x00800000) != 0);
-      }
-      /**
-       * <code>required bool interface_tank = 24;</code>
-       * @return The interfaceTank.
-       */
-      @java.lang.Override
-      public boolean getInterfaceTank() {
-        return interfaceTank_;
-      }
-      /**
-       * <code>required bool interface_tank = 24;</code>
-       * @param value The interfaceTank to set.
-       * @return This builder for chaining.
-       */
-      public Builder setInterfaceTank(boolean value) {
-        bitField0_ |= 0x00800000;
-        interfaceTank_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required bool interface_tank = 24;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearInterfaceTank() {
-        bitField0_ = (bitField0_ & ~0x00800000);
-        interfaceTank_ = false;
-        onChanged();
-        return this;
-      }
-
-      private boolean interfaceMcu_ ;
-      /**
-       * <code>required bool interface_mcu = 25;</code>
-       * @return Whether the interfaceMcu field is set.
-       */
-      @java.lang.Override
-      public boolean hasInterfaceMcu() {
-        return ((bitField0_ & 0x01000000) != 0);
-      }
-      /**
-       * <code>required bool interface_mcu = 25;</code>
-       * @return The interfaceMcu.
-       */
-      @java.lang.Override
-      public boolean getInterfaceMcu() {
-        return interfaceMcu_;
-      }
-      /**
-       * <code>required bool interface_mcu = 25;</code>
-       * @param value The interfaceMcu to set.
-       * @return This builder for chaining.
-       */
-      public Builder setInterfaceMcu(boolean value) {
-        bitField0_ |= 0x01000000;
-        interfaceMcu_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required bool interface_mcu = 25;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearInterfaceMcu() {
-        bitField0_ = (bitField0_ & ~0x01000000);
-        interfaceMcu_ = false;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:LoRaFrameTanwa)
-    }
-
-    // @@protoc_insertion_point(class_scope:LoRaFrameTanwa)
-    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa();
-    }
-
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<LoRaFrameTanwa>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaFrameTanwa>() {
-      @java.lang.Override
-      public LoRaFrameTanwa parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LoRaFrameTanwa(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<LoRaFrameTanwa> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<LoRaFrameTanwa> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface LoRaSettingsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:LoRaSettings)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 lora_freq_khz = 1;</code>
+     * <code>int32 lora_freq_khz = 1;</code>
      * @return Whether the loraFreqKhz field is set.
      */
     boolean hasLoraFreqKhz();
     /**
-     * <code>required int32 lora_freq_khz = 1;</code>
+     * <code>int32 lora_freq_khz = 1;</code>
      * @return The loraFreqKhz.
      */
     int getLoraFreqKhz();
 
     /**
-     * <code>required int32 lora_transmit_ms = 2;</code>
+     * <code>int32 lora_transmit_ms = 2;</code>
      * @return Whether the loraTransmitMs field is set.
      */
     boolean hasLoraTransmitMs();
     /**
-     * <code>required int32 lora_transmit_ms = 2;</code>
+     * <code>int32 lora_transmit_ms = 2;</code>
      * @return The loraTransmitMs.
      */
     int getLoraTransmitMs();
 
     /**
-     * <code>required int32 countdown_time = 3;</code>
+     * <code>int32 countdown_time = 3;</code>
      * @return Whether the countdownTime field is set.
      */
     boolean hasCountdownTime();
     /**
-     * <code>required int32 countdown_time = 3;</code>
+     * <code>int32 countdown_time = 3;</code>
      * @return The countdownTime.
      */
     int getCountdownTime();
 
     /**
-     * <code>required int32 ingition_time = 4;</code>
+     * <code>int32 ingition_time = 4;</code>
      * @return Whether the ingitionTime field is set.
      */
     boolean hasIngitionTime();
     /**
-     * <code>required int32 ingition_time = 4;</code>
+     * <code>int32 ingition_time = 4;</code>
      * @return The ingitionTime.
      */
     int getIngitionTime();
 
     /**
-     * <code>required uint32 flash_enable = 5;</code>
+     * <code>uint32 flash_enable = 5;</code>
      * @return Whether the flashEnable field is set.
      */
     boolean hasFlashEnable();
     /**
-     * <code>required uint32 flash_enable = 5;</code>
+     * <code>uint32 flash_enable = 5;</code>
      * @return The flashEnable.
      */
     int getFlashEnable();
 
     /**
-     * <code>required uint32 buzzer_enable = 6;</code>
+     * <code>uint32 buzzer_enable = 6;</code>
      * @return Whether the buzzerEnable field is set.
      */
     boolean hasBuzzerEnable();
     /**
-     * <code>required uint32 buzzer_enable = 6;</code>
+     * <code>uint32 buzzer_enable = 6;</code>
      * @return The buzzerEnable.
      */
     int getBuzzerEnable();
@@ -7976,7 +3131,7 @@ public final class FrameProtos {
     public static final int LORA_FREQ_KHZ_FIELD_NUMBER = 1;
     private int loraFreqKhz_;
     /**
-     * <code>required int32 lora_freq_khz = 1;</code>
+     * <code>int32 lora_freq_khz = 1;</code>
      * @return Whether the loraFreqKhz field is set.
      */
     @java.lang.Override
@@ -7984,7 +3139,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>required int32 lora_freq_khz = 1;</code>
+     * <code>int32 lora_freq_khz = 1;</code>
      * @return The loraFreqKhz.
      */
     @java.lang.Override
@@ -7995,7 +3150,7 @@ public final class FrameProtos {
     public static final int LORA_TRANSMIT_MS_FIELD_NUMBER = 2;
     private int loraTransmitMs_;
     /**
-     * <code>required int32 lora_transmit_ms = 2;</code>
+     * <code>int32 lora_transmit_ms = 2;</code>
      * @return Whether the loraTransmitMs field is set.
      */
     @java.lang.Override
@@ -8003,7 +3158,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>required int32 lora_transmit_ms = 2;</code>
+     * <code>int32 lora_transmit_ms = 2;</code>
      * @return The loraTransmitMs.
      */
     @java.lang.Override
@@ -8014,7 +3169,7 @@ public final class FrameProtos {
     public static final int COUNTDOWN_TIME_FIELD_NUMBER = 3;
     private int countdownTime_;
     /**
-     * <code>required int32 countdown_time = 3;</code>
+     * <code>int32 countdown_time = 3;</code>
      * @return Whether the countdownTime field is set.
      */
     @java.lang.Override
@@ -8022,7 +3177,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>required int32 countdown_time = 3;</code>
+     * <code>int32 countdown_time = 3;</code>
      * @return The countdownTime.
      */
     @java.lang.Override
@@ -8033,7 +3188,7 @@ public final class FrameProtos {
     public static final int INGITION_TIME_FIELD_NUMBER = 4;
     private int ingitionTime_;
     /**
-     * <code>required int32 ingition_time = 4;</code>
+     * <code>int32 ingition_time = 4;</code>
      * @return Whether the ingitionTime field is set.
      */
     @java.lang.Override
@@ -8041,7 +3196,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>required int32 ingition_time = 4;</code>
+     * <code>int32 ingition_time = 4;</code>
      * @return The ingitionTime.
      */
     @java.lang.Override
@@ -8052,7 +3207,7 @@ public final class FrameProtos {
     public static final int FLASH_ENABLE_FIELD_NUMBER = 5;
     private int flashEnable_;
     /**
-     * <code>required uint32 flash_enable = 5;</code>
+     * <code>uint32 flash_enable = 5;</code>
      * @return Whether the flashEnable field is set.
      */
     @java.lang.Override
@@ -8060,7 +3215,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>required uint32 flash_enable = 5;</code>
+     * <code>uint32 flash_enable = 5;</code>
      * @return The flashEnable.
      */
     @java.lang.Override
@@ -8071,7 +3226,7 @@ public final class FrameProtos {
     public static final int BUZZER_ENABLE_FIELD_NUMBER = 6;
     private int buzzerEnable_;
     /**
-     * <code>required uint32 buzzer_enable = 6;</code>
+     * <code>uint32 buzzer_enable = 6;</code>
      * @return Whether the buzzerEnable field is set.
      */
     @java.lang.Override
@@ -8079,7 +3234,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <code>required uint32 buzzer_enable = 6;</code>
+     * <code>uint32 buzzer_enable = 6;</code>
      * @return The buzzerEnable.
      */
     @java.lang.Override
@@ -8094,30 +3249,6 @@ public final class FrameProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasLoraFreqKhz()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLoraTransmitMs()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasCountdownTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasIngitionTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFlashEnable()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasBuzzerEnable()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -8527,24 +3658,6 @@ public final class FrameProtos {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasLoraFreqKhz()) {
-          return false;
-        }
-        if (!hasLoraTransmitMs()) {
-          return false;
-        }
-        if (!hasCountdownTime()) {
-          return false;
-        }
-        if (!hasIngitionTime()) {
-          return false;
-        }
-        if (!hasFlashEnable()) {
-          return false;
-        }
-        if (!hasBuzzerEnable()) {
-          return false;
-        }
         return true;
       }
 
@@ -8570,7 +3683,7 @@ public final class FrameProtos {
 
       private int loraFreqKhz_ ;
       /**
-       * <code>required int32 lora_freq_khz = 1;</code>
+       * <code>int32 lora_freq_khz = 1;</code>
        * @return Whether the loraFreqKhz field is set.
        */
       @java.lang.Override
@@ -8578,7 +3691,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>required int32 lora_freq_khz = 1;</code>
+       * <code>int32 lora_freq_khz = 1;</code>
        * @return The loraFreqKhz.
        */
       @java.lang.Override
@@ -8586,7 +3699,7 @@ public final class FrameProtos {
         return loraFreqKhz_;
       }
       /**
-       * <code>required int32 lora_freq_khz = 1;</code>
+       * <code>int32 lora_freq_khz = 1;</code>
        * @param value The loraFreqKhz to set.
        * @return This builder for chaining.
        */
@@ -8597,7 +3710,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required int32 lora_freq_khz = 1;</code>
+       * <code>int32 lora_freq_khz = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearLoraFreqKhz() {
@@ -8609,7 +3722,7 @@ public final class FrameProtos {
 
       private int loraTransmitMs_ ;
       /**
-       * <code>required int32 lora_transmit_ms = 2;</code>
+       * <code>int32 lora_transmit_ms = 2;</code>
        * @return Whether the loraTransmitMs field is set.
        */
       @java.lang.Override
@@ -8617,7 +3730,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>required int32 lora_transmit_ms = 2;</code>
+       * <code>int32 lora_transmit_ms = 2;</code>
        * @return The loraTransmitMs.
        */
       @java.lang.Override
@@ -8625,7 +3738,7 @@ public final class FrameProtos {
         return loraTransmitMs_;
       }
       /**
-       * <code>required int32 lora_transmit_ms = 2;</code>
+       * <code>int32 lora_transmit_ms = 2;</code>
        * @param value The loraTransmitMs to set.
        * @return This builder for chaining.
        */
@@ -8636,7 +3749,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required int32 lora_transmit_ms = 2;</code>
+       * <code>int32 lora_transmit_ms = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearLoraTransmitMs() {
@@ -8648,7 +3761,7 @@ public final class FrameProtos {
 
       private int countdownTime_ ;
       /**
-       * <code>required int32 countdown_time = 3;</code>
+       * <code>int32 countdown_time = 3;</code>
        * @return Whether the countdownTime field is set.
        */
       @java.lang.Override
@@ -8656,7 +3769,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>required int32 countdown_time = 3;</code>
+       * <code>int32 countdown_time = 3;</code>
        * @return The countdownTime.
        */
       @java.lang.Override
@@ -8664,7 +3777,7 @@ public final class FrameProtos {
         return countdownTime_;
       }
       /**
-       * <code>required int32 countdown_time = 3;</code>
+       * <code>int32 countdown_time = 3;</code>
        * @param value The countdownTime to set.
        * @return This builder for chaining.
        */
@@ -8675,7 +3788,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required int32 countdown_time = 3;</code>
+       * <code>int32 countdown_time = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCountdownTime() {
@@ -8687,7 +3800,7 @@ public final class FrameProtos {
 
       private int ingitionTime_ ;
       /**
-       * <code>required int32 ingition_time = 4;</code>
+       * <code>int32 ingition_time = 4;</code>
        * @return Whether the ingitionTime field is set.
        */
       @java.lang.Override
@@ -8695,7 +3808,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
-       * <code>required int32 ingition_time = 4;</code>
+       * <code>int32 ingition_time = 4;</code>
        * @return The ingitionTime.
        */
       @java.lang.Override
@@ -8703,7 +3816,7 @@ public final class FrameProtos {
         return ingitionTime_;
       }
       /**
-       * <code>required int32 ingition_time = 4;</code>
+       * <code>int32 ingition_time = 4;</code>
        * @param value The ingitionTime to set.
        * @return This builder for chaining.
        */
@@ -8714,7 +3827,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required int32 ingition_time = 4;</code>
+       * <code>int32 ingition_time = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearIngitionTime() {
@@ -8726,7 +3839,7 @@ public final class FrameProtos {
 
       private int flashEnable_ ;
       /**
-       * <code>required uint32 flash_enable = 5;</code>
+       * <code>uint32 flash_enable = 5;</code>
        * @return Whether the flashEnable field is set.
        */
       @java.lang.Override
@@ -8734,7 +3847,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000010) != 0);
       }
       /**
-       * <code>required uint32 flash_enable = 5;</code>
+       * <code>uint32 flash_enable = 5;</code>
        * @return The flashEnable.
        */
       @java.lang.Override
@@ -8742,7 +3855,7 @@ public final class FrameProtos {
         return flashEnable_;
       }
       /**
-       * <code>required uint32 flash_enable = 5;</code>
+       * <code>uint32 flash_enable = 5;</code>
        * @param value The flashEnable to set.
        * @return This builder for chaining.
        */
@@ -8753,7 +3866,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required uint32 flash_enable = 5;</code>
+       * <code>uint32 flash_enable = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearFlashEnable() {
@@ -8765,7 +3878,7 @@ public final class FrameProtos {
 
       private int buzzerEnable_ ;
       /**
-       * <code>required uint32 buzzer_enable = 6;</code>
+       * <code>uint32 buzzer_enable = 6;</code>
        * @return Whether the buzzerEnable field is set.
        */
       @java.lang.Override
@@ -8773,7 +3886,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
-       * <code>required uint32 buzzer_enable = 6;</code>
+       * <code>uint32 buzzer_enable = 6;</code>
        * @return The buzzerEnable.
        */
       @java.lang.Override
@@ -8781,7 +3894,7 @@ public final class FrameProtos {
         return buzzerEnable_;
       }
       /**
-       * <code>required uint32 buzzer_enable = 6;</code>
+       * <code>uint32 buzzer_enable = 6;</code>
        * @param value The buzzerEnable to set.
        * @return This builder for chaining.
        */
@@ -8792,7 +3905,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required uint32 buzzer_enable = 6;</code>
+       * <code>uint32 buzzer_enable = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearBuzzerEnable() {
@@ -8827,7 +3940,7 @@ public final class FrameProtos {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<LoRaSettings>
+    private static final com.google.protobuf.Parser<LoRaSettings>
         PARSER = new com.google.protobuf.AbstractParser<LoRaSettings>() {
       @java.lang.Override
       public LoRaSettings parsePartialFrom(
@@ -8859,45 +3972,45 @@ public final class FrameProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 lora_dev_id = 1;</code>
+     * <code>uint32 lora_dev_id = 1;</code>
      * @return Whether the loraDevId field is set.
      */
     boolean hasLoraDevId();
     /**
-     * <code>required uint32 lora_dev_id = 1;</code>
+     * <code>uint32 lora_dev_id = 1;</code>
      * @return The loraDevId.
      */
     int getLoraDevId();
 
     /**
-     * <code>required uint32 sys_dev_id = 2;</code>
+     * <code>uint32 sys_dev_id = 2;</code>
      * @return Whether the sysDevId field is set.
      */
     boolean hasSysDevId();
     /**
-     * <code>required uint32 sys_dev_id = 2;</code>
+     * <code>uint32 sys_dev_id = 2;</code>
      * @return The sysDevId.
      */
     int getSysDevId();
 
     /**
-     * <code>required uint32 command = 3;</code>
+     * <code>uint32 command = 3;</code>
      * @return Whether the command field is set.
      */
     boolean hasCommand();
     /**
-     * <code>required uint32 command = 3;</code>
+     * <code>uint32 command = 3;</code>
      * @return The command.
      */
     int getCommand();
 
     /**
-     * <code>required int32 payload = 4;</code>
+     * <code>int32 payload = 4;</code>
      * @return Whether the payload field is set.
      */
     boolean hasPayload();
     /**
-     * <code>required int32 payload = 4;</code>
+     * <code>int32 payload = 4;</code>
      * @return The payload.
      */
     int getPayload();
@@ -9004,7 +4117,7 @@ public final class FrameProtos {
     public static final int LORA_DEV_ID_FIELD_NUMBER = 1;
     private int loraDevId_;
     /**
-     * <code>required uint32 lora_dev_id = 1;</code>
+     * <code>uint32 lora_dev_id = 1;</code>
      * @return Whether the loraDevId field is set.
      */
     @java.lang.Override
@@ -9012,7 +4125,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>required uint32 lora_dev_id = 1;</code>
+     * <code>uint32 lora_dev_id = 1;</code>
      * @return The loraDevId.
      */
     @java.lang.Override
@@ -9023,7 +4136,7 @@ public final class FrameProtos {
     public static final int SYS_DEV_ID_FIELD_NUMBER = 2;
     private int sysDevId_;
     /**
-     * <code>required uint32 sys_dev_id = 2;</code>
+     * <code>uint32 sys_dev_id = 2;</code>
      * @return Whether the sysDevId field is set.
      */
     @java.lang.Override
@@ -9031,7 +4144,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>required uint32 sys_dev_id = 2;</code>
+     * <code>uint32 sys_dev_id = 2;</code>
      * @return The sysDevId.
      */
     @java.lang.Override
@@ -9042,7 +4155,7 @@ public final class FrameProtos {
     public static final int COMMAND_FIELD_NUMBER = 3;
     private int command_;
     /**
-     * <code>required uint32 command = 3;</code>
+     * <code>uint32 command = 3;</code>
      * @return Whether the command field is set.
      */
     @java.lang.Override
@@ -9050,7 +4163,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>required uint32 command = 3;</code>
+     * <code>uint32 command = 3;</code>
      * @return The command.
      */
     @java.lang.Override
@@ -9061,7 +4174,7 @@ public final class FrameProtos {
     public static final int PAYLOAD_FIELD_NUMBER = 4;
     private int payload_;
     /**
-     * <code>required int32 payload = 4;</code>
+     * <code>int32 payload = 4;</code>
      * @return Whether the payload field is set.
      */
     @java.lang.Override
@@ -9069,7 +4182,7 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>required int32 payload = 4;</code>
+     * <code>int32 payload = 4;</code>
      * @return The payload.
      */
     @java.lang.Override
@@ -9084,22 +4197,6 @@ public final class FrameProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasLoraDevId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSysDevId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasCommand()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPayload()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -9459,18 +4556,6 @@ public final class FrameProtos {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasLoraDevId()) {
-          return false;
-        }
-        if (!hasSysDevId()) {
-          return false;
-        }
-        if (!hasCommand()) {
-          return false;
-        }
-        if (!hasPayload()) {
-          return false;
-        }
         return true;
       }
 
@@ -9496,7 +4581,7 @@ public final class FrameProtos {
 
       private int loraDevId_ ;
       /**
-       * <code>required uint32 lora_dev_id = 1;</code>
+       * <code>uint32 lora_dev_id = 1;</code>
        * @return Whether the loraDevId field is set.
        */
       @java.lang.Override
@@ -9504,7 +4589,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>required uint32 lora_dev_id = 1;</code>
+       * <code>uint32 lora_dev_id = 1;</code>
        * @return The loraDevId.
        */
       @java.lang.Override
@@ -9512,7 +4597,7 @@ public final class FrameProtos {
         return loraDevId_;
       }
       /**
-       * <code>required uint32 lora_dev_id = 1;</code>
+       * <code>uint32 lora_dev_id = 1;</code>
        * @param value The loraDevId to set.
        * @return This builder for chaining.
        */
@@ -9523,7 +4608,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required uint32 lora_dev_id = 1;</code>
+       * <code>uint32 lora_dev_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearLoraDevId() {
@@ -9535,7 +4620,7 @@ public final class FrameProtos {
 
       private int sysDevId_ ;
       /**
-       * <code>required uint32 sys_dev_id = 2;</code>
+       * <code>uint32 sys_dev_id = 2;</code>
        * @return Whether the sysDevId field is set.
        */
       @java.lang.Override
@@ -9543,7 +4628,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>required uint32 sys_dev_id = 2;</code>
+       * <code>uint32 sys_dev_id = 2;</code>
        * @return The sysDevId.
        */
       @java.lang.Override
@@ -9551,7 +4636,7 @@ public final class FrameProtos {
         return sysDevId_;
       }
       /**
-       * <code>required uint32 sys_dev_id = 2;</code>
+       * <code>uint32 sys_dev_id = 2;</code>
        * @param value The sysDevId to set.
        * @return This builder for chaining.
        */
@@ -9562,7 +4647,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required uint32 sys_dev_id = 2;</code>
+       * <code>uint32 sys_dev_id = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearSysDevId() {
@@ -9574,7 +4659,7 @@ public final class FrameProtos {
 
       private int command_ ;
       /**
-       * <code>required uint32 command = 3;</code>
+       * <code>uint32 command = 3;</code>
        * @return Whether the command field is set.
        */
       @java.lang.Override
@@ -9582,7 +4667,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>required uint32 command = 3;</code>
+       * <code>uint32 command = 3;</code>
        * @return The command.
        */
       @java.lang.Override
@@ -9590,7 +4675,7 @@ public final class FrameProtos {
         return command_;
       }
       /**
-       * <code>required uint32 command = 3;</code>
+       * <code>uint32 command = 3;</code>
        * @param value The command to set.
        * @return This builder for chaining.
        */
@@ -9601,7 +4686,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required uint32 command = 3;</code>
+       * <code>uint32 command = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCommand() {
@@ -9613,7 +4698,7 @@ public final class FrameProtos {
 
       private int payload_ ;
       /**
-       * <code>required int32 payload = 4;</code>
+       * <code>int32 payload = 4;</code>
        * @return Whether the payload field is set.
        */
       @java.lang.Override
@@ -9621,7 +4706,7 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
-       * <code>required int32 payload = 4;</code>
+       * <code>int32 payload = 4;</code>
        * @return The payload.
        */
       @java.lang.Override
@@ -9629,7 +4714,7 @@ public final class FrameProtos {
         return payload_;
       }
       /**
-       * <code>required int32 payload = 4;</code>
+       * <code>int32 payload = 4;</code>
        * @param value The payload to set.
        * @return This builder for chaining.
        */
@@ -9640,7 +4725,7 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <code>required int32 payload = 4;</code>
+       * <code>int32 payload = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearPayload() {
@@ -9675,7 +4760,7 @@ public final class FrameProtos {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<LoRaCommand>
+    private static final com.google.protobuf.Parser<LoRaCommand>
         PARSER = new com.google.protobuf.AbstractParser<LoRaCommand>() {
       @java.lang.Override
       public LoRaCommand parsePartialFrom(
@@ -9708,11 +4793,6 @@ public final class FrameProtos {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_LoRaFrame_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaFrameTanwa_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaFrameTanwa_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_LoRaSettings_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -9731,52 +4811,50 @@ public final class FrameProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037src/main/resources/frames.proto\"\312\006\n\tLo" +
-      "RaFrame\022\021\n\tobc_state\030\001 \002(\r\022\017\n\007dc_time\030\002 " +
-      "\002(\r\022\023\n\013flight_time\030\003 \002(\r\022\023\n\013mcb_battery\030" +
-      "\004 \002(\002\022\017\n\007gps_lat\030\005 \002(\002\022\020\n\010gps_long\030\006 \002(\002" +
-      "\022\017\n\007gps_sat\030\007 \002(\002\022\024\n\014mcb_altitude\030\010 \002(\002\022" +
-      "\024\n\014mcb_velocity\030\t \002(\002\022\027\n\017mcb_temperature" +
-      "\030\n \002(\005\022\020\n\010euler_fi\030\013 \002(\002\022\021\n\teuler_psi\030\014 " +
-      "\002(\002\022\023\n\013euler_theta\030\r \002(\002\022\030\n\020recov_pressu" +
-      "re_1\030\016 \002(\r\022\030\n\020recov_pressure_2\030\017 \002(\r\022\027\n\017" +
-      "recov_byte_data\030\020 \002(\007\022\025\n\rpitot_battery\030\021" +
-      " \002(\002\022\026\n\016pitot_altitude\030\022 \002(\005\022\026\n\016pitot_ve" +
-      "locity\030\023 \002(\005\022\031\n\021pitot_temperature\030\024 \002(\005\022" +
-      "\024\n\014mval_battery\030\025 \002(\002\022\026\n\016mval_byte_data\030" +
-      "\026 \002(\007\022\024\n\014vent_battery\030\027 \002(\002\022\025\n\rtank_pres" +
-      "sure\030\030 \002(\002\022\026\n\016vent_byte_data\030\031 \002(\007\022\025\n\rta" +
-      "nwa_battery\030\032 \002(\002\022\027\n\017tanwa_byte_data\030\033 \002" +
-      "(\007\022\023\n\013tanwa_state\030\034 \002(\r\022\025\n\rrocket_weight" +
-      "\030\035 \002(\002\022\023\n\013tank_weight\030\036 \002(\002\022\030\n\020temperatu" +
-      "re_fill\030\037 \002(\002\022\031\n\021pre_fill_pressure\030  \002(\002" +
-      "\022\032\n\022post_fill_pressure\030! \002(\002\022\024\n\014btl_pres" +
-      "sure\030\" \002(\002\022\027\n\017payload_battery\030# \002(\002\022\031\n\021e" +
-      "sp_now_byte_data\030$ \002(\007\022\016\n\006errors\030% \002(\007\"\352" +
-      "\004\n\016LoRaFrameTanwa\022\022\n\ntanWaState\030\001 \002(\r\022\026\n" +
-      "\016pressureSensor\030\002 \002(\r\022\025\n\rsolenoid_fill\030\003" +
-      " \002(\r\022\025\n\rsolenoid_depr\030\004 \002(\r\022\023\n\013abortButt" +
-      "on\030\005 \002(\010\022\034\n\024igniterContinouity_1\030\006 \002(\010\022\034" +
-      "\n\024igniterContinouity_2\030\007 \002(\010\022\025\n\rhxReques" +
-      "t_RCK\030\010 \002(\r\022\026\n\016hxRequest_TANK\030\t \002(\r\022\014\n\004v" +
-      "bat\030\n \002(\002\022\024\n\014motorState_1\030\013 \002(\r\022\024\n\014motor" +
-      "State_2\030\014 \002(\r\022\024\n\014motorState_3\030\r \002(\r\022\024\n\014m" +
-      "otorState_4\030\016 \002(\r\022\032\n\022rocketWeight_blink\030" +
-      "\017 \002(\r\022\031\n\021rocketWeight_temp\030\020 \002(\002\022\030\n\020tank" +
-      "Weight_blink\030\021 \002(\r\022\027\n\017tankWeight_temp\030\022 " +
-      "\002(\002\022\030\n\020rocketWeight_val\030\023 \002(\002\022\026\n\016tankWei" +
-      "ght_val\030\024 \002(\002\022\033\n\023rocketWeightRaw_val\030\025 \002" +
-      "(\r\022\031\n\021tankWeightRaw_val\030\026 \002(\r\022\025\n\rinterfa" +
-      "ce_rck\030\027 \002(\010\022\026\n\016interface_tank\030\030 \002(\010\022\025\n\r" +
-      "interface_mcu\030\031 \002(\010\"\233\001\n\014LoRaSettings\022\025\n\r" +
-      "lora_freq_khz\030\001 \002(\005\022\030\n\020lora_transmit_ms\030" +
-      "\002 \002(\005\022\026\n\016countdown_time\030\003 \002(\005\022\025\n\ringitio" +
-      "n_time\030\004 \002(\005\022\024\n\014flash_enable\030\005 \002(\r\022\025\n\rbu" +
-      "zzer_enable\030\006 \002(\r\"X\n\013LoRaCommand\022\023\n\013lora" +
-      "_dev_id\030\001 \002(\r\022\022\n\nsys_dev_id\030\002 \002(\r\022\017\n\007com" +
-      "mand\030\003 \002(\r\022\017\n\007payload\030\004 \002(\005BD\n5pl.edu.pw" +
-      "r.pwrinspace.poliwrocket.Model.MessagePa" +
-      "rserB\013FrameProtos"
+      "\n\037src/main/resources/frames.proto\"\217\t\n\tLo" +
+      "RaFrame\022\027\n\ntanwaState\030\001 \001(\rH\000\210\001\001\022\023\n\006upTi" +
+      "me\030\002 \001(\rH\001\210\001\001\022\036\n\021engineWorkingTime\030\003 \001(\005" +
+      "H\002\210\001\001\022\031\n\014pressureFuel\030\004 \001(\002H\003\210\001\001\022\035\n\020pres" +
+      "surePastFill\030\005 \001(\002H\004\210\001\001\022\037\n\022pressureBefor" +
+      "eFill\030\006 \001(\002H\005\210\001\001\022\030\n\013pressureOxi\030\007 \001(\002H\006\210" +
+      "\001\001\022!\n\024pressureInjectorFuel\030\010 \001(\002H\007\210\001\001\022 \n" +
+      "\023pressureInjectorOxi\030\t \001(\002H\010\210\001\001\022&\n\031press" +
+      "ureCombustionChamber\030\n \001(\002H\t\210\001\001\022\026\n\tfillS" +
+      "tate\030\013 \001(\010H\n\210\001\001\022\026\n\tdeprState\030\014 \001(\010H\013\210\001\001\022" +
+      "\026\n\tventState\030\r \001(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001" +
+      "(\010H\r\210\001\001\022\031\n\014igniterCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014ig" +
+      "niterCont2\030\020 \001(\010H\017\210\001\001\022\031\n\014tanwaBattery\030\021 " +
+      "\001(\002H\020\210\001\001\022\031\n\014engineThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014r" +
+      "ocketWeight\030\023 \001(\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001" +
+      "(\002H\023\210\001\001\022\031\n\014tempInjector\030\025 \001(\002H\024\210\001\001\022\"\n\025te" +
+      "mpCombustionChamber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempEx" +
+      "ternalTank\030\027 \001(\002H\026\210\001\001\022\026\n\tstatusOxy\030\030 \001(\010" +
+      "H\027\210\001\001\022\027\n\nstatusFuel\030\031 \001(\010H\030\210\001\001B\r\n\013_tanwa" +
+      "StateB\t\n\007_upTimeB\024\n\022_engineWorkingTimeB\017" +
+      "\n\r_pressureFuelB\023\n\021_pressurePastFillB\025\n\023" +
+      "_pressureBeforeFillB\016\n\014_pressureOxiB\027\n\025_" +
+      "pressureInjectorFuelB\026\n\024_pressureInjecto" +
+      "rOxiB\034\n\032_pressureCombustionChamberB\014\n\n_f" +
+      "illStateB\014\n\n_deprStateB\014\n\n_ventStateB\014\n\n" +
+      "_statusArmB\017\n\r_igniterCont1B\017\n\r_igniterC" +
+      "ont2B\017\n\r_tanwaBatteryB\017\n\r_engineThrustB\017" +
+      "\n\r_rocketWeightB\r\n\013_tankWeightB\017\n\r_tempI" +
+      "njectorB\030\n\026_tempCombustionChamberB\023\n\021_te" +
+      "mpExternalTankB\014\n\n_statusOxyB\r\n\013_statusF" +
+      "uel\"\250\002\n\014LoRaSettings\022\032\n\rlora_freq_khz\030\001 " +
+      "\001(\005H\000\210\001\001\022\035\n\020lora_transmit_ms\030\002 \001(\005H\001\210\001\001\022" +
+      "\033\n\016countdown_time\030\003 \001(\005H\002\210\001\001\022\032\n\ringition" +
+      "_time\030\004 \001(\005H\003\210\001\001\022\031\n\014flash_enable\030\005 \001(\rH\004" +
+      "\210\001\001\022\032\n\rbuzzer_enable\030\006 \001(\rH\005\210\001\001B\020\n\016_lora" +
+      "_freq_khzB\023\n\021_lora_transmit_msB\021\n\017_count" +
+      "down_timeB\020\n\016_ingition_timeB\017\n\r_flash_en" +
+      "ableB\020\n\016_buzzer_enable\"\243\001\n\013LoRaCommand\022\030" +
+      "\n\013lora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsys_dev_id\030\002" +
+      " \001(\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001\001\022\024\n\007paylo" +
+      "ad\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_idB\r\n\013_sys_de" +
+      "v_idB\n\n\010_commandB\n\n\010_payloadBD\n5pl.edu.p" +
+      "wr.pwrinspace.poliwrocket.Model.MessageP" +
+      "arserB\013FrameProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -9787,25 +4865,19 @@ public final class FrameProtos {
     internal_static_LoRaFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaFrame_descriptor,
-        new java.lang.String[] { "ObcState", "DcTime", "FlightTime", "McbBattery", "GpsLat", "GpsLong", "GpsSat", "McbAltitude", "McbVelocity", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecovPressure1", "RecovPressure2", "RecovByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MvalBattery", "MvalByteData", "VentBattery", "TankPressure", "VentByteData", "TanwaBattery", "TanwaByteData", "TanwaState", "RocketWeight", "TankWeight", "TemperatureFill", "PreFillPressure", "PostFillPressure", "BtlPressure", "PayloadBattery", "EspNowByteData", "Errors", });
-    internal_static_LoRaFrameTanwa_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_LoRaFrameTanwa_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaFrameTanwa_descriptor,
-        new java.lang.String[] { "TanWaState", "PressureSensor", "SolenoidFill", "SolenoidDepr", "AbortButton", "IgniterContinouity1", "IgniterContinouity2", "HxRequestRCK", "HxRequestTANK", "Vbat", "MotorState1", "MotorState2", "MotorState3", "MotorState4", "RocketWeightBlink", "RocketWeightTemp", "TankWeightBlink", "TankWeightTemp", "RocketWeightVal", "TankWeightVal", "RocketWeightRawVal", "TankWeightRawVal", "InterfaceRck", "InterfaceTank", "InterfaceMcu", });
+        new java.lang.String[] { "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressurePastFill", "PressureBeforeFill", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "FillState", "DeprState", "VentState", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxy", "StatusFuel", "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressurePastFill", "PressureBeforeFill", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "FillState", "DeprState", "VentState", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxy", "StatusFuel", });
     internal_static_LoRaSettings_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_LoRaSettings_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaSettings_descriptor,
-        new java.lang.String[] { "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", });
+        new java.lang.String[] { "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", });
     internal_static_LoRaCommand_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_LoRaCommand_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaCommand_descriptor,
-        new java.lang.String[] { "LoraDevId", "SysDevId", "Command", "Payload", });
+        new java.lang.String[] { "LoraDevId", "SysDevId", "Command", "Payload", "LoraDevId", "SysDevId", "Command", "Payload", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

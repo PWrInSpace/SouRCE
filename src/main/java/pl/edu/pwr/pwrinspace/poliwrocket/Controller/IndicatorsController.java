@@ -44,6 +44,12 @@ public class IndicatorsController extends BasicTilesFXSensorController {
 
     @FXML
     protected Label indicatorLabel6;
+    
+    @FXML
+    protected Indicator dataIndicator7;
+
+    @FXML
+    protected Label indicatorLabel7;
 
     @Override
     public void invalidated(Observable observable) {

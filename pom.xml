@@ -102,10 +102,11 @@
             <version>1.2</version>
         </dependency>
         <!--        discord bot         -->
+        <!-- https://mvnrepository.com/artifact/net.dv8tion/JDA -->
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.2.0_209</version>
+            <version>5.0.0-alpha.1</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

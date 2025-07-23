@@ -4,27 +4,24 @@ import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
 
 public class UIHelper {
-
     public static Color resolveUIHintColor(CodeInterpreterUIHint uiHint) {
         switch (uiHint) {
-            case WARNING:
+            case WARNING: {
                 return Color.ORANGERED;
-            case ERROR:
+            }
+            case ERROR: {
                 return Color.RED;
-            case SUCCESS:
+            }
+            case SUCCESS: {
                 return Color.GREENYELLOW;
-            case OPEN:
+            }
+            case OPEN: {
                 return Color.BLUE;
-            case CLOSE:
+            }
+            case CLOSE: {
                 return Color.TRANSPARENT;
-            case INFO:
-                return Color.GREY;
-            case PUSH:
-                return Color.YELLOW;
-            case PULL:
-                return Color.GREEN;
-            default:
-                return Color.WHITE;
+            }
         }
+        return Color.WHITE;
     }
 }

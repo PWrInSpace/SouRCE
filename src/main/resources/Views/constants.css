@@ -11,55 +11,6 @@
     -fx-border-width: 2px;
 }
 
-.valvesScene {
-    -fx-background-radius: 6px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
-    -fx-border-width: 2px 2px 0px 2px;
-}
-
-.timesOpenCommandsScene {
-    -fx-background-radius: 6px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
-    -fx-border-width: 0px 2px 2px 2px;
-}
-
-.qdPushScene {
-    -fx-background-radius: 0px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
-    -fx-border-width: 0px 0px 2px 2px;
-}
-
-.qdPullScene {
-    -fx-background-radius: 0px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
-    -fx-border-width: 0px 0px 2px 0px;
-}
-
-.qdStopScene {
-    -fx-background-radius: 0px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
-    -fx-border-width: 0px 2px 2px 0px;
-}
-
-.tanwaOpenScene {
-    -fx-background-radius: 0px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
-    -fx-border-width: 2px 0px 0px 2px;
-}
-
-.tanwaCloseScene {
-    -fx-background-radius: 0px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
-    -fx-border-width: 2px 2px 0px 0px;
-}
-
 /*Flat button example */
 .jfx-button {
     -jfx-button-type: FLAT;
@@ -95,32 +46,6 @@
     -fx-text-fill: white;
 }
 
-.tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: transparent;
-}
-
-.tab {
-    -fx-background-color: darkgrey;
-    -fx-text-fill: white;
-    -fx-border-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-width: 2px;
-}
-
-.tab:selected {
-    -fx-background-color: lightgrey;
-    -fx-text-fill: white;
-    -fx-padding: 5px;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-}
-
-.tab:hover {
-    -fx-background-color: lightgrey;
-}
-
 .map-cords {
     -fx-text-fill: black;
     -fx-background-color: rgb(255, 255, 255, 0.7);
@@ -130,4 +55,3 @@
     -fx-background-color: -fx-backgroundColor-base;
     -fx-text-fill: white;
 }
-
