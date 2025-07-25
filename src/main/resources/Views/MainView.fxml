@@ -28,7 +28,7 @@
                 <Region />
               </root>
             </SubScene>
-            <SubScene fx:id="abortScene" height="150.0" layoutX="1117.0" layoutY="649.0" width="418.0">
+            <SubScene fx:id="abortScene" height="110.0" layoutX="1117.0" layoutY="685.0" width="418.0">
                <root>
                   <Region />
                </root>
@@ -44,7 +44,7 @@
                   <ImageView fx:id="inSpaceLogo" fitHeight="20.0" fitWidth="75.0" layoutX="100.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
-            <SubScene fx:id="rawDataScene" height="260.0" layoutX="1116.0" layoutY="10.0" width="418.0">
+            <SubScene fx:id="rawDataScene" height="150.0" layoutX="1116.0" layoutY="10.0" width="418.0">
                <root>
                   <Region />
                </root>
@@ -55,22 +55,17 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="754.0" prefWidth="890.0">
                            <children>
-                              <SubScene fx:id="liquidDataScene" height="600.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                              <SubScene fx:id="liquidDataScene" height="620.0" layoutX="14.0" layoutY="14.0" width="410.0">
                                  <root>
                                     <Region />
                                  </root>
                               </SubScene>
-                              <SubScene fx:id="liquidCommandsScene" height="550.0" layoutX="434.0" layoutY="14.0" width="440.0">
+                              <SubScene fx:id="liquidCommandsScene" height="737.0" layoutX="434.0" layoutY="14.0" width="440.0">
                                  <root>
                                     <Region />
                                  </root>
                               </SubScene>
-                               <SubScene fx:id="launchScene" height="180.0" layoutX="14.0" layoutY="620.0" width="410.0">
-                                   <root>
-                                       <Region />
-                                   </root>
-                               </SubScene>
-                               <SubScene fx:id="liquidCommands2Scene" height="200.0" layoutX="434.0" layoutY="570.0" width="440.0">
+                               <SubScene fx:id="launchScene" height="110.0" layoutX="14.0" layoutY="640.0" width="410.0">
                                    <root>
                                        <Region />
                                    </root>
@@ -95,7 +90,7 @@
                   <Tab text="Connection">
                      <content>
                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                             <SubScene fx:id="connectionScene" height="500.0" layoutX="14.0" layoutY="14.0" width="500.0">
+                             <SubScene fx:id="connectionScene" height="744.0" layoutX="10.0" layoutY="10.0" width="870.0">
                                 <root>
                                     <Region />
                                 </root>
@@ -106,7 +101,7 @@
                   <Tab text="Other">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                              <SubScene fx:id="otherScene" height="500.0" layoutX="14.0" layoutY="14.0" width="500.0">
+                              <SubScene fx:id="otherScene" height="744.0" layoutX="10.0" layoutY="10.0" width="870.0">
                                   <root>
                                       <Region />
                                   </root>
@@ -116,9 +111,14 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <JFXTextArea fx:id="inComing" editable="false" layoutX="1115.0" layoutY="274.0" prefHeight="96.0" prefWidth="418.0" />
-            <JFXTextArea fx:id="outGoing" editable="false" layoutX="1115.0" layoutY="380.0" prefHeight="96.0" prefWidth="418.0" />
-            <SubScene fx:id="liquidIndicatorsScene" height="150.0" layoutX="1117.0" layoutY="486.0" width="418.0">
+            <JFXTextArea fx:id="inComing" editable="false" layoutX="1115.0" layoutY="170.0" prefHeight="96.0" prefWidth="418.0" />
+            <JFXTextArea fx:id="outGoing" editable="false" layoutX="1115.0" layoutY="276.0" prefHeight="96.0" prefWidth="418.0" />
+            <SubScene fx:id="armingCommandsScene" height="140.0" layoutX="1115.0" layoutY="382.0" width="418.0">
+                <root>
+                    <Region />
+                </root>
+            </SubScene>
+            <SubScene fx:id="liquidIndicatorsScene" height="150.0" layoutX="1115.0" layoutY="530.0" width="418.0">
                <root>
                   <Region />
                </root>

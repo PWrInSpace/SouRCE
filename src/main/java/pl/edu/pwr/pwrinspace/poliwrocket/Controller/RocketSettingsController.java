@@ -49,8 +49,8 @@ public class RocketSettingsController extends BasicButtonSensorController {
         inputHashMap.clear();
         valueHashMap.clear();
 
-        int initYLabel = 39;
-        int initYInput = 35;
+        int initYLabel = 15;
+        int initYInput = 15;
         int offsetY = 40;
 
         for (ISensor sensor : Configuration.getInstance().sensorRepository.getAllBasicSensors().values()) {

@@ -68,6 +68,8 @@ public class MainController extends BasicController implements InvalidationListe
     private JFXTextArea outGoing;
     @FXML
     private SubScene rocketSettingsScene;
+    @FXML
+    private SubScene armingCommandsScene;
 
     private final SmartGroup root = new SmartGroup();
 
@@ -125,6 +127,7 @@ public class MainController extends BasicController implements InvalidationListe
         nodes.add(inComing);
         nodes.add(tabPane);
         nodes.add(liquidIndicatorsScene);
+        nodes.add(armingCommandsScene);
         nodes.forEach(scene -> nodesInitPositions.put(scene,new Pair<>(scene.getLayoutX(),scene.getLayoutY())));
     }
 

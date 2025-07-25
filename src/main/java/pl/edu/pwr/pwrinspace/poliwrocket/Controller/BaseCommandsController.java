@@ -38,8 +38,8 @@ public abstract class BaseCommandsController extends BasicButtonSensorController
         labelHashMap.clear();
         inputHashMap.clear();
 
-        int initYLabel = 39;
-        int initYInput = 35;
+        int initYLabel = 15;
+        int initYInput = 15;
         int offsetY = 40;
 
         for (ICommand command : this.commands.stream().sorted(Comparator.comparing(ICommand::getCommandDescription)).collect(Collectors.toList())) {

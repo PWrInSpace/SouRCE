@@ -88,6 +88,7 @@ public class StartControlController extends BasicButtonSensorController {
         safeSwitch5.setDisable(true);
 
         safeSwitch1.setOnMouseClicked(actionEvent -> {
+            System.out.println("CLICKED SAFE SWITCH 1");
             executorService.execute(() -> {
                 if (safeSwitch1.isActive()) {
                     qucikDistonectButton.setDisable(false);
