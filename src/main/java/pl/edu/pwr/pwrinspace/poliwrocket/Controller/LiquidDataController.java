@@ -10,19 +10,17 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseDataTilesController;
 public class LiquidDataController
 extends BaseDataTilesController {
     @FXML
-    protected Tile pressureOxi;
-    @FXML
-    protected Tile pressureInjectorFuel;
-    @FXML
-    protected Tile engineThrust;
-    @FXML
-    protected Tile engineWorkingTime;
-    @FXML
     protected Tile pressureFuel;
     @FXML
-    protected Tile tempInjector;
+    protected Tile pressureOxi;
     @FXML
-    protected Tile tempCombustionChamber;
+    protected Tile pressureN2;
     @FXML
-    protected Tile pressureCombustionChamber;
+    protected Tile pressureDroid;
+    @FXML
+    protected Tile pressureCutoff;
+    @FXML
+    protected Tile tankWeight;
+    @FXML
+    protected Tile rocketWeight;
 }

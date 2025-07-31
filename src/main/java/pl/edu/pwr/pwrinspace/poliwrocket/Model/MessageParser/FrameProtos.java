@@ -63,26 +63,26 @@ public final class FrameProtos {
     float getPressureFuel();
 
     /**
-     * <code>float pressurePastFill = 5;</code>
-     * @return Whether the pressurePastFill field is set.
+     * <code>float pressureN2 = 5;</code>
+     * @return Whether the pressureN2 field is set.
      */
-    boolean hasPressurePastFill();
+    boolean hasPressureN2();
     /**
-     * <code>float pressurePastFill = 5;</code>
-     * @return The pressurePastFill.
+     * <code>float pressureN2 = 5;</code>
+     * @return The pressureN2.
      */
-    float getPressurePastFill();
+    float getPressureN2();
 
     /**
-     * <code>float pressureBeforeFill = 6;</code>
-     * @return Whether the pressureBeforeFill field is set.
+     * <code>float pressureDroid = 6;</code>
+     * @return Whether the pressureDroid field is set.
      */
-    boolean hasPressureBeforeFill();
+    boolean hasPressureDroid();
     /**
-     * <code>float pressureBeforeFill = 6;</code>
-     * @return The pressureBeforeFill.
+     * <code>float pressureDroid = 6;</code>
+     * @return The pressureDroid.
      */
-    float getPressureBeforeFill();
+    float getPressureDroid();
 
     /**
      * <code>float pressureOxi = 7;</code>
@@ -129,37 +129,37 @@ public final class FrameProtos {
     float getPressureCombustionChamber();
 
     /**
-     * <code>bool fillState = 11;</code>
-     * @return Whether the fillState field is set.
+     * <code>bool statusFill = 11;</code>
+     * @return Whether the statusFill field is set.
      */
-    boolean hasFillState();
+    boolean hasStatusFill();
     /**
-     * <code>bool fillState = 11;</code>
-     * @return The fillState.
+     * <code>bool statusFill = 11;</code>
+     * @return The statusFill.
      */
-    boolean getFillState();
+    boolean getStatusFill();
 
     /**
-     * <code>bool deprState = 12;</code>
-     * @return Whether the deprState field is set.
+     * <code>bool statusDepr = 12;</code>
+     * @return Whether the statusDepr field is set.
      */
-    boolean hasDeprState();
+    boolean hasStatusDepr();
     /**
-     * <code>bool deprState = 12;</code>
-     * @return The deprState.
+     * <code>bool statusDepr = 12;</code>
+     * @return The statusDepr.
      */
-    boolean getDeprState();
+    boolean getStatusDepr();
 
     /**
-     * <code>bool ventState = 13;</code>
-     * @return Whether the ventState field is set.
+     * <code>bool statusVent = 13;</code>
+     * @return Whether the statusVent field is set.
      */
-    boolean hasVentState();
+    boolean hasStatusVent();
     /**
-     * <code>bool ventState = 13;</code>
-     * @return The ventState.
+     * <code>bool statusVent = 13;</code>
+     * @return The statusVent.
      */
-    boolean getVentState();
+    boolean getStatusVent();
 
     /**
      * <code>bool statusArm = 14;</code>
@@ -272,15 +272,15 @@ public final class FrameProtos {
     float getTempExternalTank();
 
     /**
-     * <code>bool statusOxy = 24;</code>
-     * @return Whether the statusOxy field is set.
+     * <code>bool statusOxi = 24;</code>
+     * @return Whether the statusOxi field is set.
      */
-    boolean hasStatusOxy();
+    boolean hasStatusOxi();
     /**
-     * <code>bool statusOxy = 24;</code>
-     * @return The statusOxy.
+     * <code>bool statusOxi = 24;</code>
+     * @return The statusOxi.
      */
-    boolean getStatusOxy();
+    boolean getStatusOxi();
 
     /**
      * <code>bool statusFuel = 25;</code>
@@ -292,6 +292,28 @@ public final class FrameProtos {
      * @return The statusFuel.
      */
     boolean getStatusFuel();
+
+    /**
+     * <code>bool statusQdN2O = 26;</code>
+     * @return Whether the statusQdN2O field is set.
+     */
+    boolean hasStatusQdN2O();
+    /**
+     * <code>bool statusQdN2O = 26;</code>
+     * @return The statusQdN2O.
+     */
+    boolean getStatusQdN2O();
+
+    /**
+     * <code>float pressureCutoff = 27;</code>
+     * @return Whether the pressureCutoff field is set.
+     */
+    boolean hasPressureCutoff();
+    /**
+     * <code>float pressureCutoff = 27;</code>
+     * @return The pressureCutoff.
+     */
+    float getPressureCutoff();
   }
   /**
    * Protobuf type {@code LoRaFrame}
@@ -361,12 +383,12 @@ public final class FrameProtos {
             }
             case 45: {
               bitField0_ |= 0x00000010;
-              pressurePastFill_ = input.readFloat();
+              pressureN2_ = input.readFloat();
               break;
             }
             case 53: {
               bitField0_ |= 0x00000020;
-              pressureBeforeFill_ = input.readFloat();
+              pressureDroid_ = input.readFloat();
               break;
             }
             case 61: {
@@ -391,17 +413,17 @@ public final class FrameProtos {
             }
             case 88: {
               bitField0_ |= 0x00000400;
-              fillState_ = input.readBool();
+              statusFill_ = input.readBool();
               break;
             }
             case 96: {
               bitField0_ |= 0x00000800;
-              deprState_ = input.readBool();
+              statusDepr_ = input.readBool();
               break;
             }
             case 104: {
               bitField0_ |= 0x00001000;
-              ventState_ = input.readBool();
+              statusVent_ = input.readBool();
               break;
             }
             case 112: {
@@ -456,12 +478,22 @@ public final class FrameProtos {
             }
             case 192: {
               bitField0_ |= 0x00800000;
-              statusOxy_ = input.readBool();
+              statusOxi_ = input.readBool();
               break;
             }
             case 200: {
               bitField0_ |= 0x01000000;
               statusFuel_ = input.readBool();
+              break;
+            }
+            case 208: {
+              bitField0_ |= 0x02000000;
+              statusQdN2O_ = input.readBool();
+              break;
+            }
+            case 221: {
+              bitField0_ |= 0x04000000;
+              pressureCutoff_ = input.readFloat();
               break;
             }
             default: {
@@ -573,42 +605,42 @@ public final class FrameProtos {
       return pressureFuel_;
     }
 
-    public static final int PRESSUREPASTFILL_FIELD_NUMBER = 5;
-    private float pressurePastFill_;
+    public static final int PRESSUREN2_FIELD_NUMBER = 5;
+    private float pressureN2_;
     /**
-     * <code>float pressurePastFill = 5;</code>
-     * @return Whether the pressurePastFill field is set.
+     * <code>float pressureN2 = 5;</code>
+     * @return Whether the pressureN2 field is set.
      */
     @java.lang.Override
-    public boolean hasPressurePastFill() {
+    public boolean hasPressureN2() {
       return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>float pressurePastFill = 5;</code>
-     * @return The pressurePastFill.
+     * <code>float pressureN2 = 5;</code>
+     * @return The pressureN2.
      */
     @java.lang.Override
-    public float getPressurePastFill() {
-      return pressurePastFill_;
+    public float getPressureN2() {
+      return pressureN2_;
     }
 
-    public static final int PRESSUREBEFOREFILL_FIELD_NUMBER = 6;
-    private float pressureBeforeFill_;
+    public static final int PRESSUREDROID_FIELD_NUMBER = 6;
+    private float pressureDroid_;
     /**
-     * <code>float pressureBeforeFill = 6;</code>
-     * @return Whether the pressureBeforeFill field is set.
+     * <code>float pressureDroid = 6;</code>
+     * @return Whether the pressureDroid field is set.
      */
     @java.lang.Override
-    public boolean hasPressureBeforeFill() {
+    public boolean hasPressureDroid() {
       return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <code>float pressureBeforeFill = 6;</code>
-     * @return The pressureBeforeFill.
+     * <code>float pressureDroid = 6;</code>
+     * @return The pressureDroid.
      */
     @java.lang.Override
-    public float getPressureBeforeFill() {
-      return pressureBeforeFill_;
+    public float getPressureDroid() {
+      return pressureDroid_;
     }
 
     public static final int PRESSUREOXI_FIELD_NUMBER = 7;
@@ -687,61 +719,61 @@ public final class FrameProtos {
       return pressureCombustionChamber_;
     }
 
-    public static final int FILLSTATE_FIELD_NUMBER = 11;
-    private boolean fillState_;
+    public static final int STATUSFILL_FIELD_NUMBER = 11;
+    private boolean statusFill_;
     /**
-     * <code>bool fillState = 11;</code>
-     * @return Whether the fillState field is set.
+     * <code>bool statusFill = 11;</code>
+     * @return Whether the statusFill field is set.
      */
     @java.lang.Override
-    public boolean hasFillState() {
+    public boolean hasStatusFill() {
       return ((bitField0_ & 0x00000400) != 0);
     }
     /**
-     * <code>bool fillState = 11;</code>
-     * @return The fillState.
+     * <code>bool statusFill = 11;</code>
+     * @return The statusFill.
      */
     @java.lang.Override
-    public boolean getFillState() {
-      return fillState_;
+    public boolean getStatusFill() {
+      return statusFill_;
     }
 
-    public static final int DEPRSTATE_FIELD_NUMBER = 12;
-    private boolean deprState_;
+    public static final int STATUSDEPR_FIELD_NUMBER = 12;
+    private boolean statusDepr_;
     /**
-     * <code>bool deprState = 12;</code>
-     * @return Whether the deprState field is set.
+     * <code>bool statusDepr = 12;</code>
+     * @return Whether the statusDepr field is set.
      */
     @java.lang.Override
-    public boolean hasDeprState() {
+    public boolean hasStatusDepr() {
       return ((bitField0_ & 0x00000800) != 0);
     }
     /**
-     * <code>bool deprState = 12;</code>
-     * @return The deprState.
+     * <code>bool statusDepr = 12;</code>
+     * @return The statusDepr.
      */
     @java.lang.Override
-    public boolean getDeprState() {
-      return deprState_;
+    public boolean getStatusDepr() {
+      return statusDepr_;
     }
 
-    public static final int VENTSTATE_FIELD_NUMBER = 13;
-    private boolean ventState_;
+    public static final int STATUSVENT_FIELD_NUMBER = 13;
+    private boolean statusVent_;
     /**
-     * <code>bool ventState = 13;</code>
-     * @return Whether the ventState field is set.
+     * <code>bool statusVent = 13;</code>
+     * @return Whether the statusVent field is set.
      */
     @java.lang.Override
-    public boolean hasVentState() {
+    public boolean hasStatusVent() {
       return ((bitField0_ & 0x00001000) != 0);
     }
     /**
-     * <code>bool ventState = 13;</code>
-     * @return The ventState.
+     * <code>bool statusVent = 13;</code>
+     * @return The statusVent.
      */
     @java.lang.Override
-    public boolean getVentState() {
-      return ventState_;
+    public boolean getStatusVent() {
+      return statusVent_;
     }
 
     public static final int STATUSARM_FIELD_NUMBER = 14;
@@ -934,23 +966,23 @@ public final class FrameProtos {
       return tempExternalTank_;
     }
 
-    public static final int STATUSOXY_FIELD_NUMBER = 24;
-    private boolean statusOxy_;
+    public static final int STATUSOXI_FIELD_NUMBER = 24;
+    private boolean statusOxi_;
     /**
-     * <code>bool statusOxy = 24;</code>
-     * @return Whether the statusOxy field is set.
+     * <code>bool statusOxi = 24;</code>
+     * @return Whether the statusOxi field is set.
      */
     @java.lang.Override
-    public boolean hasStatusOxy() {
+    public boolean hasStatusOxi() {
       return ((bitField0_ & 0x00800000) != 0);
     }
     /**
-     * <code>bool statusOxy = 24;</code>
-     * @return The statusOxy.
+     * <code>bool statusOxi = 24;</code>
+     * @return The statusOxi.
      */
     @java.lang.Override
-    public boolean getStatusOxy() {
-      return statusOxy_;
+    public boolean getStatusOxi() {
+      return statusOxi_;
     }
 
     public static final int STATUSFUEL_FIELD_NUMBER = 25;
@@ -970,6 +1002,44 @@ public final class FrameProtos {
     @java.lang.Override
     public boolean getStatusFuel() {
       return statusFuel_;
+    }
+
+    public static final int STATUSQDN2O_FIELD_NUMBER = 26;
+    private boolean statusQdN2O_;
+    /**
+     * <code>bool statusQdN2O = 26;</code>
+     * @return Whether the statusQdN2O field is set.
+     */
+    @java.lang.Override
+    public boolean hasStatusQdN2O() {
+      return ((bitField0_ & 0x02000000) != 0);
+    }
+    /**
+     * <code>bool statusQdN2O = 26;</code>
+     * @return The statusQdN2O.
+     */
+    @java.lang.Override
+    public boolean getStatusQdN2O() {
+      return statusQdN2O_;
+    }
+
+    public static final int PRESSURECUTOFF_FIELD_NUMBER = 27;
+    private float pressureCutoff_;
+    /**
+     * <code>float pressureCutoff = 27;</code>
+     * @return Whether the pressureCutoff field is set.
+     */
+    @java.lang.Override
+    public boolean hasPressureCutoff() {
+      return ((bitField0_ & 0x04000000) != 0);
+    }
+    /**
+     * <code>float pressureCutoff = 27;</code>
+     * @return The pressureCutoff.
+     */
+    @java.lang.Override
+    public float getPressureCutoff() {
+      return pressureCutoff_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -999,10 +1069,10 @@ public final class FrameProtos {
         output.writeFloat(4, pressureFuel_);
       }
       if (((bitField0_ & 0x00000010) != 0)) {
-        output.writeFloat(5, pressurePastFill_);
+        output.writeFloat(5, pressureN2_);
       }
       if (((bitField0_ & 0x00000020) != 0)) {
-        output.writeFloat(6, pressureBeforeFill_);
+        output.writeFloat(6, pressureDroid_);
       }
       if (((bitField0_ & 0x00000040) != 0)) {
         output.writeFloat(7, pressureOxi_);
@@ -1017,13 +1087,13 @@ public final class FrameProtos {
         output.writeFloat(10, pressureCombustionChamber_);
       }
       if (((bitField0_ & 0x00000400) != 0)) {
-        output.writeBool(11, fillState_);
+        output.writeBool(11, statusFill_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
-        output.writeBool(12, deprState_);
+        output.writeBool(12, statusDepr_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
-        output.writeBool(13, ventState_);
+        output.writeBool(13, statusVent_);
       }
       if (((bitField0_ & 0x00002000) != 0)) {
         output.writeBool(14, statusArm_);
@@ -1056,10 +1126,16 @@ public final class FrameProtos {
         output.writeFloat(23, tempExternalTank_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
-        output.writeBool(24, statusOxy_);
+        output.writeBool(24, statusOxi_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
         output.writeBool(25, statusFuel_);
+      }
+      if (((bitField0_ & 0x02000000) != 0)) {
+        output.writeBool(26, statusQdN2O_);
+      }
+      if (((bitField0_ & 0x04000000) != 0)) {
+        output.writeFloat(27, pressureCutoff_);
       }
       unknownFields.writeTo(output);
     }
@@ -1088,11 +1164,11 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(5, pressurePastFill_);
+          .computeFloatSize(5, pressureN2_);
       }
       if (((bitField0_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, pressureBeforeFill_);
+          .computeFloatSize(6, pressureDroid_);
       }
       if (((bitField0_ & 0x00000040) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1112,15 +1188,15 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00000400) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(11, fillState_);
+          .computeBoolSize(11, statusFill_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(12, deprState_);
+          .computeBoolSize(12, statusDepr_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(13, ventState_);
+          .computeBoolSize(13, statusVent_);
       }
       if (((bitField0_ & 0x00002000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1164,11 +1240,19 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(24, statusOxy_);
+          .computeBoolSize(24, statusOxi_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(25, statusFuel_);
+      }
+      if (((bitField0_ & 0x02000000) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(26, statusQdN2O_);
+      }
+      if (((bitField0_ & 0x04000000) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(27, pressureCutoff_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1206,17 +1290,17 @@ public final class FrameProtos {
             != java.lang.Float.floatToIntBits(
                 other.getPressureFuel())) return false;
       }
-      if (hasPressurePastFill() != other.hasPressurePastFill()) return false;
-      if (hasPressurePastFill()) {
-        if (java.lang.Float.floatToIntBits(getPressurePastFill())
+      if (hasPressureN2() != other.hasPressureN2()) return false;
+      if (hasPressureN2()) {
+        if (java.lang.Float.floatToIntBits(getPressureN2())
             != java.lang.Float.floatToIntBits(
-                other.getPressurePastFill())) return false;
+                other.getPressureN2())) return false;
       }
-      if (hasPressureBeforeFill() != other.hasPressureBeforeFill()) return false;
-      if (hasPressureBeforeFill()) {
-        if (java.lang.Float.floatToIntBits(getPressureBeforeFill())
+      if (hasPressureDroid() != other.hasPressureDroid()) return false;
+      if (hasPressureDroid()) {
+        if (java.lang.Float.floatToIntBits(getPressureDroid())
             != java.lang.Float.floatToIntBits(
-                other.getPressureBeforeFill())) return false;
+                other.getPressureDroid())) return false;
       }
       if (hasPressureOxi() != other.hasPressureOxi()) return false;
       if (hasPressureOxi()) {
@@ -1242,20 +1326,20 @@ public final class FrameProtos {
             != java.lang.Float.floatToIntBits(
                 other.getPressureCombustionChamber())) return false;
       }
-      if (hasFillState() != other.hasFillState()) return false;
-      if (hasFillState()) {
-        if (getFillState()
-            != other.getFillState()) return false;
+      if (hasStatusFill() != other.hasStatusFill()) return false;
+      if (hasStatusFill()) {
+        if (getStatusFill()
+            != other.getStatusFill()) return false;
       }
-      if (hasDeprState() != other.hasDeprState()) return false;
-      if (hasDeprState()) {
-        if (getDeprState()
-            != other.getDeprState()) return false;
+      if (hasStatusDepr() != other.hasStatusDepr()) return false;
+      if (hasStatusDepr()) {
+        if (getStatusDepr()
+            != other.getStatusDepr()) return false;
       }
-      if (hasVentState() != other.hasVentState()) return false;
-      if (hasVentState()) {
-        if (getVentState()
-            != other.getVentState()) return false;
+      if (hasStatusVent() != other.hasStatusVent()) return false;
+      if (hasStatusVent()) {
+        if (getStatusVent()
+            != other.getStatusVent()) return false;
       }
       if (hasStatusArm() != other.hasStatusArm()) return false;
       if (hasStatusArm()) {
@@ -1314,15 +1398,26 @@ public final class FrameProtos {
             != java.lang.Float.floatToIntBits(
                 other.getTempExternalTank())) return false;
       }
-      if (hasStatusOxy() != other.hasStatusOxy()) return false;
-      if (hasStatusOxy()) {
-        if (getStatusOxy()
-            != other.getStatusOxy()) return false;
+      if (hasStatusOxi() != other.hasStatusOxi()) return false;
+      if (hasStatusOxi()) {
+        if (getStatusOxi()
+            != other.getStatusOxi()) return false;
       }
       if (hasStatusFuel() != other.hasStatusFuel()) return false;
       if (hasStatusFuel()) {
         if (getStatusFuel()
             != other.getStatusFuel()) return false;
+      }
+      if (hasStatusQdN2O() != other.hasStatusQdN2O()) return false;
+      if (hasStatusQdN2O()) {
+        if (getStatusQdN2O()
+            != other.getStatusQdN2O()) return false;
+      }
+      if (hasPressureCutoff() != other.hasPressureCutoff()) return false;
+      if (hasPressureCutoff()) {
+        if (java.lang.Float.floatToIntBits(getPressureCutoff())
+            != java.lang.Float.floatToIntBits(
+                other.getPressureCutoff())) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -1352,15 +1447,15 @@ public final class FrameProtos {
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getPressureFuel());
       }
-      if (hasPressurePastFill()) {
-        hash = (37 * hash) + PRESSUREPASTFILL_FIELD_NUMBER;
+      if (hasPressureN2()) {
+        hash = (37 * hash) + PRESSUREN2_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressurePastFill());
+            getPressureN2());
       }
-      if (hasPressureBeforeFill()) {
-        hash = (37 * hash) + PRESSUREBEFOREFILL_FIELD_NUMBER;
+      if (hasPressureDroid()) {
+        hash = (37 * hash) + PRESSUREDROID_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureBeforeFill());
+            getPressureDroid());
       }
       if (hasPressureOxi()) {
         hash = (37 * hash) + PRESSUREOXI_FIELD_NUMBER;
@@ -1382,20 +1477,20 @@ public final class FrameProtos {
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getPressureCombustionChamber());
       }
-      if (hasFillState()) {
-        hash = (37 * hash) + FILLSTATE_FIELD_NUMBER;
+      if (hasStatusFill()) {
+        hash = (37 * hash) + STATUSFILL_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getFillState());
+            getStatusFill());
       }
-      if (hasDeprState()) {
-        hash = (37 * hash) + DEPRSTATE_FIELD_NUMBER;
+      if (hasStatusDepr()) {
+        hash = (37 * hash) + STATUSDEPR_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getDeprState());
+            getStatusDepr());
       }
-      if (hasVentState()) {
-        hash = (37 * hash) + VENTSTATE_FIELD_NUMBER;
+      if (hasStatusVent()) {
+        hash = (37 * hash) + STATUSVENT_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getVentState());
+            getStatusVent());
       }
       if (hasStatusArm()) {
         hash = (37 * hash) + STATUSARM_FIELD_NUMBER;
@@ -1447,15 +1542,25 @@ public final class FrameProtos {
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getTempExternalTank());
       }
-      if (hasStatusOxy()) {
-        hash = (37 * hash) + STATUSOXY_FIELD_NUMBER;
+      if (hasStatusOxi()) {
+        hash = (37 * hash) + STATUSOXI_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusOxy());
+            getStatusOxi());
       }
       if (hasStatusFuel()) {
         hash = (37 * hash) + STATUSFUEL_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
             getStatusFuel());
+      }
+      if (hasStatusQdN2O()) {
+        hash = (37 * hash) + STATUSQDN2O_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getStatusQdN2O());
+      }
+      if (hasPressureCutoff()) {
+        hash = (37 * hash) + PRESSURECUTOFF_FIELD_NUMBER;
+        hash = (53 * hash) + java.lang.Float.floatToIntBits(
+            getPressureCutoff());
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1598,9 +1703,9 @@ public final class FrameProtos {
         bitField0_ = (bitField0_ & ~0x00000004);
         pressureFuel_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000008);
-        pressurePastFill_ = 0F;
+        pressureN2_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000010);
-        pressureBeforeFill_ = 0F;
+        pressureDroid_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000020);
         pressureOxi_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000040);
@@ -1610,11 +1715,11 @@ public final class FrameProtos {
         bitField0_ = (bitField0_ & ~0x00000100);
         pressureCombustionChamber_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000200);
-        fillState_ = false;
+        statusFill_ = false;
         bitField0_ = (bitField0_ & ~0x00000400);
-        deprState_ = false;
+        statusDepr_ = false;
         bitField0_ = (bitField0_ & ~0x00000800);
-        ventState_ = false;
+        statusVent_ = false;
         bitField0_ = (bitField0_ & ~0x00001000);
         statusArm_ = false;
         bitField0_ = (bitField0_ & ~0x00002000);
@@ -1636,10 +1741,14 @@ public final class FrameProtos {
         bitField0_ = (bitField0_ & ~0x00200000);
         tempExternalTank_ = 0F;
         bitField0_ = (bitField0_ & ~0x00400000);
-        statusOxy_ = false;
+        statusOxi_ = false;
         bitField0_ = (bitField0_ & ~0x00800000);
         statusFuel_ = false;
         bitField0_ = (bitField0_ & ~0x01000000);
+        statusQdN2O_ = false;
+        bitField0_ = (bitField0_ & ~0x02000000);
+        pressureCutoff_ = 0F;
+        bitField0_ = (bitField0_ & ~0x04000000);
         return this;
       }
 
@@ -1685,11 +1794,11 @@ public final class FrameProtos {
           to_bitField0_ |= 0x00000008;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
-          result.pressurePastFill_ = pressurePastFill_;
+          result.pressureN2_ = pressureN2_;
           to_bitField0_ |= 0x00000010;
         }
         if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.pressureBeforeFill_ = pressureBeforeFill_;
+          result.pressureDroid_ = pressureDroid_;
           to_bitField0_ |= 0x00000020;
         }
         if (((from_bitField0_ & 0x00000040) != 0)) {
@@ -1709,15 +1818,15 @@ public final class FrameProtos {
           to_bitField0_ |= 0x00000200;
         }
         if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.fillState_ = fillState_;
+          result.statusFill_ = statusFill_;
           to_bitField0_ |= 0x00000400;
         }
         if (((from_bitField0_ & 0x00000800) != 0)) {
-          result.deprState_ = deprState_;
+          result.statusDepr_ = statusDepr_;
           to_bitField0_ |= 0x00000800;
         }
         if (((from_bitField0_ & 0x00001000) != 0)) {
-          result.ventState_ = ventState_;
+          result.statusVent_ = statusVent_;
           to_bitField0_ |= 0x00001000;
         }
         if (((from_bitField0_ & 0x00002000) != 0)) {
@@ -1761,12 +1870,20 @@ public final class FrameProtos {
           to_bitField0_ |= 0x00400000;
         }
         if (((from_bitField0_ & 0x00800000) != 0)) {
-          result.statusOxy_ = statusOxy_;
+          result.statusOxi_ = statusOxi_;
           to_bitField0_ |= 0x00800000;
         }
         if (((from_bitField0_ & 0x01000000) != 0)) {
           result.statusFuel_ = statusFuel_;
           to_bitField0_ |= 0x01000000;
+        }
+        if (((from_bitField0_ & 0x02000000) != 0)) {
+          result.statusQdN2O_ = statusQdN2O_;
+          to_bitField0_ |= 0x02000000;
+        }
+        if (((from_bitField0_ & 0x04000000) != 0)) {
+          result.pressureCutoff_ = pressureCutoff_;
+          to_bitField0_ |= 0x04000000;
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -1829,11 +1946,11 @@ public final class FrameProtos {
         if (other.hasPressureFuel()) {
           setPressureFuel(other.getPressureFuel());
         }
-        if (other.hasPressurePastFill()) {
-          setPressurePastFill(other.getPressurePastFill());
+        if (other.hasPressureN2()) {
+          setPressureN2(other.getPressureN2());
         }
-        if (other.hasPressureBeforeFill()) {
-          setPressureBeforeFill(other.getPressureBeforeFill());
+        if (other.hasPressureDroid()) {
+          setPressureDroid(other.getPressureDroid());
         }
         if (other.hasPressureOxi()) {
           setPressureOxi(other.getPressureOxi());
@@ -1847,14 +1964,14 @@ public final class FrameProtos {
         if (other.hasPressureCombustionChamber()) {
           setPressureCombustionChamber(other.getPressureCombustionChamber());
         }
-        if (other.hasFillState()) {
-          setFillState(other.getFillState());
+        if (other.hasStatusFill()) {
+          setStatusFill(other.getStatusFill());
         }
-        if (other.hasDeprState()) {
-          setDeprState(other.getDeprState());
+        if (other.hasStatusDepr()) {
+          setStatusDepr(other.getStatusDepr());
         }
-        if (other.hasVentState()) {
-          setVentState(other.getVentState());
+        if (other.hasStatusVent()) {
+          setStatusVent(other.getStatusVent());
         }
         if (other.hasStatusArm()) {
           setStatusArm(other.getStatusArm());
@@ -1886,11 +2003,17 @@ public final class FrameProtos {
         if (other.hasTempExternalTank()) {
           setTempExternalTank(other.getTempExternalTank());
         }
-        if (other.hasStatusOxy()) {
-          setStatusOxy(other.getStatusOxy());
+        if (other.hasStatusOxi()) {
+          setStatusOxi(other.getStatusOxi());
         }
         if (other.hasStatusFuel()) {
           setStatusFuel(other.getStatusFuel());
+        }
+        if (other.hasStatusQdN2O()) {
+          setStatusQdN2O(other.getStatusQdN2O());
+        }
+        if (other.hasPressureCutoff()) {
+          setPressureCutoff(other.getPressureCutoff());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2078,80 +2201,80 @@ public final class FrameProtos {
         return this;
       }
 
-      private float pressurePastFill_ ;
+      private float pressureN2_ ;
       /**
-       * <code>float pressurePastFill = 5;</code>
-       * @return Whether the pressurePastFill field is set.
+       * <code>float pressureN2 = 5;</code>
+       * @return Whether the pressureN2 field is set.
        */
       @java.lang.Override
-      public boolean hasPressurePastFill() {
+      public boolean hasPressureN2() {
         return ((bitField0_ & 0x00000010) != 0);
       }
       /**
-       * <code>float pressurePastFill = 5;</code>
-       * @return The pressurePastFill.
+       * <code>float pressureN2 = 5;</code>
+       * @return The pressureN2.
        */
       @java.lang.Override
-      public float getPressurePastFill() {
-        return pressurePastFill_;
+      public float getPressureN2() {
+        return pressureN2_;
       }
       /**
-       * <code>float pressurePastFill = 5;</code>
-       * @param value The pressurePastFill to set.
+       * <code>float pressureN2 = 5;</code>
+       * @param value The pressureN2 to set.
        * @return This builder for chaining.
        */
-      public Builder setPressurePastFill(float value) {
+      public Builder setPressureN2(float value) {
         bitField0_ |= 0x00000010;
-        pressurePastFill_ = value;
+        pressureN2_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>float pressurePastFill = 5;</code>
+       * <code>float pressureN2 = 5;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPressurePastFill() {
+      public Builder clearPressureN2() {
         bitField0_ = (bitField0_ & ~0x00000010);
-        pressurePastFill_ = 0F;
+        pressureN2_ = 0F;
         onChanged();
         return this;
       }
 
-      private float pressureBeforeFill_ ;
+      private float pressureDroid_ ;
       /**
-       * <code>float pressureBeforeFill = 6;</code>
-       * @return Whether the pressureBeforeFill field is set.
+       * <code>float pressureDroid = 6;</code>
+       * @return Whether the pressureDroid field is set.
        */
       @java.lang.Override
-      public boolean hasPressureBeforeFill() {
+      public boolean hasPressureDroid() {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
-       * <code>float pressureBeforeFill = 6;</code>
-       * @return The pressureBeforeFill.
+       * <code>float pressureDroid = 6;</code>
+       * @return The pressureDroid.
        */
       @java.lang.Override
-      public float getPressureBeforeFill() {
-        return pressureBeforeFill_;
+      public float getPressureDroid() {
+        return pressureDroid_;
       }
       /**
-       * <code>float pressureBeforeFill = 6;</code>
-       * @param value The pressureBeforeFill to set.
+       * <code>float pressureDroid = 6;</code>
+       * @param value The pressureDroid to set.
        * @return This builder for chaining.
        */
-      public Builder setPressureBeforeFill(float value) {
+      public Builder setPressureDroid(float value) {
         bitField0_ |= 0x00000020;
-        pressureBeforeFill_ = value;
+        pressureDroid_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>float pressureBeforeFill = 6;</code>
+       * <code>float pressureDroid = 6;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPressureBeforeFill() {
+      public Builder clearPressureDroid() {
         bitField0_ = (bitField0_ & ~0x00000020);
-        pressureBeforeFill_ = 0F;
+        pressureDroid_ = 0F;
         onChanged();
         return this;
       }
@@ -2312,119 +2435,119 @@ public final class FrameProtos {
         return this;
       }
 
-      private boolean fillState_ ;
+      private boolean statusFill_ ;
       /**
-       * <code>bool fillState = 11;</code>
-       * @return Whether the fillState field is set.
+       * <code>bool statusFill = 11;</code>
+       * @return Whether the statusFill field is set.
        */
       @java.lang.Override
-      public boolean hasFillState() {
+      public boolean hasStatusFill() {
         return ((bitField0_ & 0x00000400) != 0);
       }
       /**
-       * <code>bool fillState = 11;</code>
-       * @return The fillState.
+       * <code>bool statusFill = 11;</code>
+       * @return The statusFill.
        */
       @java.lang.Override
-      public boolean getFillState() {
-        return fillState_;
+      public boolean getStatusFill() {
+        return statusFill_;
       }
       /**
-       * <code>bool fillState = 11;</code>
-       * @param value The fillState to set.
+       * <code>bool statusFill = 11;</code>
+       * @param value The statusFill to set.
        * @return This builder for chaining.
        */
-      public Builder setFillState(boolean value) {
+      public Builder setStatusFill(boolean value) {
         bitField0_ |= 0x00000400;
-        fillState_ = value;
+        statusFill_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bool fillState = 11;</code>
+       * <code>bool statusFill = 11;</code>
        * @return This builder for chaining.
        */
-      public Builder clearFillState() {
+      public Builder clearStatusFill() {
         bitField0_ = (bitField0_ & ~0x00000400);
-        fillState_ = false;
+        statusFill_ = false;
         onChanged();
         return this;
       }
 
-      private boolean deprState_ ;
+      private boolean statusDepr_ ;
       /**
-       * <code>bool deprState = 12;</code>
-       * @return Whether the deprState field is set.
+       * <code>bool statusDepr = 12;</code>
+       * @return Whether the statusDepr field is set.
        */
       @java.lang.Override
-      public boolean hasDeprState() {
+      public boolean hasStatusDepr() {
         return ((bitField0_ & 0x00000800) != 0);
       }
       /**
-       * <code>bool deprState = 12;</code>
-       * @return The deprState.
+       * <code>bool statusDepr = 12;</code>
+       * @return The statusDepr.
        */
       @java.lang.Override
-      public boolean getDeprState() {
-        return deprState_;
+      public boolean getStatusDepr() {
+        return statusDepr_;
       }
       /**
-       * <code>bool deprState = 12;</code>
-       * @param value The deprState to set.
+       * <code>bool statusDepr = 12;</code>
+       * @param value The statusDepr to set.
        * @return This builder for chaining.
        */
-      public Builder setDeprState(boolean value) {
+      public Builder setStatusDepr(boolean value) {
         bitField0_ |= 0x00000800;
-        deprState_ = value;
+        statusDepr_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bool deprState = 12;</code>
+       * <code>bool statusDepr = 12;</code>
        * @return This builder for chaining.
        */
-      public Builder clearDeprState() {
+      public Builder clearStatusDepr() {
         bitField0_ = (bitField0_ & ~0x00000800);
-        deprState_ = false;
+        statusDepr_ = false;
         onChanged();
         return this;
       }
 
-      private boolean ventState_ ;
+      private boolean statusVent_ ;
       /**
-       * <code>bool ventState = 13;</code>
-       * @return Whether the ventState field is set.
+       * <code>bool statusVent = 13;</code>
+       * @return Whether the statusVent field is set.
        */
       @java.lang.Override
-      public boolean hasVentState() {
+      public boolean hasStatusVent() {
         return ((bitField0_ & 0x00001000) != 0);
       }
       /**
-       * <code>bool ventState = 13;</code>
-       * @return The ventState.
+       * <code>bool statusVent = 13;</code>
+       * @return The statusVent.
        */
       @java.lang.Override
-      public boolean getVentState() {
-        return ventState_;
+      public boolean getStatusVent() {
+        return statusVent_;
       }
       /**
-       * <code>bool ventState = 13;</code>
-       * @param value The ventState to set.
+       * <code>bool statusVent = 13;</code>
+       * @param value The statusVent to set.
        * @return This builder for chaining.
        */
-      public Builder setVentState(boolean value) {
+      public Builder setStatusVent(boolean value) {
         bitField0_ |= 0x00001000;
-        ventState_ = value;
+        statusVent_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bool ventState = 13;</code>
+       * <code>bool statusVent = 13;</code>
        * @return This builder for chaining.
        */
-      public Builder clearVentState() {
+      public Builder clearStatusVent() {
         bitField0_ = (bitField0_ & ~0x00001000);
-        ventState_ = false;
+        statusVent_ = false;
         onChanged();
         return this;
       }
@@ -2819,41 +2942,41 @@ public final class FrameProtos {
         return this;
       }
 
-      private boolean statusOxy_ ;
+      private boolean statusOxi_ ;
       /**
-       * <code>bool statusOxy = 24;</code>
-       * @return Whether the statusOxy field is set.
+       * <code>bool statusOxi = 24;</code>
+       * @return Whether the statusOxi field is set.
        */
       @java.lang.Override
-      public boolean hasStatusOxy() {
+      public boolean hasStatusOxi() {
         return ((bitField0_ & 0x00800000) != 0);
       }
       /**
-       * <code>bool statusOxy = 24;</code>
-       * @return The statusOxy.
+       * <code>bool statusOxi = 24;</code>
+       * @return The statusOxi.
        */
       @java.lang.Override
-      public boolean getStatusOxy() {
-        return statusOxy_;
+      public boolean getStatusOxi() {
+        return statusOxi_;
       }
       /**
-       * <code>bool statusOxy = 24;</code>
-       * @param value The statusOxy to set.
+       * <code>bool statusOxi = 24;</code>
+       * @param value The statusOxi to set.
        * @return This builder for chaining.
        */
-      public Builder setStatusOxy(boolean value) {
+      public Builder setStatusOxi(boolean value) {
         bitField0_ |= 0x00800000;
-        statusOxy_ = value;
+        statusOxi_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bool statusOxy = 24;</code>
+       * <code>bool statusOxi = 24;</code>
        * @return This builder for chaining.
        */
-      public Builder clearStatusOxy() {
+      public Builder clearStatusOxi() {
         bitField0_ = (bitField0_ & ~0x00800000);
-        statusOxy_ = false;
+        statusOxi_ = false;
         onChanged();
         return this;
       }
@@ -2893,6 +3016,84 @@ public final class FrameProtos {
       public Builder clearStatusFuel() {
         bitField0_ = (bitField0_ & ~0x01000000);
         statusFuel_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean statusQdN2O_ ;
+      /**
+       * <code>bool statusQdN2O = 26;</code>
+       * @return Whether the statusQdN2O field is set.
+       */
+      @java.lang.Override
+      public boolean hasStatusQdN2O() {
+        return ((bitField0_ & 0x02000000) != 0);
+      }
+      /**
+       * <code>bool statusQdN2O = 26;</code>
+       * @return The statusQdN2O.
+       */
+      @java.lang.Override
+      public boolean getStatusQdN2O() {
+        return statusQdN2O_;
+      }
+      /**
+       * <code>bool statusQdN2O = 26;</code>
+       * @param value The statusQdN2O to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatusQdN2O(boolean value) {
+        bitField0_ |= 0x02000000;
+        statusQdN2O_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool statusQdN2O = 26;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatusQdN2O() {
+        bitField0_ = (bitField0_ & ~0x02000000);
+        statusQdN2O_ = false;
+        onChanged();
+        return this;
+      }
+
+      private float pressureCutoff_ ;
+      /**
+       * <code>float pressureCutoff = 27;</code>
+       * @return Whether the pressureCutoff field is set.
+       */
+      @java.lang.Override
+      public boolean hasPressureCutoff() {
+        return ((bitField0_ & 0x04000000) != 0);
+      }
+      /**
+       * <code>float pressureCutoff = 27;</code>
+       * @return The pressureCutoff.
+       */
+      @java.lang.Override
+      public float getPressureCutoff() {
+        return pressureCutoff_;
+      }
+      /**
+       * <code>float pressureCutoff = 27;</code>
+       * @param value The pressureCutoff to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPressureCutoff(float value) {
+        bitField0_ |= 0x04000000;
+        pressureCutoff_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pressureCutoff = 27;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPressureCutoff() {
+        bitField0_ = (bitField0_ & ~0x04000000);
+        pressureCutoff_ = 0F;
         onChanged();
         return this;
       }
@@ -4811,50 +5012,52 @@ public final class FrameProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037src/main/resources/frames.proto\"\217\t\n\tLo" +
+      "\n\037src/main/resources/frames.proto\"\331\t\n\tLo" +
       "RaFrame\022\027\n\ntanwaState\030\001 \001(\rH\000\210\001\001\022\023\n\006upTi" +
       "me\030\002 \001(\rH\001\210\001\001\022\036\n\021engineWorkingTime\030\003 \001(\005" +
-      "H\002\210\001\001\022\031\n\014pressureFuel\030\004 \001(\002H\003\210\001\001\022\035\n\020pres" +
-      "surePastFill\030\005 \001(\002H\004\210\001\001\022\037\n\022pressureBefor" +
-      "eFill\030\006 \001(\002H\005\210\001\001\022\030\n\013pressureOxi\030\007 \001(\002H\006\210" +
-      "\001\001\022!\n\024pressureInjectorFuel\030\010 \001(\002H\007\210\001\001\022 \n" +
-      "\023pressureInjectorOxi\030\t \001(\002H\010\210\001\001\022&\n\031press" +
-      "ureCombustionChamber\030\n \001(\002H\t\210\001\001\022\026\n\tfillS" +
-      "tate\030\013 \001(\010H\n\210\001\001\022\026\n\tdeprState\030\014 \001(\010H\013\210\001\001\022" +
-      "\026\n\tventState\030\r \001(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001" +
-      "(\010H\r\210\001\001\022\031\n\014igniterCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014ig" +
-      "niterCont2\030\020 \001(\010H\017\210\001\001\022\031\n\014tanwaBattery\030\021 " +
-      "\001(\002H\020\210\001\001\022\031\n\014engineThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014r" +
-      "ocketWeight\030\023 \001(\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001" +
-      "(\002H\023\210\001\001\022\031\n\014tempInjector\030\025 \001(\002H\024\210\001\001\022\"\n\025te" +
-      "mpCombustionChamber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempEx" +
-      "ternalTank\030\027 \001(\002H\026\210\001\001\022\026\n\tstatusOxy\030\030 \001(\010" +
-      "H\027\210\001\001\022\027\n\nstatusFuel\030\031 \001(\010H\030\210\001\001B\r\n\013_tanwa" +
-      "StateB\t\n\007_upTimeB\024\n\022_engineWorkingTimeB\017" +
-      "\n\r_pressureFuelB\023\n\021_pressurePastFillB\025\n\023" +
-      "_pressureBeforeFillB\016\n\014_pressureOxiB\027\n\025_" +
-      "pressureInjectorFuelB\026\n\024_pressureInjecto" +
-      "rOxiB\034\n\032_pressureCombustionChamberB\014\n\n_f" +
-      "illStateB\014\n\n_deprStateB\014\n\n_ventStateB\014\n\n" +
-      "_statusArmB\017\n\r_igniterCont1B\017\n\r_igniterC" +
-      "ont2B\017\n\r_tanwaBatteryB\017\n\r_engineThrustB\017" +
-      "\n\r_rocketWeightB\r\n\013_tankWeightB\017\n\r_tempI" +
-      "njectorB\030\n\026_tempCombustionChamberB\023\n\021_te" +
-      "mpExternalTankB\014\n\n_statusOxyB\r\n\013_statusF" +
-      "uel\"\250\002\n\014LoRaSettings\022\032\n\rlora_freq_khz\030\001 " +
-      "\001(\005H\000\210\001\001\022\035\n\020lora_transmit_ms\030\002 \001(\005H\001\210\001\001\022" +
-      "\033\n\016countdown_time\030\003 \001(\005H\002\210\001\001\022\032\n\ringition" +
-      "_time\030\004 \001(\005H\003\210\001\001\022\031\n\014flash_enable\030\005 \001(\rH\004" +
-      "\210\001\001\022\032\n\rbuzzer_enable\030\006 \001(\rH\005\210\001\001B\020\n\016_lora" +
-      "_freq_khzB\023\n\021_lora_transmit_msB\021\n\017_count" +
-      "down_timeB\020\n\016_ingition_timeB\017\n\r_flash_en" +
-      "ableB\020\n\016_buzzer_enable\"\243\001\n\013LoRaCommand\022\030" +
-      "\n\013lora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsys_dev_id\030\002" +
-      " \001(\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001\001\022\024\n\007paylo" +
-      "ad\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_idB\r\n\013_sys_de" +
-      "v_idB\n\n\010_commandB\n\n\010_payloadBD\n5pl.edu.p" +
-      "wr.pwrinspace.poliwrocket.Model.MessageP" +
-      "arserB\013FrameProtosb\006proto3"
+      "H\002\210\001\001\022\031\n\014pressureFuel\030\004 \001(\002H\003\210\001\001\022\027\n\npres" +
+      "sureN2\030\005 \001(\002H\004\210\001\001\022\032\n\rpressureDroid\030\006 \001(\002" +
+      "H\005\210\001\001\022\030\n\013pressureOxi\030\007 \001(\002H\006\210\001\001\022!\n\024press" +
+      "ureInjectorFuel\030\010 \001(\002H\007\210\001\001\022 \n\023pressureIn" +
+      "jectorOxi\030\t \001(\002H\010\210\001\001\022&\n\031pressureCombusti" +
+      "onChamber\030\n \001(\002H\t\210\001\001\022\027\n\nstatusFill\030\013 \001(\010" +
+      "H\n\210\001\001\022\027\n\nstatusDepr\030\014 \001(\010H\013\210\001\001\022\027\n\nstatus" +
+      "Vent\030\r \001(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001(\010H\r\210\001\001\022" +
+      "\031\n\014igniterCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014igniterCon" +
+      "t2\030\020 \001(\010H\017\210\001\001\022\031\n\014tanwaBattery\030\021 \001(\002H\020\210\001\001" +
+      "\022\031\n\014engineThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014rocketWei" +
+      "ght\030\023 \001(\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001(\002H\023\210\001\001\022" +
+      "\031\n\014tempInjector\030\025 \001(\002H\024\210\001\001\022\"\n\025tempCombus" +
+      "tionChamber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempExternalTa" +
+      "nk\030\027 \001(\002H\026\210\001\001\022\026\n\tstatusOxi\030\030 \001(\010H\027\210\001\001\022\027\n" +
+      "\nstatusFuel\030\031 \001(\010H\030\210\001\001\022\030\n\013statusQdN2O\030\032 " +
+      "\001(\010H\031\210\001\001\022\033\n\016pressureCutoff\030\033 \001(\002H\032\210\001\001B\r\n" +
+      "\013_tanwaStateB\t\n\007_upTimeB\024\n\022_engineWorkin" +
+      "gTimeB\017\n\r_pressureFuelB\r\n\013_pressureN2B\020\n" +
+      "\016_pressureDroidB\016\n\014_pressureOxiB\027\n\025_pres" +
+      "sureInjectorFuelB\026\n\024_pressureInjectorOxi" +
+      "B\034\n\032_pressureCombustionChamberB\r\n\013_statu" +
+      "sFillB\r\n\013_statusDeprB\r\n\013_statusVentB\014\n\n_" +
+      "statusArmB\017\n\r_igniterCont1B\017\n\r_igniterCo" +
+      "nt2B\017\n\r_tanwaBatteryB\017\n\r_engineThrustB\017\n" +
+      "\r_rocketWeightB\r\n\013_tankWeightB\017\n\r_tempIn" +
+      "jectorB\030\n\026_tempCombustionChamberB\023\n\021_tem" +
+      "pExternalTankB\014\n\n_statusOxiB\r\n\013_statusFu" +
+      "elB\016\n\014_statusQdN2OB\021\n\017_pressureCutoff\"\250\002" +
+      "\n\014LoRaSettings\022\032\n\rlora_freq_khz\030\001 \001(\005H\000\210" +
+      "\001\001\022\035\n\020lora_transmit_ms\030\002 \001(\005H\001\210\001\001\022\033\n\016cou" +
+      "ntdown_time\030\003 \001(\005H\002\210\001\001\022\032\n\ringition_time\030" +
+      "\004 \001(\005H\003\210\001\001\022\031\n\014flash_enable\030\005 \001(\rH\004\210\001\001\022\032\n" +
+      "\rbuzzer_enable\030\006 \001(\rH\005\210\001\001B\020\n\016_lora_freq_" +
+      "khzB\023\n\021_lora_transmit_msB\021\n\017_countdown_t" +
+      "imeB\020\n\016_ingition_timeB\017\n\r_flash_enableB\020" +
+      "\n\016_buzzer_enable\"\243\001\n\013LoRaCommand\022\030\n\013lora" +
+      "_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsys_dev_id\030\002 \001(\rH\001" +
+      "\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001\001\022\024\n\007payload\030\004 \001" +
+      "(\005H\003\210\001\001B\016\n\014_lora_dev_idB\r\n\013_sys_dev_idB\n" +
+      "\n\010_commandB\n\n\010_payloadBD\n5pl.edu.pwr.pwr" +
+      "inspace.poliwrocket.Model.MessageParserB" +
+      "\013FrameProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4865,7 +5068,7 @@ public final class FrameProtos {
     internal_static_LoRaFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaFrame_descriptor,
-        new java.lang.String[] { "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressurePastFill", "PressureBeforeFill", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "FillState", "DeprState", "VentState", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxy", "StatusFuel", "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressurePastFill", "PressureBeforeFill", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "FillState", "DeprState", "VentState", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxy", "StatusFuel", });
+        new java.lang.String[] { "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressureN2", "PressureDroid", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "StatusFill", "StatusDepr", "StatusVent", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxi", "StatusFuel", "StatusQdN2O", "PressureCutoff", "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressureN2", "PressureDroid", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "StatusFill", "StatusDepr", "StatusVent", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxi", "StatusFuel", "StatusQdN2O", "PressureCutoff", });
     internal_static_LoRaSettings_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_LoRaSettings_fieldAccessorTable = new

@@ -5,32 +5,43 @@ option java_package = "pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser";
 option java_outer_classname = "FrameProtos";
 
 message LoRaFrame {
-
   optional uint32 tanwaState = 1;
   optional uint32 upTime = 2;
   optional int32 engineWorkingTime = 3;
+
   optional float pressureFuel = 4;
-  optional float pressurePastFill = 5;
-  optional float pressureBeforeFill = 6;
+  optional float pressureN2 = 5;
+  optional float pressureDroid = 6;
   optional float pressureOxi = 7;
+
   optional float pressureInjectorFuel = 8;
   optional float pressureInjectorOxi = 9;
   optional float pressureCombustionChamber = 10;
-  optional bool fillState = 11;
-  optional bool deprState = 12;
-  optional bool ventState = 13;
+
+  optional bool statusFill = 11;
+  optional bool statusDepr = 12;
+  optional bool statusVent = 13;
   optional bool statusArm = 14;
   optional bool igniterCont1 = 15;
   optional bool igniterCont2 = 16;
+
   optional float tanwaBattery = 17;
+
   optional float engineThrust = 18;
   optional float rocketWeight = 19;
   optional float tankWeight = 20;
+
   optional float tempInjector = 21;
   optional float tempCombustionChamber = 22;
   optional float tempExternalTank = 23;
-  optional bool statusOxy = 24;
+
+
+  optional bool statusOxi = 24;
   optional bool statusFuel = 25;
+  optional bool statusQdN2O = 26;
+
+  optional float pressureCutoff = 27;
+
 }
 
 message LoRaSettings {

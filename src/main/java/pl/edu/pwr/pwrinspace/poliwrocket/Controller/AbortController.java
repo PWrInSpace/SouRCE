@@ -28,10 +28,27 @@ public class AbortController extends BasicButtonSensorController {
     protected void initialize() {
         super.initialize();
         abortButton.setDisable(true);
+        safeSwitch2.setDisable(true);
 
-        safeSwitch1.setOnMouseClicked(actionEvent -> abortButton.setDisable(!(safeSwitch1.isActive() && safeSwitch2.isActive())));
+        this.safeSwitch1.setOnMouseClicked(actionEvent -> executorService.execute(() -> {
+            if (this.safeSwitch1.isActive()) {
+                this.safeSwitch2.setDisable(false);
+            } else {
+                this.abortButton.setDisable(true);
+                this.safeSwitch2.setActive(false);
+                this.safeSwitch2.setDisable(true);
+            }
+        }));
 
-        safeSwitch2.setOnMouseClicked(actionEvent -> abortButton.setDisable(!(safeSwitch1.isActive() && safeSwitch2.isActive())));
+        this.safeSwitch2.setOnMouseClicked(actionEvent -> executorService.execute(() -> {
+            if (this.safeSwitch1.isActive() && this.safeSwitch2.isActive()) {
+                this.abortButton.setDisable(false);
+            } else {
+                this.abortButton.setDisable(true);
+                this.safeSwitch1.setActive(false);
+                this.safeSwitch2.setDisable(true);
+            }
+        }));
     }
 
     @Override

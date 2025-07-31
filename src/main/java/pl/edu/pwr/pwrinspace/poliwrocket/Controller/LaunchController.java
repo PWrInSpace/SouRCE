@@ -46,6 +46,7 @@ extends BasicButtonSensorController {
             } else {
                 this.fireButton.setDisable(true);
                 this.safeSwitch2.setActive(false);
+                this.safeSwitch2.setDisable(true);
             }
             this.checkReset();
         }));
@@ -55,6 +56,7 @@ extends BasicButtonSensorController {
             } else {
                 this.fireButton.setDisable(true);
                 this.safeSwitch1.setActive(false);
+                this.safeSwitch2.setDisable(true);
             }
             this.checkReset();
         }));

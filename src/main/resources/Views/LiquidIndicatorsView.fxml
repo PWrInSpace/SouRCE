@@ -14,7 +14,11 @@
             prefHeight="400.0" prefWidth="600.0">
     <children>
 
-        <!-- Indicator 7: lowest z-order -->
+        <Indicator fx:id="dataIndicator9" layoutX="156.0" layoutY="90.0" prefHeight="42.0" prefWidth="42.0"
+                   visible="false" viewOrder="1" />
+        <Label fx:id="indicatorLabel9" alignment="CENTER" layoutX="145.0" layoutY="75.0" prefHeight="17.0"
+               prefWidth="65.0" text="oxy" visible="false" viewOrder="1" />
+
         <Indicator fx:id="dataIndicator8" layoutX="90.0" layoutY="90.0" prefHeight="42.0" prefWidth="42.0"
                    visible="false" viewOrder="1" />
         <Label fx:id="indicatorLabel8" alignment="CENTER" layoutX="79.0" layoutY="75.0" prefHeight="17.0"
