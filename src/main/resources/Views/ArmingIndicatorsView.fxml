@@ -10,7 +10,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           styleClass="baseScene" stylesheets="@constants.css"
-          fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.LiquidIndicatorsController"
+          fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.ArmingIndicatorsController"
           hgap="25" vgap="25"
           alignment="CENTER"
           prefHeight="400.0" prefWidth="600.0">

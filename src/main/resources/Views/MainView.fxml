@@ -78,7 +78,12 @@
                                           <Region />
                                       </root>
                                   </SubScene>
-                                  <SubScene fx:id="armingCommandsScene" height="737.0" layoutX="434.0" layoutY="14.0" width="440.0">
+                                  <SubScene fx:id="armingCommandsScene" height="577.0" layoutX="434.0" layoutY="14.0" width="440.0">
+                                      <root>
+                                          <Region />
+                                      </root>
+                                  </SubScene>
+                                  <SubScene fx:id="armingIndicatorsScene" height="140.0" layoutX="434.0" layoutY="601.0" width="440.0">
                                       <root>
                                           <Region />
                                       </root>

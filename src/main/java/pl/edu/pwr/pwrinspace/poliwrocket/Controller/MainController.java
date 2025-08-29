@@ -72,6 +72,8 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene armingCommandsScene;
     @FXML
     private SubScene fireDataScene;
+    @FXML
+    private SubScene armingIndicatorsScene;
 
     private final SmartGroup root = new SmartGroup();
 

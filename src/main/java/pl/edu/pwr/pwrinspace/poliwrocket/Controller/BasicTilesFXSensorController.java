@@ -37,11 +37,18 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                 } else if (declaredField.getType().isAssignableFrom(Indicator.class)) {
                     ((Indicator) declaredField.get(this)).setVisible(false);
                     indicatorHashMap.put(declaredField.getName(), (Indicator) declaredField.get(this));
-                    var label = fields.stream().filter(f -> f.getName().equals("indicatorLabel" + declaredField.getName().charAt(declaredField.getName().length() - 1))).findFirst();
-                    if(label.isPresent()) {
+
+                    String fieldName = declaredField.getName();
+                    String number = fieldName.replaceAll("\\D+", "");
+
+                    var label = fields.stream()
+                            .filter(f -> f.getName().equals("indicatorLabel" + number))
+                            .findFirst();
+
+                    if (label.isPresent()) {
                         labelHashMap.put(declaredField.getName(), (Label) label.get().get(this));
                     } else {
-                        logger.error("Indicator without label!");
+                        logger.error("Indicator " + declaredField.getName() + " without label!");
                     }
                 }
             } catch (Exception e) {

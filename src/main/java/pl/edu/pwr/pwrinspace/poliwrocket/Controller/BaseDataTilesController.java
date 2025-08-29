@@ -7,6 +7,9 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IAlert;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public abstract class BaseDataTilesController extends BasicTilesFXSensorController {
 
     @Override
@@ -23,8 +26,17 @@ public abstract class BaseDataTilesController extends BasicTilesFXSensorControll
                     }
                 }
                 if(sensor instanceof FillingLevelSensor){
+
                     var k = sensor.getValue();
                 }
+                System.out.println(sensor.getName() + ": " + sensor.getValue());
+                NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+                nf.setMaximumFractionDigits(1);
+                nf.setMinimumFractionDigits(1);
+                nf.setGroupingUsed(false);
+                gauge.setNumberFormat(nf);
+
+                gauge.setValue(sensor.getValue());
                 gauge.setValue(sensor.getValue());
             });
         } catch (Exception e) {
