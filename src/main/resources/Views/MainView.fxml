@@ -69,6 +69,19 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+                  <Tab closable="false" text="Commands">
+                      <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="754.0" prefWidth="890.0">
+                              <children>
+                                  <SubScene fx:id="additionalCommandsScene" height="744.0" layoutX="10.0" layoutY="10.0" width="870.0">
+                                      <root>
+                                          <Region />
+                                      </root>
+                                  </SubScene>
+                              </children>
+                          </AnchorPane>
+                      </content>
+                  </Tab>
                   <Tab closable="false" text="Fire">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="754.0" prefWidth="890.0">
