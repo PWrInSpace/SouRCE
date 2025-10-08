@@ -29,6 +29,9 @@ public class PowerController extends BasicSensorController {
     private Gauge powerGauge7;
 
     @FXML
+    private Gauge powerGauge8;
+
+    @FXML
     private Gauge powerGauge2;
 
     @FXML
@@ -36,6 +39,9 @@ public class PowerController extends BasicSensorController {
 
     @FXML
     protected Label powerLabel7;
+
+    @FXML
+    protected Label powerLabel8;
 
     @FXML
     protected Label powerLabel6;
@@ -75,6 +81,9 @@ public class PowerController extends BasicSensorController {
     @FXML
     protected Label powerValue7;
 
+    @FXML
+    protected Label powerValue8;
+
     private final HashMap<String, Triplet<Gauge, Label, Label>> powerHashMap = new HashMap<>();
 
     @Override
@@ -86,6 +95,7 @@ public class PowerController extends BasicSensorController {
         powerHashMap.put(powerGauge5.getId(), new Triplet<>(powerGauge5, powerLabel5, powerValue5));
         powerHashMap.put(powerGauge6.getId(), new Triplet<>(powerGauge6, powerLabel6, powerValue6));
         powerHashMap.put(powerGauge7.getId(), new Triplet<>(powerGauge7, powerLabel7, powerValue7));
+        powerHashMap.put(powerGauge8.getId(), new Triplet<>(powerGauge8, powerLabel8, powerValue8));
 
         powerHashMap.forEach((s, tuple) -> {
             tuple.getValue0().setVisible(false);
