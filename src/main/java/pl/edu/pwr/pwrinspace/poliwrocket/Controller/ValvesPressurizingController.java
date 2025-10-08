@@ -1,4 +1,203 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-public class ValvesPressurizingController extends ValvesController {
+import com.jfoenix.controls.JFXButton;
+import eu.hansolo.tilesfx.addons.Indicator;
+import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
+
+import java.util.Collection;
+import java.util.HashMap;
+
+public class ValvesPressurizingController extends BasicButtonSensorController {
+
+    @FXML
+    protected Indicator dataIndicator1;
+
+    @FXML
+    protected Label indicatorLabel1;
+
+    @FXML
+    protected JFXButton valveOpenButton1;
+
+    @FXML
+    protected JFXButton valveCloseButton1;
+
+    @FXML
+    protected Indicator dataIndicator2;
+
+    @FXML
+    protected Label indicatorLabel2;
+
+    @FXML
+    protected JFXButton valveOpenButton2;
+
+    @FXML
+    protected JFXButton valveCloseButton2;
+
+    @FXML
+    protected Indicator dataIndicator3;
+
+    @FXML
+    protected Label indicatorLabel3;
+
+    @FXML
+    protected JFXButton valveOpenButton3;
+
+    @FXML
+    protected JFXButton valveCloseButton3;
+
+    @FXML
+    protected Indicator dataIndicator4;
+
+    @FXML
+    protected Label indicatorLabel4;
+
+    @FXML
+    protected JFXButton valveOpenButton4;
+
+    @FXML
+    protected JFXButton valveCloseButton4;
+
+    @FXML
+    protected Indicator dataIndicator5;
+
+    @FXML
+    protected Label indicatorLabel5;
+
+    @FXML
+    protected JFXButton valveOpenButton5;
+
+    @FXML
+    protected JFXButton valveCloseButton5;
+
+    @FXML
+    protected Indicator dataIndicator6;
+
+    @FXML
+    protected Label indicatorLabel6;
+
+    @FXML
+    protected JFXButton valveOpenButton6;
+
+    @FXML
+    protected JFXButton valveCloseButton6;
+
+    @FXML
+    protected Indicator dataIndicator7;
+
+    @FXML
+    protected Label indicatorLabel7;
+
+    @FXML
+    protected JFXButton valveOpenButton7;
+
+    @FXML
+    protected JFXButton valveCloseButton7;
+
+//    @FXML
+//    protected JFXButton timeOpenButton1;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton2;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton3;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton4;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton5;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton6;
+
+    private final HashMap<String, Button> closeHashMap = new HashMap<>();
+    private final HashMap<String,Button> openHashMap = new HashMap<>();
+//    private final HashMap<String,Button> timeOpenHashMap = new HashMap<>();
+
+    @Override
+    protected void buildVisualizationMap() {
+        super.buildVisualizationMap();
+
+        closeHashMap.clear();
+        openHashMap.clear();
+
+        openHashMap.put(dataIndicator1.getId(),valveOpenButton1);
+        openHashMap.put(dataIndicator2.getId(),valveOpenButton2);
+        openHashMap.put(dataIndicator3.getId(),valveOpenButton3);
+        openHashMap.put(dataIndicator4.getId(),valveOpenButton4);
+        openHashMap.put(dataIndicator5.getId(),valveOpenButton5);
+        openHashMap.put(dataIndicator6.getId(),valveOpenButton6);
+
+        closeHashMap.put(dataIndicator1.getId(),valveCloseButton1);
+        closeHashMap.put(dataIndicator2.getId(),valveCloseButton2);
+        closeHashMap.put(dataIndicator3.getId(),valveCloseButton3);
+        closeHashMap.put(dataIndicator4.getId(),valveCloseButton4);
+        closeHashMap.put(dataIndicator5.getId(),valveCloseButton5);
+        closeHashMap.put(dataIndicator6.getId(),valveCloseButton6);
+
+//        timeOpenHashMap.put(dataIndicator1.getId(),timeOpenButton1);
+//        timeOpenHashMap.put(dataIndicator2.getId(),timeOpenButton2);
+//        timeOpenHashMap.put(dataIndicator3.getId(),timeOpenButton3);
+//        timeOpenHashMap.put(dataIndicator4.getId(),timeOpenButton4);
+//        timeOpenHashMap.put(dataIndicator5.getId(),timeOpenButton5);
+//        timeOpenHashMap.put(dataIndicator6.getId(),timeOpenButton6);
+    }
+
+
+    @Override
+    protected void setUIBySensors() {
+        super.setUIBySensors();
+        for (ISensor sensor : sensors) {
+            indicatorHashMap.get(sensor.getDestination()).setOn(true);
+            indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Color.TRANSPARENT);
+        }
+    }
+
+    @Override
+    public void assignsCommands(Collection<ICommand> commands){
+        super.assignsCommands(commands);
+        Platform.runLater(() -> {
+            for (ICommand command : commands) {
+                var button = buttonHashMap.get(command.getCommandTriggerKey());
+                if (button != null){
+                    if(!command.getCommandDescription().isBlank()) {
+                        button.setText(command.getCommandDescription());
+                    }
+                } else {
+                    logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void invalidated(Observable observable) {
+        try {
+            var sensor = ((ISensor) observable);
+            UIThreadManager.getInstance().addImmediateOnOK(() -> {
+
+                indicatorHashMap.get(sensor.getDestination()).setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.HOTPINK);
+                indicatorHashMap.get(sensor.getDestination()).setOn(true);
+
+                if(sensor.hasInterpreter()) {
+//                    valueLabelHashMap.get(sensor.getDestination()).setText(sensor.getCodeMeaning().text);
+                    var isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
+                    closeHashMap.get(sensor.getDestination()).setDefaultButton(isNotClosed);
+                    openHashMap.get(sensor.getDestination()).setDefaultButton(!isNotClosed);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

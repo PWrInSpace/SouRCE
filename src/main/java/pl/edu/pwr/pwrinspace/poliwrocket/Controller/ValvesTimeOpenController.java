@@ -15,12 +15,8 @@ import java.util.stream.Collectors;
 public class ValvesTimeOpenController extends BaseCommandsController {
 
     private final java.util.List<String> commandOrder = java.util.Arrays.asList(
-        "ETH VENT TIME OPEN",
-        "FUEL VALVE TIME OPEN",
-        "N2O DEPR TIME OPEN",
-        "N2O FILL TIME OPEN",
-        "N2O VENT TIME OPEN",
-        "OXI VALVE TIME OPEN"
+            "TANWA N2O DEPR OPEN TIME",
+            "TANWA N2O FILL OPEN TIME"
     );
 
     @Override
@@ -64,8 +60,8 @@ public class ValvesTimeOpenController extends BaseCommandsController {
 
             input.setDisable(command.isFinal());
 
-            JFXButton button = new JFXButton(command.getCommandDescription());
-//            JFXButton button = new JFXButton("OPEN");
+//            JFXButton button = new JFXButton(command.getCommandDescription());
+            JFXButton button = new JFXButton("OPEN");
             input.setLayoutX(20);
             input.setLayoutY(initYInput);
             input.setPrefHeight(26);

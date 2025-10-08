@@ -121,7 +121,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <SubScene fx:id="dataFlightScene" height="733.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                        <SubScene fx:id="dataFlightScene" height="500.0" layoutX="14.0" layoutY="14.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
@@ -134,31 +134,42 @@
 <!--                                                <Region stylesheets="@constants.css" />-->
 <!--                                            </root>-->
 <!--                                        </SubScene>-->
-                                        <SubScene fx:id="flightValvesScene" height="120.0" layoutX="465.0" layoutY="615.0" width="320.0">
+<!--                                        <SubScene fx:id="flightValvesScene" height="120.0" layoutX="465.0" layoutY="615.0" width="320.0">-->
+<!--                                            <root>-->
+<!--                                                <Region />-->
+<!--                                            </root>-->
+<!--                                        </SubScene>-->
+<!--                                        <SubScene fx:id="flightValvesTimeOpenScene" height="120.0" layoutX="785.0" layoutY="615.0" width="150.0">-->
+<!--                                            <root>-->
+<!--                                                <Region />-->
+<!--                                            </root>-->
+<!--                                        </SubScene>-->
+                                        <SubScene fx:id="moreDataScene" height="335.0" layoutX="465.0" layoutY="14.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="flightValvesTimeOpenScene" height="120.0" layoutX="785.0" layoutY="615.0" width="150.0">
+                                        <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="465.0" layoutY="360.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="moreDataScene" height="335.0" layoutX="465.0" layoutY="270.0" width="410.0">
+                                        <SubScene fx:id="startControlScene" height="100.0" layoutX="14.0" layoutY="650.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="465.0" layoutY="186.0" width="410.0">
+                                        <SubScene fx:id="startCommandsScene" height="150.0" layoutX="14.0" layoutY="505.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="startControlScene" height="165.0" layoutX="465.0" layoutY="14.0" width="410.0">
+                                        <SubScene fx:id="recoveryCommandsScene" height="300.0" layoutX="465.0" layoutY="445.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
+
 <!--                                        <SubScene fx:id="interpretersFlightScene" height="176.0" layoutX="465.0" layoutY="527.0" width="410.0">-->
 <!--                                            <root>-->
 <!--                                                <Region />-->

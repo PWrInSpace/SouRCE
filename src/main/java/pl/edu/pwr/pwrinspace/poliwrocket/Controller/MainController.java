@@ -95,11 +95,17 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene indicatorsPressurizingScene;
 
-    @FXML
-    private SubScene flightValvesScene;
+//    @FXML
+//    private SubScene flightValvesScene;
+//
+//    @FXML
+//    private SubScene flightValvesTimeOpenScene;
 
     @FXML
-    private SubScene flightValvesTimeOpenScene;
+    private SubScene startCommandsScene;
+
+    @FXML
+    private SubScene recoveryCommandsScene;
 
     @FXML
     private SubScene valvesScene;

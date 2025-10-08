@@ -214,6 +214,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     public void write(String message) {
+        System.out.println(message);
         if(serialWriter == null) {
             log.log(Level.WARNING, "Not connected");
             return;
@@ -225,6 +226,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     public void write(ICommand command) {
+        System.out.println(command.getCommandValueAsString());
         if(serialWriter == null) {
             log.log(Level.WARNING, "Not connected");
             return;

@@ -91,6 +91,18 @@ public class ValvesController extends BasicButtonSensorController {
     @FXML
     protected JFXButton valveCloseButton6;
 
+    @FXML
+    protected Indicator dataIndicator7;
+
+    @FXML
+    protected Label indicatorLabel7;
+
+    @FXML
+    protected JFXButton valveOpenButton7;
+
+    @FXML
+    protected JFXButton valveCloseButton7;
+
 //    @FXML
 //    protected JFXButton timeOpenButton1;
 //

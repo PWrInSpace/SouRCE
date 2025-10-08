@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 public class ValvesTimeOpenPressurizingController extends BaseCommandsController {
 
     private final java.util.List<String> commandOrder = java.util.Arrays.asList(
-            "ADD"
+            "TANWA N2 DEPR OPEN TIME",
+            "TANWA N2 FILL OPEN TIME"
     );
 
     @Override
@@ -55,8 +56,8 @@ public class ValvesTimeOpenPressurizingController extends BaseCommandsController
 
             input.setDisable(command.isFinal());
 
-            JFXButton button = new JFXButton(command.getCommandDescription());
-//            JFXButton button = new JFXButton("OPEN");
+//            JFXButton button = new JFXButton(command.getCommandDescription());
+            JFXButton button = new JFXButton("OPEN");
             input.setLayoutX(20);
             input.setLayoutY(initYInput);
             input.setPrefHeight(26);
