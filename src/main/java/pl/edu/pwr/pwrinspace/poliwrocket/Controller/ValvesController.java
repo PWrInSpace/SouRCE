@@ -1,3 +1,4 @@
+
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -67,26 +68,50 @@ public class ValvesController extends BasicButtonSensorController {
     protected JFXButton valveCloseButton4;
 
     @FXML
-    protected JFXButton valveTmpOpenButton3;
+    protected Indicator dataIndicator5;
 
     @FXML
-    private Label indicatorValueLabel1;
+    protected Label indicatorLabel5;
 
     @FXML
-    private Label indicatorValueLabel2;
+    protected JFXButton valveOpenButton5;
 
     @FXML
-    private Label indicatorValueLabel3;
+    protected JFXButton valveCloseButton5;
 
     @FXML
-    private Label indicatorValueLabel4;
+    protected Indicator dataIndicator6;
 
     @FXML
-    private Label commandLabel1;
+    protected Label indicatorLabel6;
+
+    @FXML
+    protected JFXButton valveOpenButton6;
+
+    @FXML
+    protected JFXButton valveCloseButton6;
+
+//    @FXML
+//    protected JFXButton timeOpenButton1;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton2;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton3;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton4;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton5;
+//
+//    @FXML
+//    protected JFXButton timeOpenButton6;
 
     private final HashMap<String,Button> closeHashMap = new HashMap<>();
     private final HashMap<String,Button> openHashMap = new HashMap<>();
-    private final HashMap<String,Label> valueLabelHashMap = new HashMap<>();
+//    private final HashMap<String,Button> timeOpenHashMap = new HashMap<>();
 
     @Override
     protected void buildVisualizationMap() {
@@ -94,22 +119,27 @@ public class ValvesController extends BasicButtonSensorController {
 
         closeHashMap.clear();
         openHashMap.clear();
-        valueLabelHashMap.clear();
 
         openHashMap.put(dataIndicator1.getId(),valveOpenButton1);
         openHashMap.put(dataIndicator2.getId(),valveOpenButton2);
         openHashMap.put(dataIndicator3.getId(),valveOpenButton3);
         openHashMap.put(dataIndicator4.getId(),valveOpenButton4);
+        openHashMap.put(dataIndicator5.getId(),valveOpenButton5);
+        openHashMap.put(dataIndicator6.getId(),valveOpenButton6);
 
         closeHashMap.put(dataIndicator1.getId(),valveCloseButton1);
         closeHashMap.put(dataIndicator2.getId(),valveCloseButton2);
         closeHashMap.put(dataIndicator3.getId(),valveCloseButton3);
         closeHashMap.put(dataIndicator4.getId(),valveCloseButton4);
+        closeHashMap.put(dataIndicator5.getId(),valveCloseButton5);
+        closeHashMap.put(dataIndicator6.getId(),valveCloseButton6);
 
-        valueLabelHashMap.put(dataIndicator1.getId(),indicatorValueLabel1);
-        valueLabelHashMap.put(dataIndicator2.getId(),indicatorValueLabel2);
-        valueLabelHashMap.put(dataIndicator3.getId(),indicatorValueLabel3);
-        valueLabelHashMap.put(dataIndicator4.getId(),indicatorValueLabel4);
+//        timeOpenHashMap.put(dataIndicator1.getId(),timeOpenButton1);
+//        timeOpenHashMap.put(dataIndicator2.getId(),timeOpenButton2);
+//        timeOpenHashMap.put(dataIndicator3.getId(),timeOpenButton3);
+//        timeOpenHashMap.put(dataIndicator4.getId(),timeOpenButton4);
+//        timeOpenHashMap.put(dataIndicator5.getId(),timeOpenButton5);
+//        timeOpenHashMap.put(dataIndicator6.getId(),timeOpenButton6);
     }
 
 
@@ -117,9 +147,6 @@ public class ValvesController extends BasicButtonSensorController {
     protected void setUIBySensors() {
         super.setUIBySensors();
         for (ISensor sensor : sensors) {
-            var label = valueLabelHashMap.get(sensor.getDestination());
-            label.setVisible(sensor.hasInterpreter());
-            label.setText("STATE");
             indicatorHashMap.get(sensor.getDestination()).setOn(true);
             indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Color.TRANSPARENT);
         }
@@ -152,7 +179,7 @@ public class ValvesController extends BasicButtonSensorController {
                 indicatorHashMap.get(sensor.getDestination()).setOn(true);
 
                 if(sensor.hasInterpreter()) {
-                    valueLabelHashMap.get(sensor.getDestination()).setText(sensor.getCodeMeaning().text);
+//                    valueLabelHashMap.get(sensor.getDestination()).setText(sensor.getCodeMeaning().text);
                     var isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
                     closeHashMap.get(sensor.getDestination()).setDefaultButton(isNotClosed);
                     openHashMap.get(sensor.getDestination()).setDefaultButton(!isNotClosed);

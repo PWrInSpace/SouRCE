@@ -1,105 +1,170 @@
-syntax = "proto2";
+syntax = "proto3";
 
 //do not change this properties
 option java_package = "pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser";
 option java_outer_classname = "FrameProtos";
 
 message LoRaFrame {
-  // mcb frame
-  required uint32 obc_state = 1;
-  required uint32 dc_time = 2;
-  required uint32 flight_time = 3;
-  required float mcb_battery = 4;
-  required float gps_lat = 5;
-  required float gps_long = 6;
-  required float gps_sat = 7;
-  required float mcb_altitude = 8;
-  required float mcb_velocity = 9;
-  required int32 mcb_temperature = 10;
-  required float euler_fi = 11;
-  required float euler_psi = 12;
-  required float euler_theta = 13;
+   // --- MCB ---
+  optional uint32 mcb_state = 1;
+  optional uint32 uptime_ms = 2;                   // ms
+  optional int32 flight_time_ms = 3;               // ms
+  optional float mcb_batt = 4;
+  optional float gps_lat = 5;
+  optional float gps_long = 6;
+  optional bool gps_sat_ok = 7;                    // >3 = OK
+  optional int32 altitude_m = 8;                   // meters
+  optional int32 velocity_m_s = 9;                 // m/s
+  optional int32 mcb_temperature = 10;
+  optional float euler_fi = 11;
+  optional float euler_psi = 12;
+  optional float euler_theta = 13;
 
-  // recovery frame
-  required uint32 recov_pressure_1 = 14;
-  required uint32 recov_pressure_2 = 15;
-  required fixed32 recov_byte_data = 16;
+  // --- Recovery ---
+  optional bool recovery_sep_switch_2 = 14;
+  optional bool recovery_sep_switch_1 = 15;
+  optional bool recovery_2_stage_done = 16;
+  optional bool recovery_1_stage_done = 17;
+  optional bool recovery_telemetrum_2_stage = 18;
+  optional bool recovery_telemetrum_1_stage = 19;
+  optional bool recovery_easymini_2_stage = 20;
+  optional bool recovery_easymini_1_stage = 21;
+  optional bool recovery_is_tele_active = 22;
+  optional bool recovery_is_easymini_active = 23;
 
-  // pitot frame
-  required float pitot_battery = 17;
-  required int32 pitot_altitude = 18;
-  required int32 pitot_velocity = 19;
-  required int32 pitot_temperature = 20;
+  // --- Pitot ---
+  optional float pitot_battery = 24;
+  optional int32 pitot_altitude = 25;
+  optional int32 pitot_velocity = 26;
+  optional int32 pitot_temperature = 27;
 
-  // main valve
-  required float mval_battery = 21;
-  required fixed32 mval_byte_data = 22;
+  // --- Valve states ---
+  optional bool n2o_main_state = 28;
+  optional bool eth_main_state = 29;
+  optional bool n2_main_state = 30;
+  optional bool n2o_vent_state = 31;
+  optional bool eth_vent_state = 32;
+  optional bool n2_vent_state = 33;
 
-  // vent valve
-  required float vent_battery = 23;
-  required float tank_pressure = 24;
-  required fixed32 vent_byte_data = 25;
+  // --- Byte data ---
+  optional fixed32 eth_n2_mains_byte_data = 34;
+  optional fixed32 oxi_n2_vents_byte_data = 35;
+  optional fixed32 oxi_main_valve_byte_data = 36;
+  optional fixed32 eth_vent_valve_byte_data = 37;
 
-  // tanwa frame
-  required float tanwa_battery = 26;
-  required fixed32 tanwa_byte_data = 27;
-  required uint32 tanwa_state = 28;
-  required float rocket_weight = 29;
-  required float tank_weight = 30;
-  required float temperature_fill = 31;
-  required float pre_fill_pressure = 32;
-  required float post_fill_pressure = 33;
-  required float btl_pressure = 34;
+  // --- TANWA ---
+  optional float tanwa_battery = 38;
+  optional int32 tanwa_state = 39;
+  optional bool tanwa_can_weights_connection = 40;
+  optional bool tanwa_can_utility_connection = 41;
+  optional bool tanwa_can_sensor_connection = 42;
+  optional bool tanwa_can_power_connection = 43;
+  optional bool tanwa_can_solenoid_connection = 44;
+  optional bool tanwa_igniter_1_continuity = 45;
+  optional bool tanwa_igniter_2_continuity = 46;
+  optional bool tanwa_soft_arm = 47;
+  optional bool tanwa_abort_button = 48;
+  optional bool tanwa_fill_n2o_state = 49;
+  optional bool tanwa_depr_n2o_state = 50;
+  optional bool tanwa_fill_n2_state = 51;
+  optional bool tanwa_depr_n2_state = 52;
+  optional bool tanwa_droid_n2o_state = 53;
+  optional bool tanwa_droid_n2_state = 54;
+  optional bool tanwa_heating_tank_state = 55;
+  optional bool tanwa_heating_valves_state = 56;
+  optional float tanwa_thrust = 57;
+  optional float tanwa_tank_weight = 58;
+  optional float tanwa_temp_post_n2o_fill = 59;
+  optional float tanwa_temp_filling_wall = 60;
+  optional float tanwa_postfill_n2o_pres = 61;
+  optional float tanwa_cutoff_n2o_pres = 62;
+  optional float tanwa_droid_n2o_pres = 63;
+  optional float tanwa_prereg_n2_pres = 64;
+  optional float tanwa_postreg_n2_pres = 65;
+  optional float tanwa_postfill_n2_pres = 66;
+  optional float tanwa_droid_n2_pres = 67;
+  optional float tanwa_combchamber_pres = 68;
 
-  // payload
-  required float payload_battery = 35;
+  // --- Payload ---
+  optional float payload_battery = 69;
+  optional bool payload_connected = 70;            // esp-now
+  optional bool tanwa_connected = 71;              // esp-now
+  optional bool eth_vent_valve_connected = 72;     // esp-now
+  optional bool oxi_main_connected = 73;           // esp-now
+  optional bool oxi_n2_vents_connected = 74;       // esp-now
+  optional bool eth_n2_mains_connected = 75;       // esp-now
+  optional bool pitot_connected = 76;              // esp-now
 
-  required fixed32 esp_now_byte_data = 36;
-  required fixed32 errors = 37;
+  // --- Wake-ups ---
+  optional bool payload_wkup = 77;                 // esp-now
+  optional bool eth_vent_valve_wkup = 78;          // esp-now
+  optional bool oxi_main_wkup = 79;                // esp-now
+  optional bool oxi_n2_vents_wkup = 80;            // esp-now
+  optional bool eth_n2_mains_wkup = 81;            // esp-now
+  optional bool pitot_wkup = 82;                   // esp-now
+
+  // --- Errors ---
+  optional fixed32 errors = 83;
 }
 
 message LoRaFrameTanwa {
-  // tanwa frame
+  optional uint32 tanwaState = 1;
+  optional uint32 upTime = 2;
+  optional int32 engineWorkingTime = 3;
 
-  required uint32 tanWaState = 1;
-  required uint32 pressureSensor = 2;
-  required uint32 solenoid_fill= 3;
-  required uint32 solenoid_depr = 4;
-  required bool abortButton = 5;
-  required bool igniterContinouity_1 = 6;
-  required bool igniterContinouity_2 = 7;
-  required uint32 hxRequest_RCK = 8; // arduino string
-  required uint32 hxRequest_TANK = 9; // arduino string
-  required float vbat = 10;
-  required uint32 motorState_1 = 11;
-  required uint32 motorState_2 = 12;
-  required uint32 motorState_3 = 13;
-  required uint32 motorState_4 = 14;
-  required uint32 rocketWeight_blink = 15;
-  required float rocketWeight_temp = 16;
-  required uint32 tankWeight_blink = 17;
-  required float tankWeight_temp = 18;
-  required float rocketWeight_val = 19;
-  required float tankWeight_val = 20;
-  required uint32 rocketWeightRaw_val = 21;
-  required uint32 tankWeightRaw_val = 22;
-  required bool interface_rck = 23;
-  required bool interface_tank = 24;
-  required bool interface_mcu = 25;
+  optional float pressureFuel = 4;
+  optional float pressureN2 = 5;
+  optional float pressureDroid = 6;
+  optional float pressureOxi = 7;
+
+  optional float pressureInjectorFuel = 8;
+  optional float pressureInjectorOxi = 9;
+  optional float pressureCombustionChamber = 10;
+
+  optional bool statusFillN2O = 11;
+  optional bool statusDeprN2O = 12;
+  optional bool statusVentN2O = 13;
+  optional bool statusArm = 14;
+  optional bool igniterCont1 = 15;
+  optional bool igniterCont2 = 16;
+
+  optional float tanwaBattery = 17;
+
+  optional float engineThrust = 18;
+  optional float rocketWeight = 19;
+  optional float tankWeight = 20;
+
+  optional float tempInjector = 21;
+  optional float tempCombustionChamber = 22;
+  optional float tempExternalTank = 23;
+
+
+  optional bool statusOxi = 24;
+  optional bool statusFuel = 25;
+  optional bool statusN2 = 26;
+  optional bool statusQdN2O = 27;
+
+  optional bool statusFillN2 = 28;
+  optional bool statusDeprN2 = 29;
+  optional bool statusQdN2 = 30;
+  optional bool statusVentEth = 31;
+  optional bool statusVentN2 = 32;
+
+  optional float pressureCutoff = 33;
 }
 
 message LoRaSettings {
-  required int32 lora_freq_khz = 1;
-  required int32 lora_transmit_ms = 2;
-  required int32 countdown_time = 3;
-  required int32 ingition_time = 4;
-  required uint32 flash_enable = 5;
-  required uint32 buzzer_enable = 6;
+  optional int32 lora_freq_khz = 1;
+  optional int32 lora_transmit_ms = 2;
+  optional int32 countdown_time = 3;
+  optional int32 ingition_time = 4;
+  optional uint32 flash_enable = 5;
+  optional uint32 buzzer_enable = 6;
 }
 
 message LoRaCommand {
-  required uint32 lora_dev_id = 1;
-  required uint32 sys_dev_id = 2;
-  required uint32 command = 3;
-  required int32 payload = 4;
+  optional uint32 lora_dev_id = 1;
+  optional uint32 sys_dev_id = 2;
+  optional uint32 command = 3;
+  optional int32 payload = 4;
 }

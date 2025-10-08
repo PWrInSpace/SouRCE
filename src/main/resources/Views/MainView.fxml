@@ -70,42 +70,12 @@
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="valvesScene" height="240.0" layoutX="430.0" layoutY="10.0" width="460.0">
+                                        <SubScene fx:id="valvesScene" height="650.0" layoutX="430.0" layoutY="10.0" width="320.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="timeOpenCommandsScene" height="65.0" layoutX="430.0" layoutY="249.8" width="460.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                        <SubScene fx:id="heatingValveScene" height="80.0" layoutX="430.0" layoutY="325.0" width="460.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                        <SubScene fx:id="tanwaOpenScene" height="127.0" layoutX="430.0" layoutY="415.0" width="255.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                        <SubScene fx:id="tanwaCloseScene" height="127.0" layoutX="685.0" layoutY="415.0" width="205.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                        <SubScene fx:id="QDPushScene" height="113.0" layoutX="430.0" layoutY="542.0" width="255.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                        <SubScene fx:id="QDPullScene" height="113.0" layoutX="685.0" layoutY="542.0" width="82.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                        <SubScene fx:id="QDStopScene" height="113.0" layoutX="767" layoutY="542.0" width="123.0">
+                                        <SubScene fx:id="valvesTimeOpenScene" height="650.0" layoutX="750.0" layoutY="10.0" width="150.0">
                                             <root>
                                                 <Region />
                                             </root>
@@ -119,24 +89,67 @@
                                 </AnchorPane>
                             </content>
                         </Tab>
-                        <Tab closable="false" text="Flight monitor">
+                        <Tab closable="false" text="Pressurizing">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="780.0" prefWidth="890.0">
                                     <children>
-                                        <SubScene fx:id="dataFlightScene" height="660.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                        <SubScene fx:id="dataPressurizingScene" height="733.0" layoutX="10.0" layoutY="10.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="modelScene" depthBuffer="true" fill="#1a9cff" height="214.0" layoutX="208.0" layoutY="435.0" width="206.0">
-                                            <antiAliasing>
-                                                <SceneAntialiasing fx:constant="BALANCED" />
-                                            </antiAliasing>
+                                        <SubScene fx:id="valvesPressurizingScene" height="650.0" layoutX="430.0" layoutY="10.0" width="320.0">
                                             <root>
-                                                <Region stylesheets="@constants.css" />
+                                                <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="moreDataScene" height="335.0" layoutX="465.0" layoutY="186.0" width="410.0">
+                                        <SubScene fx:id="valvesTimeOpenPressurizingScene" height="650.0" layoutX="750.0" layoutY="10.0" width="150.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="indicatorsPressurizingScene" height="75.0" layoutX="430.0" layoutY="668.0" width="460.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab closable="false" text="Flight monitor">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <SubScene fx:id="dataFlightScene" height="733.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+<!--                                        <SubScene fx:id="modelScene" depthBuffer="true" fill="#1a9cff" height="214.0" layoutX="208.0" layoutY="435.0" width="206.0">-->
+<!--                                            <antiAliasing>-->
+<!--                                                <SceneAntialiasing fx:constant="BALANCED" />-->
+<!--                                            </antiAliasing>-->
+<!--                                            <root>-->
+<!--                                                <Region stylesheets="@constants.css" />-->
+<!--                                            </root>-->
+<!--                                        </SubScene>-->
+                                        <SubScene fx:id="flightValvesScene" height="120.0" layoutX="465.0" layoutY="615.0" width="320.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="flightValvesTimeOpenScene" height="120.0" layoutX="785.0" layoutY="615.0" width="150.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="moreDataScene" height="335.0" layoutX="465.0" layoutY="270.0" width="410.0">
+                                            <root>
+                                                <Region />
+                                            </root>
+                                        </SubScene>
+                                        <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="465.0" layoutY="186.0" width="410.0">
                                             <root>
                                                 <Region />
                                             </root>
@@ -146,16 +159,12 @@
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="interpretersFlightScene" height="176.0" layoutX="465.0" layoutY="527.0" width="410.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
-                                        <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="10.0" layoutY="678.0" width="418.0">
-                                            <root>
-                                                <Region />
-                                            </root>
-                                        </SubScene>
+<!--                                        <SubScene fx:id="interpretersFlightScene" height="176.0" layoutX="465.0" layoutY="527.0" width="410.0">-->
+<!--                                            <root>-->
+<!--                                                <Region />-->
+<!--                                            </root>-->
+<!--                                        </SubScene>-->
+
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -169,12 +178,12 @@
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="rocketSettingsScene" height="320.0" layoutX="450.0" layoutY="10.0" width="430.0">
+                                        <SubScene fx:id="rocketSettingsScene" height="500.0" layoutX="450.0" layoutY="10.0" width="430.0">
                                             <root>
                                                 <Region />
                                             </root>
                                         </SubScene>
-                                        <SubScene fx:id="serialPortMonitorScene" height="100.0" layoutX="450.0" layoutY="340.0" width="430.0">
+                                        <SubScene fx:id="serialPortMonitorScene" height="100.0" layoutX="450.0" layoutY="520.0" width="430.0">
                                             <root>
                                                 <Region />
                                             </root>
@@ -186,17 +195,7 @@
                         <Tab text="Connection">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <SubScene fx:id="connectionScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">
-                                        <root>
-                                            <Region />
-                                        </root>
-                                    </SubScene>
-                                    <SubScene fx:id="commandsScene" height="744.0" layoutX="445.0" layoutY="14.0" width="430.0">
-                                        <root>
-                                            <Region />
-                                        </root>
-                                    </SubScene>
-                                    <SubScene fx:id="commands2Scene" height="390.0" layoutX="14.0" layoutY="361.0" width="410.0">
+                                    <SubScene fx:id="connectionScene" height="744.0" layoutX="10.0" layoutY="10.0" width="870.0">
                                         <root>
                                             <Region />
                                         </root>
@@ -207,7 +206,7 @@
                         <Tab text="Errors">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <SubScene fx:id="errorsScene" height="335.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                                    <SubScene fx:id="errorsScene" height="700.0" layoutX="14.0" layoutY="14.0" width="700.0">
                                         <root>
                                             <Region />
                                         </root>

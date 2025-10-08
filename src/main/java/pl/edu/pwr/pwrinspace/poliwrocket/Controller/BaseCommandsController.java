@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public abstract class BaseCommandsController extends BasicButtonSensorController {
 
     @FXML
-    private AnchorPane mainPanel;
+    protected AnchorPane mainPanel;
 
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
 
