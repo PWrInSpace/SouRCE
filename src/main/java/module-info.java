@@ -21,8 +21,9 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires com.jfoenix;
     requires protobuf.java;
     requires com.google.common;
-//    requires pl.edu.pwr.pwrinspace.poliwrocket;
     requires javafx.base;
+//    requires pl.edu.pwr.pwrinspace.poliwrocket;
+//    requires pl.edu.pwr.pwrinspace.poliwrocket;
 
     opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;

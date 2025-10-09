@@ -9,14 +9,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class ValvesTimeOpenController extends BaseCommandsController {
 
     private final java.util.List<String> commandOrder = java.util.Arrays.asList(
             "TANWA N2O DEPR OPEN TIME",
-            "TANWA N2O FILL OPEN TIME"
+            "TANWA N2O FILL OPEN TIME",
+            "N2O VENT OPEN TIME",
+            "N2O MAIN OPEN TIME"
     );
 
     @Override
@@ -36,7 +37,7 @@ public class ValvesTimeOpenController extends BaseCommandsController {
         int offsetY = 51;
 
         java.util.Map<String, ICommand> byKey = this.commands.stream()
-                .collect(Collectors.toMap(ICommand::getCommandTriggerKey, c -> c, (a, b) -> a, java.util.LinkedHashMap::new));
+            .collect(Collectors.toMap(ICommand::getCommandDescription, c -> c, (a, b) -> a, java.util.LinkedHashMap::new));
 
         java.util.List<ICommand> orderedCommands = new java.util.ArrayList<>();
 
@@ -45,9 +46,7 @@ public class ValvesTimeOpenController extends BaseCommandsController {
             if (c != null) orderedCommands.add(c);
         }
 
-        orderedCommands.addAll(byKey.values().stream()
-                .sorted(Comparator.comparing(ICommand::getCommandDescription))
-                .collect(Collectors.toList()));
+        orderedCommands.addAll(byKey.values());
 
         for (ICommand command : orderedCommands) {
             Label label = new Label(command.getCommandDescription());

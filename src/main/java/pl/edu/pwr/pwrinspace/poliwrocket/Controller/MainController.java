@@ -36,6 +36,18 @@ public class MainController extends BasicController implements InvalidationListe
     private SubScene CANIndicatorsScene;
 
     @FXML
+    private SubScene fillingCommandsScene;
+
+    @FXML
+    private SubScene pressurizingCommandsScene;
+
+    @FXML
+    private SubScene othersIndicatorsScene;
+
+    @FXML
+    private SubScene othersIndicators2Scene;
+
+    @FXML
     private SubScene serialPortMonitorScene;
 
     @FXML
@@ -145,6 +157,12 @@ public class MainController extends BasicController implements InvalidationListe
 
     @FXML
     private SubScene others2Scene;
+
+    @FXML
+    private SubScene recoveryArmCommandsScene;
+
+    @FXML
+    private SubScene recoveryArmIndicatorsScene;
 
 //    @FXML
 //    private SubScene interpretersFlightScene;
