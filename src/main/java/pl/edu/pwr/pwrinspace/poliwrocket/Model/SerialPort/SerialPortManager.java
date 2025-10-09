@@ -171,19 +171,25 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public void serialEvent(SerialPortEvent oEvent) {
         synchronized (messageParser) {
             if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
+                log.log(Level.INFO, "DATA RECEIVED");
                 try {
+                    log.log(Level.INFO, "Available bytes: {0}", this.inputStream.available());
                     Frame frame;
                     byte[] buffer;
                     if(Configuration.getInstance().BUFFER_SIZE != 0) {
+                        log.log(Level.INFO, "reading with buffer size: {0}", Configuration.getInstance().BUFFER_SIZE);
                         buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
                     } else {
-                        buffer = new byte[256];
+                        log.log(Level.INFO, "reading with buffer until no data available");
+                        buffer = new byte[512];
                         int length = 0;
                         while(this.inputStream.available() > 0) {
+                            
                             buffer[length] = (byte)this.inputStream.read();
                             length++;
 
-                            if(length == 256) {
+                            if(length == 512) {
+                                log.log(Level.INFO, "LENGTH IS 512");
                                 return;
                             }
 
@@ -193,6 +199,8 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                         }
                         buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
                     }
+
+                    log.log(Level.INFO, "RECEIVED DATA: " + new String(buffer));
 
                     frame = new Frame(buffer, Instant.now());
 
@@ -312,7 +320,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 messageCounter += msgByte;
             }
 
-            return new byte[]{ (byte)(messageCounter % 256) };
+            return new byte[]{ (byte)(messageCounter % 512) };
         }
 
         private byte[] getMessageWithPrefixAndCRC(byte[] msg) {

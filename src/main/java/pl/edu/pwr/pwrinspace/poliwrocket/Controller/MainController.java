@@ -140,6 +140,12 @@ public class MainController extends BasicController implements InvalidationListe
     @FXML
     private SubScene rocketSettingsScene;
 
+    @FXML
+    private SubScene othersScene;
+
+    @FXML
+    private SubScene others2Scene;
+
 //    @FXML
 //    private SubScene interpretersFlightScene;
 

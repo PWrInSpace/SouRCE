@@ -31,6 +31,7 @@ public class ProtobufMessageParser extends BaseMessageParser {
                 addSensorUpdate(() ->  {
                     try {
                         Configuration.getInstance().sensorRepository.getSensorByName(sensorName).setValue(value);
+                        logger.info("Sensor: " + sensorName + " Value: " + value);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
