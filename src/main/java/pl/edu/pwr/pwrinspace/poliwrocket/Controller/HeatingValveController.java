@@ -54,11 +54,17 @@ public class HeatingValveController extends BasicButtonSensorController  {
     protected void setUIBySensors() {
         super.setUIBySensors();
         for (ISensor sensor : sensors) {
+            if (sensor == null) continue;
             var label = valueLabelHashMap.get(sensor.getDestination());
-            label.setVisible(sensor.hasInterpreter());
-            label.setText("STATE");
-            indicatorHashMap.get(sensor.getDestination()).setOn(true);
-            indicatorHashMap.get(sensor.getDestination()).setDotOnColor(Color.TRANSPARENT);
+            if (label != null) {
+                label.setVisible(sensor.hasInterpreter());
+                label.setText("STATE");
+            }
+            var ind = indicatorHashMap.get(sensor.getDestination());
+            if (ind == null) continue;
+            boolean on = sensor.getValue() == 1.0;
+            ind.setOn(on);
+            ind.setDotOnColor(Color.TRANSPARENT);
         }
     }
 
@@ -85,14 +91,20 @@ public class HeatingValveController extends BasicButtonSensorController  {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
 
-                indicatorHashMap.get(sensor.getDestination()).setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.HOTPINK);
-                indicatorHashMap.get(sensor.getDestination()).setOn(true);
+                var ind = indicatorHashMap.get(sensor.getDestination());
+                if (ind != null) {
+                    ind.setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.DODGERBLUE);
+                    ind.setOn(sensor.getValue() == 1.0);
+                }
 
-                if(sensor.hasInterpreter()) {
-                    valueLabelHashMap.get(sensor.getDestination()).setText(sensor.getCodeMeaning().text);
+                if (sensor.hasInterpreter()) {
+                    var vl = valueLabelHashMap.get(sensor.getDestination());
+                    if (vl != null) vl.setText(sensor.getCodeMeaning().text);
                     var isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
-                    offHashMap.get(sensor.getDestination()).setDefaultButton(isNotClosed);
-                    onHashMap.get(sensor.getDestination()).setDefaultButton(!isNotClosed);
+                    var offBtn = offHashMap.get(sensor.getDestination());
+                    var onBtn = onHashMap.get(sensor.getDestination());
+                    if (offBtn != null) offBtn.setDefaultButton(isNotClosed);
+                    if (onBtn != null) onBtn.setDefaultButton(!isNotClosed);
                 }
             });
         } catch (Exception e) {
