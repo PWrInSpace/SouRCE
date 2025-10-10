@@ -21,90 +21,59 @@ message LoRaFrame {
   optional float euler_theta = 13;
 
   // --- Recovery ---
-  optional bool recovery_sep_switch_2 = 14;
-  optional bool recovery_sep_switch_1 = 15;
-  optional bool recovery_2_stage_done = 16;
-  optional bool recovery_1_stage_done = 17;
-  optional bool recovery_telemetrum_2_stage = 18;
-  optional bool recovery_telemetrum_1_stage = 19;
-  optional bool recovery_easymini_2_stage = 20;
-  optional bool recovery_easymini_1_stage = 21;
-  optional bool recovery_is_tele_active = 22;
-  optional bool recovery_is_easymini_active = 23;
+  optional fixed32 recovery_byte_data = 14;
 
   // --- Pitot ---
-  optional float pitot_battery = 24;
-  optional int32 pitot_altitude = 25;
-  optional int32 pitot_velocity = 26;
-  optional int32 pitot_temperature = 27;
+  optional float pitot_battery = 15;
+  optional int32 pitot_altitude = 16;
+  optional int32 pitot_velocity = 17;
+  optional int32 pitot_temperature = 18;
 
   // --- Valve states ---
-  optional bool n2o_main_state = 28;
-  optional bool eth_main_state = 29;
-  optional bool n2_main_state = 30;
-  optional bool n2o_vent_state = 31;
-  optional bool eth_vent_state = 32;
-  optional bool n2_vent_state = 33;
+  optional fixed32 main_vent_byte_data =19;
 
   // --- Byte data ---
-  optional fixed32 eth_n2_mains_byte_data = 34;
-  optional fixed32 oxi_n2_vents_byte_data = 35;
-  optional fixed32 oxi_main_valve_byte_data = 36;
-  optional fixed32 eth_vent_valve_byte_data = 37;
+  optional fixed32 eth_n2_mains_byte_data = 20;
+  optional fixed32 oxi_n2_vents_byte_data = 21;
+  optional fixed32 oxi_main_valve_byte_data = 22;
+  optional fixed32 eth_vent_valve_byte_data = 23;
 
   // --- TANWA ---
-  optional float tanwa_battery = 38;
-  optional int32 tanwa_state = 39;
-  optional bool tanwa_can_weights_connection = 40;
-  optional bool tanwa_can_utility_connection = 41;
-  optional bool tanwa_can_sensor_connection = 42;
-  optional bool tanwa_can_power_connection = 43;
-  optional bool tanwa_can_solenoid_connection = 44;
-  optional bool tanwa_igniter_1_continuity = 45;
-  optional bool tanwa_igniter_2_continuity = 46;
-  optional bool tanwa_soft_arm = 47;
-  optional bool tanwa_abort_button = 48;
-  optional bool tanwa_fill_n2o_state = 49;
-  optional bool tanwa_depr_n2o_state = 50;
-  optional bool tanwa_fill_n2_state = 51;
-  optional bool tanwa_depr_n2_state = 52;
-  optional bool tanwa_droid_n2o_state = 53;
-  optional bool tanwa_droid_n2_state = 54;
-  optional bool tanwa_heating_tank_state = 55;
-  optional bool tanwa_heating_valves_state = 56;
-  optional float tanwa_thrust = 57;
-  optional float tanwa_tank_weight = 58;
-  optional float tanwa_temp_post_n2o_fill = 59;
-  optional float tanwa_temp_filling_wall = 60;
-  optional float tanwa_postfill_n2o_pres = 61;
-  optional float tanwa_cutoff_n2o_pres = 62;
-  optional float tanwa_droid_n2o_pres = 63;
-  optional float tanwa_prereg_n2_pres = 64;
-  optional float tanwa_postreg_n2_pres = 65;
-  optional float tanwa_postfill_n2_pres = 66;
-  optional float tanwa_droid_n2_pres = 67;
-  optional float tanwa_combchamber_pres = 68;
+  optional float tanwa_battery = 24;
+  optional int32 tanwa_state = 25;
+
+  optional fixed32 tanwa_can_and_states_byte_data = 26;
+
+
+  optional float tanwa_thrust = 27;
+  optional float tanwa_tank_weight = 28;
+  optional float tanwa_temp_post_n2o_fill = 29;
+  optional float tanwa_temp_filling_wall = 30;
+
+
+  optional float tanwa_postfill_n2o_pres = 31;
+  optional float tanwa_cutoff_n2o_pres = 32;
+
+
+  optional float tanwa_droid_n2o_pres = 33;
+  optional float tanwa_prereg_n2_pres = 34;
+
+
+  optional float tanwa_postreg_n2_pres = 35;
+  optional float tanwa_postfill_n2_pres = 36;
+
+
+  optional float tanwa_droid_n2_pres = 37;
+  optional float tanwa_combchamber_pres = 38;
 
   // --- Payload ---
-  optional float payload_battery = 69;
-  optional bool payload_connected = 70;            // esp-now
-  optional bool tanwa_connected = 71;              // esp-now
-  optional bool eth_vent_valve_connected = 72;     // esp-now
-  optional bool oxi_main_connected = 73;           // esp-now
-  optional bool oxi_n2_vents_connected = 74;       // esp-now
-  optional bool eth_n2_mains_connected = 75;       // esp-now
-  optional bool pitot_connected = 76;              // esp-now
+  optional float payload_battery = 39;
 
-  // --- Wake-ups ---
-  optional bool payload_wkup = 77;                 // esp-now
-  optional bool eth_vent_valve_wkup = 78;          // esp-now
-  optional bool oxi_main_wkup = 79;                // esp-now
-  optional bool oxi_n2_vents_wkup = 80;            // esp-now
-  optional bool eth_n2_mains_wkup = 81;            // esp-now
-  optional bool pitot_wkup = 82;                   // esp-now
+  optional fixed32 esp_now_connected_byte_data = 40;
+  optional fixed32 esp_now_wkups_byte_data = 41;                  
 
   // --- Errors ---
-  optional fixed32 errors = 83;
+  optional fixed32 errors = 42;
 }
 
 message LoRaFrameTanwa {
