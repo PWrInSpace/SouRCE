@@ -4,10 +4,15 @@
 <?import eu.hansolo.tilesfx.addons.Indicator?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="280.0" prefWidth="410.0" styleClass="valvesScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.ValvesPressurizingController">
     <children>
+        <Label layoutX="7.0" text="ValvesPressurizingView">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
 
         <Indicator fx:id="dataIndicator1" layoutX="100.0" layoutY="32.0" prefHeight="42.0" prefWidth="40.0" visible="false" />
         <Indicator fx:id="dataIndicator2" layoutX="100.0" layoutY="83.0" prefHeight="42.0" prefWidth="40.0" visible="false" />

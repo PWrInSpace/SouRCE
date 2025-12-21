@@ -5,19 +5,22 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ValvesTimeOpenPressurizingController extends BaseCommandsController {
 
-    private final java.util.List<String> commandOrder = java.util.Arrays.asList(
-            "TANWA N2 DEPR OPEN TIME",
-            "TANWA N2 FILL OPEN TIME",
-            "N2 VENT OPEN TIME",
-            "N2 MAIN OPEN TIME",
-            "ETH VENT OPEN TIME",
-            "ETH MAIN OPEN TIME"
-    );
+//    private final java.util.List<String> commandOrder = java.util.Arrays.asList(
+//            "TANWA N2 DEPR OPEN TIME",
+//            "TANWA N2 FILL OPEN TIME",
+//            "N2 VENT OPEN TIME",
+//            "N2 MAIN OPEN TIME",
+//            "ETH VENT OPEN TIME",
+//            "ETH MAIN OPEN TIME"
+//    );
 
     @Override
     protected void buildVisualizationMap() {
@@ -35,15 +38,15 @@ public class ValvesTimeOpenPressurizingController extends BaseCommandsController
         int initYInput = 38;
         int offsetY = 51;
 
-        java.util.Map<String, ICommand> byKey = this.commands.stream()
-            .collect(Collectors.toMap(ICommand::getCommandDescription, c -> c, (a, b) -> a, java.util.LinkedHashMap::new));
+        Map<String, ICommand> byKey = this.commands.stream()
+            .collect(Collectors.toMap(ICommand::getCommandTriggerKey, c -> c, (a, b) -> a, java.util.LinkedHashMap::new));
 
-        java.util.List<ICommand> orderedCommands = new java.util.ArrayList<>();
+        List<ICommand> orderedCommands = new ArrayList<>();
 
-        for (String key : commandOrder) {
-            ICommand c = byKey.remove(key);
-            if (c != null) orderedCommands.add(c);
-        }
+//        for (String key : commandOrder) {
+//            ICommand c = byKey.remove(key);
+//            if (c != null) orderedCommands.add(c);
+//        }
 
         orderedCommands.addAll(byKey.values());
 
@@ -58,8 +61,8 @@ public class ValvesTimeOpenPressurizingController extends BaseCommandsController
 
             input.setDisable(command.isFinal());
 
-//            JFXButton button = new JFXButton(command.getCommandDescription());
-            JFXButton button = new JFXButton("OPEN");
+            JFXButton button = new JFXButton(command.getCommandDescription());
+//            JFXButton button = new JFXButton("OPEN");
             input.setLayoutX(20);
             input.setLayoutY(initYInput);
             input.setPrefHeight(26);

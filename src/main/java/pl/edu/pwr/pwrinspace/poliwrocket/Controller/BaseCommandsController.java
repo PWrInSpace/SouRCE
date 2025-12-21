@@ -25,6 +25,7 @@ public abstract class BaseCommandsController extends BasicButtonSensorController
 
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
 
+    @Override
     protected void buildVisualizationMap() {
 
         mainPanel.getChildren().removeIf(node ->

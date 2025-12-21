@@ -25,8 +25,7 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
         tileHashMap.clear();
         indicatorHashMap.clear();
         labelHashMap.clear();
-        var fields = new LinkedList<Field>();
-        BasicSensorController.getAllFields(fields, this.getClass());
+        var fields = BasicSensorController.getAllFields(new LinkedList<>(), this.getClass());
 
         for (Field declaredField : fields) {
             try {

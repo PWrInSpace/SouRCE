@@ -77,7 +77,7 @@ public class Main extends Application {
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
                 modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-               // modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
+                //modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
                 //Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
                 return;
             }
@@ -228,7 +228,7 @@ public class Main extends Application {
                 System.exit(0);
             });
             primaryStage.show();
-            //--------------
+//            --------------
 
         } catch (Exception e) {
             e.printStackTrace();

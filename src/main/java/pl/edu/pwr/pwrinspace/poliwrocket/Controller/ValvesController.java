@@ -103,27 +103,8 @@ public class ValvesController extends BasicButtonSensorController {
     @FXML
     protected JFXButton valveCloseButton7;
 
-//    @FXML
-//    protected JFXButton timeOpenButton1;
-//
-//    @FXML
-//    protected JFXButton timeOpenButton2;
-//
-//    @FXML
-//    protected JFXButton timeOpenButton3;
-//
-//    @FXML
-//    protected JFXButton timeOpenButton4;
-//
-//    @FXML
-//    protected JFXButton timeOpenButton5;
-//
-//    @FXML
-//    protected JFXButton timeOpenButton6;
-
     private final HashMap<String,Button> closeHashMap = new HashMap<>();
     private final HashMap<String,Button> openHashMap = new HashMap<>();
-//    private final HashMap<String,Button> timeOpenHashMap = new HashMap<>();
 
     @Override
     protected void buildVisualizationMap() {
@@ -144,14 +125,6 @@ public class ValvesController extends BasicButtonSensorController {
         closeHashMap.put(dataIndicator3.getId(),valveCloseButton3);
         closeHashMap.put(dataIndicator4.getId(),valveCloseButton4);
         closeHashMap.put(dataIndicator5.getId(),valveCloseButton5);
-        closeHashMap.put(dataIndicator6.getId(),valveCloseButton6);
-
-//        timeOpenHashMap.put(dataIndicator1.getId(),timeOpenButton1);
-//        timeOpenHashMap.put(dataIndicator2.getId(),timeOpenButton2);
-//        timeOpenHashMap.put(dataIndicator3.getId(),timeOpenButton3);
-//        timeOpenHashMap.put(dataIndicator4.getId(),timeOpenButton4);
-//        timeOpenHashMap.put(dataIndicator5.getId(),timeOpenButton5);
-//        timeOpenHashMap.put(dataIndicator6.getId(),timeOpenButton6);
     }
 
 
