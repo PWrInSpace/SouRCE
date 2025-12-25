@@ -15,17 +15,19 @@ import java.util.HashSet;
 
 public abstract class BasicButtonSensorController extends BasicTilesFXSensorController {
 
+    protected HashSet<ICommand> commands = new HashSet<>();
     protected HashMap<String,Button> buttonHashMap = new HashMap<>();
 
-    protected HashSet<ICommand> commands = new HashSet<>();
+    @Override
+    protected void buildVisualizationMap() {
+        super.buildVisualizationMap();
 
+        buttonHashMap.clear();
 
-    @FXML
-    protected void initialize() {
         for (Field declaredField : this.getClass().getDeclaredFields()) {
             if(Button.class.isAssignableFrom(declaredField.getType())) {
                 try {
-                    buttonHashMap.put(declaredField.getName(), (Button)declaredField.get(this));
+                    buttonHashMap.put(declaredField.getName(), (Button) declaredField.get(this));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -40,7 +42,6 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
             for (ICommand command : commands) {
                 var button = buttonHashMap.get(command.getCommandTriggerKey());
                 if (button != null){
-
                     button.setOnAction(handleButtonsClickByCommand(button,command));
                     button.setVisible(true);
                 } else {
@@ -51,7 +52,10 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
     }
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command));
+        return actionEvent -> executorService.execute(() -> {
+            System.out.println(button.getId());
+            SerialPortManager.getInstance().write(command);
+        });
     }
 
 }

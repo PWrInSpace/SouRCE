@@ -29,6 +29,7 @@ public class StartControlController extends BasicButtonSensorController {
     private Thread countdownThread;
     private CountdownThread countdownTime;
 
+    @FXML
     @Override
     protected void initialize() {
         super.initialize();

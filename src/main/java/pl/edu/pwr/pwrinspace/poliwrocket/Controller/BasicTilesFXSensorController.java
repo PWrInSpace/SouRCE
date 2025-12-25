@@ -21,11 +21,13 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
     protected final HashMap<String, Indicator> indicatorHashMap = new HashMap<>();
     protected final HashMap<String, Label> labelHashMap = new HashMap<>();
 
+    @Override
     protected void buildVisualizationMap() {
         tileHashMap.clear();
         indicatorHashMap.clear();
         labelHashMap.clear();
-        var fields = BasicSensorController.getAllFields(new LinkedList<>(), this.getClass());
+
+        var fields = getAllFields(new LinkedList<>(), this.getClass());
 
         for (Field declaredField : fields) {
             try {
@@ -37,7 +39,8 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                     ((Indicator) declaredField.get(this)).setVisible(false);
                     indicatorHashMap.put(declaredField.getName(), (Indicator) declaredField.get(this));
                     var label = fields.stream().filter(f -> f.getName().equals("indicatorLabel" + declaredField.getName().charAt(declaredField.getName().length() - 1))).findFirst();
-                    if(label.isPresent()) {
+
+                    if (label.isPresent()) {
                         labelHashMap.put(declaredField.getName(), (Label) label.get().get(this));
                     } else {
                         logger.error("Indicator without label!");
@@ -49,6 +52,7 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
         }
     }
 
+    @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
             var tile = tileHashMap.get(sensor.getDestination());
