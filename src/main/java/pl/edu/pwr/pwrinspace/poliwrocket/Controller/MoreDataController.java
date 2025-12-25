@@ -7,6 +7,7 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -18,31 +19,22 @@ public class MoreDataController extends BasicSensorController {
 
     @FXML
     private Gauge dataGauge9;
-
     @FXML
     private Gauge dataGauge10;
-
     @FXML
     protected Indicator dataIndicator1;
-
     @FXML
     protected Indicator dataIndicator2;
-
     @FXML
     protected Indicator dataIndicator4;
-
     @FXML
     protected Indicator dataIndicator3;
-
     @FXML
     protected Label indicatorLabel1;
-
     @FXML
     protected Label indicatorLabel2;
-
     @FXML
     protected Label indicatorLabel3;
-
     @FXML
     protected Label indicatorLabel4;
 

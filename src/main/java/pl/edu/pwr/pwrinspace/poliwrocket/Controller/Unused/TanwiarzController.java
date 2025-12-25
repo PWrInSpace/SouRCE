@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
+package pl.edu.pwr.pwrinspace.poliwrocket.Controller.Unused;
 
 import com.jfoenix.controls.JFXButton;
 import eu.hansolo.tilesfx.Tile;
@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
@@ -26,28 +27,20 @@ public class TanwiarzController extends BasicButtonSensorController {
 
     @FXML
     protected Tile dataGauge1;
-
     @FXML
     protected Tile dataGauge2;
-
     @FXML
     protected Tile dataGauge3;
-
     @FXML
     protected JFXButton button1;
-
     @FXML
     protected JFXButton button2;
-
     @FXML
     protected JFXButton button3;
-
     @FXML
     protected Label ratio1;
-
     @FXML
     protected Label ratio2;
-
     @FXML
     protected Label ratio3;
 

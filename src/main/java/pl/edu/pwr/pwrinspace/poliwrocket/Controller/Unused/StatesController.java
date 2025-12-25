@@ -1,10 +1,11 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
+package pl.edu.pwr.pwrinspace.poliwrocket.Controller.Unused;
 
 import com.jfoenix.controls.JFXButton;
 import eu.hansolo.tilesfx.addons.Indicator;
 import eu.hansolo.tilesfx.addons.Switch;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicButtonSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -12,41 +13,31 @@ public class StatesController extends BasicButtonSensorController {
 
     @FXML
     private Switch safeSwitch1;
-
     @FXML
     private Switch safeSwitch2;
-
     @FXML
     private Switch safeSwitch3;
-
     @FXML
     private Switch safeSwitch4;
-
     @FXML
     protected JFXButton stateButton1;
-
     @FXML
     protected JFXButton stateButton2;
-
     @FXML
     protected JFXButton stateButton3;
-
     @FXML
     protected JFXButton stateButton4;
-
     @FXML
     protected Indicator stateIndicator1;
-
     @FXML
     protected Indicator stateIndicator2;
-
     @FXML
     protected Indicator stateIndicator3;
-
     @FXML
     protected Indicator stateIndicator4;
 
     @FXML
+    @Override
     protected void initialize() {
         super.initialize();
 
@@ -58,7 +49,6 @@ public class StatesController extends BasicButtonSensorController {
         safeSwitch1.setOnMouseClicked(actionEvent ->
                 stateButton1.setDisable(!safeSwitch1.isActive())
         );
-
         safeSwitch2.setOnMouseClicked(actionEvent ->
                 stateButton2.setDisable(!safeSwitch1.isActive() || !safeSwitch2.isActive())
         );
