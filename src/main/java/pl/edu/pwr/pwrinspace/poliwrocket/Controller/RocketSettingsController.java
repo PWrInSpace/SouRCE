@@ -30,9 +30,6 @@ public class RocketSettingsController extends BasicButtonSensorController {
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
     protected final HashMap<String, Label> valueHashMap = new HashMap<>();
 
-    @FXML
-
-
     @Override
     protected void buildVisualizationMap() {
 

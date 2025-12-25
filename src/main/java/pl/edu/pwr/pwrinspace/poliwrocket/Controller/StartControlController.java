@@ -25,11 +25,11 @@ public class StartControlController extends BasicButtonSensorController {
     protected JFXButton fireButton;
     @FXML
     protected Label countdownTimer;
+
     private Thread countdownThread;
     private CountdownThread countdownTime;
 
     @Override
-    @FXML
     protected void initialize() {
         super.initialize();
         this.countdownTime = new CountdownThread();
@@ -108,7 +108,7 @@ public class StartControlController extends BasicButtonSensorController {
     }
 
     @Override
-    protected void setUIBySensors() {
+    protected void setUIBySensors() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 }
