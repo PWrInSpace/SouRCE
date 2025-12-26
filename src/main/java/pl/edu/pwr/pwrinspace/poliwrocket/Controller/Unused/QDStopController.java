@@ -1,4 +1,4 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
+package pl.edu.pwr.pwrinspace.poliwrocket.Controller.Unused;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -6,13 +6,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseCommandsController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class QDPullController extends BaseCommandsController {
+public class QDStopController extends BaseCommandsController {
     @FXML
     private AnchorPane mainPanel;
 
@@ -30,7 +31,7 @@ public class QDPullController extends BaseCommandsController {
 
         for (ICommand command : this.commands.stream().sorted(Comparator.comparing(ICommand::getCommandDescription)).collect(Collectors.toList())) {
 
-            JFXButton button = new JFXButton("PULL");
+            JFXButton button = new JFXButton("STOP");
 
             button.setId(command.getCommandTriggerKey());
             button.setLayoutX(5);
