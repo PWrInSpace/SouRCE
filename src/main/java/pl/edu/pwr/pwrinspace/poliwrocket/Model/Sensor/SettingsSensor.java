@@ -59,11 +59,6 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     }
 
     @Override
-    public String getButtonText() {
-        return command.getButtonText();
-    }
-
-    @Override
     public byte[] getCommandValueAsBytes(boolean force) {
         return command.getCommandValueAsBytes(force);
     }

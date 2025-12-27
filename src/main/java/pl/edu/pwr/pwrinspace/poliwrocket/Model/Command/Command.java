@@ -16,8 +16,6 @@ public class Command<T> implements ICommand {
     @Expose
     private String description = "";
     @Expose
-    private String buttonText = "";
-    @Expose
     protected String payload = "";
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
