@@ -3,6 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
@@ -19,16 +20,12 @@ public abstract class BaseButtonSensorController extends BaseTilesFXSensorContro
     protected HashSet<ICommand> commands = new HashSet<>();
     protected HashMap<String,Button> buttonHashMap = new HashMap<>();
 
-    @Override
-    protected void buildVisualizationMap() {
-        super.buildVisualizationMap();
-
-        buttonHashMap.clear();
-
+    @FXML
+    protected void initialize() {
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            if (Button.class.isAssignableFrom(declaredField.getType())) {
+            if(Button.class.isAssignableFrom(declaredField.getType())) {
                 try {
-                    buttonHashMap.put(declaredField.getName(), (Button) declaredField.get(this));
+                    buttonHashMap.put(declaredField.getName(), (Button)declaredField.get(this));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }

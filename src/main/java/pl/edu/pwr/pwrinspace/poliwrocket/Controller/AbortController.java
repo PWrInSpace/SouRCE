@@ -2,7 +2,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import eu.hansolo.tilesfx.addons.Switch;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,11 +24,10 @@ public class AbortController extends BaseButtonSensorController {
     @Override
     protected void initialize() {
         super.initialize();
-
-        Platform.runLater(this::buildVisualizationMap);
-
         abortButton.setDisable(true);
+
         safeSwitch1.setOnMouseClicked(actionEvent -> abortButton.setDisable(!(safeSwitch1.isActive() && safeSwitch2.isActive())));
+
         safeSwitch2.setOnMouseClicked(actionEvent -> abortButton.setDisable(!(safeSwitch1.isActive() && safeSwitch2.isActive())));
     }
 
@@ -57,7 +55,13 @@ public class AbortController extends BaseButtonSensorController {
     }
 
     @Override
-    protected void setUIBySensors() throws UnsupportedOperationException {
+    protected void setUIBySensors() throws UnsupportedOperationException{
+        //there is no field to display sensor data
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    protected void buildVisualizationMap() throws UnsupportedOperationException{
         //there is no field to display sensor data
         throw new UnsupportedOperationException();
     }
