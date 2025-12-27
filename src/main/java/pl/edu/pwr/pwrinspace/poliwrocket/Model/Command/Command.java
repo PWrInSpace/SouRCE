@@ -61,11 +61,6 @@ public class Command<T> implements ICommand {
     }
 
     @Override
-    public String getButtonText() {
-        return buttonText;
-    }
-
-    @Override
     public byte[] getCommandValueAsBytes(boolean force) {
         return getCommandValueAsString().getBytes();
     }
