@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="165.0" prefWidth="410.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.StartControlController">
    <Switch fx:id="safeSwitch1" layoutX="25.0" layoutY="45.0" prefHeight="26.0" prefWidth="42.0" />
-   <JFXButton fx:id="fireButton" layoutX="85.0" layoutY="50.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="116.0" text="LAUNCH" />
+   <JFXButton fx:id="fireButton" layoutX="85.0" layoutY="50.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="116.0" />
    <Switch fx:id="safeSwitch2" layoutX="25.0" layoutY="70.0" prefHeight="26.0" prefWidth="42.0" />
    <Label fx:id="countdownTimer" layoutX="215.0" layoutY="75.0" text="-00:00:45:000" />
    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="225.0" layoutY="55.0" text="Countdown:" />

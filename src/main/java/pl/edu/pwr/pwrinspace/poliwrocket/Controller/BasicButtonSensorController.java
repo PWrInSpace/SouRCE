@@ -3,7 +3,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
@@ -25,7 +24,7 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
         buttonHashMap.clear();
 
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            if(Button.class.isAssignableFrom(declaredField.getType())) {
+            if (Button.class.isAssignableFrom(declaredField.getType())) {
                 try {
                     buttonHashMap.put(declaredField.getName(), (Button) declaredField.get(this));
                 } catch (IllegalAccessException e) {
@@ -44,6 +43,9 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
                 if (button != null){
                     button.setOnAction(handleButtonsClickByCommand(button,command));
                     button.setVisible(true);
+                    if (!command.getCommandDescription().isBlank()) {
+                        button.setText(command.getCommandDescription());
+                    }
                 } else {
                     logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
                 }

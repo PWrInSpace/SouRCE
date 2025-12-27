@@ -2,18 +2,15 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import eu.hansolo.tilesfx.addons.Indicator;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 public class ValvesPressurizingController extends BasicButtonSensorController {
@@ -74,22 +71,10 @@ public class ValvesPressurizingController extends BasicButtonSensorController {
     protected JFXButton valveOpenButton7;
     @FXML
     protected JFXButton valveCloseButton7;
-//    @FXML
-//    protected JFXButton timeOpenButton1;
-//    @FXML
-//    protected JFXButton timeOpenButton2;
-//    @FXML
-//    protected JFXButton timeOpenButton3;
-//    @FXML
-//    protected JFXButton timeOpenButton4;
-//    @FXML
-//    protected JFXButton timeOpenButton5;
-//    @FXML
-//    protected JFXButton timeOpenButton6;
+
 
     private final HashMap<String, Button> closeHashMap = new HashMap<>();
     private final HashMap<String,Button> openHashMap = new HashMap<>();
-//    private final HashMap<String,Button> timeOpenHashMap = new HashMap<>();
 
     @Override
     protected void buildVisualizationMap() {
@@ -111,13 +96,6 @@ public class ValvesPressurizingController extends BasicButtonSensorController {
         closeHashMap.put(dataIndicator4.getId(),valveCloseButton4);
         closeHashMap.put(dataIndicator5.getId(),valveCloseButton5);
         closeHashMap.put(dataIndicator6.getId(),valveCloseButton6);
-
-//        timeOpenHashMap.put(dataIndicator1.getId(),timeOpenButton1);
-//        timeOpenHashMap.put(dataIndicator2.getId(),timeOpenButton2);
-//        timeOpenHashMap.put(dataIndicator3.getId(),timeOpenButton3);
-//        timeOpenHashMap.put(dataIndicator4.getId(),timeOpenButton4);
-//        timeOpenHashMap.put(dataIndicator5.getId(),timeOpenButton5);
-//        timeOpenHashMap.put(dataIndicator6.getId(),timeOpenButton6);
     }
 
 
@@ -132,23 +110,6 @@ public class ValvesPressurizingController extends BasicButtonSensorController {
             ind.setOn(on);
             ind.setDotOnColor(Color.TRANSPARENT);
         }
-    }
-
-    @Override
-    public void assignsCommands(Collection<ICommand> commands){
-        super.assignsCommands(commands);
-        Platform.runLater(() -> {
-            for (ICommand command : commands) {
-                var button = buttonHashMap.get(command.getCommandTriggerKey());
-                if (button != null){
-                    if(!command.getCommandDescription().isBlank()) {
-                        button.setText(command.getCommandDescription());
-                    }
-                } else {
-                    logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
-                }
-            }
-        });
     }
 
     @Override

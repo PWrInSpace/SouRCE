@@ -22,8 +22,6 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires protobuf.java;
     requires com.google.common;
     requires javafx.base;
-//    requires pl.edu.pwr.pwrinspace.poliwrocket;
-//    requires pl.edu.pwr.pwrinspace.poliwrocket;
 
     opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
@@ -48,6 +46,4 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf to com.google.gson;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content to com.google.gson;
-    exports pl.edu.pwr.pwrinspace.poliwrocket.Controller.Unused to javafx.base, javafx.controls, javafx.fxml, javafx.graphics, javafx.media, javafx.web, pl.edu.pwr.pwrinspace.poliwrocket.Controller;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Controller.Unused to javafx.base, javafx.controls, javafx.fxml, javafx.graphics, javafx.media, javafx.web;
 }

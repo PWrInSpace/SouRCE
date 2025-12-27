@@ -3,103 +3,72 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import eu.hansolo.tilesfx.addons.Indicator;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 public class ValvesController extends BasicButtonSensorController {
-
     @FXML
     protected Indicator dataIndicator1;
-
     @FXML
     protected Label indicatorLabel1;
-
     @FXML
     protected JFXButton valveOpenButton1;
-
     @FXML
     protected JFXButton valveCloseButton1;
-
     @FXML
     protected Indicator dataIndicator2;
-
     @FXML
     protected Label indicatorLabel2;
-
     @FXML
     protected JFXButton valveOpenButton2;
-
     @FXML
     protected JFXButton valveCloseButton2;
-
     @FXML
     protected Indicator dataIndicator3;
-
     @FXML
     protected Label indicatorLabel3;
-
     @FXML
     protected JFXButton valveOpenButton3;
-
     @FXML
     protected JFXButton valveCloseButton3;
-
     @FXML
     protected Indicator dataIndicator4;
-
     @FXML
     protected Label indicatorLabel4;
-
     @FXML
     protected JFXButton valveOpenButton4;
-
     @FXML
     protected JFXButton valveCloseButton4;
-
     @FXML
     protected Indicator dataIndicator5;
-
     @FXML
     protected Label indicatorLabel5;
-
     @FXML
     protected JFXButton valveOpenButton5;
-
     @FXML
     protected JFXButton valveCloseButton5;
-
     @FXML
     protected Indicator dataIndicator6;
-
     @FXML
     protected Label indicatorLabel6;
-
     @FXML
     protected JFXButton valveOpenButton6;
-
     @FXML
     protected JFXButton valveCloseButton6;
-
     @FXML
     protected Indicator dataIndicator7;
-
     @FXML
     protected Label indicatorLabel7;
-
     @FXML
     protected JFXButton valveOpenButton7;
-
     @FXML
     protected JFXButton valveCloseButton7;
 
@@ -139,23 +108,6 @@ public class ValvesController extends BasicButtonSensorController {
             ind.setOn(on);
             ind.setDotOnColor(Color.TRANSPARENT);
         }
-    }
-
-    @Override
-    public void assignsCommands(Collection<ICommand> commands){
-        super.assignsCommands(commands);
-        Platform.runLater(() -> {
-            for (ICommand command : commands) {
-                var button = buttonHashMap.get(command.getCommandTriggerKey());
-                if (button != null){
-                    if(!command.getCommandDescription().isBlank()) {
-                        button.setText(command.getCommandDescription());
-                    }
-                } else {
-                    logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
-                }
-            }
-        });
     }
 
     @Override
