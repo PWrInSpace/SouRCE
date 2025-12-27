@@ -6,7 +6,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public abstract class BasicSensorController extends BasicController {
+public abstract class BaseSensorController extends BaseController {
 
     protected HashSet<ISensor> sensors = new HashSet<>();
 

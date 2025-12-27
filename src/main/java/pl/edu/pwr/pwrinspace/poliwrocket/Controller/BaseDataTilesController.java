@@ -7,7 +7,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IAlert;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-public abstract class BaseDataTilesController extends BasicTilesFXSensorController {
+public abstract class BaseDataTilesController extends BaseTilesFXSensorController {
 
     @Override
     public void invalidated(Observable observable) {

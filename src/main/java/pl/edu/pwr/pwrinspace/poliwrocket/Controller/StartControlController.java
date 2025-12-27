@@ -11,7 +11,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.CountdownThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
-public class StartControlController extends BasicButtonSensorController {
+public class StartControlController extends BaseButtonSensorController {
     @FXML
     private Switch safeSwitch1;
     @FXML

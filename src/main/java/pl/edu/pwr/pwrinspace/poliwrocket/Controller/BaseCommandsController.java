@@ -16,7 +16,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class BaseCommandsController extends BasicButtonSensorController {
+public abstract class BaseCommandsController extends BaseButtonSensorController {
 
     @FXML
     protected AnchorPane mainPanel;

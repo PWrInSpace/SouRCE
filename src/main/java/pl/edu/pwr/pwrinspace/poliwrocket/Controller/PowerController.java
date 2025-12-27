@@ -11,7 +11,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.util.HashMap;
 
-public class PowerController extends BasicSensorController {
+public class PowerController extends BaseSensorController {
 
     @FXML
     private Gauge powerGauge4;

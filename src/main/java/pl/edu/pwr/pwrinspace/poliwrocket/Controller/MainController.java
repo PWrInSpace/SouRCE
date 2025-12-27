@@ -1,7 +1,5 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.interactivemesh.jfx.importer.ModelImporter;
-import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -13,7 +11,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.javatuples.Pair;
@@ -27,7 +24,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MainController extends BasicController implements InvalidationListener {
+public class MainController extends BaseController implements InvalidationListener {
 
     private static final double initWidth = 1550.4;
     private static final double initHeight = 838.4;

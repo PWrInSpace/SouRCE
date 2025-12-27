@@ -13,7 +13,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.util.HashMap;
 
-public class HeatingValveController extends BasicButtonSensorController  {
+public class HeatingValveController extends BaseButtonSensorController {
 
     @FXML
     protected Indicator dataIndicator1;

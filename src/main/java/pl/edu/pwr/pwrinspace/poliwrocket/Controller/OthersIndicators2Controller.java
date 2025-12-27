@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-public class OthersIndicators2Controller extends BasicTilesFXSensorController {
+public class OthersIndicators2Controller extends BaseTilesFXSensorController {
 
     @FXML
     protected Indicator dataIndicator1;

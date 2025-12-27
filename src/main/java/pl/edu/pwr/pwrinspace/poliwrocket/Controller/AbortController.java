@@ -12,7 +12,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
-public class AbortController extends BasicButtonSensorController {
+public class AbortController extends BaseButtonSensorController {
 
     @FXML
     private Switch safeSwitch1;

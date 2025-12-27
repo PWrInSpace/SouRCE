@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public abstract class BasicTilesFXSensorController extends BasicSensorController {
+public abstract class BaseTilesFXSensorController extends BaseSensorController {
 
     private static final int _duration = 30;
 

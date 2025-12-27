@@ -7,13 +7,12 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.util.HashMap;
 
-public class MoreDataController extends BasicSensorController {
+public class MoreDataController extends BaseSensorController {
 
     private final static Double thresholdPercent = 0.8;
 

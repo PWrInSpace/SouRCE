@@ -18,7 +18,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-public class TimeOpenCommandsController extends BasicButtonSensorController {
+public class TimeOpenCommandsController extends BaseButtonSensorController {
 
     @FXML
     private AnchorPane mainPanel;

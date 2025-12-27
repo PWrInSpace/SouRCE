@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public abstract class BasicButtonSensorController extends BasicTilesFXSensorController {
+public abstract class BaseButtonSensorController extends BaseTilesFXSensorController {
 
     protected HashSet<ICommand> commands = new HashSet<>();
     protected HashMap<String,Button> buttonHashMap = new HashMap<>();
