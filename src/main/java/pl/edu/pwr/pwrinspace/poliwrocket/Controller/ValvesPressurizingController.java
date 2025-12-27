@@ -98,20 +98,6 @@ public class ValvesPressurizingController extends BasicButtonSensorController {
         closeHashMap.put(dataIndicator6.getId(),valveCloseButton6);
     }
 
-
-    @Override
-    protected void setUIBySensors() {
-        super.setUIBySensors();
-        for (ISensor sensor : sensors) {
-            if (sensor == null) continue;
-            var ind = indicatorHashMap.get(sensor.getDestination());
-            if (ind == null) continue;
-            boolean on = sensor.getValue() == 1.0;
-            ind.setOn(on);
-            ind.setDotOnColor(Color.TRANSPARENT);
-        }
-    }
-
     @Override
     public void invalidated(Observable observable) {
         try {

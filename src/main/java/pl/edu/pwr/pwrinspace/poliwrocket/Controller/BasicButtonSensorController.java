@@ -4,7 +4,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
 import java.lang.reflect.Field;
@@ -34,6 +36,21 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
         }
     }
 
+    @Override
+    protected void setUIBySensors() {
+        super.setUIBySensors();
+        for (ISensor sensor : sensors) {
+            if (sensor != null) {
+                var indicator = indicatorHashMap.get(sensor.getDestination());
+                if (indicator != null) {
+                    boolean on = sensor.getValue() == 1.0;
+                    indicator.setOn(on);
+                    indicator.setDotOnColor(Color.TRANSPARENT);
+                }
+            }
+        }
+    }
+
     public void assignsCommands(Collection<ICommand> commands){
         this.commands.clear();
         this.commands.addAll(commands);
@@ -43,8 +60,8 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
                 if (button != null){
                     button.setOnAction(handleButtonsClickByCommand(button,command));
                     button.setVisible(true);
-                    if (!command.getCommandDescription().isBlank()) {
-                        button.setText(command.getCommandDescription());
+                    if (!command.getButtonText().isBlank()) {
+                        button.setText(command.getButtonText());
                     }
                 } else {
                     logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());

@@ -7,6 +7,7 @@ public interface ICommand {
     boolean isFinal();
     String getCommandTriggerKey();
     String getCommandDescription();
+    String getButtonText();
     byte[] getCommandValueAsBytes(boolean force);
     byte[] getCommandValueAsBytes();
 }

@@ -105,15 +105,11 @@ public abstract class BaseCommandsController extends BasicButtonSensorController
 
     @Override
     public void assignsCommands(Collection<ICommand> commands){
-        this.commands.clear();
-        this.commands.addAll(commands);
         Platform.runLater(this::buildVisualizationMap);
         super.assignsCommands(commands);
     }
 
-    protected void setUIBySensors() {
-
-    }
+    protected void setUIBySensors() {}
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
         return actionEvent -> executorService.execute(() -> {

@@ -9,19 +9,16 @@ public class Command<T> implements ICommand {
 
     @Expose
     protected T value;
-
     @Expose
     private boolean isFinal = false;
-
     @Expose
     private String trigger;
-
     @Expose
     private String description = "";
-
+    @Expose
+    private String buttonText = "";
     @Expose
     protected String payload = "";
-
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
 
@@ -63,6 +60,11 @@ public class Command<T> implements ICommand {
     @Override
     public String getCommandDescription() {
         return description;
+    }
+
+    @Override
+    public String getButtonText() {
+        return buttonText;
     }
 
     @Override

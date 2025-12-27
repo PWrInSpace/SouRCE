@@ -98,9 +98,7 @@ public class TimeOpenCommandsController extends BasicButtonSensorController {
         super.assignsCommands(commands);
     }
 
-    protected void setUIBySensors() {
-
-    }
+    protected void setUIBySensors() {}
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
         return actionEvent -> executorService.execute(() -> {

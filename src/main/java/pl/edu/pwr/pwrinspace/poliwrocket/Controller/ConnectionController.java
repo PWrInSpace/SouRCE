@@ -175,16 +175,6 @@ public class ConnectionController extends BasicButtonSensorController {
             }
         });
     }
-
-  /*  private void serialSetup() {
-        availableSerialPorts.clear();
-        CompletableFuture.runAsync(() -> {
-            availableSerialPorts.addAll(NRSerialPort.getAvailableSerialPorts());
-            serialPorts.setItems(availableSerialPorts);
-            serialPorts.setValue(!availableSerialPorts.isEmpty() ? availableSerialPorts.get(0) : "No ports available");
-        });
-    }  */
-
     private void serialSetup() {
         try {
             final Set<String> ports = executorService.submit(NRSerialPort::getAvailableSerialPorts).get(30, TimeUnit.SECONDS);

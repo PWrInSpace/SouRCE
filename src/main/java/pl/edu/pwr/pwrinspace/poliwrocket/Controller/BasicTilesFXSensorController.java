@@ -80,7 +80,6 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                 if(sensor instanceof FillingLevelSensor) {
                     tile.setSkinType(Tile.SkinType.FLUID);
                 }
-                //tile.setAveragingPeriod(_duration * Configuration.getInstance().FPS);
             } else if (indicator != null) {
                 indicator.setVisible(true);
 

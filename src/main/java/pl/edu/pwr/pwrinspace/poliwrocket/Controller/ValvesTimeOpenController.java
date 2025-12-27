@@ -13,6 +13,5 @@ public class ValvesTimeOpenController extends BaseCommandsController {
         this.buttonLayoutX = 90;
         this.buttonPrefHeight = 26;
         this.buttonPrefWidth = 60;
-        this.buttonText = "OPEN";
     }
 }

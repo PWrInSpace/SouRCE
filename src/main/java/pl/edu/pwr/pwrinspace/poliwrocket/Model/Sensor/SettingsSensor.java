@@ -8,10 +8,8 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
 
     @Expose
     private Double defaultValue = 0.0;
-
     @Expose
     private Command command;
-
     private static final String _destinationCommandPrefix = "button";
     private static final String _destinationInoutPrefix = "button";
 
@@ -38,7 +36,6 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     @Override
     public void setPayload(String payload) {
         command.setPayload(payload);
-
     }
 
     @Override
@@ -59,6 +56,11 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     @Override
     public String getCommandDescription() {
         return command.getCommandDescription();
+    }
+
+    @Override
+    public String getButtonText() {
+        return command.getButtonText();
     }
 
     @Override
