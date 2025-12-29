@@ -105,7 +105,7 @@ public class RocketSettingsController extends BaseButtonSensorController {
 
     protected void setUIBySensors() {}
 
-    protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
+    protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command) {
         return actionEvent -> executorService.execute(() -> {
             var input = inputHashMap.get(((ISettingsSensor)command).getInputKey());
             if(input.isVisible())
@@ -123,7 +123,7 @@ public class RocketSettingsController extends BaseButtonSensorController {
     public void invalidated(Observable observable) {
         try {
             if(observable instanceof SettingsSensor) {
-                var sensor = (SettingsSensor)observable;
+                var sensor = (SettingsSensor) observable;
                 UIThreadManager.getInstance().addImmediateOnOK(() -> valueHashMap.get(sensor.getDestination()).setText(Double.toString(sensor.getValue())));
             } else {
                 logger.error("Controller has been notified but there was no action.");

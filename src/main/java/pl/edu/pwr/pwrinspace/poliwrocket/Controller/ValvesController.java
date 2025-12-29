@@ -101,15 +101,15 @@ public class ValvesController extends BaseButtonSensorController {
         try {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
-
                 var ind = indicatorHashMap.get(sensor.getDestination());
+
                 if (ind != null) {
                     ind.setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.DODGERBLUE);
                     ind.setOn(sensor.getValue() == 1.0);
                 }
 
                 if (sensor.hasInterpreter()) {
-                    var isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
+                    boolean isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
                     var closeBtn = closeHashMap.get(sensor.getDestination());
                     var openBtn = openHashMap.get(sensor.getDestination());
                     if (closeBtn != null) closeBtn.setDefaultButton(isNotClosed);

@@ -206,9 +206,7 @@ public class ConnectionController extends BaseButtonSensorController {
     }
 
     @Override
-    protected void buildVisualizationMap() {
-
-    }
+    protected void buildVisualizationMap() {}
 
     @Override
     public void invalidated(Observable observable) {

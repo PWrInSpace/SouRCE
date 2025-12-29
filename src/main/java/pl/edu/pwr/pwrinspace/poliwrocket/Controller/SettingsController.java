@@ -22,17 +22,13 @@ public class SettingsController extends BaseController {
 
     @FXML
     private AnchorPane mainPanel;
-
     @FXML
     protected JFXButton applyButton;
-
     @FXML
     protected JFXButton reloadButton;
 
     private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
-
     List<IAction> actionList = new ArrayList<>();
-
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @FXML
@@ -89,7 +85,5 @@ public class SettingsController extends BaseController {
     }
 
     @Override
-    public void invalidated(Observable observable) {
-
-    }
+    public void invalidated(Observable observable) {}
 }

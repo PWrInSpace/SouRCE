@@ -81,7 +81,7 @@ public class StartControlController extends BaseButtonSensorController {
 
     @Override
     public void invalidated(Observable observable) {
-        Platform.runLater(() -> this.countdownTimer.setText(((CountdownThread)observable).getFormattedTimeResult()));
+        Platform.runLater(() -> this.countdownTimer.setText(((CountdownThread) observable).getFormattedTimeResult()));
     }
 
     private void checkReset() {
