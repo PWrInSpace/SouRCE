@@ -41,7 +41,7 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
 
 
     protected int offestY = 40;
-    protected int initY = 35;
+    protected int initY = 30;
 
     // label
     protected boolean showLabel = true;
@@ -95,6 +95,7 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
         openHashMap.clear();
         closeHashMap.clear();
         openTimeHashMap.clear();
+        sensorArray.clear();
 
         for (ISensor sensor : sensors) {
             sensorTreeMap.put(sensor.getDestination(), sensor);
@@ -133,7 +134,7 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
             // todo find way to generate dynamic destination
             if (!sensorArray.contains(commandTriggerKey)) {
                 var sensor = new Sensor(commandTriggerKey);
-                sensorTreeMap.put("zzz", sensor);
+                sensorTreeMap.put(commandTriggerKey, sensor);
                 sensorArray.add(commandTriggerKey);
             }
         }

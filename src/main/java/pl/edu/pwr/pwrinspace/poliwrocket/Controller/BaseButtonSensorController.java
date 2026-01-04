@@ -72,7 +72,6 @@ public abstract class BaseButtonSensorController extends BaseTilesFXSensorContro
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
         return actionEvent -> executorService.execute(() -> {
-            System.out.println(button.getId());
             SerialPortManager.getInstance().write(command);
         });
     }
