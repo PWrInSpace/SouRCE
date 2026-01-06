@@ -15,7 +15,6 @@ import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -32,48 +31,32 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     @FXML
     protected AnchorPane mainPanel;
 
-    protected final TreeMap<String, ISensor> sensorTreeMap = new TreeMap<>();
-    protected final ArrayList<String> sensorArray = new ArrayList<>();
+    protected final ArrayList<String> moduleArray = new ArrayList<>();
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
-    protected final HashMap<String, Button> openHashMap = new HashMap<>();
-    protected final HashMap<String, Button> closeHashMap = new HashMap<>();
-    protected final HashMap<String, Button> openTimeHashMap = new HashMap<>();
+    protected final HashMap<String, Button> commandHashMap = new HashMap<>();
 
 
     protected int offestY = 40;
     protected int initY = 30;
 
     // label
+    protected int initYLabel = 34;
     protected boolean showLabel = true;
     protected int labelLayoutX = 15;
     protected int labelPrefHeight = 18;
     protected int labelPrefWidth = 180;
 
-    // indicator
-    protected int indicatorLayoutX = 195;
-    protected int indicatorPrefHeight = 42;
-    protected int indicatorPrefWidth = 42;
-
-    // open button
-    protected int openButtonLayoutX = 210;
-    protected int openButtonPrefHeight = 26;
-    protected int openButtonPrefWidth = 60;
-
-    // close button
-    protected int closeButtonLayoutX = 270;
-    protected int closeButtonPrefHeight = 26;
-    protected int closeButtonPrefWidth = 60;
-
     // input
-    protected int inputLayoutX = 330;
+    protected int inputLayoutX = 205;
     protected int inputPrefHeight = 26;
     protected int inputPrefWidth = 70;
     protected String inputText = "X;Y";
 
-    // open time button
-    protected int openTimeButtonLayoutX = 400;
-    protected int openTimeButtonPrefHeight = 26;
-    protected int openTimeButtonPrefWidth = 60;
+    // command button
+    protected int commandButtonLayoutX = 285;
+    protected int commandButtonPrefHeight = 26;
+    protected int commandButtonPrefWidth = 60;
+    protected String commandButtonText = "Send";
 
 
     @Override
@@ -91,96 +74,37 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
         labelHashMap.clear();
         inputHashMap.clear();
         buttonHashMap.clear();
-        sensorTreeMap.clear();
-        openHashMap.clear();
-        closeHashMap.clear();
-        openTimeHashMap.clear();
-        sensorArray.clear();
-
-        for (ISensor sensor : sensors) {
-            sensorTreeMap.put(sensor.getDestination(), sensor);
-            sensorArray.add(sensor.getName().toLowerCase().replaceAll(" ", ""));
-            indicatorHashMap.put(sensor.getDestination(), new Indicator());
-        }
+        commandHashMap.clear();
+        moduleArray.clear();
 
         List<ICommand> commandList = this.commands.stream().sorted(Comparator.comparing(ICommand::getCommandDescription)).collect(Collectors.toList());
 
         for (ICommand command : commandList) {
             String commandTriggerKey = command.getCommandTriggerKey();
 
-            if (commandTriggerKey.endsWith("Open")) {
-                commandTriggerKey = commandTriggerKey.toLowerCase().replace("open", "");
-                var button = new JFXButton(command.getCommandDescription());
-                openHashMap.put(commandTriggerKey, button);
-                buttonHashMap.put(command.getCommandTriggerKey(), button);
-            }
-            else if (commandTriggerKey.endsWith("Close")) {
-                commandTriggerKey = commandTriggerKey.toLowerCase().replace("close", "");
-                var button = new JFXButton(command.getCommandDescription());
-                closeHashMap.put(commandTriggerKey, button);
-                buttonHashMap.put(command.getCommandTriggerKey(), button);
-            }
-            else if (commandTriggerKey.endsWith("Command")) {
+            if (commandTriggerKey.endsWith("Command")) {
                 commandTriggerKey = commandTriggerKey.toLowerCase().replace("command", "");
                 var button = new JFXButton(command.getCommandDescription());
-                openTimeHashMap.put(commandTriggerKey, button);
+                commandHashMap.put(commandTriggerKey, button);
                 buttonHashMap.put(command.getCommandTriggerKey(), button);
                 var input = new JFXTextField();
+                if (command.getPayload() == null) input.setVisible(false);
+                else input.setText(command.getPayload());
+                input.setDisable(command.isFinal());
                 inputHashMap.put(commandTriggerKey, input);
                 inputHashMap.put(command.getCommandTriggerKey(), input);
-//                if (command.getPayload() != null) inputHashMap.get(commandTriggerKey).setText(command.getPayload());
             }
 
-            // todo find way to generate dynamic destination
-            if (!sensorArray.contains(commandTriggerKey)) {
-                var sensor = new Sensor(commandTriggerKey);
-                sensorTreeMap.put(commandTriggerKey, sensor);
-                sensorArray.add(commandTriggerKey);
-            }
+            if (!moduleArray.contains(commandTriggerKey)) moduleArray.add(commandTriggerKey);
         }
 
         int initY = this.initY;
+        int initYLabel = this.initYLabel;
         int offsetY = this.offestY;
 
-        for (ISensor sensor : sensorTreeMap.values()) {
-            Label label = new Label(sensor.getName());
-            label.setVisible(showLabel);
-            var indicator = indicatorHashMap.get(sensor.getDestination());
-            var openButton = openHashMap.get(sensor.getName().toLowerCase().replaceAll(" ", ""));
-            var closeButton = closeHashMap.get(sensor.getName().toLowerCase().replaceAll(" ", ""));
-            var input = inputHashMap.get(sensor.getName().toLowerCase().replaceAll(" ", ""));
-            var timeOpenButton = openTimeHashMap.get(sensor.getName().toLowerCase().replaceAll(" ", ""));
-
-            label.setLayoutY(initY);
-            label.setLayoutX(labelLayoutX);
-            label.setPrefHeight(labelPrefHeight);
-            label.setPrefWidth(labelPrefWidth);
-            labelHashMap.put(sensor.getDestination(), label);
-            mainPanel.getChildren().add(label);
-
-            if (indicator != null) {
-                indicator.setLayoutY(initY);
-                indicator.setLayoutX(indicatorLayoutX);
-                indicator.setPrefHeight(indicatorPrefHeight);
-                indicator.setPrefWidth(indicatorPrefWidth);
-                mainPanel.getChildren().add(indicator);
-            }
-
-            if (openButton != null) {
-                openButton.setLayoutY(initY);
-                openButton.setLayoutX(openButtonLayoutX);
-                openButton.setPrefHeight(openButtonPrefHeight);
-                openButton.setPrefWidth(openButtonPrefWidth);
-                mainPanel.getChildren().add(openButton);
-            }
-
-            if (closeButton != null) {
-                closeButton.setLayoutY(initY);
-                closeButton.setLayoutX(closeButtonLayoutX);
-                closeButton.setPrefHeight(closeButtonPrefHeight);
-                closeButton.setPrefWidth(closeButtonPrefWidth);
-                mainPanel.getChildren().add(closeButton);
-            }
+        for (String module : moduleArray) {
+            var input = inputHashMap.get(module);
+            var commandButton = commandHashMap.get(module);
 
             if (input != null) {
                 input.setLayoutY(initY);
@@ -191,15 +115,26 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
                 mainPanel.getChildren().add(input);
             }
 
-            if (timeOpenButton != null) {
-                timeOpenButton.setLayoutY(initY);
-                timeOpenButton.setLayoutX(openTimeButtonLayoutX);
-                timeOpenButton.setPrefHeight(openTimeButtonPrefHeight);
-                timeOpenButton.setPrefWidth(openTimeButtonPrefWidth);
-                mainPanel.getChildren().add(timeOpenButton);
+            if (commandButton != null) {
+                var label = new Label(commandButton.getText());
+                commandButton.setText(commandButtonText);
+                label.setVisible(showLabel);
+                label.setLayoutY(initYLabel);
+                label.setLayoutX(labelLayoutX);
+                label.setPrefHeight(labelPrefHeight);
+                label.setPrefWidth(labelPrefWidth);
+                labelHashMap.put(module, label);
+                mainPanel.getChildren().add(label);
+
+                commandButton.setLayoutY(initY);
+                commandButton.setLayoutX(commandButtonLayoutX);
+                commandButton.setPrefHeight(commandButtonPrefHeight);
+                commandButton.setPrefWidth(commandButtonPrefWidth);
+                mainPanel.getChildren().add(commandButton);
             }
 
             initY += offsetY;
+            initYLabel += offsetY;
         }
     }
 
@@ -210,7 +145,7 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     }
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        if (!command.isFinal()) {
+        if (commandHashMap.containsValue(button)) {
             return actionEvent -> executorService.execute(() -> {
                 command.setPayload(inputHashMap.get(command.getCommandTriggerKey()).getText());
                 SerialPortManager.getInstance().write(command);
@@ -225,26 +160,6 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
 
     @Override
     public void invalidated(Observable observable) {
-        try {
-            var sensor = ((ISensor) observable);
-            UIThreadManager.getInstance().addImmediateOnOK(() -> {
-                var ind = indicatorHashMap.get(sensor.getDestination());
-
-                if (ind != null) {
-                    ind.setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.DODGERBLUE);
-                    ind.setOn(sensor.getValue() == 1.0);
-                }
-
-                if (sensor.hasInterpreter()) {
-                    boolean isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
-                    var closeBtn = closeHashMap.get(sensor.getDestination());
-                    var openBtn = openHashMap.get(sensor.getDestination());
-                    if (closeBtn != null) closeBtn.setDefaultButton(isNotClosed);
-                    if (openBtn != null) openBtn.setDefaultButton(!isNotClosed);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        logger.error("Controller has no visualization.");
     }
 }

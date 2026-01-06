@@ -60,9 +60,6 @@ public abstract class BaseButtonSensorController extends BaseTilesFXSensorContro
                 if (button != null){
                     button.setOnAction(handleButtonsClickByCommand(button,command));
                     button.setVisible(true);
-                    if (!command.getCommandDescription().isBlank()) {
-                        button.setText(command.getCommandDescription());
-                    }
                 } else {
                     logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
                 }

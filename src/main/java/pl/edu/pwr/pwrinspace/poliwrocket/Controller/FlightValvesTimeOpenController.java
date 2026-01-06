@@ -9,7 +9,6 @@ public class FlightValvesTimeOpenController extends BaseCommandsController {
         this.inputLayoutX = 20;
         this.inputPrefHeight = 26;
         this.inputPrefWidth = 70;
-        this.inputText = "X;Y";
     }
 }
 
