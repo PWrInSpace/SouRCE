@@ -57,12 +57,7 @@
         <TabPane fx:id="tabPane" layoutX="215.0" layoutY="10.0" prefHeight="800.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
             <Tab closable="false" text="Recovery arm">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="780.0" prefWidth="890.0">
-                    <SubScene fx:id="recoveryArmCommandsScene" height="500.0" layoutX="10.0" layoutY="10.0" width="410.0">
-                        <root>
-                            <Region />
-                        </root>
-                    </SubScene>
-                    <SubScene fx:id="recoveryArmIndicatorsScene" height="75.0" layoutX="430.0" layoutY="10.0" width="410.0">
+                    <SubScene fx:id="recoveryArmScene" height="500.0" layoutX="10.0" layoutY="10.0" width="410.0">
                         <root>
                             <Region />
                         </root>
@@ -76,11 +71,6 @@
                             <Region />
                         </root>
                     </SubScene>
-<!--                    <SubScene fx:id="valvesScene" height="350.0" layoutX="430.0" layoutY="10.0" width="320.0">-->
-<!--                        <root>-->
-<!--                            <Region />-->
-<!--                        </root>-->
-<!--                    </SubScene>-->
                     <SubScene fx:id="valvesTimeOpenScene" height="350.0" layoutX="430.0" layoutY="10.0" width="470.0">
                         <root>
                             <Region />

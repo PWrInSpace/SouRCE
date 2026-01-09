@@ -1,7 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-public class RecoveryArmCommandsController extends BaseCommandsController{
-    public RecoveryArmCommandsController() {
+public class RecoveryArmController extends BaseButtonSensorCommandsController{
+    public RecoveryArmController() {
         this.inputLayoutX = 195;
         this.commandButtonLayoutX = 265;
     }

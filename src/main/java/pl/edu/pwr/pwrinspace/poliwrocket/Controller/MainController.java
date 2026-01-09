@@ -108,7 +108,7 @@ public class MainController extends BaseController implements InvalidationListen
     @FXML
     private SubScene others2Scene;
     @FXML
-    private SubScene recoveryArmCommandsScene;
+    private SubScene recoveryArmScene;
     @FXML
     private SubScene recoveryArmIndicatorsScene;
 
