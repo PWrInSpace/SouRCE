@@ -151,6 +151,18 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
                 labelHashMap.put(module, label);
                 mainPanel.getChildren().add(label);
             }
+            // temporary
+            else if (commandButton != null) {
+                var label = new Label(commandButton.getText());
+                label.setVisible(showLabel);
+                label.setLayoutY(initYLabel);
+                label.setLayoutX(labelLayoutX);
+                label.setPrefHeight(labelPrefHeight);
+                label.setPrefWidth(labelPrefWidth);
+                labelHashMap.put(module, label);
+                mainPanel.getChildren().add(label);
+                commandButton.setText(commandButtonText);
+            }
 
             if (indicator != null) {
                 indicator.setLayoutY(initYIndicator);
