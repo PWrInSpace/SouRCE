@@ -33,7 +33,7 @@ Kontroler automatycznie paruje ze sobą odpowiednie przyciski oraz indicatory je
     "destination": "dataIndicator1",
     "name": "N2 DEPR",
     "destinationControllerNames": [
-      "ValvesTimeOpenPressurizing"
+      "ValvesPressurizing"
     ],
     "isBoolean": true,
     "hidden": false
@@ -54,7 +54,7 @@ W typ przypadku część główna to "n2depr" wszystkie komponenty z tą samą c
     "trigger": "n2DeprOpen",
     "description": "OPEN",
     "destinationControllerNames": [
-    "ValvesTimeOpenPressurizing"
+    "ValvesPressurizing"
     ],
     "isFinal": true
 }

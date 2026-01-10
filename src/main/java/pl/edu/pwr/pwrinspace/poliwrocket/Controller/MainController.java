@@ -64,7 +64,7 @@ public class MainController extends BaseController implements InvalidationListen
     @FXML
     private SubScene connectionScene;
     @FXML
-    private SubScene valvesTimeOpenScene;
+    private SubScene valvesScene;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -73,18 +73,14 @@ public class MainController extends BaseController implements InvalidationListen
     private SubScene dataFillingScene;
     @FXML
     private SubScene dataPressurizingScene;
-//    @FXML
-//    private SubScene valvesPressurizingScene;
     @FXML
-    private SubScene valvesTimeOpenPressurizingScene;
+    private SubScene valvesPressurizingScene;
     @FXML
     private SubScene indicatorsPressurizingScene;
     @FXML
     private SubScene startCommandsScene;
     @FXML
     private SubScene recoveryCommandsScene;
-//    @FXML
-//    private SubScene valvesScene;
     @FXML
     private SubScene dataFlightScene;
     @FXML

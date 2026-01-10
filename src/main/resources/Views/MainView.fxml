@@ -71,7 +71,7 @@
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="valvesTimeOpenScene" height="350.0" layoutX="430.0" layoutY="10.0" width="470.0">
+                    <SubScene fx:id="valvesScene" height="350.0" layoutX="430.0" layoutY="10.0" width="470.0">
                         <root>
                             <Region />
                         </root>
@@ -95,7 +95,7 @@
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="valvesTimeOpenPressurizingScene" height="400.0" layoutX="430.0" layoutY="10.0" width="470.0">
+                    <SubScene fx:id="valvesPressurizingScene" height="400.0" layoutX="430.0" layoutY="10.0" width="470.0">
                         <root>
                             <Region />
                         </root>
