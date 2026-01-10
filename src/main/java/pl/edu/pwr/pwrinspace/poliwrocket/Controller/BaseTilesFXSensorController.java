@@ -41,7 +41,9 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
                     var label = fields.stream().filter(f -> f.getName().equals("indicatorLabel" + declaredField.getName().charAt(declaredField.getName().length() - 1))).findFirst();
 
                     if (label.isPresent()) {
-                        labelHashMap.put(declaredField.getName(), (Label) label.get().get(this));
+                        Label label_ = (Label) label.get().get(this);
+                        label_.setVisible(false);
+                        labelHashMap.put(declaredField.getName(), label_);
                     } else {
                         logger.error("Indicator without label!");
                     }
