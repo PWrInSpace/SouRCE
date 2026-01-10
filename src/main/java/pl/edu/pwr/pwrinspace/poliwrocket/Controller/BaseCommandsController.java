@@ -77,18 +77,15 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
         for (ICommand command : commandList) {
             String commandTriggerKey = command.getCommandTriggerKey();
 
-            if (commandTriggerKey.endsWith("Command")) {
-                commandTriggerKey = commandTriggerKey.toLowerCase().replace("command", "");
-                var button = new JFXButton(command.getCommandDescription());
-                commandHashMap.put(commandTriggerKey, button);
-                buttonHashMap.put(command.getCommandTriggerKey(), button);
-                var input = new JFXTextField();
-                if (command.getPayload() == null) input.setVisible(false);
-                else input.setText(command.getPayload());
-                input.setDisable(command.isFinal());
-                inputHashMap.put(commandTriggerKey, input);
-                inputHashMap.put(command.getCommandTriggerKey(), input);
-            }
+            var button = new JFXButton(command.getCommandDescription());
+            commandHashMap.put(commandTriggerKey, button);
+            buttonHashMap.put(command.getCommandTriggerKey(), button);
+            var input = new JFXTextField();
+            if (command.getPayload() == null) input.setVisible(false);
+            else input.setText(command.getPayload());
+            input.setDisable(command.isFinal());
+            inputHashMap.put(commandTriggerKey, input);
+            inputHashMap.put(command.getCommandTriggerKey(), input);
 
             if (!moduleArray.contains(commandTriggerKey)) moduleArray.add(commandTriggerKey);
         }

@@ -212,6 +212,9 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
     }
 
     @Override
+    protected void setUIBySensors() {}
+
+    @Override
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);
