@@ -30,12 +30,9 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
     @FXML
     protected AnchorPane mainPanel;
 
-    protected final ArrayList<String> moduleArray = new ArrayList<>();
     protected final HashMap<String, ISensor> sensorHashMap = new HashMap<>();
-    protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
     protected final HashMap<String, Button> openHashMap = new HashMap<>();
     protected final HashMap<String, Button> closeHashMap = new HashMap<>();
-    protected final HashMap<String, Button> commandHashMap = new HashMap<>();
 
     // indicator
     protected int initYIndicator = 30;
