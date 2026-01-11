@@ -1,16 +1,16 @@
 * {
-    -inspace-base-border-color: rgb(4, 23, 40, 0.9);
-    -fx-backgroundColor-base: rgb(11, 66, 116, 0.7);
+    -inspace-base-border-color: rgba(200, 200, 205, 0.9);
+    -fx-backgroundColor-base: rgb(245, 245, 247);
 }
+
 
 .baseScene {
     /*-fx-backgroundColor-base: rgba(160,160,160,0.8);*/
     -fx-background-radius: 6px;
-    -fx-background-color: -fx-backgroundColor-base;
-    -fx-border-color: -inspace-base-border-color;
+    -fx-background-color: -fx-backgroundColor-base !important;
+    -fx-border-color: -inspace-base-border-color !important;
     -fx-border-width: 2px;
 }
-
 .valvesScene {
     -fx-background-radius: 6px;
     -fx-background-color: -fx-backgroundColor-base;
@@ -63,42 +63,43 @@
 /*Flat button example */
 .jfx-button {
     -jfx-button-type: FLAT;
-    -fx-background-color: #007383;
+    -fx-background-color: -inspace-base-border-color;
     -fx-text-fill: black;
 }
 
 /*Raised button example */
 .jfx-button {
     -jfx-button-type: RAISED;
-    -fx-background-color: #004162;
-    -fx-text-fill: white;
+    -fx-background-color: -inspace-base-border-color;
+    -fx-text-fill: black;
 }
 
 /*Toggle button example */
 .jfx-toggle-button {
-    -jfx-toggle-color: black;
-    -fx-text-fill: white;
+    -jfx-toggle-color: white;
+    -fx-text-fill: black;
 }
 
 .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .jfx-combo-box {
     -jfx-focus-color: white;
 }
 .jfx-combo-box .cell {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-background-color: -inspace-base-border-color;
+    -fx-text-fill: black;
 
 }
 
 .jfx-text-field {
-    -jfx-focus-color: white;
-    -fx-text-fill: white;
+    -jfx-focus-color: -fx-backgroundColor-base;
+    -fx-text-fill: black;
 }
 
 .tab-pane .tab-header-area .tab-header-background {
@@ -106,16 +107,16 @@
 }
 
 .tab {
-    -fx-background-color: darkgrey;
-    -fx-text-fill: white;
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
     -fx-border-color: transparent;
     -fx-border-radius: 10px;
     -fx-border-width: 2px;
 }
 
 .tab:selected {
-    -fx-background-color: lightgrey;
-    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-text-fill: black;
     -fx-padding: 5px;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -124,7 +125,7 @@
 }
 
 .tab:hover {
-    -fx-background-color: lightgrey;
+    -fx-background-color: darkgrey;
 }
 
 .map-cords {
@@ -134,5 +135,6 @@
 
 .jfx-text-area {
     -fx-background-color: -fx-backgroundColor-base;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
+

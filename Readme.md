@@ -14,7 +14,7 @@ Add library to local mvn repository:
 mvn install:install-file \
    -Dfile=$pathToFile \
    -DgroupId=com.interactivemesh.jfx \
-   -DartifactId=importer \
+   -DartifactId=importjava --module-path /home/aleks/Downloads/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics,javafx.web --add-opens java.base/java.net=com.sothawo.mapjfx --add-opens java.base/java.lang.reflect=com.jfoenix --add-exports com.google.gson/com.google.gson.internal=pl.edu.pwr.pwrinspace.poliwrocket -jar target/SouRCE-1.0-SNAPSHOT.jarer \
    -Dversion=1.0 \
    -Dpackaging=jar \
    -DgeneratePom=true

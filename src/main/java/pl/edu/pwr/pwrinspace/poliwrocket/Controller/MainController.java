@@ -3,12 +3,17 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import com.interactivemesh.jfx.importer.ModelImporter;
 import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import com.jfoenix.controls.JFXTextArea;
+import eu.hansolo.medusa.Gauge;
+import eu.hansolo.tilesfx.Tile;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,10 +25,12 @@ import org.javatuples.Pair;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Logger.AppStateLogger;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -200,6 +207,7 @@ public class MainController extends BasicController implements InvalidationListe
     }
 
 
+
     public void initSubScenes(Collection<FXMLLoader> fxmlLoaders) {
         try {
             HashMap<String, Field> fields = new HashMap<>();
@@ -230,6 +238,9 @@ public class MainController extends BasicController implements InvalidationListe
         addNodesForAppScalingPurpose();
         setAppImages();
         setup3DModel();
+
+        detaching();
+
     }
 
     private void setAppImages() {
@@ -328,14 +339,48 @@ public class MainController extends BasicController implements InvalidationListe
             } else {
                 outGoing.setStyle("");
             }
+
+            boolean isLight = ((Configuration) observable).isLightMode();
+            URL cssURL = getClass().getResource(isLight ? "/Views/constantsLight.css" : "/Views/constants.css");
+
+            if (cssURL == null) {
+                System.err.println("ERROR: css not found");
+                return;
+            }
+
+            String cssPath = cssURL.toExternalForm();
+
+            nodes.forEach(node -> {
+                applyStyleToNode(node, cssPath, isLight);
+
+            });
+
+            for (Field field : this.getClass().getDeclaredFields()) {
+                if (field.getName().endsWith("Scene")) {
+                    try {
+                        field.setAccessible(true);
+                        Object value = field.get(this);
+                        if (value instanceof SubScene) {
+                            SubScene ss = (SubScene) value;
+                            applyStyleToNode(ss, cssPath, isLight);
+                            findAndStyleTiles(ss.getRoot(), isLight);
+                        }
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
             scaleSubScenes(primaryStage.widthProperty().doubleValue()/initWidth,primaryStage.heightProperty().doubleValue()/initHeight);
         }
+
     }
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+
 
     private void scaleSubScenes(double scaleX, double scaleY) {
         nodes.forEach(scene -> {
@@ -347,6 +392,101 @@ public class MainController extends BasicController implements InvalidationListe
             scene.setLayoutX(nodesInitPositions.get(scene).getValue0() * scaleX);
             scene.setLayoutY(nodesInitPositions.get(scene).getValue1() * scaleY);
         });
+    }
+
+
+    private void detachTab(Tab tab) {
+        Node content = tab.getContent();
+        if (content == null) return;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/DetachedTabView.fxml"));
+            Parent wrapper = loader.load();
+            DetachedTabController detachedController = loader.getController();
+
+            tab.setContent(null);
+            ((AnchorPane)wrapper).getChildren().add(content);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(wrapper, 1550.4, 838.4));
+            stage.setTitle("SouRCE - " + tab.getText());
+
+            detachedController.setStageAndContent(stage, content);
+
+            stage.setOnCloseRequest(e -> {
+                content.getTransforms().clear();
+                tab.setContent(content);
+            });
+
+            stage.show();
+        } catch (IOException e) {
+            logger.error("Error DetachedView: " + e.getMessage());
+        }
+    }
+
+    private void detaching(){
+        Platform.runLater(() -> {
+            if(tabPane != null){
+                for(Tab tab: tabPane.getTabs()){
+                    ContextMenu contextMenu = new ContextMenu();
+                    MenuItem detachItem = new MenuItem("detach");
+
+                    detachItem.setOnAction(event -> detachTab(tab));
+                    contextMenu.getItems().add(detachItem);
+
+                    tab.setContextMenu(contextMenu);
+                }
+            }
+        });
+    }
+
+    private void applyStyleToNode(Node node, String cssPath, boolean isLight) {
+        if (node instanceof Parent) {
+            Parent p = (Parent) node;
+            p.getStylesheets().clear();
+            p.getStylesheets().add(cssPath);
+        } else if (node instanceof SubScene) {
+            SubScene ss = (SubScene) node;
+            if (ss.getRoot() != null) {
+                ss.getRoot().getStylesheets().clear();
+                ss.getRoot().getStylesheets().add(cssPath);
+                findAndStyleTiles(ss.getRoot(), isLight);
+            }
+        }
+    }
+    private void findAndStyleTiles(Parent root, boolean isLight) {
+        Color bg = isLight ? Color.WHITE : Color.rgb(11, 66, 116, 0.7);
+        Color fg = isLight ? Color.BLACK : Color.WHITE;
+        for (Node n : root.getChildrenUnmodifiable()) {
+            if (n instanceof Tile) {
+                Tile tile = (Tile) n;
+                applyTileStyle(tile, bg, fg);
+            }else if (n instanceof Gauge){
+                Gauge gauge = (Gauge) n;
+                applyGaugeStyle(gauge, bg, fg);
+            }
+        }
+    }
+
+    private void applyTileStyle(Tile tile, Color bg, Color fg) {
+
+        tile.setBackgroundColor(bg);
+        tile.setForegroundBaseColor(fg);
+        tile.setTitleColor(fg);
+        tile.setTextColor(fg);
+        tile.setValueColor(fg);
+        tile.setUnitColor(fg);
+        tile.setBarColor(fg);
+    }
+
+    private void applyGaugeStyle(Gauge gauge, Color bg, Color fg) {
+        gauge.setBarColor(fg);
+        gauge.setValueColor(fg);
+        gauge.setTitleColor(fg);
+        gauge.setUnitColor(fg);
+        gauge.setTickLabelColor(fg);
+        gauge.setNeedleColor(fg);
+        gauge.setBackgroundPaint(bg);
     }
 
 }

@@ -6,17 +6,17 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser;
 public final class FrameProtos {
   private FrameProtos() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
+          com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
+          com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
+            (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface LoRaFrameOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaFrame)
-      com.google.protobuf.MessageOrBuilder {
+          // @@protoc_insertion_point(interface_extends:LoRaFrame)
+          com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -588,10 +588,10 @@ public final class FrameProtos {
    * Protobuf type {@code LoRaFrame}
    */
   public static final class LoRaFrame extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaFrame)
-      LoRaFrameOrBuilder {
-  private static final long serialVersionUID = 0L;
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:LoRaFrame)
+          LoRaFrameOrBuilder {
+    private static final long serialVersionUID = 0L;
     // Use LoRaFrame.newBuilder() to construct.
     private LoRaFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -602,7 +602,7 @@ public final class FrameProtos {
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
+            UnusedPrivateParameter unused) {
       return new LoRaFrame();
     }
 
@@ -612,9 +612,9 @@ public final class FrameProtos {
       return this.unknownFields;
     }
     private LoRaFrame(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
@@ -622,7 +622,7 @@ public final class FrameProtos {
       int mutable_bitField0_ = 0;
       int mutable_bitField1_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
+              com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -843,7 +843,7 @@ public final class FrameProtos {
             }
             default: {
               if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
+                      input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -854,23 +854,23 @@ public final class FrameProtos {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+                e).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.Builder.class);
+              .ensureFieldAccessorsInitialized(
+                      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.Builder.class);
     }
 
     private int bitField0_;
@@ -1790,7 +1790,7 @@ public final class FrameProtos {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+            throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeUInt32(1, mcbState_);
       }
@@ -1928,171 +1928,171 @@ public final class FrameProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, mcbState_);
+                .computeUInt32Size(1, mcbState_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, uptimeMs_);
+                .computeUInt32Size(2, uptimeMs_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, flightTimeMs_);
+                .computeInt32Size(3, flightTimeMs_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, mcbBatt_);
+                .computeFloatSize(4, mcbBatt_);
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(5, gpsLat_);
+                .computeFloatSize(5, gpsLat_);
       }
       if (((bitField0_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, gpsLong_);
+                .computeFloatSize(6, gpsLong_);
       }
       if (((bitField0_ & 0x00000040) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, gpsSatOk_);
+                .computeBoolSize(7, gpsSatOk_);
       }
       if (((bitField0_ & 0x00000080) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, altitudeM_);
+                .computeInt32Size(8, altitudeM_);
       }
       if (((bitField0_ & 0x00000100) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(9, velocityMS_);
+                .computeInt32Size(9, velocityMS_);
       }
       if (((bitField0_ & 0x00000200) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, mcbTemperature_);
+                .computeInt32Size(10, mcbTemperature_);
       }
       if (((bitField0_ & 0x00000400) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(11, eulerFi_);
+                .computeFloatSize(11, eulerFi_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(12, eulerPsi_);
+                .computeFloatSize(12, eulerPsi_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(13, eulerTheta_);
+                .computeFloatSize(13, eulerTheta_);
       }
       if (((bitField0_ & 0x00002000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(14, recoveryByteData_);
+                .computeFixed32Size(14, recoveryByteData_);
       }
       if (((bitField0_ & 0x00004000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(15, pitotBattery_);
+                .computeFloatSize(15, pitotBattery_);
       }
       if (((bitField0_ & 0x00008000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(16, pitotAltitude_);
+                .computeInt32Size(16, pitotAltitude_);
       }
       if (((bitField0_ & 0x00010000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(17, pitotVelocity_);
+                .computeInt32Size(17, pitotVelocity_);
       }
       if (((bitField0_ & 0x00020000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(18, pitotTemperature_);
+                .computeInt32Size(18, pitotTemperature_);
       }
       if (((bitField0_ & 0x00040000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(19, mainVentByteData_);
+                .computeFixed32Size(19, mainVentByteData_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(20, ethN2MainsByteData_);
+                .computeFixed32Size(20, ethN2MainsByteData_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(21, oxiN2VentsByteData_);
+                .computeFixed32Size(21, oxiN2VentsByteData_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(22, oxiMainValveByteData_);
+                .computeFixed32Size(22, oxiMainValveByteData_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(23, ethVentValveByteData_);
+                .computeFixed32Size(23, ethVentValveByteData_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(24, tanwaBattery_);
+                .computeFloatSize(24, tanwaBattery_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(25, tanwaState_);
+                .computeInt32Size(25, tanwaState_);
       }
       if (((bitField0_ & 0x02000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(26, tanwaCanAndStatesByteData_);
+                .computeFixed32Size(26, tanwaCanAndStatesByteData_);
       }
       if (((bitField0_ & 0x04000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(27, tanwaThrust_);
+                .computeFloatSize(27, tanwaThrust_);
       }
       if (((bitField0_ & 0x08000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(28, tanwaTankWeight_);
+                .computeFloatSize(28, tanwaTankWeight_);
       }
       if (((bitField0_ & 0x10000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(29, tanwaTempPostN2OFill_);
+                .computeFloatSize(29, tanwaTempPostN2OFill_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(30, tanwaTempFillingWall_);
+                .computeFloatSize(30, tanwaTempFillingWall_);
       }
       if (((bitField0_ & 0x40000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(31, tanwaPostfillN2OPres_);
+                .computeFloatSize(31, tanwaPostfillN2OPres_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(32, tanwaCutoffN2OPres_);
+                .computeFloatSize(32, tanwaCutoffN2OPres_);
       }
       if (((bitField1_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(33, tanwaDroidN2OPres_);
+                .computeFloatSize(33, tanwaDroidN2OPres_);
       }
       if (((bitField1_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(34, tanwaPreregN2Pres_);
+                .computeFloatSize(34, tanwaPreregN2Pres_);
       }
       if (((bitField1_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(35, tanwaPostregN2Pres_);
+                .computeFloatSize(35, tanwaPostregN2Pres_);
       }
       if (((bitField1_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(36, tanwaPostfillN2Pres_);
+                .computeFloatSize(36, tanwaPostfillN2Pres_);
       }
       if (((bitField1_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(37, tanwaDroidN2Pres_);
+                .computeFloatSize(37, tanwaDroidN2Pres_);
       }
       if (((bitField1_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(38, tanwaCombchamberPres_);
+                .computeFloatSize(38, tanwaCombchamberPres_);
       }
       if (((bitField1_ & 0x00000040) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(39, payloadBattery_);
+                .computeFloatSize(39, payloadBattery_);
       }
       if (((bitField1_ & 0x00000080) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(40, espNowConnectedByteData_);
+                .computeFixed32Size(40, espNowConnectedByteData_);
       }
       if (((bitField1_ & 0x00000100) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(41, espNowWkupsByteData_);
+                .computeFixed32Size(41, espNowWkupsByteData_);
       }
       if (((bitField1_ & 0x00000200) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(42, errors_);
+                .computeFixed32Size(42, errors_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2102,7 +2102,7 @@ public final class FrameProtos {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame)) {
         return super.equals(obj);
@@ -2112,233 +2112,233 @@ public final class FrameProtos {
       if (hasMcbState() != other.hasMcbState()) return false;
       if (hasMcbState()) {
         if (getMcbState()
-            != other.getMcbState()) return false;
+                != other.getMcbState()) return false;
       }
       if (hasUptimeMs() != other.hasUptimeMs()) return false;
       if (hasUptimeMs()) {
         if (getUptimeMs()
-            != other.getUptimeMs()) return false;
+                != other.getUptimeMs()) return false;
       }
       if (hasFlightTimeMs() != other.hasFlightTimeMs()) return false;
       if (hasFlightTimeMs()) {
         if (getFlightTimeMs()
-            != other.getFlightTimeMs()) return false;
+                != other.getFlightTimeMs()) return false;
       }
       if (hasMcbBatt() != other.hasMcbBatt()) return false;
       if (hasMcbBatt()) {
         if (java.lang.Float.floatToIntBits(getMcbBatt())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getMcbBatt())) return false;
       }
       if (hasGpsLat() != other.hasGpsLat()) return false;
       if (hasGpsLat()) {
         if (java.lang.Float.floatToIntBits(getGpsLat())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getGpsLat())) return false;
       }
       if (hasGpsLong() != other.hasGpsLong()) return false;
       if (hasGpsLong()) {
         if (java.lang.Float.floatToIntBits(getGpsLong())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getGpsLong())) return false;
       }
       if (hasGpsSatOk() != other.hasGpsSatOk()) return false;
       if (hasGpsSatOk()) {
         if (getGpsSatOk()
-            != other.getGpsSatOk()) return false;
+                != other.getGpsSatOk()) return false;
       }
       if (hasAltitudeM() != other.hasAltitudeM()) return false;
       if (hasAltitudeM()) {
         if (getAltitudeM()
-            != other.getAltitudeM()) return false;
+                != other.getAltitudeM()) return false;
       }
       if (hasVelocityMS() != other.hasVelocityMS()) return false;
       if (hasVelocityMS()) {
         if (getVelocityMS()
-            != other.getVelocityMS()) return false;
+                != other.getVelocityMS()) return false;
       }
       if (hasMcbTemperature() != other.hasMcbTemperature()) return false;
       if (hasMcbTemperature()) {
         if (getMcbTemperature()
-            != other.getMcbTemperature()) return false;
+                != other.getMcbTemperature()) return false;
       }
       if (hasEulerFi() != other.hasEulerFi()) return false;
       if (hasEulerFi()) {
         if (java.lang.Float.floatToIntBits(getEulerFi())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getEulerFi())) return false;
       }
       if (hasEulerPsi() != other.hasEulerPsi()) return false;
       if (hasEulerPsi()) {
         if (java.lang.Float.floatToIntBits(getEulerPsi())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getEulerPsi())) return false;
       }
       if (hasEulerTheta() != other.hasEulerTheta()) return false;
       if (hasEulerTheta()) {
         if (java.lang.Float.floatToIntBits(getEulerTheta())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getEulerTheta())) return false;
       }
       if (hasRecoveryByteData() != other.hasRecoveryByteData()) return false;
       if (hasRecoveryByteData()) {
         if (getRecoveryByteData()
-            != other.getRecoveryByteData()) return false;
+                != other.getRecoveryByteData()) return false;
       }
       if (hasPitotBattery() != other.hasPitotBattery()) return false;
       if (hasPitotBattery()) {
         if (java.lang.Float.floatToIntBits(getPitotBattery())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPitotBattery())) return false;
       }
       if (hasPitotAltitude() != other.hasPitotAltitude()) return false;
       if (hasPitotAltitude()) {
         if (getPitotAltitude()
-            != other.getPitotAltitude()) return false;
+                != other.getPitotAltitude()) return false;
       }
       if (hasPitotVelocity() != other.hasPitotVelocity()) return false;
       if (hasPitotVelocity()) {
         if (getPitotVelocity()
-            != other.getPitotVelocity()) return false;
+                != other.getPitotVelocity()) return false;
       }
       if (hasPitotTemperature() != other.hasPitotTemperature()) return false;
       if (hasPitotTemperature()) {
         if (getPitotTemperature()
-            != other.getPitotTemperature()) return false;
+                != other.getPitotTemperature()) return false;
       }
       if (hasMainVentByteData() != other.hasMainVentByteData()) return false;
       if (hasMainVentByteData()) {
         if (getMainVentByteData()
-            != other.getMainVentByteData()) return false;
+                != other.getMainVentByteData()) return false;
       }
       if (hasEthN2MainsByteData() != other.hasEthN2MainsByteData()) return false;
       if (hasEthN2MainsByteData()) {
         if (getEthN2MainsByteData()
-            != other.getEthN2MainsByteData()) return false;
+                != other.getEthN2MainsByteData()) return false;
       }
       if (hasOxiN2VentsByteData() != other.hasOxiN2VentsByteData()) return false;
       if (hasOxiN2VentsByteData()) {
         if (getOxiN2VentsByteData()
-            != other.getOxiN2VentsByteData()) return false;
+                != other.getOxiN2VentsByteData()) return false;
       }
       if (hasOxiMainValveByteData() != other.hasOxiMainValveByteData()) return false;
       if (hasOxiMainValveByteData()) {
         if (getOxiMainValveByteData()
-            != other.getOxiMainValveByteData()) return false;
+                != other.getOxiMainValveByteData()) return false;
       }
       if (hasEthVentValveByteData() != other.hasEthVentValveByteData()) return false;
       if (hasEthVentValveByteData()) {
         if (getEthVentValveByteData()
-            != other.getEthVentValveByteData()) return false;
+                != other.getEthVentValveByteData()) return false;
       }
       if (hasTanwaBattery() != other.hasTanwaBattery()) return false;
       if (hasTanwaBattery()) {
         if (java.lang.Float.floatToIntBits(getTanwaBattery())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaBattery())) return false;
       }
       if (hasTanwaState() != other.hasTanwaState()) return false;
       if (hasTanwaState()) {
         if (getTanwaState()
-            != other.getTanwaState()) return false;
+                != other.getTanwaState()) return false;
       }
       if (hasTanwaCanAndStatesByteData() != other.hasTanwaCanAndStatesByteData()) return false;
       if (hasTanwaCanAndStatesByteData()) {
         if (getTanwaCanAndStatesByteData()
-            != other.getTanwaCanAndStatesByteData()) return false;
+                != other.getTanwaCanAndStatesByteData()) return false;
       }
       if (hasTanwaThrust() != other.hasTanwaThrust()) return false;
       if (hasTanwaThrust()) {
         if (java.lang.Float.floatToIntBits(getTanwaThrust())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaThrust())) return false;
       }
       if (hasTanwaTankWeight() != other.hasTanwaTankWeight()) return false;
       if (hasTanwaTankWeight()) {
         if (java.lang.Float.floatToIntBits(getTanwaTankWeight())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaTankWeight())) return false;
       }
       if (hasTanwaTempPostN2OFill() != other.hasTanwaTempPostN2OFill()) return false;
       if (hasTanwaTempPostN2OFill()) {
         if (java.lang.Float.floatToIntBits(getTanwaTempPostN2OFill())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaTempPostN2OFill())) return false;
       }
       if (hasTanwaTempFillingWall() != other.hasTanwaTempFillingWall()) return false;
       if (hasTanwaTempFillingWall()) {
         if (java.lang.Float.floatToIntBits(getTanwaTempFillingWall())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaTempFillingWall())) return false;
       }
       if (hasTanwaPostfillN2OPres() != other.hasTanwaPostfillN2OPres()) return false;
       if (hasTanwaPostfillN2OPres()) {
         if (java.lang.Float.floatToIntBits(getTanwaPostfillN2OPres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaPostfillN2OPres())) return false;
       }
       if (hasTanwaCutoffN2OPres() != other.hasTanwaCutoffN2OPres()) return false;
       if (hasTanwaCutoffN2OPres()) {
         if (java.lang.Float.floatToIntBits(getTanwaCutoffN2OPres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaCutoffN2OPres())) return false;
       }
       if (hasTanwaDroidN2OPres() != other.hasTanwaDroidN2OPres()) return false;
       if (hasTanwaDroidN2OPres()) {
         if (java.lang.Float.floatToIntBits(getTanwaDroidN2OPres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaDroidN2OPres())) return false;
       }
       if (hasTanwaPreregN2Pres() != other.hasTanwaPreregN2Pres()) return false;
       if (hasTanwaPreregN2Pres()) {
         if (java.lang.Float.floatToIntBits(getTanwaPreregN2Pres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaPreregN2Pres())) return false;
       }
       if (hasTanwaPostregN2Pres() != other.hasTanwaPostregN2Pres()) return false;
       if (hasTanwaPostregN2Pres()) {
         if (java.lang.Float.floatToIntBits(getTanwaPostregN2Pres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaPostregN2Pres())) return false;
       }
       if (hasTanwaPostfillN2Pres() != other.hasTanwaPostfillN2Pres()) return false;
       if (hasTanwaPostfillN2Pres()) {
         if (java.lang.Float.floatToIntBits(getTanwaPostfillN2Pres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaPostfillN2Pres())) return false;
       }
       if (hasTanwaDroidN2Pres() != other.hasTanwaDroidN2Pres()) return false;
       if (hasTanwaDroidN2Pres()) {
         if (java.lang.Float.floatToIntBits(getTanwaDroidN2Pres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaDroidN2Pres())) return false;
       }
       if (hasTanwaCombchamberPres() != other.hasTanwaCombchamberPres()) return false;
       if (hasTanwaCombchamberPres()) {
         if (java.lang.Float.floatToIntBits(getTanwaCombchamberPres())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaCombchamberPres())) return false;
       }
       if (hasPayloadBattery() != other.hasPayloadBattery()) return false;
       if (hasPayloadBattery()) {
         if (java.lang.Float.floatToIntBits(getPayloadBattery())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPayloadBattery())) return false;
       }
       if (hasEspNowConnectedByteData() != other.hasEspNowConnectedByteData()) return false;
       if (hasEspNowConnectedByteData()) {
         if (getEspNowConnectedByteData()
-            != other.getEspNowConnectedByteData()) return false;
+                != other.getEspNowConnectedByteData()) return false;
       }
       if (hasEspNowWkupsByteData() != other.hasEspNowWkupsByteData()) return false;
       if (hasEspNowWkupsByteData()) {
         if (getEspNowWkupsByteData()
-            != other.getEspNowWkupsByteData()) return false;
+                != other.getEspNowWkupsByteData()) return false;
       }
       if (hasErrors() != other.hasErrors()) return false;
       if (hasErrors()) {
         if (getErrors()
-            != other.getErrors()) return false;
+                != other.getErrors()) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -2366,22 +2366,22 @@ public final class FrameProtos {
       if (hasMcbBatt()) {
         hash = (37 * hash) + MCB_BATT_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getMcbBatt());
+                getMcbBatt());
       }
       if (hasGpsLat()) {
         hash = (37 * hash) + GPS_LAT_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getGpsLat());
+                getGpsLat());
       }
       if (hasGpsLong()) {
         hash = (37 * hash) + GPS_LONG_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getGpsLong());
+                getGpsLong());
       }
       if (hasGpsSatOk()) {
         hash = (37 * hash) + GPS_SAT_OK_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getGpsSatOk());
+                getGpsSatOk());
       }
       if (hasAltitudeM()) {
         hash = (37 * hash) + ALTITUDE_M_FIELD_NUMBER;
@@ -2398,17 +2398,17 @@ public final class FrameProtos {
       if (hasEulerFi()) {
         hash = (37 * hash) + EULER_FI_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getEulerFi());
+                getEulerFi());
       }
       if (hasEulerPsi()) {
         hash = (37 * hash) + EULER_PSI_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getEulerPsi());
+                getEulerPsi());
       }
       if (hasEulerTheta()) {
         hash = (37 * hash) + EULER_THETA_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getEulerTheta());
+                getEulerTheta());
       }
       if (hasRecoveryByteData()) {
         hash = (37 * hash) + RECOVERY_BYTE_DATA_FIELD_NUMBER;
@@ -2417,7 +2417,7 @@ public final class FrameProtos {
       if (hasPitotBattery()) {
         hash = (37 * hash) + PITOT_BATTERY_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPitotBattery());
+                getPitotBattery());
       }
       if (hasPitotAltitude()) {
         hash = (37 * hash) + PITOT_ALTITUDE_FIELD_NUMBER;
@@ -2454,7 +2454,7 @@ public final class FrameProtos {
       if (hasTanwaBattery()) {
         hash = (37 * hash) + TANWA_BATTERY_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaBattery());
+                getTanwaBattery());
       }
       if (hasTanwaState()) {
         hash = (37 * hash) + TANWA_STATE_FIELD_NUMBER;
@@ -2467,67 +2467,67 @@ public final class FrameProtos {
       if (hasTanwaThrust()) {
         hash = (37 * hash) + TANWA_THRUST_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaThrust());
+                getTanwaThrust());
       }
       if (hasTanwaTankWeight()) {
         hash = (37 * hash) + TANWA_TANK_WEIGHT_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaTankWeight());
+                getTanwaTankWeight());
       }
       if (hasTanwaTempPostN2OFill()) {
         hash = (37 * hash) + TANWA_TEMP_POST_N2O_FILL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaTempPostN2OFill());
+                getTanwaTempPostN2OFill());
       }
       if (hasTanwaTempFillingWall()) {
         hash = (37 * hash) + TANWA_TEMP_FILLING_WALL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaTempFillingWall());
+                getTanwaTempFillingWall());
       }
       if (hasTanwaPostfillN2OPres()) {
         hash = (37 * hash) + TANWA_POSTFILL_N2O_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaPostfillN2OPres());
+                getTanwaPostfillN2OPres());
       }
       if (hasTanwaCutoffN2OPres()) {
         hash = (37 * hash) + TANWA_CUTOFF_N2O_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaCutoffN2OPres());
+                getTanwaCutoffN2OPres());
       }
       if (hasTanwaDroidN2OPres()) {
         hash = (37 * hash) + TANWA_DROID_N2O_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaDroidN2OPres());
+                getTanwaDroidN2OPres());
       }
       if (hasTanwaPreregN2Pres()) {
         hash = (37 * hash) + TANWA_PREREG_N2_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaPreregN2Pres());
+                getTanwaPreregN2Pres());
       }
       if (hasTanwaPostregN2Pres()) {
         hash = (37 * hash) + TANWA_POSTREG_N2_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaPostregN2Pres());
+                getTanwaPostregN2Pres());
       }
       if (hasTanwaPostfillN2Pres()) {
         hash = (37 * hash) + TANWA_POSTFILL_N2_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaPostfillN2Pres());
+                getTanwaPostfillN2Pres());
       }
       if (hasTanwaDroidN2Pres()) {
         hash = (37 * hash) + TANWA_DROID_N2_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaDroidN2Pres());
+                getTanwaDroidN2Pres());
       }
       if (hasTanwaCombchamberPres()) {
         hash = (37 * hash) + TANWA_COMBCHAMBER_PRES_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaCombchamberPres());
+                getTanwaCombchamberPres());
       }
       if (hasPayloadBattery()) {
         hash = (37 * hash) + PAYLOAD_BATTERY_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPayloadBattery());
+                getPayloadBattery());
       }
       if (hasEspNowConnectedByteData()) {
         hash = (37 * hash) + ESP_NOW_CONNECTED_BYTE_DATA_FIELD_NUMBER;
@@ -2547,73 +2547,73 @@ public final class FrameProtos {
     }
 
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+              .parseDelimitedWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -2627,12 +2627,12 @@ public final class FrameProtos {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+              ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2640,20 +2640,20 @@ public final class FrameProtos {
      * Protobuf type {@code LoRaFrame}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaFrame)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameOrBuilder {
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:LoRaFrame)
+            pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.Builder.class);
+                .ensureFieldAccessorsInitialized(
+                        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.Builder.class);
       }
 
       // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.newBuilder()
@@ -2662,7 +2662,7 @@ public final class FrameProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2763,7 +2763,7 @@ public final class FrameProtos {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_descriptor;
       }
 
@@ -2968,30 +2968,30 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -3144,9 +3144,9 @@ public final class FrameProtos {
 
       @java.lang.Override
       public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
         pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -5010,13 +5010,13 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -5035,12 +5035,12 @@ public final class FrameProtos {
     }
 
     private static final com.google.protobuf.Parser<LoRaFrame>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaFrame>() {
+            PARSER = new com.google.protobuf.AbstractParser<LoRaFrame>() {
       @java.lang.Override
       public LoRaFrame parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
         return new LoRaFrame(input, extensionRegistry);
       }
     };
@@ -5062,8 +5062,8 @@ public final class FrameProtos {
   }
 
   public interface LoRaFrameTanwaOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaFrameTanwa)
-      com.google.protobuf.MessageOrBuilder {
+          // @@protoc_insertion_point(interface_extends:LoRaFrameTanwa)
+          com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>uint32 tanwaState = 1;</code>
@@ -5432,10 +5432,10 @@ public final class FrameProtos {
    * Protobuf type {@code LoRaFrameTanwa}
    */
   public static final class LoRaFrameTanwa extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaFrameTanwa)
-      LoRaFrameTanwaOrBuilder {
-  private static final long serialVersionUID = 0L;
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:LoRaFrameTanwa)
+          LoRaFrameTanwaOrBuilder {
+    private static final long serialVersionUID = 0L;
     // Use LoRaFrameTanwa.newBuilder() to construct.
     private LoRaFrameTanwa(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -5446,7 +5446,7 @@ public final class FrameProtos {
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
+            UnusedPrivateParameter unused) {
       return new LoRaFrameTanwa();
     }
 
@@ -5456,9 +5456,9 @@ public final class FrameProtos {
       return this.unknownFields;
     }
     private LoRaFrameTanwa(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
@@ -5466,7 +5466,7 @@ public final class FrameProtos {
       int mutable_bitField0_ = 0;
       int mutable_bitField1_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
+              com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -5642,7 +5642,7 @@ public final class FrameProtos {
             }
             default: {
               if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
+                      input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -5653,23 +5653,23 @@ public final class FrameProtos {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+                e).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
+              .ensureFieldAccessorsInitialized(
+                      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
     }
 
     private int bitField0_;
@@ -6314,7 +6314,7 @@ public final class FrameProtos {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+            throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeUInt32(1, tanwaState_);
       }
@@ -6425,135 +6425,135 @@ public final class FrameProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, tanwaState_);
+                .computeUInt32Size(1, tanwaState_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, upTime_);
+                .computeUInt32Size(2, upTime_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, engineWorkingTime_);
+                .computeInt32Size(3, engineWorkingTime_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, pressureFuel_);
+                .computeFloatSize(4, pressureFuel_);
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(5, pressureN2_);
+                .computeFloatSize(5, pressureN2_);
       }
       if (((bitField0_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, pressureDroid_);
+                .computeFloatSize(6, pressureDroid_);
       }
       if (((bitField0_ & 0x00000040) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, pressureOxi_);
+                .computeFloatSize(7, pressureOxi_);
       }
       if (((bitField0_ & 0x00000080) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(8, pressureInjectorFuel_);
+                .computeFloatSize(8, pressureInjectorFuel_);
       }
       if (((bitField0_ & 0x00000100) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(9, pressureInjectorOxi_);
+                .computeFloatSize(9, pressureInjectorOxi_);
       }
       if (((bitField0_ & 0x00000200) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(10, pressureCombustionChamber_);
+                .computeFloatSize(10, pressureCombustionChamber_);
       }
       if (((bitField0_ & 0x00000400) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(11, statusFillN2O_);
+                .computeBoolSize(11, statusFillN2O_);
       }
       if (((bitField0_ & 0x00000800) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(12, statusDeprN2O_);
+                .computeBoolSize(12, statusDeprN2O_);
       }
       if (((bitField0_ & 0x00001000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(13, statusVentN2O_);
+                .computeBoolSize(13, statusVentN2O_);
       }
       if (((bitField0_ & 0x00002000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(14, statusArm_);
+                .computeBoolSize(14, statusArm_);
       }
       if (((bitField0_ & 0x00004000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(15, igniterCont1_);
+                .computeBoolSize(15, igniterCont1_);
       }
       if (((bitField0_ & 0x00008000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(16, igniterCont2_);
+                .computeBoolSize(16, igniterCont2_);
       }
       if (((bitField0_ & 0x00010000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(17, tanwaBattery_);
+                .computeFloatSize(17, tanwaBattery_);
       }
       if (((bitField0_ & 0x00020000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(18, engineThrust_);
+                .computeFloatSize(18, engineThrust_);
       }
       if (((bitField0_ & 0x00040000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(19, rocketWeight_);
+                .computeFloatSize(19, rocketWeight_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20, tankWeight_);
+                .computeFloatSize(20, tankWeight_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(21, tempInjector_);
+                .computeFloatSize(21, tempInjector_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(22, tempCombustionChamber_);
+                .computeFloatSize(22, tempCombustionChamber_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(23, tempExternalTank_);
+                .computeFloatSize(23, tempExternalTank_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(24, statusOxi_);
+                .computeBoolSize(24, statusOxi_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(25, statusFuel_);
+                .computeBoolSize(25, statusFuel_);
       }
       if (((bitField0_ & 0x02000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(26, statusN2_);
+                .computeBoolSize(26, statusN2_);
       }
       if (((bitField0_ & 0x04000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(27, statusQdN2O_);
+                .computeBoolSize(27, statusQdN2O_);
       }
       if (((bitField0_ & 0x08000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(28, statusFillN2_);
+                .computeBoolSize(28, statusFillN2_);
       }
       if (((bitField0_ & 0x10000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(29, statusDeprN2_);
+                .computeBoolSize(29, statusDeprN2_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(30, statusQdN2_);
+                .computeBoolSize(30, statusQdN2_);
       }
       if (((bitField0_ & 0x40000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(31, statusVentEth_);
+                .computeBoolSize(31, statusVentEth_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(32, statusVentN2_);
+                .computeBoolSize(32, statusVentN2_);
       }
       if (((bitField1_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(33, pressureCutoff_);
+                .computeFloatSize(33, pressureCutoff_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6563,7 +6563,7 @@ public final class FrameProtos {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa)) {
         return super.equals(obj);
@@ -6573,181 +6573,181 @@ public final class FrameProtos {
       if (hasTanwaState() != other.hasTanwaState()) return false;
       if (hasTanwaState()) {
         if (getTanwaState()
-            != other.getTanwaState()) return false;
+                != other.getTanwaState()) return false;
       }
       if (hasUpTime() != other.hasUpTime()) return false;
       if (hasUpTime()) {
         if (getUpTime()
-            != other.getUpTime()) return false;
+                != other.getUpTime()) return false;
       }
       if (hasEngineWorkingTime() != other.hasEngineWorkingTime()) return false;
       if (hasEngineWorkingTime()) {
         if (getEngineWorkingTime()
-            != other.getEngineWorkingTime()) return false;
+                != other.getEngineWorkingTime()) return false;
       }
       if (hasPressureFuel() != other.hasPressureFuel()) return false;
       if (hasPressureFuel()) {
         if (java.lang.Float.floatToIntBits(getPressureFuel())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureFuel())) return false;
       }
       if (hasPressureN2() != other.hasPressureN2()) return false;
       if (hasPressureN2()) {
         if (java.lang.Float.floatToIntBits(getPressureN2())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureN2())) return false;
       }
       if (hasPressureDroid() != other.hasPressureDroid()) return false;
       if (hasPressureDroid()) {
         if (java.lang.Float.floatToIntBits(getPressureDroid())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureDroid())) return false;
       }
       if (hasPressureOxi() != other.hasPressureOxi()) return false;
       if (hasPressureOxi()) {
         if (java.lang.Float.floatToIntBits(getPressureOxi())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureOxi())) return false;
       }
       if (hasPressureInjectorFuel() != other.hasPressureInjectorFuel()) return false;
       if (hasPressureInjectorFuel()) {
         if (java.lang.Float.floatToIntBits(getPressureInjectorFuel())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureInjectorFuel())) return false;
       }
       if (hasPressureInjectorOxi() != other.hasPressureInjectorOxi()) return false;
       if (hasPressureInjectorOxi()) {
         if (java.lang.Float.floatToIntBits(getPressureInjectorOxi())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureInjectorOxi())) return false;
       }
       if (hasPressureCombustionChamber() != other.hasPressureCombustionChamber()) return false;
       if (hasPressureCombustionChamber()) {
         if (java.lang.Float.floatToIntBits(getPressureCombustionChamber())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureCombustionChamber())) return false;
       }
       if (hasStatusFillN2O() != other.hasStatusFillN2O()) return false;
       if (hasStatusFillN2O()) {
         if (getStatusFillN2O()
-            != other.getStatusFillN2O()) return false;
+                != other.getStatusFillN2O()) return false;
       }
       if (hasStatusDeprN2O() != other.hasStatusDeprN2O()) return false;
       if (hasStatusDeprN2O()) {
         if (getStatusDeprN2O()
-            != other.getStatusDeprN2O()) return false;
+                != other.getStatusDeprN2O()) return false;
       }
       if (hasStatusVentN2O() != other.hasStatusVentN2O()) return false;
       if (hasStatusVentN2O()) {
         if (getStatusVentN2O()
-            != other.getStatusVentN2O()) return false;
+                != other.getStatusVentN2O()) return false;
       }
       if (hasStatusArm() != other.hasStatusArm()) return false;
       if (hasStatusArm()) {
         if (getStatusArm()
-            != other.getStatusArm()) return false;
+                != other.getStatusArm()) return false;
       }
       if (hasIgniterCont1() != other.hasIgniterCont1()) return false;
       if (hasIgniterCont1()) {
         if (getIgniterCont1()
-            != other.getIgniterCont1()) return false;
+                != other.getIgniterCont1()) return false;
       }
       if (hasIgniterCont2() != other.hasIgniterCont2()) return false;
       if (hasIgniterCont2()) {
         if (getIgniterCont2()
-            != other.getIgniterCont2()) return false;
+                != other.getIgniterCont2()) return false;
       }
       if (hasTanwaBattery() != other.hasTanwaBattery()) return false;
       if (hasTanwaBattery()) {
         if (java.lang.Float.floatToIntBits(getTanwaBattery())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTanwaBattery())) return false;
       }
       if (hasEngineThrust() != other.hasEngineThrust()) return false;
       if (hasEngineThrust()) {
         if (java.lang.Float.floatToIntBits(getEngineThrust())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getEngineThrust())) return false;
       }
       if (hasRocketWeight() != other.hasRocketWeight()) return false;
       if (hasRocketWeight()) {
         if (java.lang.Float.floatToIntBits(getRocketWeight())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getRocketWeight())) return false;
       }
       if (hasTankWeight() != other.hasTankWeight()) return false;
       if (hasTankWeight()) {
         if (java.lang.Float.floatToIntBits(getTankWeight())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTankWeight())) return false;
       }
       if (hasTempInjector() != other.hasTempInjector()) return false;
       if (hasTempInjector()) {
         if (java.lang.Float.floatToIntBits(getTempInjector())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTempInjector())) return false;
       }
       if (hasTempCombustionChamber() != other.hasTempCombustionChamber()) return false;
       if (hasTempCombustionChamber()) {
         if (java.lang.Float.floatToIntBits(getTempCombustionChamber())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTempCombustionChamber())) return false;
       }
       if (hasTempExternalTank() != other.hasTempExternalTank()) return false;
       if (hasTempExternalTank()) {
         if (java.lang.Float.floatToIntBits(getTempExternalTank())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getTempExternalTank())) return false;
       }
       if (hasStatusOxi() != other.hasStatusOxi()) return false;
       if (hasStatusOxi()) {
         if (getStatusOxi()
-            != other.getStatusOxi()) return false;
+                != other.getStatusOxi()) return false;
       }
       if (hasStatusFuel() != other.hasStatusFuel()) return false;
       if (hasStatusFuel()) {
         if (getStatusFuel()
-            != other.getStatusFuel()) return false;
+                != other.getStatusFuel()) return false;
       }
       if (hasStatusN2() != other.hasStatusN2()) return false;
       if (hasStatusN2()) {
         if (getStatusN2()
-            != other.getStatusN2()) return false;
+                != other.getStatusN2()) return false;
       }
       if (hasStatusQdN2O() != other.hasStatusQdN2O()) return false;
       if (hasStatusQdN2O()) {
         if (getStatusQdN2O()
-            != other.getStatusQdN2O()) return false;
+                != other.getStatusQdN2O()) return false;
       }
       if (hasStatusFillN2() != other.hasStatusFillN2()) return false;
       if (hasStatusFillN2()) {
         if (getStatusFillN2()
-            != other.getStatusFillN2()) return false;
+                != other.getStatusFillN2()) return false;
       }
       if (hasStatusDeprN2() != other.hasStatusDeprN2()) return false;
       if (hasStatusDeprN2()) {
         if (getStatusDeprN2()
-            != other.getStatusDeprN2()) return false;
+                != other.getStatusDeprN2()) return false;
       }
       if (hasStatusQdN2() != other.hasStatusQdN2()) return false;
       if (hasStatusQdN2()) {
         if (getStatusQdN2()
-            != other.getStatusQdN2()) return false;
+                != other.getStatusQdN2()) return false;
       }
       if (hasStatusVentEth() != other.hasStatusVentEth()) return false;
       if (hasStatusVentEth()) {
         if (getStatusVentEth()
-            != other.getStatusVentEth()) return false;
+                != other.getStatusVentEth()) return false;
       }
       if (hasStatusVentN2() != other.hasStatusVentN2()) return false;
       if (hasStatusVentN2()) {
         if (getStatusVentN2()
-            != other.getStatusVentN2()) return false;
+                != other.getStatusVentN2()) return false;
       }
       if (hasPressureCutoff() != other.hasPressureCutoff()) return false;
       if (hasPressureCutoff()) {
         if (java.lang.Float.floatToIntBits(getPressureCutoff())
-            != java.lang.Float.floatToIntBits(
+                != java.lang.Float.floatToIntBits(
                 other.getPressureCutoff())) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -6776,152 +6776,152 @@ public final class FrameProtos {
       if (hasPressureFuel()) {
         hash = (37 * hash) + PRESSUREFUEL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureFuel());
+                getPressureFuel());
       }
       if (hasPressureN2()) {
         hash = (37 * hash) + PRESSUREN2_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureN2());
+                getPressureN2());
       }
       if (hasPressureDroid()) {
         hash = (37 * hash) + PRESSUREDROID_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureDroid());
+                getPressureDroid());
       }
       if (hasPressureOxi()) {
         hash = (37 * hash) + PRESSUREOXI_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureOxi());
+                getPressureOxi());
       }
       if (hasPressureInjectorFuel()) {
         hash = (37 * hash) + PRESSUREINJECTORFUEL_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureInjectorFuel());
+                getPressureInjectorFuel());
       }
       if (hasPressureInjectorOxi()) {
         hash = (37 * hash) + PRESSUREINJECTOROXI_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureInjectorOxi());
+                getPressureInjectorOxi());
       }
       if (hasPressureCombustionChamber()) {
         hash = (37 * hash) + PRESSURECOMBUSTIONCHAMBER_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureCombustionChamber());
+                getPressureCombustionChamber());
       }
       if (hasStatusFillN2O()) {
         hash = (37 * hash) + STATUSFILLN2O_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusFillN2O());
+                getStatusFillN2O());
       }
       if (hasStatusDeprN2O()) {
         hash = (37 * hash) + STATUSDEPRN2O_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusDeprN2O());
+                getStatusDeprN2O());
       }
       if (hasStatusVentN2O()) {
         hash = (37 * hash) + STATUSVENTN2O_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusVentN2O());
+                getStatusVentN2O());
       }
       if (hasStatusArm()) {
         hash = (37 * hash) + STATUSARM_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusArm());
+                getStatusArm());
       }
       if (hasIgniterCont1()) {
         hash = (37 * hash) + IGNITERCONT1_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getIgniterCont1());
+                getIgniterCont1());
       }
       if (hasIgniterCont2()) {
         hash = (37 * hash) + IGNITERCONT2_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getIgniterCont2());
+                getIgniterCont2());
       }
       if (hasTanwaBattery()) {
         hash = (37 * hash) + TANWABATTERY_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTanwaBattery());
+                getTanwaBattery());
       }
       if (hasEngineThrust()) {
         hash = (37 * hash) + ENGINETHRUST_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getEngineThrust());
+                getEngineThrust());
       }
       if (hasRocketWeight()) {
         hash = (37 * hash) + ROCKETWEIGHT_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getRocketWeight());
+                getRocketWeight());
       }
       if (hasTankWeight()) {
         hash = (37 * hash) + TANKWEIGHT_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTankWeight());
+                getTankWeight());
       }
       if (hasTempInjector()) {
         hash = (37 * hash) + TEMPINJECTOR_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTempInjector());
+                getTempInjector());
       }
       if (hasTempCombustionChamber()) {
         hash = (37 * hash) + TEMPCOMBUSTIONCHAMBER_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTempCombustionChamber());
+                getTempCombustionChamber());
       }
       if (hasTempExternalTank()) {
         hash = (37 * hash) + TEMPEXTERNALTANK_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getTempExternalTank());
+                getTempExternalTank());
       }
       if (hasStatusOxi()) {
         hash = (37 * hash) + STATUSOXI_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusOxi());
+                getStatusOxi());
       }
       if (hasStatusFuel()) {
         hash = (37 * hash) + STATUSFUEL_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusFuel());
+                getStatusFuel());
       }
       if (hasStatusN2()) {
         hash = (37 * hash) + STATUSN2_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusN2());
+                getStatusN2());
       }
       if (hasStatusQdN2O()) {
         hash = (37 * hash) + STATUSQDN2O_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusQdN2O());
+                getStatusQdN2O());
       }
       if (hasStatusFillN2()) {
         hash = (37 * hash) + STATUSFILLN2_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusFillN2());
+                getStatusFillN2());
       }
       if (hasStatusDeprN2()) {
         hash = (37 * hash) + STATUSDEPRN2_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusDeprN2());
+                getStatusDeprN2());
       }
       if (hasStatusQdN2()) {
         hash = (37 * hash) + STATUSQDN2_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusQdN2());
+                getStatusQdN2());
       }
       if (hasStatusVentEth()) {
         hash = (37 * hash) + STATUSVENTETH_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusVentEth());
+                getStatusVentEth());
       }
       if (hasStatusVentN2()) {
         hash = (37 * hash) + STATUSVENTN2_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getStatusVentN2());
+                getStatusVentN2());
       }
       if (hasPressureCutoff()) {
         hash = (37 * hash) + PRESSURECUTOFF_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getPressureCutoff());
+                getPressureCutoff());
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -6929,73 +6929,73 @@ public final class FrameProtos {
     }
 
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+              .parseDelimitedWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -7009,12 +7009,12 @@ public final class FrameProtos {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+              ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -7022,20 +7022,20 @@ public final class FrameProtos {
      * Protobuf type {@code LoRaFrameTanwa}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaFrameTanwa)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwaOrBuilder {
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:LoRaFrameTanwa)
+            pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwaOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
+                .ensureFieldAccessorsInitialized(
+                        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
       }
 
       // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.newBuilder()
@@ -7044,7 +7044,7 @@ public final class FrameProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -7127,7 +7127,7 @@ public final class FrameProtos {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
       }
 
@@ -7296,30 +7296,30 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -7445,9 +7445,9 @@ public final class FrameProtos {
 
       @java.lang.Override
       public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
         pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -8752,13 +8752,13 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -8777,12 +8777,12 @@ public final class FrameProtos {
     }
 
     private static final com.google.protobuf.Parser<LoRaFrameTanwa>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaFrameTanwa>() {
+            PARSER = new com.google.protobuf.AbstractParser<LoRaFrameTanwa>() {
       @java.lang.Override
       public LoRaFrameTanwa parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
         return new LoRaFrameTanwa(input, extensionRegistry);
       }
     };
@@ -8804,8 +8804,8 @@ public final class FrameProtos {
   }
 
   public interface LoRaSettingsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaSettings)
-      com.google.protobuf.MessageOrBuilder {
+          // @@protoc_insertion_point(interface_extends:LoRaSettings)
+          com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>int32 lora_freq_khz = 1;</code>
@@ -8877,10 +8877,10 @@ public final class FrameProtos {
    * Protobuf type {@code LoRaSettings}
    */
   public static final class LoRaSettings extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaSettings)
-      LoRaSettingsOrBuilder {
-  private static final long serialVersionUID = 0L;
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:LoRaSettings)
+          LoRaSettingsOrBuilder {
+    private static final long serialVersionUID = 0L;
     // Use LoRaSettings.newBuilder() to construct.
     private LoRaSettings(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -8891,7 +8891,7 @@ public final class FrameProtos {
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
+            UnusedPrivateParameter unused) {
       return new LoRaSettings();
     }
 
@@ -8901,16 +8901,16 @@ public final class FrameProtos {
       return this.unknownFields;
     }
     private LoRaSettings(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
+              com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -8951,7 +8951,7 @@ public final class FrameProtos {
             }
             default: {
               if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
+                      input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -8962,23 +8962,23 @@ public final class FrameProtos {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+                e).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaSettings_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaSettings_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.Builder.class);
+              .ensureFieldAccessorsInitialized(
+                      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.Builder.class);
     }
 
     private int bitField0_;
@@ -9109,7 +9109,7 @@ public final class FrameProtos {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+            throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeInt32(1, loraFreqKhz_);
       }
@@ -9139,27 +9139,27 @@ public final class FrameProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, loraFreqKhz_);
+                .computeInt32Size(1, loraFreqKhz_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, loraTransmitMs_);
+                .computeInt32Size(2, loraTransmitMs_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, countdownTime_);
+                .computeInt32Size(3, countdownTime_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, ingitionTime_);
+                .computeInt32Size(4, ingitionTime_);
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(5, flashEnable_);
+                .computeUInt32Size(5, flashEnable_);
       }
       if (((bitField0_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(6, buzzerEnable_);
+                .computeUInt32Size(6, buzzerEnable_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -9169,7 +9169,7 @@ public final class FrameProtos {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings)) {
         return super.equals(obj);
@@ -9179,32 +9179,32 @@ public final class FrameProtos {
       if (hasLoraFreqKhz() != other.hasLoraFreqKhz()) return false;
       if (hasLoraFreqKhz()) {
         if (getLoraFreqKhz()
-            != other.getLoraFreqKhz()) return false;
+                != other.getLoraFreqKhz()) return false;
       }
       if (hasLoraTransmitMs() != other.hasLoraTransmitMs()) return false;
       if (hasLoraTransmitMs()) {
         if (getLoraTransmitMs()
-            != other.getLoraTransmitMs()) return false;
+                != other.getLoraTransmitMs()) return false;
       }
       if (hasCountdownTime() != other.hasCountdownTime()) return false;
       if (hasCountdownTime()) {
         if (getCountdownTime()
-            != other.getCountdownTime()) return false;
+                != other.getCountdownTime()) return false;
       }
       if (hasIngitionTime() != other.hasIngitionTime()) return false;
       if (hasIngitionTime()) {
         if (getIngitionTime()
-            != other.getIngitionTime()) return false;
+                != other.getIngitionTime()) return false;
       }
       if (hasFlashEnable() != other.hasFlashEnable()) return false;
       if (hasFlashEnable()) {
         if (getFlashEnable()
-            != other.getFlashEnable()) return false;
+                != other.getFlashEnable()) return false;
       }
       if (hasBuzzerEnable() != other.hasBuzzerEnable()) return false;
       if (hasBuzzerEnable()) {
         if (getBuzzerEnable()
-            != other.getBuzzerEnable()) return false;
+                != other.getBuzzerEnable()) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -9247,73 +9247,73 @@ public final class FrameProtos {
     }
 
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+              .parseDelimitedWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -9327,12 +9327,12 @@ public final class FrameProtos {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+              ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -9340,20 +9340,20 @@ public final class FrameProtos {
      * Protobuf type {@code LoRaSettings}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaSettings)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettingsOrBuilder {
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:LoRaSettings)
+            pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettingsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaSettings_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaSettings_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.Builder.class);
+                .ensureFieldAccessorsInitialized(
+                        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.Builder.class);
       }
 
       // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings.newBuilder()
@@ -9362,7 +9362,7 @@ public final class FrameProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -9391,7 +9391,7 @@ public final class FrameProtos {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaSettings_descriptor;
       }
 
@@ -9449,30 +9449,30 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -9517,9 +9517,9 @@ public final class FrameProtos {
 
       @java.lang.Override
       public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
         pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaSettings parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -9770,13 +9770,13 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -9795,12 +9795,12 @@ public final class FrameProtos {
     }
 
     private static final com.google.protobuf.Parser<LoRaSettings>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaSettings>() {
+            PARSER = new com.google.protobuf.AbstractParser<LoRaSettings>() {
       @java.lang.Override
       public LoRaSettings parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
         return new LoRaSettings(input, extensionRegistry);
       }
     };
@@ -9822,8 +9822,8 @@ public final class FrameProtos {
   }
 
   public interface LoRaCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaCommand)
-      com.google.protobuf.MessageOrBuilder {
+          // @@protoc_insertion_point(interface_extends:LoRaCommand)
+          com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>uint32 lora_dev_id = 1;</code>
@@ -9873,10 +9873,10 @@ public final class FrameProtos {
    * Protobuf type {@code LoRaCommand}
    */
   public static final class LoRaCommand extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaCommand)
-      LoRaCommandOrBuilder {
-  private static final long serialVersionUID = 0L;
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:LoRaCommand)
+          LoRaCommandOrBuilder {
+    private static final long serialVersionUID = 0L;
     // Use LoRaCommand.newBuilder() to construct.
     private LoRaCommand(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -9887,7 +9887,7 @@ public final class FrameProtos {
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
+            UnusedPrivateParameter unused) {
       return new LoRaCommand();
     }
 
@@ -9897,16 +9897,16 @@ public final class FrameProtos {
       return this.unknownFields;
     }
     private LoRaCommand(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
+              com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -9937,7 +9937,7 @@ public final class FrameProtos {
             }
             default: {
               if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
+                      input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -9948,23 +9948,23 @@ public final class FrameProtos {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+                e).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.Builder.class);
+              .ensureFieldAccessorsInitialized(
+                      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.Builder.class);
     }
 
     private int bitField0_;
@@ -10057,7 +10057,7 @@ public final class FrameProtos {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+            throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeUInt32(1, loraDevId_);
       }
@@ -10081,19 +10081,19 @@ public final class FrameProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, loraDevId_);
+                .computeUInt32Size(1, loraDevId_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, sysDevId_);
+                .computeUInt32Size(2, sysDevId_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, command_);
+                .computeUInt32Size(3, command_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, payload_);
+                .computeInt32Size(4, payload_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -10103,7 +10103,7 @@ public final class FrameProtos {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand)) {
         return super.equals(obj);
@@ -10113,22 +10113,22 @@ public final class FrameProtos {
       if (hasLoraDevId() != other.hasLoraDevId()) return false;
       if (hasLoraDevId()) {
         if (getLoraDevId()
-            != other.getLoraDevId()) return false;
+                != other.getLoraDevId()) return false;
       }
       if (hasSysDevId() != other.hasSysDevId()) return false;
       if (hasSysDevId()) {
         if (getSysDevId()
-            != other.getSysDevId()) return false;
+                != other.getSysDevId()) return false;
       }
       if (hasCommand() != other.hasCommand()) return false;
       if (hasCommand()) {
         if (getCommand()
-            != other.getCommand()) return false;
+                != other.getCommand()) return false;
       }
       if (hasPayload() != other.hasPayload()) return false;
       if (hasPayload()) {
         if (getPayload()
-            != other.getPayload()) return false;
+                != other.getPayload()) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -10163,73 +10163,73 @@ public final class FrameProtos {
     }
 
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+              .parseDelimitedWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -10243,12 +10243,12 @@ public final class FrameProtos {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+              ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -10256,20 +10256,20 @@ public final class FrameProtos {
      * Protobuf type {@code LoRaCommand}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaCommand)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommandOrBuilder {
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:LoRaCommand)
+            pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.Builder.class);
+                .ensureFieldAccessorsInitialized(
+                        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.Builder.class);
       }
 
       // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.newBuilder()
@@ -10278,7 +10278,7 @@ public final class FrameProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -10303,7 +10303,7 @@ public final class FrameProtos {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_descriptor;
       }
 
@@ -10353,30 +10353,30 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -10415,9 +10415,9 @@ public final class FrameProtos {
 
       @java.lang.Override
       public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
         pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -10590,13 +10590,13 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -10615,12 +10615,12 @@ public final class FrameProtos {
     }
 
     private static final com.google.protobuf.Parser<LoRaCommand>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaCommand>() {
+            PARSER = new com.google.protobuf.AbstractParser<LoRaCommand>() {
       @java.lang.Override
       public LoRaCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
         return new LoRaCommand(input, extensionRegistry);
       }
     };
@@ -10642,172 +10642,172 @@ public final class FrameProtos {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaFrame_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaFrame_fieldAccessorTable;
+          internal_static_LoRaFrame_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_LoRaFrame_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaFrameTanwa_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaFrameTanwa_fieldAccessorTable;
+          internal_static_LoRaFrameTanwa_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_LoRaFrameTanwa_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaSettings_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaSettings_fieldAccessorTable;
+          internal_static_LoRaSettings_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_LoRaSettings_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaCommand_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaCommand_fieldAccessorTable;
+          internal_static_LoRaCommand_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_LoRaCommand_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
+  getDescriptor() {
     return descriptor;
   }
   private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
+          descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037src/main/resources/frames.proto\"\257\021\n\tLo" +
-      "RaFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptim" +
-      "e_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\005H" +
-      "\002\210\001\001\022\025\n\010mcb_batt\030\004 \001(\002H\003\210\001\001\022\024\n\007gps_lat\030\005" +
-      " \001(\002H\004\210\001\001\022\025\n\010gps_long\030\006 \001(\002H\005\210\001\001\022\027\n\ngps_" +
-      "sat_ok\030\007 \001(\010H\006\210\001\001\022\027\n\naltitude_m\030\010 \001(\005H\007\210" +
-      "\001\001\022\031\n\014velocity_m_s\030\t \001(\005H\010\210\001\001\022\034\n\017mcb_tem" +
-      "perature\030\n \001(\005H\t\210\001\001\022\025\n\010euler_fi\030\013 \001(\002H\n\210" +
-      "\001\001\022\026\n\teuler_psi\030\014 \001(\002H\013\210\001\001\022\030\n\013euler_thet" +
-      "a\030\r \001(\002H\014\210\001\001\022\037\n\022recovery_byte_data\030\016 \001(\007" +
-      "H\r\210\001\001\022\032\n\rpitot_battery\030\017 \001(\002H\016\210\001\001\022\033\n\016pit" +
-      "ot_altitude\030\020 \001(\005H\017\210\001\001\022\033\n\016pitot_velocity" +
-      "\030\021 \001(\005H\020\210\001\001\022\036\n\021pitot_temperature\030\022 \001(\005H\021" +
-      "\210\001\001\022 \n\023main_vent_byte_data\030\023 \001(\007H\022\210\001\001\022#\n" +
-      "\026eth_n2_mains_byte_data\030\024 \001(\007H\023\210\001\001\022#\n\026ox" +
-      "i_n2_vents_byte_data\030\025 \001(\007H\024\210\001\001\022%\n\030oxi_m" +
-      "ain_valve_byte_data\030\026 \001(\007H\025\210\001\001\022%\n\030eth_ve" +
-      "nt_valve_byte_data\030\027 \001(\007H\026\210\001\001\022\032\n\rtanwa_b" +
-      "attery\030\030 \001(\002H\027\210\001\001\022\030\n\013tanwa_state\030\031 \001(\005H\030" +
-      "\210\001\001\022+\n\036tanwa_can_and_states_byte_data\030\032 " +
-      "\001(\007H\031\210\001\001\022\031\n\014tanwa_thrust\030\033 \001(\002H\032\210\001\001\022\036\n\021t" +
-      "anwa_tank_weight\030\034 \001(\002H\033\210\001\001\022%\n\030tanwa_tem" +
-      "p_post_n2o_fill\030\035 \001(\002H\034\210\001\001\022$\n\027tanwa_temp" +
-      "_filling_wall\030\036 \001(\002H\035\210\001\001\022$\n\027tanwa_postfi" +
-      "ll_n2o_pres\030\037 \001(\002H\036\210\001\001\022\"\n\025tanwa_cutoff_n" +
-      "2o_pres\030  \001(\002H\037\210\001\001\022!\n\024tanwa_droid_n2o_pr" +
-      "es\030! \001(\002H \210\001\001\022!\n\024tanwa_prereg_n2_pres\030\" " +
-      "\001(\002H!\210\001\001\022\"\n\025tanwa_postreg_n2_pres\030# \001(\002H" +
-      "\"\210\001\001\022#\n\026tanwa_postfill_n2_pres\030$ \001(\002H#\210\001" +
-      "\001\022 \n\023tanwa_droid_n2_pres\030% \001(\002H$\210\001\001\022#\n\026t" +
-      "anwa_combchamber_pres\030& \001(\002H%\210\001\001\022\034\n\017payl" +
-      "oad_battery\030\' \001(\002H&\210\001\001\022(\n\033esp_now_connec" +
-      "ted_byte_data\030( \001(\007H\'\210\001\001\022$\n\027esp_now_wkup" +
-      "s_byte_data\030) \001(\007H(\210\001\001\022\023\n\006errors\030* \001(\007H)" +
-      "\210\001\001B\014\n\n_mcb_stateB\014\n\n_uptime_msB\021\n\017_flig" +
-      "ht_time_msB\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t_" +
-      "gps_longB\r\n\013_gps_sat_okB\r\n\013_altitude_mB\017" +
-      "\n\r_velocity_m_sB\022\n\020_mcb_temperatureB\013\n\t_" +
-      "euler_fiB\014\n\n_euler_psiB\016\n\014_euler_thetaB\025" +
-      "\n\023_recovery_byte_dataB\020\n\016_pitot_batteryB" +
-      "\021\n\017_pitot_altitudeB\021\n\017_pitot_velocityB\024\n" +
-      "\022_pitot_temperatureB\026\n\024_main_vent_byte_d" +
-      "ataB\031\n\027_eth_n2_mains_byte_dataB\031\n\027_oxi_n" +
-      "2_vents_byte_dataB\033\n\031_oxi_main_valve_byt" +
-      "e_dataB\033\n\031_eth_vent_valve_byte_dataB\020\n\016_" +
-      "tanwa_batteryB\016\n\014_tanwa_stateB!\n\037_tanwa_" +
-      "can_and_states_byte_dataB\017\n\r_tanwa_thrus" +
-      "tB\024\n\022_tanwa_tank_weightB\033\n\031_tanwa_temp_p" +
-      "ost_n2o_fillB\032\n\030_tanwa_temp_filling_wall" +
-      "B\032\n\030_tanwa_postfill_n2o_presB\030\n\026_tanwa_c" +
-      "utoff_n2o_presB\027\n\025_tanwa_droid_n2o_presB" +
-      "\027\n\025_tanwa_prereg_n2_presB\030\n\026_tanwa_postr" +
-      "eg_n2_presB\031\n\027_tanwa_postfill_n2_presB\026\n" +
-      "\024_tanwa_droid_n2_presB\031\n\027_tanwa_combcham" +
-      "ber_presB\022\n\020_payload_batteryB\036\n\034_esp_now" +
-      "_connected_byte_dataB\032\n\030_esp_now_wkups_b" +
-      "yte_dataB\t\n\007_errors\"\356\013\n\016LoRaFrameTanwa\022\027" +
-      "\n\ntanwaState\030\001 \001(\rH\000\210\001\001\022\023\n\006upTime\030\002 \001(\rH" +
-      "\001\210\001\001\022\036\n\021engineWorkingTime\030\003 \001(\005H\002\210\001\001\022\031\n\014" +
-      "pressureFuel\030\004 \001(\002H\003\210\001\001\022\027\n\npressureN2\030\005 " +
-      "\001(\002H\004\210\001\001\022\032\n\rpressureDroid\030\006 \001(\002H\005\210\001\001\022\030\n\013" +
-      "pressureOxi\030\007 \001(\002H\006\210\001\001\022!\n\024pressureInject" +
-      "orFuel\030\010 \001(\002H\007\210\001\001\022 \n\023pressureInjectorOxi" +
-      "\030\t \001(\002H\010\210\001\001\022&\n\031pressureCombustionChamber" +
-      "\030\n \001(\002H\t\210\001\001\022\032\n\rstatusFillN2O\030\013 \001(\010H\n\210\001\001\022" +
-      "\032\n\rstatusDeprN2O\030\014 \001(\010H\013\210\001\001\022\032\n\rstatusVen" +
-      "tN2O\030\r \001(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001(\010H\r\210\001\001\022" +
-      "\031\n\014igniterCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014igniterCon" +
-      "t2\030\020 \001(\010H\017\210\001\001\022\031\n\014tanwaBattery\030\021 \001(\002H\020\210\001\001" +
-      "\022\031\n\014engineThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014rocketWei" +
-      "ght\030\023 \001(\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001(\002H\023\210\001\001\022" +
-      "\031\n\014tempInjector\030\025 \001(\002H\024\210\001\001\022\"\n\025tempCombus" +
-      "tionChamber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempExternalTa" +
-      "nk\030\027 \001(\002H\026\210\001\001\022\026\n\tstatusOxi\030\030 \001(\010H\027\210\001\001\022\027\n" +
-      "\nstatusFuel\030\031 \001(\010H\030\210\001\001\022\025\n\010statusN2\030\032 \001(\010" +
-      "H\031\210\001\001\022\030\n\013statusQdN2O\030\033 \001(\010H\032\210\001\001\022\031\n\014statu" +
-      "sFillN2\030\034 \001(\010H\033\210\001\001\022\031\n\014statusDeprN2\030\035 \001(\010" +
-      "H\034\210\001\001\022\027\n\nstatusQdN2\030\036 \001(\010H\035\210\001\001\022\032\n\rstatus" +
-      "VentEth\030\037 \001(\010H\036\210\001\001\022\031\n\014statusVentN2\030  \001(\010" +
-      "H\037\210\001\001\022\033\n\016pressureCutoff\030! \001(\002H \210\001\001B\r\n\013_t" +
-      "anwaStateB\t\n\007_upTimeB\024\n\022_engineWorkingTi" +
-      "meB\017\n\r_pressureFuelB\r\n\013_pressureN2B\020\n\016_p" +
-      "ressureDroidB\016\n\014_pressureOxiB\027\n\025_pressur" +
-      "eInjectorFuelB\026\n\024_pressureInjectorOxiB\034\n" +
-      "\032_pressureCombustionChamberB\020\n\016_statusFi" +
-      "llN2OB\020\n\016_statusDeprN2OB\020\n\016_statusVentN2" +
-      "OB\014\n\n_statusArmB\017\n\r_igniterCont1B\017\n\r_ign" +
-      "iterCont2B\017\n\r_tanwaBatteryB\017\n\r_engineThr" +
-      "ustB\017\n\r_rocketWeightB\r\n\013_tankWeightB\017\n\r_" +
-      "tempInjectorB\030\n\026_tempCombustionChamberB\023" +
-      "\n\021_tempExternalTankB\014\n\n_statusOxiB\r\n\013_st" +
-      "atusFuelB\013\n\t_statusN2B\016\n\014_statusQdN2OB\017\n" +
-      "\r_statusFillN2B\017\n\r_statusDeprN2B\r\n\013_stat" +
-      "usQdN2B\020\n\016_statusVentEthB\017\n\r_statusVentN" +
-      "2B\021\n\017_pressureCutoff\"\250\002\n\014LoRaSettings\022\032\n" +
-      "\rlora_freq_khz\030\001 \001(\005H\000\210\001\001\022\035\n\020lora_transm" +
-      "it_ms\030\002 \001(\005H\001\210\001\001\022\033\n\016countdown_time\030\003 \001(\005" +
-      "H\002\210\001\001\022\032\n\ringition_time\030\004 \001(\005H\003\210\001\001\022\031\n\014fla" +
-      "sh_enable\030\005 \001(\rH\004\210\001\001\022\032\n\rbuzzer_enable\030\006 " +
-      "\001(\rH\005\210\001\001B\020\n\016_lora_freq_khzB\023\n\021_lora_tran" +
-      "smit_msB\021\n\017_countdown_timeB\020\n\016_ingition_" +
-      "timeB\017\n\r_flash_enableB\020\n\016_buzzer_enable\"" +
-      "\243\001\n\013LoRaCommand\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001" +
-      "\001\022\027\n\nsys_dev_id\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 " +
-      "\001(\rH\002\210\001\001\022\024\n\007payload\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_" +
-      "dev_idB\r\n\013_sys_dev_idB\n\n\010_commandB\n\n\010_pa" +
-      "yloadBD\n5pl.edu.pwr.pwrinspace.poliwrock" +
-      "et.Model.MessageParserB\013FrameProtosb\006pro" +
-      "to3"
+            "\n\037src/main/resources/frames.proto\"\257\021\n\tLo" +
+                    "RaFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptim" +
+                    "e_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\005H" +
+                    "\002\210\001\001\022\025\n\010mcb_batt\030\004 \001(\002H\003\210\001\001\022\024\n\007gps_lat\030\005" +
+                    " \001(\002H\004\210\001\001\022\025\n\010gps_long\030\006 \001(\002H\005\210\001\001\022\027\n\ngps_" +
+                    "sat_ok\030\007 \001(\010H\006\210\001\001\022\027\n\naltitude_m\030\010 \001(\005H\007\210" +
+                    "\001\001\022\031\n\014velocity_m_s\030\t \001(\005H\010\210\001\001\022\034\n\017mcb_tem" +
+                    "perature\030\n \001(\005H\t\210\001\001\022\025\n\010euler_fi\030\013 \001(\002H\n\210" +
+                    "\001\001\022\026\n\teuler_psi\030\014 \001(\002H\013\210\001\001\022\030\n\013euler_thet" +
+                    "a\030\r \001(\002H\014\210\001\001\022\037\n\022recovery_byte_data\030\016 \001(\007" +
+                    "H\r\210\001\001\022\032\n\rpitot_battery\030\017 \001(\002H\016\210\001\001\022\033\n\016pit" +
+                    "ot_altitude\030\020 \001(\005H\017\210\001\001\022\033\n\016pitot_velocity" +
+                    "\030\021 \001(\005H\020\210\001\001\022\036\n\021pitot_temperature\030\022 \001(\005H\021" +
+                    "\210\001\001\022 \n\023main_vent_byte_data\030\023 \001(\007H\022\210\001\001\022#\n" +
+                    "\026eth_n2_mains_byte_data\030\024 \001(\007H\023\210\001\001\022#\n\026ox" +
+                    "i_n2_vents_byte_data\030\025 \001(\007H\024\210\001\001\022%\n\030oxi_m" +
+                    "ain_valve_byte_data\030\026 \001(\007H\025\210\001\001\022%\n\030eth_ve" +
+                    "nt_valve_byte_data\030\027 \001(\007H\026\210\001\001\022\032\n\rtanwa_b" +
+                    "attery\030\030 \001(\002H\027\210\001\001\022\030\n\013tanwa_state\030\031 \001(\005H\030" +
+                    "\210\001\001\022+\n\036tanwa_can_and_states_byte_data\030\032 " +
+                    "\001(\007H\031\210\001\001\022\031\n\014tanwa_thrust\030\033 \001(\002H\032\210\001\001\022\036\n\021t" +
+                    "anwa_tank_weight\030\034 \001(\002H\033\210\001\001\022%\n\030tanwa_tem" +
+                    "p_post_n2o_fill\030\035 \001(\002H\034\210\001\001\022$\n\027tanwa_temp" +
+                    "_filling_wall\030\036 \001(\002H\035\210\001\001\022$\n\027tanwa_postfi" +
+                    "ll_n2o_pres\030\037 \001(\002H\036\210\001\001\022\"\n\025tanwa_cutoff_n" +
+                    "2o_pres\030  \001(\002H\037\210\001\001\022!\n\024tanwa_droid_n2o_pr" +
+                    "es\030! \001(\002H \210\001\001\022!\n\024tanwa_prereg_n2_pres\030\" " +
+                    "\001(\002H!\210\001\001\022\"\n\025tanwa_postreg_n2_pres\030# \001(\002H" +
+                    "\"\210\001\001\022#\n\026tanwa_postfill_n2_pres\030$ \001(\002H#\210\001" +
+                    "\001\022 \n\023tanwa_droid_n2_pres\030% \001(\002H$\210\001\001\022#\n\026t" +
+                    "anwa_combchamber_pres\030& \001(\002H%\210\001\001\022\034\n\017payl" +
+                    "oad_battery\030\' \001(\002H&\210\001\001\022(\n\033esp_now_connec" +
+                    "ted_byte_data\030( \001(\007H\'\210\001\001\022$\n\027esp_now_wkup" +
+                    "s_byte_data\030) \001(\007H(\210\001\001\022\023\n\006errors\030* \001(\007H)" +
+                    "\210\001\001B\014\n\n_mcb_stateB\014\n\n_uptime_msB\021\n\017_flig" +
+                    "ht_time_msB\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t_" +
+                    "gps_longB\r\n\013_gps_sat_okB\r\n\013_altitude_mB\017" +
+                    "\n\r_velocity_m_sB\022\n\020_mcb_temperatureB\013\n\t_" +
+                    "euler_fiB\014\n\n_euler_psiB\016\n\014_euler_thetaB\025" +
+                    "\n\023_recovery_byte_dataB\020\n\016_pitot_batteryB" +
+                    "\021\n\017_pitot_altitudeB\021\n\017_pitot_velocityB\024\n" +
+                    "\022_pitot_temperatureB\026\n\024_main_vent_byte_d" +
+                    "ataB\031\n\027_eth_n2_mains_byte_dataB\031\n\027_oxi_n" +
+                    "2_vents_byte_dataB\033\n\031_oxi_main_valve_byt" +
+                    "e_dataB\033\n\031_eth_vent_valve_byte_dataB\020\n\016_" +
+                    "tanwa_batteryB\016\n\014_tanwa_stateB!\n\037_tanwa_" +
+                    "can_and_states_byte_dataB\017\n\r_tanwa_thrus" +
+                    "tB\024\n\022_tanwa_tank_weightB\033\n\031_tanwa_temp_p" +
+                    "ost_n2o_fillB\032\n\030_tanwa_temp_filling_wall" +
+                    "B\032\n\030_tanwa_postfill_n2o_presB\030\n\026_tanwa_c" +
+                    "utoff_n2o_presB\027\n\025_tanwa_droid_n2o_presB" +
+                    "\027\n\025_tanwa_prereg_n2_presB\030\n\026_tanwa_postr" +
+                    "eg_n2_presB\031\n\027_tanwa_postfill_n2_presB\026\n" +
+                    "\024_tanwa_droid_n2_presB\031\n\027_tanwa_combcham" +
+                    "ber_presB\022\n\020_payload_batteryB\036\n\034_esp_now" +
+                    "_connected_byte_dataB\032\n\030_esp_now_wkups_b" +
+                    "yte_dataB\t\n\007_errors\"\356\013\n\016LoRaFrameTanwa\022\027" +
+                    "\n\ntanwaState\030\001 \001(\rH\000\210\001\001\022\023\n\006upTime\030\002 \001(\rH" +
+                    "\001\210\001\001\022\036\n\021engineWorkingTime\030\003 \001(\005H\002\210\001\001\022\031\n\014" +
+                    "pressureFuel\030\004 \001(\002H\003\210\001\001\022\027\n\npressureN2\030\005 " +
+                    "\001(\002H\004\210\001\001\022\032\n\rpressureDroid\030\006 \001(\002H\005\210\001\001\022\030\n\013" +
+                    "pressureOxi\030\007 \001(\002H\006\210\001\001\022!\n\024pressureInject" +
+                    "orFuel\030\010 \001(\002H\007\210\001\001\022 \n\023pressureInjectorOxi" +
+                    "\030\t \001(\002H\010\210\001\001\022&\n\031pressureCombustionChamber" +
+                    "\030\n \001(\002H\t\210\001\001\022\032\n\rstatusFillN2O\030\013 \001(\010H\n\210\001\001\022" +
+                    "\032\n\rstatusDeprN2O\030\014 \001(\010H\013\210\001\001\022\032\n\rstatusVen" +
+                    "tN2O\030\r \001(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001(\010H\r\210\001\001\022" +
+                    "\031\n\014igniterCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014igniterCon" +
+                    "t2\030\020 \001(\010H\017\210\001\001\022\031\n\014tanwaBattery\030\021 \001(\002H\020\210\001\001" +
+                    "\022\031\n\014engineThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014rocketWei" +
+                    "ght\030\023 \001(\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001(\002H\023\210\001\001\022" +
+                    "\031\n\014tempInjector\030\025 \001(\002H\024\210\001\001\022\"\n\025tempCombus" +
+                    "tionChamber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempExternalTa" +
+                    "nk\030\027 \001(\002H\026\210\001\001\022\026\n\tstatusOxi\030\030 \001(\010H\027\210\001\001\022\027\n" +
+                    "\nstatusFuel\030\031 \001(\010H\030\210\001\001\022\025\n\010statusN2\030\032 \001(\010" +
+                    "H\031\210\001\001\022\030\n\013statusQdN2O\030\033 \001(\010H\032\210\001\001\022\031\n\014statu" +
+                    "sFillN2\030\034 \001(\010H\033\210\001\001\022\031\n\014statusDeprN2\030\035 \001(\010" +
+                    "H\034\210\001\001\022\027\n\nstatusQdN2\030\036 \001(\010H\035\210\001\001\022\032\n\rstatus" +
+                    "VentEth\030\037 \001(\010H\036\210\001\001\022\031\n\014statusVentN2\030  \001(\010" +
+                    "H\037\210\001\001\022\033\n\016pressureCutoff\030! \001(\002H \210\001\001B\r\n\013_t" +
+                    "anwaStateB\t\n\007_upTimeB\024\n\022_engineWorkingTi" +
+                    "meB\017\n\r_pressureFuelB\r\n\013_pressureN2B\020\n\016_p" +
+                    "ressureDroidB\016\n\014_pressureOxiB\027\n\025_pressur" +
+                    "eInjectorFuelB\026\n\024_pressureInjectorOxiB\034\n" +
+                    "\032_pressureCombustionChamberB\020\n\016_statusFi" +
+                    "llN2OB\020\n\016_statusDeprN2OB\020\n\016_statusVentN2" +
+                    "OB\014\n\n_statusArmB\017\n\r_igniterCont1B\017\n\r_ign" +
+                    "iterCont2B\017\n\r_tanwaBatteryB\017\n\r_engineThr" +
+                    "ustB\017\n\r_rocketWeightB\r\n\013_tankWeightB\017\n\r_" +
+                    "tempInjectorB\030\n\026_tempCombustionChamberB\023" +
+                    "\n\021_tempExternalTankB\014\n\n_statusOxiB\r\n\013_st" +
+                    "atusFuelB\013\n\t_statusN2B\016\n\014_statusQdN2OB\017\n" +
+                    "\r_statusFillN2B\017\n\r_statusDeprN2B\r\n\013_stat" +
+                    "usQdN2B\020\n\016_statusVentEthB\017\n\r_statusVentN" +
+                    "2B\021\n\017_pressureCutoff\"\250\002\n\014LoRaSettings\022\032\n" +
+                    "\rlora_freq_khz\030\001 \001(\005H\000\210\001\001\022\035\n\020lora_transm" +
+                    "it_ms\030\002 \001(\005H\001\210\001\001\022\033\n\016countdown_time\030\003 \001(\005" +
+                    "H\002\210\001\001\022\032\n\ringition_time\030\004 \001(\005H\003\210\001\001\022\031\n\014fla" +
+                    "sh_enable\030\005 \001(\rH\004\210\001\001\022\032\n\rbuzzer_enable\030\006 " +
+                    "\001(\rH\005\210\001\001B\020\n\016_lora_freq_khzB\023\n\021_lora_tran" +
+                    "smit_msB\021\n\017_countdown_timeB\020\n\016_ingition_" +
+                    "timeB\017\n\r_flash_enableB\020\n\016_buzzer_enable\"" +
+                    "\243\001\n\013LoRaCommand\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001" +
+                    "\001\022\027\n\nsys_dev_id\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 " +
+                    "\001(\rH\002\210\001\001\022\024\n\007payload\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_" +
+                    "dev_idB\r\n\013_sys_dev_idB\n\n\010_commandB\n\n\010_pa" +
+                    "yloadBD\n5pl.edu.pwr.pwrinspace.poliwrock" +
+                    "et.Model.MessageParserB\013FrameProtosb\006pro" +
+                    "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        });
+            .internalBuildGeneratedFileFrom(descriptorData,
+                    new com.google.protobuf.Descriptors.FileDescriptor[] {
+                    });
     internal_static_LoRaFrame_descriptor =
-      getDescriptor().getMessageTypes().get(0);
+            getDescriptor().getMessageTypes().get(0);
     internal_static_LoRaFrame_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaFrame_descriptor,
-        new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "EthN2MainsByteData", "OxiN2VentsByteData", "OxiMainValveByteData", "EthVentValveByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "EthN2MainsByteData", "OxiN2VentsByteData", "OxiMainValveByteData", "EthVentValveByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_LoRaFrame_descriptor,
+            new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "EthN2MainsByteData", "OxiN2VentsByteData", "OxiMainValveByteData", "EthVentValveByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "EthN2MainsByteData", "OxiN2VentsByteData", "OxiMainValveByteData", "EthVentValveByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", });
     internal_static_LoRaFrameTanwa_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+            getDescriptor().getMessageTypes().get(1);
     internal_static_LoRaFrameTanwa_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaFrameTanwa_descriptor,
-        new java.lang.String[] { "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressureN2", "PressureDroid", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "StatusFillN2O", "StatusDeprN2O", "StatusVentN2O", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxi", "StatusFuel", "StatusN2", "StatusQdN2O", "StatusFillN2", "StatusDeprN2", "StatusQdN2", "StatusVentEth", "StatusVentN2", "PressureCutoff", "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressureN2", "PressureDroid", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "StatusFillN2O", "StatusDeprN2O", "StatusVentN2O", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxi", "StatusFuel", "StatusN2", "StatusQdN2O", "StatusFillN2", "StatusDeprN2", "StatusQdN2", "StatusVentEth", "StatusVentN2", "PressureCutoff", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_LoRaFrameTanwa_descriptor,
+            new java.lang.String[] { "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressureN2", "PressureDroid", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "StatusFillN2O", "StatusDeprN2O", "StatusVentN2O", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxi", "StatusFuel", "StatusN2", "StatusQdN2O", "StatusFillN2", "StatusDeprN2", "StatusQdN2", "StatusVentEth", "StatusVentN2", "PressureCutoff", "TanwaState", "UpTime", "EngineWorkingTime", "PressureFuel", "PressureN2", "PressureDroid", "PressureOxi", "PressureInjectorFuel", "PressureInjectorOxi", "PressureCombustionChamber", "StatusFillN2O", "StatusDeprN2O", "StatusVentN2O", "StatusArm", "IgniterCont1", "IgniterCont2", "TanwaBattery", "EngineThrust", "RocketWeight", "TankWeight", "TempInjector", "TempCombustionChamber", "TempExternalTank", "StatusOxi", "StatusFuel", "StatusN2", "StatusQdN2O", "StatusFillN2", "StatusDeprN2", "StatusQdN2", "StatusVentEth", "StatusVentN2", "PressureCutoff", });
     internal_static_LoRaSettings_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(2);
     internal_static_LoRaSettings_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaSettings_descriptor,
-        new java.lang.String[] { "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_LoRaSettings_descriptor,
+            new java.lang.String[] { "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", "LoraFreqKhz", "LoraTransmitMs", "CountdownTime", "IngitionTime", "FlashEnable", "BuzzerEnable", });
     internal_static_LoRaCommand_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(3);
     internal_static_LoRaCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaCommand_descriptor,
-        new java.lang.String[] { "LoraDevId", "SysDevId", "Command", "Payload", "LoraDevId", "SysDevId", "Command", "Payload", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_LoRaCommand_descriptor,
+            new java.lang.String[] { "LoraDevId", "SysDevId", "Command", "Payload", "LoraDevId", "SysDevId", "Command", "Payload", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
