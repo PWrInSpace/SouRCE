@@ -3,6 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import eu.hansolo.tilesfx.addons.Indicator;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,10 +15,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 // from now this controller will work similar to normal BaseButtonSensorController
@@ -95,31 +93,30 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
         List<ICommand> commandList = this.commands.stream().sorted(Comparator.comparing(ICommand::getCommandDescription)).collect(Collectors.toList());
 
         for (ICommand command : commandList) {
-            String commandTriggerKey = command.getCommandTriggerKey();
+            String commandTriggerKey = command.getCommandTriggerKey().toLowerCase();
+            String commandType = String.valueOf(command.getCommandType());
 
-            if (commandTriggerKey.endsWith("Open")) {
-                commandTriggerKey = commandTriggerKey.toLowerCase().replace("open", "");
-                var button = new JFXButton(command.getCommandDescription());
-                openHashMap.put(commandTriggerKey, button);
-                buttonHashMap.put(command.getCommandTriggerKey(), button);
-            }
-            else if (commandTriggerKey.endsWith("Close")) {
-                commandTriggerKey = commandTriggerKey.toLowerCase().replace("close", "");
-                var button = new JFXButton(command.getCommandDescription());
-                closeHashMap.put(commandTriggerKey, button);
-                buttonHashMap.put(command.getCommandTriggerKey(), button);
-            }
-            else if (commandTriggerKey.endsWith("Command")) {
-                commandTriggerKey = commandTriggerKey.toLowerCase().replace("command", "");
-                var button = new JFXButton(command.getCommandDescription());
-                commandHashMap.put(commandTriggerKey, button);
-                buttonHashMap.put(command.getCommandTriggerKey(), button);
-                var input = new JFXTextField();
-                if (command.getPayload() == null) input.setVisible(false);
-                else input.setText(command.getPayload());
-                input.setDisable(command.isFinal());
-                inputHashMap.put(commandTriggerKey, input);
-                inputHashMap.put(command.getCommandTriggerKey(), input);
+            Button button = new JFXButton(command.getCommandDescription());
+
+            switch (command.getCommandType()) {
+                case OPEN:
+                    openHashMap.put(commandTriggerKey, button);
+                    buttonHashMap.put(command.getCommandTriggerKey() + commandType, button);
+                    break;
+                case CLOSE:
+                    closeHashMap.put(commandTriggerKey, button);
+                    buttonHashMap.put(command.getCommandTriggerKey() + commandType, button);
+                    break;
+                case INPUT_COMMAND:
+                    commandHashMap.put(commandTriggerKey, button);
+                    buttonHashMap.put(command.getCommandTriggerKey() + commandType, button);
+                    var input = new JFXTextField();
+                    if (command.getPayload() == null) input.setVisible(false);
+                    else input.setText(command.getPayload());
+                    input.setDisable(command.isFinal());
+                    inputHashMap.put(commandTriggerKey, input);
+                    inputHashMap.put(command.getCommandTriggerKey(), input);
+                    break;
             }
 
             if (!moduleArray.contains(commandTriggerKey)) moduleArray.add(commandTriggerKey);
@@ -148,7 +145,6 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
                 labelHashMap.put(module, label);
                 mainPanel.getChildren().add(label);
             }
-            // temporary
             else if (commandButton != null) {
                 var label = new Label(commandButton.getText());
                 label.setVisible(showLabel);
@@ -210,6 +206,24 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
 
     @Override
     protected void setUIBySensors() {}
+
+    @Override
+    public void assignsCommands(Collection<ICommand> commands) {
+        Platform.runLater(this::buildVisualizationMap);
+        this.commands.clear();
+        this.commands.addAll(commands);
+        Platform.runLater(() -> {
+            for (ICommand command : commands) {
+                var button = buttonHashMap.get(command.getCommandTriggerKey() + command.getCommandType());
+                if (button != null) {
+                    button.setOnAction(handleButtonsClickByCommand(button, command));
+                    button.setVisible(true);
+                } else {
+                    logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
+                }
+            }
+        });
+    }
 
     @Override
     public void invalidated(Observable observable) {

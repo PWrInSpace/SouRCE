@@ -80,6 +80,7 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
             var button = new JFXButton(command.getCommandDescription());
             commandHashMap.put(commandTriggerKey, button);
             buttonHashMap.put(command.getCommandTriggerKey(), button);
+
             var input = new JFXTextField();
             if (command.getPayload() == null) input.setVisible(false);
             else input.setText(command.getPayload());

@@ -5,9 +5,10 @@ public class RecoveryArmController extends BaseButtonSensorCommandsController{
         this.labelPrefWidth = 200;
         this.indicatorLayoutX = 195;
         this.openButtonLayoutX = 247;
-        this.closeButtonLayoutX = 317;
-        this.inputLayoutX = 195;
-        this.commandButtonLayoutX = 275;
+        this.openButtonPrefWidth = 70;
+        this.closeButtonLayoutX = 327;
+        this.closeButtonPrefWidth = 70;
+        this.inputLayoutX = 215;
+        this.commandButtonLayoutX = 295;
     }
-    //todo - przywrócić poprzedni schemat sterowania - niestety nie da się inaczej :(
 }

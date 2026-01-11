@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 
 public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand {
@@ -66,5 +67,10 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     @Override
     public byte[] getCommandValueAsBytes() {
         return command.getCommandValueAsBytes();
+    }
+
+    @Override
+    public CommandType getCommandType() {
+        return command.getCommandType();
     }
 }
