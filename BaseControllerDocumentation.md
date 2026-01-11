@@ -19,9 +19,9 @@ Kontroler automatycznie paruje ze sobą odpowiednie przyciski oraz indicatory je
    * Sensor — W tym przypadku kontroler będzie czytał nazwę z pola "name". Wielkość liter oraz spacje nie są brane pod uwagę.
    * Command — Tutaj kontroler będzie sugerował się polem "commandTriggerKey". Wielkość liter nie ma znaczenia, spację nie są ignorowane.
 
-2. **Sufiks**
+2. **commandType**
 
-    Sufiks służy do określenia funkcjonalności, pozwala zrozumieć kontrolerowi gdzie umieścić komponent oraz czy należy stworzyć dla niego dodatkowe elementy. Sufiks dodajemy tylko dla Command
+    CommandType to dodatkowe pole, które służy do określenia funkcjonalności, pozwala zrozumieć kontrolerowi gdzie umieścić komponent oraz czy należy stworzyć dla niego dodatkowe elementy. Sufiks dodajemy tylko dla Command
 
 **Przykład (N2 DEPR)**
 
@@ -41,7 +41,7 @@ Kontroler automatycznie paruje ze sobą odpowiednie przyciski oraz indicatory je
 ```
 W typ przypadku część główna to "n2depr" wszystkie komponenty z tą samą częścią główną będą umieszczone w tym samym module.
 
-2. Sufiks
+2. commandType
 
 ```
 { // n2 depr open
@@ -51,23 +51,24 @@ W typ przypadku część główna to "n2depr" wszystkie komponenty z tą samą c
     "system": "TANWA",
     "command": "0x53"
     },
-    "trigger": "n2DeprOpen",
+    "trigger": "n2Depr",
     "description": "OPEN",
+    "commandType": OPEN,
     "destinationControllerNames": [
     "ValvesPressurizing"
     ],
     "isFinal": true
 }
 ```
-Sufiksem tu jest "open" a częścią główną "n2depr". Dzięki temu kontroler umieści dany przycisk w odpowiednim module oraz w odpowiedniej kolumnie (OPEN)
+commandType to OPEN a część główna to "n2depr". Dzięki temu kontroler umieści dany przycisk w odpowiednim module oraz w odpowiedniej kolumnie (OPEN)
 
-**MOŻLIWE SUFIKSY**
+**MOŻLIWE COMMAND TYPE**
 
-Każdy sufiks umieści dany element w odpowiedniej sekcji modułu (patrz grafika)
+Możliwe commandType są zdefiniowane w enum commandType.java
 
-* Open — zwykły przycisk. Przypisana mu komenda nie może przyjmować dodatkowych argumentów, "isFinal": true.
-* Close — zwykły przycisk. Przypisana mu komenda nie może przyjmować dodatkowych argumentów, "isFinal": true.
-* Command — dodatkowo automatycznie wygeneruje odpowiadające mu pole Input. Przypisana mu komenda może obsługiwać dodatkowy payload.
+* OPEN — zwykły przycisk. Przypisana mu komenda nie może przyjmować dodatkowych argumentów, "isFinal": true.
+* CLOSE — zwykły przycisk. Przypisana mu komenda nie może przyjmować dodatkowych argumentów, "isFinal": true.
+* INPUT_COMMAND — dodatkowo automatycznie wygeneruje odpowiadające mu pole Input. Przypisana mu komenda może obsługiwać dodatkowy payload.
 
 **KOLEJNOŚĆ GENEROWANIA**
 
@@ -80,7 +81,19 @@ Kontroler wygeneruje moduły w odpowiedniej kolejności:
 **DODATKOWE UWAGI**
 
 * Tekst, który jest umieszczony na Label to nazwa sensora (name)
-* Indicator jest tworzony razem z sensorem, nie wymaga żadnego sufiksu
+* Indicator jest tworzony razem z sensorem
 * Tekst na przyciskach jest definiowany w polu "description"
-* Nie należy definiować dwóch komend o tej samej części głównej i tym samym sufiksie
-* Literówki sprawią, że dany element się nie wygeneruje!!!
+* Nie należy definiować dwóch komend o tej samej części głównej i tym samym commandType
+  * Literówki sprawią, że dany element się nie wygeneruje!!!
+    * Komendy w ramach tego samego modułu są rozróżniane przez commandType, commandTriggerKey jest takie same dla każdej komendy jednak jest to uwzględnione w logice kontrolera
+      * **przykład:**
+    ```
+        {
+            "commadTriggerKey": "trigger",
+            "commandType": OPEN
+        },
+        {
+            "commadTriggerKey": "trigger",
+            "commandType": CLOSE
+        }
+    ```
