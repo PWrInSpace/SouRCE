@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
@@ -158,44 +159,20 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
             }
 
             if (indicator != null) {
-                indicator.setLayoutY(initYIndicator);
-                indicator.setLayoutX(indicatorLayoutX);
-                indicator.setPrefHeight(indicatorPrefHeight);
-                indicator.setPrefWidth(indicatorPrefWidth);
-                mainPanel.getChildren().add(indicator);
+                setupElement(indicator, indicatorLayoutX, initYIndicator, indicatorPrefHeight, indicatorPrefWidth);
             }
-
             if (openButton != null) {
-                openButton.setLayoutY(initY);
-                openButton.setLayoutX(openButtonLayoutX);
-                openButton.setPrefHeight(openButtonPrefHeight);
-                openButton.setPrefWidth(openButtonPrefWidth);
-                mainPanel.getChildren().add(openButton);
+                setupElement(openButton, openButtonLayoutX, initY, openButtonPrefHeight, openButtonPrefWidth);
             }
-
             if (closeButton != null) {
-                closeButton.setLayoutY(initY);
-                closeButton.setLayoutX(closeButtonLayoutX);
-                closeButton.setPrefHeight(closeButtonPrefHeight);
-                closeButton.setPrefWidth(closeButtonPrefWidth);
-                mainPanel.getChildren().add(closeButton);
+                setupElement(closeButton, closeButtonLayoutX, initY, closeButtonPrefHeight, closeButtonPrefWidth);
             }
-
             if (input != null) {
-                input.setLayoutY(initY);
-                input.setLayoutX(inputLayoutX);
-                input.setPrefHeight(inputPrefHeight);
-                input.setPrefWidth(inputPrefWidth);
                 input.setPromptText(inputText);
-                mainPanel.getChildren().add(input);
+                setupElement(input, inputLayoutX, initY, inputPrefHeight, inputPrefWidth);
             }
-
             if (commandButton != null) {
-                commandButton.setLayoutY(initY);
-                commandButton.setLayoutX(commandButtonLayoutX);
-                commandButton.setPrefHeight(commandButtonPrefHeight);
-                commandButton.setPrefWidth(commandButtonPrefWidth);
-                mainPanel.getChildren().add(commandButton);
+                setupElement(commandButton, commandButtonLayoutX, initY, commandButtonPrefHeight, commandButtonPrefWidth);
             }
 
             initY += offsetY;
@@ -248,5 +225,13 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setupElement(Region element, int layoutX, int layoutY, int prefHeight, int prefWidth) {
+        element.setLayoutY(layoutY);
+        element.setLayoutX(layoutX);
+        element.setPrefHeight(prefHeight);
+        element.setPrefWidth(prefWidth);
+        mainPanel.getChildren().add(element);
     }
 }
