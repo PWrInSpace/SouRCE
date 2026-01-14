@@ -20,7 +20,6 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires jdk.jshell;
     requires com.jfoenix;
     requires protobuf.java;
-    //requires com.google.protobuf;
     requires com.google.common;
     requires javafx.base;
 //    requires pl.edu.pwr.pwrinspace.poliwrocket;

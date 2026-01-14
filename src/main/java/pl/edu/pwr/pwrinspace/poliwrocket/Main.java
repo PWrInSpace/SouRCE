@@ -218,11 +218,11 @@ public class Main extends Application {
 
             //Stage settings
             primaryStage.setTitle("SouRCE");
-            primaryStage.setMaximized(true);
             primaryStage.setScene(scene);
             primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
             primaryStage.heightProperty().addListener(mainController);
             primaryStage.widthProperty().addListener(mainController);
+            primaryStage.setMaximized(true);
             primaryStage.setOnShown(windowEvent -> {
                 UIThreadManager.getInstance().start();
                 AppStateLogger.getInstance().start();

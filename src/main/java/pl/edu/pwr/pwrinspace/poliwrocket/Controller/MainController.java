@@ -405,17 +405,22 @@ public class MainController extends BasicController implements InvalidationListe
             DetachedTabController detachedController = loader.getController();
 
             tab.setContent(null);
-            ((AnchorPane)wrapper).getChildren().add(content);
+            int oldIndex = tabPane.getTabs().indexOf(tab);
+            tabPane.getTabs().remove(tab);
 
+            ((AnchorPane)wrapper).getChildren().add(content);
             Stage stage = new Stage();
             stage.setScene(new Scene(wrapper, 1550.4, 838.4));
-            stage.setTitle("SouRCE - " + tab.getText());
+
+            String tabTitle = tab.getText();
+            stage.setTitle("SouRCE - " + tabTitle);
 
             detachedController.setStageAndContent(stage, content);
 
             stage.setOnCloseRequest(e -> {
                 content.getTransforms().clear();
-                tab.setContent(content);
+                Tab restoredTab = new Tab(tabTitle, content);
+                tabPane.getTabs().add(oldIndex, restoredTab);
             });
 
             stage.show();
@@ -456,14 +461,14 @@ public class MainController extends BasicController implements InvalidationListe
     }
     private void findAndStyleTiles(Parent root, boolean isLight) {
         Color bg = isLight ? Color.WHITE : Color.rgb(11, 66, 116, 0.7);
-        Color fg = isLight ? Color.BLACK : Color.WHITE;
+        Color fg = isLight ? Color.BLACK : Color.rgb(245, 245, 247);
         for (Node n : root.getChildrenUnmodifiable()) {
             if (n instanceof Tile) {
                 Tile tile = (Tile) n;
                 applyTileStyle(tile, bg, fg);
             }else if (n instanceof Gauge){
                 Gauge gauge = (Gauge) n;
-                applyGaugeStyle(gauge, bg, fg);
+                applyGaugeStyle(gauge, fg);
             }
         }
     }
@@ -479,14 +484,13 @@ public class MainController extends BasicController implements InvalidationListe
         tile.setBarColor(fg);
     }
 
-    private void applyGaugeStyle(Gauge gauge, Color bg, Color fg) {
+    private void applyGaugeStyle(Gauge gauge, Color fg) {
         gauge.setBarColor(fg);
         gauge.setValueColor(fg);
         gauge.setTitleColor(fg);
         gauge.setUnitColor(fg);
         gauge.setTickLabelColor(fg);
         gauge.setNeedleColor(fg);
-        gauge.setBackgroundPaint(bg);
     }
 
 }
