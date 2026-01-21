@@ -5,16 +5,13 @@ import eu.hansolo.tilesfx.addons.Switch;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.CountdownThread;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.ThreadName;
 
-import java.util.Collection;
-
-public class StartControlController extends BasicButtonSensorController {
+public class StartControlController extends BaseButtonSensorController {
     @FXML
     private Switch safeSwitch1;
     @FXML
@@ -25,13 +22,17 @@ public class StartControlController extends BasicButtonSensorController {
     protected JFXButton fireButton;
     @FXML
     protected Label countdownTimer;
+
     private Thread countdownThread;
     private CountdownThread countdownTime;
 
-    @Override
     @FXML
+    @Override
     protected void initialize() {
         super.initialize();
+
+        buildVisualizationMap();
+
         this.countdownTime = new CountdownThread();
         this.countdownTime.addListener(this);
         this.fireButton.setDisable(true);
@@ -79,26 +80,8 @@ public class StartControlController extends BasicButtonSensorController {
     }
 
     @Override
-    public void assignsCommands(Collection<ICommand> commands) {
-        Platform.runLater(() -> {
-            this.commands.addAll(commands);
-            for (ICommand command : commands) {
-                if (command.getCommandTriggerKey().equals(this.fireButton.getId())) continue;
-                Button button = (Button)this.buttonHashMap.get(command.getCommandTriggerKey());
-                if (button != null) {
-                    button.setOnAction(this.handleButtonsClickByCommand(button, command));
-                    button.setVisible(true);
-                    button.setText(command.getCommandDescription());
-                    continue;
-                }
-                logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", (Object)command.getCommandTriggerKey());
-            }
-        });
-    }
-
-    @Override
     public void invalidated(Observable observable) {
-        Platform.runLater(() -> this.countdownTimer.setText(((CountdownThread)observable).getFormattedTimeResult()));
+        Platform.runLater(() -> this.countdownTimer.setText(((CountdownThread) observable).getFormattedTimeResult()));
     }
 
     private void checkReset() {
@@ -108,7 +91,7 @@ public class StartControlController extends BasicButtonSensorController {
     }
 
     @Override
-    protected void setUIBySensors() {
+    protected void setUIBySensors() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 }

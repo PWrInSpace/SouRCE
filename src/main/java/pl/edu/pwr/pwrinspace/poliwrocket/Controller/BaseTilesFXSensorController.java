@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public abstract class BasicTilesFXSensorController extends BasicSensorController {
+public abstract class BaseTilesFXSensorController extends BaseSensorController {
 
     private static final int _duration = 30;
 
@@ -21,12 +21,13 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
     protected final HashMap<String, Indicator> indicatorHashMap = new HashMap<>();
     protected final HashMap<String, Label> labelHashMap = new HashMap<>();
 
+    @Override
     protected void buildVisualizationMap() {
         tileHashMap.clear();
         indicatorHashMap.clear();
         labelHashMap.clear();
-        var fields = new LinkedList<Field>();
-        BasicSensorController.getAllFields(fields, this.getClass());
+
+        var fields = getAllFields(new LinkedList<>(), this.getClass());
 
         for (Field declaredField : fields) {
             try {
@@ -38,8 +39,11 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                     ((Indicator) declaredField.get(this)).setVisible(false);
                     indicatorHashMap.put(declaredField.getName(), (Indicator) declaredField.get(this));
                     var label = fields.stream().filter(f -> f.getName().equals("indicatorLabel" + declaredField.getName().charAt(declaredField.getName().length() - 1))).findFirst();
-                    if(label.isPresent()) {
-                        labelHashMap.put(declaredField.getName(), (Label) label.get().get(this));
+
+                    if (label.isPresent()) {
+                        Label label_ = (Label) label.get().get(this);
+                        label_.setVisible(false);
+                        labelHashMap.put(declaredField.getName(), label_);
                     } else {
                         logger.error("Indicator without label!");
                     }
@@ -50,6 +54,7 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
         }
     }
 
+    @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
             var tile = tileHashMap.get(sensor.getDestination());
@@ -77,7 +82,6 @@ public abstract class BasicTilesFXSensorController extends BasicSensorController
                 if(sensor instanceof FillingLevelSensor) {
                     tile.setSkinType(Tile.SkinType.FLUID);
                 }
-                //tile.setAveragingPeriod(_duration * Configuration.getInstance().FPS);
             } else if (indicator != null) {
                 indicator.setVisible(true);
 

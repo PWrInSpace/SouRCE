@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public abstract class BasicController implements InvalidationListener {
+public abstract class BaseController implements InvalidationListener {
 
-    protected static final Logger logger = LoggerFactory.getLogger(BasicController.class);
+    protected static final Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     protected static final ExecutorService executorService = Executors.newSingleThreadExecutor();
 

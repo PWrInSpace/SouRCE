@@ -9,19 +9,16 @@ public class Command<T> implements ICommand {
 
     @Expose
     protected T value;
-
     @Expose
     private boolean isFinal = false;
-
     @Expose
     private String trigger;
-
     @Expose
     private String description = "";
-
     @Expose
     protected String payload = "";
-
+    @Expose
+    protected CommandType commandType = CommandType.INPUT_COMMAND;
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
 
@@ -82,8 +79,15 @@ public class Command<T> implements ICommand {
     public void setDestinationControllerNames(List<String> destinationControllerNames) {
         this.destinationControllerNames = destinationControllerNames;
     }
+
     @Override
     public String getCommandValueAsString() {
         return value.toString() + payload;
     }
+
+    @Override
+    public CommandType getCommandType() {
+        return commandType;
+    }
+
 }

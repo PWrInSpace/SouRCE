@@ -6,9 +6,9 @@ import org.javatuples.KeyValue;
 import org.javatuples.Triplet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicButtonSensorController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseButtonSensorController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseController;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
@@ -68,7 +68,7 @@ public class Configuration implements Observable {
     public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
     public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
 
-    public Collection<BasicController> controllersList = new LinkedList<>();
+    public Collection<BaseController> controllersList = new LinkedList<>();
 
     public final static Instant startUpTime = Instant.now();
 
@@ -206,9 +206,9 @@ public class Configuration implements Observable {
         this.sensorRepository.getGpsSensor().observeFields();
     }
 
-    public void setupApplicationConfig(Collection<BasicController> controllersList) {
+    public void setupApplicationConfig(Collection<BaseController> controllersList) {
         this.controllersList = controllersList;
-        List<Triplet<BasicController, List<ISensor>, List<ICommand>>> controllersConfig = new ArrayList<>();
+        List<Triplet<BaseController, List<ISensor>, List<ICommand>>> controllersConfig = new ArrayList<>();
         controllersList.forEach(basicController -> controllersConfig.add(new Triplet<>(basicController,new ArrayList<>(),new ArrayList<>())));
 
         for (int i = 0; i < controllersConfig.size(); i++) {
@@ -239,7 +239,7 @@ public class Configuration implements Observable {
             }
         }
 
-        for (Triplet<BasicController, List<ISensor>, List<ICommand>> objects : controllersConfig) {
+        for (Triplet<BaseController, List<ISensor>, List<ICommand>> objects : controllersConfig) {
 /*            for (Method method : objects.getValue0().getClass().getMethods()) {
                 try {
                     if(method.getName().equals("injectSensorsModels")) {
@@ -251,12 +251,12 @@ public class Configuration implements Observable {
                     e.printStackTrace();
                 }
             }*/
-            if (!objects.getValue1().isEmpty() && objects.getValue0() instanceof BasicSensorController) {
-                ((BasicSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
+            if (!objects.getValue1().isEmpty() && objects.getValue0() instanceof BaseSensorController) {
+                ((BaseSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
             }
 
-            if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BasicButtonSensorController) {
-                ((BasicButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
+            if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BaseButtonSensorController) {
+                ((BaseButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
             }
 
         }
