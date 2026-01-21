@@ -45,7 +45,7 @@ public abstract class BaseButtonSensorController extends BaseTilesFXSensorContro
                 if (indicator != null) {
                     boolean on = sensor.getValue() == 1.0;
                     indicator.setOn(on);
-                    indicator.setDotOnColor(Color.TRANSPARENT);
+                    indicator.setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.TRANSPARENT);
                 }
             }
         }
