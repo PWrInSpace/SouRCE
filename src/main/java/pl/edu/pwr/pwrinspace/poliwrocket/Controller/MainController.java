@@ -39,6 +39,12 @@ public class MainController extends BasicController implements InvalidationListe
     private static final double initWidth = 1550.4;
     private static final double initHeight = 838.4;
 
+    private static final Color white = Color.WHITE ;
+    private static final Color bgDark = Color.rgb(11, 66, 116, 0.7);
+
+    private static final Color black = Color.BLACK;
+    private static final Color fgDark = Color.rgb(245, 245, 247);
+
     @FXML
     private SubScene CANIndicatorsScene;
 
@@ -352,7 +358,6 @@ public class MainController extends BasicController implements InvalidationListe
 
             nodes.forEach(node -> {
                 applyStyleToNode(node, cssPath, isLight);
-
             });
 
             for (Field field : this.getClass().getDeclaredFields()) {
@@ -410,7 +415,7 @@ public class MainController extends BasicController implements InvalidationListe
 
             ((AnchorPane)wrapper).getChildren().add(content);
             Stage stage = new Stage();
-            stage.setScene(new Scene(wrapper, 1550.4, 838.4));
+            stage.setScene(new Scene(wrapper, initWidth, initHeight));
 
             String tabTitle = tab.getText();
             stage.setTitle("SouRCE - " + tabTitle);
@@ -456,12 +461,15 @@ public class MainController extends BasicController implements InvalidationListe
                 ss.getRoot().getStylesheets().clear();
                 ss.getRoot().getStylesheets().add(cssPath);
                 findAndStyleTiles(ss.getRoot(), isLight);
+            }else{
+                System.out.println("Error: Scene root cannot be null when applying styles");
             }
         }
     }
+
     private void findAndStyleTiles(Parent root, boolean isLight) {
-        Color bg = isLight ? Color.WHITE : Color.rgb(11, 66, 116, 0.7);
-        Color fg = isLight ? Color.BLACK : Color.rgb(245, 245, 247);
+        Color bg = isLight ? white : bgDark;
+        Color fg = isLight ? black : fgDark;
         for (Node n : root.getChildrenUnmodifiable()) {
             if (n instanceof Tile) {
                 Tile tile = (Tile) n;
@@ -469,12 +477,13 @@ public class MainController extends BasicController implements InvalidationListe
             }else if (n instanceof Gauge){
                 Gauge gauge = (Gauge) n;
                 applyGaugeStyle(gauge, fg);
+            }else{
+                System.out.println("Node ignored for styling: " + n.getClass().getSimpleName());
             }
         }
     }
 
     private void applyTileStyle(Tile tile, Color bg, Color fg) {
-
         tile.setBackgroundColor(bg);
         tile.setForegroundBaseColor(fg);
         tile.setTitleColor(fg);
@@ -492,5 +501,4 @@ public class MainController extends BasicController implements InvalidationListe
         gauge.setTickLabelColor(fg);
         gauge.setNeedleColor(fg);
     }
-
 }
