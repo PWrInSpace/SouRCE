@@ -14,7 +14,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17.0.2 </version>
+            <version>17.0.2</version>
         </dependency>
         <dependency>
             <groupId>com.sothawo</groupId>
@@ -31,6 +31,12 @@
             <groupId>eu.hansolo</groupId>
             <artifactId>tilesfx</artifactId>
             <version>11.45</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/eu.hansolo/Medusa -->
@@ -60,19 +66,19 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>13</version>
+            <version>17.0.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>12</version>
+            <version>17.0.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-web -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>13</version>
+            <version>17.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -194,7 +200,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.5</version>
+                <version>0.0.8</version>
                 <configuration>
                     <mainClass>pl.edu.pwr.pwrinspace.poliwrocket.Main</mainClass>
                 </configuration>

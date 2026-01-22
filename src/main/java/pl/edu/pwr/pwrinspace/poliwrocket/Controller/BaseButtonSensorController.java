@@ -3,9 +3,10 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
 import java.lang.reflect.Field;
@@ -13,21 +14,38 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public abstract class BasicButtonSensorController extends BasicTilesFXSensorController {
-
-    protected HashMap<String,Button> buttonHashMap = new HashMap<>();
+public abstract class BaseButtonSensorController extends BaseTilesFXSensorController {
 
     protected HashSet<ICommand> commands = new HashSet<>();
+    protected HashMap<String,Button> buttonHashMap = new HashMap<>();
 
+    @Override
+    protected void buildVisualizationMap() {
+        super.buildVisualizationMap();
 
-    @FXML
-    protected void initialize() {
+        buttonHashMap.clear();
+
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            if(Button.class.isAssignableFrom(declaredField.getType())) {
+            if (Button.class.isAssignableFrom(declaredField.getType())) {
                 try {
-                    buttonHashMap.put(declaredField.getName(), (Button)declaredField.get(this));
+                    buttonHashMap.put(declaredField.getName(), (Button) declaredField.get(this));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void setUIBySensors() {
+        super.setUIBySensors();
+        for (ISensor sensor : sensors) {
+            if (sensor != null) {
+                var indicator = indicatorHashMap.get(sensor.getDestination());
+                if (indicator != null) {
+                    boolean on = sensor.getValue() == 1.0;
+                    indicator.setOn(on);
+                    indicator.setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.TRANSPARENT);
                 }
             }
         }
@@ -40,7 +58,6 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
             for (ICommand command : commands) {
                 var button = buttonHashMap.get(command.getCommandTriggerKey());
                 if (button != null){
-
                     button.setOnAction(handleButtonsClickByCommand(button,command));
                     button.setVisible(true);
                 } else {
@@ -51,7 +68,8 @@ public abstract class BasicButtonSensorController extends BasicTilesFXSensorCont
     }
 
     protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command));
+        return actionEvent -> executorService.execute(() -> {
+            SerialPortManager.getInstance().write(command);
+        });
     }
-
 }

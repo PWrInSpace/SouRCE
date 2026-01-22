@@ -1,7 +1,5 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.interactivemesh.jfx.importer.ModelImporter;
-import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import com.jfoenix.controls.JFXTextArea;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.tilesfx.Tile;
@@ -18,7 +16,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.javatuples.Pair;
@@ -34,7 +31,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MainController extends BasicController implements InvalidationListener {
+public class MainController extends BaseController implements InvalidationListener {
 
     private static final double initWidth = 1550.4;
     private static final double initHeight = 838.4;
@@ -47,172 +44,91 @@ public class MainController extends BasicController implements InvalidationListe
 
     @FXML
     private SubScene CANIndicatorsScene;
-
     @FXML
     private SubScene fillingCommandsScene;
-
     @FXML
     private SubScene pressurizingCommandsScene;
-
     @FXML
     private SubScene othersIndicatorsScene;
-
     @FXML
     private SubScene othersIndicators2Scene;
-
     @FXML
     private SubScene serialPortMonitorScene;
-
     @FXML
     private SubScene errorsScene;
-
     @FXML
     private JFXTextArea inComing;
-
     @FXML
     private SubScene dataScene;
-
     @FXML
     private SubScene mapScene;
-
     @FXML
     private SubScene powerScene;
-
     @FXML
     private SubScene abortScene;
-
     @FXML
     private AnchorPane footer;
-
     @FXML
     private ImageView poliwrocketLogo;
-
     @FXML
     private ImageView inSpaceLogo;
-
     @FXML
     private SubScene rawDataScene;
-
     @FXML
     private SubScene connectionScene;
-
-    @FXML
-    private SubScene valvesTimeOpenScene;
-
-    @FXML
-    private TabPane tabPane;
-
-    @FXML
-    private JFXTextArea outGoing;
-
-    @FXML
-    private SubScene dataFillingScene;
-
-    @FXML
-    private SubScene dataPressurizingScene;
-
-    @FXML
-    private SubScene valvesPressurizingScene;
-
-    @FXML
-    private SubScene valvesTimeOpenPressurizingScene;
-
-    @FXML
-    private SubScene indicatorsPressurizingScene;
-
-//    @FXML
-//    private SubScene flightValvesScene;
-//
-//    @FXML
-//    private SubScene flightValvesTimeOpenScene;
-
-    @FXML
-    private SubScene startCommandsScene;
-
-    @FXML
-    private SubScene recoveryCommandsScene;
-
     @FXML
     private SubScene valvesScene;
-
+    @FXML
+    private TabPane tabPane;
+    @FXML
+    private JFXTextArea outGoing;
+    @FXML
+    private SubScene dataFillingScene;
+    @FXML
+    private SubScene dataPressurizingScene;
+    @FXML
+    private SubScene valvesPressurizingScene;
+    @FXML
+    private SubScene indicatorsPressurizingScene;
+    @FXML
+    private SubScene startCommandsScene;
+    @FXML
+    private SubScene recoveryCommandsScene;
     @FXML
     private SubScene dataFlightScene;
-
-//    @FXML
-//    private SubScene modelScene;
-
     @FXML
     private SubScene moreDataScene;
-
     @FXML
     private SubScene indicatorsScene;
-
     @FXML
     private SubScene indicators2Scene;
-
     @FXML
     private SubScene indicatorsFlightScene;
-
     @FXML
     private SubScene startControlScene;
-
     @FXML
     private SubScene settingsScene;
-
     @FXML
     private SubScene interpretersScene;
-
     @FXML
     private SubScene rocketSettingsScene;
-
     @FXML
     private SubScene othersScene;
-
     @FXML
     private SubScene others2Scene;
-
     @FXML
-    private SubScene recoveryArmCommandsScene;
-
+    private SubScene recoveryArmScene;
     @FXML
     private SubScene recoveryArmIndicatorsScene;
 
-//    @FXML
-//    private SubScene interpretersFlightScene;
-
-    @FXML
-    private SubScene tanwaOpenScene;
-
-    @FXML
-    private SubScene tanwaCloseScene;
-
-    @FXML
-    private SubScene QDPushScene;
-
-    @FXML
-    private SubScene QDPullScene;
-
-    @FXML
-    private SubScene QDStopScene;
-
-    @FXML
-    private SubScene timeOpenCommandsScene;
-
-    @FXML
-    private SubScene heatingValveScene;
-
     private final SmartGroup root = new SmartGroup();
-
     private Stage primaryStage;
-
     private final List<Node> nodes = new ArrayList<>();
     private final HashMap<Node,Pair<Double,Double>> nodesInitPositions = new HashMap<>();
 
     public SubScene getMapScene() {
         return mapScene;
     }
-
-
 
     public void initSubScenes(Collection<FXMLLoader> fxmlLoaders) {
         try {
@@ -229,7 +145,7 @@ public class MainController extends BasicController implements InvalidationListe
                 String className = fxmlLoader.getController().getClass().getSimpleName().replace("Controller", "").toLowerCase();
                 var field = fields.get(className);
                 if(field != null) {
-                    ((SubScene)field.get(this)).setRoot(loaded);
+                    ((SubScene) field.get(this)).setRoot(loaded);
                 } else {
                     logger.error(String.format("Scene not found for %s", className));
                 }
