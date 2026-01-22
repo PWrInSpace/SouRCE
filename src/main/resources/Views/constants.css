@@ -32,10 +32,17 @@
     -fx-text-fill: black;
 }
 
+
 /*Raised button example */
 .jfx-button {
     -jfx-button-type: RAISED;
     -fx-background-color: #004162;
+    -fx-text-fill: white;
+}
+
+/*Toggle button example */
+.jfx-toggle-button {
+    -jfx-toggle-color: black;
     -fx-text-fill: white;
 }
 
@@ -95,4 +102,3 @@
     -fx-background-color: -fx-backgroundColor-base;
     -fx-text-fill: white;
 }
-

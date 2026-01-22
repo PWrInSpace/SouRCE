@@ -114,7 +114,10 @@ public class Main extends Application {
                     .forEach(p -> {
                         if (p.getFileName().toString().endsWith("View.fxml")) {
                             try {
-                                loaders.put(p.getFileName().toString(), new FXMLLoader(p.toUri().toURL()));
+                                if(!p.getFileName().toString().equals("DetachedTabView.fxml")){
+                                    loaders.put(p.getFileName().toString(), new FXMLLoader(p.toUri().toURL()));
+                                }
+
                             } catch (MalformedURLException e) {
                                 e.printStackTrace();
                             }
@@ -215,11 +218,11 @@ public class Main extends Application {
 
             //Stage settings
             primaryStage.setTitle("SouRCE");
-            primaryStage.setMaximized(true);
             primaryStage.setScene(scene);
             primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
             primaryStage.heightProperty().addListener(mainController);
             primaryStage.widthProperty().addListener(mainController);
+            primaryStage.setMaximized(true);
             primaryStage.setOnShown(windowEvent -> {
                 UIThreadManager.getInstance().start();
                 AppStateLogger.getInstance().start();

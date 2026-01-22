@@ -2,7 +2,10 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.Observable;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -18,7 +21,9 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class SettingsController extends BaseController {
+public class SettingsController extends BasicController {
+    @FXML
+    public JFXToggleButton lightModeToggle;
 
     @FXML
     private AnchorPane mainPanel;
@@ -36,6 +41,7 @@ public class SettingsController extends BaseController {
         int initYLabel = 49;
         int initYInput = 45;
         int offsetY = 40;
+
 
         for (ISensor sensor : Configuration.getInstance().sensorRepository.getAllBasicSensors().values()) {
             if (sensor instanceof ITare) {
@@ -73,6 +79,12 @@ public class SettingsController extends BaseController {
         actionList.forEach(IAction::execute);
     }
 
+    @FXML
+    private void onToggleLightMode() {
+        boolean isLight = lightModeToggle.isSelected();;
+        Configuration.getInstance().setLightMode(isLight);
+    }
+
     void reloadConfig() {
         try {
             Configuration.getInstance().reloadConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
@@ -83,6 +95,8 @@ public class SettingsController extends BaseController {
             logger.error(e.toString());
         }
     }
+
+
 
     @Override
     public void invalidated(Observable observable) {}

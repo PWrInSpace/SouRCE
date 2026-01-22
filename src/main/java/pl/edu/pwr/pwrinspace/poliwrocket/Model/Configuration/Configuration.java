@@ -72,10 +72,24 @@ public class Configuration implements Observable {
 
     public final static Instant startUpTime = Instant.now();
 
+    private boolean lightMode = false;
+
     private Configuration() {
         if (Holder.INSTANCE != null) {
             throw new IllegalStateException("Singleton already constructed");
         }
+    }
+
+    public void setLightMode(boolean lightMode) {
+        this.lightMode = lightMode;
+
+        for (InvalidationListener listener : observers) {
+            listener.invalidated(this);
+        }
+    }
+
+    public boolean isLightMode() {
+        return lightMode;
     }
 
     public void setConfigPath(String path) {
@@ -265,6 +279,8 @@ public class Configuration implements Observable {
     public static Configuration getInstance() {
         return Holder.INSTANCE;
     }
+
+
 
     @Override
     public void addListener(InvalidationListener invalidationListener) {
