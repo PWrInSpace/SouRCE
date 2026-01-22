@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class SettingsController extends BasicController {
+public class SettingsController extends BaseController {
     @FXML
     public JFXToggleButton lightModeToggle;
 
