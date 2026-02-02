@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.*;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
-
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class ModelAsJsonSaveService {
 
@@ -69,8 +72,17 @@ public class ModelAsJsonSaveService {
         }
     }
 
-    public <T extends BaseSaveModel> T readFromFile(T config) throws Exception {
-        File configFile = new File(config.getPath() + config.getFileName());
+    // temp:
+    // true — czyta plik z temp
+    // false — ładuje plik config, a następnie nadpisuje nim temp
+    public <T extends BaseSaveModel> T readFromFile(T config, boolean temp) throws Exception {
+        if (!temp) {
+            Path configPath = Paths.get(config.getPath() + config.getFileName());
+            Path configTempPath = Paths.get(config.getPath() + config.getTempFileName());
+            Files.copy(configPath, configTempPath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        File configFile = new File(config.getPath() + config.getTempFileName());
 
         try (JsonReader reader = new JsonReader(new FileReader(configFile))) {
             config = new Gson().newBuilder()
@@ -83,5 +95,11 @@ public class ModelAsJsonSaveService {
         }
 
         return config;
+    }
+
+    public <T extends BaseSaveModel> void removeTempConfig(T config) {
+        File configTempFile = new File(config.getPath() + config.getTempFileName());
+        if (configTempFile.delete()) System.out.println("Removed temp file");
+        else System.out.println("Temp file not found");
     }
 }

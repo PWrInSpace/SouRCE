@@ -7,12 +7,20 @@ import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,7 +37,6 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     protected final ArrayList<String> moduleArray = new ArrayList<>();
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
     protected final HashMap<String, Button> commandHashMap = new HashMap<>();
-
 
     protected int offestY = 40;
     protected int initY = 30;
@@ -53,6 +60,39 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     protected int commandButtonPrefWidth = 60;
     protected String commandButtonText = "Send";
 
+    JFXButton addComponentButton;
+
+    @FXML
+    public void initialize() {
+        addComponentButton = new JFXButton("+");
+        double layoutX = mainPanel.getPrefWidth() - 15.0;
+        double layoutY = 10.0;
+        addComponentButton.setLayoutX(layoutX);
+        addComponentButton.setLayoutY(layoutY);
+        mainPanel.getChildren().add(addComponentButton);
+        LinkedList<BaseController> controllers = (LinkedList<BaseController>) Configuration.getInstance().controllersList;
+        List<Command> commands = Configuration.getInstance().commandsList;
+
+        addComponentButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/NewCommandComponentView.fxml"));
+            Stage popupStage = new Stage();
+            try {
+                Parent root = loader.load();
+                NewCommandComponentController popupController = loader.getController();
+                Scene popupScene = new Scene(root);
+                popupStage.setScene(popupScene);
+                popupController.setParentController(this);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            popupStage.initOwner(addComponentButton.getScene().getWindow());
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+        });
+    }
 
     @Override
     protected void buildVisualizationMap() {

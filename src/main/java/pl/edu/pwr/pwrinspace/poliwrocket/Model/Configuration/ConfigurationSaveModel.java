@@ -17,55 +17,38 @@ public class ConfigurationSaveModel extends BaseSaveModel {
 
     @Expose
     public int FPS = 10;
-
     @Expose
     public int AVERAGING_PERIOD = 1000;
-
     @Expose
     public int BUFFER_SIZE;
-
     @Expose
     public double START_POSITION_LAT;
-
     @Expose
     public double START_POSITION_LON;
-
     @Expose
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
-
     @Expose
     public String FRAME_DELIMITER = ",";
-
     @Expose
     public String DISCORD_TOKEN = "";
-
     @Expose
     public String DISCORD_CHANNEL_NAME = "rocket";
-
     @Expose
     public Map<String, List<String>> FRAME_PATTERN = new HashMap<>();
-
     @Expose
     public String MSG_PREFIX = "";
-
     @Expose
     public List<Command> commandsList = new LinkedList<>();
-
     @Expose
     public List<Schedule> notificationSchedule = new LinkedList<>();
-
     @Expose
     public List<String> notificationMessageKeys = new LinkedList<>();
-
     @Expose
     public SensorRepository sensorRepository = new SensorRepository();
-
     @Expose
     public InterpreterRepository interpreterRepository = new InterpreterRepository();
-
     @Expose
     public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
-
     @Expose
     public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
 
@@ -73,6 +56,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         super(Configuration.CONFIG_PATH, Configuration.CONFIG_FILE_NAME);
     }
 
+    // generuje ConfigurationSaveModel na bazie Configuration
     public static ConfigurationSaveModel getConfigurationSaveModel(Configuration configuration) {
         ConfigurationSaveModel config = new ConfigurationSaveModel();
         config.FPS = configuration.FPS;
@@ -116,6 +100,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         return config;
     }
 
+    // generuje protobufBasedConfiguration na bazie Configuration
     public static ConfigurationSaveModel protobufBasedConfiguration(Configuration configuration) {
         var defaultConfig = getConfigurationSaveModel(configuration);
         defaultConfig.BUFFER_SIZE = 0;
@@ -143,6 +128,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         return defaultConfig;
     }
 
+    // generuje domyślny Config, nie wymaga żadnych danych wejściowych
     public static ConfigurationSaveModel defaultConfiguration() {
         ConfigurationSaveModel defaultConfig = new ConfigurationSaveModel();
         defaultConfig.sensorRepository = new SensorRepository();
@@ -175,23 +161,23 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.sensorRepository.addSensor(basicSensor);
 
         //utworzenie 3xSensor for GYRO
-        Sensor gryro1 = new Sensor();
-        gryro1.setDestination("dataGauge3");
-        gryro1.setName("Gyro X");
-        gryro1.getDestinationControllerNames().add(DATA_CONTROLLER);
+        Sensor gyro1 = new Sensor();
+        gyro1.setDestination("dataGauge3");
+        gyro1.setName("Gyro X");
+        gyro1.getDestinationControllerNames().add(DATA_CONTROLLER);
 
-        Sensor gryro2 = new Sensor();
-        gryro2.setDestination("dataGauge5");
-        gryro2.setName("Gyro Y");
-        gryro2.getDestinationControllerNames().add(DATA_CONTROLLER);
+        Sensor gyro2 = new Sensor();
+        gyro2.setDestination("dataGauge5");
+        gyro2.setName("Gyro Y");
+        gyro2.getDestinationControllerNames().add(DATA_CONTROLLER);
 
-        Sensor gryro3 = new Sensor();
-        gryro3.setDestination("dataGauge7");
-        gryro3.setName("Gyro Z");
-        gryro3.getDestinationControllerNames().add(DATA_CONTROLLER);
+        Sensor gyro3 = new Sensor();
+        gyro3.setDestination("dataGauge7");
+        gyro3.setName("Gyro Z");
+        gyro3.getDestinationControllerNames().add(DATA_CONTROLLER);
 
-        //nowy gryo
-        GyroSensor gyroSensor = new GyroSensor(gryro1, gryro2, gryro3);
+        //nowy gyro
+        GyroSensor gyroSensor = new GyroSensor(gyro1, gyro2, gyro3);
         gyroSensor.getDestinationControllerNames().add(MAIN_CONTROLLER);
         defaultConfig.sensorRepository.setGyroSensor(gyroSensor);
         //--------

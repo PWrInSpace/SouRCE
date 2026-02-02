@@ -66,7 +66,7 @@ public class Main extends Application {
         try {
             //Read config file
             try {
-                Configuration.getInstance().setupConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+                Configuration.getInstance().setupConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), false));
             } catch (UnsupportedOperationException e) {
                 logger.error("Wrong mapping in controller");
                 e.printStackTrace();
@@ -85,7 +85,7 @@ public class Main extends Application {
 
             //Read speech file
             try {
-                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary(), false);
             } catch (Exception e) {
                 logger.error("Bad speech file, overwritten by default and loaded");
                 logger.error(e.getMessage());
@@ -93,7 +93,7 @@ public class Main extends Application {
                 logger.error(e.toString());
                 modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
                 modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
-                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary());
+                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary(), false);
             }
             //--------------
 
@@ -228,6 +228,8 @@ public class Main extends Application {
                 AppStateLogger.getInstance().start();
             });
             primaryStage.setOnCloseRequest(windowEvent -> {
+                modelAsJsonSaveService.removeTempConfig(new ConfigurationSaveModel());
+                modelAsJsonSaveService.removeTempConfig(new TextToSpeechDictionary());
                 System.exit(0);
             });
             primaryStage.show();

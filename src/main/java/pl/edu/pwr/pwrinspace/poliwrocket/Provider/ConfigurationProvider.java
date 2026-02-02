@@ -9,7 +9,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 import java.util.Arrays;
 
 public class ConfigurationProvider {
-    
+
+    // todo zdecydować czy poprawić tu singleton
     private Configuration configuration;
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationProvider.class);
 
