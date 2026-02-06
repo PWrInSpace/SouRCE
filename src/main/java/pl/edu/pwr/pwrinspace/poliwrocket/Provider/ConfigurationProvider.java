@@ -37,7 +37,7 @@ public class ConfigurationProvider {
             logger.error(Arrays.toString(e.getStackTrace()));
             logger.error(e.toString());
             modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-            // modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
+            // modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration(), false);
             //Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
             throw e;
         }

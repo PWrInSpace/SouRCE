@@ -17,7 +17,7 @@ public class ConfigProtobufGenerator {
 
             Configuration.getInstance().setupConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), false));
 
-            modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.protobufBasedConfiguration(Configuration.getInstance()));
+            modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.protobufBasedConfiguration(Configuration.getInstance()), false);
 
         } catch (Exception e) {
             throw new RuntimeException(e);

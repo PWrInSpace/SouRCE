@@ -77,7 +77,7 @@ public class Main extends Application {
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
                 modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-                //modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration());
+                //modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration(), false);
                 //Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
                 return;
             }
@@ -92,7 +92,7 @@ public class Main extends Application {
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
                 modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
-                modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel());
+                modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel(), false);
                 textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary(), false);
             }
             //--------------

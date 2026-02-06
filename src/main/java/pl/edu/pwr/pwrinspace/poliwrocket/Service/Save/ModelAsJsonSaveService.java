@@ -1,6 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Service.Save;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,10 @@ public class ModelAsJsonSaveService {
             .registerSubtype(ProtobufSimpleCommand.class, "ProtobufSimpleCommand")
             .registerSubtype(StandardCommand.class, "StandardCommand");
 
-    public void saveToFile(BaseSaveModel configuration) {
+    // temp:
+    // true - zapisuje konfiguracje z do temp
+    // false - zapisuje konfiguracje do config
+    public void saveToFile(BaseSaveModel configuration, boolean temp) {
         String configContent = new Gson().newBuilder()
                 .registerTypeAdapterFactory(sensorAdapterFactory)
                 .registerTypeAdapterFactory(commandAdapterFactory)
@@ -43,7 +47,10 @@ public class ModelAsJsonSaveService {
                 .create()
                 .toJson(configuration);
 
-        File configFile = new File(configuration.getPath() + configuration.getFileName());
+        Path configPath = Paths.get(configuration.getPath() + configuration.getFileName());
+        if (temp) configPath = Paths.get(configuration.getPath(), configuration.getTempFileName());
+
+        File configFile = new File(configPath.toString());
 
         try (FileWriter configWriter = new FileWriter(configFile)) {
             configWriter.write(configContent);
@@ -74,7 +81,7 @@ public class ModelAsJsonSaveService {
 
     // temp:
     // true — czyta plik z temp
-    // false — ładuje plik config, a następnie nadpisuje nim temp
+    // false — ładuje plik config, a następnie nadpisuje nim temp i czyta plik temp
     public <T extends BaseSaveModel> T readFromFile(T config, boolean temp) throws Exception {
         if (!temp) {
             Path configPath = Paths.get(config.getPath() + config.getFileName());
@@ -101,5 +108,15 @@ public class ModelAsJsonSaveService {
         File configTempFile = new File(config.getPath() + config.getTempFileName());
         if (configTempFile.delete()) System.out.println("Removed temp file");
         else System.out.println("Temp file not found");
+    }
+
+    public String commandToJson(Command command) {
+        return new Gson().newBuilder()
+                .registerTypeAdapterFactory(commandAdapterFactory)
+                .excludeFieldsWithoutExposeAnnotation()
+                .setPrettyPrinting()
+                .disableHtmlEscaping()
+                .create()
+                .toJson(command, Command.class);
     }
 }

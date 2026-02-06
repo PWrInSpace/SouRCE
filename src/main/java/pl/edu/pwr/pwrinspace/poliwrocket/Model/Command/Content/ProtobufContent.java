@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 public class ProtobufContent extends BaseProtobufContent {
     @Expose
     private String device;
-
     @Expose
     private String system;
 
@@ -28,5 +27,13 @@ public class ProtobufContent extends BaseProtobufContent {
     @Override
     public String toString() {
         return super.toString() + ", device: " + device + ", system: " + system;
+    }
+
+    public static ProtobufContent createProtobufContent(String device, String system, String command) {
+        ProtobufContent content = new ProtobufContent();
+        content.setCommand(command);
+        content.setDevice(device);
+        content.setSystem(system);
+        return content;
     }
 }

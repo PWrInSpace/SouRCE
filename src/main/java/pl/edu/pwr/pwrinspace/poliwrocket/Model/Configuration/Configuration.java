@@ -22,7 +22,6 @@ import java.util.*;
 
 public class Configuration implements Observable {
 
-    // todo ładnie poukładać pola
     private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
 
     public int FPS = 10;

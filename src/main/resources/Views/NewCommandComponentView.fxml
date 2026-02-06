@@ -23,7 +23,7 @@
                 <JFXToggleButton fx:id="protobufHexFormat" text="HEX" toggleGroup="$protobufCommandFormat" onAction="#handleCommandFormatChange" layoutX="165.0" layoutY="20.0" selected="true"/>
                 <JFXToggleButton fx:id="protobufDecimalFormat" text="DECIMAL" toggleGroup="$protobufCommandFormat" onAction="#handleCommandFormatChange" layoutX="165.0" layoutY="50.0"/>
                 <JFXTextArea fx:id="protobufTriggerTextArea" promptText="trigger" layoutX="15.0" prefWidth="320.0" layoutY="100.0" prefHeight="50.0"/>
-                <JFXTextArea fx:id="protobudDescriptionTextArea" promptText="description" layoutX="15.0" prefWidth="320.0" layoutY="160.0" prefHeight="50.0"/>
+                <JFXTextArea fx:id="protobufDescriptionTextArea" promptText="description" layoutX="15.0" prefWidth="320.0" layoutY="160.0" prefHeight="50.0"/>
                 <JFXToggleButton fx:id="protobufCommandIsFinalToggleButton" prefWidth="150.0" layoutX="100.0" layoutY="210.0" text="IsFinal"/>
                 <JFXButton fx:id="addProtobufCommandButton" text="ADD" layoutX="145.0" prefWidth="60" layoutY="265.0" onAction="#addProtobufCommand"/>
             </AnchorPane>

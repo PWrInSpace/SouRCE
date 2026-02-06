@@ -1,10 +1,20 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.ProtobufContent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NewCommandComponentController extends BaseNewComponentController {
     BaseCommandsController parentController;
@@ -36,12 +46,17 @@ public class NewCommandComponentController extends BaseNewComponentController {
     @FXML
     private TextArea protobufTriggerTextArea;
     @FXML
-    private TextArea protobudDescriptionTextArea;
+    private TextArea protobufDescriptionTextArea;
+    @FXML
+    public JFXButton addProtobufCommandButton;
 
     @FXML
     public void initialize() {
         protobufDeviceComboBox.getItems().addAll("ALL", "OBC", "TANWA");
         protobufDeviceComboBox.getSelectionModel().selectFirst();
+        protobufSystemComboBox.getItems().addAll("ETH");
+        protobufSystemComboBox.getSelectionModel().selectFirst();
+
         handleCommandTypeChange();
 
         protobufType.addEventFilter(MouseEvent.MOUSE_PRESSED,event -> {
@@ -59,8 +74,14 @@ public class NewCommandComponentController extends BaseNewComponentController {
 
         protobufCommandTextArea.setTextFormatter(new TextFormatter<>(change -> {
             String newText = change.getText();
-            if (protobufCommandFormat.getSelectedToggle() == protobufHexFormat && newText.matches("[0-9a-fA-F]*")) return change;
-            else if (protobufCommandFormat.getSelectedToggle() == protobufDecimalFormat && newText.matches("[0-9]*")) return change;
+            if (protobufCommandFormat.getSelectedToggle() == protobufHexFormat && newText.matches("[0-9a-fA-F]*") && change.getControlNewText().length() <= 2) return change;
+            else if (protobufCommandFormat.getSelectedToggle() == protobufDecimalFormat && newText.matches("[0-9]*") && change.getControlNewText().length() <= 3) {
+                if (!change.getControlNewText().isEmpty() && Integer.parseInt(change.getControlNewText()) > 255) {
+                    protobufCommandTextArea.setText("255");
+                    return null;
+                }
+                return change;
+            }
             return null;
         }));
     }
@@ -101,11 +122,35 @@ public class NewCommandComponentController extends BaseNewComponentController {
 
     @FXML
     private void addProtobufCommand() {
-        //debugging
-        ProtobufCommand protobufCommand = new ProtobufCommand();
+        ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+        try {
+            ProtobufCommand command = createProtobufCommand();
+            String commandString = modelAsJsonSaveService.commandToJson(command);
+            System.out.println(commandString);
+
+            ((Stage) addProtobufCommandButton.getScene().getWindow()).close();
+        } catch (InvalidParameterException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     public void setParentController(BaseCommandsController parentController) {
         this.parentController = parentController;
+    }
+
+    private ProtobufCommand createProtobufCommand() throws InvalidParameterException /* todo dodać że zwraca wyjątek jak jakieś pole jest puste */ {
+        String device = protobufDeviceComboBox.getSelectionModel().getSelectedItem();
+        String system = protobufSystemComboBox.getSelectionModel().getSelectedItem();
+        if (device == null || system == null) throw new InvalidParameterException("Device or system not specified");
+        String command = protobufCommandTextArea.getText(); /* todo dodać aby naprawiało napis */
+        if (command == null || command.isEmpty()) throw new InvalidParameterException("Invalid command");
+        ProtobufContent content = ProtobufContent.createProtobufContent(device, system, command);
+        boolean isFinal = protobufCommandIsFinalToggleButton.isSelected();
+        String trigger = protobufTriggerTextArea.getText();
+        if (trigger == null || trigger.isEmpty()) throw new InvalidParameterException("Invalid trigger");
+        String description = protobufDescriptionTextArea.getText();
+        if (description == null || description.isEmpty()) throw new InvalidParameterException("Invalid description");
+        List<String> destinationControllerNames = new ArrayList<>(Collections.singletonList(parentController.getControllerName()));
+        return ProtobufCommand.createProtobufCommand(content, isFinal, trigger, description, CommandType.INPUT_COMMAND, destinationControllerNames);
     }
 }

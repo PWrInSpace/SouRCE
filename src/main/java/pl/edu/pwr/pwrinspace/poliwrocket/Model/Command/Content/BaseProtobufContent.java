@@ -14,4 +14,8 @@ public class BaseProtobufContent {
     public String toString() {
         return "command: " + command;
     }
+
+    protected void setCommand(String command) {
+        this.command = command;
+    }
 }

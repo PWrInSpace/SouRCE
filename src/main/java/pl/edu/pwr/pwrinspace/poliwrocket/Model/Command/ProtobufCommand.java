@@ -22,4 +22,15 @@ public class ProtobufCommand extends ProtobufBaseCommand<ProtobufContent> {
                 Configuration.getInstance().protobufSystemRepository.getSystem(value.getSystem()).getSystemDeviceId()
         );
     }
+
+    public static ProtobufCommand createProtobufCommand(ProtobufContent content, boolean isFinal, String trigger, String description, CommandType commandType, List<String> destinationControllerNames) {
+        ProtobufCommand command = new ProtobufCommand();
+        command.setValue(content);
+        command.setFinal(isFinal);
+        command.setTrigger(trigger);
+        command.setDescription(description);
+        command.setCommandType(commandType);
+        command.setDestinationControllerNames(destinationControllerNames);
+        return command;
+    }
 }

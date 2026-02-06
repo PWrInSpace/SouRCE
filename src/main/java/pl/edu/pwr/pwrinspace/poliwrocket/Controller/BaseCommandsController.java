@@ -70,8 +70,6 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
         addComponentButton.setLayoutX(layoutX);
         addComponentButton.setLayoutY(layoutY);
         mainPanel.getChildren().add(addComponentButton);
-        LinkedList<BaseController> controllers = (LinkedList<BaseController>) Configuration.getInstance().controllersList;
-        List<Command> commands = Configuration.getInstance().commandsList;
 
         addComponentButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/NewCommandComponentView.fxml"));
