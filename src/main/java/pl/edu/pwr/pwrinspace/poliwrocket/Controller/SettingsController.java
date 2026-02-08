@@ -96,7 +96,9 @@ public class SettingsController extends BaseController {
         }
     }
 
+    void saveTempConfig() {
 
+    }
 
     @Override
     public void invalidated(Observable observable) {}

@@ -6,9 +6,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.ProtobufContent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 
 import java.security.InvalidParameterException;
@@ -125,12 +128,12 @@ public class NewCommandComponentController extends BaseNewComponentController {
         ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
         try {
             ProtobufCommand command = createProtobufCommand();
-            String commandString = modelAsJsonSaveService.commandToJson(command);
-            System.out.println(commandString);
+            modelAsJsonSaveService.addCommandToFile(new ConfigurationSaveModel(), command);
+            Configuration.getInstance().reloadConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), true));
 
             ((Stage) addProtobufCommandButton.getScene().getWindow()).close();
-        } catch (InvalidParameterException exception) {
-            System.out.println(exception.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
         }
     }
 
@@ -142,14 +145,19 @@ public class NewCommandComponentController extends BaseNewComponentController {
         String device = protobufDeviceComboBox.getSelectionModel().getSelectedItem();
         String system = protobufSystemComboBox.getSelectionModel().getSelectedItem();
         if (device == null || system == null) throw new InvalidParameterException("Device or system not specified");
+
         String command = protobufCommandTextArea.getText(); /* todo dodać aby naprawiało napis */
         if (command == null || command.isEmpty()) throw new InvalidParameterException("Invalid command");
+
         ProtobufContent content = ProtobufContent.createProtobufContent(device, system, command);
         boolean isFinal = protobufCommandIsFinalToggleButton.isSelected();
+
         String trigger = protobufTriggerTextArea.getText();
         if (trigger == null || trigger.isEmpty()) throw new InvalidParameterException("Invalid trigger");
+
         String description = protobufDescriptionTextArea.getText();
         if (description == null || description.isEmpty()) throw new InvalidParameterException("Invalid description");
+
         List<String> destinationControllerNames = new ArrayList<>(Collections.singletonList(parentController.getControllerName()));
         return ProtobufCommand.createProtobufCommand(content, isFinal, trigger, description, CommandType.INPUT_COMMAND, destinationControllerNames);
     }

@@ -1,7 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Service.Save;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Iterator;
+import java.util.List;
 
 public class ModelAsJsonSaveService {
 
@@ -118,5 +119,37 @@ public class ModelAsJsonSaveService {
                 .disableHtmlEscaping()
                 .create()
                 .toJson(command, Command.class);
+    }
+
+    public void addCommandToFile(BaseSaveModel config, Command command) {
+        String[] commandJson = commandToJson(command).split("\n");
+
+        Path configTempPath = Paths.get(config.getPath() + config.getTempFileName());
+
+        try {
+            List<String> configLines = Files.readAllLines(configTempPath);
+            int index = 0;
+            int squareBracketCounter = 1;
+            while(!configLines.get(index).contains("commandsList")) index++;
+            while(squareBracketCounter != 0) {
+                index++;
+                if(configLines.get(index).contains("[")) squareBracketCounter++;
+                if(configLines.get(index).contains("]")) squareBracketCounter--;
+            }
+            configLines.set(index-1, configLines.get(index-1) + ",");
+            for (String line : commandJson) {
+                configLines.add(index, "\t"+line);
+                index++;
+            }
+
+            Files.write(configTempPath, configLines);
+
+        } catch (FileNotFoundException e) {
+            logger.error("Config file not found");
+            logger.error(e.getMessage());
+        } catch (IOException e) {
+            logger.error("Error during modifying tempConfig");
+            logger.error(e.getMessage());
+        }
     }
 }
