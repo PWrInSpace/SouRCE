@@ -152,4 +152,15 @@ public class ModelAsJsonSaveService {
             logger.error(e.getMessage());
         }
     }
+
+    public void overrideConfig(BaseSaveModel config) {
+        Path configPath = Paths.get(config.getPath() + config.getFileName());
+        Path configTempPath = Paths.get(config.getPath() + config.getTempFileName());
+        try {
+            Files.copy(configTempPath, configPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
 }
