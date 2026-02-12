@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+<?import com.jfoenix.controls.JFXComboBox?>
+
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.AddExistingCommandController" prefHeight="600.0" prefWidth="600.0">
+    <Region style="-fx-background-image: url('silly_cat_4.jpeg'); -fx-background-position: center, center; -fx-background-size: cover, cover" />
+    <AnchorPane prefHeight="450.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
+        <JFXComboBox fx:id="commandTypeFilter" prefWidth="320.0" layoutX="15.0" layoutY="15.0" promptText="command type" />
+        <JFXComboBox fx:id="deviceFilter" prefWidth="152.5" layoutX="15.0" layoutY="45.0" promptText="device" />
+        <JFXComboBox fx:id="systemFilter" prefWidth="152.5" layoutX="182.5" layoutY="45.0" promptText="system" />
+        <JFXTextArea fx:id="descriptionFilter" prefWidth="97.0" layoutX="14.75" prefHeight="40" layoutY="80.0" promptText="description"/>
+        <JFXTextArea fx:id="triggerFilter" prefWidth="97.0" layoutX="126.5" prefHeight="40" layoutY="80.0" promptText="trigger"/>
+        <JFXTextArea fx:id="commandFilter" prefWidth="97.0" layoutX="238.25" prefHeight="40" layoutY="80.0" promptText="command"/>
+        <JFXToggleButton fx:id="isFinalFilter" text="IsFinal" layoutY="120.0" layoutX="70.0" prefWidth="200"/>
+        <JFXListView fx:id="commandListView" prefWidth="570.0" prefHeight="410.0" layoutX="15" layoutY="175.0"/>
+    </AnchorPane>
+</StackPane>

@@ -31,6 +31,9 @@ public class SettingsController extends BaseController {
     protected JFXButton applyButton;
     @FXML
     protected JFXButton reloadButton;
+    @FXML
+    protected JFXButton saveTempButton;
+
 
     private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
     List<IAction> actionList = new ArrayList<>();
@@ -41,7 +44,6 @@ public class SettingsController extends BaseController {
         int initYLabel = 49;
         int initYInput = 45;
         int offsetY = 40;
-
 
         for (ISensor sensor : Configuration.getInstance().sensorRepository.getAllBasicSensors().values()) {
             if (sensor instanceof ITare) {
@@ -72,7 +74,9 @@ public class SettingsController extends BaseController {
         }
 
         applyButton.setOnMouseClicked(event -> executorService.execute(this::apply));
+        saveTempButton.setOnMouseClicked(event -> executorService.execute(this::saveTempConfig));
         reloadButton.setOnMouseClicked(event -> executorService.execute(this::reloadConfig));
+
     }
 
     void apply() {
@@ -97,7 +101,7 @@ public class SettingsController extends BaseController {
     }
 
     void saveTempConfig() {
-
+        new ModelAsJsonSaveService().overrideConfig(new ConfigurationSaveModel());
     }
 
     @Override

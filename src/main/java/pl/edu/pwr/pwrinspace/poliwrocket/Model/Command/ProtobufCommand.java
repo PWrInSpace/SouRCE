@@ -33,4 +33,16 @@ public class ProtobufCommand extends ProtobufBaseCommand<ProtobufContent> {
         command.setDestinationControllerNames(destinationControllerNames);
         return command;
     }
+
+    @Override
+    public String getListViewString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Protobuf, ");
+        sb.append("device: ").append(value.getDevice()).append(", ");
+        sb.append("system: ").append(value.getSystem()).append(", ");
+        sb.append("command: ").append(value.getCommand()).append(", ");
+        if (payload == null || payload.isEmpty()) sb.append("payload: null");
+        else sb.append("payload: ").append(payload);
+        return sb.toString();
+    }
 }

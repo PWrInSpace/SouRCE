@@ -58,6 +58,10 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
         this.commandButtonLayoutX = 387;
     }
 
+    @FXML
+    @Override
+    public void initialize() {}
+
     @Override
     protected void buildVisualizationMap() {
 

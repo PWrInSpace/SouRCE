@@ -59,7 +59,6 @@
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-background-color: -inspace-base-border-color;
-
 }
 
 .jfx-text-field {
@@ -101,4 +100,18 @@
 .jfx-text-area {
     -fx-background-color: -fx-backgroundColor-base;
     -fx-text-fill: white;
+}
+
+.jfx-list-view {
+    -fx-background-color: -fx-backgroundColor-base;
+}
+
+.jfx-list-view .cell {
+    -fx-text-fill: white;
+    -fx-background-color: -fx-backgroundColor-base;
+}
+
+.jfx-list-view .cell:odd {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(4, 47, 88, 0.7);
 }

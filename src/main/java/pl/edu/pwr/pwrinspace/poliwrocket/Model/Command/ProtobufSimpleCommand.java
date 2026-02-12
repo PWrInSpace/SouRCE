@@ -17,4 +17,14 @@ public class ProtobufSimpleCommand extends ProtobufBaseCommand<SimpleProtobufCon
 
         return buildLoRaCommand(device, system);
     }
+
+    @Override
+    public String getListViewString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Protobuf, ");
+        sb.append("command: ").append(value.getCommand()).append(", ");
+        if (payload == null || payload.isEmpty()) sb.append("payload: null");
+        else sb.append("payload: ").append(payload);
+        return sb.toString();
+    }
 }

@@ -1,12 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.ProtobufContent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
@@ -25,39 +24,39 @@ public class NewCommandComponentController extends BaseNewComponentController {
     @FXML
     private ToggleGroup commandType;
     @FXML
-    private ToggleButton protobufType;
+    private JFXToggleButton protobufType;
     @FXML
-    private ToggleButton standardType;
+    private JFXToggleButton standardType;
     @FXML
     private AnchorPane protobufCommandDetails;
     @FXML
     private AnchorPane standardCommandDetails;
     @FXML
-    private ComboBox<String> protobufDeviceComboBox;
+    private JFXComboBox<String> protobufDeviceComboBox;
     @FXML
-    private ComboBox<String> protobufSystemComboBox;
+    private JFXComboBox<String> protobufSystemComboBox;
     @FXML
-    private TextArea protobufCommandTextArea;
+    private JFXTextArea protobufCommandTextArea;
     @FXML
-    private ToggleButton protobufCommandIsFinalToggleButton;
+    private JFXToggleButton isFinalToggleButton;
     @FXML
     private ToggleGroup protobufCommandFormat;
     @FXML
-    private ToggleButton protobufHexFormat;
+    private JFXToggleButton protobufHexFormat;
     @FXML
-    private ToggleButton protobufDecimalFormat;
+    private JFXToggleButton protobufDecimalFormat;
     @FXML
-    private TextArea protobufTriggerTextArea;
+    private JFXTextArea triggerTextArea;
     @FXML
-    private TextArea protobufDescriptionTextArea;
+    private JFXTextArea descriptionTextArea;
     @FXML
-    public JFXButton addProtobufCommandButton;
+    private JFXButton addCommandButton;
 
     @FXML
     public void initialize() {
-        protobufDeviceComboBox.getItems().addAll("ALL", "OBC", "TANWA");
+        protobufDeviceComboBox.getItems().addAll(Configuration.getInstance().protobufDeviceRepository.getDeviceSet());
         protobufDeviceComboBox.getSelectionModel().selectFirst();
-        protobufSystemComboBox.getItems().addAll("ETH");
+        protobufSystemComboBox.getItems().addAll(Configuration.getInstance().protobufSystemRepository.getSystemSet());
         protobufSystemComboBox.getSelectionModel().selectFirst();
 
         handleCommandTypeChange();
@@ -87,6 +86,9 @@ public class NewCommandComponentController extends BaseNewComponentController {
             }
             return null;
         }));
+
+        var sensors = Configuration.getInstance().sensorRepository;
+        System.out.println("sensors");
     }
 
     @FXML
@@ -131,7 +133,7 @@ public class NewCommandComponentController extends BaseNewComponentController {
             modelAsJsonSaveService.addCommandToFile(new ConfigurationSaveModel(), command);
             Configuration.getInstance().reloadConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), true));
 
-            ((Stage) addProtobufCommandButton.getScene().getWindow()).close();
+            ((Stage) addCommandButton.getScene().getWindow()).close();
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -148,14 +150,18 @@ public class NewCommandComponentController extends BaseNewComponentController {
 
         String command = protobufCommandTextArea.getText(); /* todo dodać aby naprawiało napis */
         if (command == null || command.isEmpty()) throw new InvalidParameterException("Invalid command");
+        if (protobufCommandFormat.getSelectedToggle() == protobufDecimalFormat) command = Integer.toHexString(Integer.parseInt(command, 16));
+        command = command.toUpperCase();
+        if (command.length() == 1) command = "0" + command;
+        command = "0x" + command;
 
         ProtobufContent content = ProtobufContent.createProtobufContent(device, system, command);
-        boolean isFinal = protobufCommandIsFinalToggleButton.isSelected();
+        boolean isFinal = isFinalToggleButton.isSelected();
 
-        String trigger = protobufTriggerTextArea.getText();
+        String trigger = triggerTextArea.getText();
         if (trigger == null || trigger.isEmpty()) throw new InvalidParameterException("Invalid trigger");
 
-        String description = protobufDescriptionTextArea.getText();
+        String description = descriptionTextArea.getText();
         if (description == null || description.isEmpty()) throw new InvalidParameterException("Invalid description");
 
         List<String> destinationControllerNames = new ArrayList<>(Collections.singletonList(parentController.getControllerName()));

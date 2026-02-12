@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Command<T> implements ICommand {
+public abstract class Command<T> implements ICommand {
     @Expose
     protected T value;
     @Expose
@@ -20,6 +20,10 @@ public class Command<T> implements ICommand {
     protected CommandType commandType = CommandType.INPUT_COMMAND;
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
+
+    public T getValue() {
+        return value;
+    }
 
     public void setValue(T value) {
         this.value = value;
@@ -108,4 +112,6 @@ public class Command<T> implements ICommand {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
+    public abstract String getListViewString();
 }

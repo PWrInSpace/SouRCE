@@ -15,9 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
 import java.io.IOException;
@@ -61,16 +59,15 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     protected String commandButtonText = "Send";
 
     JFXButton addComponentButton;
+    JFXButton addExistingCommandButton;
 
     @FXML
+    @Override
     public void initialize() {
         addComponentButton = new JFXButton("+");
-        double layoutX = mainPanel.getPrefWidth() - 15.0;
-        double layoutY = 10.0;
-        addComponentButton.setLayoutX(layoutX);
-        addComponentButton.setLayoutY(layoutY);
+        addComponentButton.setLayoutX(0);
+        addComponentButton.setLayoutY(0);
         mainPanel.getChildren().add(addComponentButton);
-
         addComponentButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/NewCommandComponentView.fxml"));
             Stage popupStage = new Stage();
@@ -85,6 +82,30 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
             }
 
             popupStage.initOwner(addComponentButton.getScene().getWindow());
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+        });
+
+        addExistingCommandButton = new JFXButton("+E");
+        addExistingCommandButton.setLayoutX(50);
+        addExistingCommandButton.setLayoutY(0);
+        mainPanel.getChildren().add(addExistingCommandButton);
+        addExistingCommandButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AddExistingCommandView.fxml"));
+            Stage popupStage = new Stage();
+            try {
+                Parent root = loader.load();
+                AddExistingCommandController popupController = loader.getController();
+                Scene popupScene = new Scene(root);
+                popupStage.setScene(popupScene);
+                popupController.setParentController(this);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            popupStage.initOwner(addExistingCommandButton.getScene().getWindow());
             popupStage.initModality(Modality.WINDOW_MODAL);
             popupStage.setResizable(false);
 

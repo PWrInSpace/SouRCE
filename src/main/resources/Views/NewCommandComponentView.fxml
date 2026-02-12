@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewCommandComponentController">
-    <Region style="-fx-background-image: url('silly_cat_4.jpeg'); -fx-background-position: center, center; -fx-background-size: cover, cover" />
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
+    <Region style="-fx-background-image: url('silly_cat_4.jpeg'); -fx-backgrbound-position: center, center; -fx-background-size: cover, cover" />
+    <AnchorPane prefHeight="355.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
         <fx:define>
             <ToggleGroup fx:id="commandType" />
         </fx:define>
         <JFXToggleButton fx:id="protobufType" toggleGroup="$commandType" mnemonicParsing="false" onAction="#handleCommandTypeChange" prefHeight="55.0" prefWidth="175.0" selected="true" text="Protobuf" textAlignment="CENTER" />
         <JFXToggleButton fx:id="standardType" toggleGroup="$commandType" layoutX="175.0" mnemonicParsing="false" onAction="#handleCommandTypeChange" prefHeight="55.0" prefWidth="175.0" text="Standard" textAlignment="CENTER" />
-        <StackPane layoutY="55.0" prefHeight="300.0" prefWidth="350.0">
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" fx:id="protobufCommandDetails">
+        <StackPane layoutY="55.0" prefHeight="155.0" prefWidth="350.0">
+            <AnchorPane fx:id="protobufCommandDetails">
                 <JFXComboBox fx:id="protobufDeviceComboBox" prefWidth="152.5" layoutX="15.0" promptText="device" />
                 <JFXComboBox fx:id="protobufSystemComboBox" prefWidth="152.5" layoutX="182.5" promptText="system"/>
                 <fx:define>
@@ -22,14 +22,13 @@
                 <JFXTextArea fx:id="protobufCommandTextArea" prefWidth="150.0" prefHeight="50" layoutX="15.0" layoutY="40.0" promptText="command"/>
                 <JFXToggleButton fx:id="protobufHexFormat" text="HEX" toggleGroup="$protobufCommandFormat" onAction="#handleCommandFormatChange" layoutX="165.0" layoutY="20.0" selected="true"/>
                 <JFXToggleButton fx:id="protobufDecimalFormat" text="DECIMAL" toggleGroup="$protobufCommandFormat" onAction="#handleCommandFormatChange" layoutX="165.0" layoutY="50.0"/>
-                <JFXTextArea fx:id="protobufTriggerTextArea" promptText="trigger" layoutX="15.0" prefWidth="320.0" layoutY="100.0" prefHeight="50.0"/>
-                <JFXTextArea fx:id="protobufDescriptionTextArea" promptText="description" layoutX="15.0" prefWidth="320.0" layoutY="160.0" prefHeight="50.0"/>
-                <JFXToggleButton fx:id="protobufCommandIsFinalToggleButton" prefWidth="150.0" layoutX="100.0" layoutY="210.0" text="IsFinal"/>
-                <JFXButton fx:id="addProtobufCommandButton" text="ADD" layoutX="145.0" prefWidth="60" layoutY="265.0" onAction="#addProtobufCommand"/>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" fx:id="standardCommandDetails">
-
             </AnchorPane>
         </StackPane>
+        <JFXTextArea fx:id="triggerTextArea" promptText="trigger" layoutX="15.0" prefWidth="320.0" layoutY="155.0" prefHeight="50.0"/>
+        <JFXTextArea fx:id="descriptionTextArea" promptText="description" layoutX="15.0" prefWidth="320.0" layoutY="215.0" prefHeight="50.0"/>
+        <JFXToggleButton fx:id="isFinalToggleButton" prefWidth="150.0" layoutX="100.0" layoutY="265.0" text="IsFinal"/>
+        <JFXButton fx:id="addCommandButton" text="ADD" layoutX="145.0" prefWidth="60" layoutY="320.0" onAction="#addProtobufCommand"/>
     </AnchorPane>
 </StackPane>
