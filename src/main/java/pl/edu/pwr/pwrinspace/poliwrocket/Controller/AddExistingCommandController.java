@@ -1,17 +1,18 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
+import javafx.stage.Stage;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.StandardCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+
+import java.security.InvalidParameterException;
 
 public class AddExistingCommandController extends BaseNewComponentController {
     BaseCommandsController parentController;
@@ -32,6 +33,8 @@ public class AddExistingCommandController extends BaseNewComponentController {
     private JFXTextArea commandFilter;
     @FXML
     private JFXToggleButton isFinalFilter;
+    @FXML
+    private JFXButton addExistingCommandButton;
 
     FilteredList<Command> filteredCommandList;
 
@@ -66,7 +69,6 @@ public class AddExistingCommandController extends BaseNewComponentController {
 
         filteredCommandList = new FilteredList<>(FXCollections.observableList(Configuration.getInstance().commandsList));
         commandListView.setItems(filteredCommandList);
-        updateFilters();
 
         //ustawianie listeners
         commandTypeFilter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateFilters());
@@ -80,27 +82,68 @@ public class AddExistingCommandController extends BaseNewComponentController {
 
     public void setParentController(BaseCommandsController parentController) {
         this.parentController = parentController;
+        updateFilters();
     }
 
     private void updateFilters() {
+        String type = commandTypeFilter.getSelectionModel().getSelectedItem();
+        String device = deviceFilter.getSelectionModel().getSelectedItem();
+        String system = systemFilter.getSelectionModel().getSelectedItem();
+        String description = descriptionFilter.getText().toUpperCase();
+        String trigger = triggerFilter.getText().toUpperCase();
+        String commandValue = commandFilter.getText().toUpperCase();
+
         filteredCommandList.setPredicate(command -> {
+            if (parentController != null) {
+                for (Object controllerName : command.getDestinationControllerNames()) {
+                    if (controllerName.equals(parentController.getControllerName())) return false;
+                }
+            }
+            if (!textFilter(trigger, command.getCommandTriggerKey().toUpperCase())) return false;
+            if (!textFilter(description, command.getCommandDescription().toUpperCase())) return false;
+
             if (command instanceof ProtobufCommand) {
                 ProtobufCommand protobufCommand = (ProtobufCommand) command;
-                return (commandTypeFilter.getSelectionModel().getSelectedItem().equals("none") || commandTypeFilter.getSelectionModel().getSelectedItem().equals("PROTOBUF")) &&
-                        (deviceFilter.getSelectionModel().getSelectedItem().equals("none") || deviceFilter.getSelectionModel().getSelectedItem().equals(protobufCommand.getValue().getDevice())) &&
-                        (systemFilter.getSelectionModel().getSelectedItem().equals("none") || systemFilter.getSelectionModel().getSelectedItem().equals(protobufCommand.getValue().getSystem())) &&
-                        (descriptionFilter.getText().isEmpty() || command.getCommandDescription().contains(descriptionFilter.getText())) &&
-                        (triggerFilter.getText().isEmpty() || command.getCommandTriggerKey().contains(triggerFilter.getText()) &&
-                                (commandFilter.getText().isEmpty() || protobufCommand.getValue().getCommand().contains(commandFilter.getText())));
+                if (!selectionFilter(type, "PROTOBUF")) return false;
+                if (!selectionFilter(device, protobufCommand.getValue().getDevice())) return false;
+                if (!selectionFilter(system, protobufCommand.getValue().getSystem())) return false;
+                return textFilter(commandValue, protobufCommand.getValue().getCommand());
             } else if (command instanceof StandardCommand) {
-                return (commandTypeFilter.getSelectionModel().getSelectedItem().equals("none") || commandTypeFilter.getSelectionModel().getSelectedItem().equals("STANDARD")) &&
-                        deviceFilter.getSelectionModel().getSelectedItem().equals("none") &&
-                        systemFilter.getSelectionModel().getSelectedItem().equals("none") &&
-                        (descriptionFilter.getText().isEmpty() || command.getCommandDescription().contains(descriptionFilter.getText())) &&
-                        (triggerFilter.getText().isEmpty() || command.getCommandTriggerKey().contains(triggerFilter.getText())) &&
-                        (commandFilter.getText().isEmpty() || command.getCommandValueAsString().contains(commandFilter.getText()));
+                StandardCommand standardCommand = (StandardCommand) command;
+                if (!selectionFilter(type, "STANDARD")) return false;
+                if (!device.equals("none")) return false;
+                if (!system.equals("none")) return false;
+                return textFilter(commandValue, standardCommand.getValue());
             }
-            return false;
+            return true;
         });
+    }
+
+    private boolean textFilter(String filter, String text) {
+        if (filter.isEmpty()) return true;
+        return text.contains(filter);
+    }
+
+    private boolean selectionFilter(String filter, String selection) {
+        if (filter.equals("none")) return true;
+        return selection.equals(filter);
+    }
+
+    private Command getSelectedCommand() throws InvalidParameterException {
+        if (commandListView.getSelectionModel().getSelectedItem() != null) {
+            return commandListView.getSelectionModel().getSelectedItem();
+        } else throw new InvalidParameterException("Command not selected");
+    }
+
+    @FXML
+    public void addExistingCommand() {
+        try {
+            var command = getSelectedCommand();
+            ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+            ((Stage) addExistingCommandButton.getScene().getWindow()).close();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
+        }
     }
 }

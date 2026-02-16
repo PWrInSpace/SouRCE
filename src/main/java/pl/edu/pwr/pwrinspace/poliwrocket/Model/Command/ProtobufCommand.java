@@ -23,12 +23,13 @@ public class ProtobufCommand extends ProtobufBaseCommand<ProtobufContent> {
         );
     }
 
-    public static ProtobufCommand createProtobufCommand(ProtobufContent content, boolean isFinal, String trigger, String description, CommandType commandType, List<String> destinationControllerNames) {
+    public static ProtobufCommand createProtobufCommand(ProtobufContent content, boolean isFinal, String trigger, String description, String payload, CommandType commandType, List<String> destinationControllerNames) {
         ProtobufCommand command = new ProtobufCommand();
         command.setValue(content);
         command.setFinal(isFinal);
         command.setTrigger(trigger);
         command.setDescription(description);
+        command.setPayload(payload);
         command.setCommandType(commandType);
         command.setDestinationControllerNames(destinationControllerNames);
         return command;

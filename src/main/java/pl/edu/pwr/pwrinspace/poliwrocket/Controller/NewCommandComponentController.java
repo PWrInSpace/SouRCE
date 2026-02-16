@@ -50,6 +50,8 @@ public class NewCommandComponentController extends BaseNewComponentController {
     @FXML
     private JFXTextArea descriptionTextArea;
     @FXML
+    private JFXTextArea payloadTextArea;
+    @FXML
     private JFXButton addCommandButton;
 
     @FXML
@@ -143,12 +145,12 @@ public class NewCommandComponentController extends BaseNewComponentController {
         this.parentController = parentController;
     }
 
-    private ProtobufCommand createProtobufCommand() throws InvalidParameterException /* todo dodać że zwraca wyjątek jak jakieś pole jest puste */ {
+    private ProtobufCommand createProtobufCommand() throws InvalidParameterException {
         String device = protobufDeviceComboBox.getSelectionModel().getSelectedItem();
         String system = protobufSystemComboBox.getSelectionModel().getSelectedItem();
         if (device == null || system == null) throw new InvalidParameterException("Device or system not specified");
 
-        String command = protobufCommandTextArea.getText(); /* todo dodać aby naprawiało napis */
+        String command = protobufCommandTextArea.getText();
         if (command == null || command.isEmpty()) throw new InvalidParameterException("Invalid command");
         if (protobufCommandFormat.getSelectedToggle() == protobufDecimalFormat) command = Integer.toHexString(Integer.parseInt(command, 16));
         command = command.toUpperCase();
@@ -164,7 +166,10 @@ public class NewCommandComponentController extends BaseNewComponentController {
         String description = descriptionTextArea.getText();
         if (description == null || description.isEmpty()) throw new InvalidParameterException("Invalid description");
 
+        String payload = payloadTextArea.getText();
+        if (payload == null || payload.isEmpty()) payload = null;
+
         List<String> destinationControllerNames = new ArrayList<>(Collections.singletonList(parentController.getControllerName()));
-        return ProtobufCommand.createProtobufCommand(content, isFinal, trigger, description, CommandType.INPUT_COMMAND, destinationControllerNames);
+        return ProtobufCommand.createProtobufCommand(content, isFinal, trigger, description, payload, CommandType.INPUT_COMMAND, destinationControllerNames);
     }
 }

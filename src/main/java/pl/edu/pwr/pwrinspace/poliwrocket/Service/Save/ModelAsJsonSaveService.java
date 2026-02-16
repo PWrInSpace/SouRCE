@@ -153,6 +153,9 @@ public class ModelAsJsonSaveService {
         }
     }
 
+    public void addDestinationToCommand(BaseSaveModel config, Command command, String controllerName) {
+    }
+
     public void overrideConfig(BaseSaveModel config) {
         Path configPath = Paths.get(config.getPath() + config.getFileName());
         Path configTempPath = Paths.get(config.getPath() + config.getTempFileName());
