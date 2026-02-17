@@ -33,10 +33,10 @@ message LoRaFrame {
   optional fixed32 main_vent_byte_data =19;
 
   // --- Byte data ---
-  optional fixed32 eth_n2_mains_byte_data = 20;
-  optional fixed32 oxi_n2_vents_byte_data = 21;
+  optional fixed32 n2_main_byte_data = 20;
+  optional fixed32 eth_n2_vent_byte_data = 21;
   optional fixed32 oxi_main_valve_byte_data = 22;
-  optional fixed32 eth_vent_valve_byte_data = 23;
+  optional fixed32 ox_vent_eth_main_byte_data = 23;
 
   // --- TANWA ---
   optional float tanwa_battery = 24;
