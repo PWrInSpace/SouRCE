@@ -219,7 +219,7 @@ public class Configuration implements Observable {
             }
             int finalI = i;
             Configuration.getInstance().sensorRepository.getAllBasicSensors().values().forEach(s -> {
-                if (s.getDestinationControllerNames().contains(controllerName) && s.getDestination() != null && !s.getDestination().isEmpty()) {
+                if (s.containsControllerName(controllerName) && s.getDestination(controllerName) != null && !s.getDestination(controllerName).isEmpty()) {
                     s.addListener(controllersConfig.get(finalI).getValue0());
                     controllersConfig.get(finalI).getValue1().add(s);
 

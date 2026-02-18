@@ -304,30 +304,30 @@ public final class FrameProtos {
      * --- Byte data ---
      * </pre>
      *
-     * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
-     * @return Whether the ethN2MainsByteData field is set.
+     * <code>optional fixed32 n2_main_byte_data = 20;</code>
+     * @return Whether the n2MainByteData field is set.
      */
-    boolean hasEthN2MainsByteData();
+    boolean hasN2MainByteData();
     /**
      * <pre>
      * --- Byte data ---
      * </pre>
      *
-     * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
-     * @return The ethN2MainsByteData.
+     * <code>optional fixed32 n2_main_byte_data = 20;</code>
+     * @return The n2MainByteData.
      */
-    int getEthN2MainsByteData();
+    int getN2MainByteData();
 
     /**
-     * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
-     * @return Whether the oxiN2VentsByteData field is set.
+     * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
+     * @return Whether the ethN2VentByteData field is set.
      */
-    boolean hasOxiN2VentsByteData();
+    boolean hasEthN2VentByteData();
     /**
-     * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
-     * @return The oxiN2VentsByteData.
+     * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
+     * @return The ethN2VentByteData.
      */
-    int getOxiN2VentsByteData();
+    int getEthN2VentByteData();
 
     /**
      * <code>optional fixed32 oxi_main_valve_byte_data = 22;</code>
@@ -341,15 +341,15 @@ public final class FrameProtos {
     int getOxiMainValveByteData();
 
     /**
-     * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
-     * @return Whether the ethVentValveByteData field is set.
+     * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
+     * @return Whether the oxVentEthMainByteData field is set.
      */
-    boolean hasEthVentValveByteData();
+    boolean hasOxVentEthMainByteData();
     /**
-     * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
-     * @return The ethVentValveByteData.
+     * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
+     * @return The oxVentEthMainByteData.
      */
-    int getEthVentValveByteData();
+    int getOxVentEthMainByteData();
 
     /**
      * <pre>
@@ -1059,18 +1059,18 @@ public final class FrameProtos {
       return mainVentByteData_;
     }
 
-    public static final int ETH_N2_MAINS_BYTE_DATA_FIELD_NUMBER = 20;
-    private int ethN2MainsByteData_ = 0;
+    public static final int N2_MAIN_BYTE_DATA_FIELD_NUMBER = 20;
+    private int n2MainByteData_ = 0;
     /**
      * <pre>
      * --- Byte data ---
      * </pre>
      *
-     * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
-     * @return Whether the ethN2MainsByteData field is set.
+     * <code>optional fixed32 n2_main_byte_data = 20;</code>
+     * @return Whether the n2MainByteData field is set.
      */
     @java.lang.Override
-    public boolean hasEthN2MainsByteData() {
+    public boolean hasN2MainByteData() {
       return ((bitField0_ & 0x00080000) != 0);
     }
     /**
@@ -1078,31 +1078,31 @@ public final class FrameProtos {
      * --- Byte data ---
      * </pre>
      *
-     * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
-     * @return The ethN2MainsByteData.
+     * <code>optional fixed32 n2_main_byte_data = 20;</code>
+     * @return The n2MainByteData.
      */
     @java.lang.Override
-    public int getEthN2MainsByteData() {
-      return ethN2MainsByteData_;
+    public int getN2MainByteData() {
+      return n2MainByteData_;
     }
 
-    public static final int OXI_N2_VENTS_BYTE_DATA_FIELD_NUMBER = 21;
-    private int oxiN2VentsByteData_ = 0;
+    public static final int ETH_N2_VENT_BYTE_DATA_FIELD_NUMBER = 21;
+    private int ethN2VentByteData_ = 0;
     /**
-     * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
-     * @return Whether the oxiN2VentsByteData field is set.
+     * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
+     * @return Whether the ethN2VentByteData field is set.
      */
     @java.lang.Override
-    public boolean hasOxiN2VentsByteData() {
+    public boolean hasEthN2VentByteData() {
       return ((bitField0_ & 0x00100000) != 0);
     }
     /**
-     * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
-     * @return The oxiN2VentsByteData.
+     * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
+     * @return The ethN2VentByteData.
      */
     @java.lang.Override
-    public int getOxiN2VentsByteData() {
-      return oxiN2VentsByteData_;
+    public int getEthN2VentByteData() {
+      return ethN2VentByteData_;
     }
 
     public static final int OXI_MAIN_VALVE_BYTE_DATA_FIELD_NUMBER = 22;
@@ -1124,23 +1124,23 @@ public final class FrameProtos {
       return oxiMainValveByteData_;
     }
 
-    public static final int ETH_VENT_VALVE_BYTE_DATA_FIELD_NUMBER = 23;
-    private int ethVentValveByteData_ = 0;
+    public static final int OX_VENT_ETH_MAIN_BYTE_DATA_FIELD_NUMBER = 23;
+    private int oxVentEthMainByteData_ = 0;
     /**
-     * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
-     * @return Whether the ethVentValveByteData field is set.
+     * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
+     * @return Whether the oxVentEthMainByteData field is set.
      */
     @java.lang.Override
-    public boolean hasEthVentValveByteData() {
+    public boolean hasOxVentEthMainByteData() {
       return ((bitField0_ & 0x00400000) != 0);
     }
     /**
-     * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
-     * @return The ethVentValveByteData.
+     * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
+     * @return The oxVentEthMainByteData.
      */
     @java.lang.Override
-    public int getEthVentValveByteData() {
-      return ethVentValveByteData_;
+    public int getOxVentEthMainByteData() {
+      return oxVentEthMainByteData_;
     }
 
     public static final int TANWA_BATTERY_FIELD_NUMBER = 24;
@@ -1600,16 +1600,16 @@ public final class FrameProtos {
         output.writeFixed32(19, mainVentByteData_);
       }
       if (((bitField0_ & 0x00080000) != 0)) {
-        output.writeFixed32(20, ethN2MainsByteData_);
+        output.writeFixed32(20, n2MainByteData_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
-        output.writeFixed32(21, oxiN2VentsByteData_);
+        output.writeFixed32(21, ethN2VentByteData_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
         output.writeFixed32(22, oxiMainValveByteData_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
-        output.writeFixed32(23, ethVentValveByteData_);
+        output.writeFixed32(23, oxVentEthMainByteData_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         output.writeFloat(24, tanwaBattery_);
@@ -1755,11 +1755,11 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00080000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(20, ethN2MainsByteData_);
+          .computeFixed32Size(20, n2MainByteData_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(21, oxiN2VentsByteData_);
+          .computeFixed32Size(21, ethN2VentByteData_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1767,7 +1767,7 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00400000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(23, ethVentValveByteData_);
+          .computeFixed32Size(23, oxVentEthMainByteData_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1962,25 +1962,25 @@ public final class FrameProtos {
         if (getMainVentByteData()
             != other.getMainVentByteData()) return false;
       }
-      if (hasEthN2MainsByteData() != other.hasEthN2MainsByteData()) return false;
-      if (hasEthN2MainsByteData()) {
-        if (getEthN2MainsByteData()
-            != other.getEthN2MainsByteData()) return false;
+      if (hasN2MainByteData() != other.hasN2MainByteData()) return false;
+      if (hasN2MainByteData()) {
+        if (getN2MainByteData()
+            != other.getN2MainByteData()) return false;
       }
-      if (hasOxiN2VentsByteData() != other.hasOxiN2VentsByteData()) return false;
-      if (hasOxiN2VentsByteData()) {
-        if (getOxiN2VentsByteData()
-            != other.getOxiN2VentsByteData()) return false;
+      if (hasEthN2VentByteData() != other.hasEthN2VentByteData()) return false;
+      if (hasEthN2VentByteData()) {
+        if (getEthN2VentByteData()
+            != other.getEthN2VentByteData()) return false;
       }
       if (hasOxiMainValveByteData() != other.hasOxiMainValveByteData()) return false;
       if (hasOxiMainValveByteData()) {
         if (getOxiMainValveByteData()
             != other.getOxiMainValveByteData()) return false;
       }
-      if (hasEthVentValveByteData() != other.hasEthVentValveByteData()) return false;
-      if (hasEthVentValveByteData()) {
-        if (getEthVentValveByteData()
-            != other.getEthVentValveByteData()) return false;
+      if (hasOxVentEthMainByteData() != other.hasOxVentEthMainByteData()) return false;
+      if (hasOxVentEthMainByteData()) {
+        if (getOxVentEthMainByteData()
+            != other.getOxVentEthMainByteData()) return false;
       }
       if (hasTanwaBattery() != other.hasTanwaBattery()) return false;
       if (hasTanwaBattery()) {
@@ -2186,21 +2186,21 @@ public final class FrameProtos {
         hash = (37 * hash) + MAIN_VENT_BYTE_DATA_FIELD_NUMBER;
         hash = (53 * hash) + getMainVentByteData();
       }
-      if (hasEthN2MainsByteData()) {
-        hash = (37 * hash) + ETH_N2_MAINS_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getEthN2MainsByteData();
+      if (hasN2MainByteData()) {
+        hash = (37 * hash) + N2_MAIN_BYTE_DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getN2MainByteData();
       }
-      if (hasOxiN2VentsByteData()) {
-        hash = (37 * hash) + OXI_N2_VENTS_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getOxiN2VentsByteData();
+      if (hasEthN2VentByteData()) {
+        hash = (37 * hash) + ETH_N2_VENT_BYTE_DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getEthN2VentByteData();
       }
       if (hasOxiMainValveByteData()) {
         hash = (37 * hash) + OXI_MAIN_VALVE_BYTE_DATA_FIELD_NUMBER;
         hash = (53 * hash) + getOxiMainValveByteData();
       }
-      if (hasEthVentValveByteData()) {
-        hash = (37 * hash) + ETH_VENT_VALVE_BYTE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getEthVentValveByteData();
+      if (hasOxVentEthMainByteData()) {
+        hash = (37 * hash) + OX_VENT_ETH_MAIN_BYTE_DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getOxVentEthMainByteData();
       }
       if (hasTanwaBattery()) {
         hash = (37 * hash) + TANWA_BATTERY_FIELD_NUMBER;
@@ -2441,10 +2441,10 @@ public final class FrameProtos {
         pitotVelocity_ = 0;
         pitotTemperature_ = 0;
         mainVentByteData_ = 0;
-        ethN2MainsByteData_ = 0;
-        oxiN2VentsByteData_ = 0;
+        n2MainByteData_ = 0;
+        ethN2VentByteData_ = 0;
         oxiMainValveByteData_ = 0;
-        ethVentValveByteData_ = 0;
+        oxVentEthMainByteData_ = 0;
         tanwaBattery_ = 0F;
         tanwaState_ = 0;
         tanwaCanAndStatesByteData_ = 0;
@@ -2576,11 +2576,11 @@ public final class FrameProtos {
           to_bitField0_ |= 0x00040000;
         }
         if (((from_bitField0_ & 0x00080000) != 0)) {
-          result.ethN2MainsByteData_ = ethN2MainsByteData_;
+          result.n2MainByteData_ = n2MainByteData_;
           to_bitField0_ |= 0x00080000;
         }
         if (((from_bitField0_ & 0x00100000) != 0)) {
-          result.oxiN2VentsByteData_ = oxiN2VentsByteData_;
+          result.ethN2VentByteData_ = ethN2VentByteData_;
           to_bitField0_ |= 0x00100000;
         }
         if (((from_bitField0_ & 0x00200000) != 0)) {
@@ -2588,7 +2588,7 @@ public final class FrameProtos {
           to_bitField0_ |= 0x00200000;
         }
         if (((from_bitField0_ & 0x00400000) != 0)) {
-          result.ethVentValveByteData_ = ethVentValveByteData_;
+          result.oxVentEthMainByteData_ = oxVentEthMainByteData_;
           to_bitField0_ |= 0x00400000;
         }
         if (((from_bitField0_ & 0x00800000) != 0)) {
@@ -2777,17 +2777,17 @@ public final class FrameProtos {
         if (other.hasMainVentByteData()) {
           setMainVentByteData(other.getMainVentByteData());
         }
-        if (other.hasEthN2MainsByteData()) {
-          setEthN2MainsByteData(other.getEthN2MainsByteData());
+        if (other.hasN2MainByteData()) {
+          setN2MainByteData(other.getN2MainByteData());
         }
-        if (other.hasOxiN2VentsByteData()) {
-          setOxiN2VentsByteData(other.getOxiN2VentsByteData());
+        if (other.hasEthN2VentByteData()) {
+          setEthN2VentByteData(other.getEthN2VentByteData());
         }
         if (other.hasOxiMainValveByteData()) {
           setOxiMainValveByteData(other.getOxiMainValveByteData());
         }
-        if (other.hasEthVentValveByteData()) {
-          setEthVentValveByteData(other.getEthVentValveByteData());
+        if (other.hasOxVentEthMainByteData()) {
+          setOxVentEthMainByteData(other.getOxVentEthMainByteData());
         }
         if (other.hasTanwaBattery()) {
           setTanwaBattery(other.getTanwaBattery());
@@ -2968,12 +2968,12 @@ public final class FrameProtos {
                 break;
               } // case 157
               case 165: {
-                ethN2MainsByteData_ = input.readFixed32();
+                n2MainByteData_ = input.readFixed32();
                 bitField0_ |= 0x00080000;
                 break;
               } // case 165
               case 173: {
-                oxiN2VentsByteData_ = input.readFixed32();
+                ethN2VentByteData_ = input.readFixed32();
                 bitField0_ |= 0x00100000;
                 break;
               } // case 173
@@ -2983,7 +2983,7 @@ public final class FrameProtos {
                 break;
               } // case 181
               case 189: {
-                ethVentValveByteData_ = input.readFixed32();
+                oxVentEthMainByteData_ = input.readFixed32();
                 bitField0_ |= 0x00400000;
                 break;
               } // case 189
@@ -4004,17 +4004,17 @@ public final class FrameProtos {
         return this;
       }
 
-      private int ethN2MainsByteData_ ;
+      private int n2MainByteData_ ;
       /**
        * <pre>
        * --- Byte data ---
        * </pre>
        *
-       * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
-       * @return Whether the ethN2MainsByteData field is set.
+       * <code>optional fixed32 n2_main_byte_data = 20;</code>
+       * @return Whether the n2MainByteData field is set.
        */
       @java.lang.Override
-      public boolean hasEthN2MainsByteData() {
+      public boolean hasN2MainByteData() {
         return ((bitField0_ & 0x00080000) != 0);
       }
       /**
@@ -4022,25 +4022,25 @@ public final class FrameProtos {
        * --- Byte data ---
        * </pre>
        *
-       * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
-       * @return The ethN2MainsByteData.
+       * <code>optional fixed32 n2_main_byte_data = 20;</code>
+       * @return The n2MainByteData.
        */
       @java.lang.Override
-      public int getEthN2MainsByteData() {
-        return ethN2MainsByteData_;
+      public int getN2MainByteData() {
+        return n2MainByteData_;
       }
       /**
        * <pre>
        * --- Byte data ---
        * </pre>
        *
-       * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
-       * @param value The ethN2MainsByteData to set.
+       * <code>optional fixed32 n2_main_byte_data = 20;</code>
+       * @param value The n2MainByteData to set.
        * @return This builder for chaining.
        */
-      public Builder setEthN2MainsByteData(int value) {
+      public Builder setN2MainByteData(int value) {
         
-        ethN2MainsByteData_ = value;
+        n2MainByteData_ = value;
         bitField0_ |= 0x00080000;
         onChanged();
         return this;
@@ -4050,52 +4050,52 @@ public final class FrameProtos {
        * --- Byte data ---
        * </pre>
        *
-       * <code>optional fixed32 eth_n2_mains_byte_data = 20;</code>
+       * <code>optional fixed32 n2_main_byte_data = 20;</code>
        * @return This builder for chaining.
        */
-      public Builder clearEthN2MainsByteData() {
+      public Builder clearN2MainByteData() {
         bitField0_ = (bitField0_ & ~0x00080000);
-        ethN2MainsByteData_ = 0;
+        n2MainByteData_ = 0;
         onChanged();
         return this;
       }
 
-      private int oxiN2VentsByteData_ ;
+      private int ethN2VentByteData_ ;
       /**
-       * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
-       * @return Whether the oxiN2VentsByteData field is set.
+       * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
+       * @return Whether the ethN2VentByteData field is set.
        */
       @java.lang.Override
-      public boolean hasOxiN2VentsByteData() {
+      public boolean hasEthN2VentByteData() {
         return ((bitField0_ & 0x00100000) != 0);
       }
       /**
-       * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
-       * @return The oxiN2VentsByteData.
+       * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
+       * @return The ethN2VentByteData.
        */
       @java.lang.Override
-      public int getOxiN2VentsByteData() {
-        return oxiN2VentsByteData_;
+      public int getEthN2VentByteData() {
+        return ethN2VentByteData_;
       }
       /**
-       * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
-       * @param value The oxiN2VentsByteData to set.
+       * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
+       * @param value The ethN2VentByteData to set.
        * @return This builder for chaining.
        */
-      public Builder setOxiN2VentsByteData(int value) {
+      public Builder setEthN2VentByteData(int value) {
         
-        oxiN2VentsByteData_ = value;
+        ethN2VentByteData_ = value;
         bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 oxi_n2_vents_byte_data = 21;</code>
+       * <code>optional fixed32 eth_n2_vent_byte_data = 21;</code>
        * @return This builder for chaining.
        */
-      public Builder clearOxiN2VentsByteData() {
+      public Builder clearEthN2VentByteData() {
         bitField0_ = (bitField0_ & ~0x00100000);
-        oxiN2VentsByteData_ = 0;
+        ethN2VentByteData_ = 0;
         onChanged();
         return this;
       }
@@ -4140,42 +4140,42 @@ public final class FrameProtos {
         return this;
       }
 
-      private int ethVentValveByteData_ ;
+      private int oxVentEthMainByteData_ ;
       /**
-       * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
-       * @return Whether the ethVentValveByteData field is set.
+       * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
+       * @return Whether the oxVentEthMainByteData field is set.
        */
       @java.lang.Override
-      public boolean hasEthVentValveByteData() {
+      public boolean hasOxVentEthMainByteData() {
         return ((bitField0_ & 0x00400000) != 0);
       }
       /**
-       * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
-       * @return The ethVentValveByteData.
+       * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
+       * @return The oxVentEthMainByteData.
        */
       @java.lang.Override
-      public int getEthVentValveByteData() {
-        return ethVentValveByteData_;
+      public int getOxVentEthMainByteData() {
+        return oxVentEthMainByteData_;
       }
       /**
-       * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
-       * @param value The ethVentValveByteData to set.
+       * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
+       * @param value The oxVentEthMainByteData to set.
        * @return This builder for chaining.
        */
-      public Builder setEthVentValveByteData(int value) {
+      public Builder setOxVentEthMainByteData(int value) {
         
-        ethVentValveByteData_ = value;
+        oxVentEthMainByteData_ = value;
         bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 eth_vent_valve_byte_data = 23;</code>
+       * <code>optional fixed32 ox_vent_eth_main_byte_data = 23;</code>
        * @return This builder for chaining.
        */
-      public Builder clearEthVentValveByteData() {
+      public Builder clearOxVentEthMainByteData() {
         bitField0_ = (bitField0_ & ~0x00400000);
-        ethVentValveByteData_ = 0;
+        oxVentEthMainByteData_ = 0;
         onChanged();
         return this;
       }
@@ -10622,7 +10622,7 @@ public final class FrameProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037src/main/resources/frames.proto\"\257\021\n\tLo" +
+      "\n\037src/main/resources/frames.proto\"\247\021\n\tLo" +
       "RaFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptim" +
       "e_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\005H" +
       "\002\210\001\001\022\025\n\010mcb_batt\030\004 \001(\002H\003\210\001\001\022\024\n\007gps_lat\030\005" +
@@ -10635,102 +10635,101 @@ public final class FrameProtos {
       "H\r\210\001\001\022\032\n\rpitot_battery\030\017 \001(\002H\016\210\001\001\022\033\n\016pit" +
       "ot_altitude\030\020 \001(\005H\017\210\001\001\022\033\n\016pitot_velocity" +
       "\030\021 \001(\005H\020\210\001\001\022\036\n\021pitot_temperature\030\022 \001(\005H\021" +
-      "\210\001\001\022 \n\023main_vent_byte_data\030\023 \001(\007H\022\210\001\001\022#\n" +
-      "\026eth_n2_mains_byte_data\030\024 \001(\007H\023\210\001\001\022#\n\026ox" +
-      "i_n2_vents_byte_data\030\025 \001(\007H\024\210\001\001\022%\n\030oxi_m" +
-      "ain_valve_byte_data\030\026 \001(\007H\025\210\001\001\022%\n\030eth_ve" +
-      "nt_valve_byte_data\030\027 \001(\007H\026\210\001\001\022\032\n\rtanwa_b" +
-      "attery\030\030 \001(\002H\027\210\001\001\022\030\n\013tanwa_state\030\031 \001(\005H\030" +
-      "\210\001\001\022+\n\036tanwa_can_and_states_byte_data\030\032 " +
-      "\001(\007H\031\210\001\001\022\031\n\014tanwa_thrust\030\033 \001(\002H\032\210\001\001\022\036\n\021t" +
-      "anwa_tank_weight\030\034 \001(\002H\033\210\001\001\022%\n\030tanwa_tem" +
-      "p_post_n2o_fill\030\035 \001(\002H\034\210\001\001\022$\n\027tanwa_temp" +
-      "_filling_wall\030\036 \001(\002H\035\210\001\001\022$\n\027tanwa_postfi" +
-      "ll_n2o_pres\030\037 \001(\002H\036\210\001\001\022\"\n\025tanwa_cutoff_n" +
-      "2o_pres\030  \001(\002H\037\210\001\001\022!\n\024tanwa_droid_n2o_pr" +
-      "es\030! \001(\002H \210\001\001\022!\n\024tanwa_prereg_n2_pres\030\" " +
-      "\001(\002H!\210\001\001\022\"\n\025tanwa_postreg_n2_pres\030# \001(\002H" +
-      "\"\210\001\001\022#\n\026tanwa_postfill_n2_pres\030$ \001(\002H#\210\001" +
-      "\001\022 \n\023tanwa_droid_n2_pres\030% \001(\002H$\210\001\001\022#\n\026t" +
-      "anwa_combchamber_pres\030& \001(\002H%\210\001\001\022\034\n\017payl" +
-      "oad_battery\030\' \001(\002H&\210\001\001\022(\n\033esp_now_connec" +
-      "ted_byte_data\030( \001(\007H\'\210\001\001\022$\n\027esp_now_wkup" +
-      "s_byte_data\030) \001(\007H(\210\001\001\022\023\n\006errors\030* \001(\007H)" +
-      "\210\001\001B\014\n\n_mcb_stateB\014\n\n_uptime_msB\021\n\017_flig" +
-      "ht_time_msB\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t_" +
-      "gps_longB\r\n\013_gps_sat_okB\r\n\013_altitude_mB\017" +
-      "\n\r_velocity_m_sB\022\n\020_mcb_temperatureB\013\n\t_" +
-      "euler_fiB\014\n\n_euler_psiB\016\n\014_euler_thetaB\025" +
-      "\n\023_recovery_byte_dataB\020\n\016_pitot_batteryB" +
-      "\021\n\017_pitot_altitudeB\021\n\017_pitot_velocityB\024\n" +
-      "\022_pitot_temperatureB\026\n\024_main_vent_byte_d" +
-      "ataB\031\n\027_eth_n2_mains_byte_dataB\031\n\027_oxi_n" +
-      "2_vents_byte_dataB\033\n\031_oxi_main_valve_byt" +
-      "e_dataB\033\n\031_eth_vent_valve_byte_dataB\020\n\016_" +
-      "tanwa_batteryB\016\n\014_tanwa_stateB!\n\037_tanwa_" +
-      "can_and_states_byte_dataB\017\n\r_tanwa_thrus" +
-      "tB\024\n\022_tanwa_tank_weightB\033\n\031_tanwa_temp_p" +
-      "ost_n2o_fillB\032\n\030_tanwa_temp_filling_wall" +
-      "B\032\n\030_tanwa_postfill_n2o_presB\030\n\026_tanwa_c" +
-      "utoff_n2o_presB\027\n\025_tanwa_droid_n2o_presB" +
-      "\027\n\025_tanwa_prereg_n2_presB\030\n\026_tanwa_postr" +
-      "eg_n2_presB\031\n\027_tanwa_postfill_n2_presB\026\n" +
-      "\024_tanwa_droid_n2_presB\031\n\027_tanwa_combcham" +
-      "ber_presB\022\n\020_payload_batteryB\036\n\034_esp_now" +
-      "_connected_byte_dataB\032\n\030_esp_now_wkups_b" +
-      "yte_dataB\t\n\007_errors\"\356\013\n\016LoRaFrameTanwa\022\027" +
-      "\n\ntanwaState\030\001 \001(\rH\000\210\001\001\022\023\n\006upTime\030\002 \001(\rH" +
-      "\001\210\001\001\022\036\n\021engineWorkingTime\030\003 \001(\005H\002\210\001\001\022\031\n\014" +
-      "pressureFuel\030\004 \001(\002H\003\210\001\001\022\027\n\npressureN2\030\005 " +
-      "\001(\002H\004\210\001\001\022\032\n\rpressureDroid\030\006 \001(\002H\005\210\001\001\022\030\n\013" +
-      "pressureOxi\030\007 \001(\002H\006\210\001\001\022!\n\024pressureInject" +
-      "orFuel\030\010 \001(\002H\007\210\001\001\022 \n\023pressureInjectorOxi" +
-      "\030\t \001(\002H\010\210\001\001\022&\n\031pressureCombustionChamber" +
-      "\030\n \001(\002H\t\210\001\001\022\032\n\rstatusFillN2O\030\013 \001(\010H\n\210\001\001\022" +
-      "\032\n\rstatusDeprN2O\030\014 \001(\010H\013\210\001\001\022\032\n\rstatusVen" +
-      "tN2O\030\r \001(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001(\010H\r\210\001\001\022" +
-      "\031\n\014igniterCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014igniterCon" +
-      "t2\030\020 \001(\010H\017\210\001\001\022\031\n\014tanwaBattery\030\021 \001(\002H\020\210\001\001" +
-      "\022\031\n\014engineThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014rocketWei" +
-      "ght\030\023 \001(\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001(\002H\023\210\001\001\022" +
-      "\031\n\014tempInjector\030\025 \001(\002H\024\210\001\001\022\"\n\025tempCombus" +
-      "tionChamber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempExternalTa" +
-      "nk\030\027 \001(\002H\026\210\001\001\022\026\n\tstatusOxi\030\030 \001(\010H\027\210\001\001\022\027\n" +
-      "\nstatusFuel\030\031 \001(\010H\030\210\001\001\022\025\n\010statusN2\030\032 \001(\010" +
-      "H\031\210\001\001\022\030\n\013statusQdN2O\030\033 \001(\010H\032\210\001\001\022\031\n\014statu" +
-      "sFillN2\030\034 \001(\010H\033\210\001\001\022\031\n\014statusDeprN2\030\035 \001(\010" +
-      "H\034\210\001\001\022\027\n\nstatusQdN2\030\036 \001(\010H\035\210\001\001\022\032\n\rstatus" +
-      "VentEth\030\037 \001(\010H\036\210\001\001\022\031\n\014statusVentN2\030  \001(\010" +
-      "H\037\210\001\001\022\033\n\016pressureCutoff\030! \001(\002H \210\001\001B\r\n\013_t" +
-      "anwaStateB\t\n\007_upTimeB\024\n\022_engineWorkingTi" +
-      "meB\017\n\r_pressureFuelB\r\n\013_pressureN2B\020\n\016_p" +
-      "ressureDroidB\016\n\014_pressureOxiB\027\n\025_pressur" +
-      "eInjectorFuelB\026\n\024_pressureInjectorOxiB\034\n" +
-      "\032_pressureCombustionChamberB\020\n\016_statusFi" +
-      "llN2OB\020\n\016_statusDeprN2OB\020\n\016_statusVentN2" +
-      "OB\014\n\n_statusArmB\017\n\r_igniterCont1B\017\n\r_ign" +
-      "iterCont2B\017\n\r_tanwaBatteryB\017\n\r_engineThr" +
-      "ustB\017\n\r_rocketWeightB\r\n\013_tankWeightB\017\n\r_" +
-      "tempInjectorB\030\n\026_tempCombustionChamberB\023" +
-      "\n\021_tempExternalTankB\014\n\n_statusOxiB\r\n\013_st" +
-      "atusFuelB\013\n\t_statusN2B\016\n\014_statusQdN2OB\017\n" +
-      "\r_statusFillN2B\017\n\r_statusDeprN2B\r\n\013_stat" +
-      "usQdN2B\020\n\016_statusVentEthB\017\n\r_statusVentN" +
-      "2B\021\n\017_pressureCutoff\"\250\002\n\014LoRaSettings\022\032\n" +
-      "\rlora_freq_khz\030\001 \001(\005H\000\210\001\001\022\035\n\020lora_transm" +
-      "it_ms\030\002 \001(\005H\001\210\001\001\022\033\n\016countdown_time\030\003 \001(\005" +
-      "H\002\210\001\001\022\032\n\ringition_time\030\004 \001(\005H\003\210\001\001\022\031\n\014fla" +
-      "sh_enable\030\005 \001(\rH\004\210\001\001\022\032\n\rbuzzer_enable\030\006 " +
-      "\001(\rH\005\210\001\001B\020\n\016_lora_freq_khzB\023\n\021_lora_tran" +
-      "smit_msB\021\n\017_countdown_timeB\020\n\016_ingition_" +
-      "timeB\017\n\r_flash_enableB\020\n\016_buzzer_enable\"" +
-      "\243\001\n\013LoRaCommand\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001" +
-      "\001\022\027\n\nsys_dev_id\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 " +
-      "\001(\rH\002\210\001\001\022\024\n\007payload\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_" +
-      "dev_idB\r\n\013_sys_dev_idB\n\n\010_commandB\n\n\010_pa" +
-      "yloadBD\n5pl.edu.pwr.pwrinspace.poliwrock" +
-      "et.Model.MessageParserB\013FrameProtosb\006pro" +
-      "to3"
+      "\210\001\001\022 \n\023main_vent_byte_data\030\023 \001(\007H\022\210\001\001\022\036\n" +
+      "\021n2_main_byte_data\030\024 \001(\007H\023\210\001\001\022\"\n\025eth_n2_" +
+      "vent_byte_data\030\025 \001(\007H\024\210\001\001\022%\n\030oxi_main_va" +
+      "lve_byte_data\030\026 \001(\007H\025\210\001\001\022\'\n\032ox_vent_eth_" +
+      "main_byte_data\030\027 \001(\007H\026\210\001\001\022\032\n\rtanwa_batte" +
+      "ry\030\030 \001(\002H\027\210\001\001\022\030\n\013tanwa_state\030\031 \001(\005H\030\210\001\001\022" +
+      "+\n\036tanwa_can_and_states_byte_data\030\032 \001(\007H" +
+      "\031\210\001\001\022\031\n\014tanwa_thrust\030\033 \001(\002H\032\210\001\001\022\036\n\021tanwa" +
+      "_tank_weight\030\034 \001(\002H\033\210\001\001\022%\n\030tanwa_temp_po" +
+      "st_n2o_fill\030\035 \001(\002H\034\210\001\001\022$\n\027tanwa_temp_fil" +
+      "ling_wall\030\036 \001(\002H\035\210\001\001\022$\n\027tanwa_postfill_n" +
+      "2o_pres\030\037 \001(\002H\036\210\001\001\022\"\n\025tanwa_cutoff_n2o_p" +
+      "res\030  \001(\002H\037\210\001\001\022!\n\024tanwa_droid_n2o_pres\030!" +
+      " \001(\002H \210\001\001\022!\n\024tanwa_prereg_n2_pres\030\" \001(\002H" +
+      "!\210\001\001\022\"\n\025tanwa_postreg_n2_pres\030# \001(\002H\"\210\001\001" +
+      "\022#\n\026tanwa_postfill_n2_pres\030$ \001(\002H#\210\001\001\022 \n" +
+      "\023tanwa_droid_n2_pres\030% \001(\002H$\210\001\001\022#\n\026tanwa" +
+      "_combchamber_pres\030& \001(\002H%\210\001\001\022\034\n\017payload_" +
+      "battery\030\' \001(\002H&\210\001\001\022(\n\033esp_now_connected_" +
+      "byte_data\030( \001(\007H\'\210\001\001\022$\n\027esp_now_wkups_by" +
+      "te_data\030) \001(\007H(\210\001\001\022\023\n\006errors\030* \001(\007H)\210\001\001B" +
+      "\014\n\n_mcb_stateB\014\n\n_uptime_msB\021\n\017_flight_t" +
+      "ime_msB\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t_gps_" +
+      "longB\r\n\013_gps_sat_okB\r\n\013_altitude_mB\017\n\r_v" +
+      "elocity_m_sB\022\n\020_mcb_temperatureB\013\n\t_eule" +
+      "r_fiB\014\n\n_euler_psiB\016\n\014_euler_thetaB\025\n\023_r" +
+      "ecovery_byte_dataB\020\n\016_pitot_batteryB\021\n\017_" +
+      "pitot_altitudeB\021\n\017_pitot_velocityB\024\n\022_pi" +
+      "tot_temperatureB\026\n\024_main_vent_byte_dataB" +
+      "\024\n\022_n2_main_byte_dataB\030\n\026_eth_n2_vent_by" +
+      "te_dataB\033\n\031_oxi_main_valve_byte_dataB\035\n\033" +
+      "_ox_vent_eth_main_byte_dataB\020\n\016_tanwa_ba" +
+      "tteryB\016\n\014_tanwa_stateB!\n\037_tanwa_can_and_" +
+      "states_byte_dataB\017\n\r_tanwa_thrustB\024\n\022_ta" +
+      "nwa_tank_weightB\033\n\031_tanwa_temp_post_n2o_" +
+      "fillB\032\n\030_tanwa_temp_filling_wallB\032\n\030_tan" +
+      "wa_postfill_n2o_presB\030\n\026_tanwa_cutoff_n2" +
+      "o_presB\027\n\025_tanwa_droid_n2o_presB\027\n\025_tanw" +
+      "a_prereg_n2_presB\030\n\026_tanwa_postreg_n2_pr" +
+      "esB\031\n\027_tanwa_postfill_n2_presB\026\n\024_tanwa_" +
+      "droid_n2_presB\031\n\027_tanwa_combchamber_pres" +
+      "B\022\n\020_payload_batteryB\036\n\034_esp_now_connect" +
+      "ed_byte_dataB\032\n\030_esp_now_wkups_byte_data" +
+      "B\t\n\007_errors\"\356\013\n\016LoRaFrameTanwa\022\027\n\ntanwaS" +
+      "tate\030\001 \001(\rH\000\210\001\001\022\023\n\006upTime\030\002 \001(\rH\001\210\001\001\022\036\n\021" +
+      "engineWorkingTime\030\003 \001(\005H\002\210\001\001\022\031\n\014pressure" +
+      "Fuel\030\004 \001(\002H\003\210\001\001\022\027\n\npressureN2\030\005 \001(\002H\004\210\001\001" +
+      "\022\032\n\rpressureDroid\030\006 \001(\002H\005\210\001\001\022\030\n\013pressure" +
+      "Oxi\030\007 \001(\002H\006\210\001\001\022!\n\024pressureInjectorFuel\030\010" +
+      " \001(\002H\007\210\001\001\022 \n\023pressureInjectorOxi\030\t \001(\002H\010" +
+      "\210\001\001\022&\n\031pressureCombustionChamber\030\n \001(\002H\t" +
+      "\210\001\001\022\032\n\rstatusFillN2O\030\013 \001(\010H\n\210\001\001\022\032\n\rstatu" +
+      "sDeprN2O\030\014 \001(\010H\013\210\001\001\022\032\n\rstatusVentN2O\030\r \001" +
+      "(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001(\010H\r\210\001\001\022\031\n\014ignit" +
+      "erCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014igniterCont2\030\020 \001(\010" +
+      "H\017\210\001\001\022\031\n\014tanwaBattery\030\021 \001(\002H\020\210\001\001\022\031\n\014engi" +
+      "neThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014rocketWeight\030\023 \001(" +
+      "\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001(\002H\023\210\001\001\022\031\n\014tempI" +
+      "njector\030\025 \001(\002H\024\210\001\001\022\"\n\025tempCombustionCham" +
+      "ber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempExternalTank\030\027 \001(\002" +
+      "H\026\210\001\001\022\026\n\tstatusOxi\030\030 \001(\010H\027\210\001\001\022\027\n\nstatusF" +
+      "uel\030\031 \001(\010H\030\210\001\001\022\025\n\010statusN2\030\032 \001(\010H\031\210\001\001\022\030\n" +
+      "\013statusQdN2O\030\033 \001(\010H\032\210\001\001\022\031\n\014statusFillN2\030" +
+      "\034 \001(\010H\033\210\001\001\022\031\n\014statusDeprN2\030\035 \001(\010H\034\210\001\001\022\027\n" +
+      "\nstatusQdN2\030\036 \001(\010H\035\210\001\001\022\032\n\rstatusVentEth\030" +
+      "\037 \001(\010H\036\210\001\001\022\031\n\014statusVentN2\030  \001(\010H\037\210\001\001\022\033\n" +
+      "\016pressureCutoff\030! \001(\002H \210\001\001B\r\n\013_tanwaStat" +
+      "eB\t\n\007_upTimeB\024\n\022_engineWorkingTimeB\017\n\r_p" +
+      "ressureFuelB\r\n\013_pressureN2B\020\n\016_pressureD" +
+      "roidB\016\n\014_pressureOxiB\027\n\025_pressureInjecto" +
+      "rFuelB\026\n\024_pressureInjectorOxiB\034\n\032_pressu" +
+      "reCombustionChamberB\020\n\016_statusFillN2OB\020\n" +
+      "\016_statusDeprN2OB\020\n\016_statusVentN2OB\014\n\n_st" +
+      "atusArmB\017\n\r_igniterCont1B\017\n\r_igniterCont" +
+      "2B\017\n\r_tanwaBatteryB\017\n\r_engineThrustB\017\n\r_" +
+      "rocketWeightB\r\n\013_tankWeightB\017\n\r_tempInje" +
+      "ctorB\030\n\026_tempCombustionChamberB\023\n\021_tempE" +
+      "xternalTankB\014\n\n_statusOxiB\r\n\013_statusFuel" +
+      "B\013\n\t_statusN2B\016\n\014_statusQdN2OB\017\n\r_status" +
+      "FillN2B\017\n\r_statusDeprN2B\r\n\013_statusQdN2B\020" +
+      "\n\016_statusVentEthB\017\n\r_statusVentN2B\021\n\017_pr" +
+      "essureCutoff\"\250\002\n\014LoRaSettings\022\032\n\rlora_fr" +
+      "eq_khz\030\001 \001(\005H\000\210\001\001\022\035\n\020lora_transmit_ms\030\002 " +
+      "\001(\005H\001\210\001\001\022\033\n\016countdown_time\030\003 \001(\005H\002\210\001\001\022\032\n" +
+      "\ringition_time\030\004 \001(\005H\003\210\001\001\022\031\n\014flash_enabl" +
+      "e\030\005 \001(\rH\004\210\001\001\022\032\n\rbuzzer_enable\030\006 \001(\rH\005\210\001\001" +
+      "B\020\n\016_lora_freq_khzB\023\n\021_lora_transmit_msB" +
+      "\021\n\017_countdown_timeB\020\n\016_ingition_timeB\017\n\r" +
+      "_flash_enableB\020\n\016_buzzer_enable\"\243\001\n\013LoRa" +
+      "Command\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsys" +
+      "_dev_id\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001\001" +
+      "\022\024\n\007payload\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_idB\r" +
+      "\n\013_sys_dev_idB\n\n\010_commandB\n\n\010_payloadBD\n" +
+      "5pl.edu.pwr.pwrinspace.poliwrocket.Model" +
+      ".MessageParserB\013FrameProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -10741,7 +10740,7 @@ public final class FrameProtos {
     internal_static_LoRaFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaFrame_descriptor,
-        new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "EthN2MainsByteData", "OxiN2VentsByteData", "OxiMainValveByteData", "EthVentValveByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "EthN2MainsByteData", "OxiN2VentsByteData", "OxiMainValveByteData", "EthVentValveByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", });
+        new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "N2MainByteData", "EthN2VentByteData", "OxiMainValveByteData", "OxVentEthMainByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryByteData", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentByteData", "N2MainByteData", "EthN2VentByteData", "OxiMainValveByteData", "OxVentEthMainByteData", "TanwaBattery", "TanwaState", "TanwaCanAndStatesByteData", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostfillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreregN2Pres", "TanwaPostregN2Pres", "TanwaPostfillN2Pres", "TanwaDroidN2Pres", "TanwaCombchamberPres", "PayloadBattery", "EspNowConnectedByteData", "EspNowWkupsByteData", "Errors", });
     internal_static_LoRaFrameTanwa_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_LoRaFrameTanwa_fieldAccessorTable = new

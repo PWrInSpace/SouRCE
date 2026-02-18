@@ -16,7 +16,10 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     public List<InvalidationListener> observers = new ArrayList<>();
 
     @Expose
-    private String destination = "";
+    private List<SensorDestination> sensorDestinations = new ArrayList<>();
+
+//    @Expose
+//    private String destination = "";
 
     @Expose
     private String name;
@@ -31,8 +34,8 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private Instant lastAveragingTimeStamp = Instant.now();
     private boolean shouldNotify = false;
 
-    @Expose
-    private List<String> destinationControllerNames = new ArrayList<>();
+//    @Expose
+//    private List<String> destinationControllerNames = new ArrayList<>();
 
     @Expose
     private double maxRange = 0;
@@ -64,7 +67,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     }
 
     public Sensor(@NotNull Sensor sensor) {
-        this.destination = sensor.destination;
+//        this.destination = sensor.destination;
         this.unit = sensor.unit;
         this.name = sensor.name;
         this.minRange = sensor.minRange;
@@ -88,14 +91,52 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         observers.remove(invalidationListener);
     }
 
+//    @Override
+//    public void setDestination(String destination) {
+//        this.destination = destination;
+//    }
+
+//    @Override
+//    public String getDestination() {
+//        return destination;
+//    }
+
     @Override
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public String getDestination(String destinationControllerName) {
+        for (SensorDestination sensorDestination : sensorDestinations) {
+            if (sensorDestination.getDestinationControllerName().equals(destinationControllerName)) {
+                return sensorDestination.getDestination();
+            }
+        }
+        return null;
+    }
+
+    public void addSensorDestination(SensorDestination sensorDestination) {
+        sensorDestinations.add(sensorDestination);
     }
 
     @Override
-    public String getDestination() {
-        return destination;
+    public List<SensorDestination> getSensorDestinations() {
+        return sensorDestinations;
+    }
+
+    @Override
+    public boolean containsControllerName(String controllerName) {
+        for (SensorDestination sensorDestination : sensorDestinations) {
+            if (sensorDestination.getDestinationControllerName().equals(controllerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void setDestination(String destination, String destinationControllerName) {
+        for (SensorDestination sensorDestination : sensorDestinations) {
+            if (sensorDestination.getDestinationControllerName().equals(destinationControllerName)) {
+                sensorDestination.setDestination(destination);
+            }
+        }
     }
 
     public Instant getTimeStamp() {
@@ -228,13 +269,13 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         return super.equals(obj);
     }
 
-    public List<String> getDestinationControllerNames() {
-        return destinationControllerNames;
-    }
+//    public List<String> getDestinationControllerNames() {
+//        return destinationControllerNames;
+//    }
 
-    public void setDestinationControllerNames(List<String> destinationControllerNames) {
-        this.destinationControllerNames = destinationControllerNames;
-    }
+//    public void setDestinationControllerNames(List<String> destinationControllerNames) {
+//        this.destinationControllerNames = destinationControllerNames;
+//    }
 
     public void setMaxRange(double maxRange) {
         this.maxRange = maxRange;

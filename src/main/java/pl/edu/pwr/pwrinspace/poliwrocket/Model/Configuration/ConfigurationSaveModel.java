@@ -154,10 +154,11 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         String START_CONTROL_CONTROLLER = "StartControl";
         Sensor basicSensor = new Sensor();
         basicSensor.setName("Altitude");
-        basicSensor.setDestination("dataGauge1");
+//        basicSensor.setDestination("dataGauge1");
         basicSensor.setMaxRange(2000);
         basicSensor.setMinRange(0);
-        basicSensor.getDestinationControllerNames().add("Data");
+//        basicSensor.getDestinationControllerNames().add("Data");
+        basicSensor.addSensorDestination(new SensorDestination("dataGauge1", "Data"));
         defaultConfig.sensorRepository.addSensor(basicSensor);
 
         //utworzenie 3xSensor for GYRO

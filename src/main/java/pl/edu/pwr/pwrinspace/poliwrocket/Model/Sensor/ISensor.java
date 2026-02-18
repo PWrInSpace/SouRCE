@@ -6,11 +6,11 @@ import java.util.List;
 public interface ISensor {
 
     double getValue();
-    String getDestination();
+    String getDestination(String destinationControllerName);
     String getName();
-    List<String> getDestinationControllerNames();
+//    List<String> getDestinationControllerNames();
     void setValue(double newValue);
-    void setDestination(String destination);
+//    void setDestination(String destination);
     String getUnit();
     double getMaxRange();
     double getMinRange();
@@ -21,4 +21,7 @@ public interface ISensor {
     String getInterpreterKey();
     boolean hasInterpreter();
     boolean isHidden();
+    List<SensorDestination> getSensorDestinations();
+    void setDestination(String destination, String destinationControllerName);
+    boolean containsControllerName(String controllerName);
 }
