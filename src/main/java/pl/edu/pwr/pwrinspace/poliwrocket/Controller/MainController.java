@@ -1,7 +1,5 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.interactivemesh.jfx.importer.ModelImporter;
-import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import com.jfoenix.controls.JFXTextArea;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.tilesfx.Tile;
@@ -11,10 +9,7 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,8 +20,8 @@ import org.javatuples.Pair;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
-import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Logger.AppStateLogger;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Provider.DetachedWindowsProvider;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -212,8 +207,6 @@ public class MainController extends BasicController implements InvalidationListe
         return mapScene;
     }
 
-
-
     public void initSubScenes(Collection<FXMLLoader> fxmlLoaders) {
         try {
             HashMap<String, Field> fields = new HashMap<>();
@@ -245,8 +238,7 @@ public class MainController extends BasicController implements InvalidationListe
         setAppImages();
         setup3DModel();
 
-        detaching();
-
+        setupDetachedWindowsProvider();
     }
 
     private void setAppImages() {
@@ -378,76 +370,95 @@ public class MainController extends BasicController implements InvalidationListe
         } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
             scaleSubScenes(primaryStage.widthProperty().doubleValue()/initWidth,primaryStage.heightProperty().doubleValue()/initHeight);
         }
-
     }
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
-
-
     private void scaleSubScenes(double scaleX, double scaleY) {
         nodes.forEach(scene -> {
             if(!scene.getTransforms().isEmpty()) {
                 scene.getTransforms().clear();
             }
-
             scene.getTransforms().add(new Scale(scaleX,scaleY));
             scene.setLayoutX(nodesInitPositions.get(scene).getValue0() * scaleX);
             scene.setLayoutY(nodesInitPositions.get(scene).getValue1() * scaleY);
         });
     }
 
+    private void setupDetachedWindowsProvider() {
+        if (tabPane != null) {
+            DetachedWindowsProvider.addActiveTabPane(tabPane);
+        }
+        for(int i = 0; i < Objects.requireNonNull(tabPane).getTabs().size(); i++) {
+            Tab tab = tabPane.getTabs().get(i);
+            tab.setUserData(i);
+            configureTabContextMenu(tab);
+        }
+    }
 
-    private void detachTab(Tab tab) {
-        Node content = tab.getContent();
-        if (content == null) return;
+    private void configureTabContextMenu(Tab tab){
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem newWindowItem = new MenuItem("Detach to a new window");
+        newWindowItem.setOnAction(e -> detachTabToNewWindow(tab));
+        contextMenu.getItems().add(newWindowItem);
+
+        Menu moveMenu = new Menu("Move to: ");
+
+        contextMenu.setOnShowing(e ->{
+            moveMenu.getItems().clear();
+            for(TabPane tabPane: DetachedWindowsProvider.getActiveTabPanes()){
+                if(tabPane == tab.getTabPane()){
+                    continue;
+                }
+                String title = ((Stage) tabPane.getScene().getWindow()).getTitle();
+                MenuItem item = new MenuItem(title);
+                item.setOnAction(ev-> {
+                    DetachedWindowsProvider.transferTabPane(tab, tabPane);
+                    configureTabContextMenu(tab);
+                });
+                moveMenu.getItems().add(item);
+            }
+        });
+         contextMenu.getItems().add(moveMenu);
+         tab.setContextMenu(contextMenu);
+    }
+
+    private void detachTabToNewWindow(Tab tab) {
+        tab.setUserData(tabPane.getTabs().indexOf(tab));
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/DetachedTabView.fxml"));
-            Parent wrapper = loader.load();
+            Parent root = loader.load();
             DetachedTabController detachedController = loader.getController();
 
-            tab.setContent(null);
-            int oldIndex = tabPane.getTabs().indexOf(tab);
-            tabPane.getTabs().remove(tab);
-
-            ((AnchorPane)wrapper).getChildren().add(content);
             Stage stage = new Stage();
-            stage.setScene(new Scene(wrapper, initWidth, initHeight));
+            stage.setScene(new Scene(root, initWidth, initHeight));
+            detachedController.setStage(stage);
+
+            TabPane newTabPane = detachedController.getTabPane();
+            DetachedWindowsProvider.addActiveTabPane(newTabPane);
+            DetachedWindowsProvider.transferTabPane(tab, newTabPane);
 
             String tabTitle = tab.getText();
             stage.setTitle("SouRCE - " + tabTitle);
 
-            detachedController.setStageAndContent(stage, content);
-
             stage.setOnCloseRequest(e -> {
-                content.getTransforms().clear();
-                Tab restoredTab = new Tab(tabTitle, content);
-                tabPane.getTabs().add(oldIndex, restoredTab);
-            });
+                DetachedWindowsProvider.removeActiveTabPane(newTabPane);
 
+                List<Tab> tabsToReturn = new ArrayList<>(newTabPane.getTabs());
+                tabsToReturn.sort(Comparator.comparingInt(t -> (int) t.getUserData()));
+                for (Tab t : tabsToReturn) {
+                    DetachedWindowsProvider.transferTabPane(t, this.tabPane);
+                    configureTabContextMenu(t);
+                }
+            });
             stage.show();
         } catch (IOException e) {
-            logger.error("Error DetachedView: " + e.getMessage());
+            e.printStackTrace();
         }
-    }
-
-    private void detaching(){
-        Platform.runLater(() -> {
-            if(tabPane != null){
-                for(Tab tab: tabPane.getTabs()){
-                    ContextMenu contextMenu = new ContextMenu();
-                    MenuItem detachItem = new MenuItem("detach");
-
-                    detachItem.setOnAction(event -> detachTab(tab));
-                    contextMenu.getItems().add(detachItem);
-
-                    tab.setContextMenu(contextMenu);
-                }
-            }
-        });
     }
 
     private void applyStyleToNode(Node node, String cssPath, boolean isLight) {
@@ -474,11 +485,12 @@ public class MainController extends BasicController implements InvalidationListe
             if (n instanceof Tile) {
                 Tile tile = (Tile) n;
                 applyTileStyle(tile, bg, fg);
-            }else if (n instanceof Gauge){
+            }else if (n instanceof Gauge) {
                 Gauge gauge = (Gauge) n;
                 applyGaugeStyle(gauge, fg);
-            }else{
-                System.out.println("Node ignored for styling: " + n.getClass().getSimpleName());
+            }if (n.getClass().getName().startsWith("pl.edu.pwr") &&
+                    !(n instanceof Tile || n instanceof Gauge || n instanceof Parent)) {
+                System.out.println("Unpredicted node ignored for styling:: " + n.getClass().getSimpleName());
             }
         }
     }

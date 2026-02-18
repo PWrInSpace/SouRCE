@@ -137,4 +137,6 @@
     -fx-background-color: -fx-backgroundColor-base;
     -fx-text-fill: black;
 }
-
+.context-menu .menu-item .label {
+     -fx-text-fill: black;
+ }

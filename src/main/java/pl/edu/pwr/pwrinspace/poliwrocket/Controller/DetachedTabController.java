@@ -2,21 +2,28 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TabPane;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 public class DetachedTabController implements InvalidationListener {
 
+    @FXML
+    private TabPane detachedTabPane;
+
     private Stage myStage;
-    private Node content;
 
     private static final double initWidth = 1550.4;
     private static final double initHeight = 838.4;
 
-    public void setStageAndContent(Stage stage, Node content) {
+    public TabPane getTabPane() {
+        return this.detachedTabPane;
+    }
+
+    public void setStage(Stage stage) {
         this.myStage = stage;
-        this.content = content;
 
         stage.widthProperty().addListener(this);
         stage.heightProperty().addListener(this);
@@ -30,11 +37,11 @@ public class DetachedTabController implements InvalidationListener {
     }
 
     private void scaleContent(double scaleX, double scaleY) {
-        if (content != null) {
-            if(!content.getTransforms().isEmpty()) {
-                content.getTransforms().clear();
+        if (detachedTabPane != null) {
+            if(!detachedTabPane.getTransforms().isEmpty()) {
+                detachedTabPane.getTransforms().clear();
             }
-            content.getTransforms().add(new Scale(scaleX, scaleY, 0, 0));
+            detachedTabPane.getTransforms().add(new Scale(scaleX, scaleY, 0, 0));
         }
     }
 
