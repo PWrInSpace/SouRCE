@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class NewCommandComponentController extends BaseNewComponentController {
-    BaseCommandsController parentController;
+    protected BaseCommandsController parentController;
 
     @FXML
     protected ToggleGroup commandType;

@@ -252,7 +252,7 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
             Stage popupStage = new Stage();
             try {
                 Parent root = loader.load();
-                NewCommandComponentController popupController = loader.getController();
+                NewButtonSensorCommandComponentController popupController = loader.getController();
                 Scene popupScene = new Scene(root);
                 popupStage.setScene(popupScene);
                 popupController.setParentController(this);

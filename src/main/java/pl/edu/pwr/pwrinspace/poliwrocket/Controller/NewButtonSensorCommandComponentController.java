@@ -1,27 +1,17 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.ProtobufContent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class NewButtonSensorCommandComponentController extends NewCommandComponentController {
-    BaseCommandsController parentController;
-
     @FXML
     private JFXComboBox<CommandType> commandTypeComboBox;
 
