@@ -6,16 +6,22 @@ import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.CodeInterpreterUIHint;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,10 +63,6 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
         this.inputLayoutX = 307;
         this.commandButtonLayoutX = 387;
     }
-
-    @FXML
-    @Override
-    public void initialize() {}
 
     @Override
     protected void buildVisualizationMap() {
@@ -237,5 +239,32 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
         element.setPrefHeight(prefHeight);
         element.setPrefWidth(prefWidth);
         mainPanel.getChildren().add(element);
+    }
+
+    @Override
+    protected void generateAddCommandComponentButton() {
+        addComponentButton = new JFXButton("+");
+        addComponentButton.setLayoutX(0);
+        addComponentButton.setLayoutY(0);
+        mainPanel.getChildren().add(addComponentButton);
+        addComponentButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/NewButtonSensorCommandComponentView.fxml"));
+            Stage popupStage = new Stage();
+            try {
+                Parent root = loader.load();
+                NewCommandComponentController popupController = loader.getController();
+                Scene popupScene = new Scene(root);
+                popupStage.setScene(popupScene);
+                popupController.setParentController(this);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            popupStage.initOwner(addComponentButton.getScene().getWindow());
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+        });
     }
 }

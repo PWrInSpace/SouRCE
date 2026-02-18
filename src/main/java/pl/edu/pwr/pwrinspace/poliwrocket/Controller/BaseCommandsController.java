@@ -58,38 +58,16 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     protected int commandButtonPrefWidth = 60;
     protected String commandButtonText = "Send";
 
-    JFXButton addComponentButton;
-    JFXButton addExistingCommandButton;
+    protected JFXButton addComponentButton;
+    protected JFXButton addExistingCommandButton;
 
     @FXML
     @Override
     public void initialize() {
-        addComponentButton = new JFXButton("+");
-        addComponentButton.setLayoutX(0);
-        addComponentButton.setLayoutY(0);
-        mainPanel.getChildren().add(addComponentButton);
-        addComponentButton.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/NewCommandComponentView.fxml"));
-            Stage popupStage = new Stage();
-            try {
-                Parent root = loader.load();
-                NewCommandComponentController popupController = loader.getController();
-                Scene popupScene = new Scene(root);
-                popupStage.setScene(popupScene);
-                popupController.setParentController(this);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            popupStage.initOwner(addComponentButton.getScene().getWindow());
-            popupStage.initModality(Modality.WINDOW_MODAL);
-            popupStage.setResizable(false);
-
-            popupStage.showAndWait();
-        });
+        generateAddCommandComponentButton();
 
         addExistingCommandButton = new JFXButton("+E");
-        addExistingCommandButton.setLayoutX(50);
+        addExistingCommandButton.setLayoutX(30);
         addExistingCommandButton.setLayoutY(0);
         mainPanel.getChildren().add(addExistingCommandButton);
         addExistingCommandButton.setOnAction(event -> {
@@ -213,5 +191,31 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     @Override
     public void invalidated(Observable observable) {
         logger.error("Controller has no visualization.");
+    }
+
+    protected void generateAddCommandComponentButton() {
+        addComponentButton = new JFXButton("+");
+        addComponentButton.setLayoutX(0);
+        addComponentButton.setLayoutY(0);
+        mainPanel.getChildren().add(addComponentButton);
+        addComponentButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/NewCommandComponentView.fxml"));
+            Stage popupStage = new Stage();
+            try {
+                Parent root = loader.load();
+                NewCommandComponentController popupController = loader.getController();
+                Scene popupScene = new Scene(root);
+                popupStage.setScene(popupScene);
+                popupController.setParentController(this);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            popupStage.initOwner(addComponentButton.getScene().getWindow());
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+        });
     }
 }

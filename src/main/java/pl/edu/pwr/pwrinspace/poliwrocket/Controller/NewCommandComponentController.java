@@ -22,37 +22,37 @@ public class NewCommandComponentController extends BaseNewComponentController {
     BaseCommandsController parentController;
 
     @FXML
-    private ToggleGroup commandType;
+    protected ToggleGroup commandType;
     @FXML
-    private JFXToggleButton protobufType;
+    protected JFXToggleButton protobufType;
     @FXML
-    private JFXToggleButton standardType;
+    protected JFXToggleButton standardType;
     @FXML
-    private AnchorPane protobufCommandDetails;
+    protected AnchorPane protobufCommandDetails;
     @FXML
-    private AnchorPane standardCommandDetails;
+    protected AnchorPane standardCommandDetails;
     @FXML
-    private JFXComboBox<String> protobufDeviceComboBox;
+    protected JFXComboBox<String> protobufDeviceComboBox;
     @FXML
-    private JFXComboBox<String> protobufSystemComboBox;
+    protected JFXComboBox<String> protobufSystemComboBox;
     @FXML
-    private JFXTextArea protobufCommandTextArea;
+    protected JFXTextArea protobufCommandTextArea;
     @FXML
-    private JFXToggleButton isFinalToggleButton;
+    protected JFXToggleButton isFinalToggleButton;
     @FXML
-    private ToggleGroup protobufCommandFormat;
+    protected ToggleGroup protobufCommandFormat;
     @FXML
-    private JFXToggleButton protobufHexFormat;
+    protected JFXToggleButton protobufHexFormat;
     @FXML
-    private JFXToggleButton protobufDecimalFormat;
+    protected JFXToggleButton protobufDecimalFormat;
     @FXML
-    private JFXTextArea triggerTextArea;
+    protected JFXTextArea triggerTextArea;
     @FXML
-    private JFXTextArea descriptionTextArea;
+    protected JFXTextArea descriptionTextArea;
     @FXML
-    private JFXTextArea payloadTextArea;
+    protected JFXTextArea payloadTextArea;
     @FXML
-    private JFXButton addCommandButton;
+    protected JFXButton addCommandButton;
 
     @FXML
     public void initialize() {
@@ -88,9 +88,6 @@ public class NewCommandComponentController extends BaseNewComponentController {
             }
             return null;
         }));
-
-        var sensors = Configuration.getInstance().sensorRepository;
-        System.out.println("sensors");
     }
 
     @FXML
@@ -145,7 +142,7 @@ public class NewCommandComponentController extends BaseNewComponentController {
         this.parentController = parentController;
     }
 
-    private ProtobufCommand createProtobufCommand() throws InvalidParameterException {
+    protected ProtobufCommand createProtobufCommand() throws InvalidParameterException {
         String device = protobufDeviceComboBox.getSelectionModel().getSelectedItem();
         String system = protobufSystemComboBox.getSelectionModel().getSelectedItem();
         if (device == null || system == null) throw new InvalidParameterException("Device or system not specified");
