@@ -41,7 +41,7 @@ public abstract class BaseButtonSensorController extends BaseTilesFXSensorContro
         super.setUIBySensors();
         for (ISensor sensor : sensors) {
             if (sensor != null) {
-                var indicator = indicatorHashMap.get(sensor.getDestination());
+                var indicator = indicatorHashMap.get(sensor.getDestination(getControllerName()));
                 if (indicator != null) {
                     boolean on = sensor.getValue() == 1.0;
                     indicator.setOn(on);

@@ -7,9 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class BaseInterpretersController extends BaseSensorController {
@@ -28,30 +26,29 @@ public abstract class BaseInterpretersController extends BaseSensorController {
     @Override
     protected void setUIBySensors() {
         for (ISensor sensor : this.getSortedSensors()){
-            labelHashMap.get(sensor.getDestination()).setText(sensor.getName());
+            labelHashMap.get(sensor.getDestination(getControllerName())).setText(sensor.getName());
 
             if(sensor.hasInterpreter()) {
-                var valueLabel = valueHashMap.get(sensor.getDestination());
+                var valueLabel = valueHashMap.get(sensor.getDestination(getControllerName()));
                 var code = sensor.getCodeMeaning();
                 valueLabel.setText(code.text);
                 valueLabel.setTextFill(UIHelper.resolveUIHintColor(code.UIHint));
 
             } else {
-                valueHashMap.get(sensor.getDestination()).setText(Double.toString(sensor.getValue()));
+                valueHashMap.get(sensor.getDestination(getControllerName())).setText(Double.toString(sensor.getValue()));
             }
         }
     }
 
     protected List<ISensor> getSortedSensors() {
-        return sensors.stream().sorted(Comparator.comparing(ISensor::getDestination, String::compareTo))
-                .collect(Collectors.toList());
+        return sensors.stream().sorted(Comparator.comparing(s -> s.getDestination(getControllerName()))).collect(Collectors.toList());
     }
 
     @Override
     public void invalidated(Observable observable) {
         if(observable instanceof ISensor) {
             var sensor = (ISensor)observable;
-            var valueLabel =  valueHashMap.get(sensor.getDestination());
+            var valueLabel =  valueHashMap.get(sensor.getDestination(getControllerName()));
             var code = sensor.getCodeMeaning();
 
             UIThreadManager.getInstance().addNormal(() -> {

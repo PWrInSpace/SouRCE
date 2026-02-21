@@ -57,9 +57,9 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
     @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
-            var tile = tileHashMap.get(sensor.getDestination());
-            var indicator = indicatorHashMap.get(sensor.getDestination());
-            var label = labelHashMap.get(sensor.getDestination());
+            var tile = tileHashMap.get(sensor.getDestination(getControllerName()));
+            var indicator = indicatorHashMap.get(sensor.getDestination(getControllerName()));
+            var label = labelHashMap.get(sensor.getDestination(getControllerName()));
             if (tile != null) {
                 tile.setVisible(true);
 
@@ -90,7 +90,7 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
                     label.setVisible(true);
                 }
             } else {
-                logger.error("Wrong UI binding - destination not found: {}", sensor.getDestination());
+                logger.error("Wrong UI binding - destination not found: {}", sensor.getDestination(getControllerName()));
             }
         }
     }

@@ -94,7 +94,7 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
         moduleArray.sort((String sensorName1, String sensorName2) -> {
             var sensor1 = sensorHashMap.get(sensorName1);
             var sensor2 = sensorHashMap.get(sensorName2);
-            return sensor1.getDestination().compareTo(sensor2.getDestination());
+            return sensor1.getDestination(getControllerName()).compareTo(sensor2.getDestination(getControllerName()));
         });
 
         List<ICommand> commandList = this.commands.stream().sorted(Comparator.comparing(ICommand::getCommandDescription)).collect(Collectors.toList());
@@ -222,8 +222,8 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
 
                 if (sensor.hasInterpreter()) {
                     boolean isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
-                    var closeBtn = closeHashMap.get(sensor.getDestination());
-                    var openBtn = openHashMap.get(sensor.getDestination());
+                    var closeBtn = closeHashMap.get(sensor.getDestination(getControllerName()));
+                    var openBtn = openHashMap.get(sensor.getDestination(getControllerName()));
                     if (closeBtn != null) closeBtn.setDefaultButton(isNotClosed);
                     if (openBtn != null) openBtn.setDefaultButton(!isNotClosed);
                 }

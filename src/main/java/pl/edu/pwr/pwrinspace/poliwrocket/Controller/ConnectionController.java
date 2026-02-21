@@ -179,11 +179,11 @@ public class ConnectionController extends BaseButtonSensorController {
     @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
-            if (sensor.getDestination().equals(signal.getId())) {
+            if (sensor.getDestination(getControllerName()).equals(signal.getId())) {
                 signal.setVisible(true);
                 signal.setUnit(sensor.getUnit());
             } else {
-                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
+                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination(getControllerName()));
             }
         }
     }

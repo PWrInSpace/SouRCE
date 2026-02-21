@@ -100,7 +100,7 @@ public class FlightValvesController extends BaseButtonSensorController {
         try {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
-                var ind = indicatorHashMap.get(sensor.getDestination());
+                var ind = indicatorHashMap.get(sensor.getDestination(getControllerName()));
 
                 if (ind != null) {
                     ind.setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.DODGERBLUE);
@@ -109,8 +109,8 @@ public class FlightValvesController extends BaseButtonSensorController {
 
                 if (sensor.hasInterpreter()) {
                     boolean isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
-                    var closeBtn = closeHashMap.get(sensor.getDestination());
-                    var openBtn = openHashMap.get(sensor.getDestination());
+                    var closeBtn = closeHashMap.get(sensor.getDestination(getControllerName()));
+                    var openBtn = openHashMap.get(sensor.getDestination(getControllerName()));
                     if (closeBtn != null) closeBtn.setDefaultButton(isNotClosed);
                     if (openBtn != null) openBtn.setDefaultButton(!isNotClosed);
                 }
