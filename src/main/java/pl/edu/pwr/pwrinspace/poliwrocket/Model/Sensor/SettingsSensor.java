@@ -21,7 +21,7 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
 
     @Override
     public String getInputKey() {
-        return _destinationInoutPrefix + this.getDestination();
+        return _destinationInoutPrefix + this.getDestination("Settings");
     }
 
     @Override

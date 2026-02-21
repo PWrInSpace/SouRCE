@@ -8,9 +8,7 @@ public interface ISensor {
     double getValue();
     String getDestination(String destinationControllerName);
     String getName();
-//    List<String> getDestinationControllerNames();
     void setValue(double newValue);
-//    void setDestination(String destination);
     String getUnit();
     double getMaxRange();
     double getMinRange();

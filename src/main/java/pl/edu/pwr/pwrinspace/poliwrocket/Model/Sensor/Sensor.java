@@ -18,9 +18,6 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     @Expose
     private List<SensorDestination> sensorDestinations = new ArrayList<>();
 
-//    @Expose
-//    private String destination = "";
-
     @Expose
     private String name;
 
@@ -33,9 +30,6 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     private Instant lastAveragingTimeStamp = Instant.now();
     private boolean shouldNotify = false;
-
-//    @Expose
-//    private List<String> destinationControllerNames = new ArrayList<>();
 
     @Expose
     private double maxRange = 0;
@@ -60,14 +54,14 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     private double maxValue = Double.MIN_VALUE;
 
-    private List<Double> values = new LinkedList<>();
+    private final List<Double> values = new LinkedList<>();
 
     public Sensor() {
         this.timeStamp = Instant.now();
     }
 
+    // todo sprawdzić gdzie ta funkcja jest wykorzystywana
     public Sensor(@NotNull Sensor sensor) {
-//        this.destination = sensor.destination;
         this.unit = sensor.unit;
         this.name = sensor.name;
         this.minRange = sensor.minRange;
@@ -90,16 +84,6 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     public void removeListener(InvalidationListener invalidationListener) {
         observers.remove(invalidationListener);
     }
-
-//    @Override
-//    public void setDestination(String destination) {
-//        this.destination = destination;
-//    }
-
-//    @Override
-//    public String getDestination() {
-//        return destination;
-//    }
 
     @Override
     public String getDestination(String destinationControllerName) {
@@ -269,13 +253,15 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         return super.equals(obj);
     }
 
-//    public List<String> getDestinationControllerNames() {
-//        return destinationControllerNames;
-//    }
+    public List<String> getDestinationControllerNames() {
+        List<String> controllerNames = new ArrayList<>();
+        for (SensorDestination sensorDestination : sensorDestinations) controllerNames.add(sensorDestination.getDestinationControllerName());
+        return controllerNames;
+    }
 
-//    public void setDestinationControllerNames(List<String> destinationControllerNames) {
-//        this.destinationControllerNames = destinationControllerNames;
-//    }
+    public void setSensorDestinations(List<SensorDestination> sensorDestinations) {
+        this.sensorDestinations = sensorDestinations;
+    }
 
     public void setMaxRange(double maxRange) {
         this.maxRange = maxRange;

@@ -4,13 +4,13 @@ import com.google.gson.annotations.Expose;
 
 public class SensorDestination {
     @Expose
-    private String destination = "";
+    private String destination;
     @Expose
-    private String destinationControllerName = "";
+    private String destinationControllerName;
 
-    public SensorDestination(String dataGauge1, String data) {
-        this.destination = dataGauge1;
-        this.destinationControllerName = data;
+    public SensorDestination(String destination, String destinationControllerName) {
+        this.destination = destination;
+        this.destinationControllerName = destinationControllerName;
     }
 
     public String getDestination() {

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewCommandComponentController">
-    <Region style="-fx-background-image: url('silly_cat_4.jpeg'); -fx-backgrbound-position: center, center; -fx-background-size: cover, cover" />
+    <Region style="-fx-background-image: url('silly_cat.gif'); -fx-backgrbound-position: center, center; -fx-background-size: cover, cover" />
     <AnchorPane prefHeight="420.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
         <fx:define>
             <ToggleGroup fx:id="commandType" />
