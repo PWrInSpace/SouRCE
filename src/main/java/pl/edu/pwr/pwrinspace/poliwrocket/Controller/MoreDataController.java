@@ -67,7 +67,7 @@ public class MoreDataController extends BaseSensorController {
     @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
-            var visualization = this.visualizationsHashMap.get(sensor.getDestination());
+            var visualization = this.visualizationsHashMap.get(sensor.getDestination(getControllerName()));
             if (visualization != null) {
                 if(visualization instanceof Indicator) {
                     ((Indicator)visualization).setVisible(true);
@@ -91,7 +91,7 @@ public class MoreDataController extends BaseSensorController {
         try {
             var sensor = ((ISensor) observable);
 
-                var visualization = visualizationsHashMap.get(sensor.getDestination());
+                var visualization = visualizationsHashMap.get(sensor.getDestination(getControllerName()));
                 if(visualization instanceof Indicator) {
                     UIThreadManager.getInstance().addImmediateOnOK(() -> {
                         if(sensor.getValue() != 1.0 && sensor.getValue() != 0.0){

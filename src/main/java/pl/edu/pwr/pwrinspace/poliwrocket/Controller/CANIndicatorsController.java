@@ -44,7 +44,7 @@ public class CANIndicatorsController extends BaseTilesFXSensorController {
         try {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
-                var visualization = indicatorHashMap.get(sensor.getDestination());
+                var visualization = indicatorHashMap.get(sensor.getDestination(getControllerName()));
                 if(visualization != null)
                     visualization.setOn(sensor.getValue() == 1.0);
             });

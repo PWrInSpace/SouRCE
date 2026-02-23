@@ -46,8 +46,8 @@ public  class InterpretersFlightController extends BaseInterpretersController {
                 mainPanel.getChildren().add(label);
                 mainPanel.getChildren().add(value);
 
-                labelHashMap.put(sensor.getDestination(), label);
-                valueHashMap.put(sensor.getDestination(), value);
+                labelHashMap.put(sensor.getDestination(getControllerName()), label);
+                valueHashMap.put(sensor.getDestination(getControllerName()), value);
             }
 
             element++;

@@ -109,8 +109,8 @@ public class PowerController extends BaseSensorController {
         if (observable instanceof ISensor) {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addNormal(() -> {
-                powerHashMap.get(sensor.getDestination()).getValue0().setValue(Math.round((sensor.getValue() - sensor.getMinRange())/(sensor.getMaxRange()-sensor.getMinRange())*1000)/10.0);
-                powerHashMap.get(sensor.getDestination()).getValue2().setText((Math.round(sensor.getValue()*100)/100.0) + sensor.getUnit());
+                powerHashMap.get(sensor.getDestination(getControllerName())).getValue0().setValue(Math.round((sensor.getValue() - sensor.getMinRange())/(sensor.getMaxRange()-sensor.getMinRange())*1000)/10.0);
+                powerHashMap.get(sensor.getDestination(getControllerName())).getValue2().setText((Math.round(sensor.getValue()*100)/100.0) + sensor.getUnit());
             });
         }
     }
@@ -118,7 +118,7 @@ public class PowerController extends BaseSensorController {
     @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
-            var triplet = powerHashMap.get(sensor.getDestination());
+            var triplet = powerHashMap.get(sensor.getDestination(getControllerName()));
             if (triplet != null) {
                 triplet.getValue0().setVisible(true);
                 triplet.getValue0().setThresholdColor(Color.BLUE);
@@ -129,7 +129,7 @@ public class PowerController extends BaseSensorController {
                 triplet.getValue1().setText(sensor.getName());
                 triplet.getValue2().setVisible(true);
             } else {
-                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination());
+                logger.error("Wrong UI binding - destination not found: {}",sensor.getDestination(getControllerName()));
             }
         }
     }

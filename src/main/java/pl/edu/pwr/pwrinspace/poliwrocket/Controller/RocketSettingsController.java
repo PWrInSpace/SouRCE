@@ -70,7 +70,7 @@ public class RocketSettingsController extends BaseButtonSensorController {
                 label.setPrefHeight(18);
                 label.setPrefWidth(150);
 
-                value.setId(settingsSensor.getDestination());
+                value.setId(settingsSensor.getDestination(getControllerName()));
                 value.setLayoutX(112);
                 value.setLayoutY(initYLabel);
                 value.setPrefHeight(18);
@@ -92,9 +92,9 @@ public class RocketSettingsController extends BaseButtonSensorController {
                 mainPanel.getChildren().add(input);
                 mainPanel.getChildren().add(button);
 
-                labelHashMap.put(settingsSensor.getDestination(), label);
+                labelHashMap.put(settingsSensor.getDestination(getControllerName()), label);
                 inputHashMap.put(settingsSensor.getInputKey(), input);
-                valueHashMap.put(settingsSensor.getDestination(), value);
+                valueHashMap.put(settingsSensor.getDestination(getControllerName()), value);
                 buttonHashMap.put(settingsSensor.getCommandTriggerKey(), button);
 
                 initYLabel += offsetY;
@@ -124,7 +124,7 @@ public class RocketSettingsController extends BaseButtonSensorController {
         try {
             if(observable instanceof SettingsSensor) {
                 var sensor = (SettingsSensor) observable;
-                UIThreadManager.getInstance().addImmediateOnOK(() -> valueHashMap.get(sensor.getDestination()).setText(Double.toString(sensor.getValue())));
+                UIThreadManager.getInstance().addImmediateOnOK(() -> valueHashMap.get(sensor.getDestination(getControllerName())).setText(Double.toString(sensor.getValue())));
             } else {
                 logger.error("Controller has been notified but there was no action.");
             }

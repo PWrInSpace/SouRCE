@@ -14,7 +14,7 @@ public abstract class BaseDataTilesController extends BaseTilesFXSensorControlle
         try {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addNormal(() -> {
-                var gauge = tileHashMap.get(sensor.getDestination());
+                var gauge = tileHashMap.get(sensor.getDestination(getControllerName()));
                 if(sensor instanceof IAlert) {
                     if (((IAlert) sensor).getAlert()) {
                         gauge.setValueColor(Color.rgb(0, 255, 68));
