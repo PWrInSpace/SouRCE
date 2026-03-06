@@ -10,7 +10,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.StandardCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 
 import java.security.InvalidParameterException;
 
@@ -139,7 +139,7 @@ public class AddExistingCommandController extends BaseNewComponentController {
     public void addExistingCommand() {
         try {
             var command = getSelectedCommand();
-            ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+            ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
             ((Stage) addExistingCommandButton.getScene().getWindow()).close();
         } catch (Exception e) {
             logger.error(e.getMessage());

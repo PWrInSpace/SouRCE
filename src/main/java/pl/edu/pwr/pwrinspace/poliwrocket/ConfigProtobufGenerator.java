@@ -2,22 +2,22 @@ package pl.edu.pwr.pwrinspace.poliwrocket;
 
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 
 public class ConfigProtobufGenerator {
 
     public static void main(String[] args) {
 
         try {
-            ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+            ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
 
             if(args.length > 0 && args[0].contains("/config/")) {
                 Configuration.getInstance().setConfigPath(args[0]);
             }
 
-            Configuration.getInstance().setupConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), false));
+            Configuration.getInstance().setupConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), false));
 
-            modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.protobufBasedConfiguration(Configuration.getInstance()), false);
+            modelAsYamlService.saveToFile(ConfigurationSaveModel.protobufBasedConfiguration(Configuration.getInstance()), false);
 
         } catch (Exception e) {
             throw new RuntimeException(e);

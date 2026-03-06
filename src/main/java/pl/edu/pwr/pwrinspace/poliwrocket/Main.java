@@ -26,7 +26,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationFormat
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Notification.NotificationSendService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Rule.RuleValidationService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Speech.TextToSpeechService;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Logger.AppStateLogger;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.Notification.NotificationThread;
@@ -42,7 +42,7 @@ public class Main extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+    private final ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
     private FrameSaveService frameSaveService;
     private NotificationSendService notificationSendService;
     private NotificationThread notificationThread;
@@ -66,7 +66,7 @@ public class Main extends Application {
         try {
             //Read config file
             try {
-                Configuration.getInstance().setupConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), false));
+                Configuration.getInstance().setupConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), false));
             } catch (UnsupportedOperationException e) {
                 logger.error("Wrong mapping in controller");
                 e.printStackTrace();
@@ -76,24 +76,24 @@ public class Main extends Application {
                 logger.error(e.getMessage());
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
-                modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-                //modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration(), false);
-                //Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+                modelAsYamlService.persistOldFile(new ConfigurationSaveModel());
+//                modelAsYamlService.saveToFile(ConfigurationSaveModel.defaultConfiguration(), false);
+//                Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsYamlService.readFromFile(new ConfigurationSaveModel(), false));
                 return;
             }
             //--------------
 
             //Read speech file
             try {
-                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary(), false);
+                textToSpeechDictionary = modelAsYamlService.readFromFile(new TextToSpeechDictionary(), false);
             } catch (Exception e) {
                 logger.error("Bad speech file, overwritten by default and loaded");
                 logger.error(e.getMessage());
                 logger.error(Arrays.toString(e.getStackTrace()));
                 logger.error(e.toString());
-                modelAsJsonSaveService.persistOldFile(new TextToSpeechDictionary());
-                modelAsJsonSaveService.saveToFile(TextToSpeechDictionary.defaultModel(), false);
-                textToSpeechDictionary = modelAsJsonSaveService.readFromFile(new TextToSpeechDictionary(), false);
+                modelAsYamlService.persistOldFile(new TextToSpeechDictionary());
+                modelAsYamlService.saveToFile(TextToSpeechDictionary.defaultModel(), false);
+                textToSpeechDictionary = modelAsYamlService.readFromFile(new TextToSpeechDictionary(), false);
             }
             //--------------
 
@@ -228,8 +228,8 @@ public class Main extends Application {
                 AppStateLogger.getInstance().start();
             });
             primaryStage.setOnCloseRequest(windowEvent -> {
-                modelAsJsonSaveService.removeTempConfig(new ConfigurationSaveModel());
-                modelAsJsonSaveService.removeTempConfig(new TextToSpeechDictionary());
+                modelAsYamlService.removeTempConfig(new ConfigurationSaveModel());
+                modelAsYamlService.removeTempConfig(new TextToSpeechDictionary());
                 System.exit(0);
             });
             primaryStage.show();

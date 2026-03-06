@@ -1,8 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -11,7 +15,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.ProtobufContent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -126,11 +130,11 @@ public class NewCommandComponentController extends BaseNewComponentController {
 
     @FXML
     private void addProtobufCommand() {
-        ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+        ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
         try {
             ProtobufCommand command = createProtobufCommand();
-            modelAsJsonSaveService.addCommandToFile(new ConfigurationSaveModel(), command);
-            Configuration.getInstance().reloadConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), true));
+            modelAsYamlService.addCommandToFile(new ConfigurationSaveModel(), command);
+            Configuration.getInstance().reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
 
             ((Stage) addCommandButton.getScene().getWindow()).close();
         } catch (Exception e) {

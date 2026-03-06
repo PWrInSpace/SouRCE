@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ public class ConfigurationProvider {
     private Configuration configuration;
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationProvider.class);
 
-    private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+    private final ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
 
     private ConfigurationProvider() throws Exception {
         if (ConfigurationProvider.Holder.INSTANCE != null) {
@@ -26,7 +26,7 @@ public class ConfigurationProvider {
     public void loadConfig() {
         //Read config file
         try {
-            //configuration = new Configuration(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+//            configuration = new Configuration(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), false));
         } catch (UnsupportedOperationException e) {
             logger.error("Wrong mapping in controller");
             e.printStackTrace();
@@ -36,9 +36,9 @@ public class ConfigurationProvider {
             logger.error(e.getMessage());
             logger.error(Arrays.toString(e.getStackTrace()));
             logger.error(e.toString());
-            modelAsJsonSaveService.persistOldFile(new ConfigurationSaveModel());
-            // modelAsJsonSaveService.saveToFile(ConfigurationSaveModel.defaultConfiguration(), false);
-            //Configuration.getInstance().setupConfigInstance((ConfigurationSaveModel) modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel()));
+            modelAsYamlService.persistOldFile(new ConfigurationSaveModel());
+//            modelAsYamlService.saveToFile(ConfigurationSaveModel.defaultConfiguration(), false);
+//            Configuration.getInstance().setupConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), false));
             throw e;
         }
         //--------------

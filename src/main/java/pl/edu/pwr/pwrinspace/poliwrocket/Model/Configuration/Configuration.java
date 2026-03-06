@@ -34,7 +34,7 @@ public class Configuration implements Observable {
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
 
     protected static String CONFIG_PATH = "./config/";
-    public static final String CONFIG_FILE_NAME = "config.json";
+    public static final String CONFIG_FILE_NAME = "config.yaml";
     public static final String FLIGHT_DATA_PATH = "./flightData/";
     public static final String FLIGHT_DATA_FILE_NAME = "Flight_" + Instant.now().getEpochSecond() + ".txt";
     public String DISCORD_TOKEN = "";

@@ -4,8 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.Observable;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +11,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ITare;
-import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +33,7 @@ public class SettingsController extends BaseController {
     protected JFXButton saveTempButton;
 
 
-    private final ModelAsJsonSaveService modelAsJsonSaveService = new ModelAsJsonSaveService();
+    private final ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
     List<IAction> actionList = new ArrayList<>();
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
@@ -91,7 +89,7 @@ public class SettingsController extends BaseController {
 
     void reloadConfig() {
         try {
-            Configuration.getInstance().reloadConfigInstance(modelAsJsonSaveService.readFromFile(new ConfigurationSaveModel(), false));
+            Configuration.getInstance().reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), false));
         } catch (Exception e) {
             logger.error("Bad config file");
             logger.error(e.getMessage());
@@ -101,7 +99,7 @@ public class SettingsController extends BaseController {
     }
 
     void saveTempConfig() {
-        new ModelAsJsonSaveService().overrideConfig(new ConfigurationSaveModel());
+        new ModelAsYamlService().overrideConfig(new ConfigurationSaveModel());
     }
 
     @Override
