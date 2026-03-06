@@ -1,6 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech;
 
-import com.google.gson.annotations.Expose;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class TextToSpeechDictionary extends BaseSaveModel {
 
-    @Expose
+    @JsonProperty("speechRules")
     private HashMap<String, List<TextToSpeech>> speechRules = new HashMap<>();
 
     public TextToSpeechDictionary() {

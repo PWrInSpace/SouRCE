@@ -1,6 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech;
 
-import com.google.gson.annotations.Expose;
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -8,10 +10,10 @@ import java.util.List;
 
 public class TextToSpeech {
 
-    @Expose
+    @JsonProperty("textToSpeak")
     private String textToSpeak;
 
-    @Expose
+    @JsonProperty("rules")
     private  List<Rule> rules = new ArrayList<>();
 
     public TextToSpeech() {
