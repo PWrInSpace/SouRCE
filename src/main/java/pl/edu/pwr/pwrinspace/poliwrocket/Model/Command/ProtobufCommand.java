@@ -1,10 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.ProtobufContent;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
 import java.util.List;
 
+    @JsonTypeName("ProtobufCommand")
 public class ProtobufCommand extends ProtobufBaseCommand<ProtobufContent> {
 
     @Override

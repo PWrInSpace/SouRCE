@@ -1,6 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
@@ -11,50 +13,37 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+@JsonTypeName("Sensor")
 public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     public List<InvalidationListener> observers = new ArrayList<>();
 
-    @Expose
-    private List<SensorDestination> sensorDestinations = new ArrayList<>();
-
-    @Expose
-    private String name;
-
-    @Expose
-    private String unit = "";
-
     private Instant timeStamp;
-
     private Instant previousTimeStamp;
-
     private Instant lastAveragingTimeStamp = Instant.now();
     private boolean shouldNotify = false;
-
-    @Expose
-    private double maxRange = 0;
-
-    @Expose
-    private double minRange = 0;
-
-    @Expose
-    private boolean isBoolean = false;
-
-    @Expose
-    private String interpreterKey;
-
-    @Expose
-    private boolean hidden = false;
-
     private CodeInterpreter interpreter;
-
     protected double value = 0;
-
     private double previousReportedValue = 0;
-
     private double maxValue = Double.MIN_VALUE;
-
     private final List<Double> values = new LinkedList<>();
+
+    @JsonProperty("sensorDestinations")
+    private List<SensorDestination> sensorDestinations = new ArrayList<>();
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("unit")
+    private String unit = "";
+    @JsonProperty("maxRange")
+    private double maxRange = 0;
+    @JsonProperty("minRange")
+    private double minRange = 0;
+    @JsonProperty("isBoolean")
+    private boolean isBoolean = false;
+    @JsonProperty("interpreterKey")
+    private String interpreterKey;
+    @JsonProperty("hidden")
+    private boolean hidden = false;
 
     public Sensor() {
         this.timeStamp = Instant.now();

@@ -1,18 +1,19 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
-import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
+@JsonTypeName("TimerSensor")
 public class TimerSensor extends Sensor {
 
-    @Expose
+    @JsonProperty("abortTime")
     private int abortTime;
 
     private Timer timer;
@@ -21,10 +22,10 @@ public class TimerSensor extends Sensor {
 
     private TimerTask controlTask;
 
-    @Expose
+    @JsonProperty("command")
     private Command<ProtobufCommand> command;
 
-    @Expose
+    @JsonProperty("controlTime")
     private int controlTime;
 
     private void resetTimer(long timeToAbort) {

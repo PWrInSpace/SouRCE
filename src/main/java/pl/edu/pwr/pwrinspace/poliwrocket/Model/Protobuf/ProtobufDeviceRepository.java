@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +11,7 @@ public class ProtobufDeviceRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(ProtobufDeviceRepository.class);
 
-    @Expose
+    @JsonProperty("devices")
     private HashMap<String, ProtobufDevice> devices = new HashMap<>();
 
     public ProtobufDevice getDevice(String key) {

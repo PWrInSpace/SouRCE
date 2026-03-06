@@ -1,5 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("StandardCommand")
 public class StandardCommand extends Command<String> {
     @Override
     public String getListViewString() {

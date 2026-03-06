@@ -1,10 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("TareSensor")
 public class TareSensor extends Sensor implements ITare {
 
-    @Expose
+    @JsonProperty("tareValue")
     private double tareValue = 0;
 
     @Override

@@ -1,12 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProtobufDevice {
-    @Expose
+    @JsonProperty("deviceId")
     private String deviceId;
 
-    @Expose
+    @JsonProperty("sudoMask")
     private String sudoMask;
 
     public int getSudoMask() {

@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,13 +12,13 @@ public class SensorRepository implements ISensorRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(SensorRepository.class);
 
-    @Expose
+    @JsonProperty("sensors")
     private HashMap<String, Sensor> sensors = new HashMap<>();
 
-    @Expose
+    @JsonProperty("gpsSensor")
     private GPSSensor gpsSensor = new GPSSensor();
 
-    @Expose
+    @JsonProperty("gyroSensor")
     private GyroSensor gyroSensor = new GyroSensor();
 
     @Override

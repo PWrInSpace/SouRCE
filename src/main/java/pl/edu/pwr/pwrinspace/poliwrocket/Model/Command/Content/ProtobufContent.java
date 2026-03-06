@@ -1,11 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProtobufContent extends BaseProtobufContent {
-    @Expose
+    @JsonProperty("device")
     private String device;
-    @Expose
+    @JsonProperty("system")
     private String system;
 
     public String getDevice() {

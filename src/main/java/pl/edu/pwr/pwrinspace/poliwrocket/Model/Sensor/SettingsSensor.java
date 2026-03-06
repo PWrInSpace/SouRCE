@@ -1,15 +1,17 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 
+@JsonTypeName("SettingsSensor")
 public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand {
 
-    @Expose
+    @JsonProperty("defaultValue")
     private Double defaultValue = 0.0;
-    @Expose
+    @JsonProperty("command")
     private Command command;
     private static final String _destinationCommandPrefix = "button";
     private static final String _destinationInoutPrefix = "button";

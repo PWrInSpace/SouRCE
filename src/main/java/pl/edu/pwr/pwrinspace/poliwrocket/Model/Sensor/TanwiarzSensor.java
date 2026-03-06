@@ -1,29 +1,32 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("TanwiarzSensor")
 public class TanwiarzSensor extends Sensor {
 
-    @Expose
+    @JsonProperty("ratio")
     private double ratio = 1;
 
     private boolean isCalibrating = false;
 
-    @Expose
+    @JsonProperty("calibrationValue")
     private int calibrationValue = 1;
 
-    @Expose
+    @JsonProperty("calibrationDelayFrames")
     private int calibrationDelayFrames = 7;
 
     private int calibrationFramesCaught = 0;
 
-    @Expose
+    @JsonProperty("initCalibrateValue")
     private double initCalibrateValue = 1;
 
-    @Expose
+    @JsonProperty("loadedCalibrateValue")
     private double loadedCalibrateValue = 1;
 
-    @Expose
+    @JsonProperty("tareValue")
     private double tareValue = 0;
 
     public double getTareValue() {

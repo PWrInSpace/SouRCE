@@ -1,13 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Schedule {
 
-    @Expose
+    @JsonProperty("messageKey")
     private String messageKey;
 
-    @Expose
+    @JsonProperty("everySecond")
     private int everySecond;
 
     public Schedule(String messageKey, int everySecond) {

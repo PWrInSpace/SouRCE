@@ -1,15 +1,15 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SimpleProtobufContent extends BaseProtobufContent {
-    @Expose
+    @JsonProperty("loraDevId")
     private String loraDevId;
 
-    @Expose
+    @JsonProperty("sysDevId")
     private String sysDevId;
 
-    @Expose
+    @JsonProperty("sudoMask")
     private String sudoMask;
 
     public String getLoraDevId() {

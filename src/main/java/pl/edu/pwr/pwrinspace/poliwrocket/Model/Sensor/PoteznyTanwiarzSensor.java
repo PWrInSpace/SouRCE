@@ -1,10 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+@JsonTypeName("PoteznyTanwiarzSensor")
 public class PoteznyTanwiarzSensor extends Sensor implements ISensorsWrapper {
 
-    @Expose
+    @JsonProperty("sensors")
     private final TanwiarzSensor[] sensors = new TanwiarzSensor[5];
 
     public PoteznyTanwiarzSensor() {

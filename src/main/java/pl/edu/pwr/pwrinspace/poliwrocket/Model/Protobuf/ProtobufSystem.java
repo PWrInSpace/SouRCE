@@ -1,10 +1,10 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProtobufSystem {
 
-    @Expose
+    @JsonProperty("systemDeviceId")
     private String systemDeviceId;
 
     public int getSystemDeviceId() {

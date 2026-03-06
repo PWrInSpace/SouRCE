@@ -1,11 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SensorDestination {
-    @Expose
+    @JsonProperty("destination")
     private String destination;
-    @Expose
+    @JsonProperty("destinationControllerName")
     private String destinationControllerName;
 
     public SensorDestination(String destination, String destinationControllerName) {

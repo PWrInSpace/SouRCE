@@ -1,13 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Rule {
 
-    @Expose
+    @JsonProperty("condition")
     private String condition;
 
-    @Expose
+    @JsonProperty("validationTimes")
     private int validationTimes;
 
     private int validated = 0;
