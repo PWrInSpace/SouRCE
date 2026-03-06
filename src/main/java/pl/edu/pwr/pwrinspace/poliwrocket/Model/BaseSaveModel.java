@@ -10,7 +10,7 @@ public abstract class BaseSaveModel {
     public BaseSaveModel(String path, String fileName) {
         this.path = path;
         this.fileName = fileName;
-        this.tempFileName = fileName.replace(".json", "") + "_temp" + ".json";
+        this.tempFileName = fileName.replace(".yaml", "") + "_temp" + ".yaml";
         this.persistPrefix = "BAD_";
     }
 
