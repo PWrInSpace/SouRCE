@@ -1,6 +1,8 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.javatuples.KeyValue;
@@ -10,12 +12,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@JsonTypeName("CompositeBitSensor")
 public class CompositeBitSensor extends Sensor implements InvalidationListener {
 
-    @Expose
+    @JsonProperty("sensorsKeys")
     private String[] sensorsKeys;
-    private Sensor[] sensors;
-    private int sensorsUpdates = 0;
+
+    private transient Sensor[] sensors;
+    private transient int sensorsUpdates = 0;
 
     public CompositeBitSensor() {
         super();

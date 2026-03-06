@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
@@ -9,20 +9,20 @@ import java.util.List;
 
 public class GyroSensor implements Observable, IGyroSensor {
 
-    @Expose
+    @JsonProperty("axis_x")
     private Sensor axis_x;
 
-    @Expose
+    @JsonProperty("axis_y")
     private Sensor axis_y;
 
-    @Expose
+    @JsonProperty("axis_z")
     private Sensor axis_z;
 
     private boolean axis_z_updated = false;
     private boolean axis_x_updated = false;
     private boolean axis_y_updated = false;
 
-    @Expose
+    @JsonProperty("destinationControllerNames")
     private List<String> destinationControllerNames = new ArrayList<>();
 
     List<InvalidationListener> observers = new ArrayList<>();

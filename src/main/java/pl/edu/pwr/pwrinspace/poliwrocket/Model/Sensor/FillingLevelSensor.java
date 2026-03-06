@@ -1,23 +1,25 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import javafx.beans.Observable;
 
+@JsonTypeName("FillingLevelSensor")
 public class FillingLevelSensor extends Sensor implements IFieldsObserver {
 
-    @Expose
+    @JsonProperty("hallSensor1")
     private AlertSensor hallSensor1;
     private boolean isSensor1Updated = false;
 
-    @Expose
+    @JsonProperty("hallSensor2")
     private AlertSensor hallSensor2;
     private boolean isSensor2Updated = false;
 
-    @Expose
+    @JsonProperty("hallSensor3")
     private AlertSensor hallSensor3;
     private boolean isSensor3Updated = false;
 
-    @Expose
+    @JsonProperty("hallSensor4")
     private AlertSensor hallSensor4;
     private boolean isSensor4Updated = false;
 
@@ -61,7 +63,7 @@ public class FillingLevelSensor extends Sensor implements IFieldsObserver {
         this.hallSensor5 = hallSensor5;
     }
 
-    @Expose
+    @JsonProperty("hallSensor5")
     private AlertSensor hallSensor5;
     private boolean isSensor5Updated = false;
 

@@ -1,12 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;
 
 public class CodeInterpreter {
 
-    @Expose
+    @JsonProperty("interpreters")
     private HashMap<Integer, InterpreterValue> interpreters;
 
     public InterpreterValue getCodeMeaning(int code) {

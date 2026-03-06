@@ -1,24 +1,26 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonTypeName("Command")
 public abstract class Command<T> implements ICommand {
-    @Expose
+    @JsonProperty("value")
     protected T value;
-    @Expose
+    @JsonProperty("isFinal")
     private boolean isFinal;
-    @Expose
+    @JsonProperty("trigger")
     private String trigger;
-    @Expose
+    @JsonProperty("description")
     private String description;
-    @Expose
+    @JsonProperty("payload")
     protected String payload = "";
-    @Expose
+    @JsonProperty("commandType")
     protected CommandType commandType = CommandType.INPUT_COMMAND;
-    @Expose
+    @JsonProperty("destinationControllerNames")
     private List<String> destinationControllerNames = new ArrayList<>();
 
     public T getValue() {

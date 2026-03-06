@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +10,7 @@ public class InterpreterRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(InterpreterRepository.class);
 
-    @Expose
+    @JsonProperty("interpreters")
     private HashMap<String, CodeInterpreter> interpreters = new HashMap<>();
 
     public CodeInterpreter getInterpreter(String key) {

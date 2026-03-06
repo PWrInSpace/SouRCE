@@ -1,13 +1,13 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InterpreterValue {
 
-    @Expose
+    @JsonProperty("text")
     public String text;
 
-    @Expose
+    @JsonProperty("UIHint")
     public CodeInterpreterUIHint UIHint;
 
     public InterpreterValue() {

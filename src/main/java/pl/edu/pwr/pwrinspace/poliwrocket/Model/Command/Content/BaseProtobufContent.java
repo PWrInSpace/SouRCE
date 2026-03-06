@@ -1,9 +1,9 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BaseProtobufContent {
-    @Expose
+    @JsonProperty("command")
     private String command;
 
     public String getCommand() {

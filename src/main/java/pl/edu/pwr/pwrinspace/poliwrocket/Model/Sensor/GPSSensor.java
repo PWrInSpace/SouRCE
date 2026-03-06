@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
@@ -15,10 +15,10 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
 
     List<InvalidationListener> observers = new ArrayList<>();
 
-    @Expose
+    @JsonProperty("destinationControllerNames")
     private List<String> destinationControllerNames = new ArrayList<>();
 
-    @Expose
+    @JsonProperty("latitude")
     private Sensor latitude;
 
     public Sensor getLatitude() {
@@ -29,7 +29,7 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
         return longitude;
     }
 
-    @Expose
+    @JsonProperty("longitude")
     private Sensor longitude;
 
     private boolean isLatUpToDate = false;

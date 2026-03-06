@@ -1,6 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.protobuf.Descriptors;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
@@ -15,41 +15,41 @@ import java.util.*;
 
 public class ConfigurationSaveModel extends BaseSaveModel {
 
-    @Expose
+    @JsonProperty("FPS")
     public int FPS = 10;
-    @Expose
+    @JsonProperty("AVERAGING_PERIOD")
     public int AVERAGING_PERIOD = 1000;
-    @Expose
+    @JsonProperty("BUFFER_SIZE")
     public int BUFFER_SIZE;
-    @Expose
+    @JsonProperty("START_POSITION_LAT")
     public double START_POSITION_LAT;
-    @Expose
+    @JsonProperty("START_POSITION_LON")
     public double START_POSITION_LON;
-    @Expose
+    @JsonProperty("PARSER_TYPE")
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
-    @Expose
+    @JsonProperty("FRAME_DELIMITER")
     public String FRAME_DELIMITER = ",";
-    @Expose
+    @JsonProperty("DISCORD_TOKEN")
     public String DISCORD_TOKEN = "";
-    @Expose
+    @JsonProperty("DISCORD_CHANNEL_NAME")
     public String DISCORD_CHANNEL_NAME = "rocket";
-    @Expose
+    @JsonProperty("FRAME_PATTERN")
     public Map<String, List<String>> FRAME_PATTERN = new HashMap<>();
-    @Expose
+    @JsonProperty("MSG_PREFIX")
     public String MSG_PREFIX = "";
-    @Expose
+    @JsonProperty("commandsList")
     public List<Command> commandsList = new LinkedList<>();
-    @Expose
+    @JsonProperty("notificationSchedule")
     public List<Schedule> notificationSchedule = new LinkedList<>();
-    @Expose
+    @JsonProperty("notificationMessageKeys")
     public List<String> notificationMessageKeys = new LinkedList<>();
-    @Expose
+    @JsonProperty("sensorRepository")
     public SensorRepository sensorRepository = new SensorRepository();
-    @Expose
+    @JsonProperty("interpreterRepository")
     public InterpreterRepository interpreterRepository = new InterpreterRepository();
-    @Expose
+    @JsonProperty("protobufDeviceRepository")
     public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
-    @Expose
+    @JsonProperty("protobufSystemRepository")
     public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
 
     public ConfigurationSaveModel() {

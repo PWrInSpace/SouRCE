@@ -1,13 +1,16 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-import com.google.gson.annotations.Expose;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("AlertSensor")
 public class AlertSensor extends Sensor implements IAlert {
 
-    @Expose
+    @JsonProperty("alertDelta")
     private double alertDelta = 0;
 
-    @Expose
+    @JsonProperty("nominalValue")
     private double nominalValue = 0;
 
     private boolean alertValue = false;
