@@ -1,4 +1,3 @@
-
 module pl.edu.pwr.pwrinspace.poliwrocket {
     requires com.sothawo.mapjfx;
     requires javafx.controls;
@@ -11,7 +10,6 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires annotations;
     requires java.logging;
     requires nrjavaserial;
-    requires com.google.gson;
     requires javatuples;
     requires net.dv8tion.jda;
     requires com.fasterxml.jackson.core;
@@ -22,14 +20,11 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires protobuf.java;
     requires com.google.common;
     requires javafx.base;
-
-    opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, com.google.gson;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command to com.google.gson;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor to com.google.gson;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification to com.google.gson;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech to com.google.gson;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Service.Save to com.google.gson;
+    requires org.yaml.snakeyaml;
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.dataformat.yaml;
+    requires com.fasterxml.jackson.module.paramnames;
+    requires org.reflections;
 
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
@@ -43,7 +38,16 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.base, javafx.controls, javafx.fxml, javafx.graphics, javafx.media, javafx.web, pl.edu.pwr.pwrinspace.poliwrocket.Controller;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf to com.google.gson;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content to com.google.gson;
+
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
+    opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, org.yaml.snakeyaml;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Speech to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Service.Save to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model to com.fasterxml.jackson.databind;
 }
