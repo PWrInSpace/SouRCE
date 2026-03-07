@@ -4,6 +4,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 
 public interface ISettingsSensor {
     Double getDefaultValue();
+
     String getInputKey();
+
     Command getCommand();
 }

@@ -1,13 +1,11 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
-
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -5,7 +5,6 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Event.IUIUpdateEventListener;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,20 +14,10 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
 
     List<InvalidationListener> observers = new ArrayList<>();
 
-    @JsonProperty("destinationControllerNames")
-    private List<String> destinationControllerNames = new ArrayList<>();
-
+    @JsonProperty("sensorDestinations")
+    private List<SensorDestination> sensorDestinations = new ArrayList<>();
     @JsonProperty("latitude")
     private Sensor latitude;
-
-    public Sensor getLatitude() {
-        return latitude;
-    }
-
-    public Sensor getLongitude() {
-        return longitude;
-    }
-
     @JsonProperty("longitude")
     private Sensor longitude;
 
@@ -47,6 +36,14 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
     public void observeFields(){
         this.latitude.addListener(this);
         this.longitude.addListener(this);
+    }
+
+    public Sensor getLatitude() {
+        return latitude;
+    }
+
+    public Sensor getLongitude() {
+        return longitude;
     }
 
     @Override
@@ -97,12 +94,12 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
         }
     }
 
-    public List<String> getDestinationControllerNames() {
-        return destinationControllerNames;
+    public List<SensorDestination> getSenorDestinations() {
+        return sensorDestinations;
     }
 
-    public void setDestinationControllerNames(List<String> destinationControllerNames) {
-        this.destinationControllerNames = destinationControllerNames;
+    public void setSensorDestinations(List<SensorDestination> sensorDestinations) {
+        this.sensorDestinations = sensorDestinations;
     }
 
     @Override

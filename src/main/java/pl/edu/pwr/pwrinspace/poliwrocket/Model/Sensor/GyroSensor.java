@@ -11,10 +11,8 @@ public class GyroSensor implements Observable, IGyroSensor {
 
     @JsonProperty("axis_x")
     private Sensor axis_x;
-
     @JsonProperty("axis_y")
     private Sensor axis_y;
-
     @JsonProperty("axis_z")
     private Sensor axis_z;
 
@@ -22,13 +20,24 @@ public class GyroSensor implements Observable, IGyroSensor {
     private boolean axis_x_updated = false;
     private boolean axis_y_updated = false;
 
-    @JsonProperty("destinationControllerNames")
-    private List<String> destinationControllerNames = new ArrayList<>();
+    @JsonProperty("sensorDestinations")
+    private List<SensorDestination> sensorDestinations = new ArrayList<>();
 
     List<InvalidationListener> observers = new ArrayList<>();
 
     public GyroSensor(){
+    }
 
+    public GyroSensor(GyroSensor sensor) {
+        this.axis_x= sensor.axis_x;
+        this.axis_y= sensor.axis_y;
+        this.axis_z= sensor.axis_z;
+    }
+
+    public GyroSensor(Sensor axis_x, Sensor axis_y, Sensor axis_z){
+        this.axis_x=axis_x;
+        this.axis_y=axis_y;
+        this.axis_z=axis_z;
     }
 
     public Sensor getAxis_x() {
@@ -41,17 +50,6 @@ public class GyroSensor implements Observable, IGyroSensor {
 
     public Sensor getAxis_z() {
         return axis_z;
-    }
-
-    public GyroSensor(GyroSensor sensor) {
-        this.axis_x= sensor.axis_x;
-        this.axis_y= sensor.axis_y;
-        this.axis_z= sensor.axis_z;
-    }
-    public GyroSensor(Sensor axis_x, Sensor axis_y, Sensor axis_z){
-        this.axis_x=axis_x;
-        this.axis_y=axis_y;
-        this.axis_z=axis_z;
     }
 
     public void observeFields(){
@@ -120,11 +118,11 @@ public class GyroSensor implements Observable, IGyroSensor {
         }
     }
 
-    public List<String> getDestinationControllerNames() {
-        return destinationControllerNames;
+    public List<SensorDestination> getSensorDestinations() {
+        return sensorDestinations;
     }
 
-    public void setDestinationControllerNames(List<String> destinationControllerNames) {
-        this.destinationControllerNames = destinationControllerNames;
+    public void setSensorDestinations(List<SensorDestination> sensorDestinations) {
+        this.sensorDestinations = sensorDestinations;
     }
 }

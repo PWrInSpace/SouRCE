@@ -1,12 +1,10 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import org.javatuples.KeyValue;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;

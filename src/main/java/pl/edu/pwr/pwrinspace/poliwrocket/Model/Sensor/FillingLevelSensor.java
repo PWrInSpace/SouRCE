@@ -79,7 +79,6 @@ public class FillingLevelSensor extends Sensor implements IFieldsObserver {
         this.hallSensor5.addListener(this);
     }
 
-
     @Override
     public void invalidated(Observable observable) {
         if (hallSensor1.equals(observable)) {
@@ -104,8 +103,8 @@ public class FillingLevelSensor extends Sensor implements IFieldsObserver {
 
         }
     }
-    private double estimateCurrentLevel() {
 
+    private double estimateCurrentLevel() {
         if((getValue() == 0 || getValue() == 40 || getValue() == 100) && hallSensor1.getAlert()) {
             return 20;
         }
@@ -121,7 +120,6 @@ public class FillingLevelSensor extends Sensor implements IFieldsObserver {
         if((getValue() == 60 || getValue() == 80 || getValue() == 100) && hallSensor5.getAlert()) {
             return 100;
         }
-
         return getValue();
     }
 }
