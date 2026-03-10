@@ -37,4 +37,6 @@ public interface ISensor {
     void setDestination(String destination, String destinationControllerName);
 
     boolean containsControllerName(String controllerName);
+
+    boolean isSubSensor();
 }

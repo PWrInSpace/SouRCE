@@ -14,7 +14,7 @@ public class TextToSpeechDictionary extends BaseSaveModel {
     private HashMap<String, List<TextToSpeech>> speechRules = new HashMap<>();
 
     public TextToSpeechDictionary() {
-        super(Configuration.getConfigFilesPath(), "speechConfig.json");
+        super(Configuration.getConfigFilesPath(), "speechConfig.yaml");
     }
 
     public List<TextToSpeech> getSpeechByTrigger(String key) {

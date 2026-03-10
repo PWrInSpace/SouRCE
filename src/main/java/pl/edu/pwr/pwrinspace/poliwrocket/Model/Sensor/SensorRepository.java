@@ -3,8 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ public class SensorRepository implements ISensorRepository {
     private static final Logger logger = LoggerFactory.getLogger(SensorRepository.class);
 
     @JsonProperty("sensors")
-    private HashMap<String, Sensor> sensors = new HashMap<>();
+    private LinkedHashMap<String, Sensor> sensors = new LinkedHashMap<>();
 
     @JsonProperty("gpsSensor")
     private GPSSensor gpsSensor = new GPSSensor();
@@ -33,13 +32,23 @@ public class SensorRepository implements ISensorRepository {
 
     @Override
     public void addSensor(Sensor sensor) throws RuntimeException {
-        if(sensors.get(sensor.getName()) != null) {
+        if (sensors.get(sensor.getName()) != null) {
             var message = "Sensor with name " + sensor.getName() + " already exist.";
             logger.error(message);
             throw new RuntimeException(message);
 
         }
         sensors.put(sensor.getName(),sensor);
+    }
+
+    @Override
+    public void addSensor(String key, Sensor sensor) throws RuntimeException {
+        if (sensors.get(key) != null) {
+            var message = "Sensor with key " + key + " already exist.";
+            logger.error(message);
+            throw new RuntimeException(message);
+        }
+        sensors.put(key,sensor);
     }
 
     @Override
@@ -65,14 +74,12 @@ public class SensorRepository implements ISensorRepository {
         return gyroSensor;
     }
 
-    public GPSSensor setGpsSensor(GPSSensor gpsSensor) {
+    public void setGpsSensor(GPSSensor gpsSensor) {
         this.gpsSensor = gpsSensor;
-        return this.gpsSensor;
     }
 
-    public GyroSensor setGyroSensor(GyroSensor gyroSensor) {
+    public void setGyroSensor(GyroSensor gyroSensor) {
         this.gyroSensor = gyroSensor;
-        return this.gyroSensor;
     }
 
     public Map<String, Sensor> getAllBasicSensors() {

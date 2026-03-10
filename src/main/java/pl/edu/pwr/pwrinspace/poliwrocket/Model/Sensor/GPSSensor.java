@@ -14,12 +14,12 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
 
     List<InvalidationListener> observers = new ArrayList<>();
 
+    @JsonProperty("latitude")
+    public Sensor latitude = new Sensor();
+    @JsonProperty("longitude")
+    public Sensor longitude = new Sensor();
     @JsonProperty("sensorDestinations")
     private List<SensorDestination> sensorDestinations = new ArrayList<>();
-    @JsonProperty("latitude")
-    private Sensor latitude;
-    @JsonProperty("longitude")
-    private Sensor longitude;
 
     private boolean isLatUpToDate = false;
 
@@ -105,5 +105,14 @@ public class GPSSensor implements Observable, IGPSSensor, IUIUpdateEventListener
     @Override
     public void onUIUpdateEvent() {
         notifyObserver();
+    }
+
+    public boolean containsControllerName(String controllerName) {
+        for (SensorDestination sensorDestination : sensorDestinations) {
+            if (sensorDestination.getDestinationControllerName().equals(controllerName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

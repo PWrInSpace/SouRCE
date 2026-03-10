@@ -1,12 +1,16 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonTypeName("Command")
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY
+)
 public abstract class Command<T> implements ICommand {
     @JsonProperty("value")
     protected T value;
@@ -19,7 +23,7 @@ public abstract class Command<T> implements ICommand {
     @JsonProperty("payload")
     protected String payload = "";
     @JsonProperty("commandType")
-    protected CommandType commandType = CommandType.INPUT_COMMAND;
+    protected String commandType = CommandType.INPUT_COMMAND.toString();
     @JsonProperty("destinationControllerNames")
     private List<String> destinationControllerNames = new ArrayList<>();
 
@@ -70,11 +74,11 @@ public abstract class Command<T> implements ICommand {
 
     @Override
     public CommandType getCommandType() {
-        return commandType;
+        return CommandType.valueOf(commandType);
     }
 
     public void setCommandType(CommandType commandType) {
-        this.commandType = commandType;
+        this.commandType = commandType.toString();
     }
 
     public List<String> getDestinationControllerNames() {

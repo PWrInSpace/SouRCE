@@ -125,4 +125,13 @@ public class GyroSensor implements Observable, IGyroSensor {
     public void setSensorDestinations(List<SensorDestination> sensorDestinations) {
         this.sensorDestinations = sensorDestinations;
     }
+
+    public boolean containsControllerName(String controllerName) {
+        for (SensorDestination sensorDestination : sensorDestinations) {
+            if (sensorDestination.getDestinationControllerName().equals(controllerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

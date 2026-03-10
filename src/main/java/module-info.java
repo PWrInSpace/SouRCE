@@ -41,7 +41,7 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content;
 
     opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
-    opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, org.yaml.snakeyaml;
+    opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, org.yaml.snakeyaml, com.fasterxml.jackson.databind;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification to org.yaml.snakeyaml, com.fasterxml.jackson.databind;

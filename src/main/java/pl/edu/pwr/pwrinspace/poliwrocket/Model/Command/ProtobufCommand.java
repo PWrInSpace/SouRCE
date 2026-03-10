@@ -6,7 +6,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
 import java.util.List;
 
-    @JsonTypeName("ProtobufCommand")
+@JsonTypeName("ProtobufCommand")
 public class ProtobufCommand extends ProtobufBaseCommand<ProtobufContent> {
 
     @Override

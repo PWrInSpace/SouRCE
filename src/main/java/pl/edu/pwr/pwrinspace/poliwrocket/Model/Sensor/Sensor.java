@@ -1,6 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -11,6 +12,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY
+)
 @JsonTypeName("Sensor")
 public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
@@ -26,8 +31,6 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private double maxValue = Double.MIN_VALUE;
     private final List<Double> values = new LinkedList<>();
 
-    @JsonProperty("sensorDestinations")
-    private List<SensorDestination> sensorDestinations = new ArrayList<>();
     @JsonProperty("name")
     private String name;
     @JsonProperty("unit")
@@ -42,6 +45,10 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private String interpreterKey;
     @JsonProperty("hidden")
     private boolean hidden = false;
+    @JsonProperty("subSensor")
+    private boolean subSensor = false;
+    @JsonProperty("sensorDestinations")
+    private List<SensorDestination> sensorDestinations = new ArrayList<>();
 
     public Sensor() {
         this.timeStamp = Instant.now();
@@ -233,6 +240,11 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public boolean isSubSensor() {
+        return subSensor;
     }
 
     @Override

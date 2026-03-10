@@ -18,7 +18,7 @@ public class AddExistingCommandController extends BaseNewComponentController {
     BaseCommandsController parentController;
 
     @FXML
-    private JFXListView<Command> commandListView;
+    private JFXListView<Command<?>> commandListView;
     @FXML
     private JFXComboBox<String> commandTypeFilter;
     @FXML
@@ -36,7 +36,7 @@ public class AddExistingCommandController extends BaseNewComponentController {
     @FXML
     private JFXButton addExistingCommandButton;
 
-    FilteredList<Command> filteredCommandList;
+    FilteredList<Command<?>> filteredCommandList;
 
     @FXML
     public void initialize() {

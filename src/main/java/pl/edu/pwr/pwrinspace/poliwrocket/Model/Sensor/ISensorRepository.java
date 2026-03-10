@@ -8,6 +8,8 @@ public interface ISensorRepository {
 
     void addSensor(Sensor sensor);
 
+    void addSensor(String key, Sensor sensor);
+
     void removeSensor(ISensor sensor);
 
     void updateSensor(ISensor sensor);
