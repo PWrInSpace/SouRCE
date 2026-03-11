@@ -3,11 +3,8 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Service.Save;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
@@ -16,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -26,9 +25,10 @@ import java.util.Set;
 
 public class ModelAsYamlService {
     private static final Logger logger = LoggerFactory.getLogger(ModelAsYamlService.class);
-    private final ObjectMapper mapper = YAMLMapper.builder().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).addModule(new ParameterNamesModule()).build();
+    private final ObjectMapper mapper = YAMLMapper.builder().enable(YAMLGenerator.Feature.USE_NATIVE_TYPE_ID).disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).addModule(new ParameterNamesModule()).build();
 
     public ModelAsYamlService() {
+//        mapper.setDefaultPropertyInclusion(JsonInclude.Value.construct(JsonInclude.Include.NON_DEFAULT, JsonInclude.Include.NON_DEFAULT));
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         mapper.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.ANY);
 
@@ -41,6 +41,7 @@ public class ModelAsYamlService {
             if (annotation != null) {
                 String sensorTypeName = annotation.value();
                 mapper.registerSubtypes(new NamedType(sensorSubtype, sensorTypeName));
+                mapper.registerSubtypes(new NamedType(sensorSubtype, sensorTypeName.replace("!", "")));
             }
         }
         for (Class<?> commandSubtype : commandSubtypes) {
@@ -48,6 +49,7 @@ public class ModelAsYamlService {
             if (annotation != null) {
                 String commandTypeName = annotation.value();
                 mapper.registerSubtypes(new NamedType(commandSubtype, commandTypeName));
+                mapper.registerSubtypes(new NamedType(commandSubtype, commandTypeName.replace("!", "")));
             }
         }
     }
@@ -120,24 +122,12 @@ public class ModelAsYamlService {
         else System.out.println("Temp file not found");
     }
 
-    public String commandToYaml(Command command) {
-        try {
-            return mapper.writeValueAsString(command);
-        } catch (JsonProcessingException e) {
-            logger.error(e.getMessage());
-        }
-        return null;
-    }
-
-    public void addCommandToFile(BaseSaveModel config, Command command) {
+    public void addCommandToFile(ConfigurationSaveModel config, Command<?> command) {
         Path configTempPath = Paths.get(config.getPath() + config.getTempFileName());
-
         try {
-            JsonNode configNode = mapper.readTree(new File(configTempPath.toString()));
-            JsonNode commandListNode = configNode.get("commandsList");
-            if (commandListNode != null && commandListNode.isArray()) {
-                ((ArrayNode) commandListNode).add(commandToYaml(command));
-            }
+            Configuration.getInstance().commandsList.add(command);
+            config = ConfigurationSaveModel.getConfigurationSaveModel(Configuration.getInstance());
+            mapper.writeValue(new File(configTempPath.toString()), config);
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

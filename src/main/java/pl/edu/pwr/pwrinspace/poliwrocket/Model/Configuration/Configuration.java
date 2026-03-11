@@ -30,9 +30,7 @@ public class Configuration implements Observable {
     public double START_POSITION_LAT = 49.013517;
     public double START_POSITION_LON = 8.404435;
     private boolean forceCommandsActive = false;
-
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
-
     protected static String CONFIG_PATH = "./config/";
     public static final String CONFIG_FILE_NAME = "config.yaml";
     public static final String FLIGHT_DATA_PATH = "./flightData/";
@@ -41,10 +39,8 @@ public class Configuration implements Observable {
     public String DISCORD_CHANNEL_NAME = "";
     public String FRAME_DELIMITER = ",";
     public String MSG_PREFIX = "";
-
     public Map<String,List<String>> FRAME_PATTERN = new HashMap<>();
-
-    public List<Command> commandsList = new LinkedList<>();
+    public List<Command<?>> commandsList = new LinkedList<>();
     public List<Schedule> notificationSchedule = new LinkedList<>();
     public List<String> notificationMessageKeys = new LinkedList<>();
     public SensorRepository sensorRepository = new SensorRepository();
@@ -55,7 +51,6 @@ public class Configuration implements Observable {
     public List<InvalidationListener> observers = new ArrayList<>();
 
     public final static Instant startUpTime = Instant.now();
-
     private boolean lightMode = false;
 
     private static Configuration instance;
@@ -143,26 +138,28 @@ public class Configuration implements Observable {
     }
 
     private void addSensorsToRepository(ConfigurationSaveModel config) {
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
+        // dodajemy sub sensory gps
+        if (config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))){
+        if (config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))){
+        if (config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))){
+        if (config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_y());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
+        if (config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
 
         var basicSensors = this.sensorRepository.getAllBasicSensors().values().toArray();
 
+        // dodajemy sensory filling
         Arrays.stream(basicSensors).filter(s -> s instanceof FillingLevelSensor).forEach(s -> {
-            var sensor = (FillingLevelSensor)s;
+            var sensor = (FillingLevelSensor) s;
             this.sensorRepository.addSensor(sensor.getHallSensor1());
             this.sensorRepository.addSensor(sensor.getHallSensor2());
             this.sensorRepository.addSensor(sensor.getHallSensor3());
@@ -170,18 +167,18 @@ public class Configuration implements Observable {
             this.sensorRepository.addSensor(sensor.getHallSensor5());
         });
 
-        Arrays.stream(basicSensors).filter(ISensorsWrapper.class::isInstance).forEach(s -> {
+        // dodajemy realnie zdefiniowane sub byteSensory
+        Arrays.stream(basicSensors).filter(S -> S instanceof ISensorsWrapper).forEach(s -> {
             for (Sensor innerSensor: ((ISensorsWrapper) s).getSensors()) {
-                if(!innerSensor.getName().isEmpty())
-                    this.sensorRepository.addSensor(innerSensor);
+                if (!innerSensor.getName().isEmpty()) this.sensorRepository.addSensor(innerSensor); // todo czy tutaj przypadkiem nie powinniśmy używać is hidden?
             }
         });
 
-        Arrays.stream(basicSensors).filter(CompositeBitSensor.class::isInstance).forEach(s -> {
+        Arrays.stream(basicSensors).filter(s -> s instanceof CompositeBitSensor).forEach(s -> {
             List<KeyValue<String,Sensor>> sensorList = new LinkedList<>();
             var composite = ((CompositeBitSensor) s);
             this.sensorRepository.getAllBasicSensors().forEach((k,v) -> {
-                if(Arrays.asList(composite.getSensorsKeys()).contains(k)) {
+                if (Arrays.asList(composite.getSensorsKeys()).contains(k)) {
                     sensorList.add(new KeyValue<>(k,v));
                 }
             });
@@ -211,10 +208,10 @@ public class Configuration implements Observable {
         for (int i = 0; i < controllersConfig.size(); i++) {
 
             String controllerName = controllersConfig.get(i).getValue0().getControllerName();
-            if (Configuration.getInstance().sensorRepository.getGpsSensor().getDestinationControllerNames().contains(controllerName)) {
+            if (Configuration.getInstance().sensorRepository.getGpsSensor().containsControllerName(controllerName)) {
                 Configuration.getInstance().sensorRepository.getGpsSensor().addListener(controllersConfig.get(i).getValue0());
             }
-            if (Configuration.getInstance().sensorRepository.getGyroSensor().getDestinationControllerNames().contains(controllerName)) {
+            if (Configuration.getInstance().sensorRepository.getGyroSensor().containsControllerName(controllerName)) {
                 Configuration.getInstance().sensorRepository.getGyroSensor().addListener(controllersConfig.get(i).getValue0());
             }
             int finalI = i;

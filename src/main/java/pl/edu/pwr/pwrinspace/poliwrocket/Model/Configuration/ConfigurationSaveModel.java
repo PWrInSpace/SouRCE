@@ -38,7 +38,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     @JsonProperty("MSG_PREFIX")
     public String MSG_PREFIX = "";
     @JsonProperty("commandsList")
-    public List<Command> commandsList = new LinkedList<>();
+    public List<Command<?>> commandsList = new LinkedList<>();
     @JsonProperty("notificationSchedule")
     public List<Schedule> notificationSchedule = new LinkedList<>();
     @JsonProperty("notificationMessageKeys")
@@ -51,6 +51,8 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
     @JsonProperty("protobufSystemRepository")
     public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
+    @JsonProperty("cat")
+    public boolean cat = false;
 
     public ConfigurationSaveModel() {
         super(Configuration.CONFIG_PATH, Configuration.CONFIG_FILE_NAME);
@@ -73,20 +75,14 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         config.commandsList = configuration.commandsList;
         config.notificationMessageKeys = configuration.notificationMessageKeys;
         config.notificationSchedule = configuration.notificationSchedule;
+        config.sensorRepository = new SensorRepository();
         config.sensorRepository.setGpsSensor(configuration.sensorRepository.getGpsSensor());
         config.sensorRepository.setGyroSensor(configuration.sensorRepository.getGyroSensor());
-        List<ISensor> partOfSensor = new ArrayList<>();
-        partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLatitude());
-        partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLongitude());
-        partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_x());
-        partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_y());
-        partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_z());
-        config.sensorRepository = configuration.sensorRepository;
-//        configuration.sensorRepository.getSensorsKeys().forEach(s -> {
-//            if(!partOfSensor.contains(configuration.sensorRepository.getSensorByName(s))){
-//                config.sensorRepository.addSensor(configuration.sensorRepository.getSensorByName(s));
-//            }
-//        });
+        for (String s : configuration.sensorRepository.getSensorsKeys()) {
+            if (!configuration.sensorRepository.getSensorByName(s).isSubSensor()) {
+                config.sensorRepository.addSensor(s, configuration.sensorRepository.getSensorByName(s));
+            }
+        }
 
         config.interpreterRepository = configuration.interpreterRepository;
         ;
@@ -174,7 +170,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
 
         //nowy gyro
         GyroSensor gyroSensor = new GyroSensor(gyro1, gyro2, gyro3);
-        gyroSensor.getDestinationControllerNames().add(MAIN_CONTROLLER);
+        gyroSensor.getSensorDestinations().add(new SensorDestination("", MAIN_CONTROLLER));
         defaultConfig.sensorRepository.setGyroSensor(gyroSensor);
         //--------
 
@@ -185,7 +181,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         longitude.setName("long");
 
         GPSSensor gpsSensor = new GPSSensor(latitude, longitude);
-        gpsSensor.getDestinationControllerNames().add(MAP_CONTROLLER);
+        gpsSensor.getSenorDestinations().add(new SensorDestination("", MAP_CONTROLLER));
         defaultConfig.sensorRepository.setGpsSensor(gpsSensor);
         //--------
 
