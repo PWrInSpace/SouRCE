@@ -4,7 +4,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeName("TareSensor")
+@JsonTypeName("!TareSensor")
 public class TareSensor extends Sensor implements ITare {
 
     @JsonProperty("tareValue")

@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@JsonTypeName("CompositeBitSensor")
+@JsonTypeName("!CompositeBitSensor")
 public class CompositeBitSensor extends Sensor implements InvalidationListener {
 
     @JsonProperty("sensorsKeys")

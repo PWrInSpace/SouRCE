@@ -3,7 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeName("PoteznyTanwiarzSensor")
+@JsonTypeName("!PoteznyTanwiarzSensor")
 public class PoteznyTanwiarzSensor extends Sensor implements ISensorsWrapper {
 
     @JsonProperty("sensors")

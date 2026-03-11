@@ -6,7 +6,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 
-@JsonTypeName("SettingsSensor")
+@JsonTypeName("!SettingsSensor")
 public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand {
 
     @JsonProperty("defaultValue")

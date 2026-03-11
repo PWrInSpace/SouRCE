@@ -3,7 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeName("AlertSensor")
+@JsonTypeName("!AlertSensor")
 public class AlertSensor extends Sensor implements IAlert {
 
     @JsonProperty("alertDelta")

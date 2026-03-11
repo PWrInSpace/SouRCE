@@ -10,7 +10,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@JsonTypeName("TimerSensor")
+@JsonTypeName("!TimerSensor")
 public class TimerSensor extends Sensor {
 
     @JsonProperty("abortTime")

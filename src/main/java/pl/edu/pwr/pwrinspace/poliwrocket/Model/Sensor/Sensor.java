@@ -16,7 +16,7 @@ import java.util.List;
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY
 )
-@JsonTypeName("Sensor")
+@JsonTypeName("!Sensor")
 public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     public List<InvalidationListener> observers = new ArrayList<>();

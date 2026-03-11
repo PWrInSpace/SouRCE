@@ -5,7 +5,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content.SimpleProtobufCon
 
 import java.util.List;
 
-@JsonTypeName("ProtobufSimpleCommand")
+@JsonTypeName("!ProtobufSimpleCommand")
 public class ProtobufSimpleCommand extends ProtobufBaseCommand<SimpleProtobufContent> {
 
     @Override

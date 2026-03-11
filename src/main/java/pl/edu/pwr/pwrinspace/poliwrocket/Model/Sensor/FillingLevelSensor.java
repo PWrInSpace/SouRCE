@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import javafx.beans.Observable;
 
-@JsonTypeName("FillingLevelSensor")
+@JsonTypeName("!FillingLevelSensor")
 public class FillingLevelSensor extends Sensor implements IFieldsObserver {
 
     @JsonProperty("hallSensor1")

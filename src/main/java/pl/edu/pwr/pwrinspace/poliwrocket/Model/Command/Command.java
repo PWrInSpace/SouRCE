@@ -12,6 +12,8 @@ import java.util.List;
         include = JsonTypeInfo.As.PROPERTY
 )
 public abstract class Command<T> implements ICommand {
+    @JsonProperty("#")
+    protected String comment;
     @JsonProperty("value")
     protected T value;
     @JsonProperty("isFinal")

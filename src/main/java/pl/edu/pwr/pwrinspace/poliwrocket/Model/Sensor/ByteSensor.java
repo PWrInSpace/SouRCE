@@ -21,7 +21,7 @@ public class ByteSensor extends Sensor implements ISensorsWrapper {
 
     @Override
     protected void notifyObserver() {
-        int valueInt = (int)this.getValue();
+        int valueInt = (int) this.getValue();
         String values = String.format("%"+numberOfBits()+"s", Integer.toBinaryString(valueInt)).replace(' ', '0');
         int k = values.length() - 1;
 
