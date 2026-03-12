@@ -91,6 +91,10 @@ public abstract class Command<T> implements ICommand {
         this.destinationControllerNames = destinationControllerNames;
     }
 
+    public void addDestinationControllerName(String destinationControllerName) {
+        destinationControllerNames.add(destinationControllerName);
+    }
+
     @Override
     public byte[] getCommandValueAsBytes(boolean force) {
         return getCommandValueAsString().getBytes();

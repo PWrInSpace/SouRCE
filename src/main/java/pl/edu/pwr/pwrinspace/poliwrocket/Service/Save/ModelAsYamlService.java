@@ -11,6 +11,7 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
@@ -79,7 +80,6 @@ public class ModelAsYamlService {
         if(!dir.exists()) {
             dir.mkdir();
         }
-
         File configFile = new File(config.getPath() + config.getFileName());
         File copy = new File(config.getPath()  + config.getPersistPrefix() + config.getFileName());
         try (FileInputStream fis = new FileInputStream(configFile);
@@ -131,6 +131,18 @@ public class ModelAsYamlService {
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
+    }
+
+    public void addCommandToController(ConfigurationSaveModel config, BaseController controller, Command<?> command) {
+        Path configTempPath = Paths.get(config.getPath() + config.getTempFileName());
+        try {
+            command.addDestinationControllerName(controller.getControllerName());
+            config = ConfigurationSaveModel.getConfigurationSaveModel(Configuration.getInstance());
+            mapper.writeValue(new File(configTempPath.toString()), config);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+
     }
 
     public void overrideConfig(BaseSaveModel config) {

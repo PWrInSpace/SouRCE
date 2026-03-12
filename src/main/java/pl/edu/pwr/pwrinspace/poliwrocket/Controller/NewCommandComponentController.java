@@ -134,6 +134,7 @@ public class NewCommandComponentController extends BaseNewComponentController {
         try {
             ProtobufCommand command = createProtobufCommand();
             modelAsYamlService.addCommandToFile(new ConfigurationSaveModel(), command);
+
             Configuration.getInstance().reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
 
             ((Stage) addCommandButton.getScene().getWindow()).close();

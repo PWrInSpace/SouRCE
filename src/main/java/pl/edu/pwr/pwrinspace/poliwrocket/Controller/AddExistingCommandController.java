@@ -10,6 +10,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.StandardCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 
 import java.security.InvalidParameterException;
@@ -129,7 +130,7 @@ public class AddExistingCommandController extends BaseNewComponentController {
         return selection.equals(filter);
     }
 
-    private Command getSelectedCommand() throws InvalidParameterException {
+    private Command<?> getSelectedCommand() throws InvalidParameterException {
         if (commandListView.getSelectionModel().getSelectedItem() != null) {
             return commandListView.getSelectionModel().getSelectedItem();
         } else throw new InvalidParameterException("Command not selected");
@@ -140,6 +141,10 @@ public class AddExistingCommandController extends BaseNewComponentController {
         try {
             var command = getSelectedCommand();
             ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
+            modelAsYamlService.addCommandToController(new ConfigurationSaveModel(), parentController, command);
+
+            Configuration.getInstance().reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
+
             ((Stage) addExistingCommandButton.getScene().getWindow()).close();
         } catch (Exception e) {
             logger.error(e.getMessage());
