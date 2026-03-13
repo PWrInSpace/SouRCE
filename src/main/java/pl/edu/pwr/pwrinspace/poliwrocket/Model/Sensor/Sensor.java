@@ -1,5 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,6 +17,7 @@ import java.util.List;
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY
 )
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonTypeName("!Sensor")
 public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 

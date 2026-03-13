@@ -169,7 +169,7 @@ public class NewCommandComponentController extends BaseNewComponentController {
         if (description == null || description.isEmpty()) throw new InvalidParameterException("Invalid description");
 
         String payload = payloadTextArea.getText();
-        if (payload == null || payload.isEmpty()) payload = null;
+        if (payload == null || payload.isEmpty()) payload = "";
 
         List<String> destinationControllerNames = new ArrayList<>(Collections.singletonList(parentController.getControllerName()));
         return ProtobufCommand.createProtobufCommand(content, isFinal, trigger, description, payload, CommandType.INPUT_COMMAND, destinationControllerNames);

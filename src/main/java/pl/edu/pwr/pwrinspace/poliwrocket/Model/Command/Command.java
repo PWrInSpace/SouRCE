@@ -1,33 +1,34 @@
-package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
+    package pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+    import com.fasterxml.jackson.annotation.JsonInclude;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import java.util.ArrayList;
-import java.util.List;
+    import java.util.ArrayList;
+    import java.util.List;
 
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY
-)
-public abstract class Command<T> implements ICommand {
-    @JsonProperty("#")
-    protected String comment;
-    @JsonProperty("value")
-    protected T value;
-    @JsonProperty("isFinal")
-    private boolean isFinal;
-    @JsonProperty("trigger")
-    private String trigger;
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("payload")
-    protected String payload = "";
-    @JsonProperty("commandType")
-    protected String commandType = CommandType.INPUT_COMMAND.toString();
-    @JsonProperty("destinationControllerNames")
-    private List<String> destinationControllerNames = new ArrayList<>();
+    @JsonTypeInfo(
+            use = JsonTypeInfo.Id.NAME,
+            include = JsonTypeInfo.As.PROPERTY
+    )
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public abstract class Command<T> implements ICommand {
+        @JsonProperty("#")
+        protected String comment;
+        @JsonProperty("value")
+        protected T value;
+        @JsonProperty("isFinal")
+        private boolean isFinal;
+        @JsonProperty("trigger")
+        private String trigger;
+        @JsonProperty("description")
+        private String description;
+        @JsonProperty("payload")
+        protected String payload = "";
+        @JsonProperty("commandType")
+        protected String commandType = CommandType.INPUT_COMMAND.toString();
+        @JsonProperty("destinationControllerNames")
+        private List<String> destinationControllerNames = new ArrayList<>();
 
     public T getValue() {
         return value;
