@@ -22,17 +22,14 @@ public class ByteSensor extends Sensor implements ISensorsWrapper {
     @Override
     protected void notifyObserver() {
         int valueInt = (int) this.getValue();
-        String values = String.format("%"+numberOfBits()+"s", Integer.toBinaryString(valueInt)).replace(' ', '0');
-        int k = values.length() - 1;
 
-        for (Sensor sensor : sensors) {
-            sensor.setValue(bitToDouble(values.charAt(k)));
-            k--;
+        for (int i = 0; i < numberOfBits(); i++) {
+            int bit = (valueInt >> i) & 1;
+            sensors[i].setValue(bit);
         }
-
     }
 
-    private double bitToDouble(char value) {
+    private double bitToDouble (char value) {
         return value == '1' ? 1.0 : 0.0;
     }
 }
