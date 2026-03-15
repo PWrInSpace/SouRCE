@@ -16,6 +16,8 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorDestination;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -142,6 +144,17 @@ public class ModelAsYamlService {
             logger.error(e.getMessage());
         }
 
+    }
+
+    public void addSensorToController(ConfigurationSaveModel config, Sensor sensor, SensorDestination sensorDestination) {
+        Path configTempPath = Paths.get(config.getPath() + config.getTempFileName());
+        try {
+            sensor.addSensorDestination(sensorDestination);
+            config = ConfigurationSaveModel.getConfigurationSaveModel(Configuration.getInstance());
+            mapper.writeValue(new File(configTempPath.toString()), config);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
     }
 
     public void overrideConfig(BaseSaveModel config) {

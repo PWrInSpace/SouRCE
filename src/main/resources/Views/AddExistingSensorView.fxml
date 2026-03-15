@@ -12,6 +12,6 @@
         <JFXTextArea fx:id="nameFilter" prefWidth="570.0" layoutX="15.0" prefHeight="40" layoutY="50.0" promptText="name"/>
         <JFXComboBox fx:id="destinationComboBox" prefWidth="570.0" layoutX="15.0" layoutY="95.0" promptText="destination" />
         <JFXListView fx:id="sensorListView" prefWidth="570.0" prefHeight="410.0" layoutX="15" layoutY="135.0"/>
-        <JFXButton fx:id="addExistingCommandButton" prefWidth="300.0" layoutX="150.0" layoutY="560.0" text="Add existing command" onAction="#addExistingSensor"/>
+        <JFXButton fx:id="addExistingSensorButton" prefWidth="300.0" layoutX="150.0" layoutY="560.0" text="Add existing sensor" onAction="#addExistingSensor"/>
     </AnchorPane>
 </StackPane>
