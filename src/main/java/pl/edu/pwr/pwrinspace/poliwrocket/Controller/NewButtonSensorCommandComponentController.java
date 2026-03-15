@@ -46,11 +46,11 @@ public class NewButtonSensorCommandComponentController extends NewCommandCompone
         if (description == null || description.isEmpty()) throw new InvalidParameterException("Invalid description");
 
         String payload = payloadTextArea.getText();
-        if (payload == null || payload.isEmpty()) payload = null;
+        if (payload == null || payload.isEmpty()) payload = "";
 
         CommandType commandType = commandTypeComboBox.getSelectionModel().getSelectedItem();
         if (commandType == null) throw new InvalidParameterException("Invalid command type");
-        // todo rozdzielić to gówno
+
         List<String> destinationControllerNames = new ArrayList<>(Collections.singletonList(parentController.getControllerName()));
         return ProtobufCommand.createProtobufCommand(content, isFinal, trigger, description, payload, commandType, destinationControllerNames);
     }

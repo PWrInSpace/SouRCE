@@ -43,7 +43,7 @@ public class UIThreadManager implements InvalidationListener {
                 activeRunnable(waitingNormalRunnable);
                 waitingNormalRunnable = new UIRunnable();
             }
-        },new Date(new Date().getTime() + 2000),1000 / Configuration.getInstance().FPS);
+        }, new Date(new Date().getTime() + 2000),1000 / Configuration.getInstance().FPS);
     }
 
     private synchronized void run() {

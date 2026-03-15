@@ -71,7 +71,7 @@ public class StartControlController extends BaseButtonSensorController {
                 this.countdownTime.resetCountdown();
                 this.commands.forEach(c -> {
                     if (c.getCommandTriggerKey().equals(this.fireButton.getId())) {
-                        SerialPortManager.getInstance().write((ICommand)c);
+                        SerialPortManager.getInstance().write(c);
                     }
                 });
                 this.countdownTime.makeCanRun();

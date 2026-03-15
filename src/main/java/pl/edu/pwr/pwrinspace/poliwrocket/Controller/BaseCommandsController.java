@@ -65,30 +65,7 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     @Override
     public void initialize() {
         generateAddCommandComponentButton();
-
-        addExistingCommandButton = new JFXButton("+E");
-        addExistingCommandButton.setLayoutX(30);
-        addExistingCommandButton.setLayoutY(0);
-        mainPanel.getChildren().add(addExistingCommandButton);
-        addExistingCommandButton.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AddExistingCommandView.fxml"));
-            Stage popupStage = new Stage();
-            try {
-                Parent root = loader.load();
-                Scene popupScene = new Scene(root);
-                AddExistingCommandController popupController = loader.getController();
-                popupController.setParentController(this);
-                popupStage.setScene(popupScene);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            popupStage.initOwner(addExistingCommandButton.getScene().getWindow());
-            popupStage.initModality(Modality.WINDOW_MODAL);
-            popupStage.setResizable(false);
-
-            popupStage.showAndWait();
-        });
+        generateAddExistingCommandComponentButton();
     }
 
     @Override
@@ -212,6 +189,32 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
             }
 
             popupStage.initOwner(addComponentButton.getScene().getWindow());
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+        });
+    }
+
+    protected void generateAddExistingCommandComponentButton() {
+        addExistingCommandButton = new JFXButton("+E");
+        addExistingCommandButton.setLayoutX(30);
+        addExistingCommandButton.setLayoutY(0);
+        mainPanel.getChildren().add(addExistingCommandButton);
+        addExistingCommandButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AddExistingCommandView.fxml"));
+            Stage popupStage = new Stage();
+            try {
+                Parent root = loader.load();
+                Scene popupScene = new Scene(root);
+                AddExistingCommandController popupController = loader.getController();
+                popupController.setParentController(this);
+                popupStage.setScene(popupScene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            popupStage.initOwner(addExistingCommandButton.getScene().getWindow());
             popupStage.initModality(Modality.WINDOW_MODAL);
             popupStage.setResizable(false);
 

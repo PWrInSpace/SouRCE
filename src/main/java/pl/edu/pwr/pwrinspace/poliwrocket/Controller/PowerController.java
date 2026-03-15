@@ -15,72 +15,50 @@ public class PowerController extends BaseSensorController {
 
     @FXML
     private Gauge powerGauge4;
-
     @FXML
     private Gauge powerGauge5;
-
     @FXML
     private Gauge powerGauge6;
-
     @FXML
     private Gauge powerGauge3;
-
     @FXML
     private Gauge powerGauge7;
-
     @FXML
     private Gauge powerGauge8;
-
     @FXML
     private Gauge powerGauge2;
-
     @FXML
     private Gauge powerGauge1;
-
     @FXML
     protected Label powerLabel7;
-
     @FXML
     protected Label powerLabel8;
-
     @FXML
     protected Label powerLabel6;
-
     @FXML
     protected Label powerLabel5;
-
     @FXML
     protected Label powerLabel4;
-
     @FXML
     protected Label powerLabel3;
-
     @FXML
     protected Label powerLabel2;
-
     @FXML
     protected Label powerLabel1;
     @FXML
     protected Label powerValue1;
-
     @FXML
     protected Label powerValue2;
-
     @FXML
     protected Label powerValue3;
-
     @FXML
     protected Label powerValue4;
-
     @FXML
     protected Label powerValue5;
-
     @FXML
     protected Label powerValue6;
-
     @FXML
     protected Label powerValue7;
-
     @FXML
     protected Label powerValue8;
 

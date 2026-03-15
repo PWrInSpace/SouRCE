@@ -16,8 +16,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 import java.security.InvalidParameterException;
 
 public class AddExistingCommandController extends BaseNewComponentController {
-    BaseCommandsController parentController;
-
     @FXML
     private JFXListView<Command<?>> commandListView;
     @FXML
@@ -81,11 +79,6 @@ public class AddExistingCommandController extends BaseNewComponentController {
         isFinalFilter.selectedProperty().addListener((observable, oldValue, newValue) -> updateFilters());
     }
 
-    public void setParentController(BaseCommandsController parentController) {
-        this.parentController = parentController;
-        updateFilters();
-    }
-
     private void updateFilters() {
         String type = commandTypeFilter.getSelectionModel().getSelectedItem();
         String device = deviceFilter.getSelectionModel().getSelectedItem();
@@ -96,7 +89,7 @@ public class AddExistingCommandController extends BaseNewComponentController {
 
         filteredCommandList.setPredicate(command -> {
             if (parentController != null) {
-                for (Object controllerName : command.getDestinationControllerNames()) {
+                for (String controllerName : command.getDestinationControllerNames()) {
                     if (controllerName.equals(parentController.getControllerName())) return false;
                 }
             }
