@@ -4,11 +4,13 @@ import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 public class IndicatorsController extends BaseTilesFXSensorController {
-
+    @FXML
+    protected AnchorPane mainPanel;
     @FXML
     protected Indicator dataIndicator1;
     @FXML
@@ -33,6 +35,12 @@ public class IndicatorsController extends BaseTilesFXSensorController {
     protected Indicator dataIndicator6;
     @FXML
     protected Label indicatorLabel6;
+
+    @Override
+    protected void buildVisualizationMap() {
+        super.buildVisualizationMap();
+        generateAddExistingSensorButton(0, 0, mainPanel);
+    }
 
     @Override
     public void invalidated(Observable observable) {

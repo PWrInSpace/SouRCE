@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="79.0" prefWidth="418.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.Indicators2Controller">
+<AnchorPane fx:id="mainPanel" prefHeight="79.0" prefWidth="418.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.Indicators2Controller">
    <Indicator fx:id="dataIndicator1" layoutX="25.0" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" AnchorPane.bottomAnchor="10.400000000000006" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
    <Label fx:id="indicatorLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="65.0" text="Indicator1" visible="false" AnchorPane.bottomAnchor="51.4" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="6.0" />
    <Indicator fx:id="dataIndicator2" layoutX="90.0" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" AnchorPane.bottomAnchor="12.400000000000006" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="23.0" />

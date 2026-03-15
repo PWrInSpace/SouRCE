@@ -33,6 +33,8 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private double maxValue = Double.MIN_VALUE;
     private final List<Double> values = new LinkedList<>();
 
+    @JsonProperty("#")
+    private String comment = "";
     @JsonProperty("name")
     private String name;
     @JsonProperty("unit")
@@ -295,5 +297,12 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     @Override
     public void onUIUpdateEvent() {
         notifyObserver();
+    }
+    
+    public String getListViewString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getClass().getSimpleName()).append(", ");
+        sb.append("name: ").append(name).append(", ");
+        return sb.toString();
     }
 }

@@ -97,7 +97,7 @@ public class Configuration implements Observable {
 
     private void setupSensorsInterpreters(ConfigurationSaveModel config) {
         config.sensorRepository.getAllBasicSensors().forEach((s, sensor) -> {
-            if(sensor.getInterpreterKey() != null && !sensor.getInterpreterKey().isEmpty()) {
+            if (sensor.getInterpreterKey() != null && !sensor.getInterpreterKey().isEmpty()) {
                 sensor.setInterpreter(interpreterRepository.getInterpreter(sensor.getInterpreterKey()));
             }
         });

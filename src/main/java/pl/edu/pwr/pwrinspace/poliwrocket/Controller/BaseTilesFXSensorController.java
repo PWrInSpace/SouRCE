@@ -1,18 +1,26 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.FillingLevelSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public abstract class BaseTilesFXSensorController extends BaseSensorController {
-
     private static final int _duration = 30;
 
     private static final Duration DURATION = Duration.ofSeconds(_duration);
@@ -49,7 +57,7 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(); //todo ustalić czy getMessage czy logger.error
             }
         }
     }
@@ -95,4 +103,32 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
         }
     }
 
+    protected void generateAddExistingSensorButton(int layoutX, int layoutY, AnchorPane mainPanel) {
+        var addExistingSensorButton = new JFXButton("+S");
+        addExistingSensorButton.setLayoutX(layoutX);
+        addExistingSensorButton.setLayoutY(layoutY);
+        mainPanel.getChildren().add(addExistingSensorButton);
+        addExistingSensorButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AddExistingSensorView.fxml"));
+            Stage popupStage = new Stage();
+            try {
+                Parent root = loader.load();
+                Scene popupScene = new Scene(root);
+                AddExistingSensorController popupController = loader.getController();
+                popupController.setParentController(this);
+                popupController.setTileHashMap(tileHashMap);
+                popupController.setIndicatorHashMap(indicatorHashMap);
+                popupController.updateDestinationComboBox();
+                popupStage.setScene(popupScene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            popupStage.initOwner(addExistingSensorButton.getScene().getWindow());
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+        });
+    }
 }

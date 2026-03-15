@@ -26,10 +26,9 @@ import java.util.Set;
 
 public class ModelAsYamlService {
     private static final Logger logger = LoggerFactory.getLogger(ModelAsYamlService.class);
-    private final ObjectMapper mapper = YAMLMapper.builder().enable(YAMLGenerator.Feature.USE_NATIVE_TYPE_ID).disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).addModule(new ParameterNamesModule()).build();
+    private final ObjectMapper mapper = YAMLMapper.builder().enable(YAMLGenerator.Feature.USE_NATIVE_TYPE_ID, YAMLGenerator.Feature.INDENT_ARRAYS).disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).addModule(new ParameterNamesModule()).build();
 
     public ModelAsYamlService() {
-//        mapper.setDefaultPropertyInclusion(JsonInclude.Value.construct(JsonInclude.Include.NON_DEFAULT, JsonInclude.Include.NON_DEFAULT));
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         mapper.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.ANY);
 

@@ -78,6 +78,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         config.sensorRepository = new SensorRepository();
         config.sensorRepository.setGpsSensor(configuration.sensorRepository.getGpsSensor());
         config.sensorRepository.setGyroSensor(configuration.sensorRepository.getGyroSensor());
+
         for (String s : configuration.sensorRepository.getSensorsKeys()) {
             if (!configuration.sensorRepository.getSensorByName(s).isSubSensor()) {
                 config.sensorRepository.addSensor(s, configuration.sensorRepository.getSensorByName(s));
@@ -85,11 +86,6 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         }
 
         config.interpreterRepository = configuration.interpreterRepository;
-        ;
-//        configuration.interpreterRepository.getRepositorySet().forEach((s, interpreter) -> {
-//            config.interpreterRepository.addInterpreter(s,interpreter);
-//        });
-
         config.protobufSystemRepository = configuration.protobufSystemRepository;
         config.protobufDeviceRepository = configuration.protobufDeviceRepository;
 
