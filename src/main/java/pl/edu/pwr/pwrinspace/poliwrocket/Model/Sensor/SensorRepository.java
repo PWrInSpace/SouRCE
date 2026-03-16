@@ -23,7 +23,7 @@ public class SensorRepository implements ISensorRepository {
     @Override
     public Sensor getSensorByName(String name) throws NullPointerException {
         var sensor = sensors.get(name);
-        if(sensor == null) {
+        if (sensor == null) {
             logger.error("Sensor not found in repository: {}", name);
             throw new NullPointerException();
         }

@@ -1,0 +1,5 @@
+package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
+
+public class EditSensorsController extends BaseNewComponentController {
+
+}

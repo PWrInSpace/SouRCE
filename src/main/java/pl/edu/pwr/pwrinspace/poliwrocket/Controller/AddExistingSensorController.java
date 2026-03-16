@@ -1,5 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import com.google.protobuf.Descriptors;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import org.reflections.Reflections;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ByteSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorDestination;
@@ -23,6 +25,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AddExistingSensorController extends BaseNewComponentController {
     @FXML
@@ -40,7 +43,10 @@ public class AddExistingSensorController extends BaseNewComponentController {
 
     HashMap<String, Tile> tileHashMap;
     HashMap<String, Indicator> indicatorHashMap;
+
     SensorRepository sensorRepository = Configuration.getInstance().sensorRepository;
+
+    List<String> bannedSensorsList = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -70,8 +76,14 @@ public class AddExistingSensorController extends BaseNewComponentController {
         filteredSensorList = new FilteredList<>(FXCollections.observableList(new ArrayList<>(sensorRepository.getSensorsKeys())));
         sensorListView.setItems(filteredSensorList);
 
+        List<Descriptors.FieldDescriptor> fields = FrameProtos.LoRaCommand.getDescriptor().getFields();
+        for (Descriptors.FieldDescriptor field : fields) {
+            bannedSensorsList.add(field.getName());
+        }
+
         //ustawianie listeners
         sensorTypeFilter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateFilters());
+        nameFilter.textProperty().addListener((observable, oldValue, newValue) -> updateFilters());
         updateFilters();
     }
 
@@ -107,6 +119,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
 
     private void updateFilters() {
         String type = sensorTypeFilter.getSelectionModel().getSelectedItem();
+        String name = nameFilter.getText();
 
         filteredSensorList.setPredicate(sensor -> {
             if (parentController != null) {
@@ -115,6 +128,8 @@ public class AddExistingSensorController extends BaseNewComponentController {
                 }
             }
             if (type.equals("ByteSensor")) return false;
+            if (bannedSensorsList.contains(sensor)) return false;
+            if (!sensor.contains(name)) return false;
             return type.equals(sensorRepository.getSensorByName(sensor).getClass().getSimpleName());
         });
     }

@@ -16,8 +16,8 @@ public class CompositeBitSensor extends Sensor implements InvalidationListener {
     @JsonProperty("sensorsKeys")
     private String[] sensorsKeys;
 
-    private transient Sensor[] sensors;
-    private transient int sensorsUpdates = 0;
+    private Sensor[] sensors;
+    private int sensorsUpdates = 0;
 
     public CompositeBitSensor() {
         super();
