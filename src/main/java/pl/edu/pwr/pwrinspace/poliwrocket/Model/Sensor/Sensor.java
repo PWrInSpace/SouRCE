@@ -155,6 +155,10 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
         return hidden;
     }
 
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+
     protected void notifyObserver() {
         for (InvalidationListener obs : observers) {
             if (shouldNotify || obs instanceof Observable) {

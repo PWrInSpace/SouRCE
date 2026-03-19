@@ -3,26 +3,19 @@
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.AddExistingSensorController" prefHeight="600.0" prefWidth="850.0">
-    <Region style="-fx-background-image: url('silly_cat_4.jpeg'); -fx-background-position: center, center; -fx-background-size: cover, cover" />
-    <AnchorPane prefHeight="450.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
-        <JFXComboBox fx:id="sensorTypeFilter" prefWidth="250.0" layoutX="15.0" layoutY="15.0" promptText="sensor type" />
-        <JFXTextArea fx:id="nameFilter" prefWidth="250.0" layoutX="15.0" prefHeight="40" layoutY="50.0" promptText="name"/>
-        <JFXListView fx:id="sensorListView" prefWidth="250.0" prefHeight="410.0" layoutX="15" layoutY="135.0"/>
-        <JFXButton fx:id="saveEdit" prefWidth="300.0" layoutX="275.0" layoutY="560.0" text="Save changes" />
-    </AnchorPane>
-    <StackPane>
-        <AnchorPane fx:id="sensorDetails">
-            <JFXTextField fx:id="nameTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="15.0" text="name"/>
-            <JFXTextField fx:id="unitTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="55.0" text="unit"/>
-            <JFXTextField fx:id="maxRangeTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="95.0" text="maxRange"/>
-            <JFXTextField fx:id="minRangeTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="135.0" text="minRange"/>
-            <JFXCheckBox fx:id="isBooleanChechbox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="175.0" text="isBoolean"/>
-            <JFXComboBox fx:id="interpreterKeyComboBox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="215.0"/>
-            <JFXCheckBox fx:id="hiddenCheckBox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="255.0" text="hidden"/>
-        </AnchorPane>
-        <AnchorPane fx:id="byteSensorDetails">
-            <JFXComboBox fx:id="byteSubSensorComboBox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="295.0"/>
-        </AnchorPane>
-    </StackPane>
-</StackPane>
+<AnchorPane styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.EditSensorsController" prefHeight="600.0" prefWidth="495.0">
+    <JFXComboBox fx:id="sensorTypeFilter" prefWidth="250.0" layoutX="15.0" layoutY="15.0" promptText="sensor type" />
+    <JFXTextArea fx:id="nameFilter" prefWidth="250.0" layoutX="15.0" prefHeight="40" layoutY="50.0" promptText="name"/>
+    <JFXListView fx:id="sensorListView" prefWidth="250.0" prefHeight="410.0" layoutX="15" layoutY="135.0"/>
+
+    <JFXButton fx:id="saveEditButton" prefWidth="150.0" layoutX="172.5" layoutY="560.0" text="Save changes" onAction="#saveEdit"/>
+
+    <JFXTextField fx:id="nameTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="15.0" text="name"/>
+    <JFXTextField fx:id="unitTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="55.0" text="unit"/>
+    <JFXTextField fx:id="maxRangeTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="95.0" text="maxRange"/>
+    <JFXTextField fx:id="minRangeTextField" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="135.0" text="minRange"/>
+    <JFXCheckBox fx:id="isBooleanCheckbox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="175.0" text="isBoolean"/>
+    <JFXComboBox fx:id="interpreterKeyComboBox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="215.0" promptText="interpreterKey"/>
+    <JFXCheckBox fx:id="hiddenCheckBox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="255.0" text="hidden"/>
+    <JFXComboBox fx:id="byteSubSensorComboBox" prefWidth="200.0" prefHeight="25.0" layoutX="280.0" layoutY="295.0" promptText="bitSensorNumber" visible="false"/>
+</AnchorPane>

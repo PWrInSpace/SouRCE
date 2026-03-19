@@ -57,7 +57,7 @@ public class ModelAsYamlService {
     }
 
     // temp:
-    // true - zapisuje konfiguracje z do temp
+    // true - zapisuje konfiguracje do temp
     // false - zapisuje konfiguracje do config
     public void saveToFile(BaseSaveModel configuration, boolean temp) {
         try {

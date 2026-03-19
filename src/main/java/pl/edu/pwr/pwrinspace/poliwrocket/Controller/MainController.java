@@ -119,7 +119,10 @@ public class MainController extends BaseController implements InvalidationListen
     @FXML
     private SubScene recoveryArmScene;
     @FXML
-    private SubScene recoveryArmIndicatorsScene;
+    private SubScene recoveryArmIndicatorsScene; // todo do usunięcia
+    @FXML
+    private SubScene editSensorsScene;
+
 
     private final SmartGroup root = new SmartGroup();
     private Stage primaryStage;

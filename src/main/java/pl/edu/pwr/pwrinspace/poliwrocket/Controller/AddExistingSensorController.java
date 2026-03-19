@@ -29,27 +29,29 @@ import java.util.List;
 
 public class AddExistingSensorController extends BaseNewComponentController {
     @FXML
-    JFXComboBox<String> sensorTypeFilter;
+    protected JFXComboBox<String> sensorTypeFilter;
     @FXML
-    JFXTextArea nameFilter;
+    protected JFXTextArea nameFilter;
     @FXML
-    JFXComboBox<String> destinationComboBox;
+    protected JFXComboBox<String> destinationComboBox;
     @FXML
-    JFXListView<String> sensorListView;
+    protected JFXListView<String> sensorListView;
     @FXML
-    JFXButton addExistingSensorButton;
+    protected JFXButton addExistingSensorButton;
 
-    FilteredList<String> filteredSensorList;
+    protected FilteredList<String> filteredSensorList;
 
-    HashMap<String, Tile> tileHashMap;
-    HashMap<String, Indicator> indicatorHashMap;
+    protected HashMap<String, Tile> tileHashMap;
+    protected HashMap<String, Indicator> indicatorHashMap;
 
-    SensorRepository sensorRepository = Configuration.getInstance().sensorRepository;
+    protected SensorRepository sensorRepository;
 
-    List<String> bannedSensorsList = new ArrayList<>();
+    protected List<String> bannedSensorsList = new ArrayList<>();
 
     @FXML
     public void initialize() {
+        sensorRepository = Configuration.getInstance().sensorRepository;
+
         sensorListView.setCellFactory(cell -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -117,7 +119,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
     }
 
 
-    private void updateFilters() {
+    protected void updateFilters() {
         String type = sensorTypeFilter.getSelectionModel().getSelectedItem();
         String name = nameFilter.getText();
 

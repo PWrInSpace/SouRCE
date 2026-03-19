@@ -11,7 +11,7 @@ public class ByteSensor extends Sensor implements ISensorsWrapper {
     @JsonProperty("sensors")
     private Sensor[] sensors = new Sensor[this.numberOfBits()];
 
-    private int numberOfBits() {
+    public int numberOfBits() {
         return numberOfBytes * 8;
     }
 

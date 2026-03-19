@@ -36,5 +36,4 @@ public abstract class BaseSaveModel {
     public String getPersistPrefix() {
         return persistPrefix;
     }
-
 }
