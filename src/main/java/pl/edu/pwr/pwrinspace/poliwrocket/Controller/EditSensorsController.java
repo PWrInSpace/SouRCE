@@ -42,6 +42,7 @@ public class EditSensorsController extends AddExistingSensorController {
         });
         interpreterKeyComboBox.getSelectionModel().selectFirst();
         sensorListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateFields(newValue));
+        byteSubSensorComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateByteFields(newValue));
     }
 
     @Override
@@ -63,23 +64,27 @@ public class EditSensorsController extends AddExistingSensorController {
         });
     }
 
-    protected void updateFields(String sensor) {
+    protected void updateFields(String sensor_) {
+        if (sensor_ == null || sensorRepository.getSensorByName(sensor_) == null) return;
         sensorRepository = Configuration.getInstance().sensorRepository;
 
-        if (sensor == null || sensorRepository.getSensorByName(sensor) == null) return;
-
-        if (sensorRepository.getSensorByName(sensor) instanceof ByteSensor) {
+        Sensor sensor;
+        if (sensorRepository.getSensorByName(sensor_) instanceof ByteSensor) {
             byteSubSensorComboBox.setVisible(true);
-            setupByteSubSensorComboBox(sensor);
-        } else byteSubSensorComboBox.setVisible(false);
+            setupByteSubSensorComboBox(sensor_);
+            sensor = ((ByteSensor) sensorRepository.getSensorByName(sensor_)).getSensors()[byteSubSensorComboBox.getSelectionModel().getSelectedIndex()];
+        } else {
+            byteSubSensorComboBox.setVisible(false);
+            sensor = sensorRepository.getSensorByName(sensor_);
+        }
 
-        String name = sensorRepository.getSensorByName(sensor).getName();
-        String unit = sensorRepository.getSensorByName(sensor).getUnit();
-        double maxRange = sensorRepository.getSensorByName(sensor).getMaxRange();
-        double minRange = sensorRepository.getSensorByName(sensor).getMinRange();
-        boolean isBoolean = sensorRepository.getSensorByName(sensor).isBoolean();
-        String interpreterKey = sensorRepository.getSensorByName(sensor).getInterpreterKey();
-        boolean hidden = sensorRepository.getSensorByName(sensor).isHidden();
+        String name = sensor.getName();
+        String unit = sensor.getUnit();
+        double maxRange = sensor.getMaxRange();
+        double minRange = sensor.getMinRange();
+        boolean isBoolean = sensor.isBoolean();
+        String interpreterKey = sensor.getInterpreterKey();
+        boolean hidden = sensor.isHidden();
 
         nameTextField.setText(name);
         unitTextField.setText(unit);
@@ -100,6 +105,31 @@ public class EditSensorsController extends AddExistingSensorController {
             byteSubSensorComboBox.getSelectionModel().selectFirst();
         }
         else throw new IllegalArgumentException(String.format("Sensor %s is not a ByteSensor but %s", byteSensor, sensorRepository.getSensorByName(byteSensor).getClass().getSimpleName()));
+    }
+
+    protected void updateByteFields(String bit) throws IllegalArgumentException {
+        if (bit == null || sensorListView.getSelectionModel().getSelectedItem() == null || sensorRepository.getSensorByName(sensorListView.getSelectionModel().getSelectedItem()) == null) return;
+        sensorRepository = Configuration.getInstance().sensorRepository;
+
+        if (sensorRepository.getSensorByName(sensorListView.getSelectionModel().getSelectedItem()) instanceof ByteSensor) {
+            Sensor sensor = ((ByteSensor) sensorRepository.getSensorByName(sensorListView.getSelectionModel().getSelectedItem())).getSensors()[Integer.parseInt(bit)];
+
+            String name = sensor.getName();
+            String unit = sensor.getUnit();
+            double maxRange = sensor.getMaxRange();
+            double minRange = sensor.getMinRange();
+            boolean isBoolean = sensor.isBoolean();
+            String interpreterKey = sensor.getInterpreterKey();
+            boolean hidden = sensor.isHidden();
+
+            nameTextField.setText(name);
+            unitTextField.setText(unit);
+            maxRangeTextField.setText(String.valueOf(maxRange));
+            minRangeTextField.setText(String.valueOf(minRange));
+            isBooleanCheckbox.setSelected(isBoolean);
+            interpreterKeyComboBox.getSelectionModel().select(interpreterKey);
+            hiddenCheckBox.setSelected(hidden);
+        } else throw new IllegalArgumentException(String.format("Sensor %s is not a ByteSensor but %s", sensorListView.getSelectionModel().getSelectedItem(), sensorRepository.getSensorByName(sensorListView.getSelectionModel().getSelectedItem()).getClass().getSimpleName()));
     }
 
     @FXML
