@@ -205,7 +205,7 @@
             </Tab>
             <Tab text="Edit">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" >
-                    <SubScene fx:id="editSensorsScene" height="600.0" layoutX="14.0" layoutY="14.0" width="495.0">
+                    <SubScene fx:id="editSensorsScene" height="600.0" layoutX="14.0" layoutY="14.0" width="600.0">
                         <root>
                             <Region />
                         </root>

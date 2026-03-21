@@ -40,13 +40,10 @@ public class AddExistingSensorController extends BaseNewComponentController {
     protected JFXButton addExistingSensorButton;
 
     protected FilteredList<String> filteredSensorList;
-
     protected HashMap<String, Tile> tileHashMap;
     protected HashMap<String, Indicator> indicatorHashMap;
-
-    protected SensorRepository sensorRepository;
-
     protected List<String> bannedSensorsList = new ArrayList<>();
+    protected SensorRepository sensorRepository;
 
     @FXML
     public void initialize() {
