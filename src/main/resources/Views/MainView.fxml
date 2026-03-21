@@ -199,13 +199,14 @@
                     <SubScene fx:id="othersIndicators2Scene" height="75.0" layoutX="420.0" layoutY="500.0" width="400.0">
                         <root>
                             <Region />
+                            <Region />
                         </root>
                     </SubScene>
                 </AnchorPane>
             </Tab>
             <Tab text="Edit">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" >
-                    <SubScene fx:id="editSensorsScene" height="600.0" layoutX="14.0" layoutY="14.0" width="600.0">
+                    <SubScene fx:id="editSensorsScene" height="600.0" layoutX="14.0" layoutY="14.0" width="800.0">
                         <root>
                             <Region />
                         </root>
