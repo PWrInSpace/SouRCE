@@ -1,9 +1,6 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.ToggleGroup;
@@ -40,7 +37,7 @@ public class NewCommandComponentController extends BaseNewComponentController {
     @FXML
     protected JFXComboBox<String> protobufSystemComboBox;
     @FXML
-    protected JFXTextArea protobufCommandTextArea;
+    protected JFXTextField protobufCommandTextArea;
     @FXML
     protected JFXToggleButton isFinalToggleButton;
     @FXML
@@ -50,11 +47,11 @@ public class NewCommandComponentController extends BaseNewComponentController {
     @FXML
     protected JFXToggleButton protobufDecimalFormat;
     @FXML
-    protected JFXTextArea triggerTextArea;
+    protected JFXTextField triggerTextArea;
     @FXML
-    protected JFXTextArea descriptionTextArea;
+    protected JFXTextField descriptionTextArea;
     @FXML
-    protected JFXTextArea payloadTextArea;
+    protected JFXTextField payloadTextArea;
     @FXML
     protected JFXButton addCommandButton;
 

@@ -25,6 +25,7 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires com.fasterxml.jackson.dataformat.yaml;
     requires com.fasterxml.jackson.module.paramnames;
     requires org.reflections;
+    requires org.controlsfx.controls;
 
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
     exports pl.edu.pwr.pwrinspace.poliwrocket.Model.Command;
@@ -49,5 +50,5 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     opens pl.edu.pwr.pwrinspace.poliwrocket.Service.Save to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Content to org.yaml.snakeyaml, com.fasterxml.jackson.databind;
-    opens pl.edu.pwr.pwrinspace.poliwrocket.Model to com.fasterxml.jackson.databind;
+    opens pl.edu.pwr.pwrinspace.poliwrocket.Model to com.fasterxml.jackson.databind, org.controlsfx.controls;
 }

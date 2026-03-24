@@ -202,6 +202,13 @@
             <version>0.10.2</version>
             <scope>compile</scope>
         </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.2.3</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <repositories>
         <!--        discord bot         -->

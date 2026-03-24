@@ -1,17 +1,24 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ByteSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 
 public class EditSensorsController extends AddExistingSensorController {
+    @FXML
+    protected AnchorPane mainPanel;
     @FXML
     protected JFXButton saveEditButton;
     @FXML
@@ -32,6 +39,8 @@ public class EditSensorsController extends AddExistingSensorController {
     protected JFXComboBox<String> byteSubSensorComboBox;
 
     Configuration config = Configuration.getInstance();
+
+    private HashMap<Field, Node> fieldsHashMap = new HashMap<>();
 
     @Override
     @FXML
@@ -72,6 +81,7 @@ public class EditSensorsController extends AddExistingSensorController {
 
         sensorRepository = config.sensorRepository;
         Sensor sensor;
+        fieldsHashMap.forEach((field, node) -> mainPanel.getChildren().remove(node));
         if (sensorRepository.getSensorByName(sensor_) instanceof ByteSensor) {
             sensor = sensorRepository.getSensorByName(sensor_);
             setupByteSubSensorComboBox((ByteSensor) sensor);
@@ -79,6 +89,8 @@ public class EditSensorsController extends AddExistingSensorController {
         } else {
             byteSubSensorComboBox.setVisible(false);
             sensor = sensorRepository.getSensorByName(sensor_);
+            if (sensor.getClass() != Sensor.class) fieldsHashMap = createFieldHashMap(sensor);
+            setupFields();
             updateFields(sensor);
         }
     }
@@ -168,5 +180,38 @@ public class EditSensorsController extends AddExistingSensorController {
 
     private String getSelectedSensor() {
         return sensorListView.getSelectionModel().getSelectedItem();
+    }
+
+    private HashMap<Field, Node> createFieldHashMap(Sensor sensor) {
+        HashMap<Field, Node> fields = new HashMap<>();
+        Class<?> sensorClass = sensor.getClass();
+        for (Field field : sensorClass.getDeclaredFields()) {
+            if (field.isAnnotationPresent(JsonProperty.class)) {
+                if (field.getType().equals(boolean.class)) {
+                    var node = new JFXCheckBox(field.getName());
+                    fields.put(field, node);
+                } else {
+                    var node = new JFXTextField(field.getName());
+                    fields.put(field, node);
+                }
+            }
+        }
+        return fields;
+    }
+
+    private void setupFields() {
+        int layoutX = 585;
+        int layoutY = 295;
+
+        for (Node node : fieldsHashMap.values()) {
+            node.setLayoutX(layoutX);
+            node.prefWidth(200);
+            node.setLayoutY(layoutY);
+            node.prefHeight(25);
+            layoutY += 25;
+            layoutY += 15;
+
+            mainPanel.getChildren().add(node);
+        }
     }
 }

@@ -8,10 +8,10 @@
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.AddExistingSensorController" prefHeight="600.0" prefWidth="600.0">
     <Region style="-fx-background-image: url('silly_cat_4.jpeg'); -fx-background-position: center, center; -fx-background-size: cover, cover" />
     <AnchorPane prefHeight="450.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
-        <JFXComboBox fx:id="sensorTypeFilter" prefWidth="570.0" layoutX="15.0" layoutY="15.0" promptText="sensor type" />
-        <JFXTextArea fx:id="nameFilter" prefWidth="570.0" layoutX="15.0" prefHeight="40" layoutY="50.0" promptText="name"/>
-        <JFXComboBox fx:id="destinationComboBox" prefWidth="570.0" layoutX="15.0" layoutY="95.0" promptText="destination" />
-        <JFXListView fx:id="sensorListView" prefWidth="570.0" prefHeight="410.0" layoutX="15" layoutY="135.0"/>
+        <JFXComboBox fx:id="sensorTypeFilter" prefWidth="570.0" layoutX="15.0" layoutY="15.0" prefHeight="26" promptText="sensor type" />
+        <JFXTextField fx:id="nameFilter" prefWidth="570.0" layoutX="15.0" prefHeight="25" layoutY="56.0" promptText="name"/>
+        <JFXComboBox fx:id="destinationComboBox" prefWidth="570.0" layoutX="15.0" layoutY="96.0" prefHeight="26" promptText="destination" />
+        <JFXListView fx:id="sensorListView" prefWidth="570.0" prefHeight="410.0" layoutX="15" layoutY="137.0"/>
         <JFXButton fx:id="addExistingSensorButton" prefWidth="300.0" layoutX="150.0" layoutY="560.0" text="Add existing sensor" onAction="#addExistingSensor"/>
     </AnchorPane>
 </StackPane>

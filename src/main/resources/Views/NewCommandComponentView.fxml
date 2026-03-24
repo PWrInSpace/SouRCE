@@ -6,7 +6,7 @@
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewCommandComponentController">
     <Region style="-fx-background-image: url('silly_cat.gif'); -fx-backgrbound-position: center, center; -fx-background-size: cover, cover" />
-    <AnchorPane prefHeight="420.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
+    <AnchorPane prefHeight="395.0" prefWidth="350.0" styleClass="baseScene" stylesheets="@constants.css">
         <fx:define>
             <ToggleGroup fx:id="commandType" />
         </fx:define>
@@ -19,17 +19,17 @@
                 <fx:define>
                     <ToggleGroup fx:id="protobufCommandFormat" />
                 </fx:define>
-                <JFXTextArea fx:id="protobufCommandTextArea" prefWidth="150.0" prefHeight="50" layoutX="15.0" layoutY="40.0" promptText="command"/>
+                <JFXTextField fx:id="protobufCommandTextArea" prefWidth="150.0" prefHeight="25" layoutX="15.0" layoutY="60.0" promptText="command"/>
                 <JFXToggleButton fx:id="protobufHexFormat" text="HEX" toggleGroup="$protobufCommandFormat" onAction="#handleCommandFormatChange" layoutX="165.0" layoutY="20.0" selected="true"/>
-                <JFXToggleButton fx:id="protobufDecimalFormat" text="DECIMAL" toggleGroup="$protobufCommandFormat" onAction="#handleCommandFormatChange" layoutX="165.0" layoutY="50.0"/>
+                <JFXToggleButton fx:id="protobufDecimalFormat" text="DECIMAL" toggleGroup="$protobufCommandFormat" onAction="#handleCommandFormatChange" layoutX="165.0" layoutY="60.0"/>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" fx:id="standardCommandDetails">
             </AnchorPane>
         </StackPane>
-        <JFXTextArea fx:id="triggerTextArea" promptText="trigger" layoutX="15.0" prefWidth="320.0" layoutY="155.0" prefHeight="50.0"/>
-        <JFXTextArea fx:id="descriptionTextArea" promptText="description" layoutX="15.0" prefWidth="320.0" layoutY="215.0" prefHeight="50.0"/>
-        <JFXTextArea fx:id="payloadTextArea" promptText="payload" layoutX="15.0" prefWidth="320.0" layoutY="280.0" prefHeight="50.0"/>
-        <JFXToggleButton fx:id="isFinalToggleButton" prefWidth="150.0" layoutX="100.0" layoutY="325.0" text="IsFinal"/>
-        <JFXButton fx:id="addCommandButton" text="ADD" layoutX="145.0" prefWidth="60" layoutY="380.0" onAction="#addProtobufCommand"/>
+        <JFXTextField fx:id="triggerTextArea" promptText="trigger" layoutX="15.0" prefWidth="320.0" layoutY="165.0" prefHeight="25.0"/>
+        <JFXTextField fx:id="descriptionTextArea" promptText="description" layoutX="15.0" prefWidth="320.0" layoutY="205.0" prefHeight="25.0"/>
+        <JFXTextField fx:id="payloadTextArea" promptText="payload" layoutX="15.0" prefWidth="320.0" layoutY="245.0" prefHeight="25.0"/>
+        <JFXToggleButton fx:id="isFinalToggleButton" prefWidth="150.0" layoutX="100.0" layoutY="285.0" text="IsFinal"/>
+        <JFXButton fx:id="addCommandButton" text="ADD" layoutX="145.0" prefWidth="60" layoutY="350.0" onAction="#addProtobufCommand"/>
     </AnchorPane>
 </StackPane>

@@ -1,10 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.google.protobuf.Descriptors;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.*;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.collections.FXCollections;
@@ -31,7 +28,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
     @FXML
     protected JFXComboBox<String> sensorTypeFilter;
     @FXML
-    protected JFXTextArea nameFilter;
+    protected JFXTextField nameFilter;
     @FXML
     protected JFXComboBox<String> destinationComboBox;
     @FXML
