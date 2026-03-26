@@ -5,61 +5,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="330.0" prefWidth="205.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.PowerController">
-   <Gauge fx:id="powerGauge4" layoutX="54.0" layoutY="104.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-   <Gauge fx:id="powerGauge5" layoutX="54.0" layoutY="134.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-   <Gauge fx:id="powerGauge6" layoutX="54.0" layoutY="164.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-   <Gauge fx:id="powerGauge3" layoutX="54.0" layoutY="74.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-   <Gauge fx:id="powerGauge7" layoutX="54.0" layoutY="194.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-   <Gauge fx:id="powerGauge8" layoutX="54.0" layoutY="224.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-   <Gauge fx:id="powerGauge2" layoutX="54.0" layoutY="44.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
-   <Gauge fx:id="powerGauge1" layoutX="54.0" layoutY="14.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" threshold="30.0" thresholdVisible="true" />
-   <Label fx:id="powerLabel8" layoutX="36.0" layoutY="233.0" text="Power8">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerLabel7" layoutX="36.0" layoutY="203.0" text="Power7">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerLabel6" layoutX="36.0" layoutY="173.0" text="Power6">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerLabel5" layoutX="36.0" layoutY="143.0" text="Power5">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerLabel4" layoutX="36.0" layoutY="113.0" text="Power4">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerLabel3" layoutX="36.0" layoutY="83.0" text="Power3">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerLabel2" layoutX="36.0" layoutY="53.0" text="Power2">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerLabel1" layoutX="36.0" layoutY="23.0" prefHeight="18.0" prefWidth="40.0" text="Power1">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Label>
-   <Label fx:id="powerValue1" layoutX="163.0" layoutY="30.0" text="V" />
-   <Label fx:id="powerValue2" layoutX="163.0" layoutY="60.0" text="V" />
-   <Label fx:id="powerValue3" layoutX="163.0" layoutY="90.0" text="V" />
-   <Label fx:id="powerValue4" layoutX="163.0" layoutY="120.0" text="V" />
-   <Label fx:id="powerValue5" layoutX="163.0" layoutY="150.0" text="V" />
-   <Label fx:id="powerValue6" layoutX="163.0" layoutY="180.0" text="V" />
-   <Label fx:id="powerValue7" layoutX="163.0" layoutY="210.0" text="V" />
-   <Label fx:id="powerValue8" layoutX="163.0" layoutY="240.0" text="V" />
+<AnchorPane prefHeight="290.0" prefWidth="205.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.PowerController">
+   <Gauge fx:id="powerGauge4" layoutX="15.0" layoutY="104.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+   <Gauge fx:id="powerGauge5" layoutX="15.0" layoutY="134.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+   <Gauge fx:id="powerGauge6" layoutX="15.0" layoutY="164.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+   <Gauge fx:id="powerGauge3" layoutX="15.0" layoutY="74.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+   <Gauge fx:id="powerGauge7" layoutX="15.0" layoutY="194.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+   <Gauge fx:id="powerGauge8" layoutX="15.0" layoutY="224.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+   <Gauge fx:id="powerGauge2" layoutX="15.0" layoutY="44.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" />
+   <Gauge fx:id="powerGauge1" layoutX="15.0" layoutY="14.0" prefHeight="22.0" prefWidth="142.0" skinType="BATTERY" threshold="30.0" thresholdVisible="true" />
+
+   <Label fx:id="powerLabel1" layoutX="10.0" layoutY="30.0" text="Power1" />
+   <Label fx:id="powerLabel2" layoutX="10.0" layoutY="60.0" text="Power2"/>
+   <Label fx:id="powerLabel3" layoutX="10.0" layoutY="90.0" text="Power3" />
+   <Label fx:id="powerLabel4" layoutX="10.0" layoutY="120.0" text="Power4"/>
+   <Label fx:id="powerLabel5" layoutX="10.0" layoutY="150.0" text="Power5"/>
+   <Label fx:id="powerLabel6" layoutX="10.0" layoutY="180.0" text="Power6"/>
+   <Label fx:id="powerLabel7" layoutX="10.0" layoutY="210.0" text="Power7"/>
+   <Label fx:id="powerLabel8" layoutX="10.0" layoutY="240.0" text="Power8"/>
+
+   <Label fx:id="powerValue1" layoutX="115.0" layoutY="30.0" text="V" />
+   <Label fx:id="powerValue2" layoutX="115.0" layoutY="60.0" text="V" />
+   <Label fx:id="powerValue3" layoutX="115.0" layoutY="90.0" text="V" />
+   <Label fx:id="powerValue4" layoutX="115.0" layoutY="120.0" text="V" />
+   <Label fx:id="powerValue5" layoutX="115.0" layoutY="150.0" text="V" />
+   <Label fx:id="powerValue6" layoutX="115.0" layoutY="180.0" text="V" />
+   <Label fx:id="powerValue7" layoutX="115.0" layoutY="210.0" text="V" />
+   <Label fx:id="powerValue8" layoutX="115.0" layoutY="240.0" text="V" />
+
+   <Label fx:id="powerConsumption1" layoutX="160.0" layoutY="30.0" text="A" />
+   <Label fx:id="powerConsumption2" layoutX="160.0" layoutY="60.0" text="A" />
+   <Label fx:id="powerConsumption3" layoutX="160.0" layoutY="90.0" text="A" />
+   <Label fx:id="powerConsumption4" layoutX="160.0" layoutY="120.0" text="A" />
+   <Label fx:id="powerConsumption5" layoutX="160.0" layoutY="150.0" text="A" />
+   <Label fx:id="powerConsumption6" layoutX="160.0" layoutY="180.0" text="A" />
+   <Label fx:id="powerConsumption7" layoutX="160.0" layoutY="210.0" text="A" />
+   <Label fx:id="powerConsumption8" layoutX="160.0" layoutY="240.0" text="A" />
 </AnchorPane>
