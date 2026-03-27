@@ -34,6 +34,7 @@ public class ByteSensor extends Sensor implements ISensorsWrapper {
     protected void notifyObserver() {
         int valueInt = (int)this.getValue();
         String values = String.format("%"+numberOfBits()+"s", Integer.toBinaryString(valueInt)).replace(' ', '0');
+//        if (getName().equals("OxMainStatusses_a")) System.out.println(values);
         int k = values.length() - 1;
 
         for (int i = 0; i < sensors.length; i++) {
