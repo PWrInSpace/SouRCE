@@ -19,4 +19,19 @@
 
     <Indicator fx:id="dataIndicator5" layoutX="375.5" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" />
     <Label fx:id="indicatorLabel5" alignment="CENTER" contentDisplay="CENTER" layoutX="356.5" layoutY="3.0" prefHeight="20.0" prefWidth="80.0" text="label" visible="false" />
+
+    <Indicator fx:id="dataIndicator6" layoutX="459" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" />
+    <Label fx:id="indicatorLabel6" alignment="CENTER" contentDisplay="CENTER" layoutX="440.0" layoutY="3.0" prefHeight="20.0" prefWidth="80.0" text="label" visible="false" />
+
+    <Indicator fx:id="dataIndicator7" layoutX="542.5" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" />
+    <Label fx:id="indicatorLabel7" alignment="CENTER" contentDisplay="CENTER" layoutX="523.5" layoutY="3.0" prefHeight="20.0" prefWidth="80.0" text="label" visible="false" />
+
+    <Indicator fx:id="dataIndicator8" layoutX="626.0" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" />
+    <Label fx:id="indicatorLabel8" alignment="CENTER" contentDisplay="CENTER" layoutX="607.0" layoutY="3.0" prefHeight="20.0" prefWidth="80.0" text="label" visible="false" />
+
+    <Indicator fx:id="dataIndicator9" layoutX="709.5" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" />
+    <Label fx:id="indicatorLabel9" alignment="CENTER" contentDisplay="CENTER" layoutX="690.5" layoutY="3.0" prefHeight="20.0" prefWidth="80.0" text="label" visible="false" />
+
+    <Indicator fx:id="dataIndicator10" layoutX="793" layoutY="25.0" prefHeight="42.0" prefWidth="42.0" visible="false" />
+    <Label fx:id="indicatorLabel10" alignment="CENTER" contentDisplay="CENTER" layoutX="774.0" layoutY="3.0" prefHeight="20.0" prefWidth="80.0" text="label" visible="false" />
 </AnchorPane>

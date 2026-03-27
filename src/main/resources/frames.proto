@@ -30,50 +30,84 @@ message LoRaFrame {
   optional int32 pitot_temperature = 18;
 
   // --- Valve states ---
-  optional fixed32 main_vent_byte_data =19;
+  // bit0: OX_MAIN_STATE
+  // bit1: N2_MAIN_STATE
+  // bit2: OX_VENT_STATE
+  // bit3: ETH_MAIN_STATE
+  // bit4: ETH_VENT_STATE
+  // bit5: N2_VENT_STATE
+  optional fixed32 main_vent_byte_data = 19;
 
   // --- Byte data ---
-  optional fixed32 n2_main_byte_data = 20;
-  optional fixed32 eth_n2_vent_byte_data = 21;
-  optional fixed32 oxi_main_valve_byte_data = 22;
-  optional fixed32 ox_vent_eth_main_byte_data = 23;
+  optional fixed32 n2_vent_bit_data_a = 20;
+  optional fixed32 n2_vent_bit_data_b = 21;
+  optional fixed32 ox_vent_eth_main_bit_data_a = 22;
+  optional fixed32 ox_vent_eth_main_bit_data_b = 23;
+  optional fixed32 ox_main_bit_data_a = 24;
+  optional fixed32 ox_main_bit_data_b = 25;
+  optional fixed32 eth_vent_bit_data_a = 26;
 
   // --- TANWA ---
-  optional float tanwa_battery = 24;
-  optional int32 tanwa_state = 25;
+  optional float tanwa_battery = 27;
+  optional int32 tanwa_state = 28;
 
-  optional fixed32 tanwa_can_and_states_byte_data = 26;
+  // bit0: CAN_Weights_connection
+  // bit1: CAN_Utility_connection
+  // bit2: CAN_Sensor_connection
+  // bit3: CAN_Power_connection
+  // bit4: CAN_Solenoid_connection
+  // bit5: igniter_1_continuity
+  // bit6: igniter_2_continuity
+  // bit7: soft_arm
+  // bit8: abort_button
+  // bit9: fill_N2O_state
+  // bit10: depr_N2O_state
+  // bit11: fill_N2_state
+  // bit12: depr_N2_state
+  // bit13: droid_N2O_state
+  // bit14: droid_N2_state
+  // bit15: heating_tank_state
+  // bit16: heating_valves_state
+  optional fixed32 tanwa_can_and_states_byte_data = 29;
 
+  optional float tanwa_thrust = 30;
+  optional float tanwa_tank_weight = 31;
+  optional float tanwa_temp_post_n2o_fill = 32;
+  optional float tanwa_temp_filling_wall = 33;
 
-  optional float tanwa_thrust = 27;
-  optional float tanwa_tank_weight = 28;
-  optional float tanwa_temp_post_n2o_fill = 29;
-  optional float tanwa_temp_filling_wall = 30;
+  optional float tanwa_postfill_n2o_pres = 34;
+  optional float tanwa_cutoff_n2o_pres = 35;
 
+  optional float tanwa_droid_n2o_pres = 36;
+  optional float tanwa_prereg_n2_pres = 37;
 
-  optional float tanwa_postfill_n2o_pres = 31;
-  optional float tanwa_cutoff_n2o_pres = 32;
+  optional float tanwa_postreg_n2_pres = 38;
+  optional float tanwa_postfill_n2_pres = 39;
 
-
-  optional float tanwa_droid_n2o_pres = 33;
-  optional float tanwa_prereg_n2_pres = 34;
-
-
-  optional float tanwa_postreg_n2_pres = 35;
-  optional float tanwa_postfill_n2_pres = 36;
-
-
-  optional float tanwa_droid_n2_pres = 37;
-  optional float tanwa_combchamber_pres = 38;
+  optional float tanwa_droid_n2_pres = 40;
+  optional float tanwa_combchamber_pres = 41;
 
   // --- Payload ---
-  optional float payload_battery = 39;
+  optional float payload_battery = 42;
 
-  optional fixed32 esp_now_connected_byte_data = 40;
-  optional fixed32 esp_now_wkups_byte_data = 41;                  
+  // bit0: payload_connected
+  // bit1: tanwa_connected
+  // bit2: eth_vent_valve_connected
+  // bit3: ox_main_connected
+  // bit4: ox_vent_eth_main_connected
+  // bit5: n2_vent_connected
+  // bit6: pitot_connected
+  optional fixed32 esp_now_connected_byte_data = 43;
+  // bit0: payload_wkup
+  // bit1: eth_vent_valve_wkup
+  // bit2: ox_main_wkup
+  // bit3: ox_vent_eth_main_wkup
+  // bit4: n2_vent_wkup
+  // bit5: pitot_wkup
+  optional fixed32 esp_now_wkups_byte_data = 44;
 
   // --- Errors ---
-  optional fixed32 errors = 42;
+  optional fixed32 errors = 45;
 }
 
 message LoRaFrameTanwa {
