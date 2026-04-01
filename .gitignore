@@ -86,5 +86,5 @@ testReport/
 *.json
 *.yaml
 !sampleconfig.json
-/config
-/.run
+config/
+.run/

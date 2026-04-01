@@ -170,6 +170,13 @@
             <version>2.21.1</version>
             <scope>compile</scope>
         </dependency>
+        <!-- Explicit dependency on snakeyaml to avoid classpath issues -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.0</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>

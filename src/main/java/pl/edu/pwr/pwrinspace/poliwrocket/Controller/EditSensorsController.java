@@ -37,6 +37,10 @@ public class EditSensorsController extends AddExistingSensorController {
     protected JFXCheckBox hiddenCheckBox;
     @FXML
     protected JFXComboBox<String> byteSubSensorComboBox;
+    @FXML
+    protected JFXTextField multiBitSensorTextField;
+    @FXML
+    protected JFXComboBox<String> multiBitSensorDirectionComboBox;
 
     Configuration config = Configuration.getInstance();
 
@@ -48,10 +52,13 @@ public class EditSensorsController extends AddExistingSensorController {
         super.initialize();
 
         sensorTypeFilter.getItems().add("ByteSensor");
-        interpreterKeyComboBox.getItems().add("None");
 
+        interpreterKeyComboBox.getItems().add("None");
         Configuration.getInstance().interpreterRepository.getRepositorySet().forEach((key, interpreter) -> interpreterKeyComboBox.getItems().add(key));
         interpreterKeyComboBox.getSelectionModel().selectFirst();
+
+        multiBitSensorDirectionComboBox.getItems().addAll("ascending", "descending");
+        multiBitSensorDirectionComboBox.getSelectionModel().selectFirst();
 
         sensorListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> handleSensorSelection(newValue));
         byteSubSensorComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> handleByteSensorSelection(newValue));
@@ -87,7 +94,7 @@ public class EditSensorsController extends AddExistingSensorController {
             setupByteSubSensorComboBox((ByteSensor) sensor);
             handleByteSensorSelection(sensor_);
         } else {
-            byteSubSensorComboBox.setVisible(false);
+            changeByteSensorDetailsVisibility(false);
             sensor = sensorRepository.getSensorByName(sensor_);
             if (sensor.getClass() != Sensor.class) fieldsHashMap = createFieldHashMap(sensor);
             setupFields();
@@ -97,7 +104,7 @@ public class EditSensorsController extends AddExistingSensorController {
 
     private void handleByteSensorSelection(String sensor_) {
         if (sensor_ == null) return;
-        byteSubSensorComboBox.setVisible(true);
+        changeByteSensorDetailsVisibility(true);
 
         sensorRepository = config.sensorRepository;
         Sensor sensor;
@@ -213,5 +220,11 @@ public class EditSensorsController extends AddExistingSensorController {
 
             mainPanel.getChildren().add(node);
         }
+    }
+
+    private void changeByteSensorDetailsVisibility(boolean visible) {
+        byteSubSensorComboBox.setVisible(visible);
+        multiBitSensorTextField.setVisible(visible);
+        multiBitSensorDirectionComboBox.setVisible(visible);
     }
 }

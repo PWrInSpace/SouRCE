@@ -18,6 +18,8 @@
 
 <!--byte sensor fields-->
     <JFXComboBox fx:id="byteSubSensorComboBox" prefWidth="200.0" prefHeight="25.0" layoutX="585.0" layoutY="295.0" promptText="bitSensorNumber" visible="false"/>
+    <JFXTextField fx:id="multiBitSensorTextField" prefWidth="90.0" prefHeight="25.0" layoutX="585.0" layoutY="335.0" promptText="bits" visible="false"/>
+    <JFXComboBox fx:id="multiBitSensorDirectionComboBox" prefWidth="90.0" prefHeight="25.0" layoutX="690.0" layoutY="335.0" promptText="direction" visible="false"/>
 
     <JFXButton fx:id="saveEditButton" prefWidth="150.0" layoutX="325" layoutY="335.0" text="Save changes" onAction="#saveEdit"/>
 </AnchorPane>
