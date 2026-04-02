@@ -8,13 +8,13 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ByteSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
+
 import java.lang.reflect.Field;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class EditSensorsController extends AddExistingSensorController {
     @FXML
@@ -42,9 +42,7 @@ public class EditSensorsController extends AddExistingSensorController {
     @FXML
     protected JFXComboBox<String> multiBitSensorDirectionComboBox;
 
-    Configuration config = Configuration.getInstance();
-
-    private HashMap<Field, Node> fieldsHashMap = new HashMap<>();
+    private LinkedHashMap<Field, Node> fieldsHashMap = new LinkedHashMap<>();
 
     @Override
     @FXML
@@ -54,7 +52,7 @@ public class EditSensorsController extends AddExistingSensorController {
         sensorTypeFilter.getItems().add("ByteSensor");
 
         interpreterKeyComboBox.getItems().add("None");
-        Configuration.getInstance().interpreterRepository.getRepositorySet().forEach((key, interpreter) -> interpreterKeyComboBox.getItems().add(key));
+        config.interpreterRepository.getRepositorySet().forEach((key, interpreter) -> interpreterKeyComboBox.getItems().add(key));
         interpreterKeyComboBox.getSelectionModel().selectFirst();
 
         multiBitSensorDirectionComboBox.getItems().addAll("ascending", "descending");
@@ -66,7 +64,7 @@ public class EditSensorsController extends AddExistingSensorController {
 
     @Override
     protected void updateFilters() {
-        sensorRepository = Configuration.getInstance().sensorRepository;
+        sensorRepository = config.sensorRepository;
         String type = sensorTypeFilter.getSelectionModel().getSelectedItem();
         String name = nameFilter.getText();
 
@@ -97,6 +95,7 @@ public class EditSensorsController extends AddExistingSensorController {
             changeByteSensorDetailsVisibility(false);
             sensor = sensorRepository.getSensorByName(sensor_);
             if (sensor.getClass() != Sensor.class) fieldsHashMap = createFieldHashMap(sensor);
+//            fieldsHashMap.forEach((field, node) -> logger.debug(field.getName() + " " + node));
             setupFields();
             updateFields(sensor);
         }
@@ -132,7 +131,7 @@ public class EditSensorsController extends AddExistingSensorController {
         ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
         try {
             modelAsYamlService.saveToFile(ConfigurationSaveModel.getConfigurationSaveModel(config), true);
-            Configuration.getInstance().reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
+            config.reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -189,16 +188,18 @@ public class EditSensorsController extends AddExistingSensorController {
         return sensorListView.getSelectionModel().getSelectedItem();
     }
 
-    private HashMap<Field, Node> createFieldHashMap(Sensor sensor) {
-        HashMap<Field, Node> fields = new HashMap<>();
+    private LinkedHashMap<Field, Node> createFieldHashMap(Sensor sensor) {
+        LinkedHashMap<Field, Node> fields = new LinkedHashMap<>();
         Class<?> sensorClass = sensor.getClass();
         for (Field field : sensorClass.getDeclaredFields()) {
             if (field.isAnnotationPresent(JsonProperty.class)) {
+//                logger.debugx ("Checking field: " + field.getName());
                 if (field.getType().equals(boolean.class)) {
                     var node = new JFXCheckBox(field.getName());
                     fields.put(field, node);
                 } else {
-                    var node = new JFXTextField(field.getName());
+                    var node = new JFXTextField();
+                    node.setPromptText(field.getName());
                     fields.put(field, node);
                 }
             }

@@ -37,14 +37,18 @@ public class AddExistingSensorController extends BaseNewComponentController {
     protected JFXButton addExistingSensorButton;
 
     protected FilteredList<String> filteredSensorList;
+
+    protected List<String> bannedSensorsList = new ArrayList<>();
+
     protected HashMap<String, Tile> tileHashMap;
     protected HashMap<String, Indicator> indicatorHashMap;
-    protected List<String> bannedSensorsList = new ArrayList<>();
+
+    protected Configuration config = Configuration.getInstance();
     protected SensorRepository sensorRepository;
 
     @FXML
     public void initialize() {
-        sensorRepository = Configuration.getInstance().sensorRepository;
+        sensorRepository = config.sensorRepository;
 
         sensorListView.setCellFactory(cell -> new ListCell<>() {
             @Override
@@ -92,7 +96,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
             var sensor = sensorRepository.getSensorByName(getSelectedSensor());
             modelAsYamlService.addSensorToController(new ConfigurationSaveModel(), sensor, sensorDestination);
 
-            Configuration.getInstance().reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
+            config.reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
 
             ((Stage) addExistingSensorButton.getScene().getWindow()).close();
         } catch (Exception e) {
@@ -118,6 +122,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
         String name = nameFilter.getText();
 
         filteredSensorList.setPredicate(sensor -> {
+            if (type == null) return false;
             if (parentController != null) {
                 for (String controllerName : sensorRepository.getSensorByName(sensor).getDestinationControllerNames()) {
                     if (controllerName.equals(parentController.getControllerName())) return false;
