@@ -14,7 +14,8 @@ public abstract class ProtobufBaseCommand<T extends BaseProtobufContent> extends
                 .setCommand(Integer.decode(value.getCommand()));
 
         int payloadAsNumber = 0;
-        if(payload != null && !payload.isEmpty()) {
+
+        if (payload != null && !payload.isEmpty()) {
             try {
                 if(payload.contains(".") || payload.contains(",")) {
                     payloadAsNumber = (int) Double.parseDouble(payload);

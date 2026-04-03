@@ -244,6 +244,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         var msg = command.getCommandValueAsString() + '\n';
         log.log(Level.INFO, "Written: {0}", msg);
         serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));
+        serialWriter.sendSeparator();
         this.lastMessage = msg;
         notifyObserver();
     }
@@ -298,6 +299,14 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 out.write(finalMsg);
 //                logger.info("Written msg: {}",msg);
 //                logger.info("Written with prefix and crc: {}",finalMsg);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void sendSeparator() {
+            try {
+                out.write('\n');
             } catch (IOException e) {
                 e.printStackTrace();
             }
