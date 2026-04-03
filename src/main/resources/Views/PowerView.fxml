@@ -13,23 +13,23 @@
    <Label fx:id="powerLabel7" layoutX="10.0" layoutY="210.0" text="Power7"/>
    <Label fx:id="powerLabel8" layoutX="10.0" layoutY="240.0" text="Power8"/>
 
-   <Label fx:id="powerTemperature1" layoutX="80.0" layoutY="30.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
-   <Label fx:id="powerTemperature2" layoutX="80.0" layoutY="60.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
-   <Label fx:id="powerTemperature3" layoutX="80.0" layoutY="90.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
-   <Label fx:id="powerTemperature4" layoutX="80.0" layoutY="120.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
-   <Label fx:id="powerTemperature5" layoutX="80.0" layoutY="150.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
-   <Label fx:id="powerTemperature6" layoutX="80.0" layoutY="180.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
-   <Label fx:id="powerTemperature7" layoutX="80.0" layoutY="210.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
-   <Label fx:id="powerTemperature8" layoutX="80.0" layoutY="240.0" prefHeight="22.0" prefWidth="142.0" text="C"/>
+   <Label fx:id="powerTemperature1" layoutX="80.0" layoutY="30.0" text="°C"/>
+   <Label fx:id="powerTemperature2" layoutX="80.0" layoutY="60.0" text="°C"/>
+   <Label fx:id="powerTemperature3" layoutX="80.0" layoutY="90.0" text="°C"/>
+   <Label fx:id="powerTemperature4" layoutX="80.0" layoutY="120.0" text="°C"/>
+   <Label fx:id="powerTemperature5" layoutX="80.0" layoutY="150.0" text="°C"/>
+   <Label fx:id="powerTemperature6" layoutX="80.0" layoutY="180.0" text="°C"/>
+   <Label fx:id="powerTemperature7" layoutX="80.0" layoutY="210.0" text="°C"/>
+   <Label fx:id="powerTemperature8" layoutX="80.0" layoutY="240.0" text="°C"/>
 
-   <Label fx:id="powerVoltage1" layoutX="115.0" layoutY="30.0" text="V" />
-   <Label fx:id="powerVoltage2" layoutX="115.0" layoutY="60.0" text="V" />
-   <Label fx:id="powerVoltage3" layoutX="115.0" layoutY="90.0" text="V" />
-   <Label fx:id="powerVoltage4" layoutX="115.0" layoutY="120.0" text="V" />
-   <Label fx:id="powerVoltage5" layoutX="115.0" layoutY="150.0" text="V" />
-   <Label fx:id="powerVoltage6" layoutX="115.0" layoutY="180.0" text="V" />
-   <Label fx:id="powerVoltage7" layoutX="115.0" layoutY="210.0" text="V" />
-   <Label fx:id="powerVoltage8" layoutX="115.0" layoutY="240.0" text="V" />
+   <Label fx:id="powerVoltage1" layoutX="120.0" layoutY="30.0" text="V" />
+   <Label fx:id="powerVoltage2" layoutX="120.0" layoutY="60.0" text="V" />
+   <Label fx:id="powerVoltage3" layoutX="120.0" layoutY="90.0" text="V" />
+   <Label fx:id="powerVoltage4" layoutX="120.0" layoutY="120.0" text="V" />
+   <Label fx:id="powerVoltage5" layoutX="120.0" layoutY="150.0" text="V" />
+   <Label fx:id="powerVoltage6" layoutX="120.0" layoutY="180.0" text="V" />
+   <Label fx:id="powerVoltage7" layoutX="120.0" layoutY="210.0" text="V" />
+   <Label fx:id="powerVoltage8" layoutX="120.0" layoutY="240.0" text="V" />
 
    <Label fx:id="powerConsumption1" layoutX="160.0" layoutY="30.0" text="A" />
    <Label fx:id="powerConsumption2" layoutX="160.0" layoutY="60.0" text="A" />

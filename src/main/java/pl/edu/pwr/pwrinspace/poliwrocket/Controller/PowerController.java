@@ -29,21 +29,21 @@ public class PowerController extends BaseSensorController {
     protected Label powerLabel8;
 
     @FXML
-    private Label powerTemperature1;
+    protected Label powerTemperature1;
     @FXML
-    private Label powerTemperature2;
+    protected Label powerTemperature2;
     @FXML
-    private Label powerTemperature3;
+    protected Label powerTemperature3;
     @FXML
-    private Label powerTemperature4;
+    protected Label powerTemperature4;
     @FXML
-    private Label powerTemperature5;
+    protected Label powerTemperature5;
     @FXML
-    private Label powerTemperature6;
+    protected Label powerTemperature6;
     @FXML
-    private Label powerTemperature7;
+    protected Label powerTemperature7;
     @FXML
-    private Label powerTemperature8;
+    protected Label powerTemperature8;
 
     @FXML
     protected Label powerVoltage1;
@@ -80,7 +80,6 @@ public class PowerController extends BaseSensorController {
     protected Label powerConsumption8;
 
     protected HashMap<String, Label> labelHashMap = new HashMap<>();
-    protected HashMap<String, Label> titleHashMap = new HashMap<>();
 
     @Override
     protected void buildVisualizationMap() {
@@ -104,14 +103,18 @@ public class PowerController extends BaseSensorController {
     public void invalidated(Observable observable) {
         if (observable instanceof ISensor) {
             var sensor = ((ISensor) observable);
-            UIThreadManager.getInstance().addNormal(() -> {
-            });
+            UIThreadManager.getInstance().addNormal(() -> labelHashMap.get(sensor.getDestination()).setText(Math.round(sensor.getValue() * 100.0) / 100.0 + " " + sensor.getUnit()));
         }
     }
 
     @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
+            if (sensor.getDestination().startsWith("powerVoltage")) {
+                var title = labelHashMap.get(sensor.getDestination().replace("Voltage", "Label"));
+                title.setVisible(true);
+                title.setText(sensor.getName());
+            }
             var label = labelHashMap.get(sensor.getDestination());
             if (label != null) {
                 label.setVisible(true);
