@@ -104,11 +104,9 @@
 
 .jfx-list-view {
     -fx-background-color: -fx-backgroundColor-base;
-    -fx-fixed-cell-size: 25px;
 }
 
 .jfx-list-view .cell {
-    -fx-font-size: 12;
     -fx-text-fill: white;
     -fx-background-color: -fx-backgroundColor-base;
 }

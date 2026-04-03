@@ -46,6 +46,10 @@ public class CompositeBitSensor extends Sensor implements InvalidationListener {
         return sensorsKeys;
     }
 
+    public void setSensorsKeys(String[] sensorsKeys) {
+        this.sensorsKeys = sensorsKeys;
+    }
+
     public boolean containsKey(String key_) {
         for (String key : sensorsKeys) {
             if (key.equals(key_)) return true;

@@ -211,7 +211,7 @@
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="newCompositeSensorScene" height="400.0" layoutX="14.0" layoutY="400.0" width="800.0">
+                    <SubScene fx:id="newCompositeSensorScene" height="400.0" layoutX="14.0" layoutY="384.0" width="800.0">
                         <root>
                             <Region />
                         </root>
