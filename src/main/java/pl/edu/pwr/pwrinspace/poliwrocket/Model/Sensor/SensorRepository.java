@@ -38,7 +38,7 @@ public class SensorRepository implements ISensorRepository {
             throw new RuntimeException(message);
 
         }
-        sensors.put(sensor.getName(),sensor);
+        sensors.put(sensor.getName(), sensor);
     }
 
     @Override

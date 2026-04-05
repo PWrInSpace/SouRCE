@@ -25,7 +25,7 @@ public class CompositeBitSensor extends Sensor implements InvalidationListener {
     }
 
     public void injectSensors(List<KeyValue<String,Sensor>> sensors) throws Exception {
-        if(sensors.size() != sensorsKeys.length || sensors.stream().anyMatch(s -> !Arrays.asList(sensorsKeys).contains(s.getKey()))) {
+        if (sensors.size() != sensorsKeys.length || sensors.stream().anyMatch(s -> !Arrays.asList(sensorsKeys).contains(s.getKey()))) {
             throw new Exception("Wrong sensor key in " + this.getName());
         }
         this.sensors = new Sensor[sensorsKeys.length];
@@ -51,6 +51,7 @@ public class CompositeBitSensor extends Sensor implements InvalidationListener {
     }
 
     public boolean containsKey(String key_) {
+        if (sensorsKeys == null) return false;
         for (String key : sensorsKeys) {
             if (key.equals(key_)) return true;
         }

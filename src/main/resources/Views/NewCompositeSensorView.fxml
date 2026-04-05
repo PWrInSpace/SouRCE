@@ -6,20 +6,24 @@
 <?import com.jfoenix.controls.JFXListView?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <AnchorPane styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewCompositeSensorController" prefHeight="370.0" prefWidth="800.0">
     <JFXComboBox fx:id="sensorTypeFilter" prefWidth="300.0" layoutX="15.0" layoutY="15.0" promptText="sensor type" />
     <JFXTextField fx:id="nameFilter" prefWidth="300.0" layoutX="15.0" prefHeight="25" layoutY="50.0" promptText="name" />
     <JFXListView fx:id="sensorListView" prefWidth="300.0" prefHeight="215.0" layoutX="15" layoutY="90.0" />
 
+    <JFXTextField fx:id="byteSensorNameFilter" prefWidth="195.0" layoutX="330.0" prefHeight="25.0" layoutY="50.0" promptText="byte sensor name" />
     <JFXListView fx:id="availableByteSensorListView" prefWidth="195.0" prefHeight="215.0" layoutX="330.0" layoutY="90.0" />
 
     <JFXButton fx:id="moveRightButton" layoutX="540.0" prefWidth="35.0" layoutY="130.0" prefHeight="35.0" text="→" onAction="#moveRight" />
     <JFXButton fx:id="moveLeftButton" layoutX="540.0" prefWidth="35.0" layoutY="230.0" prefHeight="35.0" text="←" onAction="#moveLeft" />
 
+    <JFXTextField fx:id="compositeSensorNameField" prefWidth="195.0" layoutX="590.0" prefHeight="25.0" layoutY="50.0" promptText="composite sensor name" visible="false"/>
     <JFXListView fx:id="selectedByteSensorListView" prefWidth="195.0" prefHeight="215.0" layoutX="590.0" layoutY="90.0" />
 
     <JFXButton fx:id="moveUpButton" layoutX="627.5" prefWidth="35.0" layoutY="320.0" prefHeight="35.0" text="↑" onAction="#moveUp" />
     <JFXButton fx:id="moveDownButton" layoutX="712.5" prefWidth="35.0" layoutY="320.0" prefHeight="35.0" text="↓" onAction="#moveDown" />
 
     <JFXButton fx:id="saveEditButton" layoutX="325.0" prefWidth="150.0" layoutY="320.0" text="Save changes" onAction="#saveEdit" />
+    <JFXCheckBox fx:id="newCompositeSensorButton" layoutX="15.0" prefWidth="200.0" layoutY="320.0" text="New composite sensor" onAction="#createEmptySensor" />
 </AnchorPane>

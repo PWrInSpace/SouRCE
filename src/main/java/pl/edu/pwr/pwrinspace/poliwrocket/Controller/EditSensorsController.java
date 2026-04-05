@@ -95,7 +95,6 @@ public class EditSensorsController extends AddExistingSensorController {
             changeByteSensorDetailsVisibility(false);
             sensor = sensorRepository.getSensorByName(sensor_);
             if (sensor.getClass() != Sensor.class) fieldsHashMap = createFieldHashMap(sensor);
-//            fieldsHashMap.forEach((field, node) -> logger.debug(field.getName() + " " + node));
             setupFields();
             updateFields(sensor);
         }
@@ -103,11 +102,10 @@ public class EditSensorsController extends AddExistingSensorController {
 
     private void handleByteSensorSelection(String sensor_) {
         if (sensor_ == null) return;
-        changeByteSensorDetailsVisibility(true);
-
         sensorRepository = config.sensorRepository;
-        Sensor sensor;
-        sensor = ((ByteSensor) sensorRepository.getSensorByName(getSelectedSensor())).getSensors()[getSelectedBit()];
+
+        changeByteSensorDetailsVisibility(true);
+        Sensor sensor = ((ByteSensor) getSelectedSensor()).getSensors()[getSelectedBit()];
         updateFields(sensor);
     }
 
@@ -122,14 +120,14 @@ public class EditSensorsController extends AddExistingSensorController {
 
     @FXML
     public void saveEdit() {
-        sensorRepository = config.sensorRepository;
-        Sensor sensor = sensorRepository.getSensorByName(getSelectedSensor());
-        if (sensor instanceof ByteSensor) sensor = ((ByteSensor) sensor).getSensors()[getSelectedBit()];
-
-        updateSensor(sensor);
-
-        ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
         try {
+            sensorRepository = config.sensorRepository;
+            Sensor sensor = getSelectedSensor();
+            if (sensor instanceof ByteSensor) sensor = ((ByteSensor) sensor).getSensors()[getSelectedBit()];
+
+            updateSensor(sensor);
+
+            ModelAsYamlService modelAsYamlService = new ModelAsYamlService();
             modelAsYamlService.saveToFile(ConfigurationSaveModel.getConfigurationSaveModel(config), true);
             config.reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
         } catch (Exception e) {
@@ -138,6 +136,7 @@ public class EditSensorsController extends AddExistingSensorController {
     }
 
     private void updateFields(Sensor sensor) {
+        sensorRepository = config.sensorRepository;
         String name = sensor.getName();
         String unit = sensor.getUnit();
         double maxRange = sensor.getMaxRange();
@@ -184,16 +183,11 @@ public class EditSensorsController extends AddExistingSensorController {
         return byteSubSensorComboBox.getSelectionModel().getSelectedIndex();
     }
 
-    private String getSelectedSensor() {
-        return sensorListView.getSelectionModel().getSelectedItem();
-    }
-
     private LinkedHashMap<Field, Node> createFieldHashMap(Sensor sensor) {
         LinkedHashMap<Field, Node> fields = new LinkedHashMap<>();
         Class<?> sensorClass = sensor.getClass();
         for (Field field : sensorClass.getDeclaredFields()) {
             if (field.isAnnotationPresent(JsonProperty.class)) {
-//                logger.debugx ("Checking field: " + field.getName());
                 if (field.getType().equals(boolean.class)) {
                     var node = new JFXCheckBox(field.getName());
                     fields.put(field, node);

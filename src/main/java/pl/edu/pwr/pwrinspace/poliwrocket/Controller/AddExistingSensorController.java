@@ -1,10 +1,14 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.google.protobuf.Descriptors;
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -18,7 +22,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.Sensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorDestination;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.SensorRepository;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsYamlService;
-
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,8 +39,8 @@ public class AddExistingSensorController extends BaseNewComponentController {
     @FXML
     protected JFXButton addExistingSensorButton;
 
+    protected ObservableList<String> observableSensorList;
     protected FilteredList<String> filteredSensorList;
-
     protected List<String> bannedSensorsList = new ArrayList<>();
 
     protected HashMap<String, Tile> tileHashMap;
@@ -50,6 +53,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
     public void initialize() {
         sensorRepository = config.sensorRepository;
 
+        // ustawiane opcji wyświetlania
         sensorListView.setCellFactory(cell -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -66,6 +70,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
             }
         });
 
+        // ustawianie listy filtrów
         var sensorTypes = new ArrayList<Class<? extends Sensor>>();
         sensorTypes.add(Sensor.class);
         sensorTypes.addAll(new Reflections("pl.edu.pwr.pwrinspace").getSubTypesOf(Sensor.class));
@@ -73,8 +78,11 @@ public class AddExistingSensorController extends BaseNewComponentController {
         for (Class<? extends Sensor> sensorClass : sensorTypes) sensorTypeFilter.getItems().add(sensorClass.getSimpleName());
         sensorTypeFilter.getSelectionModel().selectFirst();
 
-        filteredSensorList = new FilteredList<>(FXCollections.observableList(new ArrayList<>(sensorRepository.getSensorsKeys())));
+        // inicjalizacja filtrowanej listy
+        observableSensorList = FXCollections.observableArrayList(sensorRepository.getSensorsKeys());
+        filteredSensorList = new FilteredList<>(observableSensorList);
         sensorListView.setItems(filteredSensorList);
+
 
         List<Descriptors.FieldDescriptor> fields = FrameProtos.LoRaCommand.getDescriptor().getFields();
         for (Descriptors.FieldDescriptor field : fields) {
@@ -93,7 +101,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
             var modelAsYamlService = new ModelAsYamlService();
 
             var sensorDestination = getSensorDestination();
-            var sensor = sensorRepository.getSensorByName(getSelectedSensor());
+            var sensor = getSelectedSensor();
             modelAsYamlService.addSensorToController(new ConfigurationSaveModel(), sensor, sensorDestination);
 
             config.reloadConfigInstance(modelAsYamlService.readFromFile(new ConfigurationSaveModel(), true));
@@ -104,9 +112,11 @@ public class AddExistingSensorController extends BaseNewComponentController {
         }
     }
 
-    private String getSelectedSensor() throws InvalidParameterException {
+    protected Sensor getSelectedSensor() throws InvalidParameterException {
+        sensorRepository = config.sensorRepository;
+
         if (sensorListView.getSelectionModel().getSelectedItem() != null) {
-            return sensorListView.getSelectionModel().getSelectedItem();
+            return sensorRepository.getSensorByName(sensorListView.getSelectionModel().getSelectedItem());
         } else throw new InvalidParameterException("Sensor key not selected");
     }
 
@@ -115,7 +125,6 @@ public class AddExistingSensorController extends BaseNewComponentController {
         String destinationControllerName = parentController.getControllerName();
         return new SensorDestination(destination, destinationControllerName);
     }
-
 
     protected void updateFilters() {
         String type = sensorTypeFilter.getSelectionModel().getSelectedItem();
