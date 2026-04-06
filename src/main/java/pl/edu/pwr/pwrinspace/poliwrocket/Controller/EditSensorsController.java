@@ -136,7 +136,6 @@ public class EditSensorsController extends AddExistingSensorController {
     }
 
     private void updateFields(Sensor sensor) {
-        sensorRepository = config.sensorRepository;
         String name = sensor.getName();
         String unit = sensor.getUnit();
         double maxRange = sensor.getMaxRange();

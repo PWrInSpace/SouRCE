@@ -145,6 +145,7 @@ public class NewCompositeSensorController extends AddExistingSensorController {
     public void createEmptySensor() {
         if (newCompositeSensorButton.isSelected()) {
             sensorListView.getSelectionModel().clearSelection();
+            compositeSensorNameField.setText("");
             compositeSensorNameField.setVisible(true);
             selectedByteSensorListView.getItems().clear();
             availableByteSensorListView.getItems().clear();

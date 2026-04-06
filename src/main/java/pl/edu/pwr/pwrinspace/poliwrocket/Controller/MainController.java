@@ -130,6 +130,7 @@ public class MainController extends BaseController implements InvalidationListen
     private Stage primaryStage;
     private final List<Node> nodes = new ArrayList<>();
     private final HashMap<Node,Pair<Double,Double>> nodesInitPositions = new HashMap<>();
+    private Boolean lastAppliedLightMode = false;
 
     public SubScene getMapScene() {
         return mapScene;
@@ -236,6 +237,7 @@ public class MainController extends BaseController implements InvalidationListen
 
     @Override
     public void invalidated(Observable observable) {
+        // Wywołanie przez message parser
         if (observable instanceof IMessageParser) {
             var value = ((IMessageParser) observable).getLastMessage();
             if(!value.contains("\n")) {
@@ -256,57 +258,64 @@ public class MainController extends BaseController implements InvalidationListen
                 inComing.setScrollTop(pos);
                 inComing.selectRange(anchor, caret);
             });
+        // Wywołane przez serial port manager
         } else if (observable instanceof ISerialPortManager) {
             var value = ((ISerialPortManager) observable).getLastSend() + "\n";
             Platform.runLater(() -> outGoing.appendText(value));
             Platform.requestNextPulse();
+        // Wywołane przez configuration
         } else if (observable == Configuration.getInstance()) {
-            if(Configuration.getInstance().isForceCommandsActive()) {
-                outGoing.setStyle("-fx-border-color: red;");
-            } else {
-                outGoing.setStyle("");
-            }
+            Runnable configUpdateAction = () -> {
+                if (Configuration.getInstance().isForceCommandsActive()) {
+                    outGoing.setStyle("-fx-border-color: red;");
+                } else {
+                    outGoing.setStyle("");
+                }
 
-            boolean isLight = ((Configuration) observable).isLightMode();
-            URL cssURL = getClass().getResource(isLight ? "/Views/constantsLight.css" : "/Views/constants.css");
+                boolean isLight = ((Configuration) observable).isLightMode();
+                if (lastAppliedLightMode != null && lastAppliedLightMode == isLight) {
+                    return;
+                }
 
-            if (cssURL == null) {
-                System.err.println("ERROR: css not found");
-                return;
-            }
+                URL cssURL = getClass().getResource(isLight ? "/Views/constantsLight.css" : "/Views/constants.css");
 
-            String cssPath = cssURL.toExternalForm();
+                if (cssURL == null) {
+                    System.err.println("ERROR: css not found");
+                    return;
+                }
 
-            nodes.forEach(node -> {
-                applyStyleToNode(node, cssPath, isLight);
-            });
+                lastAppliedLightMode = isLight;
+                String cssPath = cssURL.toExternalForm();
 
-            for (Field field : this.getClass().getDeclaredFields()) {
-                if (field.getName().endsWith("Scene")) {
-                    try {
-                        field.setAccessible(true);
-                        Object value = field.get(this);
-                        if (value instanceof SubScene) {
-                            SubScene ss = (SubScene) value;
-                            applyStyleToNode(ss, cssPath, isLight);
-                            findAndStyleTiles(ss.getRoot(), isLight);
+                nodes.forEach(node -> applyStyleToNode(node, cssPath, isLight));
+
+                for (Field field : this.getClass().getDeclaredFields()) {
+                    if (field.getName().endsWith("Scene")) {
+                        try {
+                            field.setAccessible(true);
+                            Object value = field.get(this);
+                            if (value instanceof SubScene) {
+                                SubScene ss = (SubScene) value;
+                                applyStyleToNode(ss, cssPath, isLight);
+                                findAndStyleTiles(ss.getRoot(), isLight);
+                            }
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
                         }
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
                     }
                 }
-            }
-        } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
+            };
+
+            if (Platform.isFxApplicationThread()) configUpdateAction.run();
+            else Platform.runLater(configUpdateAction);
+        } else if (primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {
             scaleSubScenes(primaryStage.widthProperty().doubleValue()/initWidth,primaryStage.heightProperty().doubleValue()/initHeight);
         }
-
     }
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
-
-
 
     private void scaleSubScenes(double scaleX, double scaleY) {
         nodes.forEach(scene -> {
@@ -398,8 +407,6 @@ public class MainController extends BaseController implements InvalidationListen
             }else if (n instanceof Gauge){
                 Gauge gauge = (Gauge) n;
                 applyGaugeStyle(gauge, fg);
-            }else{
-                System.out.println("Node ignored for styling: " + n.getClass().getSimpleName());
             }
         }
     }

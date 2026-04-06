@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -51,6 +52,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
 
     @FXML
     public void initialize() {
+        config.addListener(this);
         sensorRepository = config.sensorRepository;
 
         // ustawiane opcji wyświetlania
@@ -79,10 +81,10 @@ public class AddExistingSensorController extends BaseNewComponentController {
         sensorTypeFilter.getSelectionModel().selectFirst();
 
         // inicjalizacja filtrowanej listy
-        observableSensorList = FXCollections.observableArrayList(sensorRepository.getSensorsKeys());
+        observableSensorList = FXCollections.observableArrayList();
         filteredSensorList = new FilteredList<>(observableSensorList);
         sensorListView.setItems(filteredSensorList);
-
+        refreshSensorList();
 
         List<Descriptors.FieldDescriptor> fields = FrameProtos.LoRaCommand.getDescriptor().getFields();
         for (Descriptors.FieldDescriptor field : fields) {
@@ -93,6 +95,31 @@ public class AddExistingSensorController extends BaseNewComponentController {
         sensorTypeFilter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateFilters());
         nameFilter.textProperty().addListener((observable, oldValue, newValue) -> updateFilters());
         updateFilters();
+    }
+
+    @Override
+    public void invalidated(javafx.beans.Observable observable) {
+        if (observable != config) return;
+
+        Runnable refreshAction = () -> {
+            if (observableSensorList == null || filteredSensorList == null) return;
+            refreshSensorList();
+            updateFilters();
+        };
+
+        if (Platform.isFxApplicationThread()) refreshAction.run();
+        else Platform.runLater(refreshAction);
+    }
+
+    protected void refreshSensorList() {
+        sensorRepository = config.sensorRepository;
+        String selectedSensor = sensorListView.getSelectionModel().getSelectedItem();
+        observableSensorList.setAll(sensorRepository.getSensorsKeys());
+        if (selectedSensor != null && observableSensorList.contains(selectedSensor)) {
+            sensorListView.getSelectionModel().select(selectedSensor);
+        } else {
+            sensorListView.getSelectionModel().clearSelection();
+        }
     }
 
     @FXML
@@ -127,6 +154,7 @@ public class AddExistingSensorController extends BaseNewComponentController {
     }
 
     protected void updateFilters() {
+        sensorRepository = config.sensorRepository;
         String type = sensorTypeFilter.getSelectionModel().getSelectedItem();
         String name = nameFilter.getText();
 

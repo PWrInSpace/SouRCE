@@ -85,6 +85,7 @@ public class Configuration implements Observable {
     public void reloadConfigInstance(ConfigurationSaveModel config) {
         setupConfigInstance(config);
         setupApplicationConfig(this.controllersList);
+        notifyObserver();
     }
 
     public void setupConfigInstance(ConfigurationSaveModel config) {
@@ -104,16 +105,14 @@ public class Configuration implements Observable {
     }
 
     private void validateFrameAndRepository() {
-        FRAME_PATTERN.forEach((frameKey,pattern) -> {
-            pattern.forEach(key -> {
-                try {
-                    sensorRepository.getSensorByName(key);
-                } catch (NullPointerException e) {
-                    logger.info("Sensor {} in frame {} is not configured in repository and will be automatically added", key, frameKey);
-                    sensorRepository.addSensor(new Sensor(key));
-                }
-            });
-        });
+        FRAME_PATTERN.forEach((frameKey,pattern) -> pattern.forEach(key -> {
+            try {
+                sensorRepository.getSensorByName(key);
+            } catch (NullPointerException e) {
+                logger.info("Sensor {} in frame {} is not configured in repository and will be automatically added", key, frameKey);
+                sensorRepository.addSensor(new Sensor(key));
+            }
+        }));
     }
 
     private void copyModelProperties(ConfigurationSaveModel config) {
