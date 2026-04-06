@@ -238,6 +238,19 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public void write(ICommand command) {
         System.out.println(command.getCommandValueAsString());
         if(serialWriter == null) {
+            log.info("Serial port would send this data");
+            var bytes = command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive());
+            var bytesCRC = SerialWriter.getMessageWithPrefixAndDataLenAndCRC(bytes);
+            for (byte b : bytes) {
+                System.out.printf("0x%02X ", b);
+            }
+//            System.out.printf("0x%02X", (byte) '\n');
+            System.out.println();
+            for (byte b : bytesCRC) {
+                System.out.printf("0x%02X ", b);
+            }
+//            System.out.printf("0x%02X", (byte) '\n');
+            System.out.println();
             log.log(Level.WARNING, "Not connected");
             return;
         }
@@ -274,7 +287,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
         private static final org.slf4j.Logger logger = LoggerFactory.getLogger(SerialWriter.class);
 
-        public SerialWriter(OutputStream out) {
+        public SerialWriter (OutputStream out) {
             this.out = out;
         }
 
@@ -295,7 +308,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         public void send(byte[] msg) {
             try {
                 //out.write(msg);
-                var finalMsg = getMessageWithPrefixAndCRC(msg);
+                var finalMsg = getMessageWithPrefixAndDataLenAndCRC(msg);
                 out.write(finalMsg);
 //                logger.info("Written msg: {}",msg);
 //                logger.info("Written with prefix and crc: {}",finalMsg);
@@ -325,8 +338,8 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             }
         }
 
-        private byte[] getMessageCRC(byte[] msg) {
-            Integer messageCounter = 0;
+        public static byte[] getMessageCRC(byte[] msg) {
+            int messageCounter = 0;
             for (byte msgByte : msg) {
                 messageCounter += msgByte;
             }
@@ -334,8 +347,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             return new byte[]{ (byte)(messageCounter % 512) };
         }
 
-        private byte[] getMessageWithPrefixAndCRC(byte[] msg) {
-            return Bytes.concat(SerialPortManager.msgPrefix.getBytes(), msg, getMessageCRC(msg));
+        public static byte[] getMessageWithPrefixAndDataLenAndCRC(byte[] msg) {
+            int dataLen = msg.length;
+            byte[] dataLenByte = {(byte) dataLen};
+            //todo dodać sprawdzanie czy długość się nie zgettciła
+            return Bytes.concat(SerialPortManager.msgPrefix.getBytes(), dataLenByte, msg, getMessageCRC(msg));
         }
     }
 }
