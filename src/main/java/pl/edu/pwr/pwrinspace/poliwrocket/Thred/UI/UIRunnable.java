@@ -16,6 +16,6 @@ public class UIRunnable implements Runnable {
     }
 
     public int waitingTasks() {
-        return  updateTasks.size();
+        return updateTasks.size();
     }
 }
