@@ -60,8 +60,10 @@ public class CompositeBitSensor extends Sensor implements InvalidationListener {
             for (Sensor sensor : sensors) {
                 binaryString.append((int)sensor.getValue());
             }
+            if (this.getName().equals("ox vent eth main consumption")) System.out.println("CompositeBitSensor " + this.getName() + " binary string: " + binaryString);
             assert divider != 0;
             int val = Integer.parseInt(binaryString.toString(),2);
+            if (this.getName().equals("ox vent eth main consumption ")) System.out.println("CompositeBitSensor " + this.getName() + " value: " + val);
             this.setValue((double) val / divider);
         }
     }
