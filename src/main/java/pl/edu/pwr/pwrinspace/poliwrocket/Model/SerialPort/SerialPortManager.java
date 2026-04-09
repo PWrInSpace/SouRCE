@@ -274,7 +274,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         var msg = command.getCommandValueAsString() + '\n';
         log.info("Written: {}", msg);
         serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));
-        serialWriter.sendSeparator();
+//        serialWriter.sendSeparator();
         this.lastMessage = msg;
         notifyObserver();
     }
