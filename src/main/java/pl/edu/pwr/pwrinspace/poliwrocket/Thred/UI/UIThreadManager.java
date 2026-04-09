@@ -22,10 +22,13 @@ public class UIThreadManager implements InvalidationListener {
 
     private final Timer timerRunner = new Timer();
 
+    private static boolean isInitialized = false;
+
     private UIThreadManager() {
-        if (UIThreadManager.Holder.INSTANCE != null) {
+        if (isInitialized) {
             throw new IllegalStateException("Singleton already constructed");
         }
+        isInitialized = true;
     }
 
     private static class Holder {
