@@ -182,19 +182,19 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                         log.info("Reading with buffer size: {}", Configuration.getInstance().BUFFER_SIZE);
                         buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
                     } else {
-                        if (this.inputStream.available() >= 5) {
                         byte header = (byte) this.inputStream.read();
-                        if (header == 0x32) {
-                            byte cmd = (byte) this.inputStream.read();
-                            int dataLen = this.inputStream.read();
+                        while (header != 0x32) header = (byte) this.inputStream.read();
+
+                        byte cmd = (byte) this.inputStream.read();
+                        int dataLen = this.inputStream.read();
+
+//                        System.out.printf("Data len in bytes: ");
+
+                        System.out.printf("Received header: 0x%02X, cmd: 0x%02X, dataLen: %d\n", header, cmd, dataLen);
                             log.info("Header: 0x32, cmd: {}, dataLen: {}", String.format("0x%02X", cmd), dataLen);
 
                             buffer = this.inputStream.readNBytes(dataLen);
                             // todo dodać crc
-                        } else {
-                            log.error("Wrong header, is {}, should be 0x32", header);
-                            return;
-                        }
 //                        buffer = new byte[512];
 //                        int length = 0;
 //
@@ -212,10 +212,6 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 //                            }
 //                        }
 //                        buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
-                        } else {
-                            log.error("Received data is to small, is {}, should be 5", this.inputStream.available());
-                            return;
-                        }
                     }
                     log.info("RECEIVED DATA: {}", new String(buffer));
                     log.info("DATA LENGTH: {}", buffer.length);
@@ -255,22 +251,24 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public void write(ICommand command) {
         System.out.println(command.getCommandValueAsString());
         if(serialWriter == null) {
-            log.info("Serial port would send this data");
-            var bytes = command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive());
-            var bytesCRC = SerialWriter.addHeaderCmdLengthCRC(bytes);
-            for (byte b : bytes) {
-                System.out.printf("0x%02X ", b);
-            }
-//            System.out.printf("0x%02X", (byte) '\n');
-            System.out.println();
-            for (byte b : bytesCRC) {
-                System.out.printf("0x%02X ", b);
-            }
-//            System.out.printf("0x%02X", (byte) '\n');
-            System.out.println();
             log.warn("Not connected");
             return;
         }
+
+        log.info("Serial port would send this data");
+        var bytes = command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive());
+        var bytesCRC = SerialWriter.addHeaderCmdLengthCRC(bytes);
+//        for (byte b : bytes) {
+//            System.out.printf("0x%02X ", b);
+//        }
+//            System.out.printf("0x%02X", (byte) '\n');
+//        System.out.println();
+//        for (byte b : bytesCRC) {
+//            System.out.printf("0x%02X ", b);
+//        }
+//            System.out.printf("0x%02X", (byte) '\n');
+//        System.out.println();
+
         var msg = command.getCommandValueAsString() + '\n';
         log.info("Written: {}", msg);
         serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));
@@ -326,9 +324,13 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             try {
                 //out.write(msg);
                 var finalMsg = addHeaderCmdLengthCRC(msg);
+                for (byte b : finalMsg) {
+                    System.out.printf("0x%02X ", b);
+                }
+//                out.write(new byte[] {0x32, 0x07, 0x08, 0x08, 0x02, 0x10, 0x05, 0x18, 0x13, 0x20, 0x00, 0x70, 0x70});
                 out.write(finalMsg);
-//                logger.info("Written msg: {}",msg);
-//                logger.info("Written with prefix and crc: {}",finalMsg);
+                logger.info("Written msg: {}",msg);
+                logger.info("Written with prefix and crc: {}",finalMsg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -369,7 +371,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             byte[] cmd = {SerialPortCommand.CMD_LORA_TX.getCode()};
             byte[] dataLenByte = {(byte) dataLen};
             //todo dodać sprawdzanie czy długość się nie zgettciła
-            return Bytes.concat(new byte[]{0x32}, cmd, dataLenByte, msg, getMessageCRC(msg));
+            return Bytes.concat(new byte[]{0x32}, cmd, dataLenByte, msg, getMessageCRC(msg), getMessageCRC(msg));
         }
     }
 }
