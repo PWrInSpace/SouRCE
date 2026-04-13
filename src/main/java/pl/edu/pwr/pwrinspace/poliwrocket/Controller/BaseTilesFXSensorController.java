@@ -60,6 +60,8 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
                 e.printStackTrace(); //todo ustalić czy getMessage czy logger.error
             }
         }
+
+        generateAddExistingSensorButton(0, 0);
     }
 
     @Override
@@ -103,7 +105,28 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
         }
     }
 
-    protected void generateAddExistingSensorButton(int layoutX, int layoutY, AnchorPane mainPanel) {
+    protected void generateAddExistingSensorButton(int layoutX, int layoutY) {
+        AnchorPane mainPanel = null;
+        try {
+            Field mainPanelField = getClass().getDeclaredField("mainPanel");
+            mainPanelField.setAccessible(true);
+            Object value = mainPanelField.get(this);
+            if (value instanceof AnchorPane) {
+                mainPanel = (AnchorPane) value;
+            } else if (value != null) {
+                logger.error("Field 'mainPanel' exists but is not AnchorPane in {}", getClass().getSimpleName());
+            }
+        } catch (NoSuchFieldException e) {
+            logger.warn("Field 'mainPanel' not found in {}", getClass().getSimpleName());
+        } catch (IllegalAccessException e) {
+            logger.error("Cannot access field 'mainPanel' in {}", getClass().getSimpleName(), e);
+        }
+
+        if (mainPanel == null) {
+            logger.warn("Cannot add '+S' button because mainPanel is null in {}", getClass().getSimpleName());
+            return;
+        }
+
         var addExistingSensorButton = new JFXButton("+S");
         addExistingSensorButton.setLayoutX(layoutX);
         addExistingSensorButton.setLayoutY(layoutY);

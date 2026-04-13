@@ -37,12 +37,6 @@ public class IndicatorsController extends BaseTilesFXSensorController {
     protected Label indicatorLabel6;
 
     @Override
-    protected void buildVisualizationMap() {
-        super.buildVisualizationMap();
-        generateAddExistingSensorButton(0, 0, mainPanel);
-    }
-
-    @Override
     public void invalidated(Observable observable) {
         try {
             var sensor = ((ISensor) observable);

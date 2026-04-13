@@ -6,44 +6,36 @@ import eu.hansolo.tilesfx.Tile;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 public class DataFlightController extends BaseDataTilesController {
-
+    @FXML
+    protected AnchorPane mainPanel;
     @FXML
     protected Tile dataGauge1;
-
     @FXML
     protected Tile dataGauge2;
-
     @FXML
     protected Tile dataGauge3;
-
     @FXML
     protected Tile dataGauge4;
-
     @FXML
     protected Tile dataGauge5;
-
     @FXML
     protected Tile dataGauge6;
-
     @FXML
     protected Tile dataGauge7;
-
-
     @FXML
     private SubScene modelScene;
     private final SmartGroup root = new SmartGroup();
 
     @FXML
     protected void initialize() {
-
         setup3DModel();
     }
-
 
     private void setup3DModel() {
         //Creating camera

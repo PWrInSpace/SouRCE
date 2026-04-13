@@ -2,36 +2,30 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import eu.hansolo.tilesfx.Tile;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 
 public class DataPressurizingController extends BaseDataTilesController {
 
     @FXML
+    protected AnchorPane mainPanel;
+    @FXML
     protected Tile dataGauge1;
-
     @FXML
     protected Tile dataGauge2;
-
     @FXML
     protected Tile dataGauge3;
-
     @FXML
     protected Tile dataGauge4;
-
     @FXML
     protected Tile dataGauge5;
-
     @FXML
     protected Tile dataGauge6;
-
     @FXML
     protected Tile dataGauge7;
-
     @FXML
     protected Tile dataGauge8;
-
     @FXML
     protected Tile dataGauge9;
-
     @FXML
     protected Tile dataGauge10;
 

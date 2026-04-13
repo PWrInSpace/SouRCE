@@ -20,12 +20,6 @@ public class DataController extends BaseTilesFXSensorController {
     protected Tile dataGauge3;
 
     @Override
-    protected void buildVisualizationMap() {
-        super.buildVisualizationMap();
-        generateAddExistingSensorButton(0, 0, mainPanel);
-    }
-
-    @Override
     public void invalidated (Observable observable) {
         try {
             var sensor = ((ISensor) observable);

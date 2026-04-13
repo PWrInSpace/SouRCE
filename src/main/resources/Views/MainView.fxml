@@ -7,76 +7,37 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
+<VBox prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
     <MenuBar VBox.vgrow="NEVER" />
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('background.jpg'); -fx-background-size: stretch; -fx-background-color: grey;" stylesheets="@constants.css">
-        <SubScene fx:id="dataScene" height="510.0" layoutX="10.0" layoutY="10.0" width="205.0">
-            <root>
-                <Region />
-            </root>
-        </SubScene>
-        <SubScene fx:id="mapScene" height="215.0" layoutX="10.0" layoutY="530.0" width="205.0">
-            <root>
-                <Region />
-            </root>
-        </SubScene>
-        <SubScene fx:id="powerScene" height="290.0" layoutX="1329.0" layoutY="5.0" width="206.0">
-            <root>
-                <Region />
-            </root>
-        </SubScene>
-        <SubScene fx:id="abortScene" height="75.0" layoutX="1117.0" layoutY="729.0" width="418.0">
-            <root>
-                <Region />
-            </root>
-        </SubScene>
-        <AnchorPane fx:id="footer" layoutX="10.0" layoutY="755.0" prefHeight="30.0" prefWidth="205.0" styleClass="baseScene" stylesheets="@constants.css">
-            <Label layoutX="4.0" layoutY="4.0" prefHeight="18.0" prefWidth="100.0" text="Software by Jan Zmysłowski">
-                <font>
-                    <Font size="7.0" />
-                </font>
-            </Label>
-            <Label layoutX="4.0" layoutY="20.0" prefHeight="18.0" prefWidth="90.0" text="and Ewa Kasprzak">
-                <font>
-                    <Font size="7.0" />
-                </font>
-            </Label>
-            <ImageView fx:id="poliwrocketLogo" fitHeight="20.0" fitWidth="20.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inSpaceLogo" fitHeight="20.0" fitWidth="75.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-        </AnchorPane>
-        <SubScene fx:id="rawDataScene" height="290.0" layoutX="1116.0" layoutY="5.0" width="206.0">
-            <root>
-                <Region />
-            </root>
-        </SubScene>
         <TabPane fx:id="tabPane" layoutX="215.0" layoutY="10.0" prefHeight="800.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
             <Tab closable="false" text="Recovery arm">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="780.0" prefWidth="890.0">
-                    <SubScene fx:id="recoveryArmScene" height="225.0" layoutX="10.0" layoutY="10.0" width="450.0">
+                    <SubScene fx:id="recoveryArmScene" height="225.0" width="450.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
                 </AnchorPane>
             </Tab>
-            <Tab closable="false" text="Filling">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="780.0" prefWidth="890.0">
-                    <SubScene fx:id="dataFillingScene" height="733.0" layoutX="10.0" layoutY="10.0" width="410.0">
+            <Tab closable="false" text="Filling"    >
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="730.0" prefWidth="890.0">
+                    <SubScene fx:id="dataFillingScene" height="730.0" width="410.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="valvesScene" height="350.0" layoutX="430.0" layoutY="10.0" width="470.0">
+                    <SubScene fx:id="valvesScene" height="350.0" layoutX="410.0" width="470.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="fillingCommandsScene" height="300.0" layoutX="430.0" layoutY="360.0" width="460.0">
+                    <SubScene fx:id="fillingCommandsScene" height="300.0" layoutX="410.0" layoutY="350.0" width="470.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="CANIndicatorsScene" height="75.0" layoutX="430.0" layoutY="668.0" width="460.0">
+                    <SubScene fx:id="CANIndicatorsScene" height="80.0" layoutX="410.0" layoutY="650.0" width="470.0">
                         <root>
                             <Region />
                         </root>
@@ -85,22 +46,22 @@
             </Tab>
             <Tab closable="false" text="Pressurizing">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="780.0" prefWidth="890.0">
-                    <SubScene fx:id="dataPressurizingScene" height="733.0" layoutX="10.0" layoutY="10.0" width="410.0">
+                    <SubScene fx:id="dataPressurizingScene" height="730.0" width="410.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="valvesPressurizingScene" height="400.0" layoutX="430.0" layoutY="10.0" width="470.0">
+                    <SubScene fx:id="valvesPressurizingScene" height="400.0" layoutX="410.0" width="470.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="pressurizingCommandsScene" height="250.0" layoutX="430.0" layoutY="410.0" width="460.0">
+                    <SubScene fx:id="pressurizingCommandsScene" height="250.0" layoutX="410.0" layoutY="400.0" width="470.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="indicatorsPressurizingScene" height="75.0" layoutX="430.0" layoutY="668.0" width="460.0">
+                    <SubScene fx:id="indicatorsPressurizingScene" height="80.0" layoutX="410.0" layoutY="650.0" width="470.0">
                         <root>
                             <Region />
                         </root>
@@ -109,32 +70,32 @@
             </Tab>
             <Tab closable="false" text="Flight monitor">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <SubScene fx:id="dataFlightScene" height="500.0" layoutX="14.0" layoutY="14.0" width="410.0">
+                    <SubScene fx:id="dataFlightScene" height="500.0" width="410.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="moreDataScene" height="335.0" layoutX="465.0" layoutY="14.0" width="410.0">
+                    <SubScene fx:id="moreDataScene" height="335.0" layoutX="410.0" width="410.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="465.0" layoutY="360.0" width="410.0">
+                    <SubScene fx:id="indicatorsFlightScene" height="75.0" layoutX="410.0" layoutY="335.0" width="410.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="startControlScene" height="100.0" layoutX="14.0" layoutY="650.0" width="410.0">
+                    <SubScene fx:id="startControlScene" height="100.0" layoutY="650.0" width="410.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="startCommandsScene" height="150.0" layoutX="14.0" layoutY="505.0" width="410.0">
+                    <SubScene fx:id="startCommandsScene" height="150.0" layoutY="500.0" width="410.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="recoveryCommandsScene" height="300.0" layoutX="465.0" layoutY="445.0" width="410.0">
+                    <SubScene fx:id="recoveryCommandsScene" height="300.0" layoutX="410.0" layoutY="410.0" width="410.0">
                         <root>
                             <Region />
                         </root>
@@ -218,6 +179,47 @@
                 </AnchorPane>
             </Tab>
         </TabPane>
+
+        <SubScene fx:id="dataScene" height="510.0" layoutX="10.0" layoutY="10.0" width="205.0">
+            <root>
+                <Region />
+            </root>
+        </SubScene>
+        <SubScene fx:id="mapScene" height="215.0" layoutX="10.0" layoutY="530.0" width="205.0">
+            <root>
+                <Region />
+            </root>
+        </SubScene>
+
+        <SubScene fx:id="powerScene" height="290.0" layoutX="1329.0" layoutY="5.0" width="206.0">
+            <root>
+                <Region />
+            </root>
+        </SubScene>
+        <SubScene fx:id="abortScene" height="75.0" layoutX="1117.0" layoutY="729.0" width="418.0">
+            <root>
+                <Region />
+            </root>
+        </SubScene>
+        <SubScene fx:id="rawDataScene" height="290.0" layoutX="1116.0" layoutY="5.0" width="206.0">
+            <root>
+                <Region />
+            </root>
+        </SubScene>
+        <AnchorPane fx:id="footer" layoutX="10.0" layoutY="755.0" prefHeight="30.0" prefWidth="205.0" styleClass="baseScene" stylesheets="@constants.css">
+            <Label layoutX="4.0" layoutY="4.0" prefHeight="18.0" prefWidth="100.0" text="Software by Jan Zmysłowski">
+                <font>
+                    <Font size="7.0" />
+                </font>
+            </Label>
+            <Label layoutX="4.0" layoutY="20.0" prefHeight="18.0" prefWidth="90.0" text="and Ewa Kasprzak">
+                <font>
+                    <Font size="7.0" />
+                </font>
+            </Label>
+            <ImageView fx:id="poliwrocketLogo" fitHeight="20.0" fitWidth="20.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inSpaceLogo" fitHeight="20.0" fitWidth="75.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+        </AnchorPane>
         <SubScene fx:id="indicators2Scene" height="75.0" layoutX="1117.0" layoutY="646.0" width="418.0">
             <root>
                 <Region />
