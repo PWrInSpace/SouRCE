@@ -227,7 +227,7 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
         }
     }
 
-    private void setupElement(Region element, int layoutX, int layoutY, int prefHeight, int prefWidth) {
+    protected void setupElement(Region element, int layoutX, int layoutY, int prefHeight, int prefWidth) {
         element.setLayoutY(layoutY);
         element.setLayoutX(layoutX);
         element.setPrefHeight(prefHeight);
