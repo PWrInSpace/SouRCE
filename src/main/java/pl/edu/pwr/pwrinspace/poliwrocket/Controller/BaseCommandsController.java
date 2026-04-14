@@ -30,7 +30,6 @@ public abstract class BaseCommandsController extends BaseButtonSensorController 
     protected final HashMap<String, JFXTextField> inputHashMap = new HashMap<>();
     protected final HashMap<String, Button> commandHashMap = new HashMap<>();
 
-
     protected int offestY = 40;
     protected int initY = 30;
 
