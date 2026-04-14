@@ -119,7 +119,7 @@ public class MainController extends BaseController implements InvalidationListen
     @FXML
     private SubScene recoveryArmScene;
     @FXML
-    private SubScene recoveryArmIndicatorsScene;
+    private SubScene testCommandsScene;
 
     private final SmartGroup root = new SmartGroup();
     private Stage primaryStage;

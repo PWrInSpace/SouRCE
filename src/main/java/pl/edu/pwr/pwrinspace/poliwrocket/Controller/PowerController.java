@@ -26,8 +26,6 @@ public class PowerController extends BaseSensorController {
     protected Label powerLabel6;
     @FXML
     protected Label powerLabel7;
-    @FXML
-    protected Label powerLabel8;
 
     @FXML
     protected Label powerTemperature1;
@@ -43,8 +41,6 @@ public class PowerController extends BaseSensorController {
     protected Label powerTemperature6;
     @FXML
     protected Label powerTemperature7;
-    @FXML
-    protected Label powerTemperature8;
 
     @FXML
     protected Label powerVoltage1;
@@ -60,8 +56,6 @@ public class PowerController extends BaseSensorController {
     protected Label powerVoltage6;
     @FXML
     protected Label powerVoltage7;
-    @FXML
-    protected Label powerVoltage8;
 
     @FXML
     protected Label powerConsumption1;
@@ -77,8 +71,6 @@ public class PowerController extends BaseSensorController {
     protected Label powerConsumption6;
     @FXML
     protected Label powerConsumption7;
-    @FXML
-    protected Label powerConsumption8;
 
     @FXML
     protected Indicator powerIndicator1;
@@ -94,8 +86,6 @@ public class PowerController extends BaseSensorController {
     protected Indicator powerIndicator6;
     @FXML
     protected Indicator powerIndicator7;
-    @FXML
-    protected Indicator powerIndicator8;
 
     protected HashMap<String, Label> labelHashMap = new HashMap<>();
     protected HashMap<String, Indicator> indicatorHashMap = new HashMap<>();
