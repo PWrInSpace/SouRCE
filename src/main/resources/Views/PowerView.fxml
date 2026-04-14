@@ -5,48 +5,43 @@
 
 <?import eu.hansolo.tilesfx.addons.Indicator?>
 <AnchorPane prefHeight="290.0" prefWidth="205.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.PowerController">
-   <Label fx:id="powerLabel1" layoutX="10.0" layoutY="30.0" text="Power1" />
-   <Label fx:id="powerLabel2" layoutX="10.0" layoutY="60.0" text="Power2"/>
-   <Label fx:id="powerLabel3" layoutX="10.0" layoutY="90.0" text="Power3" />
-   <Label fx:id="powerLabel4" layoutX="10.0" layoutY="120.0" text="Power4"/>
-   <Label fx:id="powerLabel5" layoutX="10.0" layoutY="150.0" text="Power5"/>
-   <Label fx:id="powerLabel6" layoutX="10.0" layoutY="180.0" text="Power6"/>
-   <Label fx:id="powerLabel7" layoutX="10.0" layoutY="210.0" text="Power7"/>
-   <Label fx:id="powerLabel8" layoutX="10.0" layoutY="240.0" text="Power8"/>
+   <Label fx:id="powerLabel1" layoutX="5.0" layoutY="10.0" text="Power1" />
+   <Label fx:id="powerLabel2" layoutX="5.0" layoutY="50.0" text="Power2"/>
+   <Label fx:id="powerLabel3" layoutX="5.0" layoutY="90.0" text="Power3" />
+   <Label fx:id="powerLabel4" layoutX="5.0" layoutY="130" text="Power4"/>
+   <Label fx:id="powerLabel5" layoutX="5.0" layoutY="170.0" text="Power5"/>
+   <Label fx:id="powerLabel6" layoutX="5.0" layoutY="210.0" text="Power6"/>
+   <Label fx:id="powerLabel7" layoutX="5.0" layoutY="250.0" text="Power7"/>
 
-   <Label fx:id="powerTemperature1" layoutX="75.0" layoutY="30.0" text="°C"/>
-   <Label fx:id="powerTemperature2" layoutX="75.0" layoutY="60.0" text="°C"/>
-   <Label fx:id="powerTemperature3" layoutX="75.0" layoutY="90.0" text="°C"/>
-   <Label fx:id="powerTemperature4" layoutX="75.0" layoutY="120.0" text="°C"/>
-   <Label fx:id="powerTemperature5" layoutX="75.0" layoutY="150.0" text="°C"/>
-   <Label fx:id="powerTemperature6" layoutX="75.0" layoutY="180.0" text="°C"/>
-   <Label fx:id="powerTemperature7" layoutX="75.0" layoutY="210.0" text="°C"/>
-   <Label fx:id="powerTemperature8" layoutX="75.0" layoutY="240.0" text="°C"/>
+   <Label fx:id="powerTemperature1" layoutX="10.0" layoutY="25.0" text="°C"/>
+   <Label fx:id="powerTemperature2" layoutX="10.0" layoutY="65.0" text="°C"/>
+   <Label fx:id="powerTemperature3" layoutX="10.0" layoutY="105.0" text="°C"/>
+   <Label fx:id="powerTemperature4" layoutX="10.0" layoutY="145.0" text="°C"/>
+   <Label fx:id="powerTemperature5" layoutX="10.0" layoutY="185.0" text="°C"/>
+   <Label fx:id="powerTemperature6" layoutX="10.0" layoutY="225.0" text="°C"/>
+   <Label fx:id="powerTemperature7" layoutX="10.0" layoutY="265.0" text="°C"/>
 
-   <Label fx:id="powerVoltage1" layoutX="120.0" layoutY="30.0" text="V" />
-   <Label fx:id="powerVoltage2" layoutX="120.0" layoutY="60.0" text="V" />
-   <Label fx:id="powerVoltage3" layoutX="120.0" layoutY="90.0" text="V" />
-   <Label fx:id="powerVoltage4" layoutX="120.0" layoutY="120.0" text="V" />
-   <Label fx:id="powerVoltage5" layoutX="120.0" layoutY="150.0" text="V" />
-   <Label fx:id="powerVoltage6" layoutX="120.0" layoutY="180.0" text="V" />
-   <Label fx:id="powerVoltage7" layoutX="120.0" layoutY="210.0" text="V" />
-   <Label fx:id="powerVoltage8" layoutX="120.0" layoutY="240.0" text="V" />
+   <Label fx:id="powerVoltage1" layoutX="80.0" layoutY="10.0" text="V" />
+   <Label fx:id="powerVoltage2" layoutX="80.0" layoutY="50.0" text="V" />
+   <Label fx:id="powerVoltage3" layoutX="80.0" layoutY="90.0" text="V" />
+   <Label fx:id="powerVoltage4" layoutX="80.0" layoutY="130" text="V" />
+   <Label fx:id="powerVoltage5" layoutX="80.0" layoutY="170.0" text="V" />
+   <Label fx:id="powerVoltage6" layoutX="80.0" layoutY="210.0" text="V" />
+   <Label fx:id="powerVoltage7" layoutX="80.0" layoutY="250.0" text="V" />
 
-   <Label fx:id="powerConsumption1" layoutX="160.0" layoutY="30.0" text="A" />
-   <Label fx:id="powerConsumption2" layoutX="160.0" layoutY="60.0" text="A" />
-   <Label fx:id="powerConsumption3" layoutX="160.0" layoutY="90.0" text="A" />
-   <Label fx:id="powerConsumption4" layoutX="160.0" layoutY="120.0" text="A" />
-   <Label fx:id="powerConsumption5" layoutX="160.0" layoutY="150.0" text="A" />
-   <Label fx:id="powerConsumption6" layoutX="160.0" layoutY="180.0" text="A" />
-   <Label fx:id="powerConsumption7" layoutX="160.0" layoutY="210.0" text="A" />
-   <Label fx:id="powerConsumption8" layoutX="160.0" layoutY="240.0" text="A" />
+   <Label fx:id="powerConsumption1" layoutX="140.0" layoutY="10.0" text="A" />
+   <Label fx:id="powerConsumption2" layoutX="140.0" layoutY="50.0" text="A" />
+   <Label fx:id="powerConsumption3" layoutX="140.0" layoutY="90.0" text="A" />
+   <Label fx:id="powerConsumption4" layoutX="140.0" layoutY="130" text="A" />
+   <Label fx:id="powerConsumption5" layoutX="140.0" layoutY="170.0" text="A" />
+   <Label fx:id="powerConsumption6" layoutX="140.0" layoutY="210.0" text="A" />
+   <Label fx:id="powerConsumption7" layoutX="140.0" layoutY="250.0" text="A" />
 
-   <Indicator fx:id="powerIndicator1" layoutX="200.0" layoutY="30.0" prefHeight="15.0" prefWidth="15.0" />
-   <Indicator fx:id="powerIndicator2" layoutX="200.0" layoutY="60.0" prefHeight="15.0" prefWidth="15.0" />
+   <Indicator fx:id="powerIndicator1" layoutX="200.0" layoutY="10.0" prefHeight="15.0" prefWidth="15.0" />
+   <Indicator fx:id="powerIndicator2" layoutX="200.0" layoutY="50.0" prefHeight="15.0" prefWidth="15.0" />
    <Indicator fx:id="powerIndicator3" layoutX="200.0" layoutY="90.0" prefHeight="15.0" prefWidth="15.0" />
-   <Indicator fx:id="powerIndicator4" layoutX="200.0" layoutY="120.0" prefHeight="15.0" prefWidth="15.0" />
-   <Indicator fx:id="powerIndicator5" layoutX="200.0" layoutY="150.0" prefHeight="15.0" prefWidth="15.0" />
-   <Indicator fx:id="powerIndicator6" layoutX="200.0" layoutY="180.0" prefHeight="15.0" prefWidth="15.0" />
-   <Indicator fx:id="powerIndicator7" layoutX="200.0" layoutY="210.0" prefHeight="15.0" prefWidth="15.0" />
-   <Indicator fx:id="powerIndicator8" layoutX="200.0" layoutY="240.0" prefHeight="15.0" prefWidth="15.0" />
+   <Indicator fx:id="powerIndicator4" layoutX="200.0" layoutY="130" prefHeight="15.0" prefWidth="15.0" />
+   <Indicator fx:id="powerIndicator5" layoutX="200.0" layoutY="170.0" prefHeight="15.0" prefWidth="15.0" />
+   <Indicator fx:id="powerIndicator6" layoutX="200.0" layoutY="210.0" prefHeight="15.0" prefWidth="15.0" />
+   <Indicator fx:id="powerIndicator7" layoutX="200.0" layoutY="250.0" prefHeight="15.0" prefWidth="15.0" />
 </AnchorPane>
