@@ -18,7 +18,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 import static java.lang.Thread.sleep;
 
@@ -172,49 +174,38 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public void serialEvent(SerialPortEvent oEvent) {
         synchronized (messageParser) {
             if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-                log.info("DATA RECEIVED");
+//                log.info("DATA RECEIVED");
                 try {
-                    log.info("Available bytes: {}", this.inputStream.available());
+//                    log.info("Available bytes: {}", this.inputStream.available());
                     Frame frame;
                     byte[] buffer;
-
                     if (Configuration.getInstance().BUFFER_SIZE != 0) {
-                        log.info("Reading with buffer size: {}", Configuration.getInstance().BUFFER_SIZE);
+//                        log.info("reading with buffer size: {}", Configuration.getInstance().BUFFER_SIZE);
                         buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
                     } else {
-                        byte header = (byte) this.inputStream.read();
-                        while (header != 0x32) header = (byte) this.inputStream.read();
+//                        log.info("reading with buffer until no data available");
+                        buffer = new byte[512];
+                        int length = 0;
+                        while(this.inputStream.available() > 0) {
 
-                        byte cmd = (byte) this.inputStream.read();
-                        int dataLen = this.inputStream.read();
+                            buffer[length] = (byte)this.inputStream.read();
+                            length++;
 
-//                        System.out.printf("Data len in bytes: ");
+                            if(length == 512) {
+                                log.info("LENGTH IS 512");
+                                return;
+                            }
 
-                        System.out.printf("Received header: 0x%02X, cmd: 0x%02X, dataLen: %d\n", header, cmd, dataLen);
-                            log.info("Header: 0x32, cmd: {}, dataLen: {}", String.format("0x%02X", cmd), dataLen);
-
-                            buffer = this.inputStream.readNBytes(dataLen);
-                            // todo dodać crc
-//                        buffer = new byte[512];
-//                        int length = 0;
-//
-//                        while(this.inputStream.available() > 0) {
-//                            buffer[length] = (byte)this.inputStream.read();
-//                            length++;
-//
-//                            if(length == 512) {
-//                                log.log(Level.INFO, "LENGTH IS 512");
-//                                return;
-//                            }
-//
-//                            if(this.inputStream.available() == 0) {
-//                                Thread.sleep(1);
-//                            }
-//                        }
-//                        buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
+                            if (this.inputStream.available() == 0) {
+                                Thread.sleep(1);
+                            }
+                        }
+                        buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
                     }
-                    log.info("RECEIVED DATA: {}", new String(buffer));
-                    log.info("DATA LENGTH: {}", buffer.length);
+
+//                    log.info("RECEIVED DATA: {}", new String(buffer));
+
+//                    log.info("DATA LENGTH: {}", buffer.length);
 
                     frame = new Frame(buffer, Instant.now());
 
@@ -227,10 +218,9 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
 
             }
         }
@@ -263,11 +253,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 //        }
 //            System.out.printf("0x%02X", (byte) '\n');
 //        System.out.println();
-//        for (byte b : bytesCRC) {
-//            System.out.printf("0x%02X ", b);
-//        }
-//            System.out.printf("0x%02X", (byte) '\n');
-//        System.out.println();
+        for (byte b : bytesCRC) {
+            System.out.printf("0x%02X ", b);
+        }
+            System.out.printf("0x%02X", (byte) '\n');
+        System.out.println();
 
         var msg = command.getCommandValueAsString() + '\n';
         log.info("Written: {}", msg);
@@ -329,8 +319,8 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 }
 //                out.write(new byte[] {0x32, 0x07, 0x08, 0x08, 0x02, 0x10, 0x05, 0x18, 0x13, 0x20, 0x00, 0x70, 0x70});
                 out.write(finalMsg);
-                logger.info("Written msg: {}",msg);
-                logger.info("Written with prefix and crc: {}",finalMsg);
+//                logger.info("Written msg: {}",msg);
+//                logger.info("Written with prefix and crc: {}",finalMsg);
             } catch (IOException e) {
                 e.printStackTrace();
             }

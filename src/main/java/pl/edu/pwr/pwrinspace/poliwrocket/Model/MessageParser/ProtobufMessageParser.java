@@ -48,13 +48,13 @@ public class ProtobufMessageParser extends BaseMessageParser {
             Message message = null;
             String frameName = "";
 
-            logger.info("Frame length: " + frame.getByteContent().length);
+//            logger.info("Frame length: " + frame.getByteContent().length);
             for (Descriptors.Descriptor descriptor: FrameProtos.getDescriptor().getMessageTypes()) {
                 try {
                     frameName = descriptor.getFullName();
                     var parserClass = Class.forName(classPathBase + descriptor.getFullName());
                     var pars = parserClass.getMethod("parseFrom", byte[].class);
-                    logger.info("Try with: " + frameName);
+//                    logger.info("Try with: " + frameName);
                     message = (Message)pars.invoke(parserClass, frame.getByteContent());
                     this.parsingResultStatus = ParsingResultStatus.PENDING;
                     break;
