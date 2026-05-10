@@ -9,10 +9,7 @@ import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -233,7 +230,7 @@ public class MainController extends BaseController implements InvalidationListen
     public void invalidated(Observable observable) {
         if (observable instanceof IMessageParser) {
             var value = ((IMessageParser) observable).getLastMessage();
-            if(!value.contains("\n")) {
+            if (!value.contains("\n")) {
                 value += "\n";
             }
             String currentLog = inComing.getText();

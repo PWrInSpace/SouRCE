@@ -19,7 +19,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private String destination = "";
 
     @Expose
-    private String name;
+    private String name = "";
 
     @Expose
     private String unit = "";
