@@ -51,9 +51,11 @@ message LoRaFrame {
   optional fixed32 eth_vent_bit_data_a = 26;
   optional fixed32 eth_vent_bit_data_b = 27;
 
+  optional uint32 auto_vent_setting = 28;
+
   // --- TANWA ---
-  optional uint32 tanwa_battery = 28;
-  optional uint32 tanwa_state = 29;
+  optional uint32 tanwa_battery = 29;
+  optional uint32 tanwa_state = 30;
 
   // bit0: CAN_Weights_connection
   // bit1: CAN_Utility_connection
@@ -72,24 +74,24 @@ message LoRaFrame {
   // bit14: droid_N2_state
   // bit15: heating_tank_state
   // bit16: heating_valves_state
-  optional fixed32 tanwa_flags = 30;
+  optional fixed32 tanwa_flags = 31;
 
-  optional sint32 tanwa_thrust = 31;
-  optional uint32 tanwa_tank_weight = 32;
+  optional sint32 tanwa_thrust = 32;
+  optional uint32 tanwa_tank_weight = 33;
 
-  optional sint32 tanwa_temp_post_n2o_fill = 33;
-  optional sint32 tanwa_temp_filling_wall = 34;
-  optional uint32 tanwa_post_fill_n2o_pres = 35;
-  optional uint32 tanwa_cutoff_n2o_pres = 36;
-  optional uint32 tanwa_droid_n2o_pres = 37;
-  optional uint32 tanwa_pre_reg_n2_pres = 38;
-  optional uint32 tanwa_post_reg_n2_pres = 39;
-  optional uint32 tanwa_post_fill_n2_pres = 40;
-  optional uint32 tanwa_droid_n2_pres = 41;
-  optional uint32 tanwa_comb_chamber_pres = 42;
+  optional sint32 tanwa_temp_post_n2o_fill = 34;
+  optional sint32 tanwa_temp_filling_wall = 35;
+  optional uint32 tanwa_post_fill_n2o_pres = 36;
+  optional uint32 tanwa_cutoff_n2o_pres = 37;
+  optional uint32 tanwa_droid_n2o_pres = 38;
+  optional uint32 tanwa_pre_reg_n2_pres = 39;
+  optional uint32 tanwa_post_reg_n2_pres = 40;
+  optional uint32 tanwa_post_fill_n2_pres = 41;
+  optional uint32 tanwa_droid_n2_pres = 42;
+  optional uint32 tanwa_comb_chamber_pres = 43;
 
   // --- Payload ---
-  optional uint32 payload_battery = 43;
+  optional uint32 payload_battery = 44;
 
   // bit0: payload_connected
   // bit1: tanwa_connected
@@ -98,17 +100,17 @@ message LoRaFrame {
   // bit4: ox_vent_eth_main_connected
   // bit5: n2_vent_connected
   // bit6: pitot_connected
-  optional fixed32 esp_now_connected_flags = 44;
+  optional fixed32 esp_now_connected_flags = 45;
   // bit0: payload_wkup
   // bit1: eth_vent_valve_wkup
   // bit2: ox_main_wkup
   // bit3: ox_vent_eth_main_wkup
   // bit4: n2_vent_wkup
   // bit5: pitot_wkup
-  optional fixed32 esp_now_wkup_flags = 45;
+  optional fixed32 esp_now_wkup_flags = 46;
 
   // --- Errors ---
-  optional fixed32 errors = 46;
+  optional fixed32 errors = 47;
 }
 
 message LoRaFrameTanwa {

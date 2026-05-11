@@ -408,11 +408,22 @@ public final class FrameProtos {
     int getEthVentBitDataB();
 
     /**
+     * <code>optional uint32 auto_vent_setting = 28;</code>
+     * @return Whether the autoVentSetting field is set.
+     */
+    boolean hasAutoVentSetting();
+    /**
+     * <code>optional uint32 auto_vent_setting = 28;</code>
+     * @return The autoVentSetting.
+     */
+    int getAutoVentSetting();
+
+    /**
      * <pre>
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 28;</code>
+     * <code>optional uint32 tanwa_battery = 29;</code>
      * @return Whether the tanwaBattery field is set.
      */
     boolean hasTanwaBattery();
@@ -421,18 +432,18 @@ public final class FrameProtos {
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 28;</code>
+     * <code>optional uint32 tanwa_battery = 29;</code>
      * @return The tanwaBattery.
      */
     int getTanwaBattery();
 
     /**
-     * <code>optional uint32 tanwa_state = 29;</code>
+     * <code>optional uint32 tanwa_state = 30;</code>
      * @return Whether the tanwaState field is set.
      */
     boolean hasTanwaState();
     /**
-     * <code>optional uint32 tanwa_state = 29;</code>
+     * <code>optional uint32 tanwa_state = 30;</code>
      * @return The tanwaState.
      */
     int getTanwaState();
@@ -458,7 +469,7 @@ public final class FrameProtos {
      * bit16: heating_valves_state
      * </pre>
      *
-     * <code>optional fixed32 tanwa_flags = 30;</code>
+     * <code>optional fixed32 tanwa_flags = 31;</code>
      * @return Whether the tanwaFlags field is set.
      */
     boolean hasTanwaFlags();
@@ -483,139 +494,139 @@ public final class FrameProtos {
      * bit16: heating_valves_state
      * </pre>
      *
-     * <code>optional fixed32 tanwa_flags = 30;</code>
+     * <code>optional fixed32 tanwa_flags = 31;</code>
      * @return The tanwaFlags.
      */
     int getTanwaFlags();
 
     /**
-     * <code>optional sint32 tanwa_thrust = 31;</code>
+     * <code>optional sint32 tanwa_thrust = 32;</code>
      * @return Whether the tanwaThrust field is set.
      */
     boolean hasTanwaThrust();
     /**
-     * <code>optional sint32 tanwa_thrust = 31;</code>
+     * <code>optional sint32 tanwa_thrust = 32;</code>
      * @return The tanwaThrust.
      */
     int getTanwaThrust();
 
     /**
-     * <code>optional uint32 tanwa_tank_weight = 32;</code>
+     * <code>optional uint32 tanwa_tank_weight = 33;</code>
      * @return Whether the tanwaTankWeight field is set.
      */
     boolean hasTanwaTankWeight();
     /**
-     * <code>optional uint32 tanwa_tank_weight = 32;</code>
+     * <code>optional uint32 tanwa_tank_weight = 33;</code>
      * @return The tanwaTankWeight.
      */
     int getTanwaTankWeight();
 
     /**
-     * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+     * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
      * @return Whether the tanwaTempPostN2oFill field is set.
      */
     boolean hasTanwaTempPostN2OFill();
     /**
-     * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+     * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
      * @return The tanwaTempPostN2oFill.
      */
     int getTanwaTempPostN2OFill();
 
     /**
-     * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+     * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
      * @return Whether the tanwaTempFillingWall field is set.
      */
     boolean hasTanwaTempFillingWall();
     /**
-     * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+     * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
      * @return The tanwaTempFillingWall.
      */
     int getTanwaTempFillingWall();
 
     /**
-     * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+     * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
      * @return Whether the tanwaPostFillN2oPres field is set.
      */
     boolean hasTanwaPostFillN2OPres();
     /**
-     * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+     * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
      * @return The tanwaPostFillN2oPres.
      */
     int getTanwaPostFillN2OPres();
 
     /**
-     * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+     * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
      * @return Whether the tanwaCutoffN2oPres field is set.
      */
     boolean hasTanwaCutoffN2OPres();
     /**
-     * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+     * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
      * @return The tanwaCutoffN2oPres.
      */
     int getTanwaCutoffN2OPres();
 
     /**
-     * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+     * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
      * @return Whether the tanwaDroidN2oPres field is set.
      */
     boolean hasTanwaDroidN2OPres();
     /**
-     * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+     * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
      * @return The tanwaDroidN2oPres.
      */
     int getTanwaDroidN2OPres();
 
     /**
-     * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+     * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
      * @return Whether the tanwaPreRegN2Pres field is set.
      */
     boolean hasTanwaPreRegN2Pres();
     /**
-     * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+     * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
      * @return The tanwaPreRegN2Pres.
      */
     int getTanwaPreRegN2Pres();
 
     /**
-     * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+     * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
      * @return Whether the tanwaPostRegN2Pres field is set.
      */
     boolean hasTanwaPostRegN2Pres();
     /**
-     * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+     * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
      * @return The tanwaPostRegN2Pres.
      */
     int getTanwaPostRegN2Pres();
 
     /**
-     * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+     * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
      * @return Whether the tanwaPostFillN2Pres field is set.
      */
     boolean hasTanwaPostFillN2Pres();
     /**
-     * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+     * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
      * @return The tanwaPostFillN2Pres.
      */
     int getTanwaPostFillN2Pres();
 
     /**
-     * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+     * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
      * @return Whether the tanwaDroidN2Pres field is set.
      */
     boolean hasTanwaDroidN2Pres();
     /**
-     * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+     * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
      * @return The tanwaDroidN2Pres.
      */
     int getTanwaDroidN2Pres();
 
     /**
-     * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+     * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
      * @return Whether the tanwaCombChamberPres field is set.
      */
     boolean hasTanwaCombChamberPres();
     /**
-     * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+     * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
      * @return The tanwaCombChamberPres.
      */
     int getTanwaCombChamberPres();
@@ -625,7 +636,7 @@ public final class FrameProtos {
      * --- Payload ---
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 43;</code>
+     * <code>optional uint32 payload_battery = 44;</code>
      * @return Whether the payloadBattery field is set.
      */
     boolean hasPayloadBattery();
@@ -634,7 +645,7 @@ public final class FrameProtos {
      * --- Payload ---
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 43;</code>
+     * <code>optional uint32 payload_battery = 44;</code>
      * @return The payloadBattery.
      */
     int getPayloadBattery();
@@ -650,7 +661,7 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 45;</code>
      * @return Whether the espNowConnectedFlags field is set.
      */
     boolean hasEspNowConnectedFlags();
@@ -665,7 +676,7 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 45;</code>
      * @return The espNowConnectedFlags.
      */
     int getEspNowConnectedFlags();
@@ -680,7 +691,7 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
      * @return Whether the espNowWkupFlags field is set.
      */
     boolean hasEspNowWkupFlags();
@@ -694,7 +705,7 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
      * @return The espNowWkupFlags.
      */
     int getEspNowWkupFlags();
@@ -704,7 +715,7 @@ public final class FrameProtos {
      * --- Errors ---
      * </pre>
      *
-     * <code>optional fixed32 errors = 46;</code>
+     * <code>optional fixed32 errors = 47;</code>
      * @return Whether the errors field is set.
      */
     boolean hasErrors();
@@ -713,7 +724,7 @@ public final class FrameProtos {
      * --- Errors ---
      * </pre>
      *
-     * <code>optional fixed32 errors = 46;</code>
+     * <code>optional fixed32 errors = 47;</code>
      * @return The errors.
      */
     int getErrors();
@@ -1365,26 +1376,45 @@ public final class FrameProtos {
       return ethVentBitDataB_;
     }
 
-    public static final int TANWA_BATTERY_FIELD_NUMBER = 28;
+    public static final int AUTO_VENT_SETTING_FIELD_NUMBER = 28;
+    private int autoVentSetting_ = 0;
+    /**
+     * <code>optional uint32 auto_vent_setting = 28;</code>
+     * @return Whether the autoVentSetting field is set.
+     */
+    @java.lang.Override
+    public boolean hasAutoVentSetting() {
+      return ((bitField0_ & 0x08000000) != 0);
+    }
+    /**
+     * <code>optional uint32 auto_vent_setting = 28;</code>
+     * @return The autoVentSetting.
+     */
+    @java.lang.Override
+    public int getAutoVentSetting() {
+      return autoVentSetting_;
+    }
+
+    public static final int TANWA_BATTERY_FIELD_NUMBER = 29;
     private int tanwaBattery_ = 0;
     /**
      * <pre>
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 28;</code>
+     * <code>optional uint32 tanwa_battery = 29;</code>
      * @return Whether the tanwaBattery field is set.
      */
     @java.lang.Override
     public boolean hasTanwaBattery() {
-      return ((bitField0_ & 0x08000000) != 0);
+      return ((bitField0_ & 0x10000000) != 0);
     }
     /**
      * <pre>
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 28;</code>
+     * <code>optional uint32 tanwa_battery = 29;</code>
      * @return The tanwaBattery.
      */
     @java.lang.Override
@@ -1392,18 +1422,18 @@ public final class FrameProtos {
       return tanwaBattery_;
     }
 
-    public static final int TANWA_STATE_FIELD_NUMBER = 29;
+    public static final int TANWA_STATE_FIELD_NUMBER = 30;
     private int tanwaState_ = 0;
     /**
-     * <code>optional uint32 tanwa_state = 29;</code>
+     * <code>optional uint32 tanwa_state = 30;</code>
      * @return Whether the tanwaState field is set.
      */
     @java.lang.Override
     public boolean hasTanwaState() {
-      return ((bitField0_ & 0x10000000) != 0);
+      return ((bitField0_ & 0x20000000) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_state = 29;</code>
+     * <code>optional uint32 tanwa_state = 30;</code>
      * @return The tanwaState.
      */
     @java.lang.Override
@@ -1411,7 +1441,7 @@ public final class FrameProtos {
       return tanwaState_;
     }
 
-    public static final int TANWA_FLAGS_FIELD_NUMBER = 30;
+    public static final int TANWA_FLAGS_FIELD_NUMBER = 31;
     private int tanwaFlags_ = 0;
     /**
      * <pre>
@@ -1434,12 +1464,12 @@ public final class FrameProtos {
      * bit16: heating_valves_state
      * </pre>
      *
-     * <code>optional fixed32 tanwa_flags = 30;</code>
+     * <code>optional fixed32 tanwa_flags = 31;</code>
      * @return Whether the tanwaFlags field is set.
      */
     @java.lang.Override
     public boolean hasTanwaFlags() {
-      return ((bitField0_ & 0x20000000) != 0);
+      return ((bitField0_ & 0x40000000) != 0);
     }
     /**
      * <pre>
@@ -1462,7 +1492,7 @@ public final class FrameProtos {
      * bit16: heating_valves_state
      * </pre>
      *
-     * <code>optional fixed32 tanwa_flags = 30;</code>
+     * <code>optional fixed32 tanwa_flags = 31;</code>
      * @return The tanwaFlags.
      */
     @java.lang.Override
@@ -1470,18 +1500,18 @@ public final class FrameProtos {
       return tanwaFlags_;
     }
 
-    public static final int TANWA_THRUST_FIELD_NUMBER = 31;
+    public static final int TANWA_THRUST_FIELD_NUMBER = 32;
     private int tanwaThrust_ = 0;
     /**
-     * <code>optional sint32 tanwa_thrust = 31;</code>
+     * <code>optional sint32 tanwa_thrust = 32;</code>
      * @return Whether the tanwaThrust field is set.
      */
     @java.lang.Override
     public boolean hasTanwaThrust() {
-      return ((bitField0_ & 0x40000000) != 0);
+      return ((bitField0_ & 0x80000000) != 0);
     }
     /**
-     * <code>optional sint32 tanwa_thrust = 31;</code>
+     * <code>optional sint32 tanwa_thrust = 32;</code>
      * @return The tanwaThrust.
      */
     @java.lang.Override
@@ -1489,18 +1519,18 @@ public final class FrameProtos {
       return tanwaThrust_;
     }
 
-    public static final int TANWA_TANK_WEIGHT_FIELD_NUMBER = 32;
+    public static final int TANWA_TANK_WEIGHT_FIELD_NUMBER = 33;
     private int tanwaTankWeight_ = 0;
     /**
-     * <code>optional uint32 tanwa_tank_weight = 32;</code>
+     * <code>optional uint32 tanwa_tank_weight = 33;</code>
      * @return Whether the tanwaTankWeight field is set.
      */
     @java.lang.Override
     public boolean hasTanwaTankWeight() {
-      return ((bitField0_ & 0x80000000) != 0);
+      return ((bitField1_ & 0x00000001) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_tank_weight = 32;</code>
+     * <code>optional uint32 tanwa_tank_weight = 33;</code>
      * @return The tanwaTankWeight.
      */
     @java.lang.Override
@@ -1508,18 +1538,18 @@ public final class FrameProtos {
       return tanwaTankWeight_;
     }
 
-    public static final int TANWA_TEMP_POST_N2O_FILL_FIELD_NUMBER = 33;
+    public static final int TANWA_TEMP_POST_N2O_FILL_FIELD_NUMBER = 34;
     private int tanwaTempPostN2OFill_ = 0;
     /**
-     * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+     * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
      * @return Whether the tanwaTempPostN2oFill field is set.
      */
     @java.lang.Override
     public boolean hasTanwaTempPostN2OFill() {
-      return ((bitField1_ & 0x00000001) != 0);
+      return ((bitField1_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+     * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
      * @return The tanwaTempPostN2oFill.
      */
     @java.lang.Override
@@ -1527,18 +1557,18 @@ public final class FrameProtos {
       return tanwaTempPostN2OFill_;
     }
 
-    public static final int TANWA_TEMP_FILLING_WALL_FIELD_NUMBER = 34;
+    public static final int TANWA_TEMP_FILLING_WALL_FIELD_NUMBER = 35;
     private int tanwaTempFillingWall_ = 0;
     /**
-     * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+     * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
      * @return Whether the tanwaTempFillingWall field is set.
      */
     @java.lang.Override
     public boolean hasTanwaTempFillingWall() {
-      return ((bitField1_ & 0x00000002) != 0);
+      return ((bitField1_ & 0x00000004) != 0);
     }
     /**
-     * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+     * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
      * @return The tanwaTempFillingWall.
      */
     @java.lang.Override
@@ -1546,18 +1576,18 @@ public final class FrameProtos {
       return tanwaTempFillingWall_;
     }
 
-    public static final int TANWA_POST_FILL_N2O_PRES_FIELD_NUMBER = 35;
+    public static final int TANWA_POST_FILL_N2O_PRES_FIELD_NUMBER = 36;
     private int tanwaPostFillN2OPres_ = 0;
     /**
-     * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+     * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
      * @return Whether the tanwaPostFillN2oPres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaPostFillN2OPres() {
-      return ((bitField1_ & 0x00000004) != 0);
+      return ((bitField1_ & 0x00000008) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+     * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
      * @return The tanwaPostFillN2oPres.
      */
     @java.lang.Override
@@ -1565,18 +1595,18 @@ public final class FrameProtos {
       return tanwaPostFillN2OPres_;
     }
 
-    public static final int TANWA_CUTOFF_N2O_PRES_FIELD_NUMBER = 36;
+    public static final int TANWA_CUTOFF_N2O_PRES_FIELD_NUMBER = 37;
     private int tanwaCutoffN2OPres_ = 0;
     /**
-     * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+     * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
      * @return Whether the tanwaCutoffN2oPres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaCutoffN2OPres() {
-      return ((bitField1_ & 0x00000008) != 0);
+      return ((bitField1_ & 0x00000010) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+     * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
      * @return The tanwaCutoffN2oPres.
      */
     @java.lang.Override
@@ -1584,18 +1614,18 @@ public final class FrameProtos {
       return tanwaCutoffN2OPres_;
     }
 
-    public static final int TANWA_DROID_N2O_PRES_FIELD_NUMBER = 37;
+    public static final int TANWA_DROID_N2O_PRES_FIELD_NUMBER = 38;
     private int tanwaDroidN2OPres_ = 0;
     /**
-     * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+     * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
      * @return Whether the tanwaDroidN2oPres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaDroidN2OPres() {
-      return ((bitField1_ & 0x00000010) != 0);
+      return ((bitField1_ & 0x00000020) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+     * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
      * @return The tanwaDroidN2oPres.
      */
     @java.lang.Override
@@ -1603,18 +1633,18 @@ public final class FrameProtos {
       return tanwaDroidN2OPres_;
     }
 
-    public static final int TANWA_PRE_REG_N2_PRES_FIELD_NUMBER = 38;
+    public static final int TANWA_PRE_REG_N2_PRES_FIELD_NUMBER = 39;
     private int tanwaPreRegN2Pres_ = 0;
     /**
-     * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+     * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
      * @return Whether the tanwaPreRegN2Pres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaPreRegN2Pres() {
-      return ((bitField1_ & 0x00000020) != 0);
+      return ((bitField1_ & 0x00000040) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+     * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
      * @return The tanwaPreRegN2Pres.
      */
     @java.lang.Override
@@ -1622,18 +1652,18 @@ public final class FrameProtos {
       return tanwaPreRegN2Pres_;
     }
 
-    public static final int TANWA_POST_REG_N2_PRES_FIELD_NUMBER = 39;
+    public static final int TANWA_POST_REG_N2_PRES_FIELD_NUMBER = 40;
     private int tanwaPostRegN2Pres_ = 0;
     /**
-     * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+     * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
      * @return Whether the tanwaPostRegN2Pres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaPostRegN2Pres() {
-      return ((bitField1_ & 0x00000040) != 0);
+      return ((bitField1_ & 0x00000080) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+     * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
      * @return The tanwaPostRegN2Pres.
      */
     @java.lang.Override
@@ -1641,18 +1671,18 @@ public final class FrameProtos {
       return tanwaPostRegN2Pres_;
     }
 
-    public static final int TANWA_POST_FILL_N2_PRES_FIELD_NUMBER = 40;
+    public static final int TANWA_POST_FILL_N2_PRES_FIELD_NUMBER = 41;
     private int tanwaPostFillN2Pres_ = 0;
     /**
-     * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+     * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
      * @return Whether the tanwaPostFillN2Pres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaPostFillN2Pres() {
-      return ((bitField1_ & 0x00000080) != 0);
+      return ((bitField1_ & 0x00000100) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+     * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
      * @return The tanwaPostFillN2Pres.
      */
     @java.lang.Override
@@ -1660,18 +1690,18 @@ public final class FrameProtos {
       return tanwaPostFillN2Pres_;
     }
 
-    public static final int TANWA_DROID_N2_PRES_FIELD_NUMBER = 41;
+    public static final int TANWA_DROID_N2_PRES_FIELD_NUMBER = 42;
     private int tanwaDroidN2Pres_ = 0;
     /**
-     * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+     * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
      * @return Whether the tanwaDroidN2Pres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaDroidN2Pres() {
-      return ((bitField1_ & 0x00000100) != 0);
+      return ((bitField1_ & 0x00000200) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+     * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
      * @return The tanwaDroidN2Pres.
      */
     @java.lang.Override
@@ -1679,18 +1709,18 @@ public final class FrameProtos {
       return tanwaDroidN2Pres_;
     }
 
-    public static final int TANWA_COMB_CHAMBER_PRES_FIELD_NUMBER = 42;
+    public static final int TANWA_COMB_CHAMBER_PRES_FIELD_NUMBER = 43;
     private int tanwaCombChamberPres_ = 0;
     /**
-     * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+     * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
      * @return Whether the tanwaCombChamberPres field is set.
      */
     @java.lang.Override
     public boolean hasTanwaCombChamberPres() {
-      return ((bitField1_ & 0x00000200) != 0);
+      return ((bitField1_ & 0x00000400) != 0);
     }
     /**
-     * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+     * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
      * @return The tanwaCombChamberPres.
      */
     @java.lang.Override
@@ -1698,26 +1728,26 @@ public final class FrameProtos {
       return tanwaCombChamberPres_;
     }
 
-    public static final int PAYLOAD_BATTERY_FIELD_NUMBER = 43;
+    public static final int PAYLOAD_BATTERY_FIELD_NUMBER = 44;
     private int payloadBattery_ = 0;
     /**
      * <pre>
      * --- Payload ---
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 43;</code>
+     * <code>optional uint32 payload_battery = 44;</code>
      * @return Whether the payloadBattery field is set.
      */
     @java.lang.Override
     public boolean hasPayloadBattery() {
-      return ((bitField1_ & 0x00000400) != 0);
+      return ((bitField1_ & 0x00000800) != 0);
     }
     /**
      * <pre>
      * --- Payload ---
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 43;</code>
+     * <code>optional uint32 payload_battery = 44;</code>
      * @return The payloadBattery.
      */
     @java.lang.Override
@@ -1725,7 +1755,7 @@ public final class FrameProtos {
       return payloadBattery_;
     }
 
-    public static final int ESP_NOW_CONNECTED_FLAGS_FIELD_NUMBER = 44;
+    public static final int ESP_NOW_CONNECTED_FLAGS_FIELD_NUMBER = 45;
     private int espNowConnectedFlags_ = 0;
     /**
      * <pre>
@@ -1738,12 +1768,12 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 45;</code>
      * @return Whether the espNowConnectedFlags field is set.
      */
     @java.lang.Override
     public boolean hasEspNowConnectedFlags() {
-      return ((bitField1_ & 0x00000800) != 0);
+      return ((bitField1_ & 0x00001000) != 0);
     }
     /**
      * <pre>
@@ -1756,7 +1786,7 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 45;</code>
      * @return The espNowConnectedFlags.
      */
     @java.lang.Override
@@ -1764,7 +1794,7 @@ public final class FrameProtos {
       return espNowConnectedFlags_;
     }
 
-    public static final int ESP_NOW_WKUP_FLAGS_FIELD_NUMBER = 45;
+    public static final int ESP_NOW_WKUP_FLAGS_FIELD_NUMBER = 46;
     private int espNowWkupFlags_ = 0;
     /**
      * <pre>
@@ -1776,12 +1806,12 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
      * @return Whether the espNowWkupFlags field is set.
      */
     @java.lang.Override
     public boolean hasEspNowWkupFlags() {
-      return ((bitField1_ & 0x00001000) != 0);
+      return ((bitField1_ & 0x00002000) != 0);
     }
     /**
      * <pre>
@@ -1793,7 +1823,7 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
      * @return The espNowWkupFlags.
      */
     @java.lang.Override
@@ -1801,26 +1831,26 @@ public final class FrameProtos {
       return espNowWkupFlags_;
     }
 
-    public static final int ERRORS_FIELD_NUMBER = 46;
+    public static final int ERRORS_FIELD_NUMBER = 47;
     private int errors_ = 0;
     /**
      * <pre>
      * --- Errors ---
      * </pre>
      *
-     * <code>optional fixed32 errors = 46;</code>
+     * <code>optional fixed32 errors = 47;</code>
      * @return Whether the errors field is set.
      */
     @java.lang.Override
     public boolean hasErrors() {
-      return ((bitField1_ & 0x00002000) != 0);
+      return ((bitField1_ & 0x00004000) != 0);
     }
     /**
      * <pre>
      * --- Errors ---
      * </pre>
      *
-     * <code>optional fixed32 errors = 46;</code>
+     * <code>optional fixed32 errors = 47;</code>
      * @return The errors.
      */
     @java.lang.Override
@@ -1924,61 +1954,64 @@ public final class FrameProtos {
         output.writeFixed32(27, ethVentBitDataB_);
       }
       if (((bitField0_ & 0x08000000) != 0)) {
-        output.writeUInt32(28, tanwaBattery_);
+        output.writeUInt32(28, autoVentSetting_);
       }
       if (((bitField0_ & 0x10000000) != 0)) {
-        output.writeUInt32(29, tanwaState_);
+        output.writeUInt32(29, tanwaBattery_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
-        output.writeFixed32(30, tanwaFlags_);
+        output.writeUInt32(30, tanwaState_);
       }
       if (((bitField0_ & 0x40000000) != 0)) {
-        output.writeSInt32(31, tanwaThrust_);
+        output.writeFixed32(31, tanwaFlags_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
-        output.writeUInt32(32, tanwaTankWeight_);
+        output.writeSInt32(32, tanwaThrust_);
       }
       if (((bitField1_ & 0x00000001) != 0)) {
-        output.writeSInt32(33, tanwaTempPostN2OFill_);
+        output.writeUInt32(33, tanwaTankWeight_);
       }
       if (((bitField1_ & 0x00000002) != 0)) {
-        output.writeSInt32(34, tanwaTempFillingWall_);
+        output.writeSInt32(34, tanwaTempPostN2OFill_);
       }
       if (((bitField1_ & 0x00000004) != 0)) {
-        output.writeUInt32(35, tanwaPostFillN2OPres_);
+        output.writeSInt32(35, tanwaTempFillingWall_);
       }
       if (((bitField1_ & 0x00000008) != 0)) {
-        output.writeUInt32(36, tanwaCutoffN2OPres_);
+        output.writeUInt32(36, tanwaPostFillN2OPres_);
       }
       if (((bitField1_ & 0x00000010) != 0)) {
-        output.writeUInt32(37, tanwaDroidN2OPres_);
+        output.writeUInt32(37, tanwaCutoffN2OPres_);
       }
       if (((bitField1_ & 0x00000020) != 0)) {
-        output.writeUInt32(38, tanwaPreRegN2Pres_);
+        output.writeUInt32(38, tanwaDroidN2OPres_);
       }
       if (((bitField1_ & 0x00000040) != 0)) {
-        output.writeUInt32(39, tanwaPostRegN2Pres_);
+        output.writeUInt32(39, tanwaPreRegN2Pres_);
       }
       if (((bitField1_ & 0x00000080) != 0)) {
-        output.writeUInt32(40, tanwaPostFillN2Pres_);
+        output.writeUInt32(40, tanwaPostRegN2Pres_);
       }
       if (((bitField1_ & 0x00000100) != 0)) {
-        output.writeUInt32(41, tanwaDroidN2Pres_);
+        output.writeUInt32(41, tanwaPostFillN2Pres_);
       }
       if (((bitField1_ & 0x00000200) != 0)) {
-        output.writeUInt32(42, tanwaCombChamberPres_);
+        output.writeUInt32(42, tanwaDroidN2Pres_);
       }
       if (((bitField1_ & 0x00000400) != 0)) {
-        output.writeUInt32(43, payloadBattery_);
+        output.writeUInt32(43, tanwaCombChamberPres_);
       }
       if (((bitField1_ & 0x00000800) != 0)) {
-        output.writeFixed32(44, espNowConnectedFlags_);
+        output.writeUInt32(44, payloadBattery_);
       }
       if (((bitField1_ & 0x00001000) != 0)) {
-        output.writeFixed32(45, espNowWkupFlags_);
+        output.writeFixed32(45, espNowConnectedFlags_);
       }
       if (((bitField1_ & 0x00002000) != 0)) {
-        output.writeFixed32(46, errors_);
+        output.writeFixed32(46, espNowWkupFlags_);
+      }
+      if (((bitField1_ & 0x00004000) != 0)) {
+        output.writeFixed32(47, errors_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2099,79 +2132,83 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x08000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(28, tanwaBattery_);
+          .computeUInt32Size(28, autoVentSetting_);
       }
       if (((bitField0_ & 0x10000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(29, tanwaState_);
+          .computeUInt32Size(29, tanwaBattery_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(30, tanwaFlags_);
+          .computeUInt32Size(30, tanwaState_);
       }
       if (((bitField0_ & 0x40000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(31, tanwaThrust_);
+          .computeFixed32Size(31, tanwaFlags_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(32, tanwaTankWeight_);
+          .computeSInt32Size(32, tanwaThrust_);
       }
       if (((bitField1_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(33, tanwaTempPostN2OFill_);
+          .computeUInt32Size(33, tanwaTankWeight_);
       }
       if (((bitField1_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(34, tanwaTempFillingWall_);
+          .computeSInt32Size(34, tanwaTempPostN2OFill_);
       }
       if (((bitField1_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(35, tanwaPostFillN2OPres_);
+          .computeSInt32Size(35, tanwaTempFillingWall_);
       }
       if (((bitField1_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(36, tanwaCutoffN2OPres_);
+          .computeUInt32Size(36, tanwaPostFillN2OPres_);
       }
       if (((bitField1_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(37, tanwaDroidN2OPres_);
+          .computeUInt32Size(37, tanwaCutoffN2OPres_);
       }
       if (((bitField1_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(38, tanwaPreRegN2Pres_);
+          .computeUInt32Size(38, tanwaDroidN2OPres_);
       }
       if (((bitField1_ & 0x00000040) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(39, tanwaPostRegN2Pres_);
+          .computeUInt32Size(39, tanwaPreRegN2Pres_);
       }
       if (((bitField1_ & 0x00000080) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(40, tanwaPostFillN2Pres_);
+          .computeUInt32Size(40, tanwaPostRegN2Pres_);
       }
       if (((bitField1_ & 0x00000100) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(41, tanwaDroidN2Pres_);
+          .computeUInt32Size(41, tanwaPostFillN2Pres_);
       }
       if (((bitField1_ & 0x00000200) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(42, tanwaCombChamberPres_);
+          .computeUInt32Size(42, tanwaDroidN2Pres_);
       }
       if (((bitField1_ & 0x00000400) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(43, payloadBattery_);
+          .computeUInt32Size(43, tanwaCombChamberPres_);
       }
       if (((bitField1_ & 0x00000800) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(44, espNowConnectedFlags_);
+          .computeUInt32Size(44, payloadBattery_);
       }
       if (((bitField1_ & 0x00001000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(45, espNowWkupFlags_);
+          .computeFixed32Size(45, espNowConnectedFlags_);
       }
       if (((bitField1_ & 0x00002000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(46, errors_);
+          .computeFixed32Size(46, espNowWkupFlags_);
+      }
+      if (((bitField1_ & 0x00004000) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(47, errors_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2327,6 +2364,11 @@ public final class FrameProtos {
       if (hasEthVentBitDataB()) {
         if (getEthVentBitDataB()
             != other.getEthVentBitDataB()) return false;
+      }
+      if (hasAutoVentSetting() != other.hasAutoVentSetting()) return false;
+      if (hasAutoVentSetting()) {
+        if (getAutoVentSetting()
+            != other.getAutoVentSetting()) return false;
       }
       if (hasTanwaBattery() != other.hasTanwaBattery()) return false;
       if (hasTanwaBattery()) {
@@ -2547,6 +2589,10 @@ public final class FrameProtos {
       if (hasEthVentBitDataB()) {
         hash = (37 * hash) + ETH_VENT_BIT_DATA_B_FIELD_NUMBER;
         hash = (53 * hash) + getEthVentBitDataB();
+      }
+      if (hasAutoVentSetting()) {
+        hash = (37 * hash) + AUTO_VENT_SETTING_FIELD_NUMBER;
+        hash = (53 * hash) + getAutoVentSetting();
       }
       if (hasTanwaBattery()) {
         hash = (37 * hash) + TANWA_BATTERY_FIELD_NUMBER;
@@ -2781,6 +2827,7 @@ public final class FrameProtos {
         oxMainBitDataB_ = 0;
         ethVentBitDataA_ = 0;
         ethVentBitDataB_ = 0;
+        autoVentSetting_ = 0;
         tanwaBattery_ = 0;
         tanwaState_ = 0;
         tanwaFlags_ = 0;
@@ -2944,23 +2991,23 @@ public final class FrameProtos {
           to_bitField0_ |= 0x04000000;
         }
         if (((from_bitField0_ & 0x08000000) != 0)) {
-          result.tanwaBattery_ = tanwaBattery_;
+          result.autoVentSetting_ = autoVentSetting_;
           to_bitField0_ |= 0x08000000;
         }
         if (((from_bitField0_ & 0x10000000) != 0)) {
-          result.tanwaState_ = tanwaState_;
+          result.tanwaBattery_ = tanwaBattery_;
           to_bitField0_ |= 0x10000000;
         }
         if (((from_bitField0_ & 0x20000000) != 0)) {
-          result.tanwaFlags_ = tanwaFlags_;
+          result.tanwaState_ = tanwaState_;
           to_bitField0_ |= 0x20000000;
         }
         if (((from_bitField0_ & 0x40000000) != 0)) {
-          result.tanwaThrust_ = tanwaThrust_;
+          result.tanwaFlags_ = tanwaFlags_;
           to_bitField0_ |= 0x40000000;
         }
         if (((from_bitField0_ & 0x80000000) != 0)) {
-          result.tanwaTankWeight_ = tanwaTankWeight_;
+          result.tanwaThrust_ = tanwaThrust_;
           to_bitField0_ |= 0x80000000;
         }
         result.bitField0_ |= to_bitField0_;
@@ -2970,60 +3017,64 @@ public final class FrameProtos {
         int from_bitField1_ = bitField1_;
         int to_bitField1_ = 0;
         if (((from_bitField1_ & 0x00000001) != 0)) {
-          result.tanwaTempPostN2OFill_ = tanwaTempPostN2OFill_;
+          result.tanwaTankWeight_ = tanwaTankWeight_;
           to_bitField1_ |= 0x00000001;
         }
         if (((from_bitField1_ & 0x00000002) != 0)) {
-          result.tanwaTempFillingWall_ = tanwaTempFillingWall_;
+          result.tanwaTempPostN2OFill_ = tanwaTempPostN2OFill_;
           to_bitField1_ |= 0x00000002;
         }
         if (((from_bitField1_ & 0x00000004) != 0)) {
-          result.tanwaPostFillN2OPres_ = tanwaPostFillN2OPres_;
+          result.tanwaTempFillingWall_ = tanwaTempFillingWall_;
           to_bitField1_ |= 0x00000004;
         }
         if (((from_bitField1_ & 0x00000008) != 0)) {
-          result.tanwaCutoffN2OPres_ = tanwaCutoffN2OPres_;
+          result.tanwaPostFillN2OPres_ = tanwaPostFillN2OPres_;
           to_bitField1_ |= 0x00000008;
         }
         if (((from_bitField1_ & 0x00000010) != 0)) {
-          result.tanwaDroidN2OPres_ = tanwaDroidN2OPres_;
+          result.tanwaCutoffN2OPres_ = tanwaCutoffN2OPres_;
           to_bitField1_ |= 0x00000010;
         }
         if (((from_bitField1_ & 0x00000020) != 0)) {
-          result.tanwaPreRegN2Pres_ = tanwaPreRegN2Pres_;
+          result.tanwaDroidN2OPres_ = tanwaDroidN2OPres_;
           to_bitField1_ |= 0x00000020;
         }
         if (((from_bitField1_ & 0x00000040) != 0)) {
-          result.tanwaPostRegN2Pres_ = tanwaPostRegN2Pres_;
+          result.tanwaPreRegN2Pres_ = tanwaPreRegN2Pres_;
           to_bitField1_ |= 0x00000040;
         }
         if (((from_bitField1_ & 0x00000080) != 0)) {
-          result.tanwaPostFillN2Pres_ = tanwaPostFillN2Pres_;
+          result.tanwaPostRegN2Pres_ = tanwaPostRegN2Pres_;
           to_bitField1_ |= 0x00000080;
         }
         if (((from_bitField1_ & 0x00000100) != 0)) {
-          result.tanwaDroidN2Pres_ = tanwaDroidN2Pres_;
+          result.tanwaPostFillN2Pres_ = tanwaPostFillN2Pres_;
           to_bitField1_ |= 0x00000100;
         }
         if (((from_bitField1_ & 0x00000200) != 0)) {
-          result.tanwaCombChamberPres_ = tanwaCombChamberPres_;
+          result.tanwaDroidN2Pres_ = tanwaDroidN2Pres_;
           to_bitField1_ |= 0x00000200;
         }
         if (((from_bitField1_ & 0x00000400) != 0)) {
-          result.payloadBattery_ = payloadBattery_;
+          result.tanwaCombChamberPres_ = tanwaCombChamberPres_;
           to_bitField1_ |= 0x00000400;
         }
         if (((from_bitField1_ & 0x00000800) != 0)) {
-          result.espNowConnectedFlags_ = espNowConnectedFlags_;
+          result.payloadBattery_ = payloadBattery_;
           to_bitField1_ |= 0x00000800;
         }
         if (((from_bitField1_ & 0x00001000) != 0)) {
-          result.espNowWkupFlags_ = espNowWkupFlags_;
+          result.espNowConnectedFlags_ = espNowConnectedFlags_;
           to_bitField1_ |= 0x00001000;
         }
         if (((from_bitField1_ & 0x00002000) != 0)) {
-          result.errors_ = errors_;
+          result.espNowWkupFlags_ = espNowWkupFlags_;
           to_bitField1_ |= 0x00002000;
+        }
+        if (((from_bitField1_ & 0x00004000) != 0)) {
+          result.errors_ = errors_;
+          to_bitField1_ |= 0x00004000;
         }
         result.bitField1_ |= to_bitField1_;
       }
@@ -3152,6 +3203,9 @@ public final class FrameProtos {
         }
         if (other.hasEthVentBitDataB()) {
           setEthVentBitDataB(other.getEthVentBitDataB());
+        }
+        if (other.hasAutoVentSetting()) {
+          setAutoVentSetting(other.getAutoVentSetting());
         }
         if (other.hasTanwaBattery()) {
           setTanwaBattery(other.getTanwaBattery());
@@ -3372,100 +3426,105 @@ public final class FrameProtos {
                 break;
               } // case 221
               case 224: {
-                tanwaBattery_ = input.readUInt32();
+                autoVentSetting_ = input.readUInt32();
                 bitField0_ |= 0x08000000;
                 break;
               } // case 224
               case 232: {
-                tanwaState_ = input.readUInt32();
+                tanwaBattery_ = input.readUInt32();
                 bitField0_ |= 0x10000000;
                 break;
               } // case 232
-              case 245: {
-                tanwaFlags_ = input.readFixed32();
+              case 240: {
+                tanwaState_ = input.readUInt32();
                 bitField0_ |= 0x20000000;
                 break;
-              } // case 245
-              case 248: {
-                tanwaThrust_ = input.readSInt32();
+              } // case 240
+              case 253: {
+                tanwaFlags_ = input.readFixed32();
                 bitField0_ |= 0x40000000;
                 break;
-              } // case 248
+              } // case 253
               case 256: {
-                tanwaTankWeight_ = input.readUInt32();
+                tanwaThrust_ = input.readSInt32();
                 bitField0_ |= 0x80000000;
                 break;
               } // case 256
               case 264: {
-                tanwaTempPostN2OFill_ = input.readSInt32();
+                tanwaTankWeight_ = input.readUInt32();
                 bitField1_ |= 0x00000001;
                 break;
               } // case 264
               case 272: {
-                tanwaTempFillingWall_ = input.readSInt32();
+                tanwaTempPostN2OFill_ = input.readSInt32();
                 bitField1_ |= 0x00000002;
                 break;
               } // case 272
               case 280: {
-                tanwaPostFillN2OPres_ = input.readUInt32();
+                tanwaTempFillingWall_ = input.readSInt32();
                 bitField1_ |= 0x00000004;
                 break;
               } // case 280
               case 288: {
-                tanwaCutoffN2OPres_ = input.readUInt32();
+                tanwaPostFillN2OPres_ = input.readUInt32();
                 bitField1_ |= 0x00000008;
                 break;
               } // case 288
               case 296: {
-                tanwaDroidN2OPres_ = input.readUInt32();
+                tanwaCutoffN2OPres_ = input.readUInt32();
                 bitField1_ |= 0x00000010;
                 break;
               } // case 296
               case 304: {
-                tanwaPreRegN2Pres_ = input.readUInt32();
+                tanwaDroidN2OPres_ = input.readUInt32();
                 bitField1_ |= 0x00000020;
                 break;
               } // case 304
               case 312: {
-                tanwaPostRegN2Pres_ = input.readUInt32();
+                tanwaPreRegN2Pres_ = input.readUInt32();
                 bitField1_ |= 0x00000040;
                 break;
               } // case 312
               case 320: {
-                tanwaPostFillN2Pres_ = input.readUInt32();
+                tanwaPostRegN2Pres_ = input.readUInt32();
                 bitField1_ |= 0x00000080;
                 break;
               } // case 320
               case 328: {
-                tanwaDroidN2Pres_ = input.readUInt32();
+                tanwaPostFillN2Pres_ = input.readUInt32();
                 bitField1_ |= 0x00000100;
                 break;
               } // case 328
               case 336: {
-                tanwaCombChamberPres_ = input.readUInt32();
+                tanwaDroidN2Pres_ = input.readUInt32();
                 bitField1_ |= 0x00000200;
                 break;
               } // case 336
               case 344: {
-                payloadBattery_ = input.readUInt32();
+                tanwaCombChamberPres_ = input.readUInt32();
                 bitField1_ |= 0x00000400;
                 break;
               } // case 344
-              case 357: {
-                espNowConnectedFlags_ = input.readFixed32();
+              case 352: {
+                payloadBattery_ = input.readUInt32();
                 bitField1_ |= 0x00000800;
                 break;
-              } // case 357
+              } // case 352
               case 365: {
-                espNowWkupFlags_ = input.readFixed32();
+                espNowConnectedFlags_ = input.readFixed32();
                 bitField1_ |= 0x00001000;
                 break;
               } // case 365
               case 373: {
-                errors_ = input.readFixed32();
+                espNowWkupFlags_ = input.readFixed32();
                 bitField1_ |= 0x00002000;
                 break;
               } // case 373
+              case 381: {
+                errors_ = input.readFixed32();
+                bitField1_ |= 0x00004000;
+                break;
+              } // case 381
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -4748,25 +4807,65 @@ public final class FrameProtos {
         return this;
       }
 
+      private int autoVentSetting_ ;
+      /**
+       * <code>optional uint32 auto_vent_setting = 28;</code>
+       * @return Whether the autoVentSetting field is set.
+       */
+      @java.lang.Override
+      public boolean hasAutoVentSetting() {
+        return ((bitField0_ & 0x08000000) != 0);
+      }
+      /**
+       * <code>optional uint32 auto_vent_setting = 28;</code>
+       * @return The autoVentSetting.
+       */
+      @java.lang.Override
+      public int getAutoVentSetting() {
+        return autoVentSetting_;
+      }
+      /**
+       * <code>optional uint32 auto_vent_setting = 28;</code>
+       * @param value The autoVentSetting to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAutoVentSetting(int value) {
+        
+        autoVentSetting_ = value;
+        bitField0_ |= 0x08000000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 auto_vent_setting = 28;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAutoVentSetting() {
+        bitField0_ = (bitField0_ & ~0x08000000);
+        autoVentSetting_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int tanwaBattery_ ;
       /**
        * <pre>
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 28;</code>
+       * <code>optional uint32 tanwa_battery = 29;</code>
        * @return Whether the tanwaBattery field is set.
        */
       @java.lang.Override
       public boolean hasTanwaBattery() {
-        return ((bitField0_ & 0x08000000) != 0);
+        return ((bitField0_ & 0x10000000) != 0);
       }
       /**
        * <pre>
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 28;</code>
+       * <code>optional uint32 tanwa_battery = 29;</code>
        * @return The tanwaBattery.
        */
       @java.lang.Override
@@ -4778,14 +4877,14 @@ public final class FrameProtos {
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 28;</code>
+       * <code>optional uint32 tanwa_battery = 29;</code>
        * @param value The tanwaBattery to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaBattery(int value) {
         
         tanwaBattery_ = value;
-        bitField0_ |= 0x08000000;
+        bitField0_ |= 0x10000000;
         onChanged();
         return this;
       }
@@ -4794,11 +4893,11 @@ public final class FrameProtos {
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 28;</code>
+       * <code>optional uint32 tanwa_battery = 29;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaBattery() {
-        bitField0_ = (bitField0_ & ~0x08000000);
+        bitField0_ = (bitField0_ & ~0x10000000);
         tanwaBattery_ = 0;
         onChanged();
         return this;
@@ -4806,15 +4905,15 @@ public final class FrameProtos {
 
       private int tanwaState_ ;
       /**
-       * <code>optional uint32 tanwa_state = 29;</code>
+       * <code>optional uint32 tanwa_state = 30;</code>
        * @return Whether the tanwaState field is set.
        */
       @java.lang.Override
       public boolean hasTanwaState() {
-        return ((bitField0_ & 0x10000000) != 0);
+        return ((bitField0_ & 0x20000000) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_state = 29;</code>
+       * <code>optional uint32 tanwa_state = 30;</code>
        * @return The tanwaState.
        */
       @java.lang.Override
@@ -4822,23 +4921,23 @@ public final class FrameProtos {
         return tanwaState_;
       }
       /**
-       * <code>optional uint32 tanwa_state = 29;</code>
+       * <code>optional uint32 tanwa_state = 30;</code>
        * @param value The tanwaState to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaState(int value) {
         
         tanwaState_ = value;
-        bitField0_ |= 0x10000000;
+        bitField0_ |= 0x20000000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_state = 29;</code>
+       * <code>optional uint32 tanwa_state = 30;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaState() {
-        bitField0_ = (bitField0_ & ~0x10000000);
+        bitField0_ = (bitField0_ & ~0x20000000);
         tanwaState_ = 0;
         onChanged();
         return this;
@@ -4866,12 +4965,12 @@ public final class FrameProtos {
        * bit16: heating_valves_state
        * </pre>
        *
-       * <code>optional fixed32 tanwa_flags = 30;</code>
+       * <code>optional fixed32 tanwa_flags = 31;</code>
        * @return Whether the tanwaFlags field is set.
        */
       @java.lang.Override
       public boolean hasTanwaFlags() {
-        return ((bitField0_ & 0x20000000) != 0);
+        return ((bitField0_ & 0x40000000) != 0);
       }
       /**
        * <pre>
@@ -4894,7 +4993,7 @@ public final class FrameProtos {
        * bit16: heating_valves_state
        * </pre>
        *
-       * <code>optional fixed32 tanwa_flags = 30;</code>
+       * <code>optional fixed32 tanwa_flags = 31;</code>
        * @return The tanwaFlags.
        */
       @java.lang.Override
@@ -4922,14 +5021,14 @@ public final class FrameProtos {
        * bit16: heating_valves_state
        * </pre>
        *
-       * <code>optional fixed32 tanwa_flags = 30;</code>
+       * <code>optional fixed32 tanwa_flags = 31;</code>
        * @param value The tanwaFlags to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaFlags(int value) {
         
         tanwaFlags_ = value;
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         onChanged();
         return this;
       }
@@ -4954,11 +5053,11 @@ public final class FrameProtos {
        * bit16: heating_valves_state
        * </pre>
        *
-       * <code>optional fixed32 tanwa_flags = 30;</code>
+       * <code>optional fixed32 tanwa_flags = 31;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaFlags() {
-        bitField0_ = (bitField0_ & ~0x20000000);
+        bitField0_ = (bitField0_ & ~0x40000000);
         tanwaFlags_ = 0;
         onChanged();
         return this;
@@ -4966,15 +5065,15 @@ public final class FrameProtos {
 
       private int tanwaThrust_ ;
       /**
-       * <code>optional sint32 tanwa_thrust = 31;</code>
+       * <code>optional sint32 tanwa_thrust = 32;</code>
        * @return Whether the tanwaThrust field is set.
        */
       @java.lang.Override
       public boolean hasTanwaThrust() {
-        return ((bitField0_ & 0x40000000) != 0);
+        return ((bitField0_ & 0x80000000) != 0);
       }
       /**
-       * <code>optional sint32 tanwa_thrust = 31;</code>
+       * <code>optional sint32 tanwa_thrust = 32;</code>
        * @return The tanwaThrust.
        */
       @java.lang.Override
@@ -4982,23 +5081,23 @@ public final class FrameProtos {
         return tanwaThrust_;
       }
       /**
-       * <code>optional sint32 tanwa_thrust = 31;</code>
+       * <code>optional sint32 tanwa_thrust = 32;</code>
        * @param value The tanwaThrust to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaThrust(int value) {
         
         tanwaThrust_ = value;
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x80000000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional sint32 tanwa_thrust = 31;</code>
+       * <code>optional sint32 tanwa_thrust = 32;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaThrust() {
-        bitField0_ = (bitField0_ & ~0x40000000);
+        bitField0_ = (bitField0_ & ~0x80000000);
         tanwaThrust_ = 0;
         onChanged();
         return this;
@@ -5006,15 +5105,15 @@ public final class FrameProtos {
 
       private int tanwaTankWeight_ ;
       /**
-       * <code>optional uint32 tanwa_tank_weight = 32;</code>
+       * <code>optional uint32 tanwa_tank_weight = 33;</code>
        * @return Whether the tanwaTankWeight field is set.
        */
       @java.lang.Override
       public boolean hasTanwaTankWeight() {
-        return ((bitField0_ & 0x80000000) != 0);
+        return ((bitField1_ & 0x00000001) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_tank_weight = 32;</code>
+       * <code>optional uint32 tanwa_tank_weight = 33;</code>
        * @return The tanwaTankWeight.
        */
       @java.lang.Override
@@ -5022,23 +5121,23 @@ public final class FrameProtos {
         return tanwaTankWeight_;
       }
       /**
-       * <code>optional uint32 tanwa_tank_weight = 32;</code>
+       * <code>optional uint32 tanwa_tank_weight = 33;</code>
        * @param value The tanwaTankWeight to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaTankWeight(int value) {
         
         tanwaTankWeight_ = value;
-        bitField0_ |= 0x80000000;
+        bitField1_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_tank_weight = 32;</code>
+       * <code>optional uint32 tanwa_tank_weight = 33;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaTankWeight() {
-        bitField0_ = (bitField0_ & ~0x80000000);
+        bitField1_ = (bitField1_ & ~0x00000001);
         tanwaTankWeight_ = 0;
         onChanged();
         return this;
@@ -5046,15 +5145,15 @@ public final class FrameProtos {
 
       private int tanwaTempPostN2OFill_ ;
       /**
-       * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+       * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
        * @return Whether the tanwaTempPostN2oFill field is set.
        */
       @java.lang.Override
       public boolean hasTanwaTempPostN2OFill() {
-        return ((bitField1_ & 0x00000001) != 0);
+        return ((bitField1_ & 0x00000002) != 0);
       }
       /**
-       * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+       * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
        * @return The tanwaTempPostN2oFill.
        */
       @java.lang.Override
@@ -5062,23 +5161,23 @@ public final class FrameProtos {
         return tanwaTempPostN2OFill_;
       }
       /**
-       * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+       * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
        * @param value The tanwaTempPostN2oFill to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaTempPostN2OFill(int value) {
         
         tanwaTempPostN2OFill_ = value;
-        bitField1_ |= 0x00000001;
+        bitField1_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>optional sint32 tanwa_temp_post_n2o_fill = 33;</code>
+       * <code>optional sint32 tanwa_temp_post_n2o_fill = 34;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaTempPostN2OFill() {
-        bitField1_ = (bitField1_ & ~0x00000001);
+        bitField1_ = (bitField1_ & ~0x00000002);
         tanwaTempPostN2OFill_ = 0;
         onChanged();
         return this;
@@ -5086,15 +5185,15 @@ public final class FrameProtos {
 
       private int tanwaTempFillingWall_ ;
       /**
-       * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+       * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
        * @return Whether the tanwaTempFillingWall field is set.
        */
       @java.lang.Override
       public boolean hasTanwaTempFillingWall() {
-        return ((bitField1_ & 0x00000002) != 0);
+        return ((bitField1_ & 0x00000004) != 0);
       }
       /**
-       * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+       * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
        * @return The tanwaTempFillingWall.
        */
       @java.lang.Override
@@ -5102,23 +5201,23 @@ public final class FrameProtos {
         return tanwaTempFillingWall_;
       }
       /**
-       * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+       * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
        * @param value The tanwaTempFillingWall to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaTempFillingWall(int value) {
         
         tanwaTempFillingWall_ = value;
-        bitField1_ |= 0x00000002;
+        bitField1_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional sint32 tanwa_temp_filling_wall = 34;</code>
+       * <code>optional sint32 tanwa_temp_filling_wall = 35;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaTempFillingWall() {
-        bitField1_ = (bitField1_ & ~0x00000002);
+        bitField1_ = (bitField1_ & ~0x00000004);
         tanwaTempFillingWall_ = 0;
         onChanged();
         return this;
@@ -5126,15 +5225,15 @@ public final class FrameProtos {
 
       private int tanwaPostFillN2OPres_ ;
       /**
-       * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+       * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
        * @return Whether the tanwaPostFillN2oPres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaPostFillN2OPres() {
-        return ((bitField1_ & 0x00000004) != 0);
+        return ((bitField1_ & 0x00000008) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+       * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
        * @return The tanwaPostFillN2oPres.
        */
       @java.lang.Override
@@ -5142,23 +5241,23 @@ public final class FrameProtos {
         return tanwaPostFillN2OPres_;
       }
       /**
-       * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+       * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
        * @param value The tanwaPostFillN2oPres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaPostFillN2OPres(int value) {
         
         tanwaPostFillN2OPres_ = value;
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_post_fill_n2o_pres = 35;</code>
+       * <code>optional uint32 tanwa_post_fill_n2o_pres = 36;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaPostFillN2OPres() {
-        bitField1_ = (bitField1_ & ~0x00000004);
+        bitField1_ = (bitField1_ & ~0x00000008);
         tanwaPostFillN2OPres_ = 0;
         onChanged();
         return this;
@@ -5166,15 +5265,15 @@ public final class FrameProtos {
 
       private int tanwaCutoffN2OPres_ ;
       /**
-       * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+       * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
        * @return Whether the tanwaCutoffN2oPres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaCutoffN2OPres() {
-        return ((bitField1_ & 0x00000008) != 0);
+        return ((bitField1_ & 0x00000010) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+       * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
        * @return The tanwaCutoffN2oPres.
        */
       @java.lang.Override
@@ -5182,23 +5281,23 @@ public final class FrameProtos {
         return tanwaCutoffN2OPres_;
       }
       /**
-       * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+       * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
        * @param value The tanwaCutoffN2oPres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaCutoffN2OPres(int value) {
         
         tanwaCutoffN2OPres_ = value;
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_cutoff_n2o_pres = 36;</code>
+       * <code>optional uint32 tanwa_cutoff_n2o_pres = 37;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaCutoffN2OPres() {
-        bitField1_ = (bitField1_ & ~0x00000008);
+        bitField1_ = (bitField1_ & ~0x00000010);
         tanwaCutoffN2OPres_ = 0;
         onChanged();
         return this;
@@ -5206,15 +5305,15 @@ public final class FrameProtos {
 
       private int tanwaDroidN2OPres_ ;
       /**
-       * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+       * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
        * @return Whether the tanwaDroidN2oPres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaDroidN2OPres() {
-        return ((bitField1_ & 0x00000010) != 0);
+        return ((bitField1_ & 0x00000020) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+       * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
        * @return The tanwaDroidN2oPres.
        */
       @java.lang.Override
@@ -5222,23 +5321,23 @@ public final class FrameProtos {
         return tanwaDroidN2OPres_;
       }
       /**
-       * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+       * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
        * @param value The tanwaDroidN2oPres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaDroidN2OPres(int value) {
         
         tanwaDroidN2OPres_ = value;
-        bitField1_ |= 0x00000010;
+        bitField1_ |= 0x00000020;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_droid_n2o_pres = 37;</code>
+       * <code>optional uint32 tanwa_droid_n2o_pres = 38;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaDroidN2OPres() {
-        bitField1_ = (bitField1_ & ~0x00000010);
+        bitField1_ = (bitField1_ & ~0x00000020);
         tanwaDroidN2OPres_ = 0;
         onChanged();
         return this;
@@ -5246,15 +5345,15 @@ public final class FrameProtos {
 
       private int tanwaPreRegN2Pres_ ;
       /**
-       * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+       * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
        * @return Whether the tanwaPreRegN2Pres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaPreRegN2Pres() {
-        return ((bitField1_ & 0x00000020) != 0);
+        return ((bitField1_ & 0x00000040) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+       * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
        * @return The tanwaPreRegN2Pres.
        */
       @java.lang.Override
@@ -5262,23 +5361,23 @@ public final class FrameProtos {
         return tanwaPreRegN2Pres_;
       }
       /**
-       * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+       * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
        * @param value The tanwaPreRegN2Pres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaPreRegN2Pres(int value) {
         
         tanwaPreRegN2Pres_ = value;
-        bitField1_ |= 0x00000020;
+        bitField1_ |= 0x00000040;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_pre_reg_n2_pres = 38;</code>
+       * <code>optional uint32 tanwa_pre_reg_n2_pres = 39;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaPreRegN2Pres() {
-        bitField1_ = (bitField1_ & ~0x00000020);
+        bitField1_ = (bitField1_ & ~0x00000040);
         tanwaPreRegN2Pres_ = 0;
         onChanged();
         return this;
@@ -5286,15 +5385,15 @@ public final class FrameProtos {
 
       private int tanwaPostRegN2Pres_ ;
       /**
-       * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+       * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
        * @return Whether the tanwaPostRegN2Pres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaPostRegN2Pres() {
-        return ((bitField1_ & 0x00000040) != 0);
+        return ((bitField1_ & 0x00000080) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+       * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
        * @return The tanwaPostRegN2Pres.
        */
       @java.lang.Override
@@ -5302,23 +5401,23 @@ public final class FrameProtos {
         return tanwaPostRegN2Pres_;
       }
       /**
-       * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+       * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
        * @param value The tanwaPostRegN2Pres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaPostRegN2Pres(int value) {
         
         tanwaPostRegN2Pres_ = value;
-        bitField1_ |= 0x00000040;
+        bitField1_ |= 0x00000080;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_post_reg_n2_pres = 39;</code>
+       * <code>optional uint32 tanwa_post_reg_n2_pres = 40;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaPostRegN2Pres() {
-        bitField1_ = (bitField1_ & ~0x00000040);
+        bitField1_ = (bitField1_ & ~0x00000080);
         tanwaPostRegN2Pres_ = 0;
         onChanged();
         return this;
@@ -5326,15 +5425,15 @@ public final class FrameProtos {
 
       private int tanwaPostFillN2Pres_ ;
       /**
-       * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+       * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
        * @return Whether the tanwaPostFillN2Pres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaPostFillN2Pres() {
-        return ((bitField1_ & 0x00000080) != 0);
+        return ((bitField1_ & 0x00000100) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+       * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
        * @return The tanwaPostFillN2Pres.
        */
       @java.lang.Override
@@ -5342,23 +5441,23 @@ public final class FrameProtos {
         return tanwaPostFillN2Pres_;
       }
       /**
-       * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+       * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
        * @param value The tanwaPostFillN2Pres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaPostFillN2Pres(int value) {
         
         tanwaPostFillN2Pres_ = value;
-        bitField1_ |= 0x00000080;
+        bitField1_ |= 0x00000100;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_post_fill_n2_pres = 40;</code>
+       * <code>optional uint32 tanwa_post_fill_n2_pres = 41;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaPostFillN2Pres() {
-        bitField1_ = (bitField1_ & ~0x00000080);
+        bitField1_ = (bitField1_ & ~0x00000100);
         tanwaPostFillN2Pres_ = 0;
         onChanged();
         return this;
@@ -5366,15 +5465,15 @@ public final class FrameProtos {
 
       private int tanwaDroidN2Pres_ ;
       /**
-       * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+       * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
        * @return Whether the tanwaDroidN2Pres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaDroidN2Pres() {
-        return ((bitField1_ & 0x00000100) != 0);
+        return ((bitField1_ & 0x00000200) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+       * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
        * @return The tanwaDroidN2Pres.
        */
       @java.lang.Override
@@ -5382,23 +5481,23 @@ public final class FrameProtos {
         return tanwaDroidN2Pres_;
       }
       /**
-       * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+       * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
        * @param value The tanwaDroidN2Pres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaDroidN2Pres(int value) {
         
         tanwaDroidN2Pres_ = value;
-        bitField1_ |= 0x00000100;
+        bitField1_ |= 0x00000200;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_droid_n2_pres = 41;</code>
+       * <code>optional uint32 tanwa_droid_n2_pres = 42;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaDroidN2Pres() {
-        bitField1_ = (bitField1_ & ~0x00000100);
+        bitField1_ = (bitField1_ & ~0x00000200);
         tanwaDroidN2Pres_ = 0;
         onChanged();
         return this;
@@ -5406,15 +5505,15 @@ public final class FrameProtos {
 
       private int tanwaCombChamberPres_ ;
       /**
-       * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+       * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
        * @return Whether the tanwaCombChamberPres field is set.
        */
       @java.lang.Override
       public boolean hasTanwaCombChamberPres() {
-        return ((bitField1_ & 0x00000200) != 0);
+        return ((bitField1_ & 0x00000400) != 0);
       }
       /**
-       * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+       * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
        * @return The tanwaCombChamberPres.
        */
       @java.lang.Override
@@ -5422,23 +5521,23 @@ public final class FrameProtos {
         return tanwaCombChamberPres_;
       }
       /**
-       * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+       * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
        * @param value The tanwaCombChamberPres to set.
        * @return This builder for chaining.
        */
       public Builder setTanwaCombChamberPres(int value) {
         
         tanwaCombChamberPres_ = value;
-        bitField1_ |= 0x00000200;
+        bitField1_ |= 0x00000400;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 tanwa_comb_chamber_pres = 42;</code>
+       * <code>optional uint32 tanwa_comb_chamber_pres = 43;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaCombChamberPres() {
-        bitField1_ = (bitField1_ & ~0x00000200);
+        bitField1_ = (bitField1_ & ~0x00000400);
         tanwaCombChamberPres_ = 0;
         onChanged();
         return this;
@@ -5450,19 +5549,19 @@ public final class FrameProtos {
        * --- Payload ---
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 43;</code>
+       * <code>optional uint32 payload_battery = 44;</code>
        * @return Whether the payloadBattery field is set.
        */
       @java.lang.Override
       public boolean hasPayloadBattery() {
-        return ((bitField1_ & 0x00000400) != 0);
+        return ((bitField1_ & 0x00000800) != 0);
       }
       /**
        * <pre>
        * --- Payload ---
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 43;</code>
+       * <code>optional uint32 payload_battery = 44;</code>
        * @return The payloadBattery.
        */
       @java.lang.Override
@@ -5474,14 +5573,14 @@ public final class FrameProtos {
        * --- Payload ---
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 43;</code>
+       * <code>optional uint32 payload_battery = 44;</code>
        * @param value The payloadBattery to set.
        * @return This builder for chaining.
        */
       public Builder setPayloadBattery(int value) {
         
         payloadBattery_ = value;
-        bitField1_ |= 0x00000400;
+        bitField1_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -5490,11 +5589,11 @@ public final class FrameProtos {
        * --- Payload ---
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 43;</code>
+       * <code>optional uint32 payload_battery = 44;</code>
        * @return This builder for chaining.
        */
       public Builder clearPayloadBattery() {
-        bitField1_ = (bitField1_ & ~0x00000400);
+        bitField1_ = (bitField1_ & ~0x00000800);
         payloadBattery_ = 0;
         onChanged();
         return this;
@@ -5512,12 +5611,12 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 45;</code>
        * @return Whether the espNowConnectedFlags field is set.
        */
       @java.lang.Override
       public boolean hasEspNowConnectedFlags() {
-        return ((bitField1_ & 0x00000800) != 0);
+        return ((bitField1_ & 0x00001000) != 0);
       }
       /**
        * <pre>
@@ -5530,7 +5629,7 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 45;</code>
        * @return The espNowConnectedFlags.
        */
       @java.lang.Override
@@ -5548,14 +5647,14 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 45;</code>
        * @param value The espNowConnectedFlags to set.
        * @return This builder for chaining.
        */
       public Builder setEspNowConnectedFlags(int value) {
         
         espNowConnectedFlags_ = value;
-        bitField1_ |= 0x00000800;
+        bitField1_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -5570,11 +5669,11 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 44;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 45;</code>
        * @return This builder for chaining.
        */
       public Builder clearEspNowConnectedFlags() {
-        bitField1_ = (bitField1_ & ~0x00000800);
+        bitField1_ = (bitField1_ & ~0x00001000);
         espNowConnectedFlags_ = 0;
         onChanged();
         return this;
@@ -5591,12 +5690,12 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
        * @return Whether the espNowWkupFlags field is set.
        */
       @java.lang.Override
       public boolean hasEspNowWkupFlags() {
-        return ((bitField1_ & 0x00001000) != 0);
+        return ((bitField1_ & 0x00002000) != 0);
       }
       /**
        * <pre>
@@ -5608,7 +5707,7 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
        * @return The espNowWkupFlags.
        */
       @java.lang.Override
@@ -5625,14 +5724,14 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
        * @param value The espNowWkupFlags to set.
        * @return This builder for chaining.
        */
       public Builder setEspNowWkupFlags(int value) {
         
         espNowWkupFlags_ = value;
-        bitField1_ |= 0x00001000;
+        bitField1_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -5646,11 +5745,11 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 45;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 46;</code>
        * @return This builder for chaining.
        */
       public Builder clearEspNowWkupFlags() {
-        bitField1_ = (bitField1_ & ~0x00001000);
+        bitField1_ = (bitField1_ & ~0x00002000);
         espNowWkupFlags_ = 0;
         onChanged();
         return this;
@@ -5662,19 +5761,19 @@ public final class FrameProtos {
        * --- Errors ---
        * </pre>
        *
-       * <code>optional fixed32 errors = 46;</code>
+       * <code>optional fixed32 errors = 47;</code>
        * @return Whether the errors field is set.
        */
       @java.lang.Override
       public boolean hasErrors() {
-        return ((bitField1_ & 0x00002000) != 0);
+        return ((bitField1_ & 0x00004000) != 0);
       }
       /**
        * <pre>
        * --- Errors ---
        * </pre>
        *
-       * <code>optional fixed32 errors = 46;</code>
+       * <code>optional fixed32 errors = 47;</code>
        * @return The errors.
        */
       @java.lang.Override
@@ -5686,14 +5785,14 @@ public final class FrameProtos {
        * --- Errors ---
        * </pre>
        *
-       * <code>optional fixed32 errors = 46;</code>
+       * <code>optional fixed32 errors = 47;</code>
        * @param value The errors to set.
        * @return This builder for chaining.
        */
       public Builder setErrors(int value) {
         
         errors_ = value;
-        bitField1_ |= 0x00002000;
+        bitField1_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -5702,11 +5801,11 @@ public final class FrameProtos {
        * --- Errors ---
        * </pre>
        *
-       * <code>optional fixed32 errors = 46;</code>
+       * <code>optional fixed32 errors = 47;</code>
        * @return This builder for chaining.
        */
       public Builder clearErrors() {
-        bitField1_ = (bitField1_ & ~0x00002000);
+        bitField1_ = (bitField1_ & ~0x00004000);
         errors_ = 0;
         onChanged();
         return this;
@@ -11346,7 +11445,7 @@ public final class FrameProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037src/main/resources/frames.proto\"\343\022\n\tLo" +
+      "\n\037src/main/resources/frames.proto\"\231\023\n\tLo" +
       "RaFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptim" +
       "e_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\rH" +
       "\002\210\001\001\022\025\n\010mcb_batt\030\004 \001(\rH\003\210\001\001\022\024\n\007gps_lat\030\005" +
@@ -11367,98 +11466,99 @@ public final class FrameProtos {
       "bit_data_a\030\030 \001(\007H\027\210\001\001\022\037\n\022ox_main_bit_dat" +
       "a_b\030\031 \001(\007H\030\210\001\001\022 \n\023eth_vent_bit_data_a\030\032 " +
       "\001(\007H\031\210\001\001\022 \n\023eth_vent_bit_data_b\030\033 \001(\007H\032\210" +
-      "\001\001\022\032\n\rtanwa_battery\030\034 \001(\rH\033\210\001\001\022\030\n\013tanwa_" +
-      "state\030\035 \001(\rH\034\210\001\001\022\030\n\013tanwa_flags\030\036 \001(\007H\035\210" +
-      "\001\001\022\031\n\014tanwa_thrust\030\037 \001(\021H\036\210\001\001\022\036\n\021tanwa_t" +
-      "ank_weight\030  \001(\rH\037\210\001\001\022%\n\030tanwa_temp_post" +
-      "_n2o_fill\030! \001(\021H \210\001\001\022$\n\027tanwa_temp_filli" +
-      "ng_wall\030\" \001(\021H!\210\001\001\022%\n\030tanwa_post_fill_n2" +
-      "o_pres\030# \001(\rH\"\210\001\001\022\"\n\025tanwa_cutoff_n2o_pr" +
-      "es\030$ \001(\rH#\210\001\001\022!\n\024tanwa_droid_n2o_pres\030% " +
-      "\001(\rH$\210\001\001\022\"\n\025tanwa_pre_reg_n2_pres\030& \001(\rH" +
-      "%\210\001\001\022#\n\026tanwa_post_reg_n2_pres\030\' \001(\rH&\210\001" +
-      "\001\022$\n\027tanwa_post_fill_n2_pres\030( \001(\rH\'\210\001\001\022" +
-      " \n\023tanwa_droid_n2_pres\030) \001(\rH(\210\001\001\022$\n\027tan" +
-      "wa_comb_chamber_pres\030* \001(\rH)\210\001\001\022\034\n\017paylo" +
-      "ad_battery\030+ \001(\rH*\210\001\001\022$\n\027esp_now_connect" +
-      "ed_flags\030, \001(\007H+\210\001\001\022\037\n\022esp_now_wkup_flag" +
-      "s\030- \001(\007H,\210\001\001\022\023\n\006errors\030. \001(\007H-\210\001\001B\014\n\n_mc" +
-      "b_stateB\014\n\n_uptime_msB\021\n\017_flight_time_ms" +
-      "B\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t_gps_longB\r" +
-      "\n\013_gps_sat_okB\r\n\013_altitude_mB\017\n\r_velocit" +
-      "y_m_sB\022\n\020_mcb_temperatureB\013\n\t_euler_fiB\014" +
-      "\n\n_euler_psiB\016\n\014_euler_thetaB\021\n\017_recover" +
-      "y_flagsB\020\n\016_pitot_batteryB\021\n\017_pitot_alti" +
-      "tudeB\021\n\017_pitot_velocityB\024\n\022_pitot_temper" +
-      "atureB\022\n\020_main_vent_flagsB\025\n\023_n2_vent_bi" +
-      "t_data_aB\036\n\034_ox_vent_eth_main_bit_data_a" +
-      "B\036\n\034_ox_vent_eth_main_bit_data_bB\036\n\034_ox_" +
-      "vent_eth_main_bit_data_cB\025\n\023_ox_main_bit" +
-      "_data_aB\025\n\023_ox_main_bit_data_bB\026\n\024_eth_v" +
-      "ent_bit_data_aB\026\n\024_eth_vent_bit_data_bB\020" +
-      "\n\016_tanwa_batteryB\016\n\014_tanwa_stateB\016\n\014_tan" +
-      "wa_flagsB\017\n\r_tanwa_thrustB\024\n\022_tanwa_tank" +
-      "_weightB\033\n\031_tanwa_temp_post_n2o_fillB\032\n\030" +
-      "_tanwa_temp_filling_wallB\033\n\031_tanwa_post_" +
-      "fill_n2o_presB\030\n\026_tanwa_cutoff_n2o_presB" +
-      "\027\n\025_tanwa_droid_n2o_presB\030\n\026_tanwa_pre_r" +
-      "eg_n2_presB\031\n\027_tanwa_post_reg_n2_presB\032\n" +
-      "\030_tanwa_post_fill_n2_presB\026\n\024_tanwa_droi" +
-      "d_n2_presB\032\n\030_tanwa_comb_chamber_presB\022\n" +
-      "\020_payload_batteryB\032\n\030_esp_now_connected_" +
-      "flagsB\025\n\023_esp_now_wkup_flagsB\t\n\007_errors\"" +
-      "\356\013\n\016LoRaFrameTanwa\022\027\n\ntanwaState\030\001 \001(\rH\000" +
-      "\210\001\001\022\023\n\006upTime\030\002 \001(\rH\001\210\001\001\022\036\n\021engineWorkin" +
-      "gTime\030\003 \001(\005H\002\210\001\001\022\031\n\014pressureFuel\030\004 \001(\002H\003" +
-      "\210\001\001\022\027\n\npressureN2\030\005 \001(\002H\004\210\001\001\022\032\n\rpressure" +
-      "Droid\030\006 \001(\002H\005\210\001\001\022\030\n\013pressureOxi\030\007 \001(\002H\006\210" +
-      "\001\001\022!\n\024pressureInjectorFuel\030\010 \001(\002H\007\210\001\001\022 \n" +
-      "\023pressureInjectorOxi\030\t \001(\002H\010\210\001\001\022&\n\031press" +
-      "ureCombustionChamber\030\n \001(\002H\t\210\001\001\022\032\n\rstatu" +
-      "sFillN2O\030\013 \001(\010H\n\210\001\001\022\032\n\rstatusDeprN2O\030\014 \001" +
-      "(\010H\013\210\001\001\022\032\n\rstatusVentN2O\030\r \001(\010H\014\210\001\001\022\026\n\ts" +
-      "tatusArm\030\016 \001(\010H\r\210\001\001\022\031\n\014igniterCont1\030\017 \001(" +
-      "\010H\016\210\001\001\022\031\n\014igniterCont2\030\020 \001(\010H\017\210\001\001\022\031\n\014tan" +
-      "waBattery\030\021 \001(\002H\020\210\001\001\022\031\n\014engineThrust\030\022 \001" +
-      "(\002H\021\210\001\001\022\031\n\014rocketWeight\030\023 \001(\002H\022\210\001\001\022\027\n\nta" +
-      "nkWeight\030\024 \001(\002H\023\210\001\001\022\031\n\014tempInjector\030\025 \001(" +
-      "\002H\024\210\001\001\022\"\n\025tempCombustionChamber\030\026 \001(\002H\025\210" +
-      "\001\001\022\035\n\020tempExternalTank\030\027 \001(\002H\026\210\001\001\022\026\n\tsta" +
-      "tusOxi\030\030 \001(\010H\027\210\001\001\022\027\n\nstatusFuel\030\031 \001(\010H\030\210" +
-      "\001\001\022\025\n\010statusN2\030\032 \001(\010H\031\210\001\001\022\030\n\013statusQdN2O" +
-      "\030\033 \001(\010H\032\210\001\001\022\031\n\014statusFillN2\030\034 \001(\010H\033\210\001\001\022\031" +
-      "\n\014statusDeprN2\030\035 \001(\010H\034\210\001\001\022\027\n\nstatusQdN2\030" +
-      "\036 \001(\010H\035\210\001\001\022\032\n\rstatusVentEth\030\037 \001(\010H\036\210\001\001\022\031" +
-      "\n\014statusVentN2\030  \001(\010H\037\210\001\001\022\033\n\016pressureCut" +
-      "off\030! \001(\002H \210\001\001B\r\n\013_tanwaStateB\t\n\007_upTime" +
-      "B\024\n\022_engineWorkingTimeB\017\n\r_pressureFuelB" +
-      "\r\n\013_pressureN2B\020\n\016_pressureDroidB\016\n\014_pre" +
-      "ssureOxiB\027\n\025_pressureInjectorFuelB\026\n\024_pr" +
-      "essureInjectorOxiB\034\n\032_pressureCombustion" +
-      "ChamberB\020\n\016_statusFillN2OB\020\n\016_statusDepr" +
-      "N2OB\020\n\016_statusVentN2OB\014\n\n_statusArmB\017\n\r_" +
-      "igniterCont1B\017\n\r_igniterCont2B\017\n\r_tanwaB" +
-      "atteryB\017\n\r_engineThrustB\017\n\r_rocketWeight" +
-      "B\r\n\013_tankWeightB\017\n\r_tempInjectorB\030\n\026_tem" +
-      "pCombustionChamberB\023\n\021_tempExternalTankB" +
-      "\014\n\n_statusOxiB\r\n\013_statusFuelB\013\n\t_statusN" +
-      "2B\016\n\014_statusQdN2OB\017\n\r_statusFillN2B\017\n\r_s" +
-      "tatusDeprN2B\r\n\013_statusQdN2B\020\n\016_statusVen" +
-      "tEthB\017\n\r_statusVentN2B\021\n\017_pressureCutoff" +
-      "\"\250\002\n\014LoRaSettings\022\032\n\rlora_freq_khz\030\001 \001(\005" +
-      "H\000\210\001\001\022\035\n\020lora_transmit_ms\030\002 \001(\005H\001\210\001\001\022\033\n\016" +
-      "countdown_time\030\003 \001(\005H\002\210\001\001\022\032\n\ringition_ti" +
-      "me\030\004 \001(\005H\003\210\001\001\022\031\n\014flash_enable\030\005 \001(\rH\004\210\001\001" +
-      "\022\032\n\rbuzzer_enable\030\006 \001(\rH\005\210\001\001B\020\n\016_lora_fr" +
-      "eq_khzB\023\n\021_lora_transmit_msB\021\n\017_countdow" +
-      "n_timeB\020\n\016_ingition_timeB\017\n\r_flash_enabl" +
-      "eB\020\n\016_buzzer_enable\"\243\001\n\013LoRaCommand\022\030\n\013l" +
-      "ora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsys_dev_id\030\002 \001(" +
-      "\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001\001\022\024\n\007payload\030" +
-      "\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_idB\r\n\013_sys_dev_i" +
-      "dB\n\n\010_commandB\n\n\010_payloadBD\n5pl.edu.pwr." +
-      "pwrinspace.poliwrocket.Model.MessagePars" +
-      "erB\013FrameProtosb\006proto3"
+      "\001\001\022\036\n\021auto_vent_setting\030\034 \001(\rH\033\210\001\001\022\032\n\rta" +
+      "nwa_battery\030\035 \001(\rH\034\210\001\001\022\030\n\013tanwa_state\030\036 " +
+      "\001(\rH\035\210\001\001\022\030\n\013tanwa_flags\030\037 \001(\007H\036\210\001\001\022\031\n\014ta" +
+      "nwa_thrust\030  \001(\021H\037\210\001\001\022\036\n\021tanwa_tank_weig" +
+      "ht\030! \001(\rH \210\001\001\022%\n\030tanwa_temp_post_n2o_fil" +
+      "l\030\" \001(\021H!\210\001\001\022$\n\027tanwa_temp_filling_wall\030" +
+      "# \001(\021H\"\210\001\001\022%\n\030tanwa_post_fill_n2o_pres\030$" +
+      " \001(\rH#\210\001\001\022\"\n\025tanwa_cutoff_n2o_pres\030% \001(\r" +
+      "H$\210\001\001\022!\n\024tanwa_droid_n2o_pres\030& \001(\rH%\210\001\001" +
+      "\022\"\n\025tanwa_pre_reg_n2_pres\030\' \001(\rH&\210\001\001\022#\n\026" +
+      "tanwa_post_reg_n2_pres\030( \001(\rH\'\210\001\001\022$\n\027tan" +
+      "wa_post_fill_n2_pres\030) \001(\rH(\210\001\001\022 \n\023tanwa" +
+      "_droid_n2_pres\030* \001(\rH)\210\001\001\022$\n\027tanwa_comb_" +
+      "chamber_pres\030+ \001(\rH*\210\001\001\022\034\n\017payload_batte" +
+      "ry\030, \001(\rH+\210\001\001\022$\n\027esp_now_connected_flags" +
+      "\030- \001(\007H,\210\001\001\022\037\n\022esp_now_wkup_flags\030. \001(\007H" +
+      "-\210\001\001\022\023\n\006errors\030/ \001(\007H.\210\001\001B\014\n\n_mcb_stateB" +
+      "\014\n\n_uptime_msB\021\n\017_flight_time_msB\013\n\t_mcb" +
+      "_battB\n\n\010_gps_latB\013\n\t_gps_longB\r\n\013_gps_s" +
+      "at_okB\r\n\013_altitude_mB\017\n\r_velocity_m_sB\022\n" +
+      "\020_mcb_temperatureB\013\n\t_euler_fiB\014\n\n_euler" +
+      "_psiB\016\n\014_euler_thetaB\021\n\017_recovery_flagsB" +
+      "\020\n\016_pitot_batteryB\021\n\017_pitot_altitudeB\021\n\017" +
+      "_pitot_velocityB\024\n\022_pitot_temperatureB\022\n" +
+      "\020_main_vent_flagsB\025\n\023_n2_vent_bit_data_a" +
+      "B\036\n\034_ox_vent_eth_main_bit_data_aB\036\n\034_ox_" +
+      "vent_eth_main_bit_data_bB\036\n\034_ox_vent_eth" +
+      "_main_bit_data_cB\025\n\023_ox_main_bit_data_aB" +
+      "\025\n\023_ox_main_bit_data_bB\026\n\024_eth_vent_bit_" +
+      "data_aB\026\n\024_eth_vent_bit_data_bB\024\n\022_auto_" +
+      "vent_settingB\020\n\016_tanwa_batteryB\016\n\014_tanwa" +
+      "_stateB\016\n\014_tanwa_flagsB\017\n\r_tanwa_thrustB" +
+      "\024\n\022_tanwa_tank_weightB\033\n\031_tanwa_temp_pos" +
+      "t_n2o_fillB\032\n\030_tanwa_temp_filling_wallB\033" +
+      "\n\031_tanwa_post_fill_n2o_presB\030\n\026_tanwa_cu" +
+      "toff_n2o_presB\027\n\025_tanwa_droid_n2o_presB\030" +
+      "\n\026_tanwa_pre_reg_n2_presB\031\n\027_tanwa_post_" +
+      "reg_n2_presB\032\n\030_tanwa_post_fill_n2_presB" +
+      "\026\n\024_tanwa_droid_n2_presB\032\n\030_tanwa_comb_c" +
+      "hamber_presB\022\n\020_payload_batteryB\032\n\030_esp_" +
+      "now_connected_flagsB\025\n\023_esp_now_wkup_fla" +
+      "gsB\t\n\007_errors\"\356\013\n\016LoRaFrameTanwa\022\027\n\ntanw" +
+      "aState\030\001 \001(\rH\000\210\001\001\022\023\n\006upTime\030\002 \001(\rH\001\210\001\001\022\036" +
+      "\n\021engineWorkingTime\030\003 \001(\005H\002\210\001\001\022\031\n\014pressu" +
+      "reFuel\030\004 \001(\002H\003\210\001\001\022\027\n\npressureN2\030\005 \001(\002H\004\210" +
+      "\001\001\022\032\n\rpressureDroid\030\006 \001(\002H\005\210\001\001\022\030\n\013pressu" +
+      "reOxi\030\007 \001(\002H\006\210\001\001\022!\n\024pressureInjectorFuel" +
+      "\030\010 \001(\002H\007\210\001\001\022 \n\023pressureInjectorOxi\030\t \001(\002" +
+      "H\010\210\001\001\022&\n\031pressureCombustionChamber\030\n \001(\002" +
+      "H\t\210\001\001\022\032\n\rstatusFillN2O\030\013 \001(\010H\n\210\001\001\022\032\n\rsta" +
+      "tusDeprN2O\030\014 \001(\010H\013\210\001\001\022\032\n\rstatusVentN2O\030\r" +
+      " \001(\010H\014\210\001\001\022\026\n\tstatusArm\030\016 \001(\010H\r\210\001\001\022\031\n\014ign" +
+      "iterCont1\030\017 \001(\010H\016\210\001\001\022\031\n\014igniterCont2\030\020 \001" +
+      "(\010H\017\210\001\001\022\031\n\014tanwaBattery\030\021 \001(\002H\020\210\001\001\022\031\n\014en" +
+      "gineThrust\030\022 \001(\002H\021\210\001\001\022\031\n\014rocketWeight\030\023 " +
+      "\001(\002H\022\210\001\001\022\027\n\ntankWeight\030\024 \001(\002H\023\210\001\001\022\031\n\014tem" +
+      "pInjector\030\025 \001(\002H\024\210\001\001\022\"\n\025tempCombustionCh" +
+      "amber\030\026 \001(\002H\025\210\001\001\022\035\n\020tempExternalTank\030\027 \001" +
+      "(\002H\026\210\001\001\022\026\n\tstatusOxi\030\030 \001(\010H\027\210\001\001\022\027\n\nstatu" +
+      "sFuel\030\031 \001(\010H\030\210\001\001\022\025\n\010statusN2\030\032 \001(\010H\031\210\001\001\022" +
+      "\030\n\013statusQdN2O\030\033 \001(\010H\032\210\001\001\022\031\n\014statusFillN" +
+      "2\030\034 \001(\010H\033\210\001\001\022\031\n\014statusDeprN2\030\035 \001(\010H\034\210\001\001\022" +
+      "\027\n\nstatusQdN2\030\036 \001(\010H\035\210\001\001\022\032\n\rstatusVentEt" +
+      "h\030\037 \001(\010H\036\210\001\001\022\031\n\014statusVentN2\030  \001(\010H\037\210\001\001\022" +
+      "\033\n\016pressureCutoff\030! \001(\002H \210\001\001B\r\n\013_tanwaSt" +
+      "ateB\t\n\007_upTimeB\024\n\022_engineWorkingTimeB\017\n\r" +
+      "_pressureFuelB\r\n\013_pressureN2B\020\n\016_pressur" +
+      "eDroidB\016\n\014_pressureOxiB\027\n\025_pressureInjec" +
+      "torFuelB\026\n\024_pressureInjectorOxiB\034\n\032_pres" +
+      "sureCombustionChamberB\020\n\016_statusFillN2OB" +
+      "\020\n\016_statusDeprN2OB\020\n\016_statusVentN2OB\014\n\n_" +
+      "statusArmB\017\n\r_igniterCont1B\017\n\r_igniterCo" +
+      "nt2B\017\n\r_tanwaBatteryB\017\n\r_engineThrustB\017\n" +
+      "\r_rocketWeightB\r\n\013_tankWeightB\017\n\r_tempIn" +
+      "jectorB\030\n\026_tempCombustionChamberB\023\n\021_tem" +
+      "pExternalTankB\014\n\n_statusOxiB\r\n\013_statusFu" +
+      "elB\013\n\t_statusN2B\016\n\014_statusQdN2OB\017\n\r_stat" +
+      "usFillN2B\017\n\r_statusDeprN2B\r\n\013_statusQdN2" +
+      "B\020\n\016_statusVentEthB\017\n\r_statusVentN2B\021\n\017_" +
+      "pressureCutoff\"\250\002\n\014LoRaSettings\022\032\n\rlora_" +
+      "freq_khz\030\001 \001(\005H\000\210\001\001\022\035\n\020lora_transmit_ms\030" +
+      "\002 \001(\005H\001\210\001\001\022\033\n\016countdown_time\030\003 \001(\005H\002\210\001\001\022" +
+      "\032\n\ringition_time\030\004 \001(\005H\003\210\001\001\022\031\n\014flash_ena" +
+      "ble\030\005 \001(\rH\004\210\001\001\022\032\n\rbuzzer_enable\030\006 \001(\rH\005\210" +
+      "\001\001B\020\n\016_lora_freq_khzB\023\n\021_lora_transmit_m" +
+      "sB\021\n\017_countdown_timeB\020\n\016_ingition_timeB\017" +
+      "\n\r_flash_enableB\020\n\016_buzzer_enable\"\243\001\n\013Lo" +
+      "RaCommand\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\ns" +
+      "ys_dev_id\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210" +
+      "\001\001\022\024\n\007payload\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_id" +
+      "B\r\n\013_sys_dev_idB\n\n\010_commandB\n\n\010_payloadB" +
+      "D\n5pl.edu.pwr.pwrinspace.poliwrocket.Mod" +
+      "el.MessageParserB\013FrameProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -11469,7 +11569,7 @@ public final class FrameProtos {
     internal_static_LoRaFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoRaFrame_descriptor,
-        new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentBitDataA", "EthVentBitDataB", "TanwaBattery", "TanwaState", "TanwaFlags", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostFillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreRegN2Pres", "TanwaPostRegN2Pres", "TanwaPostFillN2Pres", "TanwaDroidN2Pres", "TanwaCombChamberPres", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentBitDataA", "EthVentBitDataB", "TanwaBattery", "TanwaState", "TanwaFlags", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostFillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreRegN2Pres", "TanwaPostRegN2Pres", "TanwaPostFillN2Pres", "TanwaDroidN2Pres", "TanwaCombChamberPres", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", });
+        new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentBitDataA", "EthVentBitDataB", "AutoVentSetting", "TanwaBattery", "TanwaState", "TanwaFlags", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostFillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreRegN2Pres", "TanwaPostRegN2Pres", "TanwaPostFillN2Pres", "TanwaDroidN2Pres", "TanwaCombChamberPres", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentBitDataA", "EthVentBitDataB", "AutoVentSetting", "TanwaBattery", "TanwaState", "TanwaFlags", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostFillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreRegN2Pres", "TanwaPostRegN2Pres", "TanwaPostFillN2Pres", "TanwaDroidN2Pres", "TanwaCombChamberPres", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", });
     internal_static_LoRaFrameTanwa_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_LoRaFrameTanwa_fieldAccessorTable = new
