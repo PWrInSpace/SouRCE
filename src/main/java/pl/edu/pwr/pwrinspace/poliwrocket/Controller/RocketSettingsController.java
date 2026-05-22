@@ -20,7 +20,6 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 import java.util.HashMap;
 
 public class RocketSettingsController extends BaseButtonSensorController {
-
     @FXML
     private AnchorPane mainPanel;
 
@@ -29,7 +28,6 @@ public class RocketSettingsController extends BaseButtonSensorController {
 
     @Override
     protected void buildVisualizationMap() {
-
         mainPanel.getChildren().removeIf(node ->
                     labelHashMap.containsValue(node)
                    || valueHashMap.containsValue(node)
@@ -56,7 +54,7 @@ public class RocketSettingsController extends BaseButtonSensorController {
                 Double defaultValue = settingsSensor.getDefaultValue();
                 JFXTextField input = new JFXTextField();
 
-                if(defaultValue == null) {
+                if (defaultValue == null) {
                     input.setVisible(false);
                 } else {
                     input.setText(Double.toString(defaultValue));

@@ -6,11 +6,10 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.CommandType;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 
 public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand {
-
     @Expose
     private Double defaultValue = 0.0;
     @Expose
-    private Command command;
+    private Command<?> command;
     private static final String _destinationCommandPrefix = "button";
     private static final String _destinationInoutPrefix = "button";
 
@@ -25,7 +24,7 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     }
 
     @Override
-    public Command getCommand() {
+    public Command<?> getCommand() {
         return command;
     }
 
