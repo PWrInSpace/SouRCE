@@ -216,8 +216,8 @@ public abstract class BaseButtonSensorCommandsController extends BaseCommandsCon
 
                 if (sensor.hasInterpreter()) {
                     boolean isNotClosed = sensor.getCodeMeaning().UIHint != CodeInterpreterUIHint.CLOSE;
-                    var closeBtn = closeHashMap.get(sensor.getDestination());
-                    var openBtn = openHashMap.get(sensor.getDestination());
+                    var closeBtn = closeHashMap.get(sensor.getName().toLowerCase().replace(" ", ""));
+                    var openBtn = openHashMap.get(sensor.getDestination().toLowerCase().replace(" ", ""));
                     if (closeBtn != null) closeBtn.setDefaultButton(isNotClosed);
                     if (openBtn != null) openBtn.setDefaultButton(!isNotClosed);
                 }
