@@ -4,6 +4,7 @@ import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -40,8 +41,10 @@ public class IndicatorsController extends BaseTilesFXSensorController {
             var sensor = ((ISensor) observable);
             UIThreadManager.getInstance().addImmediateOnOK(() -> {
                 var visualization = indicatorHashMap.get(sensor.getDestination());
-                if(visualization != null)
+                if (visualization != null) {
+                    visualization.setDotOnColor(sensor.hasInterpreter() ? UIHelper.resolveUIHintColor(sensor.getCodeMeaning().UIHint) : Color.DODGERBLUE);
                     visualization.setOn(sensor.getValue() == 1.0);
+                }
             });
         } catch (Exception e) {
             e.printStackTrace();

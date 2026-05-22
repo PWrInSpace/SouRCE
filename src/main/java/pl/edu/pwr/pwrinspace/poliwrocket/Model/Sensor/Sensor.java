@@ -94,7 +94,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     @Override
     public InterpreterValue getCodeMeaning() {
-        if(interpreter == null) {
+        if (interpreter == null) {
            throw new RuntimeException("Interpreter not set");
         }
 

@@ -11,7 +11,6 @@ public class InterpreterValue {
     public CodeInterpreterUIHint UIHint;
 
     public InterpreterValue() {
-
     }
 
     public InterpreterValue(String text, CodeInterpreterUIHint UIHint) {
