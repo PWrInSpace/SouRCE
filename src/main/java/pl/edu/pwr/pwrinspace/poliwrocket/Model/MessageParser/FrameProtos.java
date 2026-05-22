@@ -42,7 +42,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 uptime_ms = 2;</code>
+     * <code>optional int32 uptime_ms = 2;</code>
      * @return Whether the uptimeMs field is set.
      */
     boolean hasUptimeMs();
@@ -51,7 +51,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 uptime_ms = 2;</code>
+     * <code>optional int32 uptime_ms = 2;</code>
      * @return The uptimeMs.
      */
     int getUptimeMs();
@@ -61,7 +61,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 flight_time_ms = 3;</code>
+     * <code>optional sint32 flight_time_ms = 3;</code>
      * @return Whether the flightTimeMs field is set.
      */
     boolean hasFlightTimeMs();
@@ -70,7 +70,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 flight_time_ms = 3;</code>
+     * <code>optional sint32 flight_time_ms = 3;</code>
      * @return The flightTimeMs.
      */
     int getFlightTimeMs();
@@ -805,7 +805,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 uptime_ms = 2;</code>
+     * <code>optional int32 uptime_ms = 2;</code>
      * @return Whether the uptimeMs field is set.
      */
     @java.lang.Override
@@ -817,7 +817,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 uptime_ms = 2;</code>
+     * <code>optional int32 uptime_ms = 2;</code>
      * @return The uptimeMs.
      */
     @java.lang.Override
@@ -832,7 +832,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 flight_time_ms = 3;</code>
+     * <code>optional sint32 flight_time_ms = 3;</code>
      * @return Whether the flightTimeMs field is set.
      */
     @java.lang.Override
@@ -844,7 +844,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional uint32 flight_time_ms = 3;</code>
+     * <code>optional sint32 flight_time_ms = 3;</code>
      * @return The flightTimeMs.
      */
     @java.lang.Override
@@ -1876,10 +1876,10 @@ public final class FrameProtos {
         output.writeUInt32(1, mcbState_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeUInt32(2, uptimeMs_);
+        output.writeInt32(2, uptimeMs_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeUInt32(3, flightTimeMs_);
+        output.writeSInt32(3, flightTimeMs_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         output.writeUInt32(4, mcbBatt_);
@@ -2028,11 +2028,11 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, uptimeMs_);
+          .computeInt32Size(2, uptimeMs_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, flightTimeMs_);
+          .computeSInt32Size(3, flightTimeMs_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3296,12 +3296,12 @@ public final class FrameProtos {
                 break;
               } // case 8
               case 16: {
-                uptimeMs_ = input.readUInt32();
+                uptimeMs_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
               case 24: {
-                flightTimeMs_ = input.readUInt32();
+                flightTimeMs_ = input.readSInt32();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
@@ -3605,7 +3605,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 uptime_ms = 2;</code>
+       * <code>optional int32 uptime_ms = 2;</code>
        * @return Whether the uptimeMs field is set.
        */
       @java.lang.Override
@@ -3617,7 +3617,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 uptime_ms = 2;</code>
+       * <code>optional int32 uptime_ms = 2;</code>
        * @return The uptimeMs.
        */
       @java.lang.Override
@@ -3629,7 +3629,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 uptime_ms = 2;</code>
+       * <code>optional int32 uptime_ms = 2;</code>
        * @param value The uptimeMs to set.
        * @return This builder for chaining.
        */
@@ -3645,7 +3645,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 uptime_ms = 2;</code>
+       * <code>optional int32 uptime_ms = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearUptimeMs() {
@@ -3661,7 +3661,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 flight_time_ms = 3;</code>
+       * <code>optional sint32 flight_time_ms = 3;</code>
        * @return Whether the flightTimeMs field is set.
        */
       @java.lang.Override
@@ -3673,7 +3673,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 flight_time_ms = 3;</code>
+       * <code>optional sint32 flight_time_ms = 3;</code>
        * @return The flightTimeMs.
        */
       @java.lang.Override
@@ -3685,7 +3685,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 flight_time_ms = 3;</code>
+       * <code>optional sint32 flight_time_ms = 3;</code>
        * @param value The flightTimeMs to set.
        * @return This builder for chaining.
        */
@@ -3701,7 +3701,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional uint32 flight_time_ms = 3;</code>
+       * <code>optional sint32 flight_time_ms = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearFlightTimeMs() {
@@ -11447,7 +11447,7 @@ public final class FrameProtos {
     java.lang.String[] descriptorData = {
       "\n\037src/main/resources/frames.proto\"\231\023\n\tLo" +
       "RaFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptim" +
-      "e_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\rH" +
+      "e_ms\030\002 \001(\005H\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\021H" +
       "\002\210\001\001\022\025\n\010mcb_batt\030\004 \001(\rH\003\210\001\001\022\024\n\007gps_lat\030\005" +
       " \001(\002H\004\210\001\001\022\025\n\010gps_long\030\006 \001(\002H\005\210\001\001\022\027\n\ngps_" +
       "sat_ok\030\007 \001(\010H\006\210\001\001\022\027\n\naltitude_m\030\010 \001(\021H\007\210" +
