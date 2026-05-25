@@ -41,8 +41,8 @@ public class TestCommandsController extends BaseButtonSensorCommandsController{
             moduleArray.add(sensorName);
         }
         moduleArray.sort((String sensorName1, String sensorName2) -> {
-            if (sensorName1.startsWith("n2o") && !sensorName2.startsWith("n2o")) return -1;
-            if (!sensorName1.startsWith("n2o") && sensorName2.startsWith("n2o")) return 1;
+            if (sensorName1.startsWith("oxi") && !sensorName2.startsWith("oxi")) return -1;
+            if (!sensorName1.startsWith("oxi") && sensorName2.startsWith("oxi")) return 1;
 
             if (sensorName1.startsWith("eth") && !sensorName2.startsWith("eth")) return 1;
             if (!sensorName1.startsWith("eth") && sensorName2.startsWith("eth")) return -1;
