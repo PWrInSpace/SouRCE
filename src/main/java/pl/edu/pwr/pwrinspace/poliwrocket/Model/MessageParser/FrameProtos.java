@@ -42,7 +42,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional int32 uptime_ms = 2;</code>
+     * <code>optional uint32 uptime_ms = 2;</code>
      * @return Whether the uptimeMs field is set.
      */
     boolean hasUptimeMs();
@@ -51,7 +51,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional int32 uptime_ms = 2;</code>
+     * <code>optional uint32 uptime_ms = 2;</code>
      * @return The uptimeMs.
      */
     int getUptimeMs();
@@ -423,7 +423,7 @@ public final class FrameProtos {
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 29;</code>
+     * <code>optional fixed32 tanwa_battery = 29;</code>
      * @return Whether the tanwaBattery field is set.
      */
     boolean hasTanwaBattery();
@@ -432,7 +432,7 @@ public final class FrameProtos {
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 29;</code>
+     * <code>optional fixed32 tanwa_battery = 29;</code>
      * @return The tanwaBattery.
      */
     int getTanwaBattery();
@@ -805,7 +805,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional int32 uptime_ms = 2;</code>
+     * <code>optional uint32 uptime_ms = 2;</code>
      * @return Whether the uptimeMs field is set.
      */
     @java.lang.Override
@@ -817,7 +817,7 @@ public final class FrameProtos {
      * ms
      * </pre>
      *
-     * <code>optional int32 uptime_ms = 2;</code>
+     * <code>optional uint32 uptime_ms = 2;</code>
      * @return The uptimeMs.
      */
     @java.lang.Override
@@ -1402,7 +1402,7 @@ public final class FrameProtos {
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 29;</code>
+     * <code>optional fixed32 tanwa_battery = 29;</code>
      * @return Whether the tanwaBattery field is set.
      */
     @java.lang.Override
@@ -1414,7 +1414,7 @@ public final class FrameProtos {
      * --- TANWA ---
      * </pre>
      *
-     * <code>optional uint32 tanwa_battery = 29;</code>
+     * <code>optional fixed32 tanwa_battery = 29;</code>
      * @return The tanwaBattery.
      */
     @java.lang.Override
@@ -1876,7 +1876,7 @@ public final class FrameProtos {
         output.writeUInt32(1, mcbState_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeInt32(2, uptimeMs_);
+        output.writeUInt32(2, uptimeMs_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         output.writeSInt32(3, flightTimeMs_);
@@ -1957,7 +1957,7 @@ public final class FrameProtos {
         output.writeUInt32(28, autoVentSetting_);
       }
       if (((bitField0_ & 0x10000000) != 0)) {
-        output.writeUInt32(29, tanwaBattery_);
+        output.writeFixed32(29, tanwaBattery_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
         output.writeUInt32(30, tanwaState_);
@@ -2028,7 +2028,7 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, uptimeMs_);
+          .computeUInt32Size(2, uptimeMs_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2136,7 +2136,7 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x10000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(29, tanwaBattery_);
+          .computeFixed32Size(29, tanwaBattery_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3296,7 +3296,7 @@ public final class FrameProtos {
                 break;
               } // case 8
               case 16: {
-                uptimeMs_ = input.readInt32();
+                uptimeMs_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
@@ -3430,11 +3430,11 @@ public final class FrameProtos {
                 bitField0_ |= 0x08000000;
                 break;
               } // case 224
-              case 232: {
-                tanwaBattery_ = input.readUInt32();
+              case 237: {
+                tanwaBattery_ = input.readFixed32();
                 bitField0_ |= 0x10000000;
                 break;
-              } // case 232
+              } // case 237
               case 240: {
                 tanwaState_ = input.readUInt32();
                 bitField0_ |= 0x20000000;
@@ -3605,7 +3605,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional int32 uptime_ms = 2;</code>
+       * <code>optional uint32 uptime_ms = 2;</code>
        * @return Whether the uptimeMs field is set.
        */
       @java.lang.Override
@@ -3617,7 +3617,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional int32 uptime_ms = 2;</code>
+       * <code>optional uint32 uptime_ms = 2;</code>
        * @return The uptimeMs.
        */
       @java.lang.Override
@@ -3629,7 +3629,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional int32 uptime_ms = 2;</code>
+       * <code>optional uint32 uptime_ms = 2;</code>
        * @param value The uptimeMs to set.
        * @return This builder for chaining.
        */
@@ -3645,7 +3645,7 @@ public final class FrameProtos {
        * ms
        * </pre>
        *
-       * <code>optional int32 uptime_ms = 2;</code>
+       * <code>optional uint32 uptime_ms = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearUptimeMs() {
@@ -4853,7 +4853,7 @@ public final class FrameProtos {
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 29;</code>
+       * <code>optional fixed32 tanwa_battery = 29;</code>
        * @return Whether the tanwaBattery field is set.
        */
       @java.lang.Override
@@ -4865,7 +4865,7 @@ public final class FrameProtos {
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 29;</code>
+       * <code>optional fixed32 tanwa_battery = 29;</code>
        * @return The tanwaBattery.
        */
       @java.lang.Override
@@ -4877,7 +4877,7 @@ public final class FrameProtos {
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 29;</code>
+       * <code>optional fixed32 tanwa_battery = 29;</code>
        * @param value The tanwaBattery to set.
        * @return This builder for chaining.
        */
@@ -4893,7 +4893,7 @@ public final class FrameProtos {
        * --- TANWA ---
        * </pre>
        *
-       * <code>optional uint32 tanwa_battery = 29;</code>
+       * <code>optional fixed32 tanwa_battery = 29;</code>
        * @return This builder for chaining.
        */
       public Builder clearTanwaBattery() {
@@ -11447,7 +11447,7 @@ public final class FrameProtos {
     java.lang.String[] descriptorData = {
       "\n\037src/main/resources/frames.proto\"\231\023\n\tLo" +
       "RaFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptim" +
-      "e_ms\030\002 \001(\005H\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\021H" +
+      "e_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\021H" +
       "\002\210\001\001\022\025\n\010mcb_batt\030\004 \001(\rH\003\210\001\001\022\024\n\007gps_lat\030\005" +
       " \001(\002H\004\210\001\001\022\025\n\010gps_long\030\006 \001(\002H\005\210\001\001\022\027\n\ngps_" +
       "sat_ok\030\007 \001(\010H\006\210\001\001\022\027\n\naltitude_m\030\010 \001(\021H\007\210" +
@@ -11467,7 +11467,7 @@ public final class FrameProtos {
       "a_b\030\031 \001(\007H\030\210\001\001\022 \n\023eth_vent_bit_data_a\030\032 " +
       "\001(\007H\031\210\001\001\022 \n\023eth_vent_bit_data_b\030\033 \001(\007H\032\210" +
       "\001\001\022\036\n\021auto_vent_setting\030\034 \001(\rH\033\210\001\001\022\032\n\rta" +
-      "nwa_battery\030\035 \001(\rH\034\210\001\001\022\030\n\013tanwa_state\030\036 " +
+      "nwa_battery\030\035 \001(\007H\034\210\001\001\022\030\n\013tanwa_state\030\036 " +
       "\001(\rH\035\210\001\001\022\030\n\013tanwa_flags\030\037 \001(\007H\036\210\001\001\022\031\n\014ta" +
       "nwa_thrust\030  \001(\021H\037\210\001\001\022\036\n\021tanwa_tank_weig" +
       "ht\030! \001(\rH \210\001\001\022%\n\030tanwa_temp_post_n2o_fil" +
