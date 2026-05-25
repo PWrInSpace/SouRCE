@@ -46,7 +46,7 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
                         label_.setVisible(false);
                         labelHashMap.put(declaredField.getName(), label_);
                     } else {
-                        logger.error("Indicator without label!");
+                        logger.error("Indicator without label! in controller {}", this.getClass().getName());
                     }
                 }
             } catch (Exception e) {
