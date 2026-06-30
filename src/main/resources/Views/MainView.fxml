@@ -216,6 +216,11 @@
                     </SubScene>
                 </AnchorPane>
             </Tab>
+            <Tab text="Calc">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+
+                </AnchorPane>
+            </Tab>
         </TabPane>
         <SubScene fx:id="indicators2Scene" height="75.0" layoutX="1117.0" layoutY="646.0" width="418.0">
             <root>
