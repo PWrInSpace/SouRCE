@@ -8,6 +8,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class ProtobufMessageParser extends BaseMessageParser {
 
@@ -33,7 +34,7 @@ public class ProtobufMessageParser extends BaseMessageParser {
                         Configuration.getInstance().sensorRepository.getSensorByName(sensorName).setValue(value);
 //                        logger.info("Sensor: " + sensorName + " Value: " + value);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        logger.error(e.getMessage());
                     }
                 });
             } else {
@@ -48,14 +49,14 @@ public class ProtobufMessageParser extends BaseMessageParser {
             Message message = null;
             String frameName = "";
 
-            logger.info("Frame length: " + frame.getByteContent().length);
+            logger.info("Frame length: {}", frame.getByteContent().length);
             for (Descriptors.Descriptor descriptor: FrameProtos.getDescriptor().getMessageTypes()) {
                 try {
                     frameName = descriptor.getFullName();
                     var parserClass = Class.forName(classPathBase + descriptor.getFullName());
                     var pars = parserClass.getMethod("parseFrom", byte[].class);
-                    logger.info("Try with: " + frameName);
-                    message = (Message)pars.invoke(parserClass, frame.getByteContent());
+                    logger.info("Try with: {}", frameName);
+                    message = (Message)pars.invoke(parserClass, (Object) frame.getByteContent());
                     this.parsingResultStatus = ParsingResultStatus.PENDING;
                     break;
                 } catch (Exception e) {
@@ -63,7 +64,7 @@ public class ProtobufMessageParser extends BaseMessageParser {
                     setParsingError();
                 }
             }
-            frame.setFormattedContent(frameName + Configuration.getInstance().FRAME_DELIMITER + frame.getByteContent().toString());
+            frame.setFormattedContent(frameName + Configuration.getInstance().FRAME_DELIMITER + Arrays.toString(frame.getByteContent()));
 
             if(message != null) {
                 readFields(message);

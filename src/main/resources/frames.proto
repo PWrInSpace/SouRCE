@@ -1,10 +1,9 @@
 syntax = "proto3";
 
-//do not change this properties
 option java_package = "pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser";
 option java_outer_classname = "FrameProtos";
 
-message LoRaFrame {
+message LoRaFrameMCB {
    // --- MCB ---
   optional uint32 mcb_state = 1;
   optional uint32 uptime_ms = 2;                   // ms
@@ -53,9 +52,32 @@ message LoRaFrame {
 
   optional uint32 auto_vent_setting = 28;
 
-  // --- TANWA ---
-  optional fixed32 tanwa_battery = 29;
-  optional uint32 tanwa_state = 30;
+  // --- Payload ---
+  optional uint32 payload_battery = 29;
+
+  // bit0: payload_connected
+  // bit1: tanwa_connected
+  // bit2: eth_vent_valve_connected
+  // bit3: ox_main_connected
+  // bit4: ox_vent_eth_main_connected
+  // bit5: n2_vent_connected
+  // bit6: pitot_connected
+  optional fixed32 esp_now_connected_flags = 30;
+  // bit0: payload_wkup
+  // bit1: eth_vent_valve_wkup
+  // bit2: ox_main_wkup
+  // bit3: ox_vent_eth_main_wkup
+  // bit4: n2_vent_wkup
+  // bit5: pitot_wkup
+  optional fixed32 esp_now_wkup_flags = 31;
+
+  // --- Errors ---
+  optional fixed32 errors = 32;
+}
+
+message LoRaFrameTanwa {
+  optional fixed32 tanwa_battery = 1;
+  optional uint32 tanwa_state = 2;
 
   // bit0: CAN_Weights_connection
   // bit1: CAN_Utility_connection
@@ -74,98 +96,21 @@ message LoRaFrame {
   // bit14: droid_N2_state
   // bit15: heating_tank_state
   // bit16: heating_valves_state
-  optional fixed32 tanwa_flags = 31;
+  optional fixed32 tanwa_flags = 3;
 
-  optional sint32 tanwa_thrust = 32;
-  optional uint32 tanwa_tank_weight = 33;
+  optional sint32 tanwa_thrust = 4;
+  optional uint32 tanwa_tank_weight = 5;
 
-  optional sint32 tanwa_temp_post_n2o_fill = 34;
-  optional sint32 tanwa_temp_filling_wall = 35;
-  optional uint32 tanwa_post_fill_n2o_pres = 36;
-  optional uint32 tanwa_cutoff_n2o_pres = 37;
-  optional uint32 tanwa_droid_n2o_pres = 38;
-  optional uint32 tanwa_pre_reg_n2_pres = 39;
-  optional uint32 tanwa_post_reg_n2_pres = 40;
-  optional uint32 tanwa_post_fill_n2_pres = 41;
-  optional uint32 tanwa_droid_n2_pres = 42;
-  optional uint32 tanwa_comb_chamber_pres = 43;
-
-  // --- Payload ---
-  optional uint32 payload_battery = 44;
-
-  // bit0: payload_connected
-  // bit1: tanwa_connected
-  // bit2: eth_vent_valve_connected
-  // bit3: ox_main_connected
-  // bit4: ox_vent_eth_main_connected
-  // bit5: n2_vent_connected
-  // bit6: pitot_connected
-  optional fixed32 esp_now_connected_flags = 45;
-  // bit0: payload_wkup
-  // bit1: eth_vent_valve_wkup
-  // bit2: ox_main_wkup
-  // bit3: ox_vent_eth_main_wkup
-  // bit4: n2_vent_wkup
-  // bit5: pitot_wkup
-  optional fixed32 esp_now_wkup_flags = 46;
-
-  // --- Errors ---
-  optional fixed32 errors = 47;
-}
-
-message LoRaFrameTanwa {
-  optional uint32 tanwaState = 1;
-  optional uint32 upTime = 2;
-  optional int32 engineWorkingTime = 3;
-
-  optional float pressureFuel = 4;
-  optional float pressureN2 = 5;
-  optional float pressureDroid = 6;
-  optional float pressureOxi = 7;
-
-  optional float pressureInjectorFuel = 8;
-  optional float pressureInjectorOxi = 9;
-  optional float pressureCombustionChamber = 10;
-
-  optional bool statusFillN2O = 11;
-  optional bool statusDeprN2O = 12;
-  optional bool statusVentN2O = 13;
-  optional bool statusArm = 14;
-  optional bool igniterCont1 = 15;
-  optional bool igniterCont2 = 16;
-
-  optional float tanwaBattery = 17;
-
-  optional float engineThrust = 18;
-  optional float rocketWeight = 19;
-  optional float tankWeight = 20;
-
-  optional float tempInjector = 21;
-  optional float tempCombustionChamber = 22;
-  optional float tempExternalTank = 23;
-
-
-  optional bool statusOxi = 24;
-  optional bool statusFuel = 25;
-  optional bool statusN2 = 26;
-  optional bool statusQdN2O = 27;
-
-  optional bool statusFillN2 = 28;
-  optional bool statusDeprN2 = 29;
-  optional bool statusQdN2 = 30;
-  optional bool statusVentEth = 31;
-  optional bool statusVentN2 = 32;
-
-  optional float pressureCutoff = 33;
-}
-
-message LoRaSettings {
-  optional int32 lora_freq_khz = 1;
-  optional int32 lora_transmit_ms = 2;
-  optional int32 countdown_time = 3;
-  optional int32 ingition_time = 4;
-  optional uint32 flash_enable = 5;
-  optional uint32 buzzer_enable = 6;
+  optional sint32 tanwa_temp_post_n2o_fill = 6;
+  optional sint32 tanwa_temp_filling_wall = 7;
+  optional uint32 tanwa_post_fill_n2o_pres = 8;
+  optional uint32 tanwa_cutoff_n2o_pres = 9;
+  optional uint32 tanwa_droid_n2o_pres = 10;
+  optional uint32 tanwa_pre_reg_n2_pres = 11;
+  optional uint32 tanwa_post_reg_n2_pres = 12;
+  optional uint32 tanwa_post_fill_n2_pres = 13;
+  optional uint32 tanwa_droid_n2_pres = 14;
+  optional uint32 tanwa_comb_chamber_pres = 15;
 }
 
 message LoRaCommand {

@@ -1,18 +1,12 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.Observable;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.ConfigurationSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ITare;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 
 import java.util.ArrayList;
@@ -38,39 +32,6 @@ public class SettingsController extends BaseController {
 
     @FXML
     protected void initialize() {
-        int initYLabel = 49;
-        int initYInput = 45;
-        int offsetY = 40;
-
-
-        for (ISensor sensor : Configuration.getInstance().sensorRepository.getAllBasicSensors().values()) {
-            if (sensor instanceof ITare) {
-                var tareSensor = (ITare) sensor;
-                Label label = new Label(tareSensor.getName());
-                JFXTextField input = new JFXTextField(Double.toString(tareSensor.getTareValue()));
-                label.setLayoutX(42);
-                label.setLayoutY(initYLabel);
-                label.setPrefHeight(18);
-                label.setPrefWidth(110);
-                input.setLayoutX(215);
-                input.setLayoutY(initYInput);
-                input.setPrefHeight(26);
-                input.setPrefWidth(150);
-                mainPanel.getChildren().add(label);
-                mainPanel.getChildren().add(input);
-                actionList.add(() -> {
-                    try {
-                        double value = Double.parseDouble(input.getText());
-                        tareSensor.setTareValue(value);
-                    } catch (Exception e) {
-                        logger.error(e.getMessage());
-                    }
-                });
-                initYLabel += offsetY;
-                initYInput += offsetY;
-            }
-        }
-
         applyButton.setOnMouseClicked(event -> executorService.execute(this::apply));
         reloadButton.setOnMouseClicked(event -> executorService.execute(this::reloadConfig));
     }
@@ -95,8 +56,6 @@ public class SettingsController extends BaseController {
             logger.error(e.toString());
         }
     }
-
-
 
     @Override
     public void invalidated(Observable observable) {}

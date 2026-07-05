@@ -44,8 +44,6 @@ public class Configuration implements Observable {
 
     public static final String FLIGHT_DATA_PATH = "./flightData/";
 
-    public static final String FLIGHT_DATA_FILE_NAME = "Flight_" + Instant.now().getEpochSecond() + ".txt";
-
     public String DISCORD_TOKEN = "";
 
     public String DISCORD_CHANNEL_NAME = "";
@@ -56,7 +54,7 @@ public class Configuration implements Observable {
 
     public String MSG_PREFIX = "";
 
-    public List<Command> commandsList = new LinkedList<>();
+    public List<Command<?>> commandsList = new LinkedList<>();
 
     public List<Schedule> notificationSchedule = new LinkedList<>();
 
@@ -75,7 +73,7 @@ public class Configuration implements Observable {
     private boolean lightMode = false;
 
     private Configuration() {
-        if (Holder.INSTANCE != null) {
+        if (getInstance() != null) {
             throw new IllegalStateException("Singleton already constructed");
         }
     }
@@ -113,7 +111,7 @@ public class Configuration implements Observable {
         copyModelProperties(config);
         addSensorsToRepository(config);
         validateFrameAndRepository();
-        setupSensorsAsListeners(config);
+        setupSensorsAsListeners();
         setupSensorsInterpreters(config);
     }
 
@@ -126,16 +124,14 @@ public class Configuration implements Observable {
     }
 
     private void validateFrameAndRepository() {
-        FRAME_PATTERN.forEach((frameKey,pattern) -> {
-            pattern.forEach(key -> {
-                try {
-                    sensorRepository.getSensorByName(key);
-                } catch (NullPointerException e) {
-                    logger.info("Sensor {} in frame {} is not configured in repository and will be automatically added", key, frameKey);
-                    sensorRepository.addSensor(new Sensor(key));
-                }
-            });
-        });
+        FRAME_PATTERN.forEach((frameKey,pattern) -> pattern.forEach(key -> {
+            try {
+                sensorRepository.getSensorByName(key);
+            } catch (NullPointerException e) {
+                logger.info("Sensor {} in frame {} is not configured in repository and will be automatically added", key, frameKey);
+                sensorRepository.addSensor(new Sensor(key));
+            }
+        }));
     }
 
     private void copyModelProperties(ConfigurationSaveModel config) {
@@ -178,15 +174,6 @@ public class Configuration implements Observable {
 
         var basicSensors = this.sensorRepository.getAllBasicSensors().values().toArray();
 
-        Arrays.stream(basicSensors).filter(s -> s instanceof FillingLevelSensor).forEach(s -> {
-            var sensor = (FillingLevelSensor)s;
-            this.sensorRepository.addSensor(sensor.getHallSensor1());
-            this.sensorRepository.addSensor(sensor.getHallSensor2());
-            this.sensorRepository.addSensor(sensor.getHallSensor3());
-            this.sensorRepository.addSensor(sensor.getHallSensor4());
-            this.sensorRepository.addSensor(sensor.getHallSensor5());
-        });
-
         Arrays.stream(basicSensors).filter(ISensorsWrapper.class::isInstance).forEach(s -> {
             for (Sensor innerSensor: ((ISensorsWrapper) s).getSensors()) {
                 if(!innerSensor.getName().isEmpty())
@@ -205,13 +192,13 @@ public class Configuration implements Observable {
             try {
                 composite.injectSensors(sensorList);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
 
         });
     }
 
-    private void setupSensorsAsListeners(ConfigurationSaveModel config) {
+    private void setupSensorsAsListeners() {
         Arrays.stream(this.sensorRepository.getAllBasicSensors().values().toArray())
                 .filter(IFieldsObserver.class::isInstance)
                 .forEach(s -> ((IFieldsObserver) s).observeFields());
@@ -254,17 +241,6 @@ public class Configuration implements Observable {
         }
 
         for (Triplet<BaseController, List<ISensor>, List<ICommand>> objects : controllersConfig) {
-/*            for (Method method : objects.getValue0().getClass().getMethods()) {
-                try {
-                    if(method.getName().equals("injectSensorsModels")) {
-                        method.invoke(objects.getValue0(), objects.getValue1());
-                    } else if(method.getName().equals("assignsCommands")) {
-                        method.invoke(objects.getValue0(), objects.getValue2());
-                    }
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }*/
             if (!objects.getValue1().isEmpty() && objects.getValue0() instanceof BaseSensorController) {
                 ((BaseSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
             }
@@ -272,7 +248,6 @@ public class Configuration implements Observable {
             if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BaseButtonSensorController) {
                 ((BaseButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
             }
-
         }
     }
 

@@ -3,7 +3,6 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.addons.Indicator;
 import javafx.scene.control.Label;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.FillingLevelSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 
 import java.lang.reflect.Field;
@@ -80,9 +79,6 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
                 tile.setTimePeriod(DURATION);
                 tile.setAveragingPeriod(_duration);
                 tile.setTextVisible(true);
-                if(sensor instanceof FillingLevelSensor) {
-                    tile.setSkinType(Tile.SkinType.FLUID);
-                }
             } else if (indicator != null) {
                 indicator.setVisible(true);
 
