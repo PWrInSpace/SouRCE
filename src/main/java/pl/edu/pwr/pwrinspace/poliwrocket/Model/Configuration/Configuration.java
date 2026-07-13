@@ -26,52 +26,36 @@ public class Configuration implements Observable {
     public List<InvalidationListener> observers = new ArrayList<>();
 
     public int FPS = 10;
-
     public int AVERAGING_PERIOD = 1000;
-
     public int BUFFER_SIZE;
-
     public double START_POSITION_LAT = 49.013517;
-
     public double START_POSITION_LON = 8.404435;
     private boolean forceCommandsActive = false;
-
     public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
 
     protected static String CONFIG_PATH = "./config/";
-
-    public static final String CONFIG_FILE_NAME = "config.json";
-
+    public static final String CONFIG_FILE_NAME = "config.json"; // Pozostawione dla wstecznej kompatybilności stałych
     public static final String FLIGHT_DATA_PATH = "./flightData/";
-
     public static final String FLIGHT_DATA_FILE_NAME = "Flight_" + Instant.now().getEpochSecond() + ".txt";
 
     public String DISCORD_TOKEN = "";
-
     public String DISCORD_CHANNEL_NAME = "";
-
     public String FRAME_DELIMITER = ",";
-
     public Map<String,List<String>> FRAME_PATTERN = new HashMap<>();
-
     public String MSG_PREFIX = "";
 
     public List<Command> commandsList = new LinkedList<>();
-
     public List<Schedule> notificationSchedule = new LinkedList<>();
-
     public List<String> notificationMessageKeys = new LinkedList<>();
 
     public SensorRepository sensorRepository = new SensorRepository();
-
     public InterpreterRepository interpreterRepository = new InterpreterRepository();
     public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
     public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
+    public Map<String, Object> speechRules = new HashMap<>();
 
     public Collection<BaseController> controllersList = new LinkedList<>();
-
     public final static Instant startUpTime = Instant.now();
-
     private boolean lightMode = false;
 
     private Configuration() {
@@ -82,7 +66,6 @@ public class Configuration implements Observable {
 
     public void setLightMode(boolean lightMode) {
         this.lightMode = lightMode;
-
         for (InvalidationListener listener : observers) {
             listener.invalidated(this);
         }
@@ -104,38 +87,53 @@ public class Configuration implements Observable {
         return "Flight_" + key + "_" + startUpTime.getEpochSecond() + ".txt";
     }
 
+    public void reloadConfigInstance(AppGeneralConfig general, CommandsConfig commands, SensorsConfig sensors, InterpretersConfig interpreters, NotificationsConfig notifications, ProtobufConfig proto, SpeechConfig speech) {
+        setupConfigInstance(general, commands, sensors, interpreters, notifications, proto, speech);
+        setupApplicationConfig(this.controllersList);
+    }
+
+    public void setupConfigInstance(AppGeneralConfig general, CommandsConfig commands, SensorsConfig sensors, InterpretersConfig interpreters, NotificationsConfig notifications, ProtobufConfig proto, SpeechConfig speech) {
+        this.FPS = general.FPS;
+        this.AVERAGING_PERIOD = general.AVERAGING_PERIOD;
+        this.BUFFER_SIZE = general.BUFFER_SIZE;
+        this.START_POSITION_LAT = general.START_POSITION_LAT;
+        this.START_POSITION_LON = general.START_POSITION_LON;
+        this.PARSER_TYPE = general.PARSER_TYPE;
+        this.FRAME_DELIMITER = general.FRAME_DELIMITER;
+        this.FRAME_PATTERN = general.FRAME_PATTERN;
+        this.DISCORD_TOKEN = general.DISCORD_TOKEN;
+        this.DISCORD_CHANNEL_NAME = general.DISCORD_CHANNEL_NAME;
+        this.MSG_PREFIX = general.MSG_PREFIX;
+
+        this.commandsList = commands.commandsList;
+        this.sensorRepository = sensors.sensorRepository;
+        this.interpreterRepository = interpreters.interpreterRepository;
+        this.protobufDeviceRepository = proto.protobufDeviceRepository;
+        this.protobufSystemRepository = proto.protobufSystemRepository;
+        this.notificationMessageKeys = notifications.notificationMessageKeys;
+        this.notificationSchedule = notifications.notificationSchedule;
+        this.speechRules = speech.speechRules;
+
+        addSensorsToRepository();
+        validateFrameAndRepository();
+        setupSensorsAsListeners();
+        setupSensorsInterpreters();
+    }
+
     public void reloadConfigInstance(ConfigurationSaveModel config) {
         setupConfigInstance(config);
         setupApplicationConfig(this.controllersList);
     }
 
     public void setupConfigInstance(ConfigurationSaveModel config) {
+        // wczytanie danych z plików konfiguracyjnych
+        config.loadRemainingSplitFiles();
+
         copyModelProperties(config);
-        addSensorsToRepository(config);
+        addSensorsToRepository();
         validateFrameAndRepository();
-        setupSensorsAsListeners(config);
-        setupSensorsInterpreters(config);
-    }
-
-    private void setupSensorsInterpreters(ConfigurationSaveModel config) {
-        config.sensorRepository.getAllBasicSensors().forEach((s, sensor) -> {
-            if(sensor.getInterpreterKey() != null && !sensor.getInterpreterKey().isEmpty()) {
-                sensor.setInterpreter(interpreterRepository.getInterpreter(sensor.getInterpreterKey()));
-            }
-        });
-    }
-
-    private void validateFrameAndRepository() {
-        FRAME_PATTERN.forEach((frameKey,pattern) -> {
-            pattern.forEach(key -> {
-                try {
-                    sensorRepository.getSensorByName(key);
-                } catch (NullPointerException e) {
-                    logger.info("Sensor {} in frame {} is not configured in repository and will be automatically added", key, frameKey);
-                    sensorRepository.addSensor(new Sensor(key));
-                }
-            });
-        });
+        setupSensorsAsListeners();
+        setupSensorsInterpreters();
     }
 
     private void copyModelProperties(ConfigurationSaveModel config) {
@@ -159,20 +157,41 @@ public class Configuration implements Observable {
         this.notificationSchedule = config.notificationSchedule;
     }
 
-    private void addSensorsToRepository(ConfigurationSaveModel config) {
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
+    private void setupSensorsInterpreters() {
+        this.sensorRepository.getAllBasicSensors().forEach((s, sensor) -> {
+            if(sensor.getInterpreterKey() != null && !sensor.getInterpreterKey().isEmpty()) {
+                sensor.setInterpreter(interpreterRepository.getInterpreter(sensor.getInterpreterKey()));
+            }
+        });
+    }
+
+    private void validateFrameAndRepository() {
+        FRAME_PATTERN.forEach((frameKey,pattern) -> {
+            pattern.forEach(key -> {
+                try {
+                    sensorRepository.getSensorByName(key);
+                } catch (NullPointerException e) {
+                    logger.info("Sensor {} in frame {} is not configured in repository and will be automatically added", key, frameKey);
+                    sensorRepository.addSensor(new Sensor(key));
+                }
+            });
+        });
+    }
+
+    private void addSensorsToRepository() {
+        if(this.PARSER_TYPE == MessageParserEnum.PROTOBUF || this.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))){
+        if(this.PARSER_TYPE == MessageParserEnum.PROTOBUF || this.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))){
+        if(this.PARSER_TYPE == MessageParserEnum.PROTOBUF || this.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))){
+        if(this.PARSER_TYPE == MessageParserEnum.PROTOBUF || this.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_y());
         }
-        if(config.PARSER_TYPE == MessageParserEnum.PROTOBUF || config.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
+        if(this.PARSER_TYPE == MessageParserEnum.PROTOBUF || this.FRAME_PATTERN.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))){
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
 
@@ -207,11 +226,10 @@ public class Configuration implements Observable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         });
     }
 
-    private void setupSensorsAsListeners(ConfigurationSaveModel config) {
+    private void setupSensorsAsListeners() {
         Arrays.stream(this.sensorRepository.getAllBasicSensors().values().toArray())
                 .filter(IFieldsObserver.class::isInstance)
                 .forEach(s -> ((IFieldsObserver) s).observeFields());
@@ -226,7 +244,6 @@ public class Configuration implements Observable {
         controllersList.forEach(basicController -> controllersConfig.add(new Triplet<>(basicController,new ArrayList<>(),new ArrayList<>())));
 
         for (int i = 0; i < controllersConfig.size(); i++) {
-
             String controllerName = controllersConfig.get(i).getValue0().getControllerName();
             if (Configuration.getInstance().sensorRepository.getGpsSensor().getDestinationControllerNames().contains(controllerName)) {
                 Configuration.getInstance().sensorRepository.getGpsSensor().addListener(controllersConfig.get(i).getValue0());
@@ -254,17 +271,6 @@ public class Configuration implements Observable {
         }
 
         for (Triplet<BaseController, List<ISensor>, List<ICommand>> objects : controllersConfig) {
-/*            for (Method method : objects.getValue0().getClass().getMethods()) {
-                try {
-                    if(method.getName().equals("injectSensorsModels")) {
-                        method.invoke(objects.getValue0(), objects.getValue1());
-                    } else if(method.getName().equals("assignsCommands")) {
-                        method.invoke(objects.getValue0(), objects.getValue2());
-                    }
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }*/
             if (!objects.getValue1().isEmpty() && objects.getValue0() instanceof BaseSensorController) {
                 ((BaseSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
             }
@@ -272,15 +278,12 @@ public class Configuration implements Observable {
             if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BaseButtonSensorController) {
                 ((BaseButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
             }
-
         }
     }
 
     public static Configuration getInstance() {
         return Holder.INSTANCE;
     }
-
-
 
     @Override
     public void addListener(InvalidationListener invalidationListener) {

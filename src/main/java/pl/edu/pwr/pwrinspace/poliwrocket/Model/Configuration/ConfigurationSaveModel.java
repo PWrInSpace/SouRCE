@@ -10,6 +10,7 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.Notification.Schedule;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf.ProtobufDeviceRepository;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Protobuf.ProtobufSystemRepository;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
+import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.ModelAsJsonSaveService;
 
 import java.util.*;
 
@@ -69,8 +70,64 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     @Expose
     public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
 
+    @Expose
+    public Map<String, Object> speechRules = new HashMap<>();
+
     public ConfigurationSaveModel() {
-        super(Configuration.CONFIG_PATH, Configuration.CONFIG_FILE_NAME);
+        super(Configuration.CONFIG_PATH, "AppConfig.json");
+    }
+
+    public void loadRemainingSplitFiles() {
+        ModelAsJsonSaveService jsonService = new ModelAsJsonSaveService();
+
+        try {
+            // Commands
+            CommandsConfig commandsConfig = new CommandsConfig();
+            commandsConfig = jsonService.readFromFile(commandsConfig);
+            if (commandsConfig != null) {
+                this.commandsList = commandsConfig.commandsList;
+            }
+
+            // Sensors
+            SensorsConfig sensorsConfig = new SensorsConfig();
+            sensorsConfig = jsonService.readFromFile(sensorsConfig);
+            if (sensorsConfig != null) {
+                this.sensorRepository = sensorsConfig.sensorRepository;
+            }
+
+            // Interpreters
+            InterpretersConfig interpretersConfig = new InterpretersConfig();
+            interpretersConfig = jsonService.readFromFile(interpretersConfig);
+            if (interpretersConfig != null) {
+                this.interpreterRepository = interpretersConfig.interpreterRepository;
+            }
+
+            // Notifications
+            NotificationsConfig notificationsConfig = new NotificationsConfig();
+            notificationsConfig = jsonService.readFromFile(notificationsConfig);
+            if (notificationsConfig != null) {
+                this.notificationSchedule = notificationsConfig.notificationSchedule;
+                this.notificationMessageKeys = notificationsConfig.notificationMessageKeys;
+            }
+
+            // Protobuf
+            ProtobufConfig protobufConfig = new ProtobufConfig();
+            protobufConfig = jsonService.readFromFile(protobufConfig);
+            if (protobufConfig != null) {
+                this.protobufDeviceRepository = protobufConfig.protobufDeviceRepository;
+                this.protobufSystemRepository = protobufConfig.protobufSystemRepository;
+            }
+
+            // Speech
+            SpeechConfig speechConfig = new SpeechConfig();
+            speechConfig = jsonService.readFromFile(speechConfig);
+            if (speechConfig != null) {
+                this.speechRules = speechConfig.speechRules;
+            }
+
+        } catch (Exception e) {
+            System.err.println("Błąd wczytywania konfiguracji: " + e.getMessage());
+        }
     }
 
     public static ConfigurationSaveModel getConfigurationSaveModel(Configuration configuration) {
@@ -91,27 +148,19 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         config.notificationSchedule = configuration.notificationSchedule;
         config.sensorRepository.setGpsSensor(configuration.sensorRepository.getGpsSensor());
         config.sensorRepository.setGyroSensor(configuration.sensorRepository.getGyroSensor());
+
         List<ISensor> partOfSensor = new ArrayList<>();
         partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLatitude());
         partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLongitude());
         partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_x());
         partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_y());
         partOfSensor.add(configuration.sensorRepository.getGyroSensor().getAxis_z());
+
         config.sensorRepository = configuration.sensorRepository;
-//        configuration.sensorRepository.getSensorsKeys().forEach(s -> {
-//            if(!partOfSensor.contains(configuration.sensorRepository.getSensorByName(s))){
-//                config.sensorRepository.addSensor(configuration.sensorRepository.getSensorByName(s));
-//            }
-//        });
-
         config.interpreterRepository = configuration.interpreterRepository;
-        ;
-//        configuration.interpreterRepository.getRepositorySet().forEach((s, interpreter) -> {
-//            config.interpreterRepository.addInterpreter(s,interpreter);
-//        });
-
         config.protobufSystemRepository = configuration.protobufSystemRepository;
         config.protobufDeviceRepository = configuration.protobufDeviceRepository;
+        config.speechRules = configuration.speechRules;
 
         return config;
     }
@@ -125,6 +174,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.sensorRepository = new SensorRepository();
         defaultConfig.sensorRepository.setGpsSensor(configuration.sensorRepository.getGpsSensor());
         defaultConfig.sensorRepository.setGyroSensor(configuration.sensorRepository.getGyroSensor());
+
         List<ISensor> partOfSensor = new ArrayList<>();
         partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLatitude());
         partOfSensor.add(configuration.sensorRepository.getGpsSensor().getLongitude());
