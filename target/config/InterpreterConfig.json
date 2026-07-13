@@ -1,0 +1,358 @@
+{
+  "interpreterRepository": {
+    "interpreters": {
+      "RTOS": {
+        "interpreters": {
+          "0": {
+            "text": "No error",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "sd_queue",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "lora_queue",
+            "UIHint": "ERROR"
+          },
+          "3": {
+            "text": "flash_queue",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "SD": {
+        "interpreters": {
+          "0": {
+            "text": "No error",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "init",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "write",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "RECOVERY": {
+        "interpreters": {
+          "0": {
+            "text": "No error",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "I2C_INIT_ERROR",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "WRITE",
+            "UIHint": "ERROR"
+          },
+          "3": {
+            "text": "READ",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "STATES": {
+        "interpreters": {
+          "0": {
+            "text": "INIT",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "IDLE",
+            "UIHint": "OK"
+          },
+          "2": {
+            "text": "REC ARM",
+            "UIHint": "OK"
+          },
+          "3": {
+            "text": "FILLING",
+            "UIHint": "OK"
+          },
+          "4": {
+            "text": "PRESSURIZING",
+            "UIHint": "OK"
+          },
+          "5": {
+            "text": "ARMED TO LAUNCH",
+            "UIHint": "WARNING"
+          },
+          "6": {
+            "text": "READY TO LAUNCH",
+            "UIHint": "WARNING"
+          },
+          "7": {
+            "text": "COUNTDOWN",
+            "UIHint": "WARNING"
+          },
+          "8": {
+            "text": "LIFT_OFF",
+            "UIHint": "WARNING"
+          },
+          "9": {
+            "text": "BURN",
+            "UIHint": "WARNING"
+          },
+          "10": {
+            "text": "FLIGHT",
+            "UIHint": "SUCCESS"
+          },
+          "11": {
+            "text": "1 ST RECOVERY",
+            "UIHint": "WARNING"
+          },
+          "12": {
+            "text": "2 ST RECOVERY",
+            "UIHint": "SUCCESS"
+          },
+          "13": {
+            "text": "ON GROUND",
+            "UIHint": "OK"
+          },
+          "14": {
+            "text": "HOLD",
+            "UIHint": "OK"
+          },
+          "15": {
+            "text": "ABORT",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "ESP": {
+        "interpreters": {
+          "0": {
+            "text": "No error",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "init",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "add peer",
+            "UIHint": "ERROR"
+          },
+          "3": {
+            "text": "send",
+            "UIHint": "ERROR"
+          },
+          "4": {
+            "text": "delivery",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "Valves": {
+        "interpreters": {
+          "0": {
+            "text": "CLOSE",
+            "UIHint": "CLOSE"
+          },
+          "1": {
+            "text": "OPEN",
+            "UIHint": "OPEN"
+          },
+          "2": {
+            "text": "IDK",
+            "UIHint": "WARNING"
+          },
+          "3": {
+            "text": "AttempToClose",
+            "UIHint": "ERROR"
+          },
+          "4": {
+            "text": "AttempToOpen",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "DROID_MOTOR": {
+        "interpreters": {
+          "0": {
+            "text": "PULL",
+            "UIHint": "PULL"
+          },
+          "1": {
+            "text": "PUSH",
+            "UIHint": "PUSH"
+          },
+          "2": {
+            "text": "STOP",
+            "UIHint": "CLOSE"
+          }
+        }
+      },
+      "LEXCEPTION": {
+        "interpreters": {
+          "0": {
+            "text": "No exception",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "wake up",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "mission timer",
+            "UIHint": "ERROR"
+          },
+          "3": {
+            "text": "invalid prefix",
+            "UIHint": "ERROR"
+          },
+          "4": {
+            "text": "not armed",
+            "UIHint": "ERROR"
+          },
+          "5": {
+            "text": "invalid state change",
+            "UIHint": "ERROR"
+          },
+          "6": {
+            "text": "invalid option number",
+            "UIHint": "ERROR"
+          },
+          "7": {
+            "text": "invalid option value",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "WATCHDOG": {
+        "interpreters": {
+          "0": {
+            "text": "No error",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "lora",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "rxHandling",
+            "UIHint": "ERROR"
+          },
+          "3": {
+            "text": "sd",
+            "UIHint": "ERROR"
+          },
+          "4": {
+            "text": "flash",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "SENSORS": {
+        "interpreters": {
+          "0": {
+            "text": "No error",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "IMU_INIT",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "GPS_INIT",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "FLASH": {
+        "interpreters": {
+          "0": {
+            "text": "No error",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "write",
+            "UIHint": "ERROR"
+          },
+          "2": {
+            "text": "No space",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "EXCEPTION": {
+        "interpreters": {
+          "0": {
+            "text": "No exception",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "Exception",
+            "UIHint": "ERROR"
+          }
+        }
+      },
+      "WAKEUP": {
+        "interpreters": {
+          "0": {
+            "text": "SLEEP",
+            "UIHint": "WARNING"
+          },
+          "1": {
+            "text": "AWAKE",
+            "UIHint": "OK"
+          }
+        }
+      },
+      "ACTIVE": {
+        "interpreters": {
+          "0": {
+            "text": "INACTIVE",
+            "UIHint": "WARNING"
+          },
+          "1": {
+            "text": "ACTIVE",
+            "UIHint": "SUCCESS"
+          }
+        }
+      },
+      "DONE": {
+        "interpreters": {
+          "0": {
+            "text": "WAITING",
+            "UIHint": "OK"
+          },
+          "1": {
+            "text": "DONE",
+            "UIHint": "SUCCESS"
+          }
+        }
+      },
+      "CONNECTION": {
+        "interpreters": {
+          "0": {
+            "text": "DISCONNECTED",
+            "UIHint": "WARNING"
+          },
+          "1": {
+            "text": "CONNECTED",
+            "UIHint": "OK"
+          }
+        }
+      },
+      "ON/OFF": {
+        "interpreters": {
+          "0": {
+            "text": "OFF",
+            "UIHint": "CLOSE"
+          },
+          "1": {
+            "text": "ON",
+            "UIHint": "OPEN"
+          }
+        }
+      }
+    }
+  }
+}

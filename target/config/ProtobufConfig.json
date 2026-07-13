@@ -1,0 +1,46 @@
+{
+  "protobufDeviceRepository": {
+    "devices": {
+      "ALL": {
+        "deviceId": "0x00",
+        "sudoMask": "0x01"
+      },
+      "OBC": {
+        "deviceId": "0x02",
+        "sudoMask": "0x01"
+      },
+      "TANWA": {
+        "deviceId": "0x04",
+        "sudoMask": "0x01"
+      }
+    }
+  },
+  "protobufSystemRepository": {
+    "systems": {
+      "MCB": {
+        "systemDeviceId":"0x01"
+      },
+      "RECOVERY": {
+        "systemDeviceId": "0x02"
+      },
+      "TANWA": {
+        "systemDeviceId": "0x03"
+      },
+      "N2_VENT_VALVE": {
+        "systemDeviceId": "0x04"
+      },
+      "ETH_VENT_VALVE": {
+        "systemDeviceId": "0x05"
+      },
+      "OX_MAIN_VALVE": {
+        "systemDeviceId": "0x06"
+      },
+      "OX_VENT_ETH_MAIN_VALVES": {
+        "systemDeviceId": "0x07"
+      },
+      "PITOT": {
+        "systemDeviceId": "0x08"
+      }
+    }
+  }
+}

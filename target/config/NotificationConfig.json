@@ -1,0 +1,19 @@
+{
+  "notificationSchedule": [
+    {
+      "messageKey": "Map",
+      "everySecond": 5
+    },
+    {
+      "messageKey": "Data",
+      "everySecond": 10
+    }
+  ],
+  "notificationMessageKeys": [
+    "Map",
+    "Position",
+    "Data",
+    "Max",
+    "Thread status"
+  ]
+}
