@@ -38,6 +38,16 @@ public class FuelingCalculatorController extends BaseSensorController{
     @FXML private Label sinceVentLabel;
     @FXML private Label initialMotherWeightLabel;
 
+    private double currentWeight  = 0.0;
+    private double currentPressure  = 0.0;
+    private double currentFlowRate  = 0.0;
+
+    private double initialMotherWeight = 0.0;
+    private boolean isProcessActive = false;
+
+    private double totalVentLoss = 0.0;
+    private double weightAtLastVent = 0.0;
+
     protected HashMap<String, TextField> fieldHashMap = new HashMap<>();
 
     @Override
@@ -71,17 +81,25 @@ public class FuelingCalculatorController extends BaseSensorController{
             String destination = sensor.getDestination();
 
             UIThreadManager.getInstance().addNormal(() -> {
-                if(destination.equals("dataGauge3") && weightOverrideCheck.isSelected()) {
-                    return;
-                }
+                if(destination.equals("dataGauge3")) {
+                    if(!weightOverrideCheck.isSelected()){
+                        currentWeight = sensor.getValue();
+                        sensorTankWeightField.setText(String.format(Locale.US, "%.2f", currentWeight));
+                        updateFuelingCalucations();
+                    }
 
-                if (destination.equals("dataGauge2") && pressureOverrideCheck.isSelected()) {
-                    return;
-                }
+                }else if (destination.equals("dataGauge2")) {
+                    if(!pressureOverrideCheck.isSelected()){
+                        currentPressure = sensor.getValue();
+                        sensorOxiPressureField.setText(String.format(Locale.US, "%.2f", currentPressure));
+                        calculateFlowRate();
+                    }
 
-                TextField targetField = fieldHashMap.get(destination);
-                if(targetField != null){
-                    targetField.setText(String.format(Locale.US, "%.2f", sensor.getValue()));
+                }else{
+                    TextField targetField = fieldHashMap.get(destination);
+                    if(targetField != null){
+                        targetField.setText(String.format(Locale.US, "%.2f", sensor.getValue()));
+                    }
                 }
             });
         }
@@ -99,19 +117,104 @@ public class FuelingCalculatorController extends BaseSensorController{
         pressureOverrideCheck.setOnAction(e -> sensorOxiPressureField.setEditable(pressureOverrideCheck.isSelected()));
         flowOverrideCheck.setOnAction(e -> flowCoefficientField.setEditable(flowOverrideCheck.isSelected()));
 
+        sensorOxiPressureField.setOnAction(e -> calculateFlowRate());
+        flowCoefficientField.setOnAction(e -> calculateFlowRate());
+        ventDurationField.setOnAction(e -> calculateFlowRate());
+
+        sensorTankWeightField.setOnAction(e -> updateFuelingCalucations());
+
         flowCoefficientField.setText("0.42");
+        sensorOxiPressureField.setText("0.0");
+        sensorTankWeightField.setText("0.0");
+        ventDurationField.setText("0.0");
     }
 
+    private void calculateFlowRate(){
+        currentPressure = parseDoubleSafely(sensorOxiPressureField.getText(), 0.0);
+        double coefficient = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
+        double ventTime = parseDoubleSafely(ventDurationField.getText(), 0.0);
 
+        if(currentPressure > 0){
+            currentFlowRate = coefficient * Math.sqrt(currentPressure);
+        }else{
+            currentFlowRate = 0.0;
+        }
+
+        double estimatedVentAmount = currentFlowRate * ventTime;
+        estimatedVentField.setText(String.format(Locale.US, "%.2f", estimatedVentAmount));
+
+        if (currentFlowRate > 0) {
+            flowArea.appendText(String.format(Locale.US, "[FLOW] Rate: %.3f kg/s | Est. Vent (wv): %.2f kg (P: %.1f bar)\n",
+                    currentFlowRate, estimatedVentAmount, currentPressure));
+        }
+    }
+
+    private double parseDoubleSafely(String text, double defaultValue){
+        if(text == null || text.trim().isEmpty()){
+            return defaultValue;
+        }
+        try{
+            return Double.parseDouble(text.trim().replace(",", "."));
+        }catch(NumberFormatException e){
+            logger.warn("Fueling Calc: Invalid float format in field: '{}'. Defaulting to {}", text, defaultValue);
+            return defaultValue;
+        }
+
+    }
+    private void updateFuelingCalucations(){
+        if(!isProcessActive)return;
+
+        currentWeight = parseDoubleSafely(sensorTankWeightField.getText(), 0.0);
+
+        double totalFueled = (initialMotherWeight - currentWeight) - totalVentLoss;
+
+        if(totalFueled < 0){
+            totalFueled = 0.0;
+        }
+
+        double sinceLastVent = weightAtLastVent - currentWeight;
+        if(sinceLastVent < 0){
+            sinceLastVent = 0.0;
+        }
+
+        totalFueledLabel.setText(String.format(Locale.US, "%.2f", totalFueled));
+        sinceVentLabel.setText(String.format(Locale.US, "%.2f", sinceLastVent));
+    }
 
     @FXML
     private void handleStart(ActionEvent event){
-        System.out.println("START");
+        initialMotherWeight = parseDoubleSafely(sensorTankWeightField.getText(), 0.0);
+        weightAtLastVent = initialMotherWeight;
+
+        isProcessActive = true;
+        totalVentLoss = 0.0;
+
+        initialMotherWeightLabel.setText(String.format(Locale.US, "%.2f", initialMotherWeight));
+        logsArea.appendText(String.format(Locale.US, "[START] Initial weight: %.2f kg. Fueling started.\n", initialMotherWeight));
+
+        updateFuelingCalucations();
     }
 
     @FXML
     private void handleVent(ActionEvent event){
-        System.out.println("VENT");
+        if(!isProcessActive){
+            logsArea.appendText("[WARN] Cannot vent before starting the process\n");
+            return;
+        }
+
+        calculateFlowRate();
+
+        double ventTime = parseDoubleSafely(ventDurationField.getText(), 0.0);
+
+        double wv = currentFlowRate * ventTime;
+
+        totalVentLoss += wv;
+
+        weightAtLastVent = parseDoubleSafely(sensorTankWeightField.getText(), 0.0);
+
+        logsArea.appendText(String.format(Locale.US, "[VENT] Venting executed for %.1fs. Lost: %.2f kg\n", ventTime, wv));
+
+        updateFuelingCalucations();
     }
 
 }
