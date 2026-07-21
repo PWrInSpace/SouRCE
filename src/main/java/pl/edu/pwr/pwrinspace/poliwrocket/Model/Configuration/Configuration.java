@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.scene.input.KeyCode;
 import org.javatuples.KeyValue;
 import org.javatuples.Triplet;
 import org.slf4j.Logger;
@@ -73,6 +74,8 @@ public class Configuration implements Observable {
     public final static Instant startUpTime = Instant.now();
 
     private boolean lightMode = false;
+
+    public HashMap<KeyCode, Command<?>> deviceKeyToCommandMap = new HashMap<>();
 
     private Configuration() {
         if (Holder.INSTANCE != null) {
@@ -247,24 +250,27 @@ public class Configuration implements Observable {
             });
 
             for (int j = 0; j < Configuration.getInstance().commandsList.size(); j++) {
-                if (Configuration.getInstance().commandsList.get(j).getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerName())) {
-                    controllersConfig.get(i).getValue2().add(Configuration.getInstance().commandsList.get(j));
+                Command<?> command = Configuration.getInstance().commandsList.get(j);
+
+                if (command.getDestinationControllerNames().contains(controllersConfig.get(i).getValue0().getControllerName())) {
+                    controllersConfig.get(i).getValue2().add(command);
+                }
+            }
+        }
+
+        for (Command<?> command : Configuration.getInstance().commandsList) {
+            if (!command.getDeviceKey().isEmpty()) {
+                try {
+                    KeyCode keyCode = KeyCode.getKeyCode(command.getDeviceKey().toUpperCase());
+                    if (deviceKeyToCommandMap.get(keyCode) == null) deviceKeyToCommandMap.put(keyCode, command);
+                    else logger.error("KeyCode {} is already assigned to command {}", command.getDeviceKey(), deviceKeyToCommandMap.get(keyCode));
+                } catch (Exception e) {
+                    logger.error("Invalid keyCode {}", command.getDeviceKey());
                 }
             }
         }
 
         for (Triplet<BaseController, List<ISensor>, List<ICommand>> objects : controllersConfig) {
-/*            for (Method method : objects.getValue0().getClass().getMethods()) {
-                try {
-                    if(method.getName().equals("injectSensorsModels")) {
-                        method.invoke(objects.getValue0(), objects.getValue1());
-                    } else if(method.getName().equals("assignsCommands")) {
-                        method.invoke(objects.getValue0(), objects.getValue2());
-                    }
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }*/
             if (!objects.getValue1().isEmpty() && objects.getValue0() instanceof BaseSensorController) {
                 ((BaseSensorController) objects.getValue0()).injectSensorsModels(objects.getValue1());
             }
@@ -272,7 +278,6 @@ public class Configuration implements Observable {
             if (!objects.getValue2().isEmpty() && objects.getValue0() instanceof BaseButtonSensorController) {
                 ((BaseButtonSensorController) objects.getValue0()).assignsCommands(objects.getValue2());
             }
-
         }
     }
 

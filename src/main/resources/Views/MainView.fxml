@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
+<VBox fx:id="mainScene" prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.MainController">
     <MenuBar VBox.vgrow="NEVER" />
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('background.jpg'); -fx-background-size: stretch; -fx-background-color: grey;" stylesheets="@constants.css">
         <SubScene fx:id="dataScene" height="510.0" layoutX="10.0" layoutY="10.0" width="205.0">

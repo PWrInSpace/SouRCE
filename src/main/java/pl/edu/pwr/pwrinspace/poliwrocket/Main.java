@@ -141,14 +141,7 @@ public class Main extends Application {
             });
 
             ConnectionController connectionController = (ConnectionController) controllerList.get(ConnectionController.class.getSimpleName());
-//            try {
-//                MapController mapController = (MapController) controllerList.get(MapController.class.getSimpleName());
-//                final Projection projection = getParameters().getUnnamed().contains("wgs84")
-//                        ? Projection.WGS_84 : Projection.WEB_MERCATOR;
-//                mapController.initMapAndControls(projection);
-//            }catch (Exception e) {
-//                logger.error("Map init error", e);
-//            }
+
             Configuration.getInstance().addListener(mainController);
             //--------------
 
@@ -236,123 +229,11 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       /* new Thread(() -> {
-            while(true) {
-                Set<Thread> threads = Thread.getAllStackTraces().keySet();
-                System.out.printf("%-15s \t %-15s \t %-15s \t %s\n", "Name", "State", "Priority", "isDaemon");
-                for (Thread t : threads) {
-                    System.out.printf("%-15s \t %-15s \t %-15d \t %s\n", t.getName(), t.getState(), t.getPriority(), t.isDaemon());
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }).start();*/
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
-//    private void testMode() {
-//
-//            JsonObject raw = new Gson().fromJson("{\n" +
-//                    "\t\"accel\": 100,\n" +
-//                    "\t\"pressure\": 48,\n" +
-//                    "\t\"satelites\": 12,\n" +
-//                    "\t\"fix\": 1,\n" +
-//                    "\t\"rocketWeight\": 24357,\n" +
-//                    "\t\"rssi\": 57,\n" +
-//                    "\t\"motherWeight\": 5357,\n" +
-//                    "\t\"bat1\": 8.1,\n" +
-//                    "\t\"bat2\": 8.2,\n" +
-//                    "\t\"bat3\": 8.3,\n" +
-//                    "\t\"bat4\": 8.0,\n" +
-//                    "\t\"bat5\": 7.9,\n" +
-//                    "\t\"bat6\": 7.8,\n" +
-//                    "\t\"alt\": 0,\n" +
-//                    "\t\"vel\": 12,\n" +
-//                    "\t\"igni\": 0,\n" +
-//                    "\t\"pilot\": 0,\n" +
-//                    "\t\"apoge\": 1,\n" +
-//                    "\t\"mainSchute\": 0,\n" +
-//                    "\t\"lat\": 51.20395820043864,\n" +
-//                    "\t\"lon\": 16.99416435080908\n" +
-//                    "}",JsonObject.class);
-//            new Thread(() -> {
-//                try {
-//                    Thread.sleep(4000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                while (true) {
-//                    if(SerialPortManager.getInstance().isPortOpen()) {
-//                        Frame frame = new Frame(raw.toString(), Instant.now());
-//                        messageParser.parseMessage(frame);
-//                        frameSaveService.saveFrameToFile(frame);
-//
-//                        for (String sensorKey: Configuration.getInstance().FRAME_PATTERN) {
-//                            if(sensorKey.equals("lat")) {
-//                                raw.addProperty(sensorKey,Double.parseDouble(raw.get(sensorKey).toString())+0.000025);
-//                            } else if(sensorKey.equals("lon")) {
-//                                raw.addProperty(sensorKey,Double.parseDouble(raw.get(sensorKey).toString())+0.000025);
-//                            } else if(sensorKey.contains("bat")) {
-//                                double r = ThreadLocalRandom.current().nextDouble(7.0,8.4);
-//                                raw.addProperty(sensorKey,r);
-//                            } else if(sensorKey.equals("accel")){
-//                                if(Double.parseDouble(raw.get(sensorKey).toString()) < 380){
-//                                    double r = ThreadLocalRandom.current().nextDouble(Double.parseDouble(raw.get(sensorKey).toString()),Double.parseDouble(raw.get(sensorKey).toString())+10);
-//                                    raw.addProperty(sensorKey,r);
-//
-//                                }
-//                            } else if(sensorKey.equals("alt")){
-//                                if(Double.parseDouble(raw.get(sensorKey).toString()) < 3850){
-//                                    double r = ThreadLocalRandom.current().nextDouble(Double.parseDouble(raw.get(sensorKey).toString()),Double.parseDouble(raw.get(sensorKey).toString())+20);
-//                                    raw.addProperty(sensorKey,r);
-//
-//                                }
-//                            }else if(sensorKey.equals("vel")){
-//                                if(Double.parseDouble(raw.get(sensorKey).toString()) < 380){
-//                                    double r = ThreadLocalRandom.current().nextDouble(Double.parseDouble(raw.get(sensorKey).toString()),Double.parseDouble(raw.get(sensorKey).toString())+5);
-//                                    raw.addProperty(sensorKey,r);
-//
-//                                }
-//                            } else if(sensorKey.equals("rocketWeight")){
-//                                double r = ThreadLocalRandom.current().nextDouble(16000,36000);
-//                                raw.addProperty(sensorKey,r);
-//                            } else if(sensorKey.equals("motherWeight")){
-//                                double r = ThreadLocalRandom.current().nextDouble(4000,11600);
-//                                raw.addProperty(sensorKey,r);
-//                            }else if(sensorKey.equals("rssi")){
-//                                double r = ThreadLocalRandom.current().nextDouble(50,100);
-//                                raw.addProperty(sensorKey,r);
-//                            }else if(sensorKey.equals("apoge")){
-//                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
-//                                raw.addProperty(sensorKey,r);
-//                            }else if(sensorKey.equals("igni")){
-//                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
-//                                raw.addProperty(sensorKey,r);
-//                            }else if(sensorKey.equals("pilot")){
-//                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
-//                                raw.addProperty(sensorKey,r);
-//                            }else if(sensorKey.equals("mainSchute")){
-//                                var r = ThreadLocalRandom.current().nextBoolean() ? 1.0 : 0;
-//                                raw.addProperty(sensorKey,r);
-//                            }
-//                        }
-//
-//                    }
-//                    try {
-//                        Thread.sleep(500);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }).start();
-//    }
 
     private void testMode() {
 

@@ -8,18 +8,27 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
-import javafx.scene.control.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.SubScene;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.javatuples.Pair;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.io.IOException;
@@ -39,6 +48,8 @@ public class MainController extends BaseController implements InvalidationListen
     private static final Color black = Color.BLACK;
     private static final Color fgDark = Color.rgb(245, 245, 247);
 
+    @FXML
+    private VBox mainScene;
     @FXML
     private SubScene CANIndicatorsScene;
     @FXML
@@ -159,7 +170,7 @@ public class MainController extends BaseController implements InvalidationListen
         setup3DModel();
 
         detaching();
-
+        setupDeviceKeyListeners();
     }
 
     private void setAppImages() {
@@ -413,5 +424,15 @@ public class MainController extends BaseController implements InvalidationListen
         gauge.setUnitColor(fg);
         gauge.setTickLabelColor(fg);
         gauge.setNeedleColor(fg);
+    }
+
+    private void setupDeviceKeyListeners() {
+        mainScene.setOnKeyReleased(event -> {
+            logger.info("Key pressed: {}", event.getCode());
+            Command<?> command = Configuration.getInstance().deviceKeyToCommandMap.get(event.getCode());
+            if (command != null) {
+                executorService.execute(() -> SerialPortManager.getInstance().write(command));
+            }
+        });
     }
 }
