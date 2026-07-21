@@ -22,7 +22,7 @@ public class FuelingCalculatorController extends BaseSensorController{
     @FXML private TextField sensorOxiPressureField;
     @FXML private TextField flowCoefficientField;
     @FXML private TextField ventDurationField;
-    @FXML private TextField estimatedVentField;
+//    @FXML private TextField estimatedVentField;
 
     @FXML private JFXCheckBox weightOverrideCheck;
     @FXML private JFXCheckBox pressureOverrideCheck;
@@ -37,6 +37,8 @@ public class FuelingCalculatorController extends BaseSensorController{
     @FXML private Label totalFueledLabel;
     @FXML private Label sinceVentLabel;
     @FXML private Label initialMotherWeightLabel;
+    @FXML private Label estimatedVentLabel;
+
 
     private double currentWeight  = 0.0;
     private double currentPressure  = 0.0;
@@ -121,7 +123,13 @@ public class FuelingCalculatorController extends BaseSensorController{
         flowCoefficientField.setOnAction(e -> calculateFlowRate());
         ventDurationField.setOnAction(e -> calculateFlowRate());
 
-        sensorTankWeightField.setOnAction(e -> updateFuelingCalucations());
+        sensorTankWeightField.setOnAction(e -> {
+            if(weightOverrideCheck.isSelected()){
+                double manualWeight = parseDoubleSafely(sensorTankWeightField.getText(), 0.0);
+                logsArea.appendText(String.format(Locale.US, "[OVERRIDE] Mother bottle weight set to: %.2f kg\n", currentWeight));
+            }
+            updateFuelingCalucations();
+        });
 
         flowCoefficientField.setText("0.42");
         sensorOxiPressureField.setText("0.0");
@@ -141,7 +149,7 @@ public class FuelingCalculatorController extends BaseSensorController{
         }
 
         double estimatedVentAmount = currentFlowRate * ventTime;
-        estimatedVentField.setText(String.format(Locale.US, "%.2f", estimatedVentAmount));
+        estimatedVentLabel.setText(String.format(Locale.US, "%.2f", estimatedVentAmount));
 
         if (currentFlowRate > 0) {
             flowArea.appendText(String.format(Locale.US, "[FLOW] Rate: %.3f kg/s | Est. Vent (wv): %.2f kg (P: %.1f bar)\n",
@@ -149,18 +157,6 @@ public class FuelingCalculatorController extends BaseSensorController{
         }
     }
 
-    private double parseDoubleSafely(String text, double defaultValue){
-        if(text == null || text.trim().isEmpty()){
-            return defaultValue;
-        }
-        try{
-            return Double.parseDouble(text.trim().replace(",", "."));
-        }catch(NumberFormatException e){
-            logger.warn("Fueling Calc: Invalid float format in field: '{}'. Defaulting to {}", text, defaultValue);
-            return defaultValue;
-        }
-
-    }
     private void updateFuelingCalucations(){
         if(!isProcessActive)return;
 
@@ -179,6 +175,19 @@ public class FuelingCalculatorController extends BaseSensorController{
 
         totalFueledLabel.setText(String.format(Locale.US, "%.2f", totalFueled));
         sinceVentLabel.setText(String.format(Locale.US, "%.2f", sinceLastVent));
+    }
+
+    private double parseDoubleSafely(String text, double defaultValue){
+        if(text == null || text.trim().isEmpty()){
+            return defaultValue;
+        }
+        try{
+            return Double.parseDouble(text.trim().replace(",", "."));
+        }catch(NumberFormatException e){
+            logger.warn("Fueling Calc: Invalid float format in field: '{}'. Defaulting to {}", text, defaultValue);
+            return defaultValue;
+        }
+
     }
 
     @FXML
