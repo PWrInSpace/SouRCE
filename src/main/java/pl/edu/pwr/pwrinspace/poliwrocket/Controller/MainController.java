@@ -18,11 +18,13 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import org.javatuples.KeyValue;
 import org.javatuples.Pair;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
@@ -133,6 +135,8 @@ public class MainController extends BaseController implements InvalidationListen
     private Stage primaryStage;
     private final List<Node> nodes = new ArrayList<>();
     private final HashMap<Node,Pair<Double,Double>> nodesInitPositions = new HashMap<>();
+
+    private Set<KeyCode> pressedKeys = new HashSet<>();
 
     public SubScene getMapScene() {
         return mapScene;
@@ -427,12 +431,17 @@ public class MainController extends BaseController implements InvalidationListen
     }
 
     private void setupDeviceKeyListeners() {
-        mainScene.setOnKeyReleased(event -> {
-            logger.info("Key pressed: {}", event.getCode());
-            Command<?> command = Configuration.getInstance().deviceKeyToCommandMap.get(event.getCode());
-            if (command != null) {
-                executorService.execute(() -> SerialPortManager.getInstance().write(command));
+        mainScene.setOnKeyPressed(event -> {
+            if (!pressedKeys.contains(event.getCode())) {
+                pressedKeys.add(event.getCode());
+                logger.info("Key pressed: {}", event.getCode());
+                Command<?> command = Configuration.getInstance().deviceKeyToCommandMap.get(event.getCode());
+                if (command != null) {
+                    executorService.execute(() -> SerialPortManager.getInstance().write(command));
+                }
             }
         });
+
+        mainScene.setOnKeyReleased(event -> pressedKeys.remove(event.getCode()));
     }
 }
