@@ -8,12 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 
 public class FuelingCalculatorController extends BaseSensorController{
@@ -50,31 +52,11 @@ public class FuelingCalculatorController extends BaseSensorController{
     private double totalVentLoss = 0.0;
     private double weightAtLastVent = 0.0;
 
-    protected HashMap<String, TextField> fieldHashMap = new HashMap<>();
+    @Override
+    protected void buildVisualizationMap() {}
 
     @Override
-    protected void buildVisualizationMap() {
-        fieldHashMap.clear();
-
-        for(Field declaredField: this.getClass().getDeclaredFields()) {
-            if(TextField.class.isAssignableFrom(declaredField.getType())) {
-                try{
-                    declaredField.setAccessible(true);
-                    fieldHashMap.put(declaredField.getName(), (TextField) declaredField.get(this));
-                }catch(IllegalAccessException e){
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void setUIBySensors() {
-        for(ISensor sensor : sensors) {
-            logger.info("Binding sensor {} to FuelingCalculatorController with destination: {}",
-                    sensor.getName(), sensor.getDestination());
-        }
-    }
+    protected void setUIBySensors() {}
 
     @Override
     public void invalidated(Observable observable) {
@@ -97,11 +79,6 @@ public class FuelingCalculatorController extends BaseSensorController{
                         calculateFlowRate();
                     }
 
-                }else{
-                    TextField targetField = fieldHashMap.get(destination);
-                    if(targetField != null){
-                        targetField.setText(String.format(Locale.US, "%.2f", sensor.getValue()));
-                    }
                 }
             });
         }
@@ -125,7 +102,7 @@ public class FuelingCalculatorController extends BaseSensorController{
 
         sensorTankWeightField.setOnAction(e -> {
             if(weightOverrideCheck.isSelected()){
-                double manualWeight = parseDoubleSafely(sensorTankWeightField.getText(), 0.0);
+                double currentWeight = parseDoubleSafely(sensorTankWeightField.getText(), 0.0);
                 logsArea.appendText(String.format(Locale.US, "[OVERRIDE] Mother bottle weight set to: %.2f kg\n", currentWeight));
             }
             updateFuelingCalucations();
