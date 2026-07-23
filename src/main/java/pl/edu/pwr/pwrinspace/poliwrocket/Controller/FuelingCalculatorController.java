@@ -115,22 +115,17 @@ public class FuelingCalculatorController extends BaseSensorController{
     }
 
     private void calculateFlowRate(){
-        currentPressure = parseDoubleSafely(sensorOxiPressureField.getText(), 0.0);
         double coefficient = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
         double ventTime = parseDoubleSafely(ventDurationField.getText(), 0.0);
+        double estimatedVentAmount = coefficient * ventTime;
 
-        if(currentPressure > 0){
-            currentFlowRate = coefficient * Math.sqrt(currentPressure);
-        }else{
-            currentFlowRate = 0.0;
-        }
+        currentFlowRate = coefficient;
 
-        double estimatedVentAmount = currentFlowRate * ventTime;
         estimatedVentLabel.setText(String.format(Locale.US, "%.2f", estimatedVentAmount));
 
         if (currentFlowRate > 0) {
-            flowArea.appendText(String.format(Locale.US, "[FLOW] Rate: %.3f kg/s | Est. Vent (wv): %.2f kg (P: %.1f bar)\n",
-                    currentFlowRate, estimatedVentAmount, currentPressure));
+            flowArea.appendText(String.format(Locale.US, "[FLOW] Rate: %.3f kg/s | Est. Vent (wv): %.2f kg\n",
+                    currentFlowRate, estimatedVentAmount));
         }
     }
 
