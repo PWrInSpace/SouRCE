@@ -24,7 +24,6 @@ public class FuelingCalculatorController extends BaseSensorController{
     @FXML private TextField sensorOxiPressureField;
     @FXML private TextField flowCoefficientField;
     @FXML private TextField ventDurationField;
-//    @FXML private TextField estimatedVentField;
 
     @FXML private JFXCheckBox weightOverrideCheck;
     @FXML private JFXCheckBox pressureOverrideCheck;
@@ -51,6 +50,15 @@ public class FuelingCalculatorController extends BaseSensorController{
 
     private double totalVentLoss = 0.0;
     private double weightAtLastVent = 0.0;
+
+    private static final double K = 1.28;
+    private static final double R = 188.91;
+    private static final double C_D = 0.62;
+    private static final double VENT_DIAMETER = 0.002;
+    private static final double A_T = (Math.PI * Math.pow(VENT_DIAMETER, 2)) / 4.0;
+
+    private static final double INITIAL_TEMP = 293.15; //20
+    private static final double INITIAL_PRESS = 50.0 * 100000.0;
 
     @Override
     protected void buildVisualizationMap() {}
@@ -115,6 +123,23 @@ public class FuelingCalculatorController extends BaseSensorController{
     }
 
     private void calculateFlowRate(){
+        double pBar = parseDoubleSafely(sensorOxiPressureField.getText(), 0.0);
+        double p = pBar * 100000.0;
+
+        if(p > 0 && !flowOverrideCheck.isSelected()){
+            double term1 = K / (R * INITIAL_TEMP);
+            double term2 = Math.pow((2.0 / (K + 1.0)), ((K + 1.0 )/ (K -1.0)));
+            double sqrtPart = Math.sqrt(term1 * term2);
+
+            double pressureRatio = Math.pow(p / INITIAL_PRESS, -((K - 1.0) / (2.0 * K)));
+
+            currentFlowRate = C_D * A_T * p *sqrtPart * pressureRatio;
+
+            flowCoefficientField.setText(String.format(Locale.US, "%.2f", currentFlowRate));
+        }else{
+            currentFlowRate = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
+        }
+
         double coefficient = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
         double ventTime = parseDoubleSafely(ventDurationField.getText(), 0.0);
         double estimatedVentAmount = coefficient * ventTime;
