@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="881.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.FuelingCalculatorController">
+   <children>
+      <JFXCheckBox fx:id="weightOverrideCheck" layoutX="392.0" layoutY="57.0" mnemonicParsing="false" text=" " />
+      <JFXCheckBox fx:id="flowOverrideCheck" layoutX="392.0" layoutY="179.0" mnemonicParsing="false" text=" " />
+      <JFXCheckBox fx:id="pressureOverrideCheck" layoutX="394.0" layoutY="116.0" mnemonicParsing="false" text=" " />
+      <Label layoutX="74.0" layoutY="116.0" prefHeight="18.0" prefWidth="168.0" text="OXI PRESSURE:" />
+      <Label layoutX="72.0" layoutY="57.0" prefHeight="18.0" prefWidth="168.0" text="MOTHER BOTTLE WEIGHT:" />
+      <Label layoutX="118.0" layoutY="555.0" text="TOTAL FUELED" />
+      <TextField fx:id="sensorTankWeightField" editable="false" layoutX="270.0" layoutY="53.0" prefHeight="26.0" prefWidth="109.0" />
+      <TextField fx:id="sensorOxiPressureField" editable="false" layoutX="272.0" layoutY="112.0" prefHeight="26.0" prefWidth="109.0" />
+      <TextField fx:id="flowCoefficientField" editable="false" layoutX="270.0" layoutY="175.0" prefHeight="26.0" prefWidth="109.0" />
+      <Label layoutX="564.0" layoutY="191.0" text="Estimated vent amount:" />
+      <JFXButton fx:id="ventButton" layoutX="657.0" layoutY="564.0" mnemonicParsing="false" onAction="#handleVent" prefHeight="37.0" prefWidth="73.0" text="VENT" />
+      <Label layoutX="79.0" layoutY="239.0" prefHeight="18.0" prefWidth="168.0" text="VENT DURATION:" />
+      <TextField fx:id="ventDurationField" layoutX="272.0" layoutY="235.0" prefHeight="26.0" prefWidth="109.0" />
+      <TextArea fx:id="logsArea" editable="false" layoutX="48.0" layoutY="324.0" prefHeight="183.0" prefWidth="360.0" />
+      <Label layoutX="72.0" layoutY="179.0" prefHeight="18.0" prefWidth="168.0" text="FLOW COEFFICIENT:" />
+      <Label layoutX="118.0" layoutY="590.0" text="SINCE VENT" />
+      <JFXButton fx:id="startButton" layoutX="553.0" layoutY="564.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="37.0" prefWidth="73.0" text="START" />
+      <Label layoutX="552.0" layoutY="75.0" text="Initial mother bottle weight" />
+      <Label fx:id="totalFueledLabel" layoutX="247.0" layoutY="555.0" text="0.0" />
+      <Label fx:id="sinceVentLabel" layoutX="247.0" layoutY="590.0" text="0.0" />
+      <Label layoutX="306.0" layoutY="554.0" text="kg" />
+      <Label layoutX="306.0" layoutY="589.0" text="kg" />
+      <Label fx:id="initialMotherWeightLabel" layoutX="583.0" layoutY="115.0" text="XXX.X" />
+      <Label layoutX="664.0" layoutY="111.0" prefHeight="18.0" prefWidth="19.0" text="kg" />
+      <TextArea fx:id="flowArea" editable="false" layoutX="446.0" layoutY="324.0" prefHeight="183.0" prefWidth="391.0" />
+      <Label layoutX="213.0" layoutY="306.0" text="Logs" />
+      <Label layoutX="625.0" layoutY="306.0" prefHeight="18.0" prefWidth="34.0" text="Flow" />
+      <Label fx:id="estimatedVentLabel" layoutX="577.0" layoutY="217.0" prefWidth="34.0" text="XXX.X" />
+      <Label layoutX="655.0" layoutY="217.0" prefHeight="18.0" prefWidth="19.0" text="kg" />
+   </children>
+</AnchorPane>

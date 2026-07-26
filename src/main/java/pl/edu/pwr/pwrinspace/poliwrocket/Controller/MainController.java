@@ -117,6 +117,8 @@ public class MainController extends BaseController implements InvalidationListen
     private SubScene recoveryArmScene;
     @FXML
     private SubScene testCommandsScene;
+    @FXML
+    private SubScene fuelingCalculatorScene;
 
     private final SmartGroup root = new SmartGroup();
     private Stage primaryStage;
@@ -390,8 +392,6 @@ public class MainController extends BaseController implements InvalidationListen
             }else if (n instanceof Gauge){
                 Gauge gauge = (Gauge) n;
                 applyGaugeStyle(gauge, fg);
-            }else{
-                System.out.println("Node ignored for styling: " + n.getClass().getSimpleName());
             }
         }
     }
