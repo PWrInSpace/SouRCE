@@ -339,8 +339,9 @@ public class MainController extends BaseController implements InvalidationListen
 
             stage.setOnCloseRequest(e -> {
                 content.getTransforms().clear();
-                Tab restoredTab = new Tab(tabTitle, content);
-                tabPane.getTabs().add(oldIndex, restoredTab);
+                tab.setContent(content);
+                tabPane.getTabs().add(oldIndex, tab);
+                tabPane.getSelectionModel().select(tab);
             });
 
             stage.show();
