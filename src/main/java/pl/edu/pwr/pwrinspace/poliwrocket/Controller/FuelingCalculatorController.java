@@ -73,14 +73,14 @@ public class FuelingCalculatorController extends BaseSensorController{
             String destination = sensor.getDestination();
 
             UIThreadManager.getInstance().addNormal(() -> {
-                if(destination.equals("dataGauge3")) {
+                if(destination.equals("dataGauge1")) {
                     if(!weightOverrideCheck.isSelected()){
                         currentWeight = sensor.getValue();
                         sensorTankWeightField.setText(String.format(Locale.US, "%.2f", currentWeight));
                         updateFuelingCalucations();
                     }
 
-                }else if (destination.equals("dataGauge2")) {
+                }else if (destination.equals("dataGauge8")) {
                     if(!pressureOverrideCheck.isSelected()){
                         currentPressure = sensor.getValue();
                         sensorOxiPressureField.setText(String.format(Locale.US, "%.2f", currentPressure));
@@ -131,9 +131,7 @@ public class FuelingCalculatorController extends BaseSensorController{
             double term2 = Math.pow((2.0 / (K + 1.0)), ((K + 1.0 )/ (K -1.0)));
             double sqrtPart = Math.sqrt(term1 * term2);
 
-            double pressureRatio = Math.pow(p / INITIAL_PRESS, -((K - 1.0) / (2.0 * K)));
-
-            currentFlowRate = C_D * A_T * p *sqrtPart * pressureRatio;
+            currentFlowRate = C_D * A_T * p *sqrtPart;
 
             flowCoefficientField.setText(String.format(Locale.US, "%.2f", currentFlowRate));
         }else{
