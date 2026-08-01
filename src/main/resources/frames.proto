@@ -3,32 +3,42 @@ syntax = "proto3";
 option java_package = "pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser";
 option java_outer_classname = "FrameProtos";
 
-message LoRaFrameMCB {
-   // --- MCB ---
+message MCBFrame {
+  // === MCB ===
   optional uint32 mcb_state = 1;
-  optional uint32 uptime_ms = 2;                   // ms
-  optional sint32 flight_time_ms = 3;               // ms
+  optional uint32 uptime_ms = 2;
+  optional sint32 flight_time_ms = 3;
   optional uint32 mcb_batt = 4;
   optional float gps_lat = 5;
   optional float gps_long = 6;
-  optional bool gps_sat_ok = 7;                    // >3 = OK
-  optional sint32 altitude_m = 8;                   // meters
-  optional sint32 velocity_m_s = 9;                 // m/s
+  optional bool gps_sat_ok = 7;
+  optional sint32 altitude_m = 8;
+  optional sint32 velocity_m_s = 9;
   optional sint32 mcb_temperature = 10;
   optional float euler_fi = 11;
   optional float euler_psi = 12;
   optional float euler_theta = 13;
 
-  // --- Recovery ---
+  // === Recovery bitfield ===
+  // bit0: separation_switch_1
+  // bit1: separation_switch_2
+  // bit2: stage1_done
+  // bit3: stage2_done
+  // bit4: telemetrum_1_stage
+  // bit5: telemetrum_2_stage
+  // bit6: easy_mini_1_stage
+  // bit7: easy_mini_2_stage
+  // bit8: is_tele_active
+  // bit9: is_easy_mini_active
   optional fixed32 recovery_flags = 14;
 
-  // --- Pitot ---
+  // === Pitot ===
   optional uint32 pitot_battery = 15;
   optional sint32 pitot_altitude = 16;
   optional sint32 pitot_velocity = 17;
   optional sint32 pitot_temperature = 18;
 
-  // --- Valve states ---
+  // === Main/Vent bitfield ===
   // bit0: OX_MAIN_STATE
   // bit1: N2_MAIN_STATE
   // bit2: OX_VENT_STATE
@@ -37,7 +47,6 @@ message LoRaFrameMCB {
   // bit5: N2_VENT_STATE
   optional fixed32 main_vent_flags = 19;
 
-  // --- Byte data ---
   optional fixed32 n2_vent_bit_data_a = 20;
 
   optional fixed32 ox_vent_eth_main_bit_data_a = 21;
@@ -52,9 +61,10 @@ message LoRaFrameMCB {
 
   optional uint32 auto_vent_setting = 28;
 
-  // --- Payload ---
+  // === Payload ===
   optional uint32 payload_battery = 29;
 
+  // === ESP-NOW connection bitfield ===
   // bit0: payload_connected
   // bit1: tanwa_connected
   // bit2: eth_vent_valve_connected
@@ -63,6 +73,8 @@ message LoRaFrameMCB {
   // bit5: n2_vent_connected
   // bit6: pitot_connected
   optional fixed32 esp_now_connected_flags = 30;
+
+  // === ESP-NOW wake-up bitfield ===
   // bit0: payload_wkup
   // bit1: eth_vent_valve_wkup
   // bit2: ox_main_wkup
@@ -71,14 +83,17 @@ message LoRaFrameMCB {
   // bit5: pitot_wkup
   optional fixed32 esp_now_wkup_flags = 31;
 
-  // --- Errors ---
   optional fixed32 errors = 32;
 }
 
-message LoRaFrameTanwa {
+message TanwaFrame {
+  // === Tanwa ===
   optional fixed32 tanwa_battery = 1;
   optional uint32 tanwa_state = 2;
 
+  // 8 bytes
+
+  // === Tanwa CAN connections & status ===
   // bit0: CAN_Weights_connection
   // bit1: CAN_Utility_connection
   // bit2: CAN_Sensor_connection
@@ -100,9 +115,10 @@ message LoRaFrameTanwa {
 
   optional sint32 tanwa_thrust = 4;
   optional uint32 tanwa_tank_weight = 5;
-
   optional sint32 tanwa_temp_post_n2o_fill = 6;
   optional sint32 tanwa_temp_filling_wall = 7;
+
+  // Tanwa pressures
   optional uint32 tanwa_post_fill_n2o_pres = 8;
   optional uint32 tanwa_cutoff_n2o_pres = 9;
   optional uint32 tanwa_droid_n2o_pres = 10;
@@ -113,9 +129,17 @@ message LoRaFrameTanwa {
   optional uint32 tanwa_comb_chamber_pres = 15;
 }
 
-message LoRaCommand {
+message AppFrame {
   optional uint32 lora_dev_id = 1;
   optional uint32 sys_dev_id = 2;
   optional uint32 command = 3;
   optional int32 payload = 4;
+}
+
+message LoRaFrame {
+  oneof frame {
+    MCBFrame mcb_frame = 1;
+    TanwaFrame tanwa_frame = 2;
+    AppFrame app_frame = 3;
+  }
 }

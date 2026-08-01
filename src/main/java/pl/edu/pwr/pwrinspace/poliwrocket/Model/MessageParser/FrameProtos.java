@@ -14,13 +14,13 @@ public final class FrameProtos {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface LoRaFrameMCBOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaFrameMCB)
+  public interface MCBFrameOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:MCBFrame)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * --- MCB ---
+     * === MCB ===
      * </pre>
      *
      * <code>optional uint32 mcb_state = 1;</code>
@@ -29,7 +29,7 @@ public final class FrameProtos {
     boolean hasMcbState();
     /**
      * <pre>
-     * --- MCB ---
+     * === MCB ===
      * </pre>
      *
      * <code>optional uint32 mcb_state = 1;</code>
@@ -38,38 +38,22 @@ public final class FrameProtos {
     int getMcbState();
 
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional uint32 uptime_ms = 2;</code>
      * @return Whether the uptimeMs field is set.
      */
     boolean hasUptimeMs();
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional uint32 uptime_ms = 2;</code>
      * @return The uptimeMs.
      */
     int getUptimeMs();
 
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional sint32 flight_time_ms = 3;</code>
      * @return Whether the flightTimeMs field is set.
      */
     boolean hasFlightTimeMs();
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional sint32 flight_time_ms = 3;</code>
      * @return The flightTimeMs.
      */
@@ -109,57 +93,33 @@ public final class FrameProtos {
     float getGpsLong();
 
     /**
-     * <pre>
-     * &gt;3 = OK
-     * </pre>
-     *
      * <code>optional bool gps_sat_ok = 7;</code>
      * @return Whether the gpsSatOk field is set.
      */
     boolean hasGpsSatOk();
     /**
-     * <pre>
-     * &gt;3 = OK
-     * </pre>
-     *
      * <code>optional bool gps_sat_ok = 7;</code>
      * @return The gpsSatOk.
      */
     boolean getGpsSatOk();
 
     /**
-     * <pre>
-     * meters
-     * </pre>
-     *
      * <code>optional sint32 altitude_m = 8;</code>
      * @return Whether the altitudeM field is set.
      */
     boolean hasAltitudeM();
     /**
-     * <pre>
-     * meters
-     * </pre>
-     *
      * <code>optional sint32 altitude_m = 8;</code>
      * @return The altitudeM.
      */
     int getAltitudeM();
 
     /**
-     * <pre>
-     * m/s
-     * </pre>
-     *
      * <code>optional sint32 velocity_m_s = 9;</code>
      * @return Whether the velocityMS field is set.
      */
     boolean hasVelocityMS();
     /**
-     * <pre>
-     * m/s
-     * </pre>
-     *
      * <code>optional sint32 velocity_m_s = 9;</code>
      * @return The velocityMS.
      */
@@ -211,7 +171,17 @@ public final class FrameProtos {
 
     /**
      * <pre>
-     * --- Recovery ---
+     * === Recovery bitfield ===
+     * bit0: separation_switch_1
+     * bit1: separation_switch_2
+     * bit2: stage1_done
+     * bit3: stage2_done
+     * bit4: telemetrum_1_stage
+     * bit5: telemetrum_2_stage
+     * bit6: easy_mini_1_stage
+     * bit7: easy_mini_2_stage
+     * bit8: is_tele_active
+     * bit9: is_easy_mini_active
      * </pre>
      *
      * <code>optional fixed32 recovery_flags = 14;</code>
@@ -220,7 +190,17 @@ public final class FrameProtos {
     boolean hasRecoveryFlags();
     /**
      * <pre>
-     * --- Recovery ---
+     * === Recovery bitfield ===
+     * bit0: separation_switch_1
+     * bit1: separation_switch_2
+     * bit2: stage1_done
+     * bit3: stage2_done
+     * bit4: telemetrum_1_stage
+     * bit5: telemetrum_2_stage
+     * bit6: easy_mini_1_stage
+     * bit7: easy_mini_2_stage
+     * bit8: is_tele_active
+     * bit9: is_easy_mini_active
      * </pre>
      *
      * <code>optional fixed32 recovery_flags = 14;</code>
@@ -230,7 +210,7 @@ public final class FrameProtos {
 
     /**
      * <pre>
-     * --- Pitot ---
+     * === Pitot ===
      * </pre>
      *
      * <code>optional uint32 pitot_battery = 15;</code>
@@ -239,7 +219,7 @@ public final class FrameProtos {
     boolean hasPitotBattery();
     /**
      * <pre>
-     * --- Pitot ---
+     * === Pitot ===
      * </pre>
      *
      * <code>optional uint32 pitot_battery = 15;</code>
@@ -282,7 +262,7 @@ public final class FrameProtos {
 
     /**
      * <pre>
-     * --- Valve states ---
+     * === Main/Vent bitfield ===
      * bit0: OX_MAIN_STATE
      * bit1: N2_MAIN_STATE
      * bit2: OX_VENT_STATE
@@ -297,7 +277,7 @@ public final class FrameProtos {
     boolean hasMainVentFlags();
     /**
      * <pre>
-     * --- Valve states ---
+     * === Main/Vent bitfield ===
      * bit0: OX_MAIN_STATE
      * bit1: N2_MAIN_STATE
      * bit2: OX_VENT_STATE
@@ -312,19 +292,11 @@ public final class FrameProtos {
     int getMainVentFlags();
 
     /**
-     * <pre>
-     * --- Byte data ---
-     * </pre>
-     *
      * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
      * @return Whether the n2VentBitDataA field is set.
      */
     boolean hasN2VentBitDataA();
     /**
-     * <pre>
-     * --- Byte data ---
-     * </pre>
-     *
      * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
      * @return The n2VentBitDataA.
      */
@@ -420,7 +392,7 @@ public final class FrameProtos {
 
     /**
      * <pre>
-     * --- Payload ---
+     * === Payload ===
      * </pre>
      *
      * <code>optional uint32 payload_battery = 29;</code>
@@ -429,7 +401,7 @@ public final class FrameProtos {
     boolean hasPayloadBattery();
     /**
      * <pre>
-     * --- Payload ---
+     * === Payload ===
      * </pre>
      *
      * <code>optional uint32 payload_battery = 29;</code>
@@ -439,6 +411,7 @@ public final class FrameProtos {
 
     /**
      * <pre>
+     * === ESP-NOW connection bitfield ===
      * bit0: payload_connected
      * bit1: tanwa_connected
      * bit2: eth_vent_valve_connected
@@ -454,6 +427,7 @@ public final class FrameProtos {
     boolean hasEspNowConnectedFlags();
     /**
      * <pre>
+     * === ESP-NOW connection bitfield ===
      * bit0: payload_connected
      * bit1: tanwa_connected
      * bit2: eth_vent_valve_connected
@@ -470,6 +444,7 @@ public final class FrameProtos {
 
     /**
      * <pre>
+     * === ESP-NOW wake-up bitfield ===
      * bit0: payload_wkup
      * bit1: eth_vent_valve_wkup
      * bit2: ox_main_wkup
@@ -484,6 +459,7 @@ public final class FrameProtos {
     boolean hasEspNowWkupFlags();
     /**
      * <pre>
+     * === ESP-NOW wake-up bitfield ===
      * bit0: payload_wkup
      * bit1: eth_vent_valve_wkup
      * bit2: ox_main_wkup
@@ -498,44 +474,36 @@ public final class FrameProtos {
     int getEspNowWkupFlags();
 
     /**
-     * <pre>
-     * --- Errors ---
-     * </pre>
-     *
      * <code>optional fixed32 errors = 32;</code>
      * @return Whether the errors field is set.
      */
     boolean hasErrors();
     /**
-     * <pre>
-     * --- Errors ---
-     * </pre>
-     *
      * <code>optional fixed32 errors = 32;</code>
      * @return The errors.
      */
     int getErrors();
   }
   /**
-   * Protobuf type {@code LoRaFrameMCB}
+   * Protobuf type {@code MCBFrame}
    */
-  public static final class LoRaFrameMCB extends
+  public static final class MCBFrame extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaFrameMCB)
-      LoRaFrameMCBOrBuilder {
+      // @@protoc_insertion_point(message_implements:MCBFrame)
+      MCBFrameOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use LoRaFrameMCB.newBuilder() to construct.
-    private LoRaFrameMCB(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use MCBFrame.newBuilder() to construct.
+    private MCBFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private LoRaFrameMCB() {
+    private MCBFrame() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new LoRaFrameMCB();
+      return new MCBFrame();
     }
 
     @java.lang.Override
@@ -545,15 +513,15 @@ public final class FrameProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameMCB_descriptor;
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_MCBFrame_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameMCB_fieldAccessorTable
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_MCBFrame_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB.Builder.class);
+              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.Builder.class);
     }
 
     private int bitField0_;
@@ -561,7 +529,7 @@ public final class FrameProtos {
     private int mcbState_ = 0;
     /**
      * <pre>
-     * --- MCB ---
+     * === MCB ===
      * </pre>
      *
      * <code>optional uint32 mcb_state = 1;</code>
@@ -573,7 +541,7 @@ public final class FrameProtos {
     }
     /**
      * <pre>
-     * --- MCB ---
+     * === MCB ===
      * </pre>
      *
      * <code>optional uint32 mcb_state = 1;</code>
@@ -587,10 +555,6 @@ public final class FrameProtos {
     public static final int UPTIME_MS_FIELD_NUMBER = 2;
     private int uptimeMs_ = 0;
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional uint32 uptime_ms = 2;</code>
      * @return Whether the uptimeMs field is set.
      */
@@ -599,10 +563,6 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional uint32 uptime_ms = 2;</code>
      * @return The uptimeMs.
      */
@@ -614,10 +574,6 @@ public final class FrameProtos {
     public static final int FLIGHT_TIME_MS_FIELD_NUMBER = 3;
     private int flightTimeMs_ = 0;
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional sint32 flight_time_ms = 3;</code>
      * @return Whether the flightTimeMs field is set.
      */
@@ -626,10 +582,6 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <pre>
-     * ms
-     * </pre>
-     *
      * <code>optional sint32 flight_time_ms = 3;</code>
      * @return The flightTimeMs.
      */
@@ -698,10 +650,6 @@ public final class FrameProtos {
     public static final int GPS_SAT_OK_FIELD_NUMBER = 7;
     private boolean gpsSatOk_ = false;
     /**
-     * <pre>
-     * &gt;3 = OK
-     * </pre>
-     *
      * <code>optional bool gps_sat_ok = 7;</code>
      * @return Whether the gpsSatOk field is set.
      */
@@ -710,10 +658,6 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000040) != 0);
     }
     /**
-     * <pre>
-     * &gt;3 = OK
-     * </pre>
-     *
      * <code>optional bool gps_sat_ok = 7;</code>
      * @return The gpsSatOk.
      */
@@ -725,10 +669,6 @@ public final class FrameProtos {
     public static final int ALTITUDE_M_FIELD_NUMBER = 8;
     private int altitudeM_ = 0;
     /**
-     * <pre>
-     * meters
-     * </pre>
-     *
      * <code>optional sint32 altitude_m = 8;</code>
      * @return Whether the altitudeM field is set.
      */
@@ -737,10 +677,6 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000080) != 0);
     }
     /**
-     * <pre>
-     * meters
-     * </pre>
-     *
      * <code>optional sint32 altitude_m = 8;</code>
      * @return The altitudeM.
      */
@@ -752,10 +688,6 @@ public final class FrameProtos {
     public static final int VELOCITY_M_S_FIELD_NUMBER = 9;
     private int velocityMS_ = 0;
     /**
-     * <pre>
-     * m/s
-     * </pre>
-     *
      * <code>optional sint32 velocity_m_s = 9;</code>
      * @return Whether the velocityMS field is set.
      */
@@ -764,10 +696,6 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000100) != 0);
     }
     /**
-     * <pre>
-     * m/s
-     * </pre>
-     *
      * <code>optional sint32 velocity_m_s = 9;</code>
      * @return The velocityMS.
      */
@@ -856,7 +784,17 @@ public final class FrameProtos {
     private int recoveryFlags_ = 0;
     /**
      * <pre>
-     * --- Recovery ---
+     * === Recovery bitfield ===
+     * bit0: separation_switch_1
+     * bit1: separation_switch_2
+     * bit2: stage1_done
+     * bit3: stage2_done
+     * bit4: telemetrum_1_stage
+     * bit5: telemetrum_2_stage
+     * bit6: easy_mini_1_stage
+     * bit7: easy_mini_2_stage
+     * bit8: is_tele_active
+     * bit9: is_easy_mini_active
      * </pre>
      *
      * <code>optional fixed32 recovery_flags = 14;</code>
@@ -868,7 +806,17 @@ public final class FrameProtos {
     }
     /**
      * <pre>
-     * --- Recovery ---
+     * === Recovery bitfield ===
+     * bit0: separation_switch_1
+     * bit1: separation_switch_2
+     * bit2: stage1_done
+     * bit3: stage2_done
+     * bit4: telemetrum_1_stage
+     * bit5: telemetrum_2_stage
+     * bit6: easy_mini_1_stage
+     * bit7: easy_mini_2_stage
+     * bit8: is_tele_active
+     * bit9: is_easy_mini_active
      * </pre>
      *
      * <code>optional fixed32 recovery_flags = 14;</code>
@@ -883,7 +831,7 @@ public final class FrameProtos {
     private int pitotBattery_ = 0;
     /**
      * <pre>
-     * --- Pitot ---
+     * === Pitot ===
      * </pre>
      *
      * <code>optional uint32 pitot_battery = 15;</code>
@@ -895,7 +843,7 @@ public final class FrameProtos {
     }
     /**
      * <pre>
-     * --- Pitot ---
+     * === Pitot ===
      * </pre>
      *
      * <code>optional uint32 pitot_battery = 15;</code>
@@ -967,7 +915,7 @@ public final class FrameProtos {
     private int mainVentFlags_ = 0;
     /**
      * <pre>
-     * --- Valve states ---
+     * === Main/Vent bitfield ===
      * bit0: OX_MAIN_STATE
      * bit1: N2_MAIN_STATE
      * bit2: OX_VENT_STATE
@@ -985,7 +933,7 @@ public final class FrameProtos {
     }
     /**
      * <pre>
-     * --- Valve states ---
+     * === Main/Vent bitfield ===
      * bit0: OX_MAIN_STATE
      * bit1: N2_MAIN_STATE
      * bit2: OX_VENT_STATE
@@ -1005,10 +953,6 @@ public final class FrameProtos {
     public static final int N2_VENT_BIT_DATA_A_FIELD_NUMBER = 20;
     private int n2VentBitDataA_ = 0;
     /**
-     * <pre>
-     * --- Byte data ---
-     * </pre>
-     *
      * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
      * @return Whether the n2VentBitDataA field is set.
      */
@@ -1017,10 +961,6 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00080000) != 0);
     }
     /**
-     * <pre>
-     * --- Byte data ---
-     * </pre>
-     *
      * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
      * @return The n2VentBitDataA.
      */
@@ -1185,7 +1125,7 @@ public final class FrameProtos {
     private int payloadBattery_ = 0;
     /**
      * <pre>
-     * --- Payload ---
+     * === Payload ===
      * </pre>
      *
      * <code>optional uint32 payload_battery = 29;</code>
@@ -1197,7 +1137,7 @@ public final class FrameProtos {
     }
     /**
      * <pre>
-     * --- Payload ---
+     * === Payload ===
      * </pre>
      *
      * <code>optional uint32 payload_battery = 29;</code>
@@ -1212,6 +1152,7 @@ public final class FrameProtos {
     private int espNowConnectedFlags_ = 0;
     /**
      * <pre>
+     * === ESP-NOW connection bitfield ===
      * bit0: payload_connected
      * bit1: tanwa_connected
      * bit2: eth_vent_valve_connected
@@ -1230,6 +1171,7 @@ public final class FrameProtos {
     }
     /**
      * <pre>
+     * === ESP-NOW connection bitfield ===
      * bit0: payload_connected
      * bit1: tanwa_connected
      * bit2: eth_vent_valve_connected
@@ -1251,6 +1193,7 @@ public final class FrameProtos {
     private int espNowWkupFlags_ = 0;
     /**
      * <pre>
+     * === ESP-NOW wake-up bitfield ===
      * bit0: payload_wkup
      * bit1: eth_vent_valve_wkup
      * bit2: ox_main_wkup
@@ -1268,6 +1211,7 @@ public final class FrameProtos {
     }
     /**
      * <pre>
+     * === ESP-NOW wake-up bitfield ===
      * bit0: payload_wkup
      * bit1: eth_vent_valve_wkup
      * bit2: ox_main_wkup
@@ -1287,10 +1231,6 @@ public final class FrameProtos {
     public static final int ERRORS_FIELD_NUMBER = 32;
     private int errors_ = 0;
     /**
-     * <pre>
-     * --- Errors ---
-     * </pre>
-     *
      * <code>optional fixed32 errors = 32;</code>
      * @return Whether the errors field is set.
      */
@@ -1299,10 +1239,6 @@ public final class FrameProtos {
       return ((bitField0_ & 0x80000000) != 0);
     }
     /**
-     * <pre>
-     * --- Errors ---
-     * </pre>
-     *
      * <code>optional fixed32 errors = 32;</code>
      * @return The errors.
      */
@@ -1568,10 +1504,10 @@ public final class FrameProtos {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB)) {
+      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame)) {
         return super.equals(obj);
       }
-      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB) obj;
+      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) obj;
 
       if (hasMcbState() != other.hasMcbState()) return false;
       if (hasMcbState()) {
@@ -1888,69 +1824,69 @@ public final class FrameProtos {
       return hash;
     }
 
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(byte[] data)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(java.io.InputStream input)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseDelimitedFrom(java.io.InputStream input)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseDelimitedFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1963,7 +1899,7 @@ public final class FrameProtos {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB prototype) {
+    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1979,26 +1915,26 @@ public final class FrameProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code LoRaFrameMCB}
+     * Protobuf type {@code MCBFrame}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaFrameMCB)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCBOrBuilder {
+        // @@protoc_insertion_point(builder_implements:MCBFrame)
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrameOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameMCB_descriptor;
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_MCBFrame_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameMCB_fieldAccessorTable
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_MCBFrame_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB.Builder.class);
+                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.Builder.class);
       }
 
-      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB.newBuilder()
+      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.newBuilder()
       private Builder() {
 
       }
@@ -2050,17 +1986,17 @@ public final class FrameProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameMCB_descriptor;
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_MCBFrame_descriptor;
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB getDefaultInstanceForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB.getDefaultInstance();
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame getDefaultInstanceForType() {
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance();
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB build() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB result = buildPartial();
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame build() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2068,14 +2004,14 @@ public final class FrameProtos {
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB buildPartial() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB(this);
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame buildPartial() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB result) {
+      private void buildPartial0(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -2243,16 +2179,16 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB) {
-          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB)other);
+        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) {
+          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB other) {
-        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB.getDefaultInstance()) return this;
+      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame other) {
+        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance()) return this;
         if (other.hasMcbState()) {
           setMcbState(other.getMcbState());
         }
@@ -2555,7 +2491,7 @@ public final class FrameProtos {
       private int mcbState_ ;
       /**
        * <pre>
-       * --- MCB ---
+       * === MCB ===
        * </pre>
        *
        * <code>optional uint32 mcb_state = 1;</code>
@@ -2567,7 +2503,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- MCB ---
+       * === MCB ===
        * </pre>
        *
        * <code>optional uint32 mcb_state = 1;</code>
@@ -2579,7 +2515,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- MCB ---
+       * === MCB ===
        * </pre>
        *
        * <code>optional uint32 mcb_state = 1;</code>
@@ -2595,7 +2531,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- MCB ---
+       * === MCB ===
        * </pre>
        *
        * <code>optional uint32 mcb_state = 1;</code>
@@ -2610,10 +2546,6 @@ public final class FrameProtos {
 
       private int uptimeMs_ ;
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional uint32 uptime_ms = 2;</code>
        * @return Whether the uptimeMs field is set.
        */
@@ -2622,10 +2554,6 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional uint32 uptime_ms = 2;</code>
        * @return The uptimeMs.
        */
@@ -2634,10 +2562,6 @@ public final class FrameProtos {
         return uptimeMs_;
       }
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional uint32 uptime_ms = 2;</code>
        * @param value The uptimeMs to set.
        * @return This builder for chaining.
@@ -2650,10 +2574,6 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional uint32 uptime_ms = 2;</code>
        * @return This builder for chaining.
        */
@@ -2666,10 +2586,6 @@ public final class FrameProtos {
 
       private int flightTimeMs_ ;
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional sint32 flight_time_ms = 3;</code>
        * @return Whether the flightTimeMs field is set.
        */
@@ -2678,10 +2594,6 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional sint32 flight_time_ms = 3;</code>
        * @return The flightTimeMs.
        */
@@ -2690,10 +2602,6 @@ public final class FrameProtos {
         return flightTimeMs_;
       }
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional sint32 flight_time_ms = 3;</code>
        * @param value The flightTimeMs to set.
        * @return This builder for chaining.
@@ -2706,10 +2614,6 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <pre>
-       * ms
-       * </pre>
-       *
        * <code>optional sint32 flight_time_ms = 3;</code>
        * @return This builder for chaining.
        */
@@ -2842,10 +2746,6 @@ public final class FrameProtos {
 
       private boolean gpsSatOk_ ;
       /**
-       * <pre>
-       * &gt;3 = OK
-       * </pre>
-       *
        * <code>optional bool gps_sat_ok = 7;</code>
        * @return Whether the gpsSatOk field is set.
        */
@@ -2854,10 +2754,6 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000040) != 0);
       }
       /**
-       * <pre>
-       * &gt;3 = OK
-       * </pre>
-       *
        * <code>optional bool gps_sat_ok = 7;</code>
        * @return The gpsSatOk.
        */
@@ -2866,10 +2762,6 @@ public final class FrameProtos {
         return gpsSatOk_;
       }
       /**
-       * <pre>
-       * &gt;3 = OK
-       * </pre>
-       *
        * <code>optional bool gps_sat_ok = 7;</code>
        * @param value The gpsSatOk to set.
        * @return This builder for chaining.
@@ -2882,10 +2774,6 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <pre>
-       * &gt;3 = OK
-       * </pre>
-       *
        * <code>optional bool gps_sat_ok = 7;</code>
        * @return This builder for chaining.
        */
@@ -2898,10 +2786,6 @@ public final class FrameProtos {
 
       private int altitudeM_ ;
       /**
-       * <pre>
-       * meters
-       * </pre>
-       *
        * <code>optional sint32 altitude_m = 8;</code>
        * @return Whether the altitudeM field is set.
        */
@@ -2910,10 +2794,6 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000080) != 0);
       }
       /**
-       * <pre>
-       * meters
-       * </pre>
-       *
        * <code>optional sint32 altitude_m = 8;</code>
        * @return The altitudeM.
        */
@@ -2922,10 +2802,6 @@ public final class FrameProtos {
         return altitudeM_;
       }
       /**
-       * <pre>
-       * meters
-       * </pre>
-       *
        * <code>optional sint32 altitude_m = 8;</code>
        * @param value The altitudeM to set.
        * @return This builder for chaining.
@@ -2938,10 +2814,6 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <pre>
-       * meters
-       * </pre>
-       *
        * <code>optional sint32 altitude_m = 8;</code>
        * @return This builder for chaining.
        */
@@ -2954,10 +2826,6 @@ public final class FrameProtos {
 
       private int velocityMS_ ;
       /**
-       * <pre>
-       * m/s
-       * </pre>
-       *
        * <code>optional sint32 velocity_m_s = 9;</code>
        * @return Whether the velocityMS field is set.
        */
@@ -2966,10 +2834,6 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000100) != 0);
       }
       /**
-       * <pre>
-       * m/s
-       * </pre>
-       *
        * <code>optional sint32 velocity_m_s = 9;</code>
        * @return The velocityMS.
        */
@@ -2978,10 +2842,6 @@ public final class FrameProtos {
         return velocityMS_;
       }
       /**
-       * <pre>
-       * m/s
-       * </pre>
-       *
        * <code>optional sint32 velocity_m_s = 9;</code>
        * @param value The velocityMS to set.
        * @return This builder for chaining.
@@ -2994,10 +2854,6 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <pre>
-       * m/s
-       * </pre>
-       *
        * <code>optional sint32 velocity_m_s = 9;</code>
        * @return This builder for chaining.
        */
@@ -3171,7 +3027,17 @@ public final class FrameProtos {
       private int recoveryFlags_ ;
       /**
        * <pre>
-       * --- Recovery ---
+       * === Recovery bitfield ===
+       * bit0: separation_switch_1
+       * bit1: separation_switch_2
+       * bit2: stage1_done
+       * bit3: stage2_done
+       * bit4: telemetrum_1_stage
+       * bit5: telemetrum_2_stage
+       * bit6: easy_mini_1_stage
+       * bit7: easy_mini_2_stage
+       * bit8: is_tele_active
+       * bit9: is_easy_mini_active
        * </pre>
        *
        * <code>optional fixed32 recovery_flags = 14;</code>
@@ -3183,7 +3049,17 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Recovery ---
+       * === Recovery bitfield ===
+       * bit0: separation_switch_1
+       * bit1: separation_switch_2
+       * bit2: stage1_done
+       * bit3: stage2_done
+       * bit4: telemetrum_1_stage
+       * bit5: telemetrum_2_stage
+       * bit6: easy_mini_1_stage
+       * bit7: easy_mini_2_stage
+       * bit8: is_tele_active
+       * bit9: is_easy_mini_active
        * </pre>
        *
        * <code>optional fixed32 recovery_flags = 14;</code>
@@ -3195,7 +3071,17 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Recovery ---
+       * === Recovery bitfield ===
+       * bit0: separation_switch_1
+       * bit1: separation_switch_2
+       * bit2: stage1_done
+       * bit3: stage2_done
+       * bit4: telemetrum_1_stage
+       * bit5: telemetrum_2_stage
+       * bit6: easy_mini_1_stage
+       * bit7: easy_mini_2_stage
+       * bit8: is_tele_active
+       * bit9: is_easy_mini_active
        * </pre>
        *
        * <code>optional fixed32 recovery_flags = 14;</code>
@@ -3211,7 +3097,17 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Recovery ---
+       * === Recovery bitfield ===
+       * bit0: separation_switch_1
+       * bit1: separation_switch_2
+       * bit2: stage1_done
+       * bit3: stage2_done
+       * bit4: telemetrum_1_stage
+       * bit5: telemetrum_2_stage
+       * bit6: easy_mini_1_stage
+       * bit7: easy_mini_2_stage
+       * bit8: is_tele_active
+       * bit9: is_easy_mini_active
        * </pre>
        *
        * <code>optional fixed32 recovery_flags = 14;</code>
@@ -3227,7 +3123,7 @@ public final class FrameProtos {
       private int pitotBattery_ ;
       /**
        * <pre>
-       * --- Pitot ---
+       * === Pitot ===
        * </pre>
        *
        * <code>optional uint32 pitot_battery = 15;</code>
@@ -3239,7 +3135,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Pitot ---
+       * === Pitot ===
        * </pre>
        *
        * <code>optional uint32 pitot_battery = 15;</code>
@@ -3251,7 +3147,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Pitot ---
+       * === Pitot ===
        * </pre>
        *
        * <code>optional uint32 pitot_battery = 15;</code>
@@ -3267,7 +3163,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Pitot ---
+       * === Pitot ===
        * </pre>
        *
        * <code>optional uint32 pitot_battery = 15;</code>
@@ -3403,7 +3299,7 @@ public final class FrameProtos {
       private int mainVentFlags_ ;
       /**
        * <pre>
-       * --- Valve states ---
+       * === Main/Vent bitfield ===
        * bit0: OX_MAIN_STATE
        * bit1: N2_MAIN_STATE
        * bit2: OX_VENT_STATE
@@ -3421,7 +3317,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Valve states ---
+       * === Main/Vent bitfield ===
        * bit0: OX_MAIN_STATE
        * bit1: N2_MAIN_STATE
        * bit2: OX_VENT_STATE
@@ -3439,7 +3335,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Valve states ---
+       * === Main/Vent bitfield ===
        * bit0: OX_MAIN_STATE
        * bit1: N2_MAIN_STATE
        * bit2: OX_VENT_STATE
@@ -3461,7 +3357,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Valve states ---
+       * === Main/Vent bitfield ===
        * bit0: OX_MAIN_STATE
        * bit1: N2_MAIN_STATE
        * bit2: OX_VENT_STATE
@@ -3482,10 +3378,6 @@ public final class FrameProtos {
 
       private int n2VentBitDataA_ ;
       /**
-       * <pre>
-       * --- Byte data ---
-       * </pre>
-       *
        * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
        * @return Whether the n2VentBitDataA field is set.
        */
@@ -3494,10 +3386,6 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00080000) != 0);
       }
       /**
-       * <pre>
-       * --- Byte data ---
-       * </pre>
-       *
        * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
        * @return The n2VentBitDataA.
        */
@@ -3506,10 +3394,6 @@ public final class FrameProtos {
         return n2VentBitDataA_;
       }
       /**
-       * <pre>
-       * --- Byte data ---
-       * </pre>
-       *
        * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
        * @param value The n2VentBitDataA to set.
        * @return This builder for chaining.
@@ -3522,10 +3406,6 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <pre>
-       * --- Byte data ---
-       * </pre>
-       *
        * <code>optional fixed32 n2_vent_bit_data_a = 20;</code>
        * @return This builder for chaining.
        */
@@ -3859,7 +3739,7 @@ public final class FrameProtos {
       private int payloadBattery_ ;
       /**
        * <pre>
-       * --- Payload ---
+       * === Payload ===
        * </pre>
        *
        * <code>optional uint32 payload_battery = 29;</code>
@@ -3871,7 +3751,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Payload ---
+       * === Payload ===
        * </pre>
        *
        * <code>optional uint32 payload_battery = 29;</code>
@@ -3883,7 +3763,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Payload ---
+       * === Payload ===
        * </pre>
        *
        * <code>optional uint32 payload_battery = 29;</code>
@@ -3899,7 +3779,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
-       * --- Payload ---
+       * === Payload ===
        * </pre>
        *
        * <code>optional uint32 payload_battery = 29;</code>
@@ -3915,6 +3795,7 @@ public final class FrameProtos {
       private int espNowConnectedFlags_ ;
       /**
        * <pre>
+       * === ESP-NOW connection bitfield ===
        * bit0: payload_connected
        * bit1: tanwa_connected
        * bit2: eth_vent_valve_connected
@@ -3933,6 +3814,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === ESP-NOW connection bitfield ===
        * bit0: payload_connected
        * bit1: tanwa_connected
        * bit2: eth_vent_valve_connected
@@ -3951,6 +3833,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === ESP-NOW connection bitfield ===
        * bit0: payload_connected
        * bit1: tanwa_connected
        * bit2: eth_vent_valve_connected
@@ -3973,6 +3856,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === ESP-NOW connection bitfield ===
        * bit0: payload_connected
        * bit1: tanwa_connected
        * bit2: eth_vent_valve_connected
@@ -3995,6 +3879,7 @@ public final class FrameProtos {
       private int espNowWkupFlags_ ;
       /**
        * <pre>
+       * === ESP-NOW wake-up bitfield ===
        * bit0: payload_wkup
        * bit1: eth_vent_valve_wkup
        * bit2: ox_main_wkup
@@ -4012,6 +3897,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === ESP-NOW wake-up bitfield ===
        * bit0: payload_wkup
        * bit1: eth_vent_valve_wkup
        * bit2: ox_main_wkup
@@ -4029,6 +3915,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === ESP-NOW wake-up bitfield ===
        * bit0: payload_wkup
        * bit1: eth_vent_valve_wkup
        * bit2: ox_main_wkup
@@ -4050,6 +3937,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === ESP-NOW wake-up bitfield ===
        * bit0: payload_wkup
        * bit1: eth_vent_valve_wkup
        * bit2: ox_main_wkup
@@ -4070,10 +3958,6 @@ public final class FrameProtos {
 
       private int errors_ ;
       /**
-       * <pre>
-       * --- Errors ---
-       * </pre>
-       *
        * <code>optional fixed32 errors = 32;</code>
        * @return Whether the errors field is set.
        */
@@ -4082,10 +3966,6 @@ public final class FrameProtos {
         return ((bitField0_ & 0x80000000) != 0);
       }
       /**
-       * <pre>
-       * --- Errors ---
-       * </pre>
-       *
        * <code>optional fixed32 errors = 32;</code>
        * @return The errors.
        */
@@ -4094,10 +3974,6 @@ public final class FrameProtos {
         return errors_;
       }
       /**
-       * <pre>
-       * --- Errors ---
-       * </pre>
-       *
        * <code>optional fixed32 errors = 32;</code>
        * @param value The errors to set.
        * @return This builder for chaining.
@@ -4110,10 +3986,6 @@ public final class FrameProtos {
         return this;
       }
       /**
-       * <pre>
-       * --- Errors ---
-       * </pre>
-       *
        * <code>optional fixed32 errors = 32;</code>
        * @return This builder for chaining.
        */
@@ -4136,23 +4008,23 @@ public final class FrameProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:LoRaFrameMCB)
+      // @@protoc_insertion_point(builder_scope:MCBFrame)
     }
 
-    // @@protoc_insertion_point(class_scope:LoRaFrameMCB)
-    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:MCBFrame)
+    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB();
+      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame();
     }
 
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB getDefaultInstance() {
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<LoRaFrameMCB>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaFrameMCB>() {
+    private static final com.google.protobuf.Parser<MCBFrame>
+        PARSER = new com.google.protobuf.AbstractParser<MCBFrame>() {
       @java.lang.Override
-      public LoRaFrameMCB parsePartialFrom(
+      public MCBFrame parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4171,32 +4043,40 @@ public final class FrameProtos {
       }
     };
 
-    public static com.google.protobuf.Parser<LoRaFrameMCB> parser() {
+    public static com.google.protobuf.Parser<MCBFrame> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<LoRaFrameMCB> getParserForType() {
+    public com.google.protobuf.Parser<MCBFrame> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameMCB getDefaultInstanceForType() {
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface LoRaFrameTanwaOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaFrameTanwa)
+  public interface TanwaFrameOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TanwaFrame)
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * === Tanwa ===
+     * </pre>
+     *
      * <code>optional fixed32 tanwa_battery = 1;</code>
      * @return Whether the tanwaBattery field is set.
      */
     boolean hasTanwaBattery();
     /**
+     * <pre>
+     * === Tanwa ===
+     * </pre>
+     *
      * <code>optional fixed32 tanwa_battery = 1;</code>
      * @return The tanwaBattery.
      */
@@ -4215,6 +4095,7 @@ public final class FrameProtos {
 
     /**
      * <pre>
+     * === Tanwa CAN connections &amp; status ===
      * bit0: CAN_Weights_connection
      * bit1: CAN_Utility_connection
      * bit2: CAN_Sensor_connection
@@ -4240,6 +4121,7 @@ public final class FrameProtos {
     boolean hasTanwaFlags();
     /**
      * <pre>
+     * === Tanwa CAN connections &amp; status ===
      * bit0: CAN_Weights_connection
      * bit1: CAN_Utility_connection
      * bit2: CAN_Sensor_connection
@@ -4309,11 +4191,19 @@ public final class FrameProtos {
     int getTanwaTempFillingWall();
 
     /**
+     * <pre>
+     * Tanwa pressures
+     * </pre>
+     *
      * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
      * @return Whether the tanwaPostFillN2oPres field is set.
      */
     boolean hasTanwaPostFillN2OPres();
     /**
+     * <pre>
+     * Tanwa pressures
+     * </pre>
+     *
      * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
      * @return The tanwaPostFillN2oPres.
      */
@@ -4397,25 +4287,25 @@ public final class FrameProtos {
     int getTanwaCombChamberPres();
   }
   /**
-   * Protobuf type {@code LoRaFrameTanwa}
+   * Protobuf type {@code TanwaFrame}
    */
-  public static final class LoRaFrameTanwa extends
+  public static final class TanwaFrame extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaFrameTanwa)
-      LoRaFrameTanwaOrBuilder {
+      // @@protoc_insertion_point(message_implements:TanwaFrame)
+      TanwaFrameOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use LoRaFrameTanwa.newBuilder() to construct.
-    private LoRaFrameTanwa(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use TanwaFrame.newBuilder() to construct.
+    private TanwaFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private LoRaFrameTanwa() {
+    private TanwaFrame() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new LoRaFrameTanwa();
+      return new TanwaFrame();
     }
 
     @java.lang.Override
@@ -4425,21 +4315,25 @@ public final class FrameProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_TanwaFrame_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_fieldAccessorTable
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_TanwaFrame_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
+              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.Builder.class);
     }
 
     private int bitField0_;
     public static final int TANWA_BATTERY_FIELD_NUMBER = 1;
     private int tanwaBattery_ = 0;
     /**
+     * <pre>
+     * === Tanwa ===
+     * </pre>
+     *
      * <code>optional fixed32 tanwa_battery = 1;</code>
      * @return Whether the tanwaBattery field is set.
      */
@@ -4448,6 +4342,10 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
+     * <pre>
+     * === Tanwa ===
+     * </pre>
+     *
      * <code>optional fixed32 tanwa_battery = 1;</code>
      * @return The tanwaBattery.
      */
@@ -4479,6 +4377,7 @@ public final class FrameProtos {
     private int tanwaFlags_ = 0;
     /**
      * <pre>
+     * === Tanwa CAN connections &amp; status ===
      * bit0: CAN_Weights_connection
      * bit1: CAN_Utility_connection
      * bit2: CAN_Sensor_connection
@@ -4507,6 +4406,7 @@ public final class FrameProtos {
     }
     /**
      * <pre>
+     * === Tanwa CAN connections &amp; status ===
      * bit0: CAN_Weights_connection
      * bit1: CAN_Utility_connection
      * bit2: CAN_Sensor_connection
@@ -4613,6 +4513,10 @@ public final class FrameProtos {
     public static final int TANWA_POST_FILL_N2O_PRES_FIELD_NUMBER = 8;
     private int tanwaPostFillN2OPres_ = 0;
     /**
+     * <pre>
+     * Tanwa pressures
+     * </pre>
+     *
      * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
      * @return Whether the tanwaPostFillN2oPres field is set.
      */
@@ -4621,6 +4525,10 @@ public final class FrameProtos {
       return ((bitField0_ & 0x00000080) != 0);
     }
     /**
+     * <pre>
+     * Tanwa pressures
+     * </pre>
+     *
      * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
      * @return The tanwaPostFillN2oPres.
      */
@@ -4900,10 +4808,10 @@ public final class FrameProtos {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa)) {
+      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame)) {
         return super.equals(obj);
       }
-      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa) obj;
+      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) obj;
 
       if (hasTanwaBattery() != other.hasTanwaBattery()) return false;
       if (hasTanwaBattery()) {
@@ -5056,69 +4964,69 @@ public final class FrameProtos {
       return hash;
     }
 
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(byte[] data)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(java.io.InputStream input)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseDelimitedFrom(java.io.InputStream input)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseDelimitedFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5131,7 +5039,7 @@ public final class FrameProtos {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa prototype) {
+    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -5147,26 +5055,26 @@ public final class FrameProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code LoRaFrameTanwa}
+     * Protobuf type {@code TanwaFrame}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaFrameTanwa)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwaOrBuilder {
+        // @@protoc_insertion_point(builder_implements:TanwaFrame)
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrameOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_TanwaFrame_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_fieldAccessorTable
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_TanwaFrame_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.Builder.class);
+                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.Builder.class);
       }
 
-      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.newBuilder()
+      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.newBuilder()
       private Builder() {
 
       }
@@ -5201,17 +5109,17 @@ public final class FrameProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrameTanwa_descriptor;
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_TanwaFrame_descriptor;
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa getDefaultInstanceForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.getDefaultInstance();
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame getDefaultInstanceForType() {
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance();
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa build() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa result = buildPartial();
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame build() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -5219,14 +5127,14 @@ public final class FrameProtos {
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa buildPartial() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa(this);
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame buildPartial() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa result) {
+      private void buildPartial0(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -5326,16 +5234,16 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa) {
-          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa)other);
+        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) {
+          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa other) {
-        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa.getDefaultInstance()) return this;
+      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame other) {
+        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance()) return this;
         if (other.hasTanwaBattery()) {
           setTanwaBattery(other.getTanwaBattery());
         }
@@ -5501,6 +5409,10 @@ public final class FrameProtos {
 
       private int tanwaBattery_ ;
       /**
+       * <pre>
+       * === Tanwa ===
+       * </pre>
+       *
        * <code>optional fixed32 tanwa_battery = 1;</code>
        * @return Whether the tanwaBattery field is set.
        */
@@ -5509,6 +5421,10 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
+       * <pre>
+       * === Tanwa ===
+       * </pre>
+       *
        * <code>optional fixed32 tanwa_battery = 1;</code>
        * @return The tanwaBattery.
        */
@@ -5517,6 +5433,10 @@ public final class FrameProtos {
         return tanwaBattery_;
       }
       /**
+       * <pre>
+       * === Tanwa ===
+       * </pre>
+       *
        * <code>optional fixed32 tanwa_battery = 1;</code>
        * @param value The tanwaBattery to set.
        * @return This builder for chaining.
@@ -5529,6 +5449,10 @@ public final class FrameProtos {
         return this;
       }
       /**
+       * <pre>
+       * === Tanwa ===
+       * </pre>
+       *
        * <code>optional fixed32 tanwa_battery = 1;</code>
        * @return This builder for chaining.
        */
@@ -5582,6 +5506,7 @@ public final class FrameProtos {
       private int tanwaFlags_ ;
       /**
        * <pre>
+       * === Tanwa CAN connections &amp; status ===
        * bit0: CAN_Weights_connection
        * bit1: CAN_Utility_connection
        * bit2: CAN_Sensor_connection
@@ -5610,6 +5535,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === Tanwa CAN connections &amp; status ===
        * bit0: CAN_Weights_connection
        * bit1: CAN_Utility_connection
        * bit2: CAN_Sensor_connection
@@ -5638,6 +5564,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === Tanwa CAN connections &amp; status ===
        * bit0: CAN_Weights_connection
        * bit1: CAN_Utility_connection
        * bit2: CAN_Sensor_connection
@@ -5670,6 +5597,7 @@ public final class FrameProtos {
       }
       /**
        * <pre>
+       * === Tanwa CAN connections &amp; status ===
        * bit0: CAN_Weights_connection
        * bit1: CAN_Utility_connection
        * bit2: CAN_Sensor_connection
@@ -5861,6 +5789,10 @@ public final class FrameProtos {
 
       private int tanwaPostFillN2OPres_ ;
       /**
+       * <pre>
+       * Tanwa pressures
+       * </pre>
+       *
        * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
        * @return Whether the tanwaPostFillN2oPres field is set.
        */
@@ -5869,6 +5801,10 @@ public final class FrameProtos {
         return ((bitField0_ & 0x00000080) != 0);
       }
       /**
+       * <pre>
+       * Tanwa pressures
+       * </pre>
+       *
        * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
        * @return The tanwaPostFillN2oPres.
        */
@@ -5877,6 +5813,10 @@ public final class FrameProtos {
         return tanwaPostFillN2OPres_;
       }
       /**
+       * <pre>
+       * Tanwa pressures
+       * </pre>
+       *
        * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
        * @param value The tanwaPostFillN2oPres to set.
        * @return This builder for chaining.
@@ -5889,6 +5829,10 @@ public final class FrameProtos {
         return this;
       }
       /**
+       * <pre>
+       * Tanwa pressures
+       * </pre>
+       *
        * <code>optional uint32 tanwa_post_fill_n2o_pres = 8;</code>
        * @return This builder for chaining.
        */
@@ -6191,23 +6135,23 @@ public final class FrameProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:LoRaFrameTanwa)
+      // @@protoc_insertion_point(builder_scope:TanwaFrame)
     }
 
-    // @@protoc_insertion_point(class_scope:LoRaFrameTanwa)
-    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:TanwaFrame)
+    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa();
+      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame();
     }
 
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa getDefaultInstance() {
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<LoRaFrameTanwa>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaFrameTanwa>() {
+    private static final com.google.protobuf.Parser<TanwaFrame>
+        PARSER = new com.google.protobuf.AbstractParser<TanwaFrame>() {
       @java.lang.Override
-      public LoRaFrameTanwa parsePartialFrom(
+      public TanwaFrame parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6226,24 +6170,24 @@ public final class FrameProtos {
       }
     };
 
-    public static com.google.protobuf.Parser<LoRaFrameTanwa> parser() {
+    public static com.google.protobuf.Parser<TanwaFrame> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<LoRaFrameTanwa> getParserForType() {
+    public com.google.protobuf.Parser<TanwaFrame> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameTanwa getDefaultInstanceForType() {
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface LoRaCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LoRaCommand)
+  public interface AppFrameOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:AppFrame)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -6291,25 +6235,25 @@ public final class FrameProtos {
     int getPayload();
   }
   /**
-   * Protobuf type {@code LoRaCommand}
+   * Protobuf type {@code AppFrame}
    */
-  public static final class LoRaCommand extends
+  public static final class AppFrame extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:LoRaCommand)
-      LoRaCommandOrBuilder {
+      // @@protoc_insertion_point(message_implements:AppFrame)
+      AppFrameOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use LoRaCommand.newBuilder() to construct.
-    private LoRaCommand(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use AppFrame.newBuilder() to construct.
+    private AppFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private LoRaCommand() {
+    private AppFrame() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new LoRaCommand();
+      return new AppFrame();
     }
 
     @java.lang.Override
@@ -6319,15 +6263,15 @@ public final class FrameProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_descriptor;
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_AppFrame_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_fieldAccessorTable
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_AppFrame_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.Builder.class);
+              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.Builder.class);
     }
 
     private int bitField0_;
@@ -6468,10 +6412,10 @@ public final class FrameProtos {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand)) {
+      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame)) {
         return super.equals(obj);
       }
-      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand) obj;
+      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) obj;
 
       if (hasLoraDevId() != other.hasLoraDevId()) return false;
       if (hasLoraDevId()) {
@@ -6525,69 +6469,69 @@ public final class FrameProtos {
       return hash;
     }
 
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(byte[] data)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(java.io.InputStream input)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseDelimitedFrom(java.io.InputStream input)
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseDelimitedFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand parseFrom(
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6600,7 +6544,7 @@ public final class FrameProtos {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand prototype) {
+    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -6616,26 +6560,26 @@ public final class FrameProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code LoRaCommand}
+     * Protobuf type {@code AppFrame}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LoRaCommand)
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommandOrBuilder {
+        // @@protoc_insertion_point(builder_implements:AppFrame)
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrameOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_descriptor;
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_AppFrame_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_fieldAccessorTable
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_AppFrame_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.Builder.class);
+                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.Builder.class);
       }
 
-      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.newBuilder()
+      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.newBuilder()
       private Builder() {
 
       }
@@ -6659,17 +6603,17 @@ public final class FrameProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaCommand_descriptor;
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_AppFrame_descriptor;
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand getDefaultInstanceForType() {
-        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.getDefaultInstance();
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame getDefaultInstanceForType() {
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance();
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand build() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand result = buildPartial();
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame build() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -6677,14 +6621,14 @@ public final class FrameProtos {
       }
 
       @java.lang.Override
-      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand buildPartial() {
-        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand(this);
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame buildPartial() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand result) {
+      private void buildPartial0(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -6740,16 +6684,16 @@ public final class FrameProtos {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand) {
-          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand)other);
+        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) {
+          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand other) {
-        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand.getDefaultInstance()) return this;
+      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame other) {
+        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance()) return this;
         if (other.hasLoraDevId()) {
           setLoraDevId(other.getLoraDevId());
         }
@@ -6997,23 +6941,23 @@ public final class FrameProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:LoRaCommand)
+      // @@protoc_insertion_point(builder_scope:AppFrame)
     }
 
-    // @@protoc_insertion_point(class_scope:LoRaCommand)
-    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:AppFrame)
+    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand();
+      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame();
     }
 
-    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand getDefaultInstance() {
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<LoRaCommand>
-        PARSER = new com.google.protobuf.AbstractParser<LoRaCommand>() {
+    private static final com.google.protobuf.Parser<AppFrame>
+        PARSER = new com.google.protobuf.AbstractParser<AppFrame>() {
       @java.lang.Override
-      public LoRaCommand parsePartialFrom(
+      public AppFrame parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7032,37 +6976,1194 @@ public final class FrameProtos {
       }
     };
 
-    public static com.google.protobuf.Parser<LoRaCommand> parser() {
+    public static com.google.protobuf.Parser<AppFrame> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<LoRaCommand> getParserForType() {
+    public com.google.protobuf.Parser<AppFrame> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaCommand getDefaultInstanceForType() {
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LoRaFrameOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:LoRaFrame)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.MCBFrame mcb_frame = 1;</code>
+     * @return Whether the mcbFrame field is set.
+     */
+    boolean hasMcbFrame();
+    /**
+     * <code>.MCBFrame mcb_frame = 1;</code>
+     * @return The mcbFrame.
+     */
+    pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame getMcbFrame();
+    /**
+     * <code>.MCBFrame mcb_frame = 1;</code>
+     */
+    pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrameOrBuilder getMcbFrameOrBuilder();
+
+    /**
+     * <code>.TanwaFrame tanwa_frame = 2;</code>
+     * @return Whether the tanwaFrame field is set.
+     */
+    boolean hasTanwaFrame();
+    /**
+     * <code>.TanwaFrame tanwa_frame = 2;</code>
+     * @return The tanwaFrame.
+     */
+    pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame getTanwaFrame();
+    /**
+     * <code>.TanwaFrame tanwa_frame = 2;</code>
+     */
+    pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrameOrBuilder getTanwaFrameOrBuilder();
+
+    /**
+     * <code>.AppFrame app_frame = 3;</code>
+     * @return Whether the appFrame field is set.
+     */
+    boolean hasAppFrame();
+    /**
+     * <code>.AppFrame app_frame = 3;</code>
+     * @return The appFrame.
+     */
+    pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame getAppFrame();
+    /**
+     * <code>.AppFrame app_frame = 3;</code>
+     */
+    pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrameOrBuilder getAppFrameOrBuilder();
+
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.FrameCase getFrameCase();
+  }
+  /**
+   * Protobuf type {@code LoRaFrame}
+   */
+  public static final class LoRaFrame extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:LoRaFrame)
+      LoRaFrameOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LoRaFrame.newBuilder() to construct.
+    private LoRaFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LoRaFrame() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new LoRaFrame();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.Builder.class);
+    }
+
+    private int frameCase_ = 0;
+    private java.lang.Object frame_;
+    public enum FrameCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      MCB_FRAME(1),
+      TANWA_FRAME(2),
+      APP_FRAME(3),
+      FRAME_NOT_SET(0);
+      private final int value;
+      private FrameCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static FrameCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static FrameCase forNumber(int value) {
+        switch (value) {
+          case 1: return MCB_FRAME;
+          case 2: return TANWA_FRAME;
+          case 3: return APP_FRAME;
+          case 0: return FRAME_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public FrameCase
+    getFrameCase() {
+      return FrameCase.forNumber(
+          frameCase_);
+    }
+
+    public static final int MCB_FRAME_FIELD_NUMBER = 1;
+    /**
+     * <code>.MCBFrame mcb_frame = 1;</code>
+     * @return Whether the mcbFrame field is set.
+     */
+    @java.lang.Override
+    public boolean hasMcbFrame() {
+      return frameCase_ == 1;
+    }
+    /**
+     * <code>.MCBFrame mcb_frame = 1;</code>
+     * @return The mcbFrame.
+     */
+    @java.lang.Override
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame getMcbFrame() {
+      if (frameCase_ == 1) {
+         return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_;
+      }
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance();
+    }
+    /**
+     * <code>.MCBFrame mcb_frame = 1;</code>
+     */
+    @java.lang.Override
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrameOrBuilder getMcbFrameOrBuilder() {
+      if (frameCase_ == 1) {
+         return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_;
+      }
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance();
+    }
+
+    public static final int TANWA_FRAME_FIELD_NUMBER = 2;
+    /**
+     * <code>.TanwaFrame tanwa_frame = 2;</code>
+     * @return Whether the tanwaFrame field is set.
+     */
+    @java.lang.Override
+    public boolean hasTanwaFrame() {
+      return frameCase_ == 2;
+    }
+    /**
+     * <code>.TanwaFrame tanwa_frame = 2;</code>
+     * @return The tanwaFrame.
+     */
+    @java.lang.Override
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame getTanwaFrame() {
+      if (frameCase_ == 2) {
+         return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_;
+      }
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance();
+    }
+    /**
+     * <code>.TanwaFrame tanwa_frame = 2;</code>
+     */
+    @java.lang.Override
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrameOrBuilder getTanwaFrameOrBuilder() {
+      if (frameCase_ == 2) {
+         return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_;
+      }
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance();
+    }
+
+    public static final int APP_FRAME_FIELD_NUMBER = 3;
+    /**
+     * <code>.AppFrame app_frame = 3;</code>
+     * @return Whether the appFrame field is set.
+     */
+    @java.lang.Override
+    public boolean hasAppFrame() {
+      return frameCase_ == 3;
+    }
+    /**
+     * <code>.AppFrame app_frame = 3;</code>
+     * @return The appFrame.
+     */
+    @java.lang.Override
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame getAppFrame() {
+      if (frameCase_ == 3) {
+         return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_;
+      }
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance();
+    }
+    /**
+     * <code>.AppFrame app_frame = 3;</code>
+     */
+    @java.lang.Override
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrameOrBuilder getAppFrameOrBuilder() {
+      if (frameCase_ == 3) {
+         return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_;
+      }
+      return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (frameCase_ == 1) {
+        output.writeMessage(1, (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_);
+      }
+      if (frameCase_ == 2) {
+        output.writeMessage(2, (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_);
+      }
+      if (frameCase_ == 3) {
+        output.writeMessage(3, (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (frameCase_ == 1) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_);
+      }
+      if (frameCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_);
+      }
+      if (frameCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame)) {
+        return super.equals(obj);
+      }
+      pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame other = (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame) obj;
+
+      if (!getFrameCase().equals(other.getFrameCase())) return false;
+      switch (frameCase_) {
+        case 1:
+          if (!getMcbFrame()
+              .equals(other.getMcbFrame())) return false;
+          break;
+        case 2:
+          if (!getTanwaFrame()
+              .equals(other.getTanwaFrame())) return false;
+          break;
+        case 3:
+          if (!getAppFrame()
+              .equals(other.getAppFrame())) return false;
+          break;
+        case 0:
+        default:
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      switch (frameCase_) {
+        case 1:
+          hash = (37 * hash) + MCB_FRAME_FIELD_NUMBER;
+          hash = (53 * hash) + getMcbFrame().hashCode();
+          break;
+        case 2:
+          hash = (37 * hash) + TANWA_FRAME_FIELD_NUMBER;
+          hash = (53 * hash) + getTanwaFrame().hashCode();
+          break;
+        case 3:
+          hash = (37 * hash) + APP_FRAME_FIELD_NUMBER;
+          hash = (53 * hash) + getAppFrame().hashCode();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code LoRaFrame}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:LoRaFrame)
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrameOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.class, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.Builder.class);
+      }
+
+      // Construct using pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (mcbFrameBuilder_ != null) {
+          mcbFrameBuilder_.clear();
+        }
+        if (tanwaFrameBuilder_ != null) {
+          tanwaFrameBuilder_.clear();
+        }
+        if (appFrameBuilder_ != null) {
+          appFrameBuilder_.clear();
+        }
+        frameCase_ = 0;
+        frame_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.internal_static_LoRaFrame_descriptor;
+      }
+
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame getDefaultInstanceForType() {
+        return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame build() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame buildPartial() {
+        pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame result) {
+        result.frameCase_ = frameCase_;
+        result.frame_ = this.frame_;
+        if (frameCase_ == 1 &&
+            mcbFrameBuilder_ != null) {
+          result.frame_ = mcbFrameBuilder_.build();
+        }
+        if (frameCase_ == 2 &&
+            tanwaFrameBuilder_ != null) {
+          result.frame_ = tanwaFrameBuilder_.build();
+        }
+        if (frameCase_ == 3 &&
+            appFrameBuilder_ != null) {
+          result.frame_ = appFrameBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame) {
+          return mergeFrom((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame other) {
+        if (other == pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame.getDefaultInstance()) return this;
+        switch (other.getFrameCase()) {
+          case MCB_FRAME: {
+            mergeMcbFrame(other.getMcbFrame());
+            break;
+          }
+          case TANWA_FRAME: {
+            mergeTanwaFrame(other.getTanwaFrame());
+            break;
+          }
+          case APP_FRAME: {
+            mergeAppFrame(other.getAppFrame());
+            break;
+          }
+          case FRAME_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getMcbFrameFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                frameCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getTanwaFrameFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                frameCase_ = 2;
+                break;
+              } // case 18
+              case 26: {
+                input.readMessage(
+                    getAppFrameFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                frameCase_ = 3;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int frameCase_ = 0;
+      private java.lang.Object frame_;
+      public FrameCase
+          getFrameCase() {
+        return FrameCase.forNumber(
+            frameCase_);
+      }
+
+      public Builder clearFrame() {
+        frameCase_ = 0;
+        frame_ = null;
+        onChanged();
+        return this;
+      }
+
+      private int bitField0_;
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrameOrBuilder> mcbFrameBuilder_;
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       * @return Whether the mcbFrame field is set.
+       */
+      @java.lang.Override
+      public boolean hasMcbFrame() {
+        return frameCase_ == 1;
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       * @return The mcbFrame.
+       */
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame getMcbFrame() {
+        if (mcbFrameBuilder_ == null) {
+          if (frameCase_ == 1) {
+            return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_;
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance();
+        } else {
+          if (frameCase_ == 1) {
+            return mcbFrameBuilder_.getMessage();
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       */
+      public Builder setMcbFrame(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame value) {
+        if (mcbFrameBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          frame_ = value;
+          onChanged();
+        } else {
+          mcbFrameBuilder_.setMessage(value);
+        }
+        frameCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       */
+      public Builder setMcbFrame(
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.Builder builderForValue) {
+        if (mcbFrameBuilder_ == null) {
+          frame_ = builderForValue.build();
+          onChanged();
+        } else {
+          mcbFrameBuilder_.setMessage(builderForValue.build());
+        }
+        frameCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       */
+      public Builder mergeMcbFrame(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame value) {
+        if (mcbFrameBuilder_ == null) {
+          if (frameCase_ == 1 &&
+              frame_ != pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance()) {
+            frame_ = pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.newBuilder((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            frame_ = value;
+          }
+          onChanged();
+        } else {
+          if (frameCase_ == 1) {
+            mcbFrameBuilder_.mergeFrom(value);
+          } else {
+            mcbFrameBuilder_.setMessage(value);
+          }
+        }
+        frameCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       */
+      public Builder clearMcbFrame() {
+        if (mcbFrameBuilder_ == null) {
+          if (frameCase_ == 1) {
+            frameCase_ = 0;
+            frame_ = null;
+            onChanged();
+          }
+        } else {
+          if (frameCase_ == 1) {
+            frameCase_ = 0;
+            frame_ = null;
+          }
+          mcbFrameBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       */
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.Builder getMcbFrameBuilder() {
+        return getMcbFrameFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       */
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrameOrBuilder getMcbFrameOrBuilder() {
+        if ((frameCase_ == 1) && (mcbFrameBuilder_ != null)) {
+          return mcbFrameBuilder_.getMessageOrBuilder();
+        } else {
+          if (frameCase_ == 1) {
+            return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_;
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.MCBFrame mcb_frame = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrameOrBuilder> 
+          getMcbFrameFieldBuilder() {
+        if (mcbFrameBuilder_ == null) {
+          if (!(frameCase_ == 1)) {
+            frame_ = pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.getDefaultInstance();
+          }
+          mcbFrameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrameOrBuilder>(
+                  (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame) frame_,
+                  getParentForChildren(),
+                  isClean());
+          frame_ = null;
+        }
+        frameCase_ = 1;
+        onChanged();
+        return mcbFrameBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrameOrBuilder> tanwaFrameBuilder_;
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       * @return Whether the tanwaFrame field is set.
+       */
+      @java.lang.Override
+      public boolean hasTanwaFrame() {
+        return frameCase_ == 2;
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       * @return The tanwaFrame.
+       */
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame getTanwaFrame() {
+        if (tanwaFrameBuilder_ == null) {
+          if (frameCase_ == 2) {
+            return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_;
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance();
+        } else {
+          if (frameCase_ == 2) {
+            return tanwaFrameBuilder_.getMessage();
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       */
+      public Builder setTanwaFrame(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame value) {
+        if (tanwaFrameBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          frame_ = value;
+          onChanged();
+        } else {
+          tanwaFrameBuilder_.setMessage(value);
+        }
+        frameCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       */
+      public Builder setTanwaFrame(
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.Builder builderForValue) {
+        if (tanwaFrameBuilder_ == null) {
+          frame_ = builderForValue.build();
+          onChanged();
+        } else {
+          tanwaFrameBuilder_.setMessage(builderForValue.build());
+        }
+        frameCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       */
+      public Builder mergeTanwaFrame(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame value) {
+        if (tanwaFrameBuilder_ == null) {
+          if (frameCase_ == 2 &&
+              frame_ != pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance()) {
+            frame_ = pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.newBuilder((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            frame_ = value;
+          }
+          onChanged();
+        } else {
+          if (frameCase_ == 2) {
+            tanwaFrameBuilder_.mergeFrom(value);
+          } else {
+            tanwaFrameBuilder_.setMessage(value);
+          }
+        }
+        frameCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       */
+      public Builder clearTanwaFrame() {
+        if (tanwaFrameBuilder_ == null) {
+          if (frameCase_ == 2) {
+            frameCase_ = 0;
+            frame_ = null;
+            onChanged();
+          }
+        } else {
+          if (frameCase_ == 2) {
+            frameCase_ = 0;
+            frame_ = null;
+          }
+          tanwaFrameBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       */
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.Builder getTanwaFrameBuilder() {
+        return getTanwaFrameFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       */
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrameOrBuilder getTanwaFrameOrBuilder() {
+        if ((frameCase_ == 2) && (tanwaFrameBuilder_ != null)) {
+          return tanwaFrameBuilder_.getMessageOrBuilder();
+        } else {
+          if (frameCase_ == 2) {
+            return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_;
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TanwaFrame tanwa_frame = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrameOrBuilder> 
+          getTanwaFrameFieldBuilder() {
+        if (tanwaFrameBuilder_ == null) {
+          if (!(frameCase_ == 2)) {
+            frame_ = pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.getDefaultInstance();
+          }
+          tanwaFrameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrameOrBuilder>(
+                  (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.TanwaFrame) frame_,
+                  getParentForChildren(),
+                  isClean());
+          frame_ = null;
+        }
+        frameCase_ = 2;
+        onChanged();
+        return tanwaFrameBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrameOrBuilder> appFrameBuilder_;
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       * @return Whether the appFrame field is set.
+       */
+      @java.lang.Override
+      public boolean hasAppFrame() {
+        return frameCase_ == 3;
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       * @return The appFrame.
+       */
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame getAppFrame() {
+        if (appFrameBuilder_ == null) {
+          if (frameCase_ == 3) {
+            return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_;
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance();
+        } else {
+          if (frameCase_ == 3) {
+            return appFrameBuilder_.getMessage();
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       */
+      public Builder setAppFrame(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame value) {
+        if (appFrameBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          frame_ = value;
+          onChanged();
+        } else {
+          appFrameBuilder_.setMessage(value);
+        }
+        frameCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       */
+      public Builder setAppFrame(
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.Builder builderForValue) {
+        if (appFrameBuilder_ == null) {
+          frame_ = builderForValue.build();
+          onChanged();
+        } else {
+          appFrameBuilder_.setMessage(builderForValue.build());
+        }
+        frameCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       */
+      public Builder mergeAppFrame(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame value) {
+        if (appFrameBuilder_ == null) {
+          if (frameCase_ == 3 &&
+              frame_ != pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance()) {
+            frame_ = pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.newBuilder((pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            frame_ = value;
+          }
+          onChanged();
+        } else {
+          if (frameCase_ == 3) {
+            appFrameBuilder_.mergeFrom(value);
+          } else {
+            appFrameBuilder_.setMessage(value);
+          }
+        }
+        frameCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       */
+      public Builder clearAppFrame() {
+        if (appFrameBuilder_ == null) {
+          if (frameCase_ == 3) {
+            frameCase_ = 0;
+            frame_ = null;
+            onChanged();
+          }
+        } else {
+          if (frameCase_ == 3) {
+            frameCase_ = 0;
+            frame_ = null;
+          }
+          appFrameBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       */
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.Builder getAppFrameBuilder() {
+        return getAppFrameFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       */
+      @java.lang.Override
+      public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrameOrBuilder getAppFrameOrBuilder() {
+        if ((frameCase_ == 3) && (appFrameBuilder_ != null)) {
+          return appFrameBuilder_.getMessageOrBuilder();
+        } else {
+          if (frameCase_ == 3) {
+            return (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_;
+          }
+          return pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.AppFrame app_frame = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrameOrBuilder> 
+          getAppFrameFieldBuilder() {
+        if (appFrameBuilder_ == null) {
+          if (!(frameCase_ == 3)) {
+            frame_ = pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.getDefaultInstance();
+          }
+          appFrameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame.Builder, pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrameOrBuilder>(
+                  (pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.AppFrame) frame_,
+                  getParentForChildren(),
+                  isClean());
+          frame_ = null;
+        }
+        frameCase_ = 3;
+        onChanged();
+        return appFrameBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:LoRaFrame)
+    }
+
+    // @@protoc_insertion_point(class_scope:LoRaFrame)
+    private static final pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame();
+    }
+
+    public static pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LoRaFrame>
+        PARSER = new com.google.protobuf.AbstractParser<LoRaFrame>() {
+      @java.lang.Override
+      public LoRaFrame parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<LoRaFrame> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LoRaFrame> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.LoRaFrame getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaFrameMCB_descriptor;
+    internal_static_MCBFrame_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaFrameMCB_fieldAccessorTable;
+      internal_static_MCBFrame_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaFrameTanwa_descriptor;
+    internal_static_TanwaFrame_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaFrameTanwa_fieldAccessorTable;
+      internal_static_TanwaFrame_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LoRaCommand_descriptor;
+    internal_static_AppFrame_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LoRaCommand_fieldAccessorTable;
+      internal_static_AppFrame_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_LoRaFrame_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_LoRaFrame_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -7072,98 +8173,107 @@ public final class FrameProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037src/main/resources/frames.proto\"\270\014\n\014Lo" +
-      "RaFrameMCB\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tup" +
-      "time_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001" +
-      "(\021H\002\210\001\001\022\025\n\010mcb_batt\030\004 \001(\rH\003\210\001\001\022\024\n\007gps_la" +
-      "t\030\005 \001(\002H\004\210\001\001\022\025\n\010gps_long\030\006 \001(\002H\005\210\001\001\022\027\n\ng" +
-      "ps_sat_ok\030\007 \001(\010H\006\210\001\001\022\027\n\naltitude_m\030\010 \001(\021" +
-      "H\007\210\001\001\022\031\n\014velocity_m_s\030\t \001(\021H\010\210\001\001\022\034\n\017mcb_" +
-      "temperature\030\n \001(\021H\t\210\001\001\022\025\n\010euler_fi\030\013 \001(\002" +
-      "H\n\210\001\001\022\026\n\teuler_psi\030\014 \001(\002H\013\210\001\001\022\030\n\013euler_t" +
-      "heta\030\r \001(\002H\014\210\001\001\022\033\n\016recovery_flags\030\016 \001(\007H" +
-      "\r\210\001\001\022\032\n\rpitot_battery\030\017 \001(\rH\016\210\001\001\022\033\n\016pito" +
-      "t_altitude\030\020 \001(\021H\017\210\001\001\022\033\n\016pitot_velocity\030" +
-      "\021 \001(\021H\020\210\001\001\022\036\n\021pitot_temperature\030\022 \001(\021H\021\210" +
-      "\001\001\022\034\n\017main_vent_flags\030\023 \001(\007H\022\210\001\001\022\037\n\022n2_v" +
-      "ent_bit_data_a\030\024 \001(\007H\023\210\001\001\022(\n\033ox_vent_eth" +
-      "_main_bit_data_a\030\025 \001(\007H\024\210\001\001\022(\n\033ox_vent_e" +
-      "th_main_bit_data_b\030\026 \001(\007H\025\210\001\001\022(\n\033ox_vent" +
-      "_eth_main_bit_data_c\030\027 \001(\007H\026\210\001\001\022\037\n\022ox_ma" +
-      "in_bit_data_a\030\030 \001(\007H\027\210\001\001\022\037\n\022ox_main_bit_" +
-      "data_b\030\031 \001(\007H\030\210\001\001\022 \n\023eth_vent_bit_data_a" +
-      "\030\032 \001(\007H\031\210\001\001\022 \n\023eth_vent_bit_data_b\030\033 \001(\007" +
-      "H\032\210\001\001\022\036\n\021auto_vent_setting\030\034 \001(\rH\033\210\001\001\022\034\n" +
-      "\017payload_battery\030\035 \001(\rH\034\210\001\001\022$\n\027esp_now_c" +
-      "onnected_flags\030\036 \001(\007H\035\210\001\001\022\037\n\022esp_now_wku" +
-      "p_flags\030\037 \001(\007H\036\210\001\001\022\023\n\006errors\030  \001(\007H\037\210\001\001B" +
-      "\014\n\n_mcb_stateB\014\n\n_uptime_msB\021\n\017_flight_t" +
-      "ime_msB\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t_gps_" +
-      "longB\r\n\013_gps_sat_okB\r\n\013_altitude_mB\017\n\r_v" +
-      "elocity_m_sB\022\n\020_mcb_temperatureB\013\n\t_eule" +
-      "r_fiB\014\n\n_euler_psiB\016\n\014_euler_thetaB\021\n\017_r" +
-      "ecovery_flagsB\020\n\016_pitot_batteryB\021\n\017_pito" +
-      "t_altitudeB\021\n\017_pitot_velocityB\024\n\022_pitot_" +
-      "temperatureB\022\n\020_main_vent_flagsB\025\n\023_n2_v" +
-      "ent_bit_data_aB\036\n\034_ox_vent_eth_main_bit_" +
-      "data_aB\036\n\034_ox_vent_eth_main_bit_data_bB\036" +
-      "\n\034_ox_vent_eth_main_bit_data_cB\025\n\023_ox_ma" +
-      "in_bit_data_aB\025\n\023_ox_main_bit_data_bB\026\n\024" +
-      "_eth_vent_bit_data_aB\026\n\024_eth_vent_bit_da" +
-      "ta_bB\024\n\022_auto_vent_settingB\022\n\020_payload_b" +
-      "atteryB\032\n\030_esp_now_connected_flagsB\025\n\023_e" +
-      "sp_now_wkup_flagsB\t\n\007_errors\"\364\006\n\016LoRaFra" +
-      "meTanwa\022\032\n\rtanwa_battery\030\001 \001(\007H\000\210\001\001\022\030\n\013t" +
-      "anwa_state\030\002 \001(\rH\001\210\001\001\022\030\n\013tanwa_flags\030\003 \001" +
-      "(\007H\002\210\001\001\022\031\n\014tanwa_thrust\030\004 \001(\021H\003\210\001\001\022\036\n\021ta" +
-      "nwa_tank_weight\030\005 \001(\rH\004\210\001\001\022%\n\030tanwa_temp" +
-      "_post_n2o_fill\030\006 \001(\021H\005\210\001\001\022$\n\027tanwa_temp_" +
-      "filling_wall\030\007 \001(\021H\006\210\001\001\022%\n\030tanwa_post_fi" +
-      "ll_n2o_pres\030\010 \001(\rH\007\210\001\001\022\"\n\025tanwa_cutoff_n" +
-      "2o_pres\030\t \001(\rH\010\210\001\001\022!\n\024tanwa_droid_n2o_pr" +
-      "es\030\n \001(\rH\t\210\001\001\022\"\n\025tanwa_pre_reg_n2_pres\030\013" +
-      " \001(\rH\n\210\001\001\022#\n\026tanwa_post_reg_n2_pres\030\014 \001(" +
-      "\rH\013\210\001\001\022$\n\027tanwa_post_fill_n2_pres\030\r \001(\rH" +
-      "\014\210\001\001\022 \n\023tanwa_droid_n2_pres\030\016 \001(\rH\r\210\001\001\022$" +
-      "\n\027tanwa_comb_chamber_pres\030\017 \001(\rH\016\210\001\001B\020\n\016" +
-      "_tanwa_batteryB\016\n\014_tanwa_stateB\016\n\014_tanwa" +
-      "_flagsB\017\n\r_tanwa_thrustB\024\n\022_tanwa_tank_w" +
-      "eightB\033\n\031_tanwa_temp_post_n2o_fillB\032\n\030_t" +
-      "anwa_temp_filling_wallB\033\n\031_tanwa_post_fi" +
-      "ll_n2o_presB\030\n\026_tanwa_cutoff_n2o_presB\027\n" +
-      "\025_tanwa_droid_n2o_presB\030\n\026_tanwa_pre_reg" +
-      "_n2_presB\031\n\027_tanwa_post_reg_n2_presB\032\n\030_" +
-      "tanwa_post_fill_n2_presB\026\n\024_tanwa_droid_" +
-      "n2_presB\032\n\030_tanwa_comb_chamber_pres\"\243\001\n\013" +
-      "LoRaCommand\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n" +
-      "\nsys_dev_id\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH" +
-      "\002\210\001\001\022\024\n\007payload\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_" +
-      "idB\r\n\013_sys_dev_idB\n\n\010_commandB\n\n\010_payloa" +
-      "dBD\n5pl.edu.pwr.pwrinspace.poliwrocket.M" +
-      "odel.MessageParserB\013FrameProtosb\006proto3"
+      "\n\037src/main/resources/frames.proto\"\264\014\n\010MC" +
+      "BFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptime" +
+      "_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\021H\002" +
+      "\210\001\001\022\025\n\010mcb_batt\030\004 \001(\rH\003\210\001\001\022\024\n\007gps_lat\030\005 " +
+      "\001(\002H\004\210\001\001\022\025\n\010gps_long\030\006 \001(\002H\005\210\001\001\022\027\n\ngps_s" +
+      "at_ok\030\007 \001(\010H\006\210\001\001\022\027\n\naltitude_m\030\010 \001(\021H\007\210\001" +
+      "\001\022\031\n\014velocity_m_s\030\t \001(\021H\010\210\001\001\022\034\n\017mcb_temp" +
+      "erature\030\n \001(\021H\t\210\001\001\022\025\n\010euler_fi\030\013 \001(\002H\n\210\001" +
+      "\001\022\026\n\teuler_psi\030\014 \001(\002H\013\210\001\001\022\030\n\013euler_theta" +
+      "\030\r \001(\002H\014\210\001\001\022\033\n\016recovery_flags\030\016 \001(\007H\r\210\001\001" +
+      "\022\032\n\rpitot_battery\030\017 \001(\rH\016\210\001\001\022\033\n\016pitot_al" +
+      "titude\030\020 \001(\021H\017\210\001\001\022\033\n\016pitot_velocity\030\021 \001(" +
+      "\021H\020\210\001\001\022\036\n\021pitot_temperature\030\022 \001(\021H\021\210\001\001\022\034" +
+      "\n\017main_vent_flags\030\023 \001(\007H\022\210\001\001\022\037\n\022n2_vent_" +
+      "bit_data_a\030\024 \001(\007H\023\210\001\001\022(\n\033ox_vent_eth_mai" +
+      "n_bit_data_a\030\025 \001(\007H\024\210\001\001\022(\n\033ox_vent_eth_m" +
+      "ain_bit_data_b\030\026 \001(\007H\025\210\001\001\022(\n\033ox_vent_eth" +
+      "_main_bit_data_c\030\027 \001(\007H\026\210\001\001\022\037\n\022ox_main_b" +
+      "it_data_a\030\030 \001(\007H\027\210\001\001\022\037\n\022ox_main_bit_data" +
+      "_b\030\031 \001(\007H\030\210\001\001\022 \n\023eth_vent_bit_data_a\030\032 \001" +
+      "(\007H\031\210\001\001\022 \n\023eth_vent_bit_data_b\030\033 \001(\007H\032\210\001" +
+      "\001\022\036\n\021auto_vent_setting\030\034 \001(\rH\033\210\001\001\022\034\n\017pay" +
+      "load_battery\030\035 \001(\rH\034\210\001\001\022$\n\027esp_now_conne" +
+      "cted_flags\030\036 \001(\007H\035\210\001\001\022\037\n\022esp_now_wkup_fl" +
+      "ags\030\037 \001(\007H\036\210\001\001\022\023\n\006errors\030  \001(\007H\037\210\001\001B\014\n\n_" +
+      "mcb_stateB\014\n\n_uptime_msB\021\n\017_flight_time_" +
+      "msB\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t_gps_long" +
+      "B\r\n\013_gps_sat_okB\r\n\013_altitude_mB\017\n\r_veloc" +
+      "ity_m_sB\022\n\020_mcb_temperatureB\013\n\t_euler_fi" +
+      "B\014\n\n_euler_psiB\016\n\014_euler_thetaB\021\n\017_recov" +
+      "ery_flagsB\020\n\016_pitot_batteryB\021\n\017_pitot_al" +
+      "titudeB\021\n\017_pitot_velocityB\024\n\022_pitot_temp" +
+      "eratureB\022\n\020_main_vent_flagsB\025\n\023_n2_vent_" +
+      "bit_data_aB\036\n\034_ox_vent_eth_main_bit_data" +
+      "_aB\036\n\034_ox_vent_eth_main_bit_data_bB\036\n\034_o" +
+      "x_vent_eth_main_bit_data_cB\025\n\023_ox_main_b" +
+      "it_data_aB\025\n\023_ox_main_bit_data_bB\026\n\024_eth" +
+      "_vent_bit_data_aB\026\n\024_eth_vent_bit_data_b" +
+      "B\024\n\022_auto_vent_settingB\022\n\020_payload_batte" +
+      "ryB\032\n\030_esp_now_connected_flagsB\025\n\023_esp_n" +
+      "ow_wkup_flagsB\t\n\007_errors\"\360\006\n\nTanwaFrame\022" +
+      "\032\n\rtanwa_battery\030\001 \001(\007H\000\210\001\001\022\030\n\013tanwa_sta" +
+      "te\030\002 \001(\rH\001\210\001\001\022\030\n\013tanwa_flags\030\003 \001(\007H\002\210\001\001\022" +
+      "\031\n\014tanwa_thrust\030\004 \001(\021H\003\210\001\001\022\036\n\021tanwa_tank" +
+      "_weight\030\005 \001(\rH\004\210\001\001\022%\n\030tanwa_temp_post_n2" +
+      "o_fill\030\006 \001(\021H\005\210\001\001\022$\n\027tanwa_temp_filling_" +
+      "wall\030\007 \001(\021H\006\210\001\001\022%\n\030tanwa_post_fill_n2o_p" +
+      "res\030\010 \001(\rH\007\210\001\001\022\"\n\025tanwa_cutoff_n2o_pres\030" +
+      "\t \001(\rH\010\210\001\001\022!\n\024tanwa_droid_n2o_pres\030\n \001(\r" +
+      "H\t\210\001\001\022\"\n\025tanwa_pre_reg_n2_pres\030\013 \001(\rH\n\210\001" +
+      "\001\022#\n\026tanwa_post_reg_n2_pres\030\014 \001(\rH\013\210\001\001\022$" +
+      "\n\027tanwa_post_fill_n2_pres\030\r \001(\rH\014\210\001\001\022 \n\023" +
+      "tanwa_droid_n2_pres\030\016 \001(\rH\r\210\001\001\022$\n\027tanwa_" +
+      "comb_chamber_pres\030\017 \001(\rH\016\210\001\001B\020\n\016_tanwa_b" +
+      "atteryB\016\n\014_tanwa_stateB\016\n\014_tanwa_flagsB\017" +
+      "\n\r_tanwa_thrustB\024\n\022_tanwa_tank_weightB\033\n" +
+      "\031_tanwa_temp_post_n2o_fillB\032\n\030_tanwa_tem" +
+      "p_filling_wallB\033\n\031_tanwa_post_fill_n2o_p" +
+      "resB\030\n\026_tanwa_cutoff_n2o_presB\027\n\025_tanwa_" +
+      "droid_n2o_presB\030\n\026_tanwa_pre_reg_n2_pres" +
+      "B\031\n\027_tanwa_post_reg_n2_presB\032\n\030_tanwa_po" +
+      "st_fill_n2_presB\026\n\024_tanwa_droid_n2_presB" +
+      "\032\n\030_tanwa_comb_chamber_pres\"\240\001\n\010AppFrame" +
+      "\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsys_dev_id" +
+      "\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001\001\022\024\n\007pay" +
+      "load\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_idB\r\n\013_sys_" +
+      "dev_idB\n\n\010_commandB\n\n\010_payload\"x\n\tLoRaFr" +
+      "ame\022\036\n\tmcb_frame\030\001 \001(\0132\t.MCBFrameH\000\022\"\n\013t" +
+      "anwa_frame\030\002 \001(\0132\013.TanwaFrameH\000\022\036\n\tapp_f" +
+      "rame\030\003 \001(\0132\t.AppFrameH\000B\007\n\005frameBD\n5pl.e" +
+      "du.pwr.pwrinspace.poliwrocket.Model.Mess" +
+      "ageParserB\013FrameProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_LoRaFrameMCB_descriptor =
+    internal_static_MCBFrame_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_LoRaFrameMCB_fieldAccessorTable = new
+    internal_static_MCBFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaFrameMCB_descriptor,
+        internal_static_MCBFrame_descriptor,
         new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentBitDataA", "EthVentBitDataB", "AutoVentSetting", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentBitDataA", "EthVentBitDataB", "AutoVentSetting", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", });
-    internal_static_LoRaFrameTanwa_descriptor =
+    internal_static_TanwaFrame_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_LoRaFrameTanwa_fieldAccessorTable = new
+    internal_static_TanwaFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaFrameTanwa_descriptor,
+        internal_static_TanwaFrame_descriptor,
         new java.lang.String[] { "TanwaBattery", "TanwaState", "TanwaFlags", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostFillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreRegN2Pres", "TanwaPostRegN2Pres", "TanwaPostFillN2Pres", "TanwaDroidN2Pres", "TanwaCombChamberPres", "TanwaBattery", "TanwaState", "TanwaFlags", "TanwaThrust", "TanwaTankWeight", "TanwaTempPostN2OFill", "TanwaTempFillingWall", "TanwaPostFillN2OPres", "TanwaCutoffN2OPres", "TanwaDroidN2OPres", "TanwaPreRegN2Pres", "TanwaPostRegN2Pres", "TanwaPostFillN2Pres", "TanwaDroidN2Pres", "TanwaCombChamberPres", });
-    internal_static_LoRaCommand_descriptor =
+    internal_static_AppFrame_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_LoRaCommand_fieldAccessorTable = new
+    internal_static_AppFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LoRaCommand_descriptor,
+        internal_static_AppFrame_descriptor,
         new java.lang.String[] { "LoraDevId", "SysDevId", "Command", "Payload", "LoraDevId", "SysDevId", "Command", "Payload", });
+    internal_static_LoRaFrame_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_LoRaFrame_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_LoRaFrame_descriptor,
+        new java.lang.String[] { "McbFrame", "TanwaFrame", "AppFrame", "Frame", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
