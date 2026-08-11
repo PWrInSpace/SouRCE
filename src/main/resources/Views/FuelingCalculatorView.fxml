@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="881.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.FuelingCalculatorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="881.0" styleClass="baseScene" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.FuelingCalculatorController">
    <children>
       <JFXCheckBox fx:id="weightOverrideCheck" layoutX="392.0" layoutY="57.0" mnemonicParsing="false" text=" " />
       <JFXCheckBox fx:id="flowOverrideCheck" layoutX="392.0" layoutY="179.0" mnemonicParsing="false" text=" " />

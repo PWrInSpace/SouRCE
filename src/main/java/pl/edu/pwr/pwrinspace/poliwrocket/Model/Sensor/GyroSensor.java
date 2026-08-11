@@ -21,6 +21,12 @@ public class GyroSensor implements Observable, IGyroSensor {
 
     }
 
+    public GyroSensor(Sensor gryro1, Sensor gryro2, Sensor gryro3) {
+        this.axis_x = gryro1;
+        this.axis_y = gryro2;
+        this.axis_z = gryro3;
+    }
+
     public Sensor getAxis_x() {
         return axis_x;
     }

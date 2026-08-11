@@ -222,22 +222,6 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.sensorRepository.setGpsSensor(gpsSensor);
         //--------
 
-        //filling level
-        FillingLevelSensor fillingLevelSensor = new FillingLevelSensor();
-        fillingLevelSensor.setName("N02Level");
-        AlertSensor hall1 = new AlertSensor();
-        AlertSensor hall2 = new AlertSensor();
-        AlertSensor hall3 = new AlertSensor();
-        AlertSensor hall4 = new AlertSensor();
-        AlertSensor hall5 = new AlertSensor();
-        fillingLevelSensor.setHallSensor1(hall1);
-        fillingLevelSensor.setHallSensor2(hall2);
-        fillingLevelSensor.setHallSensor3(hall3);
-        fillingLevelSensor.setHallSensor4(hall4);
-        fillingLevelSensor.setHallSensor5(hall5);
-        defaultConfig.sensorRepository.addSensor(fillingLevelSensor);
-        //--------
-
         ByteSensor byteSensor = new ByteSensor();
         defaultConfig.sensorRepository.addSensor(byteSensor);
 

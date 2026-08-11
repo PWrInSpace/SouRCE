@@ -91,15 +91,6 @@ public class SensorsConfig extends BaseSaveModel {
 
         var basicSensors = this.sensorRepository.getAllBasicSensors().values().toArray();
 
-        Arrays.stream(basicSensors).filter(s -> s instanceof FillingLevelSensor).forEach(s -> {
-            var sensor = (FillingLevelSensor) s;
-            this.sensorRepository.addSensor(sensor.getHallSensor1());
-            this.sensorRepository.addSensor(sensor.getHallSensor2());
-            this.sensorRepository.addSensor(sensor.getHallSensor3());
-            this.sensorRepository.addSensor(sensor.getHallSensor4());
-            this.sensorRepository.addSensor(sensor.getHallSensor5());
-        });
-
         Arrays.stream(basicSensors).filter(ISensorsWrapper.class::isInstance).forEach(s -> {
             for (Sensor innerSensor : ((ISensorsWrapper) s).getSensors()) {
                 if (!innerSensor.getName().isEmpty())

@@ -43,7 +43,7 @@ public class Configuration implements Observable {
     public Map<String,List<String>> FRAME_PATTERN = new HashMap<>();
     public String MSG_PREFIX = "";
 
-    public List<Command> commandsList = new LinkedList<>();
+    public List<Command<?>> commandsList = new LinkedList<>();
     public List<Schedule> notificationSchedule = new LinkedList<>();
     public List<String> notificationMessageKeys = new LinkedList<>();
 

@@ -12,7 +12,7 @@ import java.util.*;
 public class CommandsConfig extends BaseSaveModel {
 
     @Expose
-    public List<Command> commandsList = new LinkedList<>();
+    public List<Command<?>> commandsList = new LinkedList<>();
 
     public CommandsConfig() {
         super(Configuration.CONFIG_PATH, "CommandConfig.json");
