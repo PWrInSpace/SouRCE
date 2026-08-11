@@ -5,6 +5,7 @@ import gnu.io.NRSerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import javafx.beans.InvalidationListener;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
@@ -19,8 +20,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static java.lang.Thread.sleep;
 
@@ -32,18 +31,19 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     private NRSerialPort serialPort;
     private String PORT_NAME = "COM3";
     private int DATA_RATE = 115200;
-    private final Logger log = Logger.getLogger(getClass().getName());
+    private final Logger log = LoggerFactory.getLogger(SerialPortManager.class);
     private OutputStream outputStream;
     private InputStream inputStream;
     private SerialWriter serialWriter;
     private boolean isPortOpen = false;
     private FrameSaveService frameSaveService;
     private IMessageParser messageParser;
+    private final Object LOCK = new Object();
     private String lastMessage = "";
     protected static String msgPrefix = Configuration.getInstance().MSG_PREFIX;
 
     private SerialPortManager() {
-        if (Holder.INSTANCE != null) {
+        if (getInstance() != null) {
             throw new IllegalStateException("Singleton already constructed");
         }
     }
@@ -90,7 +90,9 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     @Override
     public void setMessageParser(IMessageParser messageParser) {
-        this.messageParser = messageParser;
+        synchronized (LOCK) {
+            this.messageParser = messageParser;
+        }
     }
 
     @Override
@@ -107,12 +109,12 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     @Override
     public void initialize() {
-        if(messageParser != null) {
+        if (messageParser != null) {
             try {
                 // otwieramy i konfigurujemy port
                 serialPort = new NRSerialPort(PORT_NAME, DATA_RATE);
                 serialPort.connect();
-                if(serialPort.isConnected()) {
+                if (serialPort.isConnected()) {
                     // strumień wejścia
                     inputStream = serialPort.getInputStream();
 
@@ -136,22 +138,20 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                 isPortOpen = serialPort.isConnected();
             } catch (Exception e) {
                 isPortOpen = serialPort.isConnected();
-                log.log(Level.WARNING,e.toString());
+                log.warn(e.toString());
             } finally {
                 lastMessage = "";
                 notifyObserver();
                 notifyPortStatusObserver();
-                log.log(Level.INFO, "Serialport status: {0}", isPortOpen);
             }
         } else {
             isPortOpen = serialPort.isConnected();
             notifyObserver();
             notifyPortStatusObserver();
-            log.log(Level.WARNING,"IMessageParser not set");
-            log.log(Level.INFO, "Serialport status: {0}", isPortOpen);
+            log.warn("IMessageParser not set");
         }
-        if(frameSaveService == null) {
-            log.log(Level.WARNING,"FrameSaveService not set");
+        if (frameSaveService == null) {
+            log.warn("FrameSaveService not set");
         }
     }
 
@@ -160,7 +160,6 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         if (serialPort != null) {
             serialPort.removeEventListener();
             serialPort.disconnect();
-            log.log(Level.INFO, "Serialport closed.");
             isPortOpen = serialPort.isConnected();
             notifyObserver();
             notifyPortStatusObserver();
@@ -169,53 +168,49 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     @Override
     public void serialEvent(SerialPortEvent oEvent) {
-        synchronized (messageParser) {
+        synchronized (LOCK) {
             if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-//                log.log(Level.INFO, "DATA RECEIVED");
                 try {
-//                    log.log(Level.INFO, "Available bytes: {0}", this.inputStream.available());
                     Frame frame;
                     byte[] buffer;
-                    if(Configuration.getInstance().BUFFER_SIZE != 0) {
-                        log.log(Level.INFO, "reading with buffer size: {0}", Configuration.getInstance().BUFFER_SIZE);
+                    if (Configuration.getInstance().BUFFER_SIZE != 0) {
+                        log.info("reading with buffer size: {}", Configuration.getInstance().BUFFER_SIZE);
                         buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
                     } else {
-//                        log.log(Level.INFO, "reading with buffer until no data available");
                         buffer = new byte[512];
                         int length = 0;
-                        while(this.inputStream.available() > 0) {
-                            
-                            buffer[length] = (byte)this.inputStream.read();
+                        while (this.inputStream.available() > 0) {
+
+                            buffer[length] = (byte) this.inputStream.read();
                             length++;
 
-                            if(length == 512) {
-                                log.log(Level.INFO, "LENGTH IS 512");
+                            if (length == 512) {
+                                log.info("LENGTH IS 512");
                                 return;
                             }
 
-                            if(this.inputStream.available() == 0) {
+                            if (this.inputStream.available() == 0) {
                                 Thread.sleep(1);
                             }
                         }
                         buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
                     }
 
-//                    log.log(Level.INFO, "RECEIVED DATA: " + new String(buffer));
-
-                    log.log(Level.INFO, "DATA LENGTH: " + buffer.length);
+                    log.info("DATA LENGTH: {}", buffer.length);
 
                     frame = new Frame(buffer, Instant.now());
 
                     messageParser.parseMessage(frame);
-                    if(frameSaveService != null) {
-                        if(frame.getFormattedContent() == null) {
+                    if (frameSaveService != null) {
+                        if (frame.getFormattedContent() == null) {
                             frame.setFormattedContent(frame.getStringContent());
                         }
                         frameSaveService.saveFrameToFile(frame);
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.error(e.getMessage());
                 } catch (InterruptedException e) {
+                    log.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
 
@@ -225,11 +220,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     public void write(String message) {
         System.out.println(message);
-        if(serialWriter == null) {
-            log.log(Level.WARNING, "Not connected");
+        if (serialWriter == null) {
+            log.warn("Not connected");
             return;
         }
-        log.log(Level.INFO, "Written: {0}", message);
+        log.info("Written: {}", message);
         serialWriter.send(message);
         this.lastMessage = message;
         notifyObserver();
@@ -237,23 +232,24 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
     public void write(ICommand command) {
         System.out.println(command.getCommandValueAsString());
-        if(serialWriter == null) {
-            log.log(Level.WARNING, "Not connected");
+        if (serialWriter == null) {
+            log.warn("Not connected");
             return;
         }
         var msg = command.getCommandValueAsString() + '\n';
-        log.log(Level.INFO, "Written: {0}", msg);
+        log.info("Written command: {}", msg);
+        log.info("Force: {}", Configuration.getInstance().isForceCommandsActive());
         serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));
         this.lastMessage = msg;
         notifyObserver();
     }
 
     public void writeWithoutCRC(String message) {
-        if(serialWriter == null) {
-            log.log(Level.WARNING, "Not connected");
+        if (serialWriter == null) {
+            log.warn("Not connected");
             return;
         }
-        log.log(Level.INFO, "Written: {0}", message);
+        log.info("Written: {}", message);
         serialWriter.sendWithoutCRC(message);
         this.lastMessage = message;
         notifyObserver();
@@ -262,10 +258,6 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     @Override
     public String getLastSend() {
         return this.lastMessage;
-    }
-
-    public SerialWriter getSerialWriter() {
-        return serialWriter;
     }
 
     public static class SerialWriter implements Runnable {
@@ -282,7 +274,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             try {
                 sleep(100);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
                 Thread.currentThread().interrupt();
             }
         }
@@ -293,13 +285,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
         public void send(byte[] msg) {
             try {
-                //out.write(msg);
                 var finalMsg = getMessageWithPrefixAndCRC(msg);
+                logger.info("added crc and prefix");
                 out.write(finalMsg);
-//                logger.info("Written msg: {}",msg);
-//                logger.info("Written with prefix and crc: {}",finalMsg);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         }
 
@@ -310,19 +300,19 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         public void sendWithoutCRC(byte[] msg) {
             try {
                 out.write(msg);
-                logger.info("Written msg: {}",msg);
+                logger.info("Written msg: {}", msg);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         }
 
         private byte[] getMessageCRC(byte[] msg) {
-            Integer messageCounter = 0;
+            int messageCounter = 0;
             for (byte msgByte : msg) {
                 messageCounter += msgByte;
             }
 
-            return new byte[]{ (byte)(messageCounter % 512) };
+            return new byte[]{(byte) (messageCounter % 512)};
         }
 
         private byte[] getMessageWithPrefixAndCRC(byte[] msg) {

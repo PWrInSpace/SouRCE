@@ -16,59 +16,24 @@ import java.util.*;
 
 public class ConfigurationSaveModel extends BaseSaveModel {
 
-    @Expose
-    public int FPS = 10;
-
-    @Expose
-    public int AVERAGING_PERIOD = 1000;
-
-    @Expose
-    public int BUFFER_SIZE;
-
-    @Expose
-    public double START_POSITION_LAT;
-
-    @Expose
-    public double START_POSITION_LON;
-
-    @Expose
-    public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
-
-    @Expose
-    public String FRAME_DELIMITER = ",";
-
-    @Expose
-    public String DISCORD_TOKEN = "";
-
-    @Expose
-    public String DISCORD_CHANNEL_NAME = "rocket";
-
-    @Expose
-    public Map<String, List<String>> FRAME_PATTERN = new HashMap<>();
-
-    @Expose
-    public String MSG_PREFIX = "";
-
-    @Expose
-    public List<Command> commandsList = new LinkedList<>();
-
-    @Expose
-    public List<Schedule> notificationSchedule = new LinkedList<>();
-
-    @Expose
-    public List<String> notificationMessageKeys = new LinkedList<>();
-
-    @Expose
-    public SensorRepository sensorRepository = new SensorRepository();
-
-    @Expose
-    public InterpreterRepository interpreterRepository = new InterpreterRepository();
-
-    @Expose
-    public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
-
-    @Expose
-    public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
+    @Expose public int FPS = 10;
+    @Expose public int AVERAGING_PERIOD = 1000;
+    @Expose public int BUFFER_SIZE;
+    @Expose public double START_POSITION_LAT;
+    @Expose public double START_POSITION_LON;
+    @Expose public MessageParserEnum PARSER_TYPE = MessageParserEnum.STANDARD;
+    @Expose public String FRAME_DELIMITER = ",";
+    @Expose public String DISCORD_TOKEN = "";
+    @Expose public String DISCORD_CHANNEL_NAME = "rocket";
+    @Expose public Map<String, List<String>> FRAME_PATTERN = new HashMap<>();
+    @Expose public String MSG_PREFIX = "";
+    @Expose public List<Command<?>> commandsList = new LinkedList<>();
+    @Expose public List<Schedule> notificationSchedule = new LinkedList<>();
+    @Expose public List<String> notificationMessageKeys = new LinkedList<>();
+    @Expose public SensorRepository sensorRepository = new SensorRepository();
+    @Expose public InterpreterRepository interpreterRepository = new InterpreterRepository();
+    @Expose public ProtobufDeviceRepository protobufDeviceRepository = new ProtobufDeviceRepository();
+    @Expose public ProtobufSystemRepository protobufSystemRepository = new ProtobufSystemRepository();
 
     @Expose
     public Map<String, Object> speechRules = new HashMap<>();

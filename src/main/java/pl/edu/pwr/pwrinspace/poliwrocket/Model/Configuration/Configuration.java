@@ -58,7 +58,7 @@ public class Configuration implements Observable {
     private boolean lightMode = false;
 
     private Configuration() {
-        if (Holder.INSTANCE != null) {
+        if (getInstance() != null) {
             throw new IllegalStateException("Singleton already constructed");
         }
     }

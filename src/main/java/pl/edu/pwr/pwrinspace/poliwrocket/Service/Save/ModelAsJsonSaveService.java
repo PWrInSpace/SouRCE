@@ -15,11 +15,6 @@ public class ModelAsJsonSaveService {
     private static final Logger logger = LoggerFactory.getLogger(ModelAsJsonSaveService.class);
     private final RuntimeTypeAdapterFactory<Sensor> sensorAdapterFactory = RuntimeTypeAdapterFactory.of(Sensor.class, "type")
             .registerSubtype(Sensor.class, "Sensor")
-            .registerSubtype(FillingLevelSensor.class, "FillingLevelSensor")
-            .registerSubtype(TareSensor.class, "TareSensor")
-            .registerSubtype(AlertSensor.class, "AlertSensor")
-            .registerSubtype(TanwiarzSensor.class, "TanwiarzSensor")
-            .registerSubtype(PoteznyTanwiarzSensor.class, "PoteznyTanwiarzSensor")
             .registerSubtype(SettingsSensor.class, "SettingsSensor")
             .registerSubtype(CompositeBitSensor.class, "CompositeBitSensor")
             .registerSubtype(ByteSensor.class, "ByteSensor")

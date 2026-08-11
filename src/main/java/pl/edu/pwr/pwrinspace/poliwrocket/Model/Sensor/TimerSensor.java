@@ -1,31 +1,20 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor;
 
 import com.google.gson.annotations.Expose;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.Command;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ProtobufCommand;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 
-import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TimerSensor extends Sensor {
-
-    @Expose
-    private int abortTime;
-
+    @Expose private int abortTime;
+    @Expose private Command<ProtobufCommand> command;
+    @Expose private int controlTime;
     private Timer timer;
-
     private TimerTask mainTask;
-
     private TimerTask controlTask;
-
-    @Expose
-    private Command<ProtobufCommand> command;
-
-    @Expose
-    private int controlTime;
 
     private void resetTimer(long timeToAbort) {
 
@@ -63,14 +52,6 @@ public class TimerSensor extends Sensor {
     public void notifyObserver() {
         super.notifyObserver();
         resetTimer((long) this.getValue());
-    }
-
-    public void setAbortTime(int abortTime) {
-        this.abortTime = abortTime;
-    }
-
-    public long getAbortTime() {
-        return abortTime;
     }
 
     public void cancelTimer() {
