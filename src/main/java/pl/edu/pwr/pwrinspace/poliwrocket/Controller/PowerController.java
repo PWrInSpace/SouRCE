@@ -141,7 +141,6 @@ public class PowerController extends BaseSensorController {
     @Override
     protected void setUIBySensors() {
         for (ISensor sensor : sensors) {
-            logger.info("Binding sensor {} to PowerController", sensor.getName());
             if (sensor.getDestination().startsWith("powerVoltage")) {
                 var title = labelHashMap.get(sensor.getDestination().replace("Voltage", "Label"));
                 title.setVisible(true);

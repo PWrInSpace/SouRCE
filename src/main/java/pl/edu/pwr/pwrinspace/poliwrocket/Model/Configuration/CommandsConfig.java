@@ -28,7 +28,7 @@ public class CommandsConfig extends BaseSaveModel {
                 List<ICommand> assignedCommands = new ArrayList<>();
                 String controllerName = controller.getControllerName();
 
-                for (Command command : commandsList) {
+                for (Command<?> command : commandsList) {
                     if (command.getDestinationControllerNames().contains(controllerName)) {
                         assignedCommands.add(command);
                     }

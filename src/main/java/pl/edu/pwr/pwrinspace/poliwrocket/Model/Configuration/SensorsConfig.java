@@ -2,13 +2,12 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
 import com.google.gson.annotations.Expose;
 import org.javatuples.KeyValue;
+import org.slf4j.Logger;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseSensorController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.BaseSaveModel;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.MessageParserEnum;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.*;
-
 import java.util.*;
 
 public class SensorsConfig extends BaseSaveModel {
@@ -16,23 +15,20 @@ public class SensorsConfig extends BaseSaveModel {
     @Expose
     public SensorRepository sensorRepository = new SensorRepository();
 
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(SensorsConfig.class);
+
     public SensorsConfig() {
         super(Configuration.CONFIG_PATH, "SensorConfig.json");
     }
 
+    public SensorRepository processAndGetRepository(
+            MessageParserEnum parserType,
+            InterpreterRepository interpreterRepository
+    ) {
+        if (sensorRepository == null) sensorRepository = new SensorRepository();
 
-    public SensorRepository processAndGetRepository(MessageParserEnum parserType,
-                                                    Map<String, List<String>> framePattern,
-                                                    InterpreterRepository interpreterRepository) {
-        if (sensorRepository == null) {
-            sensorRepository = new SensorRepository();
-        }
-
-        addSensorsToRepository(parserType, framePattern);
-        validateFrameAndRepository(framePattern);
-
+        addSensorsToRepository(parserType);
         setupSensorsAsListeners();
-
         setupSensorsInterpreters(interpreterRepository);
 
         return sensorRepository;
@@ -47,20 +43,16 @@ public class SensorsConfig extends BaseSaveModel {
             String controllerName = controller.getControllerName();
             List<ISensor> assignedSensors = new ArrayList<>();
 
-            if (sensorRepository.getGpsSensor() != null &&
-                    sensorRepository.getGpsSensor().getDestinationControllerNames().contains(controllerName)) {
+            if (sensorRepository.getGpsSensor() != null && sensorRepository.getGpsSensor().getDestinationControllerNames().contains(controllerName)) {
                 sensorRepository.getGpsSensor().addListener(controller);
             }
 
-            if (sensorRepository.getGyroSensor() != null &&
-                    sensorRepository.getGyroSensor().getDestinationControllerNames().contains(controllerName)) {
+            if (sensorRepository.getGyroSensor() != null && sensorRepository.getGyroSensor().getDestinationControllerNames().contains(controllerName)) {
                 sensorRepository.getGyroSensor().addListener(controller);
             }
 
             sensorRepository.getAllBasicSensors().values().forEach(sensor -> {
-                if (sensor.getDestinationControllerNames().contains(controllerName) &&
-                        sensor.getDestination() != null && !sensor.getDestination().isEmpty()) {
-
+                if (sensor.getDestinationControllerNames().contains(controllerName) && sensor.getDestination() != null && !sensor.getDestination().isEmpty()) {
                     sensor.addListener(controller);
                     assignedSensors.add(sensor);
                 }
@@ -72,20 +64,12 @@ public class SensorsConfig extends BaseSaveModel {
         }
     }
 
-    private void addSensorsToRepository(MessageParserEnum parserType, Map<String, List<String>> framePattern) {
-        if (parserType == MessageParserEnum.PROTOBUF || framePattern.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLatitude().getName()))) {
+    private void addSensorsToRepository(MessageParserEnum parserType) {
+        if (parserType == MessageParserEnum.PROTOBUF) {
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLatitude());
-        }
-        if (parserType == MessageParserEnum.PROTOBUF || framePattern.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGpsSensor().getLongitude().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGpsSensor().getLongitude());
-        }
-        if (parserType == MessageParserEnum.PROTOBUF || framePattern.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_x().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_x());
-        }
-        if (parserType == MessageParserEnum.PROTOBUF || framePattern.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_y().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_y());
-        }
-        if (parserType == MessageParserEnum.PROTOBUF || framePattern.values().stream().anyMatch(l -> l.contains(this.sensorRepository.getGyroSensor().getAxis_z().getName()))) {
             this.sensorRepository.addSensor(this.sensorRepository.getGyroSensor().getAxis_z());
         }
 
@@ -109,21 +93,8 @@ public class SensorsConfig extends BaseSaveModel {
             try {
                 composite.injectSensors(sensorList);
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.error("Error injecting sensors into composite sensor: {}", e.getMessage());
             }
-        });
-    }
-
-    private void validateFrameAndRepository(Map<String, List<String>> framePattern) {
-        if (framePattern == null) return;
-        framePattern.forEach((frameKey, pattern) -> {
-            pattern.forEach(key -> {
-                try {
-                    sensorRepository.getSensorByName(key);
-                } catch (NullPointerException e) {
-                    sensorRepository.addSensor(new Sensor(key));
-                }
-            });
         });
     }
 
