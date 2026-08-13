@@ -44,25 +44,27 @@ message MCBFrame {
   // bit2: OX_VENT_STATE
   // bit3: ETH_MAIN_STATE
   // bit4: ETH_VENT_STATE
-  // bit5: N2_VENT_STATE
+  // bit5: N2_MAIN_STATE
+  // bit6: N2_VENT_STATE
   optional fixed32 main_vent_flags = 19;
 
   optional fixed32 n2_vent_bit_data_a = 20;
+  optional fixed32 n2_vent_bit_data_b = 21;
 
-  optional fixed32 ox_vent_eth_main_bit_data_a = 21;
-  optional fixed32 ox_vent_eth_main_bit_data_b = 22;
-  optional fixed32 ox_vent_eth_main_bit_data_c = 23;
+  optional fixed32 ox_vent_eth_main_bit_data_a = 22;
+  optional fixed32 ox_vent_eth_main_bit_data_b = 23;
+  optional fixed32 ox_vent_eth_main_bit_data_c = 24;
 
-  optional fixed32 ox_main_bit_data_a = 24;
-  optional fixed32 ox_main_bit_data_b = 25;
+  optional fixed32 ox_main_bit_data_a = 25;
+  optional fixed32 ox_main_bit_data_b = 26;
 
-  optional fixed32 eth_vent_bit_data_a = 26;
-  optional fixed32 eth_vent_bit_data_b = 27;
+  optional fixed32 eth_vent_n2_main_bit_data_a = 27;
+  optional fixed32 eth_vent_n2_main_bit_data_b = 28;
 
-  optional uint32 auto_vent_setting = 28;
+  optional uint32 auto_vent_setting = 29;
 
   // === Payload ===
-  optional uint32 payload_battery = 29;
+  optional uint32 payload_battery = 30;
 
   // === ESP-NOW connection bitfield ===
   // bit0: payload_connected
@@ -72,7 +74,7 @@ message MCBFrame {
   // bit4: ox_vent_eth_main_connected
   // bit5: n2_vent_connected
   // bit6: pitot_connected
-  optional fixed32 esp_now_connected_flags = 30;
+  optional fixed32 esp_now_connected_flags = 31;
 
   // === ESP-NOW wake-up bitfield ===
   // bit0: payload_wkup
@@ -81,9 +83,9 @@ message MCBFrame {
   // bit3: ox_vent_eth_main_wkup
   // bit4: n2_vent_wkup
   // bit5: pitot_wkup
-  optional fixed32 esp_now_wkup_flags = 31;
+  optional fixed32 esp_now_wkup_flags = 32;
 
-  optional fixed32 errors = 32;
+  optional fixed32 errors = 33;
 }
 
 message TanwaFrame {
