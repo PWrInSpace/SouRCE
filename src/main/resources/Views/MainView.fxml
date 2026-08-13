@@ -209,7 +209,7 @@
             </Tab>
             <Tab text="Test">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <SubScene fx:id="testCommandsScene" layoutX="10.0" layoutY="10.0" height="550.0" width="475.0">
+                    <SubScene fx:id="testCommandsScene" layoutX="10.0" layoutY="10.0" height="650.0" width="475.0">
                         <root>
                             <Region />
                         </root>

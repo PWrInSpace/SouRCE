@@ -196,16 +196,23 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
                         buffer = Arrays.copyOfRange(buffer, msgPrefix.length(), length);
                     }
 
-                    log.info("DATA LENGTH: {}", buffer.length);
+                    byte crc = buffer[buffer.length - 1];
+                    buffer = Arrays.copyOfRange(buffer, 0, buffer.length - 1);
 
-                    frame = new Frame(buffer, Instant.now());
+                    if (serialWriter.getMessageCRC(buffer) != null && serialWriter.getMessageCRC(buffer)[0] == crc) {
+                        log.info("CRC MATCH");
+                        log.info("DATA LENGTH: {}", buffer.length);
+                        frame = new Frame(buffer, Instant.now());
 
-                    messageParser.parseMessage(frame);
-                    if (frameSaveService != null) {
-                        if (frame.getFormattedContent() == null) {
-                            frame.setFormattedContent(frame.getStringContent());
+                        messageParser.parseMessage(frame);
+                        if (frameSaveService != null) {
+                            if (frame.getFormattedContent() == null) {
+                                frame.setFormattedContent(frame.getStringContent());
+                            }
+                            frameSaveService.saveFrameToFile(frame);
                         }
-                        frameSaveService.saveFrameToFile(frame);
+                    } else {
+                        log.info("CRC MISMATCH");
                     }
                 } catch (IOException e) {
                     log.error(e.getMessage());
@@ -306,7 +313,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             }
         }
 
-        private byte[] getMessageCRC(byte[] msg) {
+        public byte[] getMessageCRC(byte[] msg) {
             int messageCounter = 0;
             for (byte msgByte : msg) {
                 messageCounter += msgByte;
@@ -315,7 +322,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
             return new byte[]{(byte) (messageCounter % 512)};
         }
 
-        private byte[] getMessageWithPrefixAndCRC(byte[] msg) {
+        public byte[] getMessageWithPrefixAndCRC(byte[] msg) {
             return Bytes.concat(SerialPortManager.msgPrefix.getBytes(), msg, getMessageCRC(msg));
         }
     }

@@ -268,8 +268,7 @@ public final class FrameProtos {
      * bit2: OX_VENT_STATE
      * bit3: ETH_MAIN_STATE
      * bit4: ETH_VENT_STATE
-     * bit5: N2_MAIN_STATE
-     * bit6: N2_VENT_STATE
+     * bit5: N2_VENT_STATE
      * </pre>
      *
      * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -284,8 +283,7 @@ public final class FrameProtos {
      * bit2: OX_VENT_STATE
      * bit3: ETH_MAIN_STATE
      * bit4: ETH_VENT_STATE
-     * bit5: N2_MAIN_STATE
-     * bit6: N2_VENT_STATE
+     * bit5: N2_VENT_STATE
      * </pre>
      *
      * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -305,100 +303,89 @@ public final class FrameProtos {
     int getN2VentBitDataA();
 
     /**
-     * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-     * @return Whether the n2VentBitDataB field is set.
-     */
-    boolean hasN2VentBitDataB();
-    /**
-     * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-     * @return The n2VentBitDataB.
-     */
-    int getN2VentBitDataB();
-
-    /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
      * @return Whether the oxVentEthMainBitDataA field is set.
      */
     boolean hasOxVentEthMainBitDataA();
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
      * @return The oxVentEthMainBitDataA.
      */
     int getOxVentEthMainBitDataA();
 
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
      * @return Whether the oxVentEthMainBitDataB field is set.
      */
     boolean hasOxVentEthMainBitDataB();
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
      * @return The oxVentEthMainBitDataB.
      */
     int getOxVentEthMainBitDataB();
 
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
      * @return Whether the oxVentEthMainBitDataC field is set.
      */
     boolean hasOxVentEthMainBitDataC();
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
      * @return The oxVentEthMainBitDataC.
      */
     int getOxVentEthMainBitDataC();
 
     /**
-     * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+     * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
      * @return Whether the oxMainBitDataA field is set.
      */
     boolean hasOxMainBitDataA();
     /**
-     * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+     * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
      * @return The oxMainBitDataA.
      */
     int getOxMainBitDataA();
 
     /**
-     * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+     * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
      * @return Whether the oxMainBitDataB field is set.
      */
     boolean hasOxMainBitDataB();
     /**
-     * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+     * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
      * @return The oxMainBitDataB.
      */
     int getOxMainBitDataB();
 
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
      * @return Whether the ethVentN2MainBitDataA field is set.
      */
     boolean hasEthVentN2MainBitDataA();
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
      * @return The ethVentN2MainBitDataA.
      */
     int getEthVentN2MainBitDataA();
 
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
      * @return Whether the ethVentN2MainBitDataB field is set.
      */
     boolean hasEthVentN2MainBitDataB();
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
      * @return The ethVentN2MainBitDataB.
      */
     int getEthVentN2MainBitDataB();
 
     /**
-     * <code>optional uint32 auto_vent_setting = 29;</code>
+     * <code>optional uint32 auto_vent_setting = 28;</code>
      * @return Whether the autoVentSetting field is set.
      */
     boolean hasAutoVentSetting();
     /**
-     * <code>optional uint32 auto_vent_setting = 29;</code>
+     * <code>optional uint32 auto_vent_setting = 28;</code>
      * @return The autoVentSetting.
      */
     int getAutoVentSetting();
@@ -408,7 +395,7 @@ public final class FrameProtos {
      * === Payload ===
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 30;</code>
+     * <code>optional uint32 payload_battery = 29;</code>
      * @return Whether the payloadBattery field is set.
      */
     boolean hasPayloadBattery();
@@ -417,7 +404,7 @@ public final class FrameProtos {
      * === Payload ===
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 30;</code>
+     * <code>optional uint32 payload_battery = 29;</code>
      * @return The payloadBattery.
      */
     int getPayloadBattery();
@@ -434,7 +421,7 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 30;</code>
      * @return Whether the espNowConnectedFlags field is set.
      */
     boolean hasEspNowConnectedFlags();
@@ -450,7 +437,7 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 30;</code>
      * @return The espNowConnectedFlags.
      */
     int getEspNowConnectedFlags();
@@ -466,7 +453,7 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
      * @return Whether the espNowWkupFlags field is set.
      */
     boolean hasEspNowWkupFlags();
@@ -481,18 +468,18 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
      * @return The espNowWkupFlags.
      */
     int getEspNowWkupFlags();
 
     /**
-     * <code>optional fixed32 errors = 33;</code>
+     * <code>optional fixed32 errors = 32;</code>
      * @return Whether the errors field is set.
      */
     boolean hasErrors();
     /**
-     * <code>optional fixed32 errors = 33;</code>
+     * <code>optional fixed32 errors = 32;</code>
      * @return The errors.
      */
     int getErrors();
@@ -538,7 +525,6 @@ public final class FrameProtos {
     }
 
     private int bitField0_;
-    private int bitField1_;
     public static final int MCB_STATE_FIELD_NUMBER = 1;
     private int mcbState_ = 0;
     /**
@@ -935,8 +921,7 @@ public final class FrameProtos {
      * bit2: OX_VENT_STATE
      * bit3: ETH_MAIN_STATE
      * bit4: ETH_VENT_STATE
-     * bit5: N2_MAIN_STATE
-     * bit6: N2_VENT_STATE
+     * bit5: N2_VENT_STATE
      * </pre>
      *
      * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -954,8 +939,7 @@ public final class FrameProtos {
      * bit2: OX_VENT_STATE
      * bit3: ETH_MAIN_STATE
      * bit4: ETH_VENT_STATE
-     * bit5: N2_MAIN_STATE
-     * bit6: N2_VENT_STATE
+     * bit5: N2_VENT_STATE
      * </pre>
      *
      * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -985,37 +969,18 @@ public final class FrameProtos {
       return n2VentBitDataA_;
     }
 
-    public static final int N2_VENT_BIT_DATA_B_FIELD_NUMBER = 21;
-    private int n2VentBitDataB_ = 0;
-    /**
-     * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-     * @return Whether the n2VentBitDataB field is set.
-     */
-    @java.lang.Override
-    public boolean hasN2VentBitDataB() {
-      return ((bitField0_ & 0x00100000) != 0);
-    }
-    /**
-     * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-     * @return The n2VentBitDataB.
-     */
-    @java.lang.Override
-    public int getN2VentBitDataB() {
-      return n2VentBitDataB_;
-    }
-
-    public static final int OX_VENT_ETH_MAIN_BIT_DATA_A_FIELD_NUMBER = 22;
+    public static final int OX_VENT_ETH_MAIN_BIT_DATA_A_FIELD_NUMBER = 21;
     private int oxVentEthMainBitDataA_ = 0;
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
      * @return Whether the oxVentEthMainBitDataA field is set.
      */
     @java.lang.Override
     public boolean hasOxVentEthMainBitDataA() {
-      return ((bitField0_ & 0x00200000) != 0);
+      return ((bitField0_ & 0x00100000) != 0);
     }
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
      * @return The oxVentEthMainBitDataA.
      */
     @java.lang.Override
@@ -1023,18 +988,18 @@ public final class FrameProtos {
       return oxVentEthMainBitDataA_;
     }
 
-    public static final int OX_VENT_ETH_MAIN_BIT_DATA_B_FIELD_NUMBER = 23;
+    public static final int OX_VENT_ETH_MAIN_BIT_DATA_B_FIELD_NUMBER = 22;
     private int oxVentEthMainBitDataB_ = 0;
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
      * @return Whether the oxVentEthMainBitDataB field is set.
      */
     @java.lang.Override
     public boolean hasOxVentEthMainBitDataB() {
-      return ((bitField0_ & 0x00400000) != 0);
+      return ((bitField0_ & 0x00200000) != 0);
     }
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
      * @return The oxVentEthMainBitDataB.
      */
     @java.lang.Override
@@ -1042,18 +1007,18 @@ public final class FrameProtos {
       return oxVentEthMainBitDataB_;
     }
 
-    public static final int OX_VENT_ETH_MAIN_BIT_DATA_C_FIELD_NUMBER = 24;
+    public static final int OX_VENT_ETH_MAIN_BIT_DATA_C_FIELD_NUMBER = 23;
     private int oxVentEthMainBitDataC_ = 0;
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
      * @return Whether the oxVentEthMainBitDataC field is set.
      */
     @java.lang.Override
     public boolean hasOxVentEthMainBitDataC() {
-      return ((bitField0_ & 0x00800000) != 0);
+      return ((bitField0_ & 0x00400000) != 0);
     }
     /**
-     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+     * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
      * @return The oxVentEthMainBitDataC.
      */
     @java.lang.Override
@@ -1061,18 +1026,18 @@ public final class FrameProtos {
       return oxVentEthMainBitDataC_;
     }
 
-    public static final int OX_MAIN_BIT_DATA_A_FIELD_NUMBER = 25;
+    public static final int OX_MAIN_BIT_DATA_A_FIELD_NUMBER = 24;
     private int oxMainBitDataA_ = 0;
     /**
-     * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+     * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
      * @return Whether the oxMainBitDataA field is set.
      */
     @java.lang.Override
     public boolean hasOxMainBitDataA() {
-      return ((bitField0_ & 0x01000000) != 0);
+      return ((bitField0_ & 0x00800000) != 0);
     }
     /**
-     * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+     * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
      * @return The oxMainBitDataA.
      */
     @java.lang.Override
@@ -1080,18 +1045,18 @@ public final class FrameProtos {
       return oxMainBitDataA_;
     }
 
-    public static final int OX_MAIN_BIT_DATA_B_FIELD_NUMBER = 26;
+    public static final int OX_MAIN_BIT_DATA_B_FIELD_NUMBER = 25;
     private int oxMainBitDataB_ = 0;
     /**
-     * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+     * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
      * @return Whether the oxMainBitDataB field is set.
      */
     @java.lang.Override
     public boolean hasOxMainBitDataB() {
-      return ((bitField0_ & 0x02000000) != 0);
+      return ((bitField0_ & 0x01000000) != 0);
     }
     /**
-     * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+     * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
      * @return The oxMainBitDataB.
      */
     @java.lang.Override
@@ -1099,18 +1064,18 @@ public final class FrameProtos {
       return oxMainBitDataB_;
     }
 
-    public static final int ETH_VENT_N2_MAIN_BIT_DATA_A_FIELD_NUMBER = 27;
+    public static final int ETH_VENT_N2_MAIN_BIT_DATA_A_FIELD_NUMBER = 26;
     private int ethVentN2MainBitDataA_ = 0;
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
      * @return Whether the ethVentN2MainBitDataA field is set.
      */
     @java.lang.Override
     public boolean hasEthVentN2MainBitDataA() {
-      return ((bitField0_ & 0x04000000) != 0);
+      return ((bitField0_ & 0x02000000) != 0);
     }
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
      * @return The ethVentN2MainBitDataA.
      */
     @java.lang.Override
@@ -1118,18 +1083,18 @@ public final class FrameProtos {
       return ethVentN2MainBitDataA_;
     }
 
-    public static final int ETH_VENT_N2_MAIN_BIT_DATA_B_FIELD_NUMBER = 28;
+    public static final int ETH_VENT_N2_MAIN_BIT_DATA_B_FIELD_NUMBER = 27;
     private int ethVentN2MainBitDataB_ = 0;
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
      * @return Whether the ethVentN2MainBitDataB field is set.
      */
     @java.lang.Override
     public boolean hasEthVentN2MainBitDataB() {
-      return ((bitField0_ & 0x08000000) != 0);
+      return ((bitField0_ & 0x04000000) != 0);
     }
     /**
-     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+     * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
      * @return The ethVentN2MainBitDataB.
      */
     @java.lang.Override
@@ -1137,18 +1102,18 @@ public final class FrameProtos {
       return ethVentN2MainBitDataB_;
     }
 
-    public static final int AUTO_VENT_SETTING_FIELD_NUMBER = 29;
+    public static final int AUTO_VENT_SETTING_FIELD_NUMBER = 28;
     private int autoVentSetting_ = 0;
     /**
-     * <code>optional uint32 auto_vent_setting = 29;</code>
+     * <code>optional uint32 auto_vent_setting = 28;</code>
      * @return Whether the autoVentSetting field is set.
      */
     @java.lang.Override
     public boolean hasAutoVentSetting() {
-      return ((bitField0_ & 0x10000000) != 0);
+      return ((bitField0_ & 0x08000000) != 0);
     }
     /**
-     * <code>optional uint32 auto_vent_setting = 29;</code>
+     * <code>optional uint32 auto_vent_setting = 28;</code>
      * @return The autoVentSetting.
      */
     @java.lang.Override
@@ -1156,26 +1121,26 @@ public final class FrameProtos {
       return autoVentSetting_;
     }
 
-    public static final int PAYLOAD_BATTERY_FIELD_NUMBER = 30;
+    public static final int PAYLOAD_BATTERY_FIELD_NUMBER = 29;
     private int payloadBattery_ = 0;
     /**
      * <pre>
      * === Payload ===
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 30;</code>
+     * <code>optional uint32 payload_battery = 29;</code>
      * @return Whether the payloadBattery field is set.
      */
     @java.lang.Override
     public boolean hasPayloadBattery() {
-      return ((bitField0_ & 0x20000000) != 0);
+      return ((bitField0_ & 0x10000000) != 0);
     }
     /**
      * <pre>
      * === Payload ===
      * </pre>
      *
-     * <code>optional uint32 payload_battery = 30;</code>
+     * <code>optional uint32 payload_battery = 29;</code>
      * @return The payloadBattery.
      */
     @java.lang.Override
@@ -1183,7 +1148,7 @@ public final class FrameProtos {
       return payloadBattery_;
     }
 
-    public static final int ESP_NOW_CONNECTED_FLAGS_FIELD_NUMBER = 31;
+    public static final int ESP_NOW_CONNECTED_FLAGS_FIELD_NUMBER = 30;
     private int espNowConnectedFlags_ = 0;
     /**
      * <pre>
@@ -1197,12 +1162,12 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 30;</code>
      * @return Whether the espNowConnectedFlags field is set.
      */
     @java.lang.Override
     public boolean hasEspNowConnectedFlags() {
-      return ((bitField0_ & 0x40000000) != 0);
+      return ((bitField0_ & 0x20000000) != 0);
     }
     /**
      * <pre>
@@ -1216,7 +1181,7 @@ public final class FrameProtos {
      * bit6: pitot_connected
      * </pre>
      *
-     * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+     * <code>optional fixed32 esp_now_connected_flags = 30;</code>
      * @return The espNowConnectedFlags.
      */
     @java.lang.Override
@@ -1224,7 +1189,7 @@ public final class FrameProtos {
       return espNowConnectedFlags_;
     }
 
-    public static final int ESP_NOW_WKUP_FLAGS_FIELD_NUMBER = 32;
+    public static final int ESP_NOW_WKUP_FLAGS_FIELD_NUMBER = 31;
     private int espNowWkupFlags_ = 0;
     /**
      * <pre>
@@ -1237,12 +1202,12 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
      * @return Whether the espNowWkupFlags field is set.
      */
     @java.lang.Override
     public boolean hasEspNowWkupFlags() {
-      return ((bitField0_ & 0x80000000) != 0);
+      return ((bitField0_ & 0x40000000) != 0);
     }
     /**
      * <pre>
@@ -1255,7 +1220,7 @@ public final class FrameProtos {
      * bit5: pitot_wkup
      * </pre>
      *
-     * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+     * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
      * @return The espNowWkupFlags.
      */
     @java.lang.Override
@@ -1263,18 +1228,18 @@ public final class FrameProtos {
       return espNowWkupFlags_;
     }
 
-    public static final int ERRORS_FIELD_NUMBER = 33;
+    public static final int ERRORS_FIELD_NUMBER = 32;
     private int errors_ = 0;
     /**
-     * <code>optional fixed32 errors = 33;</code>
+     * <code>optional fixed32 errors = 32;</code>
      * @return Whether the errors field is set.
      */
     @java.lang.Override
     public boolean hasErrors() {
-      return ((bitField1_ & 0x00000001) != 0);
+      return ((bitField0_ & 0x80000000) != 0);
     }
     /**
-     * <code>optional fixed32 errors = 33;</code>
+     * <code>optional fixed32 errors = 32;</code>
      * @return The errors.
      */
     @java.lang.Override
@@ -1357,43 +1322,40 @@ public final class FrameProtos {
         output.writeFixed32(20, n2VentBitDataA_);
       }
       if (((bitField0_ & 0x00100000) != 0)) {
-        output.writeFixed32(21, n2VentBitDataB_);
+        output.writeFixed32(21, oxVentEthMainBitDataA_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
-        output.writeFixed32(22, oxVentEthMainBitDataA_);
+        output.writeFixed32(22, oxVentEthMainBitDataB_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
-        output.writeFixed32(23, oxVentEthMainBitDataB_);
+        output.writeFixed32(23, oxVentEthMainBitDataC_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
-        output.writeFixed32(24, oxVentEthMainBitDataC_);
+        output.writeFixed32(24, oxMainBitDataA_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
-        output.writeFixed32(25, oxMainBitDataA_);
+        output.writeFixed32(25, oxMainBitDataB_);
       }
       if (((bitField0_ & 0x02000000) != 0)) {
-        output.writeFixed32(26, oxMainBitDataB_);
+        output.writeFixed32(26, ethVentN2MainBitDataA_);
       }
       if (((bitField0_ & 0x04000000) != 0)) {
-        output.writeFixed32(27, ethVentN2MainBitDataA_);
+        output.writeFixed32(27, ethVentN2MainBitDataB_);
       }
       if (((bitField0_ & 0x08000000) != 0)) {
-        output.writeFixed32(28, ethVentN2MainBitDataB_);
+        output.writeUInt32(28, autoVentSetting_);
       }
       if (((bitField0_ & 0x10000000) != 0)) {
-        output.writeUInt32(29, autoVentSetting_);
+        output.writeUInt32(29, payloadBattery_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
-        output.writeUInt32(30, payloadBattery_);
+        output.writeFixed32(30, espNowConnectedFlags_);
       }
       if (((bitField0_ & 0x40000000) != 0)) {
-        output.writeFixed32(31, espNowConnectedFlags_);
+        output.writeFixed32(31, espNowWkupFlags_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
-        output.writeFixed32(32, espNowWkupFlags_);
-      }
-      if (((bitField1_ & 0x00000001) != 0)) {
-        output.writeFixed32(33, errors_);
+        output.writeFixed32(32, errors_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1486,55 +1448,51 @@ public final class FrameProtos {
       }
       if (((bitField0_ & 0x00100000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(21, n2VentBitDataB_);
+          .computeFixed32Size(21, oxVentEthMainBitDataA_);
       }
       if (((bitField0_ & 0x00200000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(22, oxVentEthMainBitDataA_);
+          .computeFixed32Size(22, oxVentEthMainBitDataB_);
       }
       if (((bitField0_ & 0x00400000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(23, oxVentEthMainBitDataB_);
+          .computeFixed32Size(23, oxVentEthMainBitDataC_);
       }
       if (((bitField0_ & 0x00800000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(24, oxVentEthMainBitDataC_);
+          .computeFixed32Size(24, oxMainBitDataA_);
       }
       if (((bitField0_ & 0x01000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(25, oxMainBitDataA_);
+          .computeFixed32Size(25, oxMainBitDataB_);
       }
       if (((bitField0_ & 0x02000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(26, oxMainBitDataB_);
+          .computeFixed32Size(26, ethVentN2MainBitDataA_);
       }
       if (((bitField0_ & 0x04000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(27, ethVentN2MainBitDataA_);
+          .computeFixed32Size(27, ethVentN2MainBitDataB_);
       }
       if (((bitField0_ & 0x08000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(28, ethVentN2MainBitDataB_);
+          .computeUInt32Size(28, autoVentSetting_);
       }
       if (((bitField0_ & 0x10000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(29, autoVentSetting_);
+          .computeUInt32Size(29, payloadBattery_);
       }
       if (((bitField0_ & 0x20000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(30, payloadBattery_);
+          .computeFixed32Size(30, espNowConnectedFlags_);
       }
       if (((bitField0_ & 0x40000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(31, espNowConnectedFlags_);
+          .computeFixed32Size(31, espNowWkupFlags_);
       }
       if (((bitField0_ & 0x80000000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(32, espNowWkupFlags_);
-      }
-      if (((bitField1_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(33, errors_);
+          .computeFixed32Size(32, errors_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1655,11 +1613,6 @@ public final class FrameProtos {
       if (hasN2VentBitDataA()) {
         if (getN2VentBitDataA()
             != other.getN2VentBitDataA()) return false;
-      }
-      if (hasN2VentBitDataB() != other.hasN2VentBitDataB()) return false;
-      if (hasN2VentBitDataB()) {
-        if (getN2VentBitDataB()
-            != other.getN2VentBitDataB()) return false;
       }
       if (hasOxVentEthMainBitDataA() != other.hasOxVentEthMainBitDataA()) return false;
       if (hasOxVentEthMainBitDataA()) {
@@ -1817,10 +1770,6 @@ public final class FrameProtos {
       if (hasN2VentBitDataA()) {
         hash = (37 * hash) + N2_VENT_BIT_DATA_A_FIELD_NUMBER;
         hash = (53 * hash) + getN2VentBitDataA();
-      }
-      if (hasN2VentBitDataB()) {
-        hash = (37 * hash) + N2_VENT_BIT_DATA_B_FIELD_NUMBER;
-        hash = (53 * hash) + getN2VentBitDataB();
       }
       if (hasOxVentEthMainBitDataA()) {
         hash = (37 * hash) + OX_VENT_ETH_MAIN_BIT_DATA_A_FIELD_NUMBER;
@@ -1999,7 +1948,6 @@ public final class FrameProtos {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        bitField1_ = 0;
         mcbState_ = 0;
         uptimeMs_ = 0;
         flightTimeMs_ = 0;
@@ -2020,7 +1968,6 @@ public final class FrameProtos {
         pitotTemperature_ = 0;
         mainVentFlags_ = 0;
         n2VentBitDataA_ = 0;
-        n2VentBitDataB_ = 0;
         oxVentEthMainBitDataA_ = 0;
         oxVentEthMainBitDataB_ = 0;
         oxVentEthMainBitDataC_ = 0;
@@ -2060,7 +2007,6 @@ public final class FrameProtos {
       public pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame buildPartial() {
         pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame result = new pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame(this);
         if (bitField0_ != 0) { buildPartial0(result); }
-        if (bitField1_ != 0) { buildPartial1(result); }
         onBuilt();
         return result;
       }
@@ -2149,64 +2095,54 @@ public final class FrameProtos {
           to_bitField0_ |= 0x00080000;
         }
         if (((from_bitField0_ & 0x00100000) != 0)) {
-          result.n2VentBitDataB_ = n2VentBitDataB_;
+          result.oxVentEthMainBitDataA_ = oxVentEthMainBitDataA_;
           to_bitField0_ |= 0x00100000;
         }
         if (((from_bitField0_ & 0x00200000) != 0)) {
-          result.oxVentEthMainBitDataA_ = oxVentEthMainBitDataA_;
+          result.oxVentEthMainBitDataB_ = oxVentEthMainBitDataB_;
           to_bitField0_ |= 0x00200000;
         }
         if (((from_bitField0_ & 0x00400000) != 0)) {
-          result.oxVentEthMainBitDataB_ = oxVentEthMainBitDataB_;
+          result.oxVentEthMainBitDataC_ = oxVentEthMainBitDataC_;
           to_bitField0_ |= 0x00400000;
         }
         if (((from_bitField0_ & 0x00800000) != 0)) {
-          result.oxVentEthMainBitDataC_ = oxVentEthMainBitDataC_;
+          result.oxMainBitDataA_ = oxMainBitDataA_;
           to_bitField0_ |= 0x00800000;
         }
         if (((from_bitField0_ & 0x01000000) != 0)) {
-          result.oxMainBitDataA_ = oxMainBitDataA_;
+          result.oxMainBitDataB_ = oxMainBitDataB_;
           to_bitField0_ |= 0x01000000;
         }
         if (((from_bitField0_ & 0x02000000) != 0)) {
-          result.oxMainBitDataB_ = oxMainBitDataB_;
+          result.ethVentN2MainBitDataA_ = ethVentN2MainBitDataA_;
           to_bitField0_ |= 0x02000000;
         }
         if (((from_bitField0_ & 0x04000000) != 0)) {
-          result.ethVentN2MainBitDataA_ = ethVentN2MainBitDataA_;
+          result.ethVentN2MainBitDataB_ = ethVentN2MainBitDataB_;
           to_bitField0_ |= 0x04000000;
         }
         if (((from_bitField0_ & 0x08000000) != 0)) {
-          result.ethVentN2MainBitDataB_ = ethVentN2MainBitDataB_;
+          result.autoVentSetting_ = autoVentSetting_;
           to_bitField0_ |= 0x08000000;
         }
         if (((from_bitField0_ & 0x10000000) != 0)) {
-          result.autoVentSetting_ = autoVentSetting_;
+          result.payloadBattery_ = payloadBattery_;
           to_bitField0_ |= 0x10000000;
         }
         if (((from_bitField0_ & 0x20000000) != 0)) {
-          result.payloadBattery_ = payloadBattery_;
+          result.espNowConnectedFlags_ = espNowConnectedFlags_;
           to_bitField0_ |= 0x20000000;
         }
         if (((from_bitField0_ & 0x40000000) != 0)) {
-          result.espNowConnectedFlags_ = espNowConnectedFlags_;
+          result.espNowWkupFlags_ = espNowWkupFlags_;
           to_bitField0_ |= 0x40000000;
         }
         if (((from_bitField0_ & 0x80000000) != 0)) {
-          result.espNowWkupFlags_ = espNowWkupFlags_;
+          result.errors_ = errors_;
           to_bitField0_ |= 0x80000000;
         }
         result.bitField0_ |= to_bitField0_;
-      }
-
-      private void buildPartial1(pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.FrameProtos.MCBFrame result) {
-        int from_bitField1_ = bitField1_;
-        int to_bitField1_ = 0;
-        if (((from_bitField1_ & 0x00000001) != 0)) {
-          result.errors_ = errors_;
-          to_bitField1_ |= 0x00000001;
-        }
-        result.bitField1_ |= to_bitField1_;
       }
 
       @java.lang.Override
@@ -2312,9 +2248,6 @@ public final class FrameProtos {
         }
         if (other.hasN2VentBitDataA()) {
           setN2VentBitDataA(other.getN2VentBitDataA());
-        }
-        if (other.hasN2VentBitDataB()) {
-          setN2VentBitDataB(other.getN2VentBitDataB());
         }
         if (other.hasOxVentEthMainBitDataA()) {
           setOxVentEthMainBitDataA(other.getOxVentEthMainBitDataA());
@@ -2479,70 +2412,65 @@ public final class FrameProtos {
                 break;
               } // case 165
               case 173: {
-                n2VentBitDataB_ = input.readFixed32();
+                oxVentEthMainBitDataA_ = input.readFixed32();
                 bitField0_ |= 0x00100000;
                 break;
               } // case 173
               case 181: {
-                oxVentEthMainBitDataA_ = input.readFixed32();
+                oxVentEthMainBitDataB_ = input.readFixed32();
                 bitField0_ |= 0x00200000;
                 break;
               } // case 181
               case 189: {
-                oxVentEthMainBitDataB_ = input.readFixed32();
+                oxVentEthMainBitDataC_ = input.readFixed32();
                 bitField0_ |= 0x00400000;
                 break;
               } // case 189
               case 197: {
-                oxVentEthMainBitDataC_ = input.readFixed32();
+                oxMainBitDataA_ = input.readFixed32();
                 bitField0_ |= 0x00800000;
                 break;
               } // case 197
               case 205: {
-                oxMainBitDataA_ = input.readFixed32();
+                oxMainBitDataB_ = input.readFixed32();
                 bitField0_ |= 0x01000000;
                 break;
               } // case 205
               case 213: {
-                oxMainBitDataB_ = input.readFixed32();
+                ethVentN2MainBitDataA_ = input.readFixed32();
                 bitField0_ |= 0x02000000;
                 break;
               } // case 213
               case 221: {
-                ethVentN2MainBitDataA_ = input.readFixed32();
+                ethVentN2MainBitDataB_ = input.readFixed32();
                 bitField0_ |= 0x04000000;
                 break;
               } // case 221
-              case 229: {
-                ethVentN2MainBitDataB_ = input.readFixed32();
+              case 224: {
+                autoVentSetting_ = input.readUInt32();
                 bitField0_ |= 0x08000000;
                 break;
-              } // case 229
+              } // case 224
               case 232: {
-                autoVentSetting_ = input.readUInt32();
+                payloadBattery_ = input.readUInt32();
                 bitField0_ |= 0x10000000;
                 break;
               } // case 232
-              case 240: {
-                payloadBattery_ = input.readUInt32();
+              case 245: {
+                espNowConnectedFlags_ = input.readFixed32();
                 bitField0_ |= 0x20000000;
                 break;
-              } // case 240
+              } // case 245
               case 253: {
-                espNowConnectedFlags_ = input.readFixed32();
+                espNowWkupFlags_ = input.readFixed32();
                 bitField0_ |= 0x40000000;
                 break;
               } // case 253
               case 261: {
-                espNowWkupFlags_ = input.readFixed32();
+                errors_ = input.readFixed32();
                 bitField0_ |= 0x80000000;
                 break;
               } // case 261
-              case 269: {
-                errors_ = input.readFixed32();
-                bitField1_ |= 0x00000001;
-                break;
-              } // case 269
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2559,7 +2487,6 @@ public final class FrameProtos {
         return this;
       }
       private int bitField0_;
-      private int bitField1_;
 
       private int mcbState_ ;
       /**
@@ -3378,8 +3305,7 @@ public final class FrameProtos {
        * bit2: OX_VENT_STATE
        * bit3: ETH_MAIN_STATE
        * bit4: ETH_VENT_STATE
-       * bit5: N2_MAIN_STATE
-       * bit6: N2_VENT_STATE
+       * bit5: N2_VENT_STATE
        * </pre>
        *
        * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -3397,8 +3323,7 @@ public final class FrameProtos {
        * bit2: OX_VENT_STATE
        * bit3: ETH_MAIN_STATE
        * bit4: ETH_VENT_STATE
-       * bit5: N2_MAIN_STATE
-       * bit6: N2_VENT_STATE
+       * bit5: N2_VENT_STATE
        * </pre>
        *
        * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -3416,8 +3341,7 @@ public final class FrameProtos {
        * bit2: OX_VENT_STATE
        * bit3: ETH_MAIN_STATE
        * bit4: ETH_VENT_STATE
-       * bit5: N2_MAIN_STATE
-       * bit6: N2_VENT_STATE
+       * bit5: N2_VENT_STATE
        * </pre>
        *
        * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -3439,8 +3363,7 @@ public final class FrameProtos {
        * bit2: OX_VENT_STATE
        * bit3: ETH_MAIN_STATE
        * bit4: ETH_VENT_STATE
-       * bit5: N2_MAIN_STATE
-       * bit6: N2_VENT_STATE
+       * bit5: N2_VENT_STATE
        * </pre>
        *
        * <code>optional fixed32 main_vent_flags = 19;</code>
@@ -3493,57 +3416,17 @@ public final class FrameProtos {
         return this;
       }
 
-      private int n2VentBitDataB_ ;
-      /**
-       * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-       * @return Whether the n2VentBitDataB field is set.
-       */
-      @java.lang.Override
-      public boolean hasN2VentBitDataB() {
-        return ((bitField0_ & 0x00100000) != 0);
-      }
-      /**
-       * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-       * @return The n2VentBitDataB.
-       */
-      @java.lang.Override
-      public int getN2VentBitDataB() {
-        return n2VentBitDataB_;
-      }
-      /**
-       * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-       * @param value The n2VentBitDataB to set.
-       * @return This builder for chaining.
-       */
-      public Builder setN2VentBitDataB(int value) {
-        
-        n2VentBitDataB_ = value;
-        bitField0_ |= 0x00100000;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional fixed32 n2_vent_bit_data_b = 21;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearN2VentBitDataB() {
-        bitField0_ = (bitField0_ & ~0x00100000);
-        n2VentBitDataB_ = 0;
-        onChanged();
-        return this;
-      }
-
       private int oxVentEthMainBitDataA_ ;
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
        * @return Whether the oxVentEthMainBitDataA field is set.
        */
       @java.lang.Override
       public boolean hasOxVentEthMainBitDataA() {
-        return ((bitField0_ & 0x00200000) != 0);
+        return ((bitField0_ & 0x00100000) != 0);
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
        * @return The oxVentEthMainBitDataA.
        */
       @java.lang.Override
@@ -3551,23 +3434,23 @@ public final class FrameProtos {
         return oxVentEthMainBitDataA_;
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
        * @param value The oxVentEthMainBitDataA to set.
        * @return This builder for chaining.
        */
       public Builder setOxVentEthMainBitDataA(int value) {
         
         oxVentEthMainBitDataA_ = value;
-        bitField0_ |= 0x00200000;
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 22;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_a = 21;</code>
        * @return This builder for chaining.
        */
       public Builder clearOxVentEthMainBitDataA() {
-        bitField0_ = (bitField0_ & ~0x00200000);
+        bitField0_ = (bitField0_ & ~0x00100000);
         oxVentEthMainBitDataA_ = 0;
         onChanged();
         return this;
@@ -3575,15 +3458,15 @@ public final class FrameProtos {
 
       private int oxVentEthMainBitDataB_ ;
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
        * @return Whether the oxVentEthMainBitDataB field is set.
        */
       @java.lang.Override
       public boolean hasOxVentEthMainBitDataB() {
-        return ((bitField0_ & 0x00400000) != 0);
+        return ((bitField0_ & 0x00200000) != 0);
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
        * @return The oxVentEthMainBitDataB.
        */
       @java.lang.Override
@@ -3591,23 +3474,23 @@ public final class FrameProtos {
         return oxVentEthMainBitDataB_;
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
        * @param value The oxVentEthMainBitDataB to set.
        * @return This builder for chaining.
        */
       public Builder setOxVentEthMainBitDataB(int value) {
         
         oxVentEthMainBitDataB_ = value;
-        bitField0_ |= 0x00400000;
+        bitField0_ |= 0x00200000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 23;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_b = 22;</code>
        * @return This builder for chaining.
        */
       public Builder clearOxVentEthMainBitDataB() {
-        bitField0_ = (bitField0_ & ~0x00400000);
+        bitField0_ = (bitField0_ & ~0x00200000);
         oxVentEthMainBitDataB_ = 0;
         onChanged();
         return this;
@@ -3615,15 +3498,15 @@ public final class FrameProtos {
 
       private int oxVentEthMainBitDataC_ ;
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
        * @return Whether the oxVentEthMainBitDataC field is set.
        */
       @java.lang.Override
       public boolean hasOxVentEthMainBitDataC() {
-        return ((bitField0_ & 0x00800000) != 0);
+        return ((bitField0_ & 0x00400000) != 0);
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
        * @return The oxVentEthMainBitDataC.
        */
       @java.lang.Override
@@ -3631,23 +3514,23 @@ public final class FrameProtos {
         return oxVentEthMainBitDataC_;
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
        * @param value The oxVentEthMainBitDataC to set.
        * @return This builder for chaining.
        */
       public Builder setOxVentEthMainBitDataC(int value) {
         
         oxVentEthMainBitDataC_ = value;
-        bitField0_ |= 0x00800000;
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 24;</code>
+       * <code>optional fixed32 ox_vent_eth_main_bit_data_c = 23;</code>
        * @return This builder for chaining.
        */
       public Builder clearOxVentEthMainBitDataC() {
-        bitField0_ = (bitField0_ & ~0x00800000);
+        bitField0_ = (bitField0_ & ~0x00400000);
         oxVentEthMainBitDataC_ = 0;
         onChanged();
         return this;
@@ -3655,15 +3538,15 @@ public final class FrameProtos {
 
       private int oxMainBitDataA_ ;
       /**
-       * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+       * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
        * @return Whether the oxMainBitDataA field is set.
        */
       @java.lang.Override
       public boolean hasOxMainBitDataA() {
-        return ((bitField0_ & 0x01000000) != 0);
+        return ((bitField0_ & 0x00800000) != 0);
       }
       /**
-       * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+       * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
        * @return The oxMainBitDataA.
        */
       @java.lang.Override
@@ -3671,23 +3554,23 @@ public final class FrameProtos {
         return oxMainBitDataA_;
       }
       /**
-       * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+       * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
        * @param value The oxMainBitDataA to set.
        * @return This builder for chaining.
        */
       public Builder setOxMainBitDataA(int value) {
         
         oxMainBitDataA_ = value;
-        bitField0_ |= 0x01000000;
+        bitField0_ |= 0x00800000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 ox_main_bit_data_a = 25;</code>
+       * <code>optional fixed32 ox_main_bit_data_a = 24;</code>
        * @return This builder for chaining.
        */
       public Builder clearOxMainBitDataA() {
-        bitField0_ = (bitField0_ & ~0x01000000);
+        bitField0_ = (bitField0_ & ~0x00800000);
         oxMainBitDataA_ = 0;
         onChanged();
         return this;
@@ -3695,15 +3578,15 @@ public final class FrameProtos {
 
       private int oxMainBitDataB_ ;
       /**
-       * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+       * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
        * @return Whether the oxMainBitDataB field is set.
        */
       @java.lang.Override
       public boolean hasOxMainBitDataB() {
-        return ((bitField0_ & 0x02000000) != 0);
+        return ((bitField0_ & 0x01000000) != 0);
       }
       /**
-       * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+       * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
        * @return The oxMainBitDataB.
        */
       @java.lang.Override
@@ -3711,23 +3594,23 @@ public final class FrameProtos {
         return oxMainBitDataB_;
       }
       /**
-       * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+       * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
        * @param value The oxMainBitDataB to set.
        * @return This builder for chaining.
        */
       public Builder setOxMainBitDataB(int value) {
         
         oxMainBitDataB_ = value;
-        bitField0_ |= 0x02000000;
+        bitField0_ |= 0x01000000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 ox_main_bit_data_b = 26;</code>
+       * <code>optional fixed32 ox_main_bit_data_b = 25;</code>
        * @return This builder for chaining.
        */
       public Builder clearOxMainBitDataB() {
-        bitField0_ = (bitField0_ & ~0x02000000);
+        bitField0_ = (bitField0_ & ~0x01000000);
         oxMainBitDataB_ = 0;
         onChanged();
         return this;
@@ -3735,15 +3618,15 @@ public final class FrameProtos {
 
       private int ethVentN2MainBitDataA_ ;
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
        * @return Whether the ethVentN2MainBitDataA field is set.
        */
       @java.lang.Override
       public boolean hasEthVentN2MainBitDataA() {
-        return ((bitField0_ & 0x04000000) != 0);
+        return ((bitField0_ & 0x02000000) != 0);
       }
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
        * @return The ethVentN2MainBitDataA.
        */
       @java.lang.Override
@@ -3751,23 +3634,23 @@ public final class FrameProtos {
         return ethVentN2MainBitDataA_;
       }
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
        * @param value The ethVentN2MainBitDataA to set.
        * @return This builder for chaining.
        */
       public Builder setEthVentN2MainBitDataA(int value) {
         
         ethVentN2MainBitDataA_ = value;
-        bitField0_ |= 0x04000000;
+        bitField0_ |= 0x02000000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 27;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_a = 26;</code>
        * @return This builder for chaining.
        */
       public Builder clearEthVentN2MainBitDataA() {
-        bitField0_ = (bitField0_ & ~0x04000000);
+        bitField0_ = (bitField0_ & ~0x02000000);
         ethVentN2MainBitDataA_ = 0;
         onChanged();
         return this;
@@ -3775,15 +3658,15 @@ public final class FrameProtos {
 
       private int ethVentN2MainBitDataB_ ;
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
        * @return Whether the ethVentN2MainBitDataB field is set.
        */
       @java.lang.Override
       public boolean hasEthVentN2MainBitDataB() {
-        return ((bitField0_ & 0x08000000) != 0);
+        return ((bitField0_ & 0x04000000) != 0);
       }
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
        * @return The ethVentN2MainBitDataB.
        */
       @java.lang.Override
@@ -3791,23 +3674,23 @@ public final class FrameProtos {
         return ethVentN2MainBitDataB_;
       }
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
        * @param value The ethVentN2MainBitDataB to set.
        * @return This builder for chaining.
        */
       public Builder setEthVentN2MainBitDataB(int value) {
         
         ethVentN2MainBitDataB_ = value;
-        bitField0_ |= 0x08000000;
+        bitField0_ |= 0x04000000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 28;</code>
+       * <code>optional fixed32 eth_vent_n2_main_bit_data_b = 27;</code>
        * @return This builder for chaining.
        */
       public Builder clearEthVentN2MainBitDataB() {
-        bitField0_ = (bitField0_ & ~0x08000000);
+        bitField0_ = (bitField0_ & ~0x04000000);
         ethVentN2MainBitDataB_ = 0;
         onChanged();
         return this;
@@ -3815,15 +3698,15 @@ public final class FrameProtos {
 
       private int autoVentSetting_ ;
       /**
-       * <code>optional uint32 auto_vent_setting = 29;</code>
+       * <code>optional uint32 auto_vent_setting = 28;</code>
        * @return Whether the autoVentSetting field is set.
        */
       @java.lang.Override
       public boolean hasAutoVentSetting() {
-        return ((bitField0_ & 0x10000000) != 0);
+        return ((bitField0_ & 0x08000000) != 0);
       }
       /**
-       * <code>optional uint32 auto_vent_setting = 29;</code>
+       * <code>optional uint32 auto_vent_setting = 28;</code>
        * @return The autoVentSetting.
        */
       @java.lang.Override
@@ -3831,23 +3714,23 @@ public final class FrameProtos {
         return autoVentSetting_;
       }
       /**
-       * <code>optional uint32 auto_vent_setting = 29;</code>
+       * <code>optional uint32 auto_vent_setting = 28;</code>
        * @param value The autoVentSetting to set.
        * @return This builder for chaining.
        */
       public Builder setAutoVentSetting(int value) {
         
         autoVentSetting_ = value;
-        bitField0_ |= 0x10000000;
+        bitField0_ |= 0x08000000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 auto_vent_setting = 29;</code>
+       * <code>optional uint32 auto_vent_setting = 28;</code>
        * @return This builder for chaining.
        */
       public Builder clearAutoVentSetting() {
-        bitField0_ = (bitField0_ & ~0x10000000);
+        bitField0_ = (bitField0_ & ~0x08000000);
         autoVentSetting_ = 0;
         onChanged();
         return this;
@@ -3859,19 +3742,19 @@ public final class FrameProtos {
        * === Payload ===
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 30;</code>
+       * <code>optional uint32 payload_battery = 29;</code>
        * @return Whether the payloadBattery field is set.
        */
       @java.lang.Override
       public boolean hasPayloadBattery() {
-        return ((bitField0_ & 0x20000000) != 0);
+        return ((bitField0_ & 0x10000000) != 0);
       }
       /**
        * <pre>
        * === Payload ===
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 30;</code>
+       * <code>optional uint32 payload_battery = 29;</code>
        * @return The payloadBattery.
        */
       @java.lang.Override
@@ -3883,14 +3766,14 @@ public final class FrameProtos {
        * === Payload ===
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 30;</code>
+       * <code>optional uint32 payload_battery = 29;</code>
        * @param value The payloadBattery to set.
        * @return This builder for chaining.
        */
       public Builder setPayloadBattery(int value) {
         
         payloadBattery_ = value;
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x10000000;
         onChanged();
         return this;
       }
@@ -3899,11 +3782,11 @@ public final class FrameProtos {
        * === Payload ===
        * </pre>
        *
-       * <code>optional uint32 payload_battery = 30;</code>
+       * <code>optional uint32 payload_battery = 29;</code>
        * @return This builder for chaining.
        */
       public Builder clearPayloadBattery() {
-        bitField0_ = (bitField0_ & ~0x20000000);
+        bitField0_ = (bitField0_ & ~0x10000000);
         payloadBattery_ = 0;
         onChanged();
         return this;
@@ -3922,12 +3805,12 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 30;</code>
        * @return Whether the espNowConnectedFlags field is set.
        */
       @java.lang.Override
       public boolean hasEspNowConnectedFlags() {
-        return ((bitField0_ & 0x40000000) != 0);
+        return ((bitField0_ & 0x20000000) != 0);
       }
       /**
        * <pre>
@@ -3941,7 +3824,7 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 30;</code>
        * @return The espNowConnectedFlags.
        */
       @java.lang.Override
@@ -3960,14 +3843,14 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 30;</code>
        * @param value The espNowConnectedFlags to set.
        * @return This builder for chaining.
        */
       public Builder setEspNowConnectedFlags(int value) {
         
         espNowConnectedFlags_ = value;
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x20000000;
         onChanged();
         return this;
       }
@@ -3983,11 +3866,11 @@ public final class FrameProtos {
        * bit6: pitot_connected
        * </pre>
        *
-       * <code>optional fixed32 esp_now_connected_flags = 31;</code>
+       * <code>optional fixed32 esp_now_connected_flags = 30;</code>
        * @return This builder for chaining.
        */
       public Builder clearEspNowConnectedFlags() {
-        bitField0_ = (bitField0_ & ~0x40000000);
+        bitField0_ = (bitField0_ & ~0x20000000);
         espNowConnectedFlags_ = 0;
         onChanged();
         return this;
@@ -4005,12 +3888,12 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
        * @return Whether the espNowWkupFlags field is set.
        */
       @java.lang.Override
       public boolean hasEspNowWkupFlags() {
-        return ((bitField0_ & 0x80000000) != 0);
+        return ((bitField0_ & 0x40000000) != 0);
       }
       /**
        * <pre>
@@ -4023,7 +3906,7 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
        * @return The espNowWkupFlags.
        */
       @java.lang.Override
@@ -4041,14 +3924,14 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
        * @param value The espNowWkupFlags to set.
        * @return This builder for chaining.
        */
       public Builder setEspNowWkupFlags(int value) {
         
         espNowWkupFlags_ = value;
-        bitField0_ |= 0x80000000;
+        bitField0_ |= 0x40000000;
         onChanged();
         return this;
       }
@@ -4063,11 +3946,11 @@ public final class FrameProtos {
        * bit5: pitot_wkup
        * </pre>
        *
-       * <code>optional fixed32 esp_now_wkup_flags = 32;</code>
+       * <code>optional fixed32 esp_now_wkup_flags = 31;</code>
        * @return This builder for chaining.
        */
       public Builder clearEspNowWkupFlags() {
-        bitField0_ = (bitField0_ & ~0x80000000);
+        bitField0_ = (bitField0_ & ~0x40000000);
         espNowWkupFlags_ = 0;
         onChanged();
         return this;
@@ -4075,15 +3958,15 @@ public final class FrameProtos {
 
       private int errors_ ;
       /**
-       * <code>optional fixed32 errors = 33;</code>
+       * <code>optional fixed32 errors = 32;</code>
        * @return Whether the errors field is set.
        */
       @java.lang.Override
       public boolean hasErrors() {
-        return ((bitField1_ & 0x00000001) != 0);
+        return ((bitField0_ & 0x80000000) != 0);
       }
       /**
-       * <code>optional fixed32 errors = 33;</code>
+       * <code>optional fixed32 errors = 32;</code>
        * @return The errors.
        */
       @java.lang.Override
@@ -4091,23 +3974,23 @@ public final class FrameProtos {
         return errors_;
       }
       /**
-       * <code>optional fixed32 errors = 33;</code>
+       * <code>optional fixed32 errors = 32;</code>
        * @param value The errors to set.
        * @return This builder for chaining.
        */
       public Builder setErrors(int value) {
         
         errors_ = value;
-        bitField1_ |= 0x00000001;
+        bitField0_ |= 0x80000000;
         onChanged();
         return this;
       }
       /**
-       * <code>optional fixed32 errors = 33;</code>
+       * <code>optional fixed32 errors = 32;</code>
        * @return This builder for chaining.
        */
       public Builder clearErrors() {
-        bitField1_ = (bitField1_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x80000000);
         errors_ = 0;
         onChanged();
         return this;
@@ -8290,7 +8173,7 @@ public final class FrameProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037src/main/resources/frames.proto\"\214\r\n\010MC" +
+      "\n\037src/main/resources/frames.proto\"\324\014\n\010MC" +
       "BFrame\022\026\n\tmcb_state\030\001 \001(\rH\000\210\001\001\022\026\n\tuptime" +
       "_ms\030\002 \001(\rH\001\210\001\001\022\033\n\016flight_time_ms\030\003 \001(\021H\002" +
       "\210\001\001\022\025\n\010mcb_batt\030\004 \001(\rH\003\210\001\001\022\024\n\007gps_lat\030\005 " +
@@ -8304,66 +8187,65 @@ public final class FrameProtos {
       "titude\030\020 \001(\021H\017\210\001\001\022\033\n\016pitot_velocity\030\021 \001(" +
       "\021H\020\210\001\001\022\036\n\021pitot_temperature\030\022 \001(\021H\021\210\001\001\022\034" +
       "\n\017main_vent_flags\030\023 \001(\007H\022\210\001\001\022\037\n\022n2_vent_" +
-      "bit_data_a\030\024 \001(\007H\023\210\001\001\022\037\n\022n2_vent_bit_dat" +
-      "a_b\030\025 \001(\007H\024\210\001\001\022(\n\033ox_vent_eth_main_bit_d" +
-      "ata_a\030\026 \001(\007H\025\210\001\001\022(\n\033ox_vent_eth_main_bit" +
-      "_data_b\030\027 \001(\007H\026\210\001\001\022(\n\033ox_vent_eth_main_b" +
-      "it_data_c\030\030 \001(\007H\027\210\001\001\022\037\n\022ox_main_bit_data" +
-      "_a\030\031 \001(\007H\030\210\001\001\022\037\n\022ox_main_bit_data_b\030\032 \001(" +
-      "\007H\031\210\001\001\022(\n\033eth_vent_n2_main_bit_data_a\030\033 " +
-      "\001(\007H\032\210\001\001\022(\n\033eth_vent_n2_main_bit_data_b\030" +
-      "\034 \001(\007H\033\210\001\001\022\036\n\021auto_vent_setting\030\035 \001(\rH\034\210" +
-      "\001\001\022\034\n\017payload_battery\030\036 \001(\rH\035\210\001\001\022$\n\027esp_" +
-      "now_connected_flags\030\037 \001(\007H\036\210\001\001\022\037\n\022esp_no" +
-      "w_wkup_flags\030  \001(\007H\037\210\001\001\022\023\n\006errors\030! \001(\007H" +
-      " \210\001\001B\014\n\n_mcb_stateB\014\n\n_uptime_msB\021\n\017_fli" +
-      "ght_time_msB\013\n\t_mcb_battB\n\n\010_gps_latB\013\n\t" +
-      "_gps_longB\r\n\013_gps_sat_okB\r\n\013_altitude_mB" +
-      "\017\n\r_velocity_m_sB\022\n\020_mcb_temperatureB\013\n\t" +
-      "_euler_fiB\014\n\n_euler_psiB\016\n\014_euler_thetaB" +
-      "\021\n\017_recovery_flagsB\020\n\016_pitot_batteryB\021\n\017" +
-      "_pitot_altitudeB\021\n\017_pitot_velocityB\024\n\022_p" +
-      "itot_temperatureB\022\n\020_main_vent_flagsB\025\n\023" +
-      "_n2_vent_bit_data_aB\025\n\023_n2_vent_bit_data" +
-      "_bB\036\n\034_ox_vent_eth_main_bit_data_aB\036\n\034_o" +
-      "x_vent_eth_main_bit_data_bB\036\n\034_ox_vent_e" +
-      "th_main_bit_data_cB\025\n\023_ox_main_bit_data_" +
-      "aB\025\n\023_ox_main_bit_data_bB\036\n\034_eth_vent_n2" +
-      "_main_bit_data_aB\036\n\034_eth_vent_n2_main_bi" +
-      "t_data_bB\024\n\022_auto_vent_settingB\022\n\020_paylo" +
-      "ad_batteryB\032\n\030_esp_now_connected_flagsB\025" +
-      "\n\023_esp_now_wkup_flagsB\t\n\007_errors\"\360\006\n\nTan" +
-      "waFrame\022\032\n\rtanwa_battery\030\001 \001(\007H\000\210\001\001\022\030\n\013t" +
-      "anwa_state\030\002 \001(\rH\001\210\001\001\022\030\n\013tanwa_flags\030\003 \001" +
-      "(\007H\002\210\001\001\022\031\n\014tanwa_thrust\030\004 \001(\021H\003\210\001\001\022\036\n\021ta" +
-      "nwa_tank_weight\030\005 \001(\rH\004\210\001\001\022%\n\030tanwa_temp" +
-      "_post_n2o_fill\030\006 \001(\021H\005\210\001\001\022$\n\027tanwa_temp_" +
-      "filling_wall\030\007 \001(\021H\006\210\001\001\022%\n\030tanwa_post_fi" +
-      "ll_n2o_pres\030\010 \001(\rH\007\210\001\001\022\"\n\025tanwa_cutoff_n" +
-      "2o_pres\030\t \001(\rH\010\210\001\001\022!\n\024tanwa_droid_n2o_pr" +
-      "es\030\n \001(\rH\t\210\001\001\022\"\n\025tanwa_pre_reg_n2_pres\030\013" +
-      " \001(\rH\n\210\001\001\022#\n\026tanwa_post_reg_n2_pres\030\014 \001(" +
-      "\rH\013\210\001\001\022$\n\027tanwa_post_fill_n2_pres\030\r \001(\rH" +
-      "\014\210\001\001\022 \n\023tanwa_droid_n2_pres\030\016 \001(\rH\r\210\001\001\022$" +
-      "\n\027tanwa_comb_chamber_pres\030\017 \001(\rH\016\210\001\001B\020\n\016" +
-      "_tanwa_batteryB\016\n\014_tanwa_stateB\016\n\014_tanwa" +
-      "_flagsB\017\n\r_tanwa_thrustB\024\n\022_tanwa_tank_w" +
-      "eightB\033\n\031_tanwa_temp_post_n2o_fillB\032\n\030_t" +
-      "anwa_temp_filling_wallB\033\n\031_tanwa_post_fi" +
-      "ll_n2o_presB\030\n\026_tanwa_cutoff_n2o_presB\027\n" +
-      "\025_tanwa_droid_n2o_presB\030\n\026_tanwa_pre_reg" +
-      "_n2_presB\031\n\027_tanwa_post_reg_n2_presB\032\n\030_" +
-      "tanwa_post_fill_n2_presB\026\n\024_tanwa_droid_" +
-      "n2_presB\032\n\030_tanwa_comb_chamber_pres\"\240\001\n\010" +
-      "AppFrame\022\030\n\013lora_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsy" +
-      "s_dev_id\030\002 \001(\rH\001\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001" +
-      "\001\022\024\n\007payload\030\004 \001(\005H\003\210\001\001B\016\n\014_lora_dev_idB" +
-      "\r\n\013_sys_dev_idB\n\n\010_commandB\n\n\010_payload\"x" +
-      "\n\tLoRaFrame\022\036\n\tmcb_frame\030\001 \001(\0132\t.MCBFram" +
-      "eH\000\022\"\n\013tanwa_frame\030\002 \001(\0132\013.TanwaFrameH\000\022" +
-      "\036\n\tapp_frame\030\003 \001(\0132\t.AppFrameH\000B\007\n\005frame" +
-      "BD\n5pl.edu.pwr.pwrinspace.poliwrocket.Mo" +
-      "del.MessageParserB\013FrameProtosb\006proto3"
+      "bit_data_a\030\024 \001(\007H\023\210\001\001\022(\n\033ox_vent_eth_mai" +
+      "n_bit_data_a\030\025 \001(\007H\024\210\001\001\022(\n\033ox_vent_eth_m" +
+      "ain_bit_data_b\030\026 \001(\007H\025\210\001\001\022(\n\033ox_vent_eth" +
+      "_main_bit_data_c\030\027 \001(\007H\026\210\001\001\022\037\n\022ox_main_b" +
+      "it_data_a\030\030 \001(\007H\027\210\001\001\022\037\n\022ox_main_bit_data" +
+      "_b\030\031 \001(\007H\030\210\001\001\022(\n\033eth_vent_n2_main_bit_da" +
+      "ta_a\030\032 \001(\007H\031\210\001\001\022(\n\033eth_vent_n2_main_bit_" +
+      "data_b\030\033 \001(\007H\032\210\001\001\022\036\n\021auto_vent_setting\030\034" +
+      " \001(\rH\033\210\001\001\022\034\n\017payload_battery\030\035 \001(\rH\034\210\001\001\022" +
+      "$\n\027esp_now_connected_flags\030\036 \001(\007H\035\210\001\001\022\037\n" +
+      "\022esp_now_wkup_flags\030\037 \001(\007H\036\210\001\001\022\023\n\006errors" +
+      "\030  \001(\007H\037\210\001\001B\014\n\n_mcb_stateB\014\n\n_uptime_msB" +
+      "\021\n\017_flight_time_msB\013\n\t_mcb_battB\n\n\010_gps_" +
+      "latB\013\n\t_gps_longB\r\n\013_gps_sat_okB\r\n\013_alti" +
+      "tude_mB\017\n\r_velocity_m_sB\022\n\020_mcb_temperat" +
+      "ureB\013\n\t_euler_fiB\014\n\n_euler_psiB\016\n\014_euler" +
+      "_thetaB\021\n\017_recovery_flagsB\020\n\016_pitot_batt" +
+      "eryB\021\n\017_pitot_altitudeB\021\n\017_pitot_velocit" +
+      "yB\024\n\022_pitot_temperatureB\022\n\020_main_vent_fl" +
+      "agsB\025\n\023_n2_vent_bit_data_aB\036\n\034_ox_vent_e" +
+      "th_main_bit_data_aB\036\n\034_ox_vent_eth_main_" +
+      "bit_data_bB\036\n\034_ox_vent_eth_main_bit_data" +
+      "_cB\025\n\023_ox_main_bit_data_aB\025\n\023_ox_main_bi" +
+      "t_data_bB\036\n\034_eth_vent_n2_main_bit_data_a" +
+      "B\036\n\034_eth_vent_n2_main_bit_data_bB\024\n\022_aut" +
+      "o_vent_settingB\022\n\020_payload_batteryB\032\n\030_e" +
+      "sp_now_connected_flagsB\025\n\023_esp_now_wkup_" +
+      "flagsB\t\n\007_errors\"\360\006\n\nTanwaFrame\022\032\n\rtanwa" +
+      "_battery\030\001 \001(\007H\000\210\001\001\022\030\n\013tanwa_state\030\002 \001(\r" +
+      "H\001\210\001\001\022\030\n\013tanwa_flags\030\003 \001(\007H\002\210\001\001\022\031\n\014tanwa" +
+      "_thrust\030\004 \001(\021H\003\210\001\001\022\036\n\021tanwa_tank_weight\030" +
+      "\005 \001(\rH\004\210\001\001\022%\n\030tanwa_temp_post_n2o_fill\030\006" +
+      " \001(\021H\005\210\001\001\022$\n\027tanwa_temp_filling_wall\030\007 \001" +
+      "(\021H\006\210\001\001\022%\n\030tanwa_post_fill_n2o_pres\030\010 \001(" +
+      "\rH\007\210\001\001\022\"\n\025tanwa_cutoff_n2o_pres\030\t \001(\rH\010\210" +
+      "\001\001\022!\n\024tanwa_droid_n2o_pres\030\n \001(\rH\t\210\001\001\022\"\n" +
+      "\025tanwa_pre_reg_n2_pres\030\013 \001(\rH\n\210\001\001\022#\n\026tan" +
+      "wa_post_reg_n2_pres\030\014 \001(\rH\013\210\001\001\022$\n\027tanwa_" +
+      "post_fill_n2_pres\030\r \001(\rH\014\210\001\001\022 \n\023tanwa_dr" +
+      "oid_n2_pres\030\016 \001(\rH\r\210\001\001\022$\n\027tanwa_comb_cha" +
+      "mber_pres\030\017 \001(\rH\016\210\001\001B\020\n\016_tanwa_batteryB\016" +
+      "\n\014_tanwa_stateB\016\n\014_tanwa_flagsB\017\n\r_tanwa" +
+      "_thrustB\024\n\022_tanwa_tank_weightB\033\n\031_tanwa_" +
+      "temp_post_n2o_fillB\032\n\030_tanwa_temp_fillin" +
+      "g_wallB\033\n\031_tanwa_post_fill_n2o_presB\030\n\026_" +
+      "tanwa_cutoff_n2o_presB\027\n\025_tanwa_droid_n2" +
+      "o_presB\030\n\026_tanwa_pre_reg_n2_presB\031\n\027_tan" +
+      "wa_post_reg_n2_presB\032\n\030_tanwa_post_fill_" +
+      "n2_presB\026\n\024_tanwa_droid_n2_presB\032\n\030_tanw" +
+      "a_comb_chamber_pres\"\240\001\n\010AppFrame\022\030\n\013lora" +
+      "_dev_id\030\001 \001(\rH\000\210\001\001\022\027\n\nsys_dev_id\030\002 \001(\rH\001" +
+      "\210\001\001\022\024\n\007command\030\003 \001(\rH\002\210\001\001\022\024\n\007payload\030\004 \001" +
+      "(\005H\003\210\001\001B\016\n\014_lora_dev_idB\r\n\013_sys_dev_idB\n" +
+      "\n\010_commandB\n\n\010_payload\"x\n\tLoRaFrame\022\036\n\tm" +
+      "cb_frame\030\001 \001(\0132\t.MCBFrameH\000\022\"\n\013tanwa_fra" +
+      "me\030\002 \001(\0132\013.TanwaFrameH\000\022\036\n\tapp_frame\030\003 \001" +
+      "(\0132\t.AppFrameH\000B\007\n\005frameBD\n5pl.edu.pwr.p" +
+      "wrinspace.poliwrocket.Model.MessageParse" +
+      "rB\013FrameProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8374,7 +8256,7 @@ public final class FrameProtos {
     internal_static_MCBFrame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_MCBFrame_descriptor,
-        new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "N2VentBitDataB", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentN2MainBitDataA", "EthVentN2MainBitDataB", "AutoVentSetting", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "N2VentBitDataB", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentN2MainBitDataA", "EthVentN2MainBitDataB", "AutoVentSetting", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", });
+        new java.lang.String[] { "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentN2MainBitDataA", "EthVentN2MainBitDataB", "AutoVentSetting", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", "McbState", "UptimeMs", "FlightTimeMs", "McbBatt", "GpsLat", "GpsLong", "GpsSatOk", "AltitudeM", "VelocityMS", "McbTemperature", "EulerFi", "EulerPsi", "EulerTheta", "RecoveryFlags", "PitotBattery", "PitotAltitude", "PitotVelocity", "PitotTemperature", "MainVentFlags", "N2VentBitDataA", "OxVentEthMainBitDataA", "OxVentEthMainBitDataB", "OxVentEthMainBitDataC", "OxMainBitDataA", "OxMainBitDataB", "EthVentN2MainBitDataA", "EthVentN2MainBitDataB", "AutoVentSetting", "PayloadBattery", "EspNowConnectedFlags", "EspNowWkupFlags", "Errors", });
     internal_static_TanwaFrame_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_TanwaFrame_fieldAccessorTable = new
