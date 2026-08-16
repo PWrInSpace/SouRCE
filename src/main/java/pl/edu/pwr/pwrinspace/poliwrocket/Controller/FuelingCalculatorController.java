@@ -52,6 +52,7 @@ public class FuelingCalculatorController extends BaseSensorController{
     private double weightAtLastVent = 0.0;
     private double lastLoggedFlowRate = -1.0;
     private double lastValidFueledAmount = 0.0;
+    private double lastValidSinceVentAmount = 0.0;
 
     private static final double K = 1.28;
     private static final double R = 188.91;
@@ -76,7 +77,7 @@ public class FuelingCalculatorController extends BaseSensorController{
             String destination = sensor.getDestination();
 
             UIThreadManager.getInstance().addNormal(() -> {
-                if(destination.equals("dataGauge1")) {
+                if(destination.equals("dataGauge9")) {
                     if(!weightOverrideCheck.isSelected()){
                         currentWeight = sensor.getValue() / 10.0;
                         sensorTankWeightField.setText(String.format(Locale.US, "%.3f", currentWeight));
@@ -171,16 +172,21 @@ public class FuelingCalculatorController extends BaseSensorController{
                 totalFueled = 0.0;
             }
             lastValidFueledAmount = totalFueled;
+
+            double sinceLastVent = weightAtLastVent - currentWeight;
+            if(sinceLastVent < 0){
+                sinceLastVent = 0.0;
+            }
+
+            lastValidSinceVentAmount = sinceLastVent;
         }
 
         totalFueledLabel.setText(String.format(Locale.US, "%.3f", lastValidFueledAmount));
 
-        double sinceLastVent = weightAtLastVent - currentWeight;
-        if(sinceLastVent < 0){
-            sinceLastVent = 0.0;
-        }
 
-        sinceVentLabel.setText(String.format(Locale.US, "%.3f", sinceLastVent));
+
+
+        sinceVentLabel.setText(String.format(Locale.US, "%.3f", lastValidSinceVentAmount));
     }
 
     private double parseDoubleSafely(String text, double defaultValue){
