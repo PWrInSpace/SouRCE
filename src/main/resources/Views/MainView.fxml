@@ -190,17 +190,17 @@
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="others2Scene" height="400.0" layoutX="420.0" layoutY="14.0" width="400.0">
+                    <SubScene fx:id="others2Scene" height="500.0" layoutX="420.0" layoutY="14.0" width="400.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="othersIndicatorsScene" height="75.0" layoutX="420.0" layoutY="420.0" width="400.0">
+                    <SubScene fx:id="othersIndicatorsScene" height="75.0" layoutX="420.0" layoutY="520.0" width="400.0">
                         <root>
                             <Region />
                         </root>
                     </SubScene>
-                    <SubScene fx:id="othersIndicators2Scene" height="75.0" layoutX="420.0" layoutY="500.0" width="400.0">
+                    <SubScene fx:id="othersIndicators2Scene" height="75.0" layoutX="420.0" layoutY="600.0" width="400.0">
                         <root>
                             <Region />
                         </root>

@@ -8,6 +8,7 @@ import javafx.beans.InvalidationListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.StandardCommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.Frame;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
@@ -246,7 +247,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         var msg = command.getCommandValueAsString() + '\n';
         log.info("Written command: {}", msg);
         log.info("Force: {}", Configuration.getInstance().isForceCommandsActive());
-        serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));
+        if (command.getClass().isAssignableFrom(StandardCommand.class)) {
+            writeWithoutCRC(command.getCommandValueAsString());
+        } else {
+            serialWriter.send(command.getCommandValueAsBytes(Configuration.getInstance().isForceCommandsActive()));
+        }
         this.lastMessage = msg;
         notifyObserver();
     }
