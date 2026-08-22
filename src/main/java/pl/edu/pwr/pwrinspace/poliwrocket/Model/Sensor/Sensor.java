@@ -47,7 +47,7 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
     private Instant lastAveragingTimeStamp = Instant.now();
     private boolean shouldNotify = false;
     private double previousReportedValue = 0;
-    private double maxValue = Double.MIN_VALUE;
+    private double maxValue = -10.0;
 
     public Sensor() {
         this.timeStamp = Instant.now();

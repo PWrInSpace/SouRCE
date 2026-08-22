@@ -68,7 +68,7 @@ public class CompositeBitSensor extends Sensor implements InvalidationListener {
                 int shift = 32 - binaryString.length();
                 val = Integer.parseInt(binaryString.toString(), 2) << shift >> shift;
             } else {
-                val = Integer.parseInt(binaryString.toString(),2);
+                val = Integer.parseInt(binaryString.toString(), 2);
             }
 
             assert divider != 0;

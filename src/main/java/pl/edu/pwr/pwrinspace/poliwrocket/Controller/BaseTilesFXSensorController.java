@@ -68,7 +68,7 @@ public abstract class BaseTilesFXSensorController extends BaseSensorController {
                     tile.setMaxValue(sensor.getMaxRange());
                 } else {
                     tile.setAutoScale(true);
-                    tile.setMinValue(Double.MIN_VALUE);
+                    tile.setMinValue(-10.0);
                     tile.setMaxValue(Double.MAX_VALUE);
                 }
                 
