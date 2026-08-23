@@ -79,7 +79,7 @@ public class FuelingCalculatorController extends BaseSensorController{
             UIThreadManager.getInstance().addNormal(() -> {
                 if(destination.equals("dataGauge9")) {
                     if(!weightOverrideCheck.isSelected()){
-                        currentWeight = sensor.getValue() / 10.0;
+                        currentWeight = sensor.getValue() / 1000.0;
                         sensorTankWeightField.setText(String.format(Locale.US, "%.3f", currentWeight));
                         updateFuelingCalucations();
                     }
