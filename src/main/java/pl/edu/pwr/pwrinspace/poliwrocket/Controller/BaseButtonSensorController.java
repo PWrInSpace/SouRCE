@@ -58,7 +58,7 @@ public abstract class BaseButtonSensorController extends BaseTilesFXSensorContro
             for (ICommand command : commands) {
                 var button = buttonHashMap.get(command.getCommandTriggerKey());
                 if (button != null){
-                    button.setOnAction(handleButtonsClickByCommand(button,command));
+                    button.setOnAction(handleButtonsClickByCommand(command));
                     button.setVisible(true);
                 } else {
                     logger.warn("Trigger not found: {} , it`s maybe correct for fire button!", command.getCommandTriggerKey());
@@ -67,9 +67,7 @@ public abstract class BaseButtonSensorController extends BaseTilesFXSensorContro
         });
     }
 
-    protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command){
-        return actionEvent -> executorService.execute(() -> {
-            SerialPortManager.getInstance().write(command);
-        });
+    protected EventHandler<ActionEvent> handleButtonsClickByCommand(ICommand command){
+        return actionEvent -> executorService.execute(() -> SerialPortManager.getInstance().write(command));
     }
 }

@@ -34,7 +34,7 @@ public class AbortController extends BaseButtonSensorController {
     }
 
     @Override
-    protected EventHandler<ActionEvent> handleButtonsClickByCommand(Button button, ICommand command) {
+    protected EventHandler<ActionEvent> handleButtonsClickByCommand(ICommand command) {
         return actionEvent -> {
             executorService.execute(() -> {
                 if (safeSwitch1.isActive() && safeSwitch2.isActive()) {
