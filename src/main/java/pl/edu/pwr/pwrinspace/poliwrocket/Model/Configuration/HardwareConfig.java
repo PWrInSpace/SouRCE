@@ -23,6 +23,8 @@ public class HardwareConfig {
     private static final long DEBOUNCE_TIME_MS = 250;
 
     public static void assignCommandsToGPIO(Context pi4j, List<Command<?>> commandsList) {
+        clearAllHardwareInputs(pi4j);
+
         for (Command<?> command : commandsList) {
             String gpioPin = command.getGPIOPin();
 
@@ -67,5 +69,27 @@ public class HardwareConfig {
                 }
             }
         }
+    }
+
+    public static void clearAllHardwareInputs(Context pi4j) {
+        if (activeInputs.isEmpty()) {
+            return;
+        }
+
+        LOGGER.info("Clearing old GPIO configuration... (Active pins: {})", activeInputs.size());
+
+        for (Map.Entry<String, DigitalInput> entry : activeInputs.entrySet()) {
+            DigitalInput input = entry.getValue();
+            try {
+                input.close();
+                pi4j.registry().remove(input.id());
+            } catch (Exception e) {
+                LOGGER.error("Failed to close GPIO pin associated with trigger '{}': {}", entry.getKey(), e.getMessage());
+            }
+        }
+
+        activeInputs.clear();
+        lastTriggerTimes.clear();
+        LOGGER.info("GPIO configuration cleared successfully.");
     }
 }
