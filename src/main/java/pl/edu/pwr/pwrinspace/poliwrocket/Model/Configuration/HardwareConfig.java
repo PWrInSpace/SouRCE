@@ -66,6 +66,8 @@ public class HardwareConfig {
 
                 } catch (NumberFormatException e) {
                     LOGGER.error("Incorrect GPIO format {} for command {}", gpioPin, command.getCommandTriggerKey());
+                } catch (Exception e) {
+                    LOGGER.error("Failed to provision GPIO pin {} for command {}: {}", gpioPin, command.getCommandTriggerKey(), e.getMessage());
                 }
             }
         }
