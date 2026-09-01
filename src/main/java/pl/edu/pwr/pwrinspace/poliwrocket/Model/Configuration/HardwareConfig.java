@@ -31,6 +31,11 @@ public class HardwareConfig {
                     int bcmPin = Integer.parseInt(gpioPin.trim());
                     String triggerKey = command.getCommandTriggerKey();
 
+                    if (activeInputs.containsKey(triggerKey)) {
+                        LOGGER.info("Input for key '{}' already configured. Skipping.", triggerKey);
+                        continue;
+                    }
+
                     LOGGER.info("Assigning command '{}' to GPIO pin '{}'", triggerKey, bcmPin);
 
                     var pi4jConfig = DigitalInput.newConfigBuilder(pi4j)
