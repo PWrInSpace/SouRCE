@@ -72,4 +72,9 @@ public class SettingsSensor extends Sensor implements ISettingsSensor, ICommand 
     public CommandType getCommandType() {
         return command.getCommandType();
     }
+
+    @Override
+    public String getGPIOPin() {
+        return command.getGPIOPin();
+    }
 }

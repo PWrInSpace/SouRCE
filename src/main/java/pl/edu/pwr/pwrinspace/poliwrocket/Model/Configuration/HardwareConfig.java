@@ -23,6 +23,11 @@ public class HardwareConfig {
     private static final long DEBOUNCE_TIME_MS = 250;
 
     public static void assignCommandsToGPIO(Context pi4j, List<Command<?>> commandsList) {
+        if (!isRunningOnPi()) {
+            LOGGER.warn("Running on non-ARM architecture ({}). Skipping GPIO initialization.", System.getProperty("os.arch"));
+            return;
+        }
+
         clearAllHardwareInputs(pi4j);
 
         for (Command<?> command : commandsList) {
@@ -42,7 +47,7 @@ public class HardwareConfig {
 
                     var pi4jConfig = DigitalInput.newConfigBuilder(pi4j)
                             .id(triggerKey)
-                            .bcm(bcmPin)
+                            .address(bcmPin)
                             .pull(PullResistance.PULL_DOWN)
                             .build();
 
@@ -83,7 +88,7 @@ public class HardwareConfig {
         for (Map.Entry<String, DigitalInput> entry : activeInputs.entrySet()) {
             DigitalInput input = entry.getValue();
             try {
-                input.close();
+                input.shutdown(pi4j);
                 pi4j.registry().remove(input.id());
             } catch (Exception e) {
                 LOGGER.error("Failed to close GPIO pin associated with trigger '{}': {}", entry.getKey(), e.getMessage());
@@ -93,5 +98,10 @@ public class HardwareConfig {
         activeInputs.clear();
         lastTriggerTimes.clear();
         LOGGER.info("GPIO configuration cleared successfully.");
+    }
+
+    private static boolean isRunningOnPi() {
+        String osArch = System.getProperty("os.arch").toLowerCase();
+        return osArch.contains("arm") || osArch.contains("aarch64");
     }
 }
