@@ -2,6 +2,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +41,7 @@ public class FuelingCalculatorController extends BaseSensorController{
     @FXML private Label initialMotherWeightLabel;
     @FXML private Label estimatedVentLabel;
 
+    @FXML private JFXToggleButton safeToggle;
 
     private double currentWeight  = 0.0;
     private double currentPressure  = 0.0;
@@ -123,6 +125,8 @@ public class FuelingCalculatorController extends BaseSensorController{
             updateFuelingCalucations();
         });
 
+        startButton.disableProperty().bind(safeToggle.selectedProperty().not());
+
         flowCoefficientField.setText("0.42");
         sensorOxiPressureField.setText("0.0");
         sensorTankWeightField.setText("0.0");
@@ -182,10 +186,6 @@ public class FuelingCalculatorController extends BaseSensorController{
         }
 
         totalFueledLabel.setText(String.format(Locale.US, "%.3f", lastValidFueledAmount));
-
-
-
-
         sinceVentLabel.setText(String.format(Locale.US, "%.3f", lastValidSinceVentAmount));
     }
 
@@ -215,6 +215,7 @@ public class FuelingCalculatorController extends BaseSensorController{
         logsArea.appendText(String.format(Locale.US, "[START] Initial weight: %.3f kg. Fueling started.\n", initialMotherWeight));
 
         updateFuelingCalucations();
+        safeToggle.setSelected(false);
     }
 
     @FXML
