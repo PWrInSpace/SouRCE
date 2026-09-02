@@ -163,6 +163,6 @@
     </dependency>
   </dependencies>
   <properties>
-    <pi4j.version>2.6.0</pi4j.version>
+    <pi4j.version>2.8.0</pi4j.version>
   </properties>
 </project>
