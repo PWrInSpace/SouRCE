@@ -20,13 +20,13 @@
       <TextField fx:id="sensorOxiPressureField" editable="false" layoutX="272.0" layoutY="112.0" prefHeight="26.0" prefWidth="109.0" />
       <TextField fx:id="flowCoefficientField" editable="false" layoutX="270.0" layoutY="175.0" prefHeight="26.0" prefWidth="109.0" />
       <Label layoutX="564.0" layoutY="191.0" text="Estimated vent amount:" />
-      <JFXButton fx:id="ventButton" layoutX="684.0" layoutY="565.0" mnemonicParsing="false" onAction="#handleVent" prefHeight="37.0" prefWidth="73.0" text="VENT" />
+      <JFXButton fx:id="ventButton" layoutX="676.0" layoutY="572.0" mnemonicParsing="false" onAction="#handleVent" prefHeight="37.0" prefWidth="73.0" text="VENT" />
       <Label layoutX="79.0" layoutY="239.0" prefHeight="18.0" prefWidth="168.0" text="VENT DURATION:" />
       <TextField fx:id="ventDurationField" layoutX="272.0" layoutY="235.0" prefHeight="26.0" prefWidth="109.0" />
       <TextArea fx:id="logsArea" editable="false" layoutX="48.0" layoutY="324.0" prefHeight="183.0" prefWidth="360.0" />
       <Label layoutX="72.0" layoutY="179.0" prefHeight="18.0" prefWidth="168.0" text="FLOW COEFFICIENT:" />
       <Label layoutX="118.0" layoutY="590.0" text="SINCE VENT" />
-      <JFXButton fx:id="startButton" layoutX="541.0" layoutY="564.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="37.0" prefWidth="73.0" text="START" />
+      <JFXButton fx:id="startButton" disable="true" layoutX="543.0" layoutY="572.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="37.0" prefWidth="73.0" text="START" />
       <Label layoutX="552.0" layoutY="75.0" text="Initial mother bottle weight" />
       <Label fx:id="totalFueledLabel" layoutX="247.0" layoutY="555.0" text="0.0" />
       <Label fx:id="sinceVentLabel" layoutX="247.0" layoutY="590.0" text="0.0" />
@@ -39,6 +39,6 @@
       <Label layoutX="625.0" layoutY="306.0" prefHeight="18.0" prefWidth="34.0" text="Flow" />
       <Label fx:id="estimatedVentLabel" layoutX="577.0" layoutY="217.0" prefWidth="34.0" text="XXX.X" />
       <Label layoutX="655.0" layoutY="217.0" prefHeight="18.0" prefWidth="19.0" text="kg" />
-      <JFXToggleButton fx:id="safeToggle" layoutX="473.0" layoutY="554.0" text=" " />
+      <JFXToggleButton fx:id="safeToggle" layoutX="473.0" layoutY="560.0" onAction="#toggleSafe" text=" " />
    </children>
 </AnchorPane>
