@@ -10,16 +10,13 @@ import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class HardwareConfig {
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(HardwareConfig.class);
     private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
-
     private static final Map<String, DigitalInput> activeInputs = new HashMap<>();
-    private static final Map<String, Long> lastTriggerTimes = new ConcurrentHashMap<>();
     private static final long DEBOUNCE_TIME_MS = 250;
 
     public static void assignCommandsToGPIO(Context pi4j, List<Command<?>> commandsList) {
@@ -47,23 +44,16 @@ public class HardwareConfig {
 
                     var pi4jConfig = DigitalInput.newConfigBuilder(pi4j)
                             .id(triggerKey)
-                            .address(bcmPin)
+                            .bcm(bcmPin)
                             .pull(PullResistance.PULL_DOWN)
-                            .build();
+                            .debounce(DEBOUNCE_TIME_MS * 1000L);
 
                     DigitalInput digitalInput = pi4j.create(pi4jConfig);
 
                     digitalInput.addListener(event -> {
                         if (event.state().isHigh()) {
-                            long currentTime = System.currentTimeMillis();
-                            long lastTriggerTime = lastTriggerTimes.getOrDefault(triggerKey, 0L);
-
-                            if (currentTime - lastTriggerTime > DEBOUNCE_TIME_MS) {
-                                lastTriggerTimes.put(triggerKey, currentTime);
-
-                                LOGGER.info("GPIO pin '{}' triggered command '{}'", bcmPin, triggerKey);
-                                executorService.execute(() -> SerialPortManager.getInstance().write(command));
-                            }
+                            LOGGER.info("GPIO pin '{}' triggered command '{}'", bcmPin, triggerKey);
+                            executorService.execute(() -> SerialPortManager.getInstance().write(command));
                         }
                     });
 
@@ -88,7 +78,7 @@ public class HardwareConfig {
         for (Map.Entry<String, DigitalInput> entry : activeInputs.entrySet()) {
             DigitalInput input = entry.getValue();
             try {
-                input.shutdown(pi4j);
+                input.close();
                 pi4j.registry().remove(input.id());
             } catch (Exception e) {
                 LOGGER.error("Failed to close GPIO pin associated with trigger '{}': {}", entry.getKey(), e.getMessage());
@@ -96,7 +86,6 @@ public class HardwareConfig {
         }
 
         activeInputs.clear();
-        lastTriggerTimes.clear();
         LOGGER.info("GPIO configuration cleared successfully.");
     }
 
