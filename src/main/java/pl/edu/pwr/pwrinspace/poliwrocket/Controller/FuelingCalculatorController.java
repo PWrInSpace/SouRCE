@@ -9,16 +9,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-import java.lang.reflect.Field;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.logging.Logger;
 
 
 public class FuelingCalculatorController extends BaseButtonSensorController{
@@ -165,7 +162,7 @@ public class FuelingCalculatorController extends BaseButtonSensorController{
         }
 
         double coefficient = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
-        long ventTime = parseLongSafely(ventDurationField.getText(), 0L);
+        long ventTime = parseLongSafely(ventDurationField.getText(), 0L) / 1000;
         double estimatedVentAmount = coefficient * ventTime;
 
         currentFlowRate = coefficient;
@@ -271,9 +268,9 @@ public class FuelingCalculatorController extends BaseButtonSensorController{
                 .findFirst()
                 .orElse(null);
 
-        if(oxiVentCommand != null){
+        if (oxiVentCommand != null){
             oxiVentCommand.setPayload(String.format(String.valueOf(ventTimeMs)));
-            handleButtonsClickByCommand(oxiVentCommand);
+            executorService.execute(() -> SerialPortManager.getInstance().write(oxiVentCommand));
         }else{
             logger.warn("Fueling Calc: oxiVent command not found in commands list");
             logsArea.appendText("[ERROR] Command oxiVent not found!\n");
