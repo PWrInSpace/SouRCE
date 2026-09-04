@@ -2,23 +2,23 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.slf4j.LoggerFactory;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Command.ICommand;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.ISensor;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.SerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.Locale;
-import java.util.logging.Logger;
 
 
-public class FuelingCalculatorController extends BaseSensorController{
+public class FuelingCalculatorController extends BaseButtonSensorController{
 
     @FXML private TextField sensorTankWeightField;
     @FXML private TextField sensorOxiPressureField;
@@ -40,6 +40,7 @@ public class FuelingCalculatorController extends BaseSensorController{
     @FXML private Label initialMotherWeightLabel;
     @FXML private Label estimatedVentLabel;
 
+    @FXML private JFXToggleButton safeToggle;
 
     private double currentWeight  = 0.0;
     private double currentPressure  = 0.0;
@@ -65,10 +66,25 @@ public class FuelingCalculatorController extends BaseSensorController{
     private boolean isOxiFillOpen = false;
 
     @Override
-    protected void buildVisualizationMap() {}
+    protected void buildVisualizationMap() {
+        toggleSafe();
+    }
 
     @Override
     protected void setUIBySensors() {}
+
+    @Override
+    public void assignsCommands(Collection<ICommand> commands){
+        this.commands.clear();
+        this.commands.addAll(commands);
+    }
+
+    @FXML
+    public void toggleSafe() {
+        if(startButton != null && safeToggle != null){
+            startButton.setDisable(!safeToggle.isSelected());
+        }
+    }
 
     @Override
     public void invalidated(Observable observable) {
@@ -126,7 +142,7 @@ public class FuelingCalculatorController extends BaseSensorController{
         flowCoefficientField.setText("0.42");
         sensorOxiPressureField.setText("0.0");
         sensorTankWeightField.setText("0.0");
-        ventDurationField.setText("0.0");
+        ventDurationField.setText("0");
     }
 
     private void calculateFlowRate(){
@@ -146,7 +162,7 @@ public class FuelingCalculatorController extends BaseSensorController{
         }
 
         double coefficient = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
-        double ventTime = parseDoubleSafely(ventDurationField.getText(), 0.0);
+        long ventTime = parseLongSafely(ventDurationField.getText(), 0L) / 1000;
         double estimatedVentAmount = coefficient * ventTime;
 
         currentFlowRate = coefficient;
@@ -182,10 +198,6 @@ public class FuelingCalculatorController extends BaseSensorController{
         }
 
         totalFueledLabel.setText(String.format(Locale.US, "%.3f", lastValidFueledAmount));
-
-
-
-
         sinceVentLabel.setText(String.format(Locale.US, "%.3f", lastValidSinceVentAmount));
     }
 
@@ -199,7 +211,18 @@ public class FuelingCalculatorController extends BaseSensorController{
             logger.warn("Fueling Calc: Invalid float format in field: '{}'. Defaulting to {}", text, defaultValue);
             return defaultValue;
         }
+    }
 
+    private long parseLongSafely(String text, long defaultValue) {
+        if (text == null || text.trim().isEmpty()) {
+            return defaultValue;
+        }
+        try {
+            return Long.parseLong(text.trim());
+        } catch (NumberFormatException e) {
+            logger.warn("Fueling Calc: Invalid integer format: '{}'. Defaulting to {}", text, defaultValue);
+            return defaultValue;
+        }
     }
 
     @FXML
@@ -215,6 +238,9 @@ public class FuelingCalculatorController extends BaseSensorController{
         logsArea.appendText(String.format(Locale.US, "[START] Initial weight: %.3f kg. Fueling started.\n", initialMotherWeight));
 
         updateFuelingCalucations();
+
+        safeToggle.setSelected(false);
+        toggleSafe();
     }
 
     @FXML
@@ -226,16 +252,33 @@ public class FuelingCalculatorController extends BaseSensorController{
 
         calculateFlowRate();
 
-        double ventTime = parseDoubleSafely(ventDurationField.getText(), 0.0);
-        double wv = currentFlowRate * ventTime;
+        double ventTimeMs = parseLongSafely(ventDurationField.getText(), 0L);
+
+        double ventTimeSec = ventTimeMs / 1000.0;
+        double wv = currentFlowRate * ventTimeSec;
 
         totalVentLoss += wv;
 
         weightAtLastVent = parseDoubleSafely(sensorTankWeightField.getText(), 0.0);
 
-        logsArea.appendText(String.format(Locale.US, "[VENT] Venting executed for %.1fs. Lost: %.3f kg\n", ventTime, wv));
+        logsArea.appendText(String.format(Locale.US, "[VENT] Venting executed for %.1fs. Lost: %.3f kg\n", ventTimeSec, wv));
+
+        ICommand oxiVentCommand = commands.stream()
+                .filter(cmd -> "oxiVent".equals(cmd.getCommandTriggerKey()))
+                .findFirst()
+                .orElse(null);
+
+        if (oxiVentCommand != null){
+            oxiVentCommand.setPayload(String.format(String.valueOf(ventTimeMs)));
+            executorService.execute(() -> SerialPortManager.getInstance().write(oxiVentCommand));
+        }else{
+            logger.warn("Fueling Calc: oxiVent command not found in commands list");
+            logsArea.appendText("[ERROR] Command oxiVent not found!\n");
+        }
 
         updateFuelingCalucations();
     }
+
+
 
 }
