@@ -45,13 +45,13 @@ public class HardwareConfig {
                     var pi4jConfig = DigitalInput.newConfigBuilder(pi4j)
                             .id(triggerKey)
                             .bcm(bcmPin)
-                            .pull(PullResistance.PULL_DOWN)
+                            .pull(PullResistance.PULL_UP)
                             .debounce(DEBOUNCE_TIME_MS * 1000L);
 
                     DigitalInput digitalInput = pi4j.create(pi4jConfig);
 
                     digitalInput.addListener(event -> {
-                        if (event.state().isHigh()) {
+                        if (event.state().isLow()) {
                             LOGGER.info("GPIO pin '{}' triggered command '{}'", bcmPin, triggerKey);
                             executorService.execute(() -> SerialPortManager.getInstance().write(command));
                         }
