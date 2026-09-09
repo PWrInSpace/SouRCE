@@ -22,12 +22,12 @@ public class FuelingCalculatorController extends BaseButtonSensorController{
 
     @FXML private TextField sensorTankWeightField;
     @FXML private TextField sensorOxiPressureField;
-    @FXML private TextField flowCoefficientField;
+    @FXML private TextField estimatedMassFlowField;
     @FXML private TextField ventDurationField;
 
     @FXML private JFXCheckBox weightOverrideCheck;
     @FXML private JFXCheckBox pressureOverrideCheck;
-    @FXML private JFXCheckBox flowOverrideCheck;
+    @FXML private JFXCheckBox estimatedMassFlowOverrideCheck;
 
     @FXML private JFXButton ventButton;
     @FXML private JFXButton startButton;
@@ -121,15 +121,15 @@ public class FuelingCalculatorController extends BaseButtonSensorController{
 
         sensorTankWeightField.setEditable(false);
         sensorOxiPressureField.setEditable(false);
-        flowCoefficientField.setEditable(false);
+        estimatedMassFlowField.setEditable(false);
 
         weightOverrideCheck.setOnAction(e -> sensorTankWeightField.setEditable(weightOverrideCheck.isSelected()));
         pressureOverrideCheck.setOnAction(e -> sensorOxiPressureField.setEditable(pressureOverrideCheck.isSelected()));
-        flowOverrideCheck.setOnAction(e -> flowCoefficientField.setEditable(flowOverrideCheck.isSelected()));
+        estimatedMassFlowOverrideCheck.setOnAction(e -> estimatedMassFlowField.setEditable(estimatedMassFlowOverrideCheck.isSelected()));
 
         sensorOxiPressureField.setOnAction(e -> calculateFlowRate());
-        flowCoefficientField.setOnAction(e -> calculateFlowRate());
-        ventDurationField.setOnAction(e -> calculateFlowRate());
+        estimatedMassFlowField.setOnAction(e -> calculateFlowRate());
+        ventDurationField.textProperty().addListener((obs, oldVal, newVal) -> calculateFlowRate());
 
         sensorTankWeightField.setOnAction(e -> {
             if(weightOverrideCheck.isSelected()){
@@ -139,7 +139,7 @@ public class FuelingCalculatorController extends BaseButtonSensorController{
             updateFuelingCalucations();
         });
 
-        flowCoefficientField.setText("0.42");
+        estimatedMassFlowField.setText("0.42");
         sensorOxiPressureField.setText("0.0");
         sensorTankWeightField.setText("0.0");
         ventDurationField.setText("0");
@@ -149,21 +149,21 @@ public class FuelingCalculatorController extends BaseButtonSensorController{
         double pBar = parseDoubleSafely(sensorOxiPressureField.getText(), 0.0);
         double p = pBar * 100000.0;
 
-        if(p > 0 && !flowOverrideCheck.isSelected()){
+        if(p > 0 && !estimatedMassFlowOverrideCheck.isSelected()){
             double term1 = K / (R * INITIAL_TEMP);
             double term2 = Math.pow((2.0 / (K + 1.0)), ((K + 1.0 )/ (K -1.0)));
             double sqrtPart = Math.sqrt(term1 * term2);
 
             currentFlowRate = C_D * A_T * p *sqrtPart;
 
-            flowCoefficientField.setText(String.format(Locale.US, "%.3f", currentFlowRate));
+            estimatedMassFlowField.setText(String.format(Locale.US, "%.3f", currentFlowRate));
         }else{
-            currentFlowRate = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
+            currentFlowRate = parseDoubleSafely(estimatedMassFlowField.getText(), 0.0);
         }
 
-        double coefficient = parseDoubleSafely(flowCoefficientField.getText(), 0.0);
-        long ventTime = parseLongSafely(ventDurationField.getText(), 0L) / 1000;
-        double estimatedVentAmount = coefficient * ventTime;
+        double coefficient = parseDoubleSafely(estimatedMassFlowField.getText(), 0.0);
+        double ventTimeSec = parseLongSafely(ventDurationField.getText(), 0L) / 1000.0;
+        double estimatedVentAmount = coefficient * ventTimeSec;
 
         currentFlowRate = coefficient;
 
