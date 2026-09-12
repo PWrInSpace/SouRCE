@@ -1,5 +1,7 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration;
 
+import com.pi4j.Pi4J;
+import com.pi4j.context.Context;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BaseController;
@@ -47,6 +49,8 @@ public class Configuration implements Observable {
     public Collection<BaseController> controllersList = new LinkedList<>();
     public final static Instant startUpTime = Instant.now();
     private boolean lightMode = false;
+
+    private final Context pi4j = Pi4J.newAutoContext();
 
     private Configuration() {}
 
@@ -119,6 +123,8 @@ public class Configuration implements Observable {
         CommandsConfig commandsConfig = new CommandsConfig();
         commandsConfig.commandsList = this.commandsList;
         commandsConfig.assignCommandsToControllers(controllersList);
+
+        HardwareConfig.assignCommandsToGPIO(pi4j, this.commandsList);
     }
 
     public static Configuration getInstance() {

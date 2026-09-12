@@ -21,8 +21,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static java.lang.Thread.sleep;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class SerialPortManager implements SerialPortEventListener, ISerialPortManager {
 
@@ -273,9 +273,9 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     }
 
     public static class SerialWriter implements Runnable {
-        OutputStream out;
-
-        private static final org.slf4j.Logger logger = LoggerFactory.getLogger(SerialWriter.class);
+        private final OutputStream out;
+        private final BlockingQueue<byte[]> messageQueue = new LinkedBlockingQueue<>();
+        private static final Logger logger = LoggerFactory.getLogger(SerialWriter.class);
 
         public SerialWriter(OutputStream out) {
             this.out = out;
@@ -283,11 +283,17 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
 
         @Override
         public void run() {
-            try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                logger.error(e.getMessage());
-                Thread.currentThread().interrupt();
+            while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    byte[] msg = messageQueue.take();
+                    out.write(msg);
+                    logger.info("Written msg: {}", msg);
+                } catch (InterruptedException e) {
+                    logger.error("Writer thread interrupted: {}", e.getMessage());
+                    Thread.currentThread().interrupt();
+                } catch (IOException e) {
+                    logger.error("Error writing to serial port: {}", e.getMessage());
+                }
             }
         }
 
@@ -296,13 +302,9 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         }
 
         public void send(byte[] msg) {
-            try {
-                var finalMsg = getMessageWithPrefixAndCRC(msg);
-                logger.info("added crc and prefix");
-                out.write(finalMsg);
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-            }
+            var finalMsg = getMessageWithPrefixAndCRC(msg);
+            logger.info("added crc and prefix");
+            messageQueue.add(finalMsg);
         }
 
         public void sendWithoutCRC(String msg) {
@@ -310,12 +312,7 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
         }
 
         public void sendWithoutCRC(byte[] msg) {
-            try {
-                out.write(msg);
-                logger.info("Written msg: {}", msg);
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-            }
+            messageQueue.add(msg);
         }
 
         public byte[] getMessageCRC(byte[] msg) {

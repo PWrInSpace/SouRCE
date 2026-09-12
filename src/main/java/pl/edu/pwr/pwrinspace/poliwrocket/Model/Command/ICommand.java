@@ -10,4 +10,5 @@ public interface ICommand {
     byte[] getCommandValueAsBytes(boolean force);
     byte[] getCommandValueAsBytes();
     CommandType getCommandType();
+    String getGPIOPin();
 }

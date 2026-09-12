@@ -9,6 +9,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <pi4j.version>4.0.0</pi4j.version>
+        <slf4j.version>2.0.17</slf4j.version>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
         <dependency>
@@ -24,7 +29,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.28</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/eu.hansolo/tilesfx -->
         <dependency>
@@ -186,6 +191,27 @@
             <artifactId>guava</artifactId>
             <version>32.0.0-jre</version>
         </dependency>
+
+        <!--pi4j-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- Include Pi4J Core -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-core</artifactId>
+            <version>${pi4j.version}</version>
+        </dependency>
+
+        <!-- Include Pi4J Plugin (Platforms and I/O Providers) -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-plugin-ffm</artifactId>
+            <version>${pi4j.version}</version>
+        </dependency>
     </dependencies>
     <repositories>
         <!--        discord bot         -->
@@ -235,10 +261,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>25</source>
+                    <target>25</target>
                     <compilerArgs>
                         <arg>--add-opens</arg>
                         <arg>java.base/java.net=com.sothawo.mapjfx</arg>

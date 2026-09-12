@@ -21,6 +21,8 @@ public class Command<T> implements ICommand {
     protected CommandType commandType = CommandType.INPUT_COMMAND;
     @Expose
     private List<String> destinationControllerNames = new ArrayList<>();
+    @Expose
+    private String GPIOPin = "";
 
     @Override
     public String toString() {
@@ -90,4 +92,8 @@ public class Command<T> implements ICommand {
         return commandType;
     }
 
+    @Override
+    public String getGPIOPin() {
+        return GPIOPin;
+    }
 }
