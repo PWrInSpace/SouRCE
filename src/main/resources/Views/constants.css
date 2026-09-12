@@ -27,18 +27,33 @@
 
 /*Flat button example */
 .jfx-button {
-    -jfx-button-type: FLAT;
-    -fx-background-color: #007383;
-    -fx-text-fill: black;
-}
-
-
-/*Raised button example */
-.jfx-button {
-    -jfx-button-type: RAISED;
+    -jfx-button-type: FLAT !important;
+    -jfx-disable-visual-focus: true !important;
     -fx-background-color: #004162;
     -fx-text-fill: white;
+    -fx-effect: null !important;
 }
+
+.jfx-button .jfx-rippler {
+    -jfx-rippler-fill: transparent !important;
+    -fx-rippler-fill: transparent !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+
+.jfx-button:armed,
+.jfx-button:pressed {
+    -fx-background-color: #00283c !important;
+    -fx-effect: null !important;
+}
+
+.jfx-button:hover,
+.jfx-button:focused {
+    -fx-effect: null !important;
+}
+
+
 
 /*Toggle button example */
 .jfx-toggle-button {

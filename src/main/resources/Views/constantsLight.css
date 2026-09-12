@@ -60,19 +60,36 @@
     -fx-border-width: 2px 2px 0px 0px;
 }
 
+
 /*Flat button example */
 .jfx-button {
-    -jfx-button-type: FLAT;
+    -jfx-button-type: FLAT !important;
+    -jfx-disable-visual-focus: true !important;
     -fx-background-color: -inspace-base-border-color;
     -fx-text-fill: black;
+    -fx-effect: null !important;
 }
 
-/*Raised button example */
-.jfx-button {
-    -jfx-button-type: RAISED;
-    -fx-background-color: -inspace-base-border-color;
-    -fx-text-fill: black;
+.jfx-button .jfx-rippler {
+    -jfx-rippler-fill: transparent !important;
+    -fx-rippler-fill: transparent !important;
+    visibility: hidden !important;
+    display: none !important;
 }
+
+
+.jfx-button:armed,
+.jfx-button:pressed {
+    -fx-background-color: #929292 !important;
+    -fx-effect: null !important;
+}
+
+.jfx-button:hover,
+.jfx-button:focused {
+    -fx-effect: null !important;
+}
+
+
 
 /*Toggle button example */
 .jfx-toggle-button {
