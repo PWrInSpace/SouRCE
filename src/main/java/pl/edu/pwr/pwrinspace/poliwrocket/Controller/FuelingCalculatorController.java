@@ -170,13 +170,11 @@ public class FuelingCalculatorController extends BaseButtonSensorController{
         estimatedVentLabel.setText(String.format(Locale.US, "%.3f", estimatedVentAmount));
 
         boolean flowChanged = Math.abs(currentFlowRate - lastLoggedFlowRate) > 0.001;
-        boolean ventAmountChanged = Math.abs(estimatedVentAmount - lastValidFueledAmount) > 0.001;
 
-        if (currentFlowRate > 0 && (flowChanged || ventAmountChanged)){
+        if (currentFlowRate > 0 && flowChanged){
             flowArea.appendText(String.format(Locale.US, "[FLOW] Rate: %.3f kg/s | Est. Vent (wv): %.3f kg\n",
                     currentFlowRate, estimatedVentAmount));
             lastLoggedFlowRate = currentFlowRate;
-            lastValidFueledAmount = estimatedVentAmount;
         }
     }
 
