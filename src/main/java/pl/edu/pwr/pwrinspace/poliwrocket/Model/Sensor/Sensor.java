@@ -15,26 +15,17 @@ public class Sensor implements Observable, ISensor, IUIUpdateEventListener {
 
     public List<InvalidationListener> observers = new ArrayList<>();
 
-    @Expose
-    private String destination = "";
-    @Expose
-    private String name = "";
-    @Expose
-    private String unit = "";
-    @Expose
-    private List<String> destinationControllerNames = new ArrayList<>();
-    @Expose
-    private double maxRange = 0;
-    @Expose
-    private double minRange = 0;
-    @Expose
-    private boolean isBoolean = false;
-    @Expose
-    private String interpreterKey;
-    @Expose
-    private boolean hidden = false;
-    @Expose
-    private int precision = 1;
+    @Expose private String destination = "";
+    @Expose private String name = "";
+    @Expose private String unit = "";
+    @Expose private List<String> destinationControllerNames = new ArrayList<>();
+    @Expose private double maxRange = 0;
+    @Expose private double minRange = 0;
+    @Expose private boolean isBoolean = false;
+    @Expose private String interpreterKey;
+    @Expose private boolean hidden = false;
+    @Expose private int precision = 1;
+    @Expose private String GPIOPin = "";
 
     protected double value = 0;
 
