@@ -23,9 +23,9 @@ public class HardwareConfig {
     private static final Map<String, DigitalInput> activeInputs = new HashMap<>();
     private static final Map<String, DigitalOutput> activeOutputs = new HashMap<>();
     private static final long DEBOUNCE_TIME_MS = 250;
-    private static final int[] FAN_PINS = {14, 15};
-    private static final int[] PROG_PINS = {8, 9, 10, 11};
     private static final Map<Integer, DigitalOutput> fanOutputs = new HashMap<>();
+    public static final int[] FAN_PINS = {14, 15};
+    public static final int[] PROG_PINS = {8, 9, 10, 11};
 
     public static DigitalOutput getDigitalOutput(String sensorKey) {
         return activeOutputs.get(sensorKey);
@@ -209,7 +209,7 @@ public class HardwareConfig {
         LOGGER.info("GPIO output configuration cleared successfully.");
     }
 
-    private static boolean isRunningOnPi() {
+    public static boolean isRunningOnPi() {
         String osArch = System.getProperty("os.arch").toLowerCase();
         return osArch.contains("arm") || osArch.contains("aarch64");
     }

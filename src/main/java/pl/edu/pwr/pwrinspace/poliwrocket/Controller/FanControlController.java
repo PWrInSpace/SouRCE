@@ -3,6 +3,7 @@ package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.HardwareConfig;
 
 public class FanControlController extends BaseController{
     @FXML private JFXButton fanOnButton;
@@ -10,14 +11,26 @@ public class FanControlController extends BaseController{
 
     @FXML
     private void handleFanOnButtonClick() {
-        // Handle fan on button click
-        System.out.println("Fan turned ON");
+        if (HardwareConfig.isRunningOnPi()) {
+            for (int pin : HardwareConfig.FAN_PINS) {
+                var fanOutput = HardwareConfig.getFanOutput(pin);
+                if (fanOutput != null) {
+                    fanOutput.high();
+                }
+            }
+        }
     }
 
     @FXML
     private void handleFanOffButtonClick() {
-        // Handle fan off button click
-        System.out.println("Fan turned OFF");
+        if (HardwareConfig.isRunningOnPi()) {
+            for (int pin : HardwareConfig.FAN_PINS) {
+                var fanOutput = HardwareConfig.getFanOutput(pin);
+                if (fanOutput != null) {
+                    fanOutput.low();
+                }
+            }
+        }
     }
 
     @Override
