@@ -125,6 +125,7 @@ public class Configuration implements Observable {
         commandsConfig.assignCommandsToControllers(controllersList);
 
         HardwareConfig.assignCommandsToGPIO(pi4j, this.commandsList);
+        HardwareConfig.assignSensorsToGPIO(pi4j, this.sensorRepository);
     }
 
     public static Configuration getInstance() {
