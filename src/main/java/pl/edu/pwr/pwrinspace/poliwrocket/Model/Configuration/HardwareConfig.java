@@ -23,9 +23,56 @@ public class HardwareConfig {
     private static final Map<String, DigitalInput> activeInputs = new HashMap<>();
     private static final Map<String, DigitalOutput> activeOutputs = new HashMap<>();
     private static final long DEBOUNCE_TIME_MS = 250;
+    private static final int[] FAN_PINS = {14, 15};
+    private static final int[] PROG_PINS = {8, 9, 10, 11};
+    private static final Map<Integer, DigitalOutput> fanOutputs = new HashMap<>();
 
     public static DigitalOutput getDigitalOutput(String sensorKey) {
         return activeOutputs.get(sensorKey);
+    }
+
+    public static DigitalOutput getFanOutput(int pin) {
+        return fanOutputs.get(pin);
+    }
+
+    public static void turnOnProgLed(Context pi4j) {
+        if (!isRunningOnPi()) {
+            LOGGER.warn("Running on non-ARM architecture ({}). Skipping GPIO initialization.", System.getProperty("os.arch"));
+            return;
+        }
+
+        //todo sprawdzić czy reset configu nie psuje apki
+        for (int pin : PROG_PINS) {
+            var pi4jConfig = DigitalOutput.newConfigBuilder(pi4j)
+                    .id("prog_led_" + pin)
+                    .bus(14)
+                    .bcm(pin)
+                    .shutdown(DigitalState.LOW)
+                    .initial(DigitalState.LOW);
+
+            DigitalOutput digitalOutput = pi4j.create(pi4jConfig);
+            digitalOutput.high();
+        }
+    }
+
+    public static void setupFanOutputs(Context pi4j) {
+        if (!isRunningOnPi()) {
+            LOGGER.warn("Running on non-ARM architecture ({}). Skipping GPIO initialization.", System.getProperty("os.arch"));
+            return;
+        }
+
+        //todo sprawdzić czy reset configu nie psuje apki
+        for (int pin : FAN_PINS) {
+            var pi4jConfig = DigitalOutput.newConfigBuilder(pi4j)
+                    .id("fan_" + pin)
+                    .bus(14)
+                    .bcm(pin)
+                    .shutdown(DigitalState.LOW)
+                    .initial(DigitalState.LOW);
+
+            DigitalOutput digitalOutput = pi4j.create(pi4jConfig);
+            fanOutputs.put(pin, digitalOutput);
+        }
     }
 
     public static void assignCommandsToGPIO(Context pi4j, List<Command<?>> commandsList) {
