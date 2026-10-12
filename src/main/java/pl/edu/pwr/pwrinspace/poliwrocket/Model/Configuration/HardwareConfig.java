@@ -16,11 +16,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class HardwareConfig {
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(HardwareConfig.class);
     private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private static final ScheduledExecutorService gpioMonitor = Executors.newSingleThreadScheduledExecutor();
     private static final Map<String, DigitalInput> activeInputs = new HashMap<>();
+    private static final Map<Integer, DigitalState> pinLastStates = new HashMap<>();
     private static final Map<String, DigitalOutput> activeOutputs = new HashMap<>();
     private static final long DEBOUNCE_TIME_MS = 125;
     private static final Map<Integer, DigitalOutput> fanOutputs = new HashMap<>();
@@ -41,7 +45,6 @@ public class HardwareConfig {
             return;
         }
 
-        //todo sprawdzić czy reset configu nie psuje apki
         for (int pin : PROG_PINS) {
             var pi4jConfig = DigitalOutput.newConfigBuilder(pi4j)
                     .id("prog_led_" + pin)
@@ -61,7 +64,6 @@ public class HardwareConfig {
             return;
         }
 
-        //todo sprawdzić czy reset configu nie psuje apki
         for (int pin : FAN_PINS) {
             var pi4jConfig = DigitalOutput.newConfigBuilder(pi4j)
                     .id("fan_" + pin)
@@ -118,22 +120,24 @@ public class HardwareConfig {
                         .debounce(DEBOUNCE_TIME_MS * 1000L);
 
                 DigitalInput digitalInput = pi4j.create(pi4jConfig);
+                pinLastStates.put(gpioPin, digitalInput.state());
 
-                if (gpioRising != null && !gpioRising.trim().isEmpty()) {
-                    digitalInput.addListener(event -> {
-                        if (event.state().isHigh()) {
-                            LOGGER.info("GPIO pin '{}' triggered command '{}'", gpioPin, triggerKey);
-                            executorService.execute(() -> SerialPortManager.getInstance().write(command));
+                gpioMonitor.scheduleAtFixedRate(() -> {
+                    try {
+                        DigitalState currentState = digitalInput.state();
+                        DigitalState lastState = pinLastStates.get(gpioPin);
+
+                        if (currentState != lastState) {
+                            pinLastStates.put(gpioPin, currentState);
+                            if (currentState == DigitalState.LOW) {
+                                LOGGER.info("GPIO pin {} changed to LOW. Triggering command '{}'", gpioPin, triggerKey);
+                                executorService.execute(() -> SerialPortManager.getInstance().write(command));
+                            }
                         }
-                    });
-                } else {
-                    digitalInput.addListener(event -> {
-                        if (event.state().isLow()) {
-                            LOGGER.info("GPIO pin '{}' triggered command '{}'", gpioPin, triggerKey);
-                            executorService.execute(() -> SerialPortManager.getInstance().write(command));
-                        }
-                    });
-                }
+                    } catch (Exception e) {
+                        LOGGER.error("Error while monitoring GPIO pin {}: {}", gpioPin, e.getMessage());
+                    }
+                }, 0 , DEBOUNCE_TIME_MS, TimeUnit.MILLISECONDS);
 
                 activeInputs.put(triggerKey, digitalInput);
 
