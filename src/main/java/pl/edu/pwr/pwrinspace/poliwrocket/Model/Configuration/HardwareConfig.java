@@ -22,7 +22,7 @@ public class HardwareConfig {
     private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private static final Map<String, DigitalInput> activeInputs = new HashMap<>();
     private static final Map<String, DigitalOutput> activeOutputs = new HashMap<>();
-    private static final long DEBOUNCE_TIME_MS = 250;
+    private static final long DEBOUNCE_TIME_MS = 125;
     private static final Map<Integer, DigitalOutput> fanOutputs = new HashMap<>();
     public static final int[] FAN_PINS = {14, 15};
     public static final int[] PROG_PINS = {8, 9, 10, 11};
@@ -84,42 +84,63 @@ public class HardwareConfig {
         clearAllHardwareInputs(pi4j);
 
         for (Command<?> command : commandsList) {
-            String gpioPin = command.getGPIOPin();
+            String gpioRising = command.getGPIORising();
+            String gpioFalling = command.getGPIOFalling();
 
-            if (gpioPin != null && !gpioPin.trim().isEmpty()) {
-                try {
-                    int bcmPin = Integer.parseInt(gpioPin.trim());
-                    String triggerKey = command.getCommandTriggerKey();
+            if (gpioRising != null && !gpioRising.trim().isEmpty()) {
+                if (gpioFalling != null && !gpioFalling.trim().isEmpty()) {
+                    LOGGER.error("Command '{}' has both rising and falling GPIO pins defined. Only one should be set. Skipping.", command.getCommandTriggerKey());
+                    continue;
+                }
+            }
 
-                    if (activeInputs.containsKey(triggerKey)) {
-                        LOGGER.info("Input for key '{}' already configured. Skipping.", triggerKey);
-                        continue;
-                    }
+            if (gpioRising == null || gpioRising.trim().isEmpty()) {
+                if (gpioFalling == null || gpioFalling.trim().isEmpty()) {
+                    continue;
+                }
+            }
 
-                    LOGGER.info("Assigning command '{}' to GPIO pin '{}'", triggerKey, bcmPin);
+            int gpioPin = (gpioRising != null && !gpioRising.trim().isEmpty()) ? Integer.parseInt(gpioRising.trim()) : Integer.parseInt(gpioFalling.trim());
+            try {
+                String triggerKey = command.getCommandTriggerKey();
 
-                    var pi4jConfig = DigitalInput.newConfigBuilder(pi4j)
-                            .id(triggerKey)
-                            .bcm(bcmPin)
-                            .pull(PullResistance.PULL_UP)
-                            .debounce(DEBOUNCE_TIME_MS * 1000L);
+                if (activeInputs.containsKey(triggerKey)) {
+                    LOGGER.info("Input for key '{}' already configured. Skipping.", triggerKey);
+                    continue;
+                }
 
-                    DigitalInput digitalInput = pi4j.create(pi4jConfig);
+                LOGGER.info("Assigning command '{}' to GPIO pin '{}'", triggerKey, gpioPin);
 
+                var pi4jConfig = DigitalInput.newConfigBuilder(pi4j)
+                        .id(triggerKey)
+                        .bcm(gpioPin)
+                        .pull(PullResistance.PULL_UP)
+                        .debounce(DEBOUNCE_TIME_MS * 1000L);
+
+                DigitalInput digitalInput = pi4j.create(pi4jConfig);
+
+                if (gpioRising != null && !gpioRising.trim().isEmpty()) {
                     digitalInput.addListener(event -> {
-                        if (event.state().isLow()) {
-                            LOGGER.info("GPIO pin '{}' triggered command '{}'", bcmPin, triggerKey);
+                        if (event.state().isHigh()) {
+                            LOGGER.info("GPIO pin '{}' triggered command '{}'", gpioPin, triggerKey);
                             executorService.execute(() -> SerialPortManager.getInstance().write(command));
                         }
                     });
-
-                    activeInputs.put(triggerKey, digitalInput);
-
-                } catch (NumberFormatException e) {
-                    LOGGER.error("Incorrect GPIO format {} for command {}", gpioPin, command.getCommandTriggerKey());
-                } catch (Exception e) {
-                    LOGGER.error("Failed to provision GPIO pin {} for command {}: {}", gpioPin, command.getCommandTriggerKey(), e.getMessage());
+                } else {
+                    digitalInput.addListener(event -> {
+                        if (event.state().isLow()) {
+                            LOGGER.info("GPIO pin '{}' triggered command '{}'", gpioPin, triggerKey);
+                            executorService.execute(() -> SerialPortManager.getInstance().write(command));
+                        }
+                    });
                 }
+
+                activeInputs.put(triggerKey, digitalInput);
+
+            } catch (NumberFormatException e) {
+                LOGGER.error("Incorrect GPIO format {} for command {}", gpioPin, command.getCommandTriggerKey());
+            } catch (Exception e) {
+                LOGGER.error("Failed to provision GPIO pin {} for command {}: {}", gpioPin, command.getCommandTriggerKey(), e.getMessage());
             }
         }
     }
