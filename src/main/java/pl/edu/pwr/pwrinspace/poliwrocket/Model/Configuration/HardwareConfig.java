@@ -25,7 +25,7 @@ public class HardwareConfig {
     private static final ScheduledExecutorService gpioMonitor = Executors.newSingleThreadScheduledExecutor();
     private static final Map<String, DigitalInput> activeInputs = new HashMap<>();
     private static final Map<Integer, DigitalInput> activeInputsByPin = new HashMap<>();
-    private static final Map<Integer, DigitalState> pinLastStates = new HashMap<>();
+    private static final Map<String, DigitalState> pinLastStatesForCommand = new HashMap<>();
     private static final Map<String, DigitalOutput> activeOutputs = new HashMap<>();
     private static final long DEBOUNCE_TIME_MS = 125;
     private static final Map<Integer, DigitalOutput> fanOutputs = new HashMap<>();
@@ -105,7 +105,7 @@ public class HardwareConfig {
 
             int gpioPin = (gpioRising != null && !gpioRising.trim().isEmpty()) ? Integer.parseInt(gpioRising.trim()) : Integer.parseInt(gpioFalling.trim());
             try {
-                String triggerKey = command.getCommandTriggerKey();
+                String triggerKey = command.getCommandTriggerKey() + "_" + command.getCommandType().name();
 
                 if (activeInputs.containsKey(triggerKey)) {
                     LOGGER.info("Input for key '{}' already configured. Skipping.", triggerKey);
@@ -116,6 +116,7 @@ public class HardwareConfig {
 
                 DigitalInput digitalInput;
                 if (!activeInputsByPin.containsKey(gpioPin)) {
+                    LOGGER.info("Provisioning new GPIO pin {} for command '{}'", gpioPin, triggerKey);
                     var pi4jConfig = DigitalInput.newConfigBuilder(pi4j)
                             .id(triggerKey)
                             .bcm(gpioPin)
@@ -123,18 +124,21 @@ public class HardwareConfig {
                             .debounce(DEBOUNCE_TIME_MS * 1000L);
 
                     digitalInput = pi4j.create(pi4jConfig);
-                    pinLastStates.put(gpioPin, digitalInput.state());
+                    pinLastStatesForCommand.put(triggerKey, digitalInput.state());
+                    activeInputsByPin.put(gpioPin, digitalInput);
                 } else {
+                    LOGGER.info("GPIO pin {} already provisioned. Reusing for command '{}'", gpioPin, triggerKey);
                     digitalInput = activeInputsByPin.get(gpioPin);
                 }
 
                 gpioMonitor.scheduleAtFixedRate(() -> {
                     try {
                         DigitalState currentState = digitalInput.state();
-                        DigitalState lastState = pinLastStates.get(gpioPin);
+                        DigitalState lastState = pinLastStatesForCommand.get(triggerKey);
 
                         if (currentState != lastState) {
-                            pinLastStates.put(gpioPin, currentState);
+                            LOGGER.info("GPIO pin {} state changed from {} to {} owner: {}", gpioPin, lastState, currentState, triggerKey);
+                            pinLastStatesForCommand.put(triggerKey, currentState);
                             if (currentState == DigitalState.LOW && gpioFalling != null && !gpioFalling.trim().isEmpty()) {
                                 LOGGER.info("GPIO pin {} changed to LOW. Triggering command '{}'", gpioPin, triggerKey);
                                 executorService.execute(() -> SerialPortManager.getInstance().write(command));
